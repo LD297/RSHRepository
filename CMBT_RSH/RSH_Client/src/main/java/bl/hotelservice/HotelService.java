@@ -8,11 +8,7 @@ import constant.*;
 import vo.*;
 
 public interface HotelService {
-	
-	public static ResultMessage checkPassword(String id, String password) {
-		return HotelController.checkPassword(id, password);
-	}
-	
+
 	// 返回该酒店基本信息
 	public HotelVO getHotel ();
 

@@ -27,7 +27,6 @@ public class HotelController implements HotelService, CommentService{
 		return Hotel.checkPassword(id, password);
 	}
 
-	@Override
 	public HotelVO getHotel() {
 		// TODO Auto-generated method stub
 		return null;
@@ -40,43 +39,36 @@ public class HotelController implements HotelService, CommentService{
 		return hotel.updateGrade(grade);
 	}
 
-	@Override
 	public ResultMessage updateHotel(HotelVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ResultMessage addSpecialRoom(RoomVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ResultMessage deleteSpecialRoom(RoomVO vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ArrayList<RoomVO> getRoomList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ResultMessage updateRoomList(ArrayList<RoomVO> roomList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ArrayList<RoomAvailVO> getRoomAvailList(Date date) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> availableRoomList) {
 		// TODO Auto-generated method stub
 		return null;
@@ -106,7 +98,8 @@ public class HotelController implements HotelService, CommentService{
 		return hotel.getCheckInDDL(id);
 	}
 
-	public  static ResultMessage addComment(String id, String userID, String comment){
+
+	public static ResultMessage addComment(String id, String userID, String comment){
 		return CommentImpl.addComment(id, userID, comment);
 		
 	}
