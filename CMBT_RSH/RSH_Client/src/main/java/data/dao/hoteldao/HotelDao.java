@@ -15,7 +15,9 @@ public interface HotelDao {
      * @param comment
      * @return
      */
-    public ResultMessage addComment(String id, String userID, String comment);
+    public static ResultMessage addComment(String id, String userID, String comment){
+        return
+    }
     public ResultMessage checkPassword(String id, String password);
     public HotelPO getHotel(String id);
 

@@ -99,6 +99,7 @@ public class HotelController implements HotelService, CommentService{
 	}
 
 
+	// 实现CommentService接口的方法
 	public static ResultMessage addComment(String id, String userID, String comment){
 		return CommentImpl.addComment(id, userID, comment);
 		
