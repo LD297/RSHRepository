@@ -3,16 +3,13 @@ package bl.orderserviceimpl;
 import java.util.ArrayList;
 import java.util.Date;
 
-import bl.orderservice.HotelInfoService;
 import bl.promotionServiceimpl.PromotionController;
 import bl.userserviceimpl.CreditRecordList;
-import bl.PromotionService;
 import bl.hotelserviceimpl.HotelController;
 import po.OrderPO;
 import vo.CreditRecordVO;
 import vo.RoomNormVO;
 import constant.ResultMessage;
-import constant.RoomType;
 
 public class InitialOrder {
 

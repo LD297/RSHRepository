@@ -8,7 +8,6 @@ import constant.ResultMessage;
 import constant.RoomType;
 import constant.ScopeType;
 import po.OrderPO;
-import bl.PromotionService;
 import vo.PromotionVO;
 
 /**
