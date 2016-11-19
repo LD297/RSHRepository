@@ -23,7 +23,7 @@ public class MockWebManager extends WebManager{
 	 * @param vo
 	 * @return
 	 */
-	/*public static ResultMessage add(WebManagerVO vo) {
+	public static ResultMessage add(WebManagerVO vo) {
 		return ResultMessage.success;
-	}*/
+	}
 }

@@ -19,6 +19,7 @@ public class Login {
 	 */
 	public static ResultMessage checkOnline(Role role, String id, String password) {
 		ResultMessage resultMessage = null;
+		//检验用户名和密码是否匹配
 		switch(role){
 		case user:
 			if(MockUser.checkPassword(id, password)!=ResultMessage.success){
@@ -41,6 +42,7 @@ public class Login {
 			}
 			break;
 		}
+		//检验是否有登陆冲突
 		if(resultMessage!=ResultMessage.failure){
 			try {
 				OnlinePersonPO po = new OnlinePersonPO(role, id, password);
@@ -58,7 +60,13 @@ public class Login {
 	 */
 	public static ResultMessage logout(Role role, String id) {
 		// TODO Auto-generated method stub
-		return null;
+		ResultMessage resultMessage = null;
+		try{
+			resultMessage = RemoteHelper.getInstance().getLoginDao().deleteOnline(role, id);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 	
 }

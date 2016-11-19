@@ -35,6 +35,7 @@ public class UserPO implements Serializable{
 		this.credit = credit;
 		this.password = password;
 	}
+
 	public String getId() {
 		return id;
 	}
