@@ -10,7 +10,7 @@ import po.OrderPO;
 import vo.RoomNormVO;
 import vo.CreditRecordVO;
 
-public class abnormalOrder {
+public class AbnormalOrder {
 	
 	HotelInfoService hotelinfo;
 	

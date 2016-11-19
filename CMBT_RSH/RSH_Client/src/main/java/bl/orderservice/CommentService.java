@@ -10,4 +10,5 @@ public interface CommentService {
 	}
 	//增加评分
 	public ResultMessage updateGrade(double grade);
+
 }
