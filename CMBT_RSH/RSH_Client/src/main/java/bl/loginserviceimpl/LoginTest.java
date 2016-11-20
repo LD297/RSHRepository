@@ -10,11 +10,8 @@ import constant.ResultMessage;
 import constant.Role;
 
 public class LoginTest {
-<<<<<<< HEAD
 	LoginController loginController = new LoginController();
-=======
 
->>>>>>> origin/master
 	@Test
 	public void testCheckOnline(){
 		ResultMessage resultMessage1 = loginController.checkOnline(Role.user, "13951897687","jksggkskjg" );
