@@ -11,6 +11,10 @@ public class RoomManager {
 
 	HotelDao hotelDao;
 
+	public RoomManager(HotelDao hotelDao) {
+		this.hotelDao = hotelDao;
+	}
+
 	public ArrayList<RoomVO> getRoomList(String id) {
 		return hotelDao.getRoomList(id);
 	}

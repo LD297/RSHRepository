@@ -33,6 +33,8 @@ public class Hotel{
 		this.roomAvail = roomavail;
 	}
 
+	public void setHotelDao(HotelDao hotelDao){this.hotelDao = hotelDao;}
+
 	// 调用自身数据库
 	public ResultMessage checkPassword(String id, String password) {
 		return hotelDao.checkPassword(id, password);
@@ -40,11 +42,7 @@ public class Hotel{
 	
 	// 调用自身数据库
 	public HotelVO getHotel() {
-		// 根据hotelPO封装一个新的hotelVO(不含密码信息)，传给上层
-		HotelVO hotelVO = new HotelVO(hotelPO.getId(), hotelPO.getTel(), hotelPO.getName(), hotelPO.getAddr(),
-				hotelPO.getBusinessArea(),hotelPO.getBriefIntro(), hotelPO.getFacility(),
-				hotelPO.getLevel(), hotelPO.getGrade(), hotelPO.getLatestCheckinTime());
-		return hotelVO;
+		return HotelVO.createHotelVO(hotelPO);
 	}
 
 	public ResultMessage updateHotel(HotelVO vo) {
@@ -68,11 +66,11 @@ public class Hotel{
 	}
 	
 	public ArrayList<RoomAvailVO> getRoomAvailList(Date date) {
-		return roomAvail.getRoomAvailList(date);
+		return roomAvail.getRoomAvailList(id, date);
 	}
 	
 	public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> roomAvailList) {
-		return roomAvail.updateRoomAvailList(roomAvailList);
+		return roomAvail.updateRoomAvailList(id, roomAvailList);
 	}
 	
 	/**
@@ -88,13 +86,13 @@ public class Hotel{
 	// 供给order模块
 	// 返回该酒店指定日期下该房间类型的可用数量
 	public int numOfRoomAvail(RoomType roomType, Date checkIn, Date checkOut) {
-		return roomAvail.numOfRoomAvail(roomType, checkIn, checkOut);
+		return roomAvail.numOfRoomAvail(this.id, roomType, checkIn, checkOut);
 	}
 
 	// 供给order模块
 	// 更新系统的可用客房信息
 	public ResultMessage changeRoomAvail(RoomType roomType, int num, Date checkIn, Date checkOut) {
-		return roomAvail.changeRoomAvail(roomType, num, checkIn, checkOut);
+		return roomAvail.changeRoomAvail(this.id, roomType, num, checkIn, checkOut);
 	}
 
 	/**

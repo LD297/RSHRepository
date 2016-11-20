@@ -66,6 +66,11 @@ public class HotelVO {
 		return password;
 	}
 
+	/**
+	 * 根据po封装一个不含密码信息的po
+	 * @param hotelPO
+	 * @return
+	 */
 	public static HotelVO createHotelVO(HotelPO hotelPO){
 		HotelVO hotelVO = new HotelVO(hotelPO.getId());
 		hotelVO.tel = hotelPO.getTel();

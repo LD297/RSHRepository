@@ -9,6 +9,10 @@ public class WMHotel{
 
 	HotelDao hotelDao;
 
+	public WMHotel(HotelDao hotelDao) {
+		this.hotelDao = hotelDao;
+	}
+
 	public int getHotelNum(String address) {
 		return hotelDao.getHotelNum(address);
 	}

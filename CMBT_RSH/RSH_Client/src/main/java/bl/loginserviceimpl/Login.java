@@ -2,10 +2,14 @@ package bl.loginserviceimpl;
 
 import java.rmi.RemoteException;
 
+<<<<<<< Updated upstream
 import javax.swing.text.AttributeSet.CharacterAttribute;
 
 import bl.hotelserviceimpl.MockHotel;
 import bl.userserviceimpl.*;
+=======
+import bl.userserviceimpl.MockUser;
+>>>>>>> Stashed changes
 import bl.webstaffserviceimpl.MockWebSalesman;
 import bl.webstaffserviceimpl.MockWebManager;
 import constant.ResultMessage;

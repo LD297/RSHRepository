@@ -24,6 +24,8 @@ public class SearchHotel {
 		this.selectHotel = select;
 	}
 
+	public void setHotelDao(HotelDao hotelDao){this.hotelDao = hotelDao;}
+
 	public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
 		return hotelDao.getHotelList(address, businessArea);
 	}

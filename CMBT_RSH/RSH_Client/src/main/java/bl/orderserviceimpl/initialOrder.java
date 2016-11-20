@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import bl.promotionServiceimpl.PromotionController;
+import bl.promotionservice.PromotionService;
 import bl.userserviceimpl.CreditRecordList;
 import bl.hotelserviceimpl.HotelController;
 import po.OrderPO;

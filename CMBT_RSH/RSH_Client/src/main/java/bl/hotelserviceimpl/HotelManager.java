@@ -13,8 +13,9 @@ public class HotelManager {
 	RoomManager roomManager;
 	HotelDao hotelDao;
 	
-	public HotelManager(String id, RoomManager roomManager){
+	public HotelManager(RoomManager roomManager, HotelDao hotelDao){
 		this.roomManager = roomManager;
+		this.hotelDao = hotelDao;
 	}
 	
 	public ResultMessage updateHotel(HotelVO vo) {

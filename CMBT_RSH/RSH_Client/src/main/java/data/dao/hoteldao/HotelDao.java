@@ -20,14 +20,14 @@ public interface HotelDao {
      */
     public ResultMessage updateGrade(double grade);
     public ResultMessage updateHotel (HotelPO hotelPO);
-    public ResultMessage addSpecialRoom(RoomPO roomVO);
+    public ResultMessage addSpecialRoom(RoomPO roomPO);
     public ResultMessage deleteSpecialRoom(RoomPO po);
     public ArrayList<RoomVO> getRoomList(String id);
     public ResultMessage updateRoomList(ArrayList<RoomPO> roomPOList);
-    public ResultMessage changeRoomAvail(RoomType roomType, int num, Date checkIn, Date checkOut);
-    public int numOfRoomAvail(RoomType roomType, Date checkIn, Date checkOut);
-    public ArrayList<RoomAvailVO> getRoomAvailList(Date date);
-    public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> roomAvailList);
+    public ResultMessage changeRoomAvail(String id, RoomType roomType, int num, Date checkIn, Date checkOut);
+    public int numOfRoomAvail(String id, RoomType roomType, Date checkIn, Date checkOut);
+    public ArrayList<RoomAvailVO> getRoomAvailList(String id, Date date);
+    public ResultMessage updateRoomAvailList(String id, ArrayList<RoomAvailVO> roomAvailList);
     public ArrayList<RoomNormVO> getRoomNorms(String id);
     public String getCheckInDDL(String id);
     public ArrayList<HotelVO> getHotelList(String address,String businessArea);

@@ -8,6 +8,11 @@ import vo.SelectConditionVO;
 
 public class SelectHotel{
 	HotelDao hotelDao;
+
+	public SelectHotel(HotelDao hotelDao) {
+		this.hotelDao = hotelDao;
+	}
+
 	public ArrayList<HotelVO> select(SelectConditionVO vo) {
 		return hotelDao.select(vo);
 	}
