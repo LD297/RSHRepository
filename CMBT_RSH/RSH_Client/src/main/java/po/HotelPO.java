@@ -1,13 +1,13 @@
 package po;
 
 import java.io.Serializable;
-
+import vo.*;
 
 public class HotelPO implements Serializable{
 	/**
 	 * 酒店账号
 	 */
-	public String id;
+	private String id;
 	private String password;
 	/**
 	 * 酒店工作人员联系方式（客服）
@@ -42,6 +42,10 @@ public class HotelPO implements Serializable{
 	
 	public HotelPO(String id) {
 		this.id = id;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	public String getPassword() {
@@ -123,5 +127,20 @@ public class HotelPO implements Serializable{
 	public void setLatestCheckinTime(String latestCheckinTime) {
 		this.latestCheckinTime = latestCheckinTime;
 	}
-	
+
+	public static HotelPO createHotelPO(HotelVO vo){
+		// 根据hotelVO封装一个新的hotelPO，传给下层
+		HotelPO newHotelPO = HotelPO.createHotelPO(vo);
+		newHotelPO.setPassword(vo.getPassword());
+		newHotelPO.setTel(vo.tel);
+		newHotelPO.setName(vo.name);
+		newHotelPO.setAddr(vo.addr);
+		newHotelPO.setBusinessArea(vo.businessArea);
+		newHotelPO.setBriefIntro(vo.briefIntro);
+		newHotelPO.setFacility(vo.facility);
+		newHotelPO.setLevel(vo.level);
+		newHotelPO.setGrade(vo.grade);
+		newHotelPO.setLatestCheckinTime(vo.latestCheckinTime);
+		return newHotelPO;
+	}
 }

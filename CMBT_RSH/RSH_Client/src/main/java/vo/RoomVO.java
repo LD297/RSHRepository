@@ -14,37 +14,21 @@ public class RoomVO {
 	/**
 	 * 该类型房间总量
 	 */
-	private int amountTotal;
+	public int amountTotal;
 	/**
 	 * 该类型房间的单价（元／晚（12:00～次日11:59））
 	 */
-	private double price;
+	public double price;
 	/**
 	 * 该类型房间是否被设为特色
 	 */
-	private String basicOrSpecial;
-	
-	public RoomVO(String id, RoomType type) {
+	public String basicOrSpecial;
+
+	public RoomVO(String id, RoomType type, int amountTotal, double price, String basicOrSpecial) {
 		this.id = id;
 		this.type = type;
-	}
-	public int getAmountTotal() {
-		return amountTotal;
-	}
-	protected void setAmountTotal(int amountTotal) {
 		this.amountTotal = amountTotal;
-	}
-	public double getPrice() {
-		return price;
-	}
-	protected void setPrice(double price) {
 		this.price = price;
-	}
-	public String getBasicOrSpecial() {
-		return basicOrSpecial;
-	}
-	protected void setBasicOrSpecial(String basicOrSpecial) {
 		this.basicOrSpecial = basicOrSpecial;
 	}
-	
 }

@@ -1,9 +1,6 @@
 package bl.hotelservice;
 
-import java.util.ArrayList;
-import java.util.Date;
-
-import bl.hotelserviceimpl.*;
+import java.util.*;
 import constant.*;
 import vo.*;
 

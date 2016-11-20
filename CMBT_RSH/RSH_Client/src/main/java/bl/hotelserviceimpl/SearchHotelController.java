@@ -1,35 +1,36 @@
 package bl.hotelserviceimpl;
 
 import java.util.ArrayList;
-
 import bl.hotelservice.*;
 import constant.*;
 import vo.*;
 
 public class SearchHotelController implements SearchHotelService {
 
+	private SearchHotel searchHotel;
+
+	public SearchHotelController() {
+		this.searchHotel = new SearchHotel();
+	}
+
 	@Override
 	public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
-		// TODO Auto-generated method stub
-		return null;
+		return searchHotel.getHotelList(address, businessArea);
 	}
 
 	@Override
 	public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM) {
-		// TODO Auto-generated method stub
-		return null;
+		return searchHotel.sort(sortBy, sortM);
 	}
 
 	@Override
 	public ArrayList<HotelVO> select(SelectConditionVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return searchHotel.select(vo);
 	}
 
 	@Override
 	public HotelVO getHotelInfo(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return searchHotel.getHotelInfo(id);
 	}
 
 }

@@ -12,15 +12,15 @@ public class MockComment extends CommentImpl{
 		order = o;
 	}
 	
-	public static ResultMessage addComment(String hotelid, String userid, String comment){
+	public ResultMessage addComment(String hotelid, String userid, String comment){
 		// TODO
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 		
 	}
 
 	@Override
 	public ResultMessage updateGrade(double grade) {
 		// TODO Auto-generated method stub
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}
 }

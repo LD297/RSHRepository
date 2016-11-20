@@ -7,20 +7,29 @@ import po.CommentPO;
 
 public class CommentImpl implements CommentService{
 
-    HotelDao hotelDao;
     CommentPO commentPO;
+    HotelDao hotelDao;
 
-	public static ResultMessage addComment(String id, String userID, String comment){
-
+    /**
+     * 增加用户对酒店的评论
+     * @param id 酒店id
+     * @param userID
+     * @param comment 评论内容
+     * @return
+     */
+	public ResultMessage addComment(String id, String userID, String comment){
         if(!comment.equals(null)){
-            hotelDao.addComment();
+            return hotelDao.addComment(new CommentPO(id, userID,  comment));
         }
-		return ;
-
+        return ResultMessage.emptyComment;
 	}
 
+    /**
+     * 更新数据库中酒店的评分
+     * @param grade 用户打分（范围0~5，闭区间，加权计算后界面输出星级）
+     * @return
+     */
 	public ResultMessage updateGrade(double grade) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotelDao.updateGrade(grade);
 	}
 }

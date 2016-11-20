@@ -1,5 +1,7 @@
 package vo;
 
+import po.HotelPO;
+
 public class HotelVO {
 	/**
 	 * 酒店账号
@@ -9,115 +11,73 @@ public class HotelVO {
 	/**
 	 * 酒店工作人员联系方式（客服）
 	 */
-	private String tel;
+	public String tel;
 	/**
 	 * 酒店名称
 	 */
-	private String name;
+	public String name;
 	/**
 	 * 酒店地址
 	 */
-	private String addr;
-	private String businessArea;
-	private String briefIntro;
+	public String addr;
+	public String businessArea;
+	public String briefIntro;
 	/**
 	 * 酒店（基础）设施（WiFi available？……）
 	 */
-	private String facility;
+	public String facility;
 	/**
 	 * 酒店等级（五星级酒店？）
 	 */
-	private int level;
+	public int level;
 	/**
 	 * 酒店评分（根据每次用户评分加权计算后取整）
 	 */
-	private int grade;
+	public int grade;
 	/**
 	 * 最晚入住时间
 	 */
-	private String latestCheckinTime;
+	public String latestCheckinTime;
 	
 	public HotelVO(String id) {
 		this.id = id;
 	}
 
-	public String getPassword() {
-		return password;
+	//构造方法重载 (不含密码信息)
+	public HotelVO(String id, String tel, String name, String addr, String businessArea,
+					String briefIntro, String facility, int level,int grade, String latestCheckinTime){
+		this.id =  id;
+		this.tel = tel;
+		this.name = name;
+		this.addr = addr;
+		this.businessArea = businessArea;
+		this.briefIntro = briefIntro;
+		this.facility = facility;
+		this.level = level;
+		this.grade = grade;
+		this.latestCheckinTime  = latestCheckinTime;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public String getTel() {
-		return tel;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public static HotelVO createHotelVO(HotelPO hotelPO){
+		HotelVO hotelVO = new HotelVO(hotelPO.getId());
+		hotelVO.tel = hotelPO.getTel();
+		hotelVO.name = hotelPO.getName();
+		hotelVO.addr = hotelPO.getAddr();
+		hotelVO.businessArea = hotelPO.getBusinessArea();
+		hotelVO.briefIntro = hotelPO.getBriefIntro();
+		hotelVO.facility = hotelPO.getFacility();
+		hotelVO.level = hotelPO.getLevel();
+		hotelVO.grade = hotelPO.getGrade();
+		hotelVO.latestCheckinTime = hotelPO.getLatestCheckinTime();
+		return hotelVO;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getAddr() {
-		return addr;
-	}
-
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-
-	public String getBusinessArea() {
-		return businessArea;
-	}
-
-	public void setBusinessArea(String businessArea) {
-		this.businessArea = businessArea;
-	}
-
-	public String getBriefIntro() {
-		return briefIntro;
-	}
-
-	public void setBriefIntro(String briefIntro) {
-		this.briefIntro = briefIntro;
-	}
-
-	public String getFacility() {
-		return facility;
-	}
-
-	public void setFacility(String facility) {
-		this.facility = facility;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
-	public int getGrade() {
-		return grade;
-	}
-
-	public void setGrade(int grade) {
-		this.grade = grade;
-	}
-
-	public String getLatestCheckinTime() {
-		return latestCheckinTime;
-	}
-
-	public void setLatestCheckinTime(String latestCheckinTime) {
-		this.latestCheckinTime = latestCheckinTime;
-	}
 }

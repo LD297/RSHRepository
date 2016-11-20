@@ -2,13 +2,19 @@ package po;
 
 public class HotelStaffPO {
 
-	String hotelID;
-	String tel;
+	private String hotelID;
+	private String tel;
 	
 	public HotelStaffPO(String hotelID, String tel) {
-		super();
 		this.hotelID = hotelID;
 		this.tel = tel;
 	}
-	
+
+	public String getHotelID() {
+		return hotelID;
+	}
+
+	public String getTel() {
+		return tel;
+	}
 }
