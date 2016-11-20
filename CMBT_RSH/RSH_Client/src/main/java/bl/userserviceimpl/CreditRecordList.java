@@ -48,7 +48,7 @@ public class CreditRecordList {
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
-		if(resultMessage==ResultMessage.success){
+		if(resultMessage==ResultMessage.succeed){
 			creditRecordVOArrayList.add(vo);
 		}
 		return resultMessage;

@@ -4,7 +4,5 @@ public enum ResultMessage {
 
 	succeed,
 	fail,
-	pass,
-	successfullyLogout,
 	emptyComment
 }

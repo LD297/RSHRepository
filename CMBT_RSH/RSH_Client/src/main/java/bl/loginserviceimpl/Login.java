@@ -22,28 +22,20 @@ public class Login {
 		//检验用户名和密码是否匹配
 		switch(role){
 		case user:
-			if(MockUser.checkPassword(id, password)!=ResultMessage.success){
-				resultMessage =  ResultMessage.failure;
-			}
+			resultMessage = MockUser.checkPassword(id, password);
 			break;
 		case hotel:
-			if(MockHotel.checkPassword(id, password)!=ResultMessage.success){
-				resultMessage = ResultMessage.failure;
-			}
+			resultMessage = MockHotel.checkPassword(id, password);
 			break;
 		case webmanager:
-			if(MockWebManager.checkPassword(id, password)!=ResultMessage.success){
-				resultMessage = ResultMessage.failure;
-			}
+			resultMessage = MockWebManager.checkPassword(id, password);
 			break;
 		case websalesman:
-			if(MockWebSalesman.checkPassword(id, password)!=ResultMessage.success){
-				resultMessage = ResultMessage.failure;
-			}
+			resultMessage = MockWebSalesman.checkPassword(id, password);
 			break;
 		}
 		//检验是否有登陆冲突
-		if(resultMessage!=ResultMessage.failure){
+		if(resultMessage==ResultMessage.succeed){
 			try {
 				OnlinePersonPO po = new OnlinePersonPO(role, id, password);
 				resultMessage = RemoteHelper.getInstance().getLoginDao().addOnline(po);
@@ -59,7 +51,6 @@ public class Login {
 	 * 删除该在线人员记录持久化对象
 	 */
 	public static ResultMessage logout(Role role, String id) {
-		// TODO Auto-generated method stub
 		ResultMessage resultMessage = null;
 		try{
 			resultMessage = RemoteHelper.getInstance().getLoginDao().deleteOnline(role, id);
