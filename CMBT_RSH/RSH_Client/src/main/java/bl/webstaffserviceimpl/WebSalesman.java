@@ -1,24 +1,35 @@
 package bl.webstaffserviceimpl;
 
 import constant.ResultMessage;
+import data.dao.webstaffdao.WebSalesmanDao;
+import rmi.WebStaffRemoteHelper;
+
+import java.rmi.Remote;
 
 public class WebSalesman {
 
 	String ID;
 	String password;
 	String district;
-	
-	public WebSalesman(String id, String passw) {
+
+	private WebSalesmanDao webSalesmanDao = WebStaffRemoteHelper.getInstance();
+
+	public WebSalesman(String id, String tempPassword) {
 		// TODO Auto-generated constructor stub
 		ID=id;
-		password=passw;
+		password=tempPassword;
 	}
-	
-	public static boolean getInstace(String id){
+
+	public static WebSalesman getInstance(String id){
 		
-		return false;
+		return null;
 	}
-	
+
+	public ResultMessage insert(){
+
+		return null;
+	}
+
 	public ResultMessage update(){
 		
 		return null;

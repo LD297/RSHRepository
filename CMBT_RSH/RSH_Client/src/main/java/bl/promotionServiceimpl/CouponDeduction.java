@@ -5,10 +5,10 @@ package bl.promotionServiceimpl;
  * @author aa
  *
  */
-public class CouponPromotion extends PromotionType{
+public class CouponDeduction extends Deduction {
 
 	Coupon coupon;
-	public CouponPromotion(Coupon coup){
+	public CouponDeduction(Coupon coup){
 		coupon=coup;
 	}
 	

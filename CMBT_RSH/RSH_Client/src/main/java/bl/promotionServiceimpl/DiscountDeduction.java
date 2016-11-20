@@ -5,11 +5,11 @@ package bl.promotionServiceimpl;
  * @author aa
  *
  */
-public class DiscountPromotion extends PromotionType{
+public class DiscountDeduction extends Deduction {
 
 	int discount;
 	
-	public DiscountPromotion(int disc){
+	public DiscountDeduction(int disc){
 		discount=disc;
 	}
 	

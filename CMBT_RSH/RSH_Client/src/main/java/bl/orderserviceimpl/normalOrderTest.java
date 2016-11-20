@@ -13,7 +13,7 @@ public class normalOrderTest {
         normalOrder normal= new normalOrder();
         
         normal.setCommentImpl(mockComment);
-        assertEquals(ResultMessage.failure,normal.comment("2153001234","2016-11-062153001234000000",80,"»¹²»´í"));
+        assertEquals(ResultMessage.fail,normal.comment("2153001234","2016-11-062153001234000000",80,"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
     }
  /*   @Test
 	public void testcancelMyOrder(){
@@ -30,7 +30,7 @@ public class normalOrderTest {
 		normalOrder normal = new normalOrder();
 		normal.setCreditRecordList(mockCredit);
 		
-		assertEquals(ResultMessage.success,normal.execute("2016-11-072153001234000000"));
+		assertEquals(ResultMessage.succeed,normal.execute("2016-11-072153001234000000"));
 		   
 	}
 /*  @Test

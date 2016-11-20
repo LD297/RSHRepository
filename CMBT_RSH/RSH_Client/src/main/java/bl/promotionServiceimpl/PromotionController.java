@@ -3,12 +3,10 @@ package bl.promotionServiceimpl;
 import java.util.ArrayList;
 import java.util.Date;
 
-import constant.ConditionType;
 import constant.ResultMessage;
 import constant.RoomType;
-import constant.ScopeType;
 import po.OrderPO;
-import bl.PromotionService;
+import bl.promotionservice.PromotionService;
 import vo.PromotionVO;
 
 /**
@@ -20,37 +18,23 @@ public class PromotionController implements PromotionService {
 
 	
 	Promotion promotion;
-	@Override
-	public ResultMessage addPromotion(String reason, String ID) {
-		// TODO Auto-generated method stub
-		
-		promotion=new Promotion(reason, ID);
-		return null;
-	}
+	PromotionVO promotionVO=null;
 
 	@Override
-	public ResultMessage setScope(ScopeType stype, String id, RoomType rtype) {
-		// TODO Auto-generated method stub
-		return promotion.setScope(stype,id,rtype);
-	}
+	public ResultMessage addPromotion(PromotionVO tempPromotionVO) {
+		promotionVO=tempPromotionVO;
+		if(Promotion.getInstance(promotionVO.reason,promotionVO.setter)!=null){
+			return ResultMessage.fail;
+		}
+		promotion=new Promotion(promotionVO.reason,promotionVO.setter);
+		promotion.setDate(promotionVO.beginDate,promotionVO.endDate);
+		promotion.setScope(promotionVO.scopeType,promotionVO.id,promotionVO.roomType);
+		promotion.setConditionType(promotionVO.conditionType,promotionVO.requirement);
+		promotion.setDeductionType(promotionVO.deductionType,promotionVO.deduction);
+		promotion.insertPromotion();
+		return ResultMessage.succeed;
+	}		;
 
-	@Override
-	public ResultMessage setConditioniType(ConditionType type, int Requirement) {
-		// TODO Auto-generated method stub
-		return promotion.setConditionType(type,Requirement);
-	}
-
-	@Override
-	public ResultMessage setPromotionType(PromotionType type, int num) {
-		// TODO Auto-generated method stub
-		return promotion.setPromotionType(type,num);
-	}
-
-	@Override
-	public ResultMessage setDate(Date beginDate, Date endDate) {
-		// TODO Auto-generated method stub
-		return promotion.setDate(beginDate,  endDate);
-	}
 
 	@Override
 	public ResultMessage delPromotion(String reason, String ID) {
@@ -94,11 +78,7 @@ public class PromotionController implements PromotionService {
 		return Count.countPromotionOfOrder(order);
 	}
 
-	@Override
-	public ResultMessage update() {
-		// TODO Auto-generated method stub
-		return promotion.update();
-	}
+
 
 	@Override
 	public ResultMessage setCoupon() {
@@ -106,11 +86,6 @@ public class PromotionController implements PromotionService {
 		return null;
 	}
 
-	@Override
-	public ResultMessage setPromotionType(constant.PromotionType type, int num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }

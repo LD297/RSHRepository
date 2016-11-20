@@ -2,8 +2,6 @@ package bl.loginserviceimpl;
 
 import java.rmi.RemoteException;
 
-import javax.swing.text.AttributeSet.CharacterAttribute;
-
 import bl.hotelserviceimpl.MockHotel;
 import bl.userserviceimpl.MockUser;
 import bl.webstaffserviceimpl.MockWebSalesman;
@@ -21,27 +19,27 @@ public class Login {
 		ResultMessage resultMessage = null;
 		switch(role){
 		case user:
-			if(MockUser.checkPassword(id, password)!=ResultMessage.success){
-				resultMessage =  ResultMessage.failure;
+			if(MockUser.checkPassword(id, password)!=ResultMessage.succeed){
+				resultMessage =  ResultMessage.fail;
 			}
 			break;
 		case hotel:
-			if(MockHotel.checkPassword(id, password)!=ResultMessage.success){
-				resultMessage = ResultMessage.failure;
+			if(MockHotel.checkPassword(id, password)!=ResultMessage.succeed){
+				resultMessage = ResultMessage.fail;
 			}
 			break;
 		case webmanager:
-			if(MockWebManager.checkPassword(id, password)!=ResultMessage.success){
-				resultMessage = ResultMessage.failure;
+			if(MockWebManager.checkPassword(id, password)!=ResultMessage.succeed){
+				resultMessage = ResultMessage.fail;
 			}
 			break;
 		case websalesman:
-			if(MockWebSalesman.checkPassword(id, password)!=ResultMessage.success){
-				resultMessage = ResultMessage.failure;
+			if(MockWebSalesman.checkPassword(id, password)!=ResultMessage.succeed){
+				resultMessage = ResultMessage.fail;
 			}
 			break;
 		}
-		if(resultMessage!=ResultMessage.failure){
+		if(resultMessage!=ResultMessage.fail){
 			try {
 				OnlinePersonPO po = new OnlinePersonPO(role, id, password);
 				resultMessage = RemoteHelper.getInstance().getLoginDao().addOnline(po);

@@ -5,7 +5,7 @@ package bl.promotionServiceimpl;
  * @author aa
  *
  */
-public class Scope {
+public class ScopeType {
 
 	/**
 	 * 测试是否符合适用范围要求

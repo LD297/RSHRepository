@@ -1,10 +1,11 @@
 package bl.promotionServiceimpl;
 
+import java.sql.Time;
 import java.util.Date;
 import constant.ConditionType;
 import constant.ResultMessage;
 import constant.RoomType;
-import constant.ScopeType;
+import constant.DeductionType;
 
 /**
  * 策略类
@@ -15,43 +16,74 @@ public class Promotion {
 
 	String reason;
 	String Setter;
-	Scope scope;
-	ConditionType cType;
-	PromotionType pType;
 	Date beginDate;
 	Date endDate;
+
+	ScopeType scopeType;
+	ConditionType conditionType;
+	DeductionType deductionType;
+
 	public Promotion (String Reason, String ID){
 		reason=Reason;
 		Setter = ID;
 	}
-	public ResultMessage setScope(ScopeType stype, String id, RoomType rtype) {
+
+	/**
+	 * 读取数据层中数据，若无返回null
+	 * @param Reason
+	 * @param ID
+	 * @return
+	 */
+	public static Promotion getInstance(String Reason, String ID){
+
+		return null;
+	}
+
+	public ResultMessage setScope(constant.ScopeType stype, String id, RoomType rtype) {
 		// TODO Auto-generated method stub
-		
+		scopeType =new ScopeType();
 		return null;
 	}
 	public ResultMessage setConditionType(ConditionType type, int requirement) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public ResultMessage setPromotionType(PromotionType type, int num) {
+	public ResultMessage setDeductionType(DeductionType type, int num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public ResultMessage setDate(Date beginDate, Date endDate) {
+	public ResultMessage setDate(Date tempBeginDate, Date tempEndDate) {
 		// TODO Auto-generated method stub
+		beginDate=tempBeginDate;
+		endDate=tempEndDate;
 		return null;
 	}
-	
-	/*
-	 * ���ݿ����
+
+	/**
+	 * 在数据层中插入；
+	 * @return
 	 */
-	public static ResultMessage delPromotion(String reason2, String iD) {
-		// TODO Auto-generated method stub
+	public ResultMessage insertPromotion(){
+
 		return null;
 	}
-	
-	/*
-	 * ���ݿ����
+
+
+	/**
+	 * 从数据库中删除
+	 * @param tempReason
+	 * @param iD
+	 * @return
+	 */
+	public static ResultMessage delPromotion(String tempReason, String iD) {
+		// TODO Auto-generated method stub
+
+		return null;
+	}
+
+	/**
+	 * 在数据层中更新
+	 * @return
 	 */
 	public ResultMessage update() {
 		// TODO Auto-generated method stub

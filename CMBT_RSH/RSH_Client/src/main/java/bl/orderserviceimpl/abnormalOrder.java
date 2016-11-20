@@ -70,7 +70,7 @@ public class abnormalOrder {
 		
 		record.addCreditRecord(creditRecord);
 		
-		return ResultMessage.success; 
+		return ResultMessage.succeed;
 	}
 
 }

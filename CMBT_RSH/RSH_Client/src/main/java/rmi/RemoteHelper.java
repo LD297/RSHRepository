@@ -5,6 +5,7 @@ import java.rmi.Remote;
 import data.dao.logindao.LoginDao;
 import data.dao.userdao.CreditRecordListDao;
 import data.dao.userdao.UserDao;
+import data.dao.webstaffdao.WebManagerDao;
 
 public class RemoteHelper {
 	private Remote remote;
@@ -19,7 +20,11 @@ public class RemoteHelper {
 	public void setRemote(Remote remote){
 		this.remote = remote;
 	}
-	
+
+	public Remote getRemote(){
+		return this.remote;
+	}
+
 	public LoginDao getLoginDao(){
 		return (LoginDao)remote;
 	}
@@ -31,4 +36,5 @@ public class RemoteHelper {
 	public UserDao getUserDao() {
 		return (UserDao)remote;
 	}
+
 }

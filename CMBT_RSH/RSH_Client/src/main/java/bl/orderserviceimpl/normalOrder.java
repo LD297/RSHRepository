@@ -58,7 +58,7 @@ public class normalOrder {
 			CreditRecordVO creditRecord = new CreditRecordVO(time, d, time, null, time, trueminute); 
 			record.addCreditRecord(creditRecord);
 		}
-		System.out.println("success");
+		System.out.println("succeed");
 		
 		return ;
 	}
@@ -71,7 +71,7 @@ public class normalOrder {
 		CreditRecordVO creditRecord = new CreditRecordVO(orderid, null, orderid, null, orderid, 0); 
 		credit.addCreditRecord(creditRecord);
 		
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}
 	
 	
@@ -83,7 +83,7 @@ public class normalOrder {
 		if(a.equals(b)&&a.equals(ResultMessage.succeed))
 		    return ResultMessage.succeed;
 		else
-			return ResultMessage.failure;
+			return ResultMessage.fail;
 	}
 	
 	public void setAbnormal(String orderid){
@@ -101,7 +101,7 @@ public class normalOrder {
 			CreditRecordVO creditRecord = new CreditRecordVO(time, d, time, null, time, trueminute); 
 			record.addCreditRecord(creditRecord);
 		}
-		System.out.println("success");
+		System.out.println("succeed");
 		return ;
 	}
 	

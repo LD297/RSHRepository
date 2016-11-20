@@ -15,6 +15,6 @@ public class MockWebSalesman extends WebSalesman{
 	 * @return
 	 */
 	public static ResultMessage checkPassword(String id,String password) {
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}
 }

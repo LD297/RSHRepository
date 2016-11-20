@@ -15,7 +15,7 @@ public class CreditRecordList {
 	 * 增加用户信用变化记录
 	 */
 	public ResultMessage addCreditRecord(CreditRecordVO vo) {
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}
 	/**
 	 * 获取用户信用记录列表

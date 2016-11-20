@@ -5,7 +5,7 @@ package bl.promotionServiceimpl;
  * @author aa
  *
  */
-public class DistrictScope extends Scope{
+public class DistrictScope extends ScopeType {
 
 	String district;
 	

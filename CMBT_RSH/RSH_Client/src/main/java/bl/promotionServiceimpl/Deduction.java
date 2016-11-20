@@ -5,7 +5,7 @@ package bl.promotionServiceimpl;
  * @author aa
  *
  */
-public class PromotionType  {
+public class Deduction {
 
 	public int getPromotion(int total){
 		

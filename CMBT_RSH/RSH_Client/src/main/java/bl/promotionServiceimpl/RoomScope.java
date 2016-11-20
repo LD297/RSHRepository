@@ -7,7 +7,7 @@ import constant.RoomType;
  * @author aa
  *
  */
-public class RoomScope extends Scope {
+public class RoomScope extends ScopeType {
 
 	String hotelID;
 	RoomType rType;

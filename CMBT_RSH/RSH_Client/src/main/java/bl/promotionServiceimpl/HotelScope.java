@@ -5,7 +5,7 @@ package bl.promotionServiceimpl;
  * @author aa
  *
  */
-public class HotelScope extends Scope{
+public class HotelScope extends ScopeType {
 
 	String hotelID;
 	

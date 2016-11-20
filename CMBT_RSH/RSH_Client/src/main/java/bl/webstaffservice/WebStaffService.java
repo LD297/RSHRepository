@@ -1,5 +1,6 @@
 package bl.webstaffservice;
 
+
 import java.util.ArrayList;
 
 import constant.ResultMessage;
@@ -17,5 +18,5 @@ public interface WebStaffService {
 	
 	public ResultMessage addWebManager(String ID,String password);
 	
-	public ResultMessage delWebManger(String ID);
+
 }

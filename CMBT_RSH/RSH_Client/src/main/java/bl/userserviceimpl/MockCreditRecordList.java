@@ -12,7 +12,7 @@ public class MockCreditRecordList extends CreditRecordList{
 	 * 增加用户信用变化记录
 	 */
 	public ResultMessage addCreditRecord(CreditRecordVO vo) {
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}
 	/**
 	 * 检验该用户的信用值，返回该用户是否可以下订单

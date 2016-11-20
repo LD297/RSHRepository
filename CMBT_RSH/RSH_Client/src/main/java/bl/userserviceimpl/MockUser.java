@@ -1,7 +1,6 @@
 package bl.userserviceimpl;
 
 import constant.ResultMessage;
-import vo.UserVO;
 
 public class MockUser extends User{
 	public MockUser(String id) {
@@ -15,7 +14,7 @@ public class MockUser extends User{
 	 * @return
 	 */
 	public static ResultMessage checkPassword(String id,String password) {
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}
 	/**
 	 * 检查此账号是否存在，若不存在，创建该UserPO，在数据库中增加该用户的持久化对象
@@ -23,6 +22,6 @@ public class MockUser extends User{
 	 * @return
 	 */
 	/*public static ResultMessage add(UserVO vo) {
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}*/
 }

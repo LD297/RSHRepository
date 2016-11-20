@@ -4,10 +4,9 @@ public enum ResultMessage {
 	error,
 	pass,
 	successfullyLogout,
+	fail,
+	exists,
+	not_exosts,
 	succeed,
-failure,
-exists,
-not_exosts,
-success,
 not_success;
 }

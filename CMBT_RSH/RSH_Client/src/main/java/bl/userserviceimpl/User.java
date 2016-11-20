@@ -27,7 +27,7 @@ public class User {
 	 * @return
 	 */
 	public ResultMessage update(UserVO vo) {
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}
 
 	/**

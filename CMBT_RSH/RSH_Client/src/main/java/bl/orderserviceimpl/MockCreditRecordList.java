@@ -16,6 +16,6 @@ public class MockCreditRecordList extends CreditRecordList{
 		return false;
 	}
 	public ResultMessage addCreditRecord(CreditRecordVO vo) {
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}
 }

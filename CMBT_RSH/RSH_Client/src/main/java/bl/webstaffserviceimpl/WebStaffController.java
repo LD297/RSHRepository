@@ -35,8 +35,13 @@ public class WebStaffController implements WebStaffService{
 	@Override
 	public ResultMessage changePassword(String ID, String oldPassword, String newPassword) {
 		// TODO Auto-generated method stub
-		WebManager manager = new WebManager("S","S");
-		manager.changePassword(newPassword);
+		if(ID=="0000000000"){
+			WebManager manager = WebManager.getInstance();
+			return manager.changePassword(oldPassword,newPassword);
+		}
+		else{
+
+		}
 		return null;
 	}
 
@@ -46,10 +51,6 @@ public class WebStaffController implements WebStaffService{
 		return null;
 	}
 
-	@Override
-	public ResultMessage delWebManger(String ID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

@@ -36,6 +36,6 @@ public class abnormalOrderTest {
        
     	abnormal.setOrder(order);
     	
-    	assertEquals(ResultMessage.success,abnormal.webCancelAbnormal("2016-11-072153001234000000"));
+    	assertEquals(ResultMessage.succeed,abnormal.webCancelAbnormal("2016-11-072153001234000000"));
     }
 }

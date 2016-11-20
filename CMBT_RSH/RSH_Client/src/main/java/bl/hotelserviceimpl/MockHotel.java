@@ -17,6 +17,6 @@ public class MockHotel extends Hotel{
 	 */
 	public static ResultMessage checkPassword(String id, String password) {
 		// TODO Auto-generated method stub
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}
 }
