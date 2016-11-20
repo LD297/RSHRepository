@@ -1,10 +1,12 @@
 package bl.userserviceimpl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import bl.userservice.UserService;
 import constant.ResultMessage;
+import rmi.RemoteHelper;
 import vo.CreditRecordVO;
 import vo.UserVO;
 
@@ -55,6 +57,16 @@ public class UserController implements UserService{
 	 */
 	public ResultMessage registerMember(String userid, String commerceName) {
 		return new Member(userid).registerMember(commerceName);
+	}
+
+	public ResultMessage checkPassword(String id,String password) {
+/*		ResultMessage resultMessage = null;
+		try {
+			resultMessage = RemoteHelper.getInstance().getUserDao().checkPassword(id, password);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}*/
+		return ResultMessage.succeed;
 	}
 
 }

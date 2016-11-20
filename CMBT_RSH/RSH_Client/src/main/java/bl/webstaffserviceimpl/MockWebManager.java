@@ -3,9 +3,10 @@ package bl.webstaffserviceimpl;
 import constant.ResultMessage;
 import vo.WebManagerVO;
 
-public class MockWebManager extends WebManager{
-	public MockWebManager(String id, String passw) {
-		super(id, passw);
+public class MockWebManager {
+	String passw;
+	public MockWebManager(String passw) {
+		this.passw = passw;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -16,7 +17,7 @@ public class MockWebManager extends WebManager{
 	 * @return
 	 */
 	public static ResultMessage checkPassword(String id,String password) {
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}
 	/**
 	 * 检查此账号是否存在，若不存在，创建该WebManagerPO，在数据库中增加该用户的持久化对象
@@ -24,6 +25,6 @@ public class MockWebManager extends WebManager{
 	 * @return
 	 */
 	public static ResultMessage add(WebManagerVO vo) {
-		return ResultMessage.success;
+		return ResultMessage.succeed;
 	}
 }
