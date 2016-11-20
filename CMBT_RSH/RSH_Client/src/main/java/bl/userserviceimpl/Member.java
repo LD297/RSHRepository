@@ -1,6 +1,9 @@
 package bl.userserviceimpl;
 
 import constant.ResultMessage;
+import rmi.RemoteHelper;
+
+import java.rmi.RemoteException;
 
 public class Member {
 	String userid;
@@ -11,14 +14,26 @@ public class Member {
 	 * 注册普通会员
 	 */
 	public ResultMessage registerMember() {
-		return null;
+		ResultMessage resultMessage = null;
+		try{
+			resultMessage = RemoteHelper.getInstance().getUserDao().register(userid);
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 
 	/**
 	 * 注册企业会员
 	 */
 	public ResultMessage registerMember(String commerceName) {
-		return null;
+		ResultMessage resultMessage = null;
+		try{
+			resultMessage = RemoteHelper.getInstance().getUserDao().register(userid,commerceName);
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 	/**
 	 * 更新所有会员的会员等级
@@ -26,6 +41,12 @@ public class Member {
 	 * @return
 	 */
 	public static ResultMessage setMemberLevel(int[][] gradeWithCredit){
-		return null;
+		ResultMessage resultMessage = null;
+		try{
+			resultMessage = RemoteHelper.getInstance().getUserDao().setMemberLevel(gradeWithCredit);
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 }

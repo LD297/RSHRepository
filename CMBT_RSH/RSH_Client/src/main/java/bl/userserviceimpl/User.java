@@ -93,7 +93,10 @@ public class User {
 	 * @return
 	 */
 	private static UserVO unpackedPO(UserPO po) {
-		return null;
+		UserVO vo = new UserVO(po.getId(),po.getPassword(),po.getNickName(),
+				po.getImageAddress(),po.getLevel(),po.getMemberType(),po.getName(),
+				po.getSexuality(),po.geteMail(),po.getCredit());
+		return vo;
 	}
 	
 }
