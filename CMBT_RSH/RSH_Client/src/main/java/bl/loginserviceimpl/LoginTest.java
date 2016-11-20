@@ -10,6 +10,7 @@ import constant.ResultMessage;
 import constant.Role;
 
 public class LoginTest {
+
 	@Test
 	public void testCheckOnline(){
 		ResultMessage resultMessage1 = Login.checkOnline(Role.user, "13951897687","jksggkskjg" );
