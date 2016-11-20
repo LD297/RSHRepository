@@ -14,7 +14,7 @@ import constant.RoomType;
 import po.OrderPO;
 import vo.RoomNormVO;
 
-public class initialOrderTest {
+public class InitialOrderTest {
     @Test
     public void testgetDiscounted() throws ParseException{//promotion
     	

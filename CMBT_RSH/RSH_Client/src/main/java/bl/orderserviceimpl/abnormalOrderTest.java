@@ -14,7 +14,7 @@ import vo.RoomNormVO;
 import constant.ResultMessage;
 import constant.RoomType;
 
-public class abnormalOrderTest {
+public class AbnormalOrderTest {
     @Test
 	public void testwebCancelAbnormal() throws ParseException{
  
