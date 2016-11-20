@@ -1,7 +1,7 @@
 package bl.userserviceimpl;
 
 import constant.ResultMessage;
-import rmi.RemoteHelper;
+import rmi.*;
 
 import java.rmi.RemoteException;
 

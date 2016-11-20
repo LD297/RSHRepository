@@ -1,12 +1,16 @@
 package data.daoimpl.userdaoimpl;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import constant.ResultMessage;
 import data.dao.userdao.UserDao;
 import po.UserPO;
 
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
+
+	public UserDaoImpl() throws RemoteException {
+	}
 
 	public UserPO getInfo(String id) throws RemoteException {
 		// TODO Auto-generated method stub

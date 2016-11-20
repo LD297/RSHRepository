@@ -7,7 +7,7 @@ import java.util.Iterator;
 import constant.ResultMessage;
 import po.CreditRecordPO;
 import po.UserPO;
-import rmi.RemoteHelper;
+import rmi.*;
 import vo.CreditRecordVO;
 
 public class CreditRecordList {

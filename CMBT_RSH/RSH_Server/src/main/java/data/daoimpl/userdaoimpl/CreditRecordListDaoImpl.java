@@ -1,16 +1,19 @@
 package data.daoimpl.userdaoimpl;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-
 import constant.ResultMessage;
 import data.dao.userdao.CreditRecordListDao;
 import po.CreditRecordPO;
 
-public class CreditRecordListDaoImpl implements CreditRecordListDao{
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.Iterator;
 
-	public ArrayList<CreditRecordPO> getCreditRecordList() throws RemoteException {
-		// TODO Auto-generated method stub
+public class CreditRecordListDaoImpl extends UnicastRemoteObject implements CreditRecordListDao{
+
+	public CreditRecordListDaoImpl() throws RemoteException {
+	}
+
+	public Iterator<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException {
 		return null;
 	}
 

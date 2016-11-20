@@ -5,13 +5,13 @@ import java.rmi.RemoteException;
 import javax.swing.text.AttributeSet.CharacterAttribute;
 
 import bl.hotelserviceimpl.MockHotel;
-import bl.userserviceimpl.MockUser;
+import bl.userserviceimpl.*;
 import bl.webstaffserviceimpl.MockWebSalesman;
 import bl.webstaffserviceimpl.MockWebManager;
 import constant.ResultMessage;
 import constant.Role;
 import po.OnlinePersonPO;
-import rmi.RemoteHelper;
+import rmi.*;
 
 public class Login {
 	/**

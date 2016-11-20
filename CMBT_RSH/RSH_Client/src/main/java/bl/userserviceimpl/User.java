@@ -3,7 +3,7 @@ package bl.userserviceimpl;
 
 import constant.ResultMessage;
 import po.UserPO;
-import rmi.RemoteHelper;
+import rmi.*;
 import vo.UserVO;
 
 import java.rmi.RemoteException;
