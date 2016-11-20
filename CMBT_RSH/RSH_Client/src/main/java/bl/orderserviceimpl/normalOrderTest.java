@@ -4,16 +4,17 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
 
 public class normalOrderTest {
 	@Test
 	public void testComment(){
         MockComment mockComment = new MockComment("2153001234","123456789");
-        normalOrder normal= new normalOrder();
+        NormalOrder normal= new NormalOrder();
         
         normal.setCommentImpl(mockComment);
-        assertEquals(ResultMessage.fail,normal.comment("2153001234","2016-11-062153001234000000",80,"������"));
+        assertEquals(ResultMessage.fail,normal.comment("2153001234","2016-11-062153001234000000",80,""));
     }
  /*   @Test
 	public void testcancelMyOrder(){
@@ -26,8 +27,8 @@ public class normalOrderTest {
 */
 	@Test
 	public void testexecute(){
-		MockCreditRecordList mockCredit = new MockCreditRecordList("123456789");
-		normalOrder normal = new normalOrder();
+		CreditRecordList mockCredit = new CreditRecordList("123456789");
+		NormalOrder normal = new NormalOrder();
 		normal.setCreditRecordList(mockCredit);
 		
 		assertEquals(ResultMessage.succeed,normal.execute("2016-11-072153001234000000"));

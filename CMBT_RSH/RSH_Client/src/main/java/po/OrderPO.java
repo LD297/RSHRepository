@@ -8,20 +8,42 @@ import vo.RoomNormVO;
 import constant.*;
 
 public class OrderPO implements Serializable{
-	public String orderid;
-	public String userid;
-	public String hotelid;
-	public StateOfOrder state;
-	public ArrayList<RoomNormVO> norm;
-	public int[] numbers;
-	public double originvalue;
-	public double truevalue;
-	public String promotion;
-	public String comment;
-	public int grade;
-	public Date checkIn;
-	public Date checkOut;
-	
+	private String orderid;
+	private String userid;
+	private String hotelid;
+	private StateOfOrder state;
+	private ArrayList<RoomNormVO> norm;
+	private int[] numbers;
+	private double originvalue;
+	private double truevalue;
+	private String promotion;
+	private String comment;
+	private int grade;
+	private Date checkIn;
+	private Date checkOut;
+
+	public String getOrderid(){
+		return orderid;
+	}
+	public String getHotelid(){
+		return hotelid;
+	}
+	public String getUserid(){
+		return userid;
+	}
+	public Date[] getInTime(){
+		return new Date[]{checkIn,checkOut};
+	}
+	public ArrayList<RoomNormVO> getRooms(){
+		return norm;
+	}
+	public int[] getRoomNums(){
+		return numbers;
+	}
+	public double getTrueValue(){
+		return truevalue;
+	}
+
 	public void setTrueValue(double discounted){
 		truevalue = discounted;
 	}
@@ -38,7 +60,7 @@ public class OrderPO implements Serializable{
 		grade = gra;
 		checkIn = in;
 		checkOut = out;
-		
+
 	}
-    
+
 }

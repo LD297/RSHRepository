@@ -17,9 +17,9 @@ import constant.RoomType;
 public class abnormalOrderTest {
     @Test
 	public void testwebCancelAbnormal() throws ParseException{
-    	MockCreditRecordList mockCredit = new MockCreditRecordList("123456789");
+ 
     	AbnormalOrder abnormal = new AbnormalOrder();
-    	abnormal.setCreditRecordList(mockCredit);
+/*    	abnormal.setCreditRecordList(mockCredit);
     	
     	SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
     	String strin = "2016-11-07";
@@ -30,12 +30,11 @@ public class abnormalOrderTest {
     	ArrayList<RoomNormVO> type = new ArrayList<RoomNormVO>();
     	type.add(new RoomNormVO("2153001234",RoomType.singleRoom,120.0));
     	type.add(new RoomNormVO("2153001234",RoomType.doubleRoom,200.0));
-    	 
-    	int nums[] = {1,3};
-    	OrderPO order = new OrderPO("2016-11-072153001234000000","123456789","2153001234",type,nums,0,0,"","��������",0,in,out);
-       
-    	abnormal.setOrder(order);
     	
+    	int nums[] = {1,3};
+    	OrderPO order = new OrderPO("2016-11-072153001234000000","123456789","2153001234",type,nums,0,0,"","",0,in,out);
+    	abnormal.setOrder(order);
+*/    	
     	assertEquals(ResultMessage.succeed,abnormal.webCancelAbnormal("2016-11-072153001234000000"));
     }
 }

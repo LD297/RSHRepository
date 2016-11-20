@@ -1,38 +1,39 @@
 package bl.orderserviceimpl;
 
-import java.util.ArrayList;
-import java.util.Date;
-
-import bl.orderservice.HotelInfoService;
 import po.OrderPO;
-import vo.RoomNormVO;
-import vo.RoomVO;
 import constant.*;
 
+import java.util.ArrayList;
+
 public class Order {
-	
-	
-	
-	public OrderPO[] userbrowse(String userid){
+	// 浏览用户的订单
+	public ArrayList<OrderPO> userBrowse(String userid){
 		return null;
 	}
-	
+
+	// 显示订单详情
 	public OrderPO detail(String orderid){
 		return null;
 	}
-	
-	public OrderPO[] hotelBrowse(String hotelid){
+
+	// 浏览酒店的订单
+	public ArrayList<OrderPO> hotelBrowse(String hotelid){
 		return null;
 	}
-	
-	public OrderPO[] specificOrder(String userid,String hotelid){
+
+	// 用户浏览在该酒店下的所有订单
+	public ArrayList<OrderPO> specificOrder(String userid,String hotelid){
 		return null;
 	}
-	
-	public OrderPO[] classify(OrderPO[] list,StateOfOrder state){
+
+	// 查看所有订单时，可以分类查看
+	// 提供给 用户userbrowse 酒店hotelbrowse
+	public ArrayList<OrderPO> classify(ArrayList<OrderPO> orders,StateOfOrder state){
 		return null;
 	}
-	//״提供给酒店̬
+
+	// 提供给酒店的
+	// 返回该用户在酒店的最近订单的状态
 	public StateOfOrder getOrderStateOfUser(String userid, String hotelid){
 		return null;
 	}

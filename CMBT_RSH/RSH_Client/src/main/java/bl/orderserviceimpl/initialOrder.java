@@ -3,140 +3,154 @@ package bl.orderserviceimpl;
 import java.util.ArrayList;
 import java.util.Date;
 
-import bl.promotionServiceimpl.PromotionController;
-import bl.promotionservice.PromotionService;
+import bl.orderservice.HotelInfoService;
+import bl.promotionServiceimpl.Count;
 import bl.userserviceimpl.CreditRecordList;
 import bl.hotelserviceimpl.HotelController;
 import po.OrderPO;
-import vo.CreditRecordVO;
 import vo.RoomNormVO;
 import constant.ResultMessage;
 
+/*
+ * 触发：用户点击预定
+ * 动作：根据（酒店账号），显示酒店名称和房间信息和最晚入住时间
+ *       根据选择的（房间类型 入住离开时间），显示房间可用数量
+ *       根据（选择的房间类型 数量 入住离开时间 用户会员信息 用户生日），显示订单价格和优惠政策
+ * 触发：用户点击确认提交
+ * 动作：根据（用户信用值信息）判断是否可以提交
+ *      （再次检查可用数量 会员信息 优惠政策是否存在）出现出入 返回信息提示
+ */
 public class InitialOrder {
 
-    String hotelid;
-    HotelController hotelinfo;
+    private String hotelid;
+    private HotelInfoService hotelinfo;
+    private Count count;
 
-    PromotionService pro;
-
-    public void setPromotionController(PromotionController promotioncontroller){
-        pro = promotioncontroller;
-    }
-    CreditRecordList record;
-
-    public void setCreditRecordList(CreditRecordList credit){
-        record = credit;
-    }
-
-
-    public void setPro(PromotionService pro) {
-        this.pro = pro;
-    }
-
-
-    //根据酒店得到 房间规模
+    
+    //根据酒店得到房间规模（房间类型和价格）
     public ArrayList<RoomNormVO> getHotelRoom(String hotelid){
-        hotelinfo.getCheckInDDL(hotelid);
         hotelinfo = new HotelController(hotelid);
         ArrayList<RoomNormVO> rooms = hotelinfo.getRoomNorms();
-
         return rooms;
     }
+
     //根据时间得到可用客房数量
     public int[] getRoomInfo(String hotelid,Date checkIn,Date checkOut){
-
         ArrayList<RoomNormVO> rooms = this.getHotelRoom(hotelid);
-
-        int nums[] = new int[rooms.size()];//���ÿͷ�����
-        double prices[] = new double[rooms.size()];
-        for(int i=0;i<rooms.size();i++){
-            nums[i] = hotelinfo.numOfRoomAvail(rooms.get(i).roomType, checkIn, checkOut);//->���ݸ�ui
-        }
-        return nums;
-    }
-    //根据界面得到orderpo
-    public OrderPO getOrder(String hotelid,String userid,Date checkIn,Date checkOut,int roomNum[]){
-        ArrayList<RoomNormVO> rooms = this.getHotelRoom(hotelid);
+        int availNum[] = new int[rooms.size()];
         double prices[] = new double[rooms.size()];
 
+        hotelinfo = new HotelController(hotelid);
         for(int i=0;i<rooms.size();i++){
-            prices[i] = hotelinfo.getRoomNorms().get(i).price;//->返回给ui
+            availNum[i] = hotelinfo.numOfRoomAvail(rooms.get(i).roomType, checkIn, checkOut);
         }
-        double truevalue = 0;
-        for(int i=0;i<rooms.size();i++){
-            truevalue = truevalue+roomNum[i]*prices[i];
-        }
-
-        return new OrderPO("orderid",userid,hotelid,rooms,roomNum,truevalue,0,"pro","",0,checkIn,checkOut);
-
+        return availNum;
     }
 
-
-    //根据界面信息 生成orderid完善orderpo
-    public void add(OrderPO order){
-        if(InitialOrder.check(order).equals(ResultMessage.pass)){
-
-            CreditRecordVO creditRecord = new CreditRecordVO(hotelid, null, hotelid, null, hotelid, 0);
-            record.addCreditRecord(creditRecord);
-
-            ArrayList<RoomNormVO> rooms = order.norm;
-            int nums[] = new int[rooms.size()];
-            nums = order.numbers;
-            Date checkIn = order.checkIn;
-            Date checkOut = order.checkOut;
-
-            if(record.canOrder()==true){
-                System.out.println("成功");
-                for(int i=0;i<rooms.size();i++)
-                    hotelinfo.changeRoomAvail(rooms.get(i).roomType, nums[i],checkIn,checkOut);
-            }
-            else
-                System.out.println("失败");
+    //根据界面得到orderpo     是提供给计算价格的方法
+    //order,user,hotel,ArrayList<RoomNormVO> type,nums,origin,discounted,pro,com, gra,in,out
+    public OrderPO getOrder(String userid,String hotelid,Date checkIn,Date checkOut,ArrayList<RoomNormVO> rooms,int roomNums[]){
+        double prices[] = new double[rooms.size()];
+        for(int i=0;i<rooms.size();i++){
+            prices[i] = hotelinfo.getRoomNorms().get(i).price;
         }
-        return;
-    }
-    //根据orderpo得到优惠后价格
-    public double getDiscounted(OrderPO order){
-        String hotelid = order.hotelid;
-        Date checkIn = order.checkIn;
-        Date checkOut = order.checkOut;
+        double originValue = 0;
+        for(int i=0;i<rooms.size();i++){
+            originValue += roomNums[i]*prices[i];
+        }
 
-        ArrayList<RoomNormVO> rooms = order.norm;
+        return new OrderPO("",userid,hotelid,rooms,roomNums,originValue,0,"","",0,checkIn,checkOut);
+    }
+
+    //根据orderpo得到计算总价和显示策略的信息
+    //优惠策略形式：String#double
+    //返回形式：pro1&pro2&...#value
+    public String getDiscount(OrderPO orderpo){/*
+        String hotelid = orderpo.getHotelid();
+        ArrayList<RoomNormVO> rooms = orderpo.getRooms();
+        int[] nums = orderpo.getRoomNums();
+
+        hotelinfo = new HotelController(hotelid);
         int size = rooms.size();
-        int nums[] = new int[size];
         double prices[] = new double[size];
-        nums = order.numbers;
         for(int i=0;i<size;i++){
             prices[i] = rooms.get(i).price;
         }
 
         ArrayList<String> promotion = new ArrayList<String>();
-        String roomdis;
-        for(int i=0;i<size;i++){
-            roomdis = pro.countPromotionOfRoom(hotelid, rooms.get(i).roomType, nums[i], checkIn, checkOut);
-            if(roomdis!=null){
+        String roomdis = "";
+        for(int i=0;i<size;i++){//遍历房间优惠
+            roomdis = Count.countPromotionOfRoom(hotelid, rooms.get(i).roomType, nums[i], orderpo.getInTime()[0],orderpo.getInTime()[1]);
+            if(roomdis!=""){
                 String[] tem = roomdis.split("#");
-                promotion.add(tem[0]);
-                prices[i] = Integer.valueOf(tem[1]);
+                if(prices[i]>Double.parseDouble(tem[1])){
+                    promotion.add(tem[0]);
+                    prices[i] = Double.parseDouble(tem[1]);
+                }
             }
+            roomdis = "";
         }
-        double sum = 0;
-        for(int i=0;i<size;i++)
-            sum += prices[i]*nums[i];
+        if(promotion.size()!=0){
+            double sum = 0;
+            for(int i=0;i<size;i++)
+                sum += prices[i]*nums[i];
 
-        order.setTrueValue(sum);
-        String orderdis = pro.countPromotionOfOrder(order);
+            orderpo.setTrueValue(sum);
+        }
+        else
+            orderpo.setTrueValue(orderpo.getTrueValue());
+
+        String orderdis = Count.countPromotionOfOrder(orderpo);//总额优惠
         if(orderdis!=null){
             String tem[] = orderdis.split("#");
             promotion.add(tem[0]);
-            order.setTrueValue(Integer.valueOf(tem[1]));
+            orderpo.setTrueValue(Double.parseDouble(tem[1]));
         }
-
-        //PromotionService->(hotelid,userid,RoomNormVO[] norm;int[] numbers;)
-        return order.truevalue;
+        String result = "";
+        if(promotion.size()!=0)
+            result = promotion.get(0);
+        for(int i=1;i<promotion.size();i++)
+            result += "&"+promotion.get(i);
+*/
+        return "pro1#1200";
+//      return result+"#"+String.valueOf(orderpo.getTrueValue());
     }
 
-    public static ResultMessage check(OrderPO orderpo){
-        return null;
+    //根据（用户信用值信息）判断是否可以提交
+    //（再次检查可用数量 会员信息 优惠政策是否存在）出现出入 返回信息提示
+    protected ResultMessage check(OrderPO orderpo){
+        //检查信用值
+        CreditRecordList credit = new CreditRecordList(orderpo.getUserid());
+        if(credit.canOrder()==false)
+            return ResultMessage.fail;
+        hotelinfo = new HotelController(orderpo.getHotelid());
+
+        //检查房间信息
+        ArrayList<RoomNormVO> rooms = orderpo.getRooms();
+        int[] nums = orderpo.getRoomNums();
+        Date checkIn = orderpo.getInTime()[0];
+        Date checkOut = orderpo.getInTime()[1];
+        for(int i=0;i<rooms.size();i++){
+            if(hotelinfo.numOfRoomAvail(rooms.get(i).roomType,checkIn,checkOut)<nums[i])
+                return ResultMessage.fail;
+        }
+
+        //检查价格
+        InitialOrder initial = new InitialOrder();
+        double price = Double.parseDouble(initial.getDiscount(orderpo).split("#")[1]);
+        if(orderpo.getTrueValue()<price)
+            return ResultMessage.fail;
+
+        return ResultMessage.succeed;
+    }
+
+    //根据界面信息 生成orderid完善orderpo
+    public void add(OrderPO orderpo){
+        InitialOrder initial = new InitialOrder();
+
+        if(initial.check(orderpo).equals(ResultMessage.succeed)){
+            //dataservice;
+        }
+        return;
     }
 }

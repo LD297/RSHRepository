@@ -17,12 +17,9 @@ import vo.RoomNormVO;
 public class initialOrderTest {
     @Test
     public void testgetDiscounted() throws ParseException{//promotion
-    	MockPromotion mockPromotion = new MockPromotion();
+    	
     	InitialOrder initial = new InitialOrder();
-    	initial.setPro(mockPromotion);
-    	
-    	initial.setPromotionController(mockPromotion);
-    	
+       
     	SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
     	String strin = "2016-11-07";
     	String strout = "2016-11-11";
@@ -35,7 +32,8 @@ public class initialOrderTest {
     	 
     	int nums[] = {1,3};
     	OrderPO order = new OrderPO("2016-11-062153001234000000","123456789","2153001234",type,nums,0,0,"","GOOD",0,in,out);
-        assertEquals(1200,(int)initial.getDiscounted(order) );
+        
+    	assertEquals(1200,(int)Double.parseDouble(initial.getDiscount(order).split("#")[1]) );
 
     }
 /*   @Test
