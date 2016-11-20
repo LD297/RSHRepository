@@ -2,6 +2,8 @@ package bl.loginserviceimpl;
 
 import java.rmi.RemoteException;
 
+import javax.swing.text.AttributeSet.CharacterAttribute;
+
 import bl.hotelserviceimpl.MockHotel;
 import bl.userserviceimpl.MockUser;
 import bl.webstaffserviceimpl.MockWebSalesman;
@@ -17,29 +19,31 @@ public class Login {
 	 */
 	public static ResultMessage checkOnline(Role role, String id, String password) {
 		ResultMessage resultMessage = null;
+		//检验用户名和密码是否匹配
 		switch(role){
 		case user:
-			if(MockUser.checkPassword(id, password)!=ResultMessage.succeed){
-				resultMessage =  ResultMessage.fail;
+			if(MockUser.checkPassword(id, password)!=ResultMessage.success){
+				resultMessage =  ResultMessage.failure;
 			}
 			break;
 		case hotel:
-			if(MockHotel.checkPassword(id, password)!=ResultMessage.succeed){
-				resultMessage = ResultMessage.fail;
+			if(MockHotel.checkPassword(id, password)!=ResultMessage.success){
+				resultMessage = ResultMessage.failure;
 			}
 			break;
 		case webmanager:
-			if(MockWebManager.checkPassword(id, password)!=ResultMessage.succeed){
-				resultMessage = ResultMessage.fail;
+			if(MockWebManager.checkPassword(id, password)!=ResultMessage.success){
+				resultMessage = ResultMessage.failure;
 			}
 			break;
 		case websalesman:
-			if(MockWebSalesman.checkPassword(id, password)!=ResultMessage.succeed){
-				resultMessage = ResultMessage.fail;
+			if(MockWebSalesman.checkPassword(id, password)!=ResultMessage.success){
+				resultMessage = ResultMessage.failure;
 			}
 			break;
 		}
-		if(resultMessage!=ResultMessage.fail){
+		//检验是否有登陆冲突
+		if(resultMessage!=ResultMessage.failure){
 			try {
 				OnlinePersonPO po = new OnlinePersonPO(role, id, password);
 				resultMessage = RemoteHelper.getInstance().getLoginDao().addOnline(po);
@@ -56,7 +60,13 @@ public class Login {
 	 */
 	public static ResultMessage logout(Role role, String id) {
 		// TODO Auto-generated method stub
-		return null;
+		ResultMessage resultMessage = null;
+		try{
+			resultMessage = RemoteHelper.getInstance().getLoginDao().deleteOnline(role, id);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 	
 }

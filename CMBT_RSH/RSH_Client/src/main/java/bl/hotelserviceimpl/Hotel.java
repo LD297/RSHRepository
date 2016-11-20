@@ -3,35 +3,28 @@ package bl.hotelserviceimpl;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.junit.experimental.theories.Theories;
-import org.omg.CORBA.ULongLongSeqHelper;
+import data.dao.hoteldao.HotelDao;
 
-import bl.orderserviceimpl.Order;
-import bl.orderserviceimpl.initialOrder;
 import constant.*;
 import po.HotelPO;
 import vo.*;
 
 public class Hotel{
-	
+
 	String id;
-	HotelPO hotelInfo;
+	/**
+	 * 该酒店信息，由构造方法初始化
+	 */
+	HotelPO hotelPO;
 	HotelManager hotelManager;
 	RoomAvail roomAvail;
-	
+	HotelDao hotelDao;
 	
 	Hotel(String id){
 		this.id = id;
-		this.init();
+		this.hotelPO = hotelDao.getHotel(this.id);
 	}
-	
-	/**
-	 * 初始化一些成员变量的值 
-	 */
-	private void init(){
-		// TODO
-	}
-	
+
 	public void setHotelManager(HotelManager hotelManager) {
 		this.hotelManager = hotelManager;
 	}
@@ -40,24 +33,20 @@ public class Hotel{
 		this.roomAvail = roomavail;
 	}
 
-	// 静态直接调用
-	public static ResultMessage checkPassword(String id, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	// 调用自身数据库
+	public ResultMessage checkPassword(String id, String password) {
+		return hotelDao.checkPassword(id, password);
 	}
 	
 	// 调用自身数据库
 	public HotelVO getHotel() {
-		// TODO Auto-generated method stub
-		return null;
+		// 根据hotelPO封装一个新的hotelVO(不含密码信息)，传给上层
+		HotelVO hotelVO = new HotelVO(hotelPO.getId(), hotelPO.getTel(), hotelPO.getName(), hotelPO.getAddr(),
+				hotelPO.getBusinessArea(),hotelPO.getBriefIntro(), hotelPO.getFacility(),
+				hotelPO.getLevel(), hotelPO.getGrade(), hotelPO.getLatestCheckinTime());
+		return hotelVO;
 	}
-	
-	// 调用自身数据库
-	public ResultMessage updateGrade(double grade) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+
 	public ResultMessage updateHotel(HotelVO vo) {
 		return hotelManager.updateHotel(vo);
 	}
@@ -71,7 +60,7 @@ public class Hotel{
 	}
 	
 	public ArrayList<RoomVO> getRoomList() {
-		return hotelManager.getRoomList();
+		return hotelManager.getRoomList(this.id);
 	}
 	
 	public ResultMessage updateRoomList(ArrayList<RoomVO> roomList) {
@@ -82,8 +71,8 @@ public class Hotel{
 		return roomAvail.getRoomAvailList(date);
 	}
 	
-	public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> availableRoomList) {
-		return roomAvail.updateRoomAvailList(availableRoomList);
+	public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> roomAvailList) {
+		return roomAvail.updateRoomAvailList(roomAvailList);
 	}
 	
 	/**
@@ -93,8 +82,7 @@ public class Hotel{
 	 * @return
 	 */
 	public ArrayList<RoomNormVO> getRoomNorms() {
-		// TODO Auto-generated method stub
-		return null;
+		return hotelDao.getRoomNorms(this.id);
 	}
 
 	// 供给order模块
@@ -109,11 +97,15 @@ public class Hotel{
 		return roomAvail.changeRoomAvail(roomType, num, checkIn, checkOut);
 	}
 
-	// 供给order模块
-	// 返回该酒店的最晚入住时间
-	// 
-	public static String getCheckInDDL(String id) {
-		return null;
+	/**
+	 * 供给order模块
+	 * 返回该酒店的最晚入住时间
+	 * 调用自身数据库实现
+	 * @param id
+	 * @return
+	 */
+	public String getCheckInDDL(String id) {
+		return hotelDao.getCheckInDDL(id);
 	}
 	
 }

@@ -1,6 +1,8 @@
 package bl.loginserviceimpl;
 
 import bl.loginservice.LoginService;
+import bl.userserviceimpl.User;
+import bl.webstaffserviceimpl.MockWebManager;
 import constant.ResultMessage;
 import constant.Role;
 import vo.UserVO;
@@ -14,7 +16,7 @@ public class LoginController implements LoginService{
 	public ResultMessage register(UserVO vo) {
 		// TODO Auto-generated method stub
 		//return MockUser.add(vo);
-		return null;
+		return User.add(vo);
 	}
 
 	/**
@@ -23,7 +25,7 @@ public class LoginController implements LoginService{
 	public ResultMessage register(WebManagerVO vo) {
 		// TODO Auto-generated method stub
 		//return MockManager.add(vo);
-		return null;
+		return MockWebManager.add(vo);
 	}
 
 	/**
@@ -31,7 +33,7 @@ public class LoginController implements LoginService{
 	 */
 	public ResultMessage checkOnline(Role role, String id, String password) {
 		// TODO Auto-generated method stub
-		return null;
+		return Login.checkOnline(role, id, password);
 	}
 
 	/**
@@ -39,7 +41,7 @@ public class LoginController implements LoginService{
 	 */
 	public ResultMessage logout(Role role, String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return Login.logout(role, id);
 	}
 
 }

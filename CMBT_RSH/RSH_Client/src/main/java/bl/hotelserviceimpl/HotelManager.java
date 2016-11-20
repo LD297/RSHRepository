@@ -3,39 +3,38 @@ package bl.hotelserviceimpl;
 import java.util.ArrayList;
 
 import constant.*;
+import data.dao.hoteldao.HotelDao;
+import po.HotelPO;
+import po.RoomPO;
 import vo.*;
 
 public class HotelManager {
-	
+
 	RoomManager roomManager;
+	HotelDao hotelDao;
 	
-	public HotelManager(RoomManager roomManager){
+	public HotelManager(String id, RoomManager roomManager){
 		this.roomManager = roomManager;
 	}
 	
 	public ResultMessage updateHotel(HotelVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotelDao.updateHotel(HotelPO.createHotelPO(vo));
 	}
 	
 	public ResultMessage addSpecialRoom(RoomVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotelDao.addSpecialRoom(RoomPO.createRoomPO(vo));
 	}
 	
 	public ResultMessage deleteSpecialRoom(RoomVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotelDao.deleteSpecialRoom(RoomPO.createRoomPO(vo));
 	}
 	
-	public ArrayList<RoomVO> getRoomList() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<RoomVO> getRoomList(String id) {
+		return roomManager.getRoomList(id);
 	}
 	
 	public ResultMessage updateRoomList(ArrayList<RoomVO> roomList) {
-		// TODO Auto-generated method stub
-		return null;
+		return roomManager.updateRoomList(roomList);
 	}
 	
 }

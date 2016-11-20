@@ -2,32 +2,34 @@ package bl.hotelserviceimpl;
 
 import bl.hotelservice.WMHotelService;
 import constant.ResultMessage;
-import po.HotelStaffPO;
+import vo.*;
 
 public class WMHotelController implements WMHotelService{
 
+	WMHotel webManageHotel;
+
+	public WMHotelController(WMHotel webManageHotel) {
+		this.webManageHotel = webManageHotel;
+	}
+
 	@Override
 	public int getHotelNum(String address) {
-		// TODO Auto-generated method stub
-		return 0;
+		return webManageHotel.getHotelNum(address);
 	}
 
 	@Override
 	public ResultMessage addHotel(String id, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		return webManageHotel.addHotel(id, password);
 	}
 
 	@Override
 	public ResultMessage deleteHotel(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return webManageHotel.deleteHotel(id);
 	}
 
 	@Override
-	public ResultMessage updateHotelStaff(HotelStaffPO po) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultMessage updateHotelStaff(HotelStaffVO hotelStaffVO) {
+		return webManageHotel.updateHotelStaff(hotelStaffVO);
 	}
 
 }

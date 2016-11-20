@@ -3,19 +3,17 @@ package bl.orderserviceimpl;
 import java.util.ArrayList;
 import java.util.Date;
 
-import bl.hotelserviceimpl.CommentImpl;
 import bl.orderservice.OrderService;
 import constant.ResultMessage;
 import constant.StateOfOrder;
 import po.OrderPO;
 import vo.RoomNormVO;
-import constant.*;
 
 public class OrderController implements OrderService{
 	
 	Order order;
 	normalOrder normalorder;
-	abnormalOrder abnormalorder;
+	AbnormalOrder abnormalorder;
 	initialOrder initialorder;
 	
 	//根据酒店得到房间规模

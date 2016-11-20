@@ -18,7 +18,7 @@ public class initialOrderTest {
     @Test
     public void testgetDiscounted() throws ParseException{//promotion
     	MockPromotion mockPromotion = new MockPromotion();
-    	initialOrder initial = new initialOrder(); 
+    	InitialOrder initial = new InitialOrder();
     	initial.setPro(mockPromotion);
     	
     	initial.setPromotionController(mockPromotion);
@@ -34,7 +34,7 @@ public class initialOrderTest {
     	type.add(new RoomNormVO("2153001234",RoomType.doubleRoom,200.0));
     	 
     	int nums[] = {1,3};
-    	OrderPO order = new OrderPO("2016-11-062153001234000000","123456789","2153001234",type,nums,0,0,"","��������",0,in,out);
+    	OrderPO order = new OrderPO("2016-11-062153001234000000","123456789","2153001234",type,nums,0,0,"","GOOD",0,in,out);
         assertEquals(1200,(int)initial.getDiscounted(order) );
 
     }

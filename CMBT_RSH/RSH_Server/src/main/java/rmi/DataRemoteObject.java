@@ -3,6 +3,7 @@ package rmi;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import constant.ResultMessage;
 import constant.Role;
@@ -57,9 +58,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDao,Cr
 		// TODO Auto-generated method stub
 		return userDao.setMemberLevel(gradeWithCredit);
 	}
-	public ArrayList<CreditRecordPO> getCreditRecordList() throws RemoteException {
+	public Iterator<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException {
 		// TODO Auto-generated method stub
-		return creditRecordListDao.getCreditRecordList();
+		return creditRecordListDao.getCreditRecordList(userid);
 	}
 	public ResultMessage addCreditRecord(CreditRecordPO po) throws RemoteException {
 		// TODO Auto-generated method stub

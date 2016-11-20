@@ -12,7 +12,7 @@ public class MockComment extends CommentImpl{
 		order = o;
 	}
 	
-	public static ResultMessage addComment(String hotelid, String userid, String comment){
+	public ResultMessage addComment(String hotelid, String userid, String comment){
 		// TODO
 		return ResultMessage.succeed;
 		

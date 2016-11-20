@@ -1,12 +1,10 @@
 package constant;
 
 public enum ResultMessage {
-	error,
+
+	succeed,
+	fail,
 	pass,
 	successfullyLogout,
-	fail,
-	exists,
-	not_exosts,
-	succeed,
-not_success;
+	emptyComment
 }

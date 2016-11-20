@@ -1,6 +1,7 @@
 package bl.webstaffserviceimpl;
 
 import constant.ResultMessage;
+import vo.WebManagerVO;
 
 public class MockWebManager extends WebManager{
 	public MockWebManager(String id, String passw) {
@@ -15,14 +16,14 @@ public class MockWebManager extends WebManager{
 	 * @return
 	 */
 	public static ResultMessage checkPassword(String id,String password) {
-		return ResultMessage.succeed;
+		return ResultMessage.success;
 	}
 	/**
 	 * 检查此账号是否存在，若不存在，创建该WebManagerPO，在数据库中增加该用户的持久化对象
 	 * @param vo
 	 * @return
 	 */
-	/*public static ResultMessage add(WebManagerVO vo) {
-		return ResultMessage.succeed;
-	}*/
+	public static ResultMessage add(WebManagerVO vo) {
+		return ResultMessage.success;
+	}
 }

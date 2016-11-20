@@ -5,16 +5,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import constant.RoomType;
+import vo.RoomVO;
 
 public class RoomPO implements Serializable{
 	/**
 	 * 酒店名称
 	 */
-	public String id;
+	private String id;
 	/**
 	 * 房间类型（单人间／标准间）
 	 */
-	public RoomType type;
+	private RoomType type;
 	/**
 	 * 该类型房间总量
 	 */
@@ -27,27 +28,54 @@ public class RoomPO implements Serializable{
 	 * 该类型房间是否被设为特色
 	 */
 	private String basicOrSpecial;
-	
-	public RoomPO(String id, RoomType type, ArrayList<Date> fromTo) {
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
 		this.id = id;
+	}
+
+	public RoomType getType() {
+		return type;
+	}
+
+	public void setType(RoomType type) {
 		this.type = type;
 	}
+
 	public int getAmountTotal() {
 		return amountTotal;
 	}
+
 	public void setAmountTotal(int amountTotal) {
 		this.amountTotal = amountTotal;
 	}
+
 	public double getPrice() {
 		return price;
 	}
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
 	public String getBasicOrSpecial() {
 		return basicOrSpecial;
 	}
+
 	public void setBasicOrSpecial(String basicOrSpecial) {
 		this.basicOrSpecial = basicOrSpecial;
+	}
+
+	public static RoomPO createRoomPO(RoomVO vo){
+		RoomPO newRoomPO  = new RoomPO();
+		newRoomPO.setId(vo.id);
+		newRoomPO.setType(vo.type);
+		newRoomPO.setAmountTotal(vo.amountTotal);
+		newRoomPO.setPrice(vo.price);
+		newRoomPO.setBasicOrSpecial(vo.basicOrSpecial);
+		return newRoomPO;
 	}
 }

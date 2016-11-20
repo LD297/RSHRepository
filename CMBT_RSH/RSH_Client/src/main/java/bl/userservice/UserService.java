@@ -1,6 +1,7 @@
 package bl.userservice;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import constant.ResultMessage;
 import vo.CreditRecordVO;
@@ -27,7 +28,7 @@ public interface UserService {
 	/**
 	 * 返回用户信用记录列表（用户查看信用记录的时候）
 	 */
-	public ArrayList<CreditRecordVO> getCreditRecordList(String userid);
+	public Iterator<CreditRecordVO> getCreditRecordList(String userid);
 	/**
 	 * 注册普通会员
 	 */

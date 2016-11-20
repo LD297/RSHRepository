@@ -5,8 +5,6 @@ import java.util.Date;
 
 import po.OrderPO;
 import vo.RoomNormVO;
-import bl.hotelserviceimpl.CommentImpl;
-import bl.orderserviceimpl.abnormalOrder;
 import constant.ResultMessage;
 import constant.StateOfOrder;
 

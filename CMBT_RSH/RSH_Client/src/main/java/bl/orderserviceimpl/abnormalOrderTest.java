@@ -18,7 +18,7 @@ public class abnormalOrderTest {
     @Test
 	public void testwebCancelAbnormal() throws ParseException{
     	MockCreditRecordList mockCredit = new MockCreditRecordList("123456789");
-    	abnormalOrder abnormal = new abnormalOrder();
+    	AbnormalOrder abnormal = new AbnormalOrder();
     	abnormal.setCreditRecordList(mockCredit);
     	
     	SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");

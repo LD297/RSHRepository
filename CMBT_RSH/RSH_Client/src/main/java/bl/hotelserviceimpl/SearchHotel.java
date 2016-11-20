@@ -4,10 +4,14 @@ import java.util.ArrayList;
 
 import constant.SortBy;
 import constant.SortMethod;
+import data.dao.hoteldao.HotelDao;
+import po.HotelPO;
 import vo.HotelVO;
 import vo.SelectConditionVO;
 
 public class SearchHotel {
+
+	HotelDao hotelDao;
 	
 	private SortHotel sortHotel;
 	private SelectHotel selectHotel;
@@ -21,8 +25,7 @@ public class SearchHotel {
 	}
 
 	public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotelDao.getHotelList(address, businessArea);
 	}
 
 	public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM) {
@@ -34,7 +37,7 @@ public class SearchHotel {
 	}
 
 	public HotelVO getHotelInfo(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		HotelVO hotelVO = HotelVO.createHotelVO(hotelDao.getHotelInfo(id));
+		return hotelVO;
 	}
 }
