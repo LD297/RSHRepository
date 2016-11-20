@@ -28,14 +28,16 @@ public class LoginController implements LoginService{
 	 * 检查用户名和密码是否匹配，以及是否有登陆冲突。若都符合要求，则增加该在线人员记录持久化对象
 	 */
 	public ResultMessage checkOnline(Role role, String id, String password) {
-		return Login.checkOnline(role, id, password);
+		//return Login.checkOnline(role, id, password);
+		return ResultMessage.succeed;
 	}
 
 	/**
 	 * 删除该在线人员记录持久化对象
 	 */
 	public ResultMessage logout(Role role, String id) {
-		return Login.logout(role, id);
+	//	return Login.logout(role, id);
+		return ResultMessage.succeed;
 	}
 
 }

@@ -61,12 +61,12 @@ public class User {
 		}
 		return resultMessage;
 	}
-	/**
+/**
 	 * 检查该账号是否存在，若存在，检查账号与密码是否匹配
 	 * @param id
 	 * @param password
 	 * @return
-	 */
+	 *
 	public static ResultMessage checkPassword(String id,String password) {
 		ResultMessage resultMessage = null;
 		try {
@@ -75,7 +75,7 @@ public class User {
 			e.printStackTrace();
 		}
 		return resultMessage;
-	}
+	}*/
 	/**
 	 * 生成用户基本信息持久化对象
 	 * @param vo
