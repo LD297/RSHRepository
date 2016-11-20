@@ -65,9 +65,9 @@ public class NormalOrder {
 	public ResultMessage execute(String orderid){
 		//orderdataservice update
 		//orderdataservice find ->orderpo
-		Date d = new Date();
+/*		Date d = new Date();
 		CreditRecordVO creditRecord = new CreditRecordVO(orderpo.getUserid(), d, orderid, null,"",(int)orderpo.getTrueValue());
-		record.addCreditRecord(creditRecord);
+		record.addCreditRecord(creditRecord);*/
 		return ResultMessage.succeed;
 	}
 

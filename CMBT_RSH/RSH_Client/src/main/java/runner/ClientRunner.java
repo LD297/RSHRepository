@@ -36,8 +36,8 @@ public class ClientRunner {
 	}*/
 	
 	public void test(){
-		if(Login.checkOnline(Role.user, "129817465", "sfkgkssghkgh")==ResultMessage.succeed);
-			System.out.println("成功");
+//		if(Login.checkOnline(Role.user, "129817465", "sfkgkssghkgh")==ResultMessage.succeed);
+	//		System.out.println("成功");
 	}
 	
 	public static void main(String[] args){

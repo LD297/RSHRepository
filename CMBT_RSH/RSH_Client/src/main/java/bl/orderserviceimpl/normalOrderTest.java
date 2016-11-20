@@ -8,7 +8,7 @@ import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
 
 public class normalOrderTest {
-	@Test
+	 /*	@Test
 	public void testComment(){
         MockComment mockComment = new MockComment("2153001234","123456789");
         NormalOrder normal= new NormalOrder();
