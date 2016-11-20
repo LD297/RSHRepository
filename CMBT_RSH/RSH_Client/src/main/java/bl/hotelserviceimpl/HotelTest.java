@@ -98,7 +98,7 @@ public class HotelTest {
 	@Test
 	public void updateRoomAvailListTest() {
 		ArrayList<RoomAvailVO> list = new ArrayList<RoomAvailVO>();
-		list.add(new RoomAvailVO("0000000000", RoomType.doubleRoom));
+		list.add(new RoomAvailVO("0000000000", RoomType.doubleRoom, 10, 200, "basic"));
 		assertEquals(ResultMessage.succeed, hotel.updateRoomAvailList(list));
 	}
 	

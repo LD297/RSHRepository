@@ -19,21 +19,27 @@ import java.util.Date;
 public class HotelDao_Stub implements  HotelDao{
     @Override
     public ResultMessage addComment(CommentPO commentPO) {
-        return null;
+        // TODO: 16/11/20
+        return ResultMessage.succeed;
     }
 
     @Override
     public ResultMessage checkPassword(String id, String password) {
-        return null;
+        if(id.equals("13951897687")&&password.equals("jksggkskjg"))
+            return ResultMessage.succeed;
+        else
+            return ResultMessage.fail;
     }
 
     @Override
     public HotelPO getHotel(String id) {
+        // TODO: 16/11/20
         return null;
     }
 
     @Override
     public ResultMessage updateGrade(double grade) {
+        // TODO: 16/11/20
         return null;
     }
 
@@ -100,7 +106,7 @@ public class HotelDao_Stub implements  HotelDao{
     @Override
     public ArrayList<RoomAvailVO> getRoomAvailList(String id, Date date) {
         if(id.equals("6666666666")){
-            RoomAvailVO roomAvail = new RoomAvailVO(id, RoomType.doubleRoom);
+            RoomAvailVO roomAvail = new RoomAvailVO(id, RoomType.doubleRoom, 10, 200, "basic");
             ArrayList<RoomAvailVO> list = new ArrayList<RoomAvailVO>();
             list.add(roomAvail);
             return list;
@@ -119,21 +125,25 @@ public class HotelDao_Stub implements  HotelDao{
 
     @Override
     public ArrayList<RoomNormVO> getRoomNorms(String id) {
+        // TODO: 16/11/20
         return null;
     }
 
     @Override
     public String getCheckInDDL(String id) {
+        // TODO: 16/11/20
         return null;
     }
 
     @Override
     public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
+        // TODO: 16/11/20
         return null;
     }
 
     @Override
     public HotelPO getHotelInfo(String id) {
+        // TODO: 16/11/20
         return null;
     }
 

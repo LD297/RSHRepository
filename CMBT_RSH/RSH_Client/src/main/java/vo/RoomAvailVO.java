@@ -7,8 +7,9 @@ import constant.RoomType;
 
 public class RoomAvailVO extends RoomVO {
 	
-	public RoomAvailVO(String id, RoomType type) {
-		super(id, type);
+	public RoomAvailVO(String id, RoomType type, int amountTotal, double price,
+					   String basicOrSpecial) {
+		super(id, type, amountTotal, price, basicOrSpecial);
 	}
 	/**
 	 * 对该类型房间信息查询的时间段(只包含起止日期，起于fromTo[0]的12:00，止于fromTo[1]的11：59)
