@@ -7,7 +7,6 @@ import data.dao.orderdao.OrderDao;
 import data.dao.promotiondao.PromotionDao;
 import data.dao.userdao.CreditRecordListDao;
 import data.dao.userdao.UserDao;
-import data.dao.webstaffdao.WebStaffDao;
 import data.daoimpl.hoteldaoimpl.HotelDaoImpl;
 import data.daoimpl.logindaoimpl.LoginDaoImpl;
 import data.daoimpl.orderdaoimpl.OrderDaoImpl;

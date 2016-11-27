@@ -1,14 +1,8 @@
 package bl.loginserviceimpl;
 
 import bl.hotelserviceimpl.HotelController;
-<<<<<<< HEAD
 import bl.userserviceimpl.UserController;
-=======
-import bl.userserviceimpl.*;
-//=======
-//>>>>>>> Stashed changes
 import bl.webstaffserviceimpl.MockWebSalesman;
->>>>>>> origin/master
 import bl.webstaffserviceimpl.MockWebManager;
 import bl.webstaffserviceimpl.MockWebSalesman;
 import constant.ResultMessage;

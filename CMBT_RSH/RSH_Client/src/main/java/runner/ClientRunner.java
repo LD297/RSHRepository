@@ -1,22 +1,12 @@
 package runner;
 
-import rmi.HotelRemoteHelper;
 import rmi.RemoteHelper;
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/master
 import constant.ResultMessage;
-import rmi.RemoteHelper;
 
->>>>>>> origin/master
 /**
  * 先根据服务名查找远程对象，再调用远程方法
  */
