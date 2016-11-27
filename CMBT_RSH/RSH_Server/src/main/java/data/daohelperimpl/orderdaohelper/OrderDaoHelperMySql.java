@@ -21,22 +21,15 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
 
     private OrderDaoHelperMySql mySql = new OrderDaoHelperMySql();
     private final String tableName = "OrderList";
+    private JDBC db = new JDBC();
+    private ResultSet resultSet;
 
     public void init(){
         //path表示你所创建文件的路径
-        JDBC db = new JDBC();
-        String sql = "SELECT * FROM OrderList";
 
-
-//      String s = "('sisi','444444')";
-//      db.executeSql("INSERT INTO UserInfo VALUES"+s);
         db.executeSql("USE Test");
-        db.executeSql("CREATE TABLE OrderList(orderID char(26),userID char(9)),hotelID char(10),statement ");
-        db.executeSql("INSERT INTO OrderList Values"+"('2016-11-062153001234000000','123456789')");
-        ResultSet result = db.query(sql);
-        db.printUserInfo(result);
-
-
+        //订单编号 用户编号 酒店编号 订单状态
+        db.executeSql("CREATE TABLE OrderList(orderID char(26),userID char(9)),hotelID char(10),statement int(1)");
     }
     public void finish(){
         File f = new File("D:\\360downloads\\OrderList.db");  // 输入要删除的文件位置
@@ -44,7 +37,9 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
             f.delete();
     }
     //根据订单编号查找订单
-    public OrderPO find(String orderid) throws RemoteException{
+/*    public OrderPO find(String orderid) throws RemoteException{
+        String sql = "SELECT 1 FROM OrderList WHERE orderID = ";
+        ResultSet result = db.query(sql);
 
     }
     //根据用户编号查找订单
@@ -63,4 +58,5 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
     public ResultMessage commentUpdate(String orderid, double grade, String comment) throws RemoteException;
     //订单实际离开时间更新
     public ResultMessage leaveUpdate(String orderid,Date leavetime) throws RemoteException;
+    */
 }
