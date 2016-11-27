@@ -1,17 +1,17 @@
 package bl.hotelserviceimpl;
 
-import static org.junit.Assert.*;
+import constant.ResultMessage;
+import constant.RoomType;
+import data.dao.hoteldao.HotelDao_Stub;
+import org.junit.Test;
+import vo.HotelVO;
+import vo.RoomAvailVO;
+import vo.RoomVO;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import data.dao.hoteldao.HotelDao_Stub;
-import org.junit.Test;
-import constant.ResultMessage;
-import constant.RoomType;
-import vo.HotelVO;
-import vo.RoomAvailVO;
-import vo.RoomVO;
+import static org.junit.Assert.*;
 
 public class HotelTest {
 	

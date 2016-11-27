@@ -4,8 +4,6 @@ import constant.ResultMessage;
 import data.dao.webstaffdao.WebSalesmanDao;
 import rmi.RemoteHelper;
 
-import java.rmi.Remote;
-
 public class WebSalesman {
 
 	String ID;

@@ -1,10 +1,10 @@
 package bl.webstaffservice;
 
 
-import java.util.ArrayList;
-
 import constant.ResultMessage;
 import vo.WebSalesmanVO;
+
+import java.util.ArrayList;
 
 public interface WebStaffService {
 

@@ -2,7 +2,7 @@ package bl.hotelserviceimpl;
 
 import bl.hotelservice.WMHotelService;
 import constant.ResultMessage;
-import vo.*;
+import vo.HotelStaffVO;
 
 public class WMHotelController implements WMHotelService{
 

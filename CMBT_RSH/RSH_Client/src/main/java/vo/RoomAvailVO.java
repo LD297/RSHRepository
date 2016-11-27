@@ -1,9 +1,9 @@
 package vo;
 
+import constant.RoomType;
+
 import java.util.ArrayList;
 import java.util.Date;
-
-import constant.RoomType;
 
 public class RoomAvailVO extends RoomVO {
 	

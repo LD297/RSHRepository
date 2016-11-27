@@ -2,8 +2,9 @@ package bl.hotelserviceimpl;
 
 import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
-import po.*;
-import vo.*;
+import po.HotelPO;
+import po.HotelStaffPO;
+import vo.HotelStaffVO;
 
 public class WMHotel{
 

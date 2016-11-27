@@ -1,14 +1,13 @@
 package bl.userserviceimpl;
 
+import constant.ResultMessage;
+import po.CreditRecordPO;
+import rmi.RemoteHelper;
+import vo.CreditRecordVO;
+
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import constant.ResultMessage;
-import po.CreditRecordPO;
-import po.UserPO;
-import rmi.*;
-import vo.CreditRecordVO;
 
 public class CreditRecordList {
 	private String userid = "";

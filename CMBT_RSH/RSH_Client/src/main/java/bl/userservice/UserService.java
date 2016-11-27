@@ -1,11 +1,10 @@
 package bl.userservice;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import constant.ResultMessage;
 import vo.CreditRecordVO;
 import vo.UserVO;
+
+import java.util.Iterator;
 
 /**
  * 处理userui对应的逻辑，所有传入的参数都需要在界面层检验输入是否合法

@@ -1,8 +1,11 @@
 package bl.hotelservice;
 
+import constant.SortBy;
+import constant.SortMethod;
+import vo.HotelVO;
+import vo.SelectConditionVO;
+
 import java.util.ArrayList;
-import constant.*;
-import vo.*;
 
 public interface SearchHotelService {
 	

@@ -1,9 +1,10 @@
 package bl.orderservice;
 
-import java.util.ArrayList;
-import po.OrderPO;
 import constant.ResultMessage;
 import constant.StateOfOrder;
+import po.OrderPO;
+
+import java.util.ArrayList;
 
 public interface OrderService {
 

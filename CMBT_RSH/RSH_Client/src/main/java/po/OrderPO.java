@@ -1,11 +1,11 @@
 package po;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.ArrayList;
-
+import constant.StateOfOrder;
 import vo.RoomNormVO;
-import constant.*;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class OrderPO implements Serializable{
 	private String orderid;

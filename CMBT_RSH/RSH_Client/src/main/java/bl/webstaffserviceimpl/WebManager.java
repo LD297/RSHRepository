@@ -5,7 +5,6 @@ import data.dao.webstaffdao.WebManagerDao;
 import po.WebManagerPO;
 import rmi.RemoteHelper;
 
-import java.rmi.Remote;
 
 /**
  * 网站管理人员类

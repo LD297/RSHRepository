@@ -1,8 +1,9 @@
 package bl.hotelservice;
 
-import java.util.*;
-import constant.*;
-import vo.*;
+import constant.ResultMessage;
+import vo.HotelVO;
+import vo.RoomAvailVO;
+import vo.RoomVO;
 
 public interface HotelService {
 

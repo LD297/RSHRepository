@@ -1,10 +1,9 @@
 package bl.hotelserviceimpl;
+
 import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
 import data.dao.hoteldao.HotelDao_Stub;
 import org.junit.Test;
-import po.HotelPO;
-import po.HotelStaffPO;
 import vo.HotelStaffVO;
 
 import static org.junit.Assert.assertEquals;

@@ -1,12 +1,11 @@
 package data.dao.userdao;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import constant.ResultMessage;
 import po.CreditRecordPO;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.Iterator;
 
 /**
  * 处理有关用户信用记录的数据
