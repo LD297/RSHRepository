@@ -1,7 +1,9 @@
 package rmi;
 
+import bl.promotionServiceimpl.Promotion;
 import data.dao.hoteldao.HotelDao;
 import data.dao.logindao.LoginDao;
+import data.dao.promotiondao.PromotionDao;
 import data.dao.userdao.CreditRecordListDao;
 import data.dao.userdao.UserDao;
 import data.dao.webstaffdao.WebManagerDao;
@@ -24,6 +26,7 @@ public class RemoteHelper {
     private HotelDao hotelDao = null;
     private WebManagerDao webManagerDao = null;
     private WebSalesmanDao webSalesmanDao = null;
+    private PromotionDao promotionDao = null;
     public static RemoteHelper getInstance(){
         if(remoteHelper ==null){
             remoteHelper = new RemoteHelper();
@@ -43,6 +46,7 @@ public class RemoteHelper {
             hotelDao = (HotelDao)Naming.lookup("rmi://localhost:8888/HotelRemoteObject");
             webManagerDao = (WebManagerDao)Naming.lookup("rmi://localhost:8888/WebManagerDaoImpl");
             webSalesmanDao = (WebSalesmanDao)Naming.lookup("rmi://localhost:8888/WebSalesmanDaoImpl");
+            promotionDao = (PromotionDao)Naming.lookup("rmi://localhost:8888/PromotionDaoImpl");
         } catch (NotBoundException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -74,6 +78,10 @@ public class RemoteHelper {
 
     public WebSalesmanDao getWebSalesmanDao() {
         return webSalesmanDao;
+    }
+
+    public PromotionDao getPromotionDao(){
+        return promotionDao;
     }
 }
 
