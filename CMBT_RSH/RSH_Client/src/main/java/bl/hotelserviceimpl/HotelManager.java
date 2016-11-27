@@ -1,12 +1,13 @@
 package bl.hotelserviceimpl;
 
-import java.util.ArrayList;
-
-import constant.*;
+import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
 import po.HotelPO;
 import po.RoomPO;
-import vo.*;
+import vo.HotelVO;
+import vo.RoomVO;
+
+import java.util.ArrayList;
 
 public class HotelManager {
 

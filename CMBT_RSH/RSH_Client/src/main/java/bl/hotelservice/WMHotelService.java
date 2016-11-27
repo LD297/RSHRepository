@@ -1,7 +1,7 @@
 package bl.hotelservice;
 
-import constant.*;
-import vo.*;
+import constant.ResultMessage;
+import vo.HotelStaffVO;
 
 public interface WMHotelService {
 	public int getHotelNum(String address);

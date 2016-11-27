@@ -3,10 +3,11 @@ package bl.webstaffserviceimpl;
 import constant.ResultMessage;
 import data.dao.webstaffdao.WebManagerDao;
 import po.WebManagerPO;
-import rmi.RemoteHelper;
+<<<<<<< HEAD
 import rmi.WebStaffRemoteHelper;
-
-import java.rmi.Remote;
+=======
+import rmi.RemoteHelper;
+>>>>>>> origin/master
 
 /**
  * 网站管理人员类
@@ -22,7 +23,7 @@ public class WebManager {
 	private static String ID="0000000000";
 	private String password=null;
 
-	private static WebManagerDao webManagerDao=WebStaffRemoteHelper.getInstance();
+	private static WebManagerDao webManagerDao=RemoteHelper.getInstance().getWebManagerDao();
 	
 	private WebManager(String tempPassword){
 		password = tempPassword;

@@ -1,40 +1,87 @@
 package rmi;
 
-import java.rmi.Remote;
+<<<<<<< HEAD
+import data.dao.logindao.LoginDao;
+import data.dao.userdao.CreditRecordListDao;
+import data.dao.userdao.UserDao;
 
+import java.rmi.Remote;
+=======
+import data.dao.hoteldao.HotelDao;
 import data.dao.logindao.LoginDao;
 import data.dao.userdao.CreditRecordListDao;
 import data.dao.userdao.UserDao;
 import data.dao.webstaffdao.WebManagerDao;
+import data.dao.webstaffdao.WebSalesmanDao;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+>>>>>>> origin/master
+
+/**
+ * Created by john on 2016/11/27.
+ */
 public class RemoteHelper {
-	private Remote remote;
-	private static RemoteHelper remoteHelper = new RemoteHelper();
-	public static RemoteHelper getInstance(){
-		return remoteHelper;
-	}
-	
-	private RemoteHelper() {
-	}
-	
-	public void setRemote(Remote remote){
-		this.remote = remote;
-	}
+    private static RemoteHelper remoteHelper = null;
+    private LoginDao loginDao = null;
+    private CreditRecordListDao creditRecordListDao = null;
+    private UserDao userDao = null;
+    private HotelDao hotelDao = null;
+    private WebManagerDao webManagerDao = null;
+    private WebSalesmanDao webSalesmanDao = null;
+    public static RemoteHelper getInstance(){
+        if(remoteHelper ==null){
+            remoteHelper = new RemoteHelper();
+        }
+        return remoteHelper;
+    }
 
-	public Remote getRemote(){
-		return this.remote;
-	}
+    private RemoteHelper() {
+        initDao();
+    }
 
-	public LoginDao getLoginDao(){
-		return (LoginDao)remote;
-	}
-	
-	public CreditRecordListDao getCreditRecordListDao(){
-		return (CreditRecordListDao)remote;
-	}
-	
-	public UserDao getUserDao() {
-		return (UserDao)remote;
-	}
+    public void initDao() {
+        try {
+            loginDao = (LoginDao)Naming.lookup("rmi://localhost:8888/LoginDaoImpl");
+            creditRecordListDao = (CreditRecordListDao)Naming.lookup("rmi://localhost:8888/CreditRecordListDaoImpl") ;
+            userDao = (UserDao) Naming.lookup("rmi://localhost:8888/UserDaoImpl");
+            hotelDao = (HotelDao)Naming.lookup("rmi://localhost:8888/HotelRemoteObject");
+            webManagerDao = (WebManagerDao)Naming.lookup("rmi://localhost:8888/WebManagerDaoImpl");
+            webSalesmanDao = (WebSalesmanDao)Naming.lookup("rmi://localhost:8888/WebSalesmanDaoImpl");
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public LoginDao getLoginDao(){
+        return loginDao;
+    }
+
+    public CreditRecordListDao getCreditRecordListDao(){
+        return creditRecordListDao;
+    }
+
+    public UserDao getUserDao() {
+        return userDao;
+    }
+
+    public HotelDao getHotelDao(){
+        return hotelDao;
+    }
+
+    public WebManagerDao getWebManagerDao() {
+        return webManagerDao;
+    }
+
+    public WebSalesmanDao getWebSalesmanDao() {
+        return webSalesmanDao;
+    }
 }
+

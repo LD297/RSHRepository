@@ -1,11 +1,9 @@
 package po;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-
 import constant.RoomType;
 import vo.RoomVO;
+
+import java.io.Serializable;
 
 public class RoomPO implements Serializable{
 	/**

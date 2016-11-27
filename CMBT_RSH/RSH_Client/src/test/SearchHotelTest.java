@@ -1,10 +1,10 @@
 package bl.hotelserviceimpl;
 
-import static org.junit.Assert.*;
-
 import data.dao.hoteldao.HotelDao;
 import data.dao.hoteldao.HotelDao_Stub;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 
 public class SearchHotelTest {

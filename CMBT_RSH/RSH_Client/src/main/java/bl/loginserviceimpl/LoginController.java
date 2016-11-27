@@ -14,7 +14,7 @@ public class LoginController implements LoginService{
 	 * 为用户注册，若该用户名没有被注册过，则增加该用户的持久化对象
 	 */
 	public ResultMessage register(UserVO vo) {
-		return User.add(vo);
+		return new User().add(vo);
 	}
 
 	/**

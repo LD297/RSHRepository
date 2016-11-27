@@ -2,9 +2,7 @@ package bl.webstaffserviceimpl;
 
 import constant.ResultMessage;
 import data.dao.webstaffdao.WebSalesmanDao;
-import rmi.WebStaffRemoteHelper;
-
-import java.rmi.Remote;
+import rmi.RemoteHelper;
 
 public class WebSalesman {
 
@@ -12,7 +10,7 @@ public class WebSalesman {
 	String password;
 	String district;
 
-	private WebSalesmanDao webSalesmanDao = WebStaffRemoteHelper.getInstance();
+	private WebSalesmanDao webSalesmanDao = RemoteHelper.getInstance().getWebSalesmanDao();
 
 	public WebSalesman(String id, String tempPassword) {
 		// TODO Auto-generated constructor stub

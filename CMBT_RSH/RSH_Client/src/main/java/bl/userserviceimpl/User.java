@@ -3,7 +3,7 @@ package bl.userserviceimpl;
 
 import constant.ResultMessage;
 import po.UserPO;
-import rmi.*;
+import rmi.RemoteHelper;
 import vo.UserVO;
 
 import java.rmi.RemoteException;
@@ -15,6 +15,7 @@ import java.rmi.RemoteException;
  */
 public class User {
 	String id;
+	public User(){};
 	public User(String id) {
 		this.id = id;
 	}
@@ -51,7 +52,7 @@ public class User {
 	 * @param vo
 	 * @return
 	 */
-	public static ResultMessage add(UserVO vo) {
+	public ResultMessage add(UserVO vo) {
 		ResultMessage resultMessage = null;
 		UserPO po = create(vo);
 		try {
@@ -61,13 +62,8 @@ public class User {
 		}
 		return resultMessage;
 	}
-/**
-	 * 检查该账号是否存在，若存在，检查账号与密码是否匹配
-	 * @param id
-	 * @param password
-	 * @return
-	 *
-	public static ResultMessage checkPassword(String id,String password) {
+
+	public ResultMessage checkPassword(String id,String password) {
 		ResultMessage resultMessage = null;
 		try {
 			resultMessage = RemoteHelper.getInstance().getUserDao().checkPassword(id, password);
@@ -75,13 +71,13 @@ public class User {
 			e.printStackTrace();
 		}
 		return resultMessage;
-	}*/
+	}
 	/**
 	 * 生成用户基本信息持久化对象
 	 * @param vo
 	 * @return
 	 */
-	private static UserPO create(UserVO vo) {
+	private UserPO create(UserVO vo) {
 		UserPO po = new UserPO(vo.getId(), vo.getPassword(), vo.getNickName(),
 				vo.getImageAddress(), vo.getLevel(), vo.getMemberType(), vo.getName(),
 				vo.getSexuality(), vo.geteMail(), vo.getCredit());
@@ -92,7 +88,7 @@ public class User {
 	 * @param po
 	 * @return
 	 */
-	private static UserVO unpackedPO(UserPO po) {
+	private UserVO unpackedPO(UserPO po) {
 		UserVO vo = new UserVO(po.getId(),po.getPassword(),po.getNickName(),
 				po.getImageAddress(),po.getLevel(),po.getMemberType(),po.getName(),
 				po.getSexuality(),po.geteMail(),po.getCredit());

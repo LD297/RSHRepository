@@ -1,24 +1,24 @@
 package bl.orderserviceimpl;
 
-import java.util.ArrayList;
-import java.util.Date;
-
+import bl.hotelserviceimpl.HotelController;
 import bl.orderservice.HotelInfoService;
 import bl.promotionServiceimpl.Count;
 import bl.userserviceimpl.CreditRecordList;
-import bl.hotelserviceimpl.HotelController;
+import constant.ResultMessage;
 import po.OrderPO;
 import vo.RoomNormVO;
-import constant.ResultMessage;
+<<<<<<< HEAD
 
-/*
- * 触发：用户点击预定
- * 动作：根据（酒店账号），显示酒店名称和房间信息和最晚入住时间
- *       根据选择的（房间类型 入住离开时间），显示房间可用数量
- *       根据（选择的房间类型 数量 入住离开时间 用户会员信息 用户生日），显示订单价格和优惠政策
- * 触发：用户点击确认提交
- * 动作：根据（用户信用值信息）判断是否可以提交
- *      （再次检查可用数量 会员信息 优惠政策是否存在）出现出入 返回信息提示
+import java.util.ArrayList;
+import java.util.Date;
+=======
+>>>>>>> origin/master
+
+import java.util.ArrayList;
+import java.util.Date;
+
+/**
+ * Created by john on 2016/11/27.
  */
 public class InitialOrder {
 
@@ -26,7 +26,7 @@ public class InitialOrder {
     private HotelInfoService hotelinfo;
     private Count count;
 
-    
+
     //根据酒店得到房间规模（房间类型和价格）
     public ArrayList<RoomNormVO> getHotelRoom(String hotelid){
         hotelinfo = new HotelController(hotelid);
@@ -35,7 +35,7 @@ public class InitialOrder {
     }
 
     //根据时间得到可用客房数量
-    public int[] getRoomInfo(String hotelid,Date checkIn,Date checkOut){
+    public int[] getRoomInfo(String hotelid, Date checkIn, Date checkOut){
         ArrayList<RoomNormVO> rooms = this.getHotelRoom(hotelid);
         int availNum[] = new int[rooms.size()];
         double prices[] = new double[rooms.size()];
@@ -49,7 +49,7 @@ public class InitialOrder {
 
     //根据界面得到orderpo     是提供给计算价格的方法
     //order,user,hotel,ArrayList<RoomNormVO> type,nums,origin,discounted,pro,com, gra,in,out
-    public OrderPO getOrder(String userid,String hotelid,Date checkIn,Date checkOut,ArrayList<RoomNormVO> rooms,int roomNums[]){
+    public OrderPO getOrder(String userid, String hotelid, Date checkIn, Date checkOut, ArrayList<RoomNormVO> rooms, int roomNums[]){
         double prices[] = new double[rooms.size()];
         for(int i=0;i<rooms.size();i++){
             prices[i] = hotelinfo.getRoomNorms().get(i).price;
@@ -59,7 +59,7 @@ public class InitialOrder {
             originValue += roomNums[i]*prices[i];
         }
 
-        return new OrderPO("",userid,hotelid,rooms,roomNums,originValue,0,"","",0,checkIn,checkOut);
+        return null;
     }
 
     //根据orderpo得到计算总价和显示策略的信息

@@ -1,14 +1,11 @@
 package bl.userserviceimpl;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import bl.userservice.UserService;
 import constant.ResultMessage;
-import rmi.RemoteHelper;
 import vo.CreditRecordVO;
 import vo.UserVO;
+
+import java.util.Iterator;
 
 /**
  * 处理用户界面包的逻辑
@@ -60,13 +57,7 @@ public class UserController implements UserService{
 	}
 
 	public ResultMessage checkPassword(String id,String password) {
-/*		ResultMessage resultMessage = null;
-		try {
-			resultMessage = RemoteHelper.getInstance().getUserDao().checkPassword(id, password);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}*/
-		return ResultMessage.succeed;
+		return new User().checkPassword(id, password);
 	}
 
 }

@@ -1,13 +1,9 @@
 package bl.loginserviceimpl;
 
 
-
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 import constant.ResultMessage;
 import constant.Role;
+import org.junit.Test;
 
 public class LoginTest {
 	LoginController loginController = new LoginController();

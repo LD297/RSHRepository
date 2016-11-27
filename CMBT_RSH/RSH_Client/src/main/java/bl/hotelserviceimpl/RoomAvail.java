@@ -1,12 +1,12 @@
 package bl.hotelserviceimpl;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 import constant.ResultMessage;
 import constant.RoomType;
 import data.dao.hoteldao.HotelDao;
 import vo.RoomAvailVO;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class RoomAvail {
 
