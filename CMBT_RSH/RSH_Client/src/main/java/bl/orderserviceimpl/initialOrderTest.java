@@ -31,7 +31,7 @@ public class InitialOrderTest {
     	type.add(new RoomNormVO("2153001234",RoomType.doubleRoom,200.0));
     	 
     	int nums[] = {1,3};
-    	OrderPO order = new OrderPO("2016-11-062153001234000000","123456789","2153001234",type,nums,0,0,"","GOOD",0,in,out);
+    	OrderPO order = new OrderPO("2016-11-062153001234000000","123456789","2153001234",type,nums,3,false,0,0,"","GOOD",0,in,out);
         
     	assertEquals(1200,(int)Double.parseDouble(initial.getDiscount(order).split("#")[1]) );
 

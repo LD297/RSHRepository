@@ -59,7 +59,7 @@ public class InitialOrder {
             originValue += roomNums[i]*prices[i];
         }
 
-        return new OrderPO("",userid,hotelid,rooms,roomNums,originValue,0,"","",0,checkIn,checkOut);
+        return null;
     }
 
     //根据orderpo得到计算总价和显示策略的信息
