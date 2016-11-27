@@ -29,7 +29,7 @@ public interface OrderDao extends Remote{
 	//订单实际离开时间更新
 	public ResultMessage leaveUpdate(String orderid,Date leavetime) throws RemoteException;
 	
-    public void	init() throws RemoteException;
+    public void init() throws RemoteException;
 	
     public void finish() throws RemoteException;
 
