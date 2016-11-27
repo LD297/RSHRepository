@@ -7,7 +7,6 @@ import data.dao.orderdao.OrderDao;
 import data.dao.promotiondao.PromotionDao;
 import data.dao.userdao.CreditRecordListDao;
 import data.dao.userdao.UserDao;
-import data.dao.webstaffdao.WebStaffDao;
 import data.daoimpl.hoteldaoimpl.HotelDaoImpl;
 import data.daoimpl.logindaoimpl.LoginDaoImpl;
 import data.daoimpl.orderdaoimpl.OrderDaoImpl;
@@ -15,6 +14,8 @@ import data.daoimpl.userdaoimpl.CreditRecordListDaoImpl;
 import data.daoimpl.userdaoimpl.UserDaoImpl;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 /**
@@ -23,7 +24,23 @@ import java.rmi.RemoteException;
 public class DatabaseFactoryImpl implements DatabaseFactory {
 
     public DatabaseFactoryImpl()throws RemoteException{
-
+        // 建立数据库
+        //path表示你所创建文件的路径
+        String path = "D:\\360downloads";
+        File f = new File(path);
+        if(!f.exists()){
+            f.mkdirs();
+        }
+        // fileName表示你创建的文件名；
+        String fileName = "Test.db";
+        File file = new File(f,fileName);
+        if(!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
     public HotelDao getHotelDatabase()throws RemoteException{
         HotelDao hotelDatabase = new HotelDaoImpl();
