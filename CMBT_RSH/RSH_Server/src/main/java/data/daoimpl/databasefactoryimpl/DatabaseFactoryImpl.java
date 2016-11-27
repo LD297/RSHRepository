@@ -7,12 +7,16 @@ import data.dao.orderdao.OrderDao;
 import data.dao.promotiondao.PromotionDao;
 import data.dao.userdao.CreditRecordListDao;
 import data.dao.userdao.UserDao;
+import data.dao.webstaffdao.WebManagerDao;
+import data.dao.webstaffdao.WebSalesmanDao;
 import data.daoimpl.hoteldaoimpl.HotelDaoImpl;
 import data.daoimpl.logindaoimpl.LoginDaoImpl;
 import data.daoimpl.orderdaoimpl.OrderDaoImpl;
 import data.daoimpl.userdaoimpl.CreditRecordListDaoImpl;
 import data.daoimpl.userdaoimpl.UserDaoImpl;
-
+import data.daoimpl.webstaffdaoimpl.WebManagerDaoImpl;
+import data.daoimpl.promotiondaoimpl.PromotionDaoImpl;
+import data.daoimpl.webstaffdaoimpl.WebSalesmanDaoImpl;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,24 +61,25 @@ public class DatabaseFactoryImpl implements DatabaseFactory {
         return orderDatabase;
     };
 
-/*    public PromotionDao getPromotionDatabase()throws RemoteException{
+    public PromotionDao getPromotionDatabase()throws RemoteException{
         PromotionDao promotionDatabase = new PromotionDaoImpl();
         return promotionDatabase;
     };
-*/
-    public CreditRecordListDao getCreditRecordDatabase()throws RemoteException{
-        CreditRecordListDao creditRecordDatabase = new CreditRecordListDaoImpl();
-        return creditRecordDatabase;
-    }
+
 
     public UserDao getUserDatabase()throws RemoteException{
         UserDao userDatabase = new UserDaoImpl();
         return userDatabase;
     };
 
- /*   public WebStaffDao getWebStaffDatabase()throws RemoteException{
-        WebStaffDao webstaffDatabase = new WebStaffDaoImpl();
-        return webstaffDatabase;
+    public WebManagerDao getWebManagerDatabase()throws RemoteException{
+        WebManagerDao webManagerDatabase = new WebManagerDaoImpl();
+        return webManagerDatabase;
     };
-*/
+
+    public WebSalesmanDao getWebSalesmanDatabase()throws RemoteException{
+        WebSalesmanDao webSalesmanDatabase = new WebSalesmanDaoImpl();
+        return webSalesmanDatabase;
+        }
+    }
 }
