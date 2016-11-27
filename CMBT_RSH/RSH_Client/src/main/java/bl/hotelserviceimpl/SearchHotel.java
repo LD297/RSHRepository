@@ -3,9 +3,11 @@ package bl.hotelserviceimpl;
 import constant.SortBy;
 import constant.SortMethod;
 import data.dao.hoteldao.HotelDao;
+import po.HotelPO;
 import vo.HotelVO;
 import vo.SelectConditionVO;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class SearchHotel {
@@ -26,7 +28,13 @@ public class SearchHotel {
 	public void setHotelDao(HotelDao hotelDao){this.hotelDao = hotelDao;}
 
 	public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
-		return hotelDao.getHotelList(address, businessArea);
+		ArrayList<HotelVO> hotelVOs = null;
+		try {
+			hotelVOs = hotelDao.getHotelList(address, businessArea);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return hotelVOs;
 	}
 
 	public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM) {
@@ -38,7 +46,13 @@ public class SearchHotel {
 	}
 
 	public HotelVO getHotelInfo(String id) {
-		HotelVO hotelVO = HotelVO.createHotelVO(hotelDao.getHotelInfo(id));
+		HotelPO hotelPO = null;
+		try {
+			hotelPO = hotelDao.getHotelInfo(id);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		HotelVO hotelVO = HotelVO.createHotelVO(hotelPO);
 		return hotelVO;
 	}
 }

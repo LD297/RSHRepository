@@ -7,6 +7,7 @@ import po.RoomPO;
 import vo.HotelVO;
 import vo.RoomVO;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class HotelManager {
@@ -20,15 +21,33 @@ public class HotelManager {
 	}
 	
 	public ResultMessage updateHotel(HotelVO vo) {
-		return hotelDao.updateHotel(HotelPO.createHotelPO(vo));
+		ResultMessage resultMessage = null;
+		try {
+			resultMessage = hotelDao.updateHotel(HotelPO.createHotelPO(vo));
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 	
 	public ResultMessage addSpecialRoom(RoomVO vo) {
-		return hotelDao.addSpecialRoom(RoomPO.createRoomPO(vo));
+		ResultMessage resultMessage = null;
+		try {
+			resultMessage = hotelDao.addSpecialRoom(RoomPO.createRoomPO(vo));
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 	
 	public ResultMessage deleteSpecialRoom(RoomVO vo) {
-		return hotelDao.deleteSpecialRoom(RoomPO.createRoomPO(vo));
+		ResultMessage resultMessage = null;
+		try {
+			resultMessage = hotelDao.deleteSpecialRoom(RoomPO.createRoomPO(vo));
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 	
 	public ArrayList<RoomVO> getRoomList(String id) {

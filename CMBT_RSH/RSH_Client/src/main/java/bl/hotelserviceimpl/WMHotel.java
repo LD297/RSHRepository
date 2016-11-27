@@ -6,6 +6,8 @@ import po.HotelPO;
 import po.HotelStaffPO;
 import vo.HotelStaffVO;
 
+import java.rmi.RemoteException;
+
 public class WMHotel{
 
 	HotelDao hotelDao;
@@ -15,22 +17,46 @@ public class WMHotel{
 	}
 
 	public int getHotelNum(String address) {
-		return hotelDao.getHotelNum(address);
+		int hotelNum = 0;
+		try {
+			hotelNum = hotelDao.getHotelNum(address);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return hotelNum;
 	}
 
 	public ResultMessage addHotel(String id, String password) {
 		HotelPO newHotelPO = new HotelPO(id);
 		newHotelPO.setPassword(password);
-		return hotelDao.addHotel(newHotelPO);
+		ResultMessage resultMessage = null;
+		try {
+			resultMessage = hotelDao.addHotel(newHotelPO);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 
 	public ResultMessage deleteHotel(String id) {
-		return hotelDao.deleteHotel(id);
+		ResultMessage resultMessage = null;
+		try {
+			resultMessage = hotelDao.deleteHotel(id);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 
 	public ResultMessage updateHotelStaff(HotelStaffVO hotelStaffVO) {
 		HotelStaffPO hotelStaffPO = new HotelStaffPO(hotelStaffVO.hotelID, hotelStaffVO.tel);
-		return hotelDao.updateHotelStaff(hotelStaffPO);
+		ResultMessage resultMessage = null;
+		try {
+			resultMessage = hotelDao.updateHotelStaff(hotelStaffPO);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 
 }

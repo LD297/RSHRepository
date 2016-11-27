@@ -4,34 +4,33 @@ import constant.ResultMessage;
 import data.dao.promotiondao.PromotionDao;
 import po.PromotionPO;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 /**
  * Created by aa on 2016/11/27.
  */
-public class PromotionDaoImpl implements PromotionDao {
-    @Override
-    public ResultMessage insert(PromotionPO po) {
+public class PromotionDaoImpl extends UnicastRemoteObject implements PromotionDao {
+    public PromotionDaoImpl()throws RemoteException{}
+
+    public ResultMessage insert(PromotionPO po)throws RemoteException {
         return null;
     }
 
-    @Override
-    public ResultMessage del(String id, String reason) {
+    public ResultMessage del(String id, String reason)throws RemoteException {
         return null;
     }
 
-    @Override
-    public ResultMessage update(PromotionPO po) {
+    public ResultMessage update(PromotionPO po)throws RemoteException {
         return null;
     }
 
-    @Override
-    public PromotionPO find(String id, String reason) {
+    public PromotionPO find(String id, String reason)throws RemoteException {
         return null;
     }
 
-    @Override
-    public ArrayList<PromotionPO> finds(String str) {
+    public ArrayList<PromotionPO> finds(String str)throws RemoteException {
         return null;
     }
 }

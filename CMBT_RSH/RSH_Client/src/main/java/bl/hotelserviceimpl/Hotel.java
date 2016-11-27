@@ -9,6 +9,7 @@ import vo.RoomAvailVO;
 import vo.RoomNormVO;
 import vo.RoomVO;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -25,7 +26,11 @@ public class Hotel{
 	
 	Hotel(String id){
 		this.id = id;
-		this.hotelPO = hotelDao.getHotel(this.id);
+		try{
+			this.hotelPO = hotelDao.getHotel(this.id);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
 	}
 
 	public void setHotelManager(HotelManager hotelManager) {
@@ -40,7 +45,13 @@ public class Hotel{
 
 	// 调用自身数据库
 	public ResultMessage checkPassword(String id, String password) {
-		return hotelDao.checkPassword(id, password);
+		ResultMessage resultMessage = null;
+		try {
+			resultMessage = hotelDao.checkPassword(id, password);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 	
 	// 调用自身数据库
@@ -83,7 +94,13 @@ public class Hotel{
 	 * @return
 	 */
 	public ArrayList<RoomNormVO> getRoomNorms() {
-		return hotelDao.getRoomNorms(this.id);
+		ArrayList<RoomNormVO> arrayList = null;
+		try {
+			arrayList = hotelDao.getRoomNorms(this.id);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return arrayList;
 	}
 
 	// 供给order模块
@@ -106,7 +123,13 @@ public class Hotel{
 	 * @return
 	 */
 	public String getCheckInDDL(String id) {
-		return hotelDao.getCheckInDDL(id);
+		String result = null;
+		try {
+			result = hotelDao.getCheckInDDL(id);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 }

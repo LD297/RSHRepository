@@ -5,6 +5,9 @@ import vo.HotelVO;
 import vo.RoomAvailVO;
 import vo.RoomVO;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public interface HotelService {
 
 	// 返回该酒店基本信息
