@@ -29,7 +29,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 
 	public ResultMessage checkPassword(String id, String password) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.succeed;
 	}
 
 	public ResultMessage register(String id) throws RemoteException {

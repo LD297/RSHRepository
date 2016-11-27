@@ -22,7 +22,6 @@ public interface CreditRecordListDao extends Remote{
 	public Iterator<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException;
 	/**
 	 * 增加用户信用记录持久化对象
-	 * @param po用户信用记录持久化对象
 	 * @return
 	 * @throws RemoteException
 	 */
