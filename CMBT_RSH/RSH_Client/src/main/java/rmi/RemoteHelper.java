@@ -4,6 +4,8 @@ import data.dao.hoteldao.HotelDao;
 import data.dao.logindao.LoginDao;
 import data.dao.userdao.CreditRecordListDao;
 import data.dao.userdao.UserDao;
+import data.dao.webstaffdao.WebManagerDao;
+import data.dao.webstaffdao.WebSalesmanDao;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -20,6 +22,8 @@ public class RemoteHelper {
     private CreditRecordListDao creditRecordListDao = null;
     private UserDao userDao = null;
     private HotelDao hotelDao = null;
+    private WebManagerDao webManagerDao = null;
+    private WebSalesmanDao webSalesmanDao = null;
     public static RemoteHelper getInstance(){
         if(remoteHelper ==null){
             remoteHelper = new RemoteHelper();
@@ -37,6 +41,8 @@ public class RemoteHelper {
             creditRecordListDao = (CreditRecordListDao)Naming.lookup("rmi://localhost:8888/CreditRecordListDaoImpl") ;
             userDao = (UserDao) Naming.lookup("rmi://localhost:8888/UserDaoImpl");
             hotelDao = (HotelDao)Naming.lookup("rmi://localhost:8888/HotelRemoteObject");
+            webManagerDao = (WebManagerDao)Naming.lookup("rmi://localhost:8888/WebManagerDaoImpl");
+            webSalesmanDao = (WebSalesmanDao)Naming.lookup("rmi://localhost:8888/WebSalesmanDaoImpl");
         } catch (NotBoundException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -46,17 +52,28 @@ public class RemoteHelper {
         }
     }
 
-    public LoginDao getLoginDao(){return loginDao;}
+    public LoginDao getLoginDao(){
+        return loginDao;
+    }
 
     public CreditRecordListDao getCreditRecordListDao(){
         return creditRecordListDao;
     }
 
-    public UserDao getUserDao() {return userDao;}
+    public UserDao getUserDao() {
+        return userDao;
+    }
 
     public HotelDao getHotelDao(){
         return hotelDao;
     }
 
+    public WebManagerDao getWebManagerDao() {
+        return webManagerDao;
+    }
+
+    public WebSalesmanDao getWebSalesmanDao() {
+        return webSalesmanDao;
+    }
 }
 

@@ -19,6 +19,16 @@ import po.OnlinePersonPO;
 import rmi.*;
 
 public class Login {
+	private static Login login = null;
+	private Login(){}
+
+	public static Login getInstance(){
+		if(login==null){
+			login = new Login();
+		}
+		return login;
+	}
+
 	/**
 	 * 检查用户名和密码是否匹配，以及是否有登陆冲突。若都符合要求，则增加该在线人员记录持久化对象
 	 */
@@ -57,7 +67,7 @@ public class Login {
 	/**
 	 * 删除该在线人员记录持久化对象
 	 */
-	public static ResultMessage logout(Role role, String id) {
+	public ResultMessage logout(Role role, String id) {
 		ResultMessage resultMessage = null;
 		try{
 			resultMessage = RemoteHelper.getInstance().getLoginDao().deleteOnline(role, id);

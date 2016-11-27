@@ -1,9 +1,12 @@
 package rmi;
 
+import data.dao.webstaffdao.WebManagerDao;
 import data.daoimpl.logindaoimpl.LoginDaoImpl;
 import data.daoimpl.orderdaoimpl.OrderDaoImpl;
 import data.daoimpl.userdaoimpl.CreditRecordListDaoImpl;
 import data.daoimpl.userdaoimpl.UserDaoImpl;
+import data.daoimpl.webstaffdaoimpl.WebManagerDaoImpl;
+import data.daoimpl.webstaffdaoimpl.WebSalesmanDaoImpl;
 
 import java.net.MalformedURLException;
 import java.rmi.AlreadyBoundException;
@@ -21,6 +24,8 @@ public class RemoteHelper {
     private UserDaoImpl userDaoImpl = null;
     private HotelRemoteObject hotelRemoteObject = null;
     private OrderDaoImpl orderDaoImpl = null;
+    private WebManagerDaoImpl webManagerDaoImpl = null;
+    private WebSalesmanDaoImpl webSalesmanDaoImpl = null;
     private RemoteHelper(){}
 
     public static RemoteHelper getInstance(){
@@ -44,6 +49,10 @@ public class RemoteHelper {
             Naming.bind("rmi://localhost:8888/DataRemoteObject", hotelRemoteObject);
             orderDaoImpl = new OrderDaoImpl();
             Naming.bind("rmi://localhost:8888/OrderDaoImpl",orderDaoImpl );
+            webManagerDaoImpl = new WebManagerDaoImpl();
+            Naming.bind("rmi://localhost:8888/WebManagerDaoImpl",webManagerDaoImpl );
+            webSalesmanDaoImpl = new WebSalesmanDaoImpl();
+            Naming.bind("rmi://localhost:8888/WebSalesmanDaoImpl",webSalesmanDaoImpl );
 
         } catch (RemoteException e) {
             e.printStackTrace();

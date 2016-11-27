@@ -60,13 +60,7 @@ public class UserController implements UserService{
 	}
 
 	public ResultMessage checkPassword(String id,String password) {
-/*		ResultMessage resultMessage = null;
-		try {
-			resultMessage = RemoteHelper.getInstance().getUserDao().checkPassword(id, password);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}*/
-		return ResultMessage.succeed;
+		return new User().checkPassword(id, password);
 	}
 
 }
