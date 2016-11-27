@@ -4,16 +4,8 @@ import constant.ResultMessage;
 import org.junit.Test;
 
 import java.text.ParseException;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
 import static org.junit.Assert.assertEquals;
->>>>>>> origin/master
-=======
-
-import static org.junit.Assert.assertEquals;
->>>>>>> origin/master
 
 /**
  * Created by john on 2016/11/27.

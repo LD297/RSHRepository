@@ -13,6 +13,7 @@ import vo.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * 服务器HotelDao的stub

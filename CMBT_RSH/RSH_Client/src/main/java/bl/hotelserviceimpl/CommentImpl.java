@@ -5,6 +5,8 @@ import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
 import po.CommentPO;
 
+import java.rmi.RemoteException;
+
 public class CommentImpl implements CommentService{
 
     CommentPO commentPO;
@@ -19,7 +21,13 @@ public class CommentImpl implements CommentService{
      */
 	public ResultMessage addComment(String id, String userID, String comment){
         if(!comment.equals(null)){
-            return hotelDao.addComment(new CommentPO(id, userID,  comment));
+            ResultMessage resultMessage = null;
+            try{
+                resultMessage = hotelDao.addComment(new CommentPO(id, userID,  comment));
+            }catch (RemoteException e){
+                e.printStackTrace();
+            }
+            return resultMessage;
         }
         return ResultMessage.emptyComment;
 	}
@@ -30,6 +38,12 @@ public class CommentImpl implements CommentService{
      * @return
      */
 	public ResultMessage updateGrade(double grade) {
-		return hotelDao.updateGrade(grade);
+		ResultMessage resultMessage = null;
+        try {
+            resultMessage = hotelDao.updateGrade(grade);
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
+        return resultMessage;
 	}
 }
