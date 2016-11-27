@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 
 public class Member {
 	String userid;
+	public Member(){}
 	public Member(String userid) {
 		this.userid = userid;
 	}
@@ -40,7 +41,7 @@ public class Member {
 	 * @param gradeWithCredit
 	 * @return
 	 */
-	public static ResultMessage setMemberLevel(int[][] gradeWithCredit){
+	public ResultMessage setMemberLevel(int[][] gradeWithCredit){
 		ResultMessage resultMessage = null;
 		try{
 			resultMessage = RemoteHelper.getInstance().getUserDao().setMemberLevel(gradeWithCredit);
