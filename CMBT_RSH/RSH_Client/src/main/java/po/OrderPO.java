@@ -21,6 +21,8 @@ public class OrderPO implements Serializable{
 	private int grade;
 	private Date checkIn;
 	private Date checkOut;
+	private int numOfPeople;
+	private boolean adultOnly;
 
 	public String getOrderid(){
 		return orderid;
@@ -47,15 +49,23 @@ public class OrderPO implements Serializable{
 	public void setTrueValue(double discounted){
 		truevalue = discounted;
 	}
-	public OrderPO(String order,String user,String hotel,ArrayList<RoomNormVO> type,int[] nums,double origin,double discounted,String pro,String com,int gra,Date in,Date out){
+	public OrderPO(String order,String user,String hotel,
+				   ArrayList<RoomNormVO> type,int[] nums,int people,boolean adultonly,
+				   double origin,double discounted, String pro,
+				   String com,int gra,Date in,Date out){
 		orderid = order;
 		userid = user;
 		hotelid = hotel;
+
 		norm = type;
 		numbers = nums;
+		numOfPeople = people;
+		adultOnly = adultonly;
+
 		originvalue = origin;
 		truevalue = discounted;
 		promotion = pro;
+
 		comment = com;
 		grade = gra;
 		checkIn = in;
