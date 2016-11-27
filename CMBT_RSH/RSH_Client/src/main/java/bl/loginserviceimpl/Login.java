@@ -8,7 +8,6 @@ import javax.swing.text.AttributeSet.CharacterAttribute;
 import bl.hotelserviceimpl.HotelController;
 import bl.userserviceimpl.*;
 //=======
-import bl.userserviceimpl.MockUser;
 //>>>>>>> Stashed changes
 import bl.webstaffserviceimpl.MockWebSalesman;
 import bl.webstaffserviceimpl.MockWebManager;
