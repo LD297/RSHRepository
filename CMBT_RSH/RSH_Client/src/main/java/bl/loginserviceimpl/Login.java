@@ -1,21 +1,20 @@
 package bl.loginserviceimpl;
 
-import java.rmi.RemoteException;
-
-//<<<<<<< Updated upstream
-import javax.swing.text.AttributeSet.CharacterAttribute;
-
 import bl.hotelserviceimpl.HotelController;
-import bl.userserviceimpl.*;
-//=======
-//>>>>>>> Stashed changes
+import bl.userserviceimpl.UserController;
 import bl.webstaffserviceimpl.MockWebSalesman;
 import bl.webstaffserviceimpl.MockWebManager;
-import bl.webstaffserviceimpl.WebStaffController;
+import bl.webstaffserviceimpl.MockWebSalesman;
 import constant.ResultMessage;
 import constant.Role;
 import po.OnlinePersonPO;
-import rmi.*;
+import rmi.RemoteHelper;
+
+import java.rmi.RemoteException;
+
+//<<<<<<< Updated upstream
+//=======
+//>>>>>>> Stashed changes
 
 public class Login {
 	private static Login login = null;

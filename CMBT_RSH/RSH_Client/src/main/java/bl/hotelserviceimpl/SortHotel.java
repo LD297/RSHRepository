@@ -1,11 +1,11 @@
 package bl.hotelserviceimpl;
 
-import java.util.ArrayList;
-
 import constant.SortBy;
 import constant.SortMethod;
 import data.dao.hoteldao.HotelDao;
 import vo.HotelVO;
+
+import java.util.ArrayList;
 
 public class SortHotel {
 	HotelDao hotelDao;

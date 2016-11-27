@@ -1,13 +1,19 @@
 package data.dao.hoteldao;
 
-import vo.HotelVO;
-import constant.*;
-import po.*;
+import constant.ResultMessage;
+import constant.RoomType;
+import constant.SortBy;
+import constant.SortMethod;
+import po.CommentPO;
+import po.HotelPO;
+import po.HotelStaffPO;
+import po.RoomPO;
 import vo.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.*;
+import java.util.ArrayList;
+
 /**
  * 服务器HotelDao的stub
  * Created by a297 on 16/11/13.

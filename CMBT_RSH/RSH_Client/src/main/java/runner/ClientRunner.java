@@ -1,12 +1,11 @@
 package runner;
 
+import rmi.RemoteHelper;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-
 import constant.ResultMessage;
-import rmi.RemoteHelper;
 
 /**
  * 先根据服务名查找远程对象，再调用远程方法

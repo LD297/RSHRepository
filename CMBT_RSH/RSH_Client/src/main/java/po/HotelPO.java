@@ -1,7 +1,8 @@
 package po;
 
+import vo.HotelVO;
+
 import java.io.Serializable;
-import vo.*;
 
 public class HotelPO implements Serializable{
 	/**

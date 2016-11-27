@@ -1,9 +1,9 @@
 package po;
 
-import java.io.Serializable;
-
 import constant.MemberType;
 import constant.Sexuality;
+
+import java.io.Serializable;
 
 public class UserPO implements Serializable{
 	/**

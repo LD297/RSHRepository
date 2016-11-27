@@ -1,6 +1,5 @@
 package bl.orderservice;
 
-import bl.hotelserviceimpl.*;
 import constant.ResultMessage;
 
 public interface CommentService {

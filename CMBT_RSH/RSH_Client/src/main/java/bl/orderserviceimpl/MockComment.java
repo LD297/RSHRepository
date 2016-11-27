@@ -1,7 +1,7 @@
 package bl.orderserviceimpl;
 
-import constant.ResultMessage;
 import bl.hotelserviceimpl.CommentImpl;
+import constant.ResultMessage;
 
 public class MockComment extends CommentImpl{
 	String hotel;

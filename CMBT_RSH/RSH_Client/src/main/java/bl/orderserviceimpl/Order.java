@@ -1,7 +1,7 @@
 package bl.orderserviceimpl;
 
+import constant.StateOfOrder;
 import po.OrderPO;
-import constant.*;
 
 import java.util.ArrayList;
 
