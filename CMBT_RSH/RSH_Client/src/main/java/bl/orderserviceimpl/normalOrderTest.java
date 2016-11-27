@@ -4,6 +4,11 @@ import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
 import org.junit.Test;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+import static org.junit.Assert.assertEquals;
+>>>>>>> origin/master
 =======
 
 import static org.junit.Assert.assertEquals;

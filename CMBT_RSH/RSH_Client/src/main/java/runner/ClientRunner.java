@@ -9,7 +9,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/master
 import constant.ResultMessage;
 import rmi.RemoteHelper;
 

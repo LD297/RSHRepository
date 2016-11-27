@@ -1,12 +1,15 @@
 package rmi;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import data.dao.logindao.LoginDao;
 import data.dao.userdao.CreditRecordListDao;
 import data.dao.userdao.UserDao;
 
 import java.rmi.Remote;
 =======
+=======
+>>>>>>> origin/master
 import data.dao.hoteldao.HotelDao;
 import data.dao.logindao.LoginDao;
 import data.dao.userdao.CreditRecordListDao;
@@ -19,6 +22,9 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
 /**
@@ -42,6 +48,7 @@ public class RemoteHelper {
     private RemoteHelper() {
         initDao();
     }
+<<<<<<< HEAD
 
     public void initDao() {
         try {
@@ -60,6 +67,26 @@ public class RemoteHelper {
         }
     }
 
+=======
+
+    public void initDao() {
+        try {
+            loginDao = (LoginDao)Naming.lookup("rmi://localhost:8888/LoginDaoImpl");
+            creditRecordListDao = (CreditRecordListDao)Naming.lookup("rmi://localhost:8888/CreditRecordListDaoImpl") ;
+            userDao = (UserDao) Naming.lookup("rmi://localhost:8888/UserDaoImpl");
+            hotelDao = (HotelDao)Naming.lookup("rmi://localhost:8888/HotelRemoteObject");
+            webManagerDao = (WebManagerDao)Naming.lookup("rmi://localhost:8888/WebManagerDaoImpl");
+            webSalesmanDao = (WebSalesmanDao)Naming.lookup("rmi://localhost:8888/WebSalesmanDaoImpl");
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+>>>>>>> origin/master
     public LoginDao getLoginDao(){
         return loginDao;
     }

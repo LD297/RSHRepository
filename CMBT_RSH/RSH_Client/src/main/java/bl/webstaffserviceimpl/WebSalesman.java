@@ -3,6 +3,11 @@ package bl.webstaffserviceimpl;
 import constant.ResultMessage;
 import data.dao.webstaffdao.WebSalesmanDao;
 import rmi.RemoteHelper;
+<<<<<<< HEAD
+=======
+
+import java.rmi.Remote;
+>>>>>>> origin/master
 
 public class WebSalesman {
 

@@ -5,6 +5,11 @@ import org.junit.Test;
 
 import java.text.ParseException;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+import static org.junit.Assert.assertEquals;
+>>>>>>> origin/master
 =======
 
 import static org.junit.Assert.assertEquals;

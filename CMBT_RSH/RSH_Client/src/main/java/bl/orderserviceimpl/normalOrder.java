@@ -14,6 +14,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+/**
+ * Created by john on 2016/11/27.
+ */
+>>>>>>> origin/master
 =======
 /**
  * Created by john on 2016/11/27.

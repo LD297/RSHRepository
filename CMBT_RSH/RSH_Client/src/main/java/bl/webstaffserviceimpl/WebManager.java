@@ -4,9 +4,15 @@ import constant.ResultMessage;
 import data.dao.webstaffdao.WebManagerDao;
 import po.WebManagerPO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import rmi.WebStaffRemoteHelper;
 =======
 import rmi.RemoteHelper;
+>>>>>>> origin/master
+=======
+import rmi.RemoteHelper;
+
+import java.rmi.Remote;
 >>>>>>> origin/master
 
 /**
