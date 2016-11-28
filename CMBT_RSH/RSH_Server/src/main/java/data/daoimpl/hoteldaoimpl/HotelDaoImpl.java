@@ -12,94 +12,97 @@ import vo.RoomAvailVO;
 import vo.RoomVO;
 import vo.SelectConditionVO;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Created by a297 on 16/11/26.
  */
-public class HotelDaoImpl implements HotelDao {
-    public ResultMessage addComment(String id, String userID, String comment) {
+public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
+    public HotelDaoImpl()throws RemoteException{}
+    public ResultMessage addComment(String id, String userID, String comment)throws RemoteException {
         return null;
     }
 
-    public ResultMessage checkPassword(String id, String password) {
+    public ResultMessage checkPassword(String id, String password)throws RemoteException {
         return null;
     }
 
-    public HotelPO getHotel(String id) {
+    public HotelPO getHotel(String id)throws RemoteException {
         return null;
     }
 
-    public ResultMessage updateGrade(double grade) {
+    public ResultMessage updateGrade(double grade)throws RemoteException {
         return null;
     }
 
-    public ResultMessage updateHotel(HotelVO vo) {
+    public ResultMessage updateHotel(HotelVO vo)throws RemoteException {
         return null;
     }
 
-    public ResultMessage addSpecialRoom(RoomVO vo) {
+    public ResultMessage addSpecialRoom(RoomVO vo)throws RemoteException {
         return null;
     }
 
-    public ResultMessage deleteSpecialRoom(RoomVO vo) {
+    public ResultMessage deleteSpecialRoom(RoomVO vo)throws RemoteException {
         return null;
     }
 
-    public ArrayList<RoomVO> getRoomList() {
+    public ArrayList<RoomVO> getRoomList()throws RemoteException {
         return null;
     }
 
-    public ResultMessage updateRoomList(ArrayList<RoomVO> roomList) {
+    public ResultMessage updateRoomList(ArrayList<RoomVO> roomList)throws RemoteException {
         return null;
     }
 
-    public ResultMessage changeRoomAvail(RoomType roomType, int num, Date checkIn, Date checkOut) {
+    public ResultMessage changeRoomAvail(RoomType roomType, int num, Date checkIn, Date checkOut)throws RemoteException {
         return null;
     }
 
-    public int numOfRoomAvail(RoomType roomType, Date checkIn, Date checkOut) {
+    public int numOfRoomAvail(RoomType roomType, Date checkIn, Date checkOut)throws RemoteException {
         return 0;
     }
 
-    public ArrayList<RoomAvailVO> getRoomAvailList(Date date) {
+    public ArrayList<RoomAvailVO> getRoomAvailList(Date date)throws RemoteException {
         return null;
     }
 
-    public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> availableRoomList) {
+    public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> availableRoomList)throws RemoteException {
         return null;
     }
 
-    public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
+    public ArrayList<HotelVO> getHotelList(String address, String businessArea)throws RemoteException {
         return null;
     }
 
-    public HotelVO getHotelInfo(String id) {
+    public HotelVO getHotelInfo(String id)throws RemoteException {
         return null;
     }
 
-    public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM) {
+    public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM)throws RemoteException {
         return null;
     }
 
-    public ArrayList<HotelVO> select(SelectConditionVO vo) {
+    public ArrayList<HotelVO> select(SelectConditionVO vo)throws RemoteException {
         return null;
     }
 
-    public int getHotelNum(String address) {
+    public int getHotelNum(String address)throws RemoteException {
         return 0;
     }
 
-    public ResultMessage addHotel(String id, String password) {
+    public ResultMessage addHotel(String id, String password)throws RemoteException {
         return null;
     }
 
-    public ResultMessage deleteHotel(String id) {
+    public ResultMessage deleteHotel(String id)throws RemoteException {
         return null;
     }
 
-    public ResultMessage updateHotelStaff(HotelStaffPO po) {
+    public ResultMessage updateHotelStaff(HotelStaffPO po)throws RemoteException {
         return null;
     }
 }

@@ -43,7 +43,7 @@ public class RemoteHelper {
             loginDao = (LoginDao)Naming.lookup("rmi://localhost:8888/LoginDaoImpl");
             creditRecordListDao = (CreditRecordListDao)Naming.lookup("rmi://localhost:8888/CreditRecordListDaoImpl") ;
             userDao = (UserDao) Naming.lookup("rmi://localhost:8888/UserDaoImpl");
-            hotelDao = (HotelDao)Naming.lookup("rmi://localhost:8888/HotelRemoteObject");
+            hotelDao = (HotelDao)Naming.lookup("rmi://localhost:8888/HotelDaoImpl");
             webManagerDao = (WebManagerDao)Naming.lookup("rmi://localhost:8888/WebManagerDaoImpl");
             webSalesmanDao = (WebSalesmanDao)Naming.lookup("rmi://localhost:8888/WebSalesmanDaoImpl");
             promotionDao = (PromotionDao)Naming.lookup("rmi://localhost:8888/PromotionDaoImpl");
