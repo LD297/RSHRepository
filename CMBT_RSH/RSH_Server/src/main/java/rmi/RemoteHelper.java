@@ -1,7 +1,6 @@
 package rmi;
 
 import data.dao.webstaffdao.WebManagerDao;
-import data.daoimpl.hoteldaoimpl.HotelDaoImpl;
 import data.daoimpl.logindaoimpl.LoginDaoImpl;
 import data.daoimpl.orderdaoimpl.OrderDaoImpl;
 import data.daoimpl.promotiondaoimpl.PromotionDaoImpl;
@@ -26,7 +25,7 @@ public class RemoteHelper {
     private LoginDaoImpl loginDaoImpl = null;
     private CreditRecordListDaoImpl creditRecordListDaoImpl = null;
     private UserDaoImpl userDaoImpl = null;
-    private HotelDaoImpl hotelDaoImpl = null;
+    private HotelRemoteObject hotelRemoteObject = null;
     private OrderDaoImpl orderDaoImpl = null;
     private WebManagerDaoImpl webManagerDaoImpl = null;
     private WebSalesmanDaoImpl webSalesmanDaoImpl = null;
@@ -50,8 +49,8 @@ public class RemoteHelper {
             Naming.bind("rmi://localhost:8888/CreditRecordListDaoImpl", creditRecordListDaoImpl);
             userDaoImpl = new UserDaoImpl();
             Naming.bind("rmi://localhost:8888/UserDaoImpl", userDaoImpl);
-            hotelDaoImpl = new HotelDaoImpl();
-            Naming.bind("rmi://localhost:8888/HotelDaoImpl", hotelDaoImpl);
+            hotelRemoteObject = new HotelRemoteObject();
+            Naming.bind("rmi://localhost:8888/DataRemoteObject", hotelRemoteObject);
             orderDaoImpl = new OrderDaoImpl();
             Naming.bind("rmi://localhost:8888/OrderDaoImpl",orderDaoImpl );
             webManagerDaoImpl = new WebManagerDaoImpl();
@@ -59,7 +58,7 @@ public class RemoteHelper {
             webSalesmanDaoImpl = new WebSalesmanDaoImpl();
             Naming.bind("rmi://localhost:8888/WebSalesmanDaoImpl",webSalesmanDaoImpl );
             promotionDaoImpl = new PromotionDaoImpl();
-            Naming.bind("rmi://localhost:8888/PromotionDaoImpl",promotionDaoImpl);
+            Naming.bind("rmi://locolhost:8888/PromotionDaoImpl",promotionDaoImpl);
 
         } catch (RemoteException e) {
             e.printStackTrace();

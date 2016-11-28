@@ -4,7 +4,6 @@ import constant.ResultMessage;
 import po.PromotionPO;
 
 import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -12,13 +11,13 @@ import java.util.ArrayList;
  */
 public interface PromotionDao extends Remote{
 
-    public ResultMessage insert(PromotionPO po)throws RemoteException;
+    public ResultMessage insert(PromotionPO po);
 
-    public ResultMessage del(String id, String reason)throws RemoteException;
+    public ResultMessage del(String id, String reason);
 
-    public ResultMessage  update (PromotionPO po)throws RemoteException;
+    public ResultMessage  update (PromotionPO po);
 
-    public PromotionPO find(String id,String reason)throws RemoteException;
+    public PromotionPO find(String id,String reason);
 
-    public ArrayList<PromotionPO> finds(String str)throws RemoteException;
+    public ArrayList<PromotionPO> finds(String str);
 }
