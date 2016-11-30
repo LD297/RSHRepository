@@ -43,7 +43,6 @@ public class RemoteHelper {
     public void init(){
         try {
             LocateRegistry.createRegistry(8888);
-
             loginDaoImpl = new LoginDaoImpl();
             Naming.bind("rmi://localhost:8888/LoginDaoImpl", loginDaoImpl);
             creditRecordListDaoImpl = new CreditRecordListDaoImpl();
