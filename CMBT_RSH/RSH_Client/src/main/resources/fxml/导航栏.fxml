@@ -25,35 +25,35 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="45.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="5.0">
                      <image>
-                        <Image url="@返回箭头.png" />
+                        <Image url="@../images/返回箭头.png" />
                      </image>
                   </ImageView>
-                  <TextField layoutX="90.0" layoutY="17.0" prefHeight="17.0" prefWidth="417.0" text="想去哪里？" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="293.0" AnchorPane.topAnchor="17.0" />
-                  <Label layoutX="556.0" layoutY="2.0" prefHeight="52.0" prefWidth="55.0" text="个人信息" textFill="#000000a5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="556.0" AnchorPane.rightAnchor="189.0" AnchorPane.topAnchor="0.0">
+                  <TextField layoutX="156.0" layoutY="16.0" prefHeight="17.0" prefWidth="417.0" text="想去哪里？" AnchorPane.leftAnchor="156.0" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="16.0" />
+                  <Label layoutX="642.0" layoutY="1.0" prefHeight="52.0" prefWidth="33.0" text="帮助" textFill="#000000a5" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="642.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="1.0">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="694.0" prefHeight="34.0" prefWidth="25.0" text="信用" textFill="#000000a6" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="Times New Roman" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="65.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="710.0" AnchorPane.topAnchor="17.0">
+                  <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="133.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="644.0" AnchorPane.topAnchor="16.0">
                      <image>
-                        <Image url="@搜索图标.jpg" />
+                        <Image url="@../images/搜索图标.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="628.0" layoutY="1.0" prefHeight="50.0" prefWidth="55.0" text="我的订单" textFill="#000000a6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="628.0" AnchorPane.topAnchor="0.0">
+                  <Label layoutX="693.0" prefHeight="52.0" prefWidth="33.0" text="退出" textFill="#000000a6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="693.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="737.0" layoutY="2.0" prefHeight="34.0" prefWidth="25.0" text="会员" textFill="#000000a6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="737.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="Times New Roman" size="12.0" />
-                     </font>
-                  </Label>
+                  <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="745.0" layoutY="10.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/用户头像.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="745.0" layoutY="10.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/头像背景.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
