@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane prefHeight="375.0" prefWidth="760.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="210.0">
+         <content>
+            <AnchorPane prefHeight="125.0" prefWidth="125.0" />
+         </content>
+      </ScrollPane>
+      <AnchorPane prefHeight="50.0" prefWidth="800.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane layoutX="6.0" layoutY="37.0" prefHeight="120.0" prefWidth="120.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@酒店图片2.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="120.0" prefWidth="300.0" AnchorPane.leftAnchor="480.0" AnchorPane.topAnchor="70.0" />
+      <AnchorPane prefHeight="120.0" prefWidth="300.0" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="70.0" />
+      <AnchorPane layoutX="369.0" layoutY="600.0" prefHeight="50.0" prefWidth="240.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <children>
+            <Button layoutX="139.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #ff5a5f;" text="提交订单" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutY="16.0" text="合计: " AnchorPane.bottomAnchor="11.5" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="11.5">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="14.0" text="￥: 20000" textFill="#ff5a5f" AnchorPane.bottomAnchor="11.5" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="11.5">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
