@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Line endX="700.0" layoutX="155.0" layoutY="84.0" startX="100.0" stroke="#bcbcbc" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="70.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="112.0" layoutX="100.0" layoutY="143.0" stroke="#bcbcbc" strokeType="INSIDE" width="601.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="112.0" layoutX="100.0" layoutY="293.0" stroke="#bcbcbc" strokeType="INSIDE" width="601.0" />
+      <Label layoutX="116.0" layoutY="26.0" prefHeight="38.0" prefWidth="72.0" text="全部订单" textFill="#484848" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="612.0">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="112.0" layoutX="100.0" layoutY="437.0" stroke="#bcbcbc" strokeType="INSIDE" width="601.0" />
+      <Line endX="200.0" endY="50.0" layoutX="217.0" layoutY="94.0" startX="200.0" startY="40.0" stroke="#bcbcbc" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="40.0" />
+      <Label layoutX="213.0" layoutY="26.0" prefHeight="38.0" prefWidth="72.0" text="异常订单" textFill="#484848">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Label>
+      <Line endX="200.0" endY="50.0" layoutX="227.0" layoutY="104.0" startX="200.0" startY="40.0" stroke="#bcbcbc" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="40.0" />
+      <Label layoutX="313.0" layoutY="27.0" prefHeight="38.0" prefWidth="92.0" text="已执行订单" textFill="#484848">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Label>
+      <Line endX="200.0" endY="50.0" layoutX="237.0" layoutY="114.0" startX="200.0" startY="40.0" stroke="#bcbcbc" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="415.0" AnchorPane.topAnchor="40.0" />
+      <Label layoutX="430.0" layoutY="26.0" prefHeight="38.0" prefWidth="92.0" text="未执行订单" textFill="#484848">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="571.0" prefHeight="30.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="333.0" layoutY="-1.0" prefHeight="30.0" prefWidth="18.0" text="第" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="333.0" AnchorPane.topAnchor="-1.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="392.0" layoutY="-1.0" prefHeight="30.0" prefWidth="18.0" text="页" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="392.0" AnchorPane.rightAnchor="391.0" AnchorPane.topAnchor="-1.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <TextField layoutX="357.0" layoutY="3.0" prefHeight="23.0" prefWidth="24.0" text="1">
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+            </TextField>
+            <Label layoutX="239.0" layoutY="-1.0" prefHeight="30.0" prefWidth="63.0" text="&lt;  上一页" textFill="#26518acf" AnchorPane.bottomAnchor="1.0" AnchorPane.topAnchor="-1.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="401.0" layoutY="-1.0" prefHeight="30.0" prefWidth="63.0" text="下一页  &gt;" textFill="#26518acf" AnchorPane.rightAnchor="307.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Line endX="200.0" endY="50.0" layoutX="247.0" layoutY="124.0" startX="200.0" startY="40.0" stroke="#bcbcbc" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="40.0" />
+      <Label layoutX="545.0" layoutY="26.0" prefHeight="38.0" prefWidth="92.0" text="已撤销订单" textFill="#484848">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Label>
+      <Line endX="200.0" layoutX="200.0" layoutY="71.0" startX="100.0" stroke="#ff5a5f" AnchorPane.bottomAnchor="558.5" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="70.0" />
+      <Line endX="300.0" layoutX="210.0" layoutY="81.0" startX="200.0" stroke="#bcbcbc" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="70.0" />
+   </children>
+</AnchorPane>
