@@ -15,7 +15,7 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="630.0" minHeight="630.0" prefHeight="630.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <AnchorPane prefHeight="47.0" prefWidth="800.0">

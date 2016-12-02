@@ -57,7 +57,7 @@
                                           <Image url="@../images/酒店图片2.jpg" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="56.0" layoutY="14.0" prefHeight="229.0" prefWidth="330.0" style="-fx-background-color: rgba(3,3,3,0.2);" />
+                                    <Label layoutX="56.0" layoutY="14.0" prefHeight="229.0" prefWidth="330.0" style="-fx-background-color: rgba(3,3,3,0.2);" AnchorPane.rightAnchor="14.0" />
                                     <ImageView fitHeight="95.0" fitWidth="65.0" layoutX="56.0" layoutY="81.0" pickOnBounds="true">
                                        <image>
                                           <Image url="@../images/返回左箭头%20-%20副本.png" />
@@ -92,6 +92,36 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Button>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="261.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="62.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="291.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="86.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="344.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="38.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="367.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="35.9375" AnchorPane.leftAnchor="367.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="271.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="110.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="251.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="134.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -132,6 +162,36 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Button>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="326.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="302.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="312.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="251.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="230.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="210.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR%20-%20副本.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -172,6 +232,36 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Button>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="366.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="35.9375" AnchorPane.leftAnchor="367.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="311.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="324.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="293.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="303.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR%20-%20副本.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="313.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR%20-%20副本.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -212,6 +302,36 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Button>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="302.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="269.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="279.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="289.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="299.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="244.0">
+                                       <image>
+                                          <Image url="@../images/STAR%20-%20副本.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                            </children>

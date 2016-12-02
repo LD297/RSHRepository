@@ -5,13 +5,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -26,8 +27,8 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="38.0" layoutX="616.0" layoutY="9.0" stroke="#c4c4c4" strokeType="INSIDE" width="133.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="616.0" AnchorPane.topAnchor="9.0" />
-                  <Label layoutX="616.0" layoutY="8.0" prefHeight="38.0" prefWidth="133.0" text="     编辑个人资料" textFill="#484848">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="38.0" layoutX="628.0" layoutY="7.0" stroke="#c4c4c4" strokeType="INSIDE" width="133.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="628.0" AnchorPane.topAnchor="7.0" />
+                  <Label layoutX="628.0" layoutY="7.0" prefHeight="38.0" prefWidth="133.0" text="     编辑个人资料" textFill="#484848">
                      <font>
                         <Font name="Times New Roman" size="16.0" />
                      </font>
@@ -71,12 +72,11 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="189.0" layoutY="24.0" prefHeight="38.0" prefWidth="398.0" />
-                  <TextField layoutX="189.0" layoutY="76.0" prefHeight="38.0" prefWidth="398.0" />
-                  <TextField layoutX="189.0" layoutY="123.0" prefHeight="38.0" prefWidth="398.0" />
-                  <TextField layoutX="189.0" layoutY="290.0" prefHeight="38.0" prefWidth="398.0" />
-                  <TextField layoutX="189.0" layoutY="350.0" prefHeight="38.0" prefWidth="398.0" />
-                  <RadioButton layoutX="189.0" layoutY="180.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="男" textFill="#484848">
+                  <TextField editable="false" layoutX="189.0" layoutY="24.0" prefHeight="38.0" prefWidth="398.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font></TextField>
+                  <RadioButton disable="true" layoutX="189.0" layoutY="180.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="男" textFill="#484848">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -86,7 +86,7 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </RadioButton>
-                  <DatePicker layoutX="189.0" layoutY="233.0" prefHeight="38.0" prefWidth="219.0" />
+                  <DatePicker editable="false" layoutX="189.0" layoutY="233.0" prefHeight="38.0" prefWidth="219.0" />
                   <Button layoutX="400.0" layoutY="501.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="121.0" style="-fx-background-color: #ff5a5f;" text="确认" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
@@ -97,6 +97,37 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Button>
+                  <TextField editable="false" layoutX="189.0" layoutY="76.0" prefHeight="38.0" prefWidth="398.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField editable="false" layoutX="189.0" layoutY="123.0" prefHeight="38.0" prefWidth="398.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField editable="false" layoutX="189.0" layoutY="290.0" prefHeight="38.0" prefWidth="398.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField editable="false" layoutX="189.0" layoutY="350.0" prefHeight="38.0" prefWidth="398.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="38.0" fitWidth="42.0" layoutX="128.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/pen.png" />
+                     </image>
+                  </ImageView>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="38.0" layoutX="189.0" layoutY="413.0" stroke="#c4c4c4" strokeType="INSIDE" width="108.0" />
+                  <Label layoutX="191.0" layoutY="414.0" prefHeight="38.0" prefWidth="108.0" text="       修改密码">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
