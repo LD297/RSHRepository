@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class RoomAvailVO extends RoomVO {
 	
-	public RoomAvailVO(String id, RoomType type) {
+	public RoomAvailVO(String id, String type) {
 		super(id, type);
 	}
 	/**

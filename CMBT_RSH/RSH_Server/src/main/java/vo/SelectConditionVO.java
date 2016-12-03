@@ -15,7 +15,9 @@ public class SelectConditionVO {
 	public double highestGrade;
 	public String userID;
 	public Boolean reserved;
-	public SelectConditionVO(String hotelName,String roomType,double lowestPrice,double highestPrice,int roomNum,Date begin,Date end,int level,double lowestGrade,double highestGrade,String userID,Boolean reserved) {
+	public SelectConditionVO(String hotelName,String roomType,double lowestPrice,double highestPrice,
+			int roomNum,Date begin,Date end,int level,double lowestGrade,double highestGrade,
+			String userID,Boolean reserved) {
 		this.begin = begin;
 		this.hotelName = hotelName;
 		this.roomType = roomType;
