@@ -31,14 +31,18 @@ public class HotelVO {
 	/**
 	 * 酒店评分（根据每次用户评分加权计算后取整）
 	 */
-	private int grade;
+	private double grade;
 	/**
 	 * 最晚入住时间
 	 */
-	private String latestCheckinTime;
+	private int latestCheckinTime;
 	
 	public HotelVO(String id) {
 		this.id = id;
+	}
+
+	public String getId(){
+		return id;
 	}
 
 	public String getPassword() {
@@ -105,19 +109,19 @@ public class HotelVO {
 		this.level = level;
 	}
 
-	public int getGrade() {
+	public double getGrade() {
 		return grade;
 	}
 
-	public void setGrade(int grade) {
+	public void setGrade(double grade) {
 		this.grade = grade;
 	}
 
-	public String getLatestCheckinTime() {
+	public int getLatestCheckinTime() {
 		return latestCheckinTime;
 	}
 
-	public void setLatestCheckinTime(String latestCheckinTime) {
+	public void setLatestCheckinTime(int latestCheckinTime) {
 		this.latestCheckinTime = latestCheckinTime;
 	}
 }

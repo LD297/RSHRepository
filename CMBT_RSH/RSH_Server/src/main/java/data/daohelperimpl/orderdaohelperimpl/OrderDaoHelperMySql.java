@@ -9,6 +9,7 @@ import po.OrderPO;
 import vo.RoomNormVO;
 
 import java.io.File;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,10 +25,25 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
     private DBHelper db = new DBHelper();
 
     public void init(){
+        String path = "D:\\360downloads";
+        File f = new File(path);
+        if(!f.exists()){
+            f.mkdirs();
+        }
+        // fileName表示你创建的文件名；
+        String fileName = "Order.db";
+        File file = new File(f,fileName);
+        if(!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         db.executeSql("USE Test");
         //订单编号 房间类型 房间原价 房间现价 房间数量 促销策略
-        db.executeSql("CREATE TABLE OrderRooms(orderID char(26),roomType tinyint,originPrice double,truePrice double,roomNum tinyint,promotion varchar(20))");
+        db.executeSql("CREATE TABLE OrderRooms(orderID char(26),roomType varchar(10),originPrice double,truePrice double,roomNum tinyint,promotion varchar(20))");
         // 订单编号 用户编号 酒店编号 订单状态
         // 入住人数 是否有儿童 原价 折后 促销策略
         // 评价 评分 入住、退房时间 房间记录存储数量
@@ -79,7 +95,7 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
                     int i = 0;
                     while (resultRoom.next()) {
 
-                        type.add(new RoomNormVO(resultRoom.getString(1).substring(0, 10), RoomType.singleRoom, resultRoom.getDouble(3)));
+                        type.add(new RoomNormVO(resultRoom.getString(1).substring(0, 10), resultRoom.getString(2), resultRoom.getDouble(3)));
                         roomnums[i] = resultRoom.getInt(5);
                         roomprices[i] = resultRoom.getDouble(4);
                         i++;

@@ -2,140 +2,140 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bff56eaf-7f83-4f8f-a507-1f002d319bc4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/hoteldao/HotelDao_Stub.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/CommentPO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/Main/main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/controller/HotelInfoViewController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/controller/UserViewController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/controller/UserViewControllerService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/dto/UserDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/rmi/HotelRemoteObject.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daohelper/DaoHelperSerializable.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daohelperimpl/hoteldaohelperimpl/HotelDaoHelperTextFile.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/DataFactory.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/view/HotelInfoView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daohelperimpl/hoteldaohelperimpl/HotelDaoHelperSerializable.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/controller/UserViewController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/hoteldaoimpl/HotelDaoImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/hoteldao/HotelDao_Stub.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/test/SearchHotelTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/test/HotelTest.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/view/UserView.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/HotelStaffVO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/test/HotelTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/test/SearchHotelTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/test/WMHotelTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/DataFactory.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daohelper/DaoHelperMySql.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daohelper/DaoHelperSerializable.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/Main/main.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/CommentPO.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daohelper/DaoHelperTextFile.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/controller/UserViewControllerService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/controller/HotelInfoViewController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/presentation/dto/UserDto.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daohelperimpl/hoteldaohelperimpl/HotelDaoHelperMySql.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daohelperimpl/hoteldaohelperimpl/HotelDaoHelperSerializable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daohelperimpl/hoteldaohelperimpl/HotelDaoHelperTextFile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/hoteldaoimpl/HotelDaoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/rmi/HotelRemoteObject.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/.name" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/test/WMHotelTest.java" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/PromotionService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/HotelTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockHotel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockHotelManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockRoomAvail.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockRoomManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockSelectHotel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockSortHotel.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SearchHotelTest.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/MockCreditRecordList.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockRoomManager.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockHotel.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/MockPromotion.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/CouponPromotion.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/DiscountPromotion.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/PromotionType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/ReducePromotion.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/Scope.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/MockUser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/constant/PromotionType.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/webstaffdao/WebStaffDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockSelectHotel.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockSortHotel.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/rmi/DataRemoteObject.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/abnormalOrder.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/AbnormalOrder.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/abnormalOrderTest.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/AbnormalOrderTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.gitignore" afterPath="$PROJECT_DIR$/CMBT_RSH/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/compiler.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/libraries/Maven__junit_junit_3_8_1.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/libraries/Maven__junit_junit_3_8_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/misc.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/modules.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/workspace.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH.iml" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client.iml" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/.classpath" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/.classpath" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/.settings/org.eclipse.jdt.core.prefs" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/.settings/org.eclipse.jdt.core.prefs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/RSH_Client.iml" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/RSH_Client.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/pom.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/HotelService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/HotelService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/SearchHotelService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/SearchHotelService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/WMHotelService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/WMHotelService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/CommentImpl.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/CommentImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/Hotel.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/Hotel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/HotelController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/HotelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/HotelManager.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/HotelManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/RoomAvail.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/RoomAvail.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/RoomManager.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/RoomManager.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/HotelTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/ReducePromotion.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockHotelManager.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/constant/PromotionType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/PromotionType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/MockUser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/DiscountPromotion.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/Scope.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/MockRoomAvail.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SearchHotel.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SearchHotel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SearchHotelController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SearchHotelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SelectHotel.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SelectHotel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SortHotel.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SortHotel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/WMHotel.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/WMHotel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/WMHotelController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/WMHotelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/Login.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/Login.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/LoginController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/LoginTest.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/LoginTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderservice/CommentService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderservice/CommentService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderservice/OrderService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderservice/OrderService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/userdaoimpl/UserDaoImpl.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/userdaoimpl/UserDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/.classpath" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/.classpath" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/MockComment.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/MockComment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/Order.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/Order.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/OrderController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/OrderController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/initialOrder.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/initialOrder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/initialOrderTest.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/initialOrderTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/RSH_Server.iml" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/RSH_Server.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/hoteldao/HotelDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/hoteldao/HotelDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/rmi/RemoteHelper.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/rmi/RemoteHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/normalOrder.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/normalOrder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/normalOrderTest.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/normalOrderTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/DistrictScope.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/DistrictScope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/HotelScope.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/HotelScope.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/OrderPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/OrderPO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/userdaoimpl/CreditRecordListDaoImpl.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/userdaoimpl/CreditRecordListDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/runner/ServerRunner.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/runner/ServerRunner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/MockOrder.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/MockOrder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/rmi/RemoteHelper.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/rmi/RemoteHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/libraries/Maven__junit_junit_3_8_1.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/libraries/Maven__junit_junit_3_8_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/WebManagerPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/WebManagerPO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebSalesman.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebSalesman.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/HotelController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/HotelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/LoginController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/LoginController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/pom.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/hoteldao/HotelDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/hoteldao/HotelDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/po/OrderPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/po/OrderPO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/orderdao/OrderDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/orderdao/OrderDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/MockWebSalesman.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/MockWebSalesman.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/promotiondao/PromotionDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/promotiondao/PromotionDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/Login.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/Login.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/UserPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/UserPO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/RoomAvailVO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/RoomAvailVO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/abnormalOrder.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/AbnormalOrder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/User.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/logindaoimpl/LoginDaoImpl.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/logindaoimpl/LoginDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/WMHotelController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/WMHotelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/constant/ResultMessage.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/constant/ResultMessage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffservice/WebStaffService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffservice/WebStaffService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/RSH_Client.iml" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/RSH_Client.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.gitignore" afterPath="$PROJECT_DIR$/CMBT_RSH/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/initialOrder.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/initialOrder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/OrderController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/OrderController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SortHotel.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SortHotel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/HotelService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/HotelService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/Hotel.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/Hotel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderservice/CommentService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderservice/CommentService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/runner/ClientRunner.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/runner/ClientRunner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/normalOrderTest.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/normalOrderTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/HotelPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/HotelPO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/misc.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/UserController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/WebSalesmanPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/WebSalesmanPO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/Order.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/Order.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/RoomScope.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/RoomScope.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/RoomPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/RoomPO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/CommentImpl.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/CommentImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/compiler.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/userdao/UserDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/userdao/UserDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/modules.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/Promotion.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/Promotion.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/PromotionController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/PromotionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/RoomScope.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/RoomScope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userservice/UserService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userservice/UserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/CreditRecordList.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/CreditRecordList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/Member.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/Member.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/MockCreditRecordList.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/MockCreditRecordList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/User.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/UserController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffservice/WebStaffService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffservice/WebStaffService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/MockWebManager.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/MockWebManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/MockWebSalesman.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/MockWebSalesman.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebManager.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebSalesman.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebSalesman.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebStaffController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebStaffController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/constant/ResultMessage.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/constant/ResultMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/hoteldao/HotelDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/hoteldao/HotelDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/userdao/CreditRecordListDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/userdao/CreditRecordListDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/userdao/UserDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/userdao/UserDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/HotelPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/HotelPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/HotelStaffPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/HotelStaffPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/OrderPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/OrderPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/RoomPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/RoomPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/UserPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/UserPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/WebManagerPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/WebManagerPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/WebSalesmanPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/WebSalesmanPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/rmi/RemoteHelper.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/rmi/RemoteHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/runner/ClientRunner.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/runner/ClientRunner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/HotelVO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/HotelVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/SearchHotelService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/SearchHotelService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/PromotionVO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/PromotionVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/RoomAvailVO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/RoomAvailVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/RoomVO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/RoomVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/.classpath" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/.classpath" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/RSH_Server.iml" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/RSH_Server.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/constant/ResultMessage.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/constant/ResultMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/hoteldao/HotelDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/hoteldao/HotelDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/orderdao/OrderDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/orderdao/OrderDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/promotiondao/PromotionDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/promotiondao/PromotionDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/CreditRecordList.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/CreditRecordList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/.settings/org.eclipse.jdt.core.prefs" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/.settings/org.eclipse.jdt.core.prefs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/LoginTest.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/LoginTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client.iml" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userservice/UserService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userservice/UserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebManager.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH.iml" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/userdao/UserDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/userdao/UserDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/initialOrderTest.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/initialOrderTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/RoomManager.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/RoomManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/HotelManager.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/HotelManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SelectHotel.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SelectHotel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/RoomAvail.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/RoomAvail.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/MockCreditRecordList.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/MockCreditRecordList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/HotelStaffPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/po/HotelStaffPO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/constant/ResultMessage.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/constant/ResultMessage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SearchHotelController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/SearchHotelController.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/abnormalOrderTest.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/AbnormalOrderTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderservice/OrderService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderservice/OrderService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/userdao/CreditRecordListDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/userdao/CreditRecordListDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/userdao/UserDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/dao/userdao/UserDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/logindaoimpl/LoginDaoImpl.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/logindaoimpl/LoginDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/userdaoimpl/CreditRecordListDaoImpl.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/userdaoimpl/CreditRecordListDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/userdaoimpl/UserDaoImpl.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/data/daoimpl/userdaoimpl/UserDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/po/OrderPO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/po/OrderPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/rmi/RemoteHelper.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/rmi/RemoteHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/runner/ServerRunner.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/src/main/java/runner/ServerRunner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/MockWebManager.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/MockWebManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/.classpath" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Server/.classpath" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebStaffController.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/webstaffserviceimpl/WebStaffController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/HotelVO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/HotelVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/DistrictScope.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/DistrictScope.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/RoomVO.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/vo/RoomVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/WMHotel.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/WMHotel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/workspace.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/Member.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/Member.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/HotelScope.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/promotionServiceimpl/HotelScope.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/userdao/CreditRecordListDao.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/data/dao/userdao/CreditRecordListDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/WMHotelService.java" afterPath="$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelservice/WMHotelService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMBT_RSH/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/CMBT_RSH/.idea/copyright/profiles_settings.xml" />
     </list>
     <ignored path="RSHRepository.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -166,80 +166,7 @@
     <favorites_list name="RSHRepository" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AbnormalOrder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/AbnormalOrder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InitialOrder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/InitialOrder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/Login.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/LoginController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="58" column="49" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Hotel.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/Hotel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RemoteHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/rmi/RemoteHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -326,194 +253,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSHRepository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CMBT_RSH" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSHRepository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CMBT_RSH" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSH_Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSHRepository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CMBT_RSH" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSH_Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSHRepository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CMBT_RSH" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSH_Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSHRepository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CMBT_RSH" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSH_Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSHRepository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CMBT_RSH" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSH_Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rmi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSHRepository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CMBT_RSH" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSH_Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSHRepository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CMBT_RSH" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RSH_Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hotelserviceimpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -1123,11 +866,13 @@
       <workItem from="1479654876890" duration="56000" />
       <workItem from="1480527495397" duration="1184000" />
       <workItem from="1480688199117" duration="330000" />
+      <workItem from="1480745382153" duration="39000" />
+      <workItem from="1480777349247" duration="79000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3300000" />
+    <option name="totallyTimeSpent" value="3418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1139,12 +884,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22317597" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22317597" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1180,6 +925,122 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/AbnormalOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/InitialOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="58" column="49" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/Hotel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/rmi/RemoteHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/AbnormalOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/InitialOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="58" column="49" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/Hotel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/rmi/RemoteHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/AbnormalOrder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
@@ -1348,7 +1209,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1366,28 +1226,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/AbnormalOrder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/InitialOrder.java">
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/rmi/RemoteHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/Login.java">
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/Hotel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="374">
+          <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="727">
+          <caret line="58" column="49" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="49" />
           <folding />
         </state>
       </provider>
@@ -1400,27 +1258,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/rmi/RemoteHelper.java">
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/loginserviceimpl/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/InitialOrder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/userserviceimpl/User.java">
+    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/orderserviceimpl/AbnormalOrder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="58" column="49" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMBT_RSH/RSH_Client/src/main/java/bl/hotelserviceimpl/Hotel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1481,6 +1341,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

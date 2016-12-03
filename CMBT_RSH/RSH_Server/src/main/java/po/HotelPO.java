@@ -6,16 +6,16 @@ import java.io.Serializable;
 public class HotelPO implements Serializable{
 	public String id;
 	public String password;
-	public int phoneNumber;
+	public String phoneNumber;
 	public String name;
 	public String addr;
 	public String businessArea;
 	public String briefIntro;
 	public String facility;
 	public int level;
-	public int grade;
+	public double grade;
 	public int latestCheckinTime;
-	public HotelPO(String id,String password,int phoneNumber,String name,String addr,String businessArea,String briefIntro,String facility,int level,int grade,int latestCheckinTime) {
+	public HotelPO(String id,String password,String phoneNumber,String name,String addr,String businessArea,String briefIntro,String facility,int level,double grade,int latestCheckinTime) {
 		this.id = id;
 		this.addr = addr;
 		this.briefIntro = briefIntro;

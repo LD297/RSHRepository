@@ -10,7 +10,7 @@ public class RoomVO {
 	/**
 	 * 房间类型（单人间／标准间）
 	 */
-	public RoomType type;
+	public String type;
 	/**
 	 * 该类型房间总量
 	 */
@@ -24,7 +24,7 @@ public class RoomVO {
 	 */
 	public String basicOrSpecial;
 
-	public RoomVO(String id, RoomType type, int amountTotal, double price, String basicOrSpecial) {
+	public RoomVO(String id, String type, int amountTotal, double price, String basicOrSpecial) {
 		this.id = id;
 		this.type = type;
 		this.amountTotal = amountTotal;

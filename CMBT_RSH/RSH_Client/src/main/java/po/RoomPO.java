@@ -1,6 +1,5 @@
 package po;
 
-import constant.RoomType;
 import vo.RoomVO;
 
 import java.io.Serializable;
@@ -13,7 +12,7 @@ public class RoomPO implements Serializable{
 	/**
 	 * 房间类型（单人间／标准间）
 	 */
-	private RoomType type;
+	private String type;
 	/**
 	 * 该类型房间总量
 	 */
@@ -35,11 +34,11 @@ public class RoomPO implements Serializable{
 		this.id = id;
 	}
 
-	public RoomType getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(RoomType type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
