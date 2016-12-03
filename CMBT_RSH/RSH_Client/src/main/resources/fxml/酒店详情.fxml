@@ -29,7 +29,7 @@
                <children>
                   <ImageView fitHeight="400.0" fitWidth="800.0" layoutX="-2.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../images/酒店背景图111.png" />
+                        <Image url="@../images/hotel/酒店背景图111.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="102.0" layoutY="119.0" style="-fx-background-color: rgba(0,0,0,0.3);" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
