@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="248.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="248.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="114.0" fitWidth="114.0" layoutX="67.0" layoutY="25.0" pickOnBounds="true" AnchorPane.bottomAnchor="177.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="25.0">
          <image>
@@ -19,7 +19,7 @@
             <Image url="@../images/头像背景.png" />
          </image>
       </ImageView>
-      <DatePicker layoutX="31.0" layoutY="179.0" prefHeight="38.0" prefWidth="186.0" promptText="请选择生日" />
+      <DatePicker focusTraversable="false" layoutX="31.0" layoutY="179.0" prefHeight="38.0" prefWidth="186.0" promptText="请选择您的生日" />
       <Button layoutX="31.0" layoutY="242.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="186.0" style="-fx-background-color: #ff5a5f;" text="完成注册" textFill="WHITE">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
