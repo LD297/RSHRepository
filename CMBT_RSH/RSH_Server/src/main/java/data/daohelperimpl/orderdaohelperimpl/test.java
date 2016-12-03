@@ -29,8 +29,8 @@ public class test {
         Date out = format.parse(strout);
 
         ArrayList<RoomNormVO> type = new ArrayList<RoomNormVO>();
-        type.add(new RoomNormVO("2153001234", RoomType.singleRoom,120.0));
-        type.add(new RoomNormVO("2153001234",RoomType.doubleRoom,200.0));
+        type.add(new RoomNormVO("2153001234", "singleRoom", 120.0));
+        type.add(new RoomNormVO("2153001234", "doubleRoom", 200.0));
         double price[] = {110,180};
         int nums[] = {1,3};
         OrderPO order = new OrderPO("2016-11-062153001234000000","123456789","2153001234",StateOfOrder.unexecuted,

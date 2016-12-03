@@ -70,7 +70,7 @@ public class HotelDao_Stub implements  HotelDao{
     @Override
     public ArrayList<RoomVO> getRoomList(String id) {
         if(id.equals("")){
-            RoomVO roomVO = new RoomVO("12345678912", RoomType.doubleRoom, 20, 300, "basic");
+            RoomVO roomVO = new RoomVO("12345678912", "doubleRoom", 20, 300, "basic");
             ArrayList<RoomVO> rooms = new ArrayList<RoomVO>();
             rooms.add(roomVO);
             return rooms;

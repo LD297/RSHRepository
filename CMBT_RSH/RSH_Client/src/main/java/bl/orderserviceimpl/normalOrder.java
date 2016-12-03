@@ -36,8 +36,8 @@ public class NormalOrder {
         //orderdataservice->find->orderpo
         ArrayList<RoomNormVO> rooms =  orderpo.getRooms();
         int[] num = orderpo.getRoomNums();
-        Date checkIn = orderpo.getInTime()[0];
-        Date checkOut = orderpo.getInTime()[1];
+        Date checkIn = orderpo.getTime()[0];
+        Date checkOut = orderpo.getTime()[1];
 
         hotelinfo = new HotelController(orderpo.getHotelid());
         String time = hotelinfo.getCheckInDDL(orderpo.getHotelid());
