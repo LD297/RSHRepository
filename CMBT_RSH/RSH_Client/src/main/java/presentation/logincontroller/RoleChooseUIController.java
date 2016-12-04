@@ -17,7 +17,7 @@ import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class RoleChooseController {
+public class RoleChooseUIController {
     @FXML
     private AnchorPane anchorPanel;
 

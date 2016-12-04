@@ -5,18 +5,24 @@ package presentation.logincontroller;
  */
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
+import bl.loginservice.LoginService;
+import bl.loginserviceimpl.LoginController;
+import constant.ResultMessage;
 import constant.Role;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class LoginUIController {
 
@@ -49,13 +55,38 @@ public class LoginUIController {
     void finishInput(ActionEvent event) {
         String id = idField.getText();
         String password = passwordField.getText();
-
+        LoginService loginService = new LoginController();
+        ResultMessage resultMessage = loginService.checkOnline(role,id,password);
+        if(resultMessage==resultMessage.succeed){
+            FXMLLoader loader = new FXMLLoader();
+            if(role == Role.user){
+                //跳转到搜索酒店界面
+                AnchorPane guide = null;
+                try {
+                    guide = loader.load(getClass().getResource("/导航栏.fxml"));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                Scene scene = new Scene(guide,800,720);
+                Stage stage = (Stage)parentAnchorPane.getScene().getWindow();
+                stage.setScene(scene);
+            }else if(role==Role.hotel){
+                //跳转到hotel主界面
+            }else if(role==Role.websalesman){
+                //跳转到websalesman主界面
+            }else{
+                //跳转到webmanager主界面
+            }
+        }else{
+            //用户名和密码错误，或者登陆冲突
+        }
     }
 
     @FXML
     void hideOrShow(MouseEvent event) {
         if(showMoreImage.getImage()==showImage){//如果当前是下拉箭头
             showMoreImage.setImage(hideImage);
+            //加载登陆下拉界面
             FXMLLoader loader = new FXMLLoader();
             AnchorPane belowLogin = null;
             try {
@@ -63,14 +94,15 @@ public class LoginUIController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            //设置在身份选择界面的位置
+            //设置登陆下拉在身份选择界面的位置
             parentAnchorPane.getChildren().add(belowLogin);
             AnchorPane.setRightAnchor(belowLogin,276.0);
             AnchorPane.setLeftAnchor(belowLogin,276.0);
             AnchorPane.setBottomAnchor(belowLogin,223.0);
             AnchorPane.setTopAnchor(belowLogin,446.0);
-        }else{
+        }else{//如果当前是收起箭头
             showMoreImage.setImage(showImage);
+            //删除登陆下拉界面
             int size = parentAnchorPane.getChildren().size();
             parentAnchorPane.getChildren().remove(size-1);
         }
