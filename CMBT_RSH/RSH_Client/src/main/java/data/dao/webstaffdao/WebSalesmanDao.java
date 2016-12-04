@@ -4,6 +4,7 @@ import constant.ResultMessage;
 import po.WebSalesmanPO;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -11,15 +12,15 @@ import java.util.ArrayList;
  */
 public interface WebSalesmanDao extends Remote {
 
-    public ResultMessage addWebSalesman(WebSalesmanPO webSalesmanPO);
+    public ResultMessage addWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
 
-    public ResultMessage updateWebSalesman(WebSalesmanPO webSalesmanPO);
+    public ResultMessage updateWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
 
-    public ResultMessage delWebSalesman(WebSalesmanPO webSalesmanPO);
+    public ResultMessage delWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
 
-    public WebSalesmanPO getSalesmanInstance(String SalesmanID);
+    public WebSalesmanPO getSalesmanInstance(String SalesmanID)throws RemoteException;
 
-    public ArrayList<WebSalesmanPO> finds(String district);
+    public ArrayList<WebSalesmanPO> finds(String district)throws RemoteException;
 
-    public ArrayList<WebSalesmanPO> getAll();
+    public ArrayList<WebSalesmanPO> getAll()throws RemoteException;
 }
