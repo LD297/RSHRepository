@@ -20,7 +20,6 @@ public class RoleChooseUIController {
     @FXML
     private AnchorPane anchorPanel;
 
-
     @FXML
     private ResourceBundle resources;
 

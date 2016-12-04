@@ -6,7 +6,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane layoutX="260.0" layoutY="207.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="260.0">
@@ -149,7 +148,7 @@
             </AnchorPane>
             <ImageView fitHeight="133.0" fitWidth="200.0">
                <image>
-                  <Image url="@images/hotel/酒店图片.jpg" />
+                  <Image url="@../images/hotel/酒店图片.jpg" />
                </image>
             </ImageView>
          </children>
