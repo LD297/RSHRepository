@@ -258,7 +258,7 @@ public class HotelDaoHelperMySql extends DaoHelperMySql{
         return null;
     }
 
-    public int numOfRoomAvail(String hotelid,RoomType roomType, Date checkIn, Date checkOut)throws RemoteException {
+    public int numOfRoomAvail(String hotelid,String roomType, Date checkIn, Date checkOut)throws RemoteException {
         String findNumOfRoomAvailSql = "SELECT aList FROM RoomInfo WHERE hotelID='"+hotelid+"' and roomType='"+roomType+"' LIMIT 1";
         ResultSet result = db.query(findNumOfRoomAvailSql);
         int gap1 = this.getDayGap(checkIn);
