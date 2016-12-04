@@ -22,7 +22,7 @@ import java.util.Date;
 
 public class test {
     public static void main(String[] args) throws RemoteException ,ParseException{
-        SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
+        /*SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
         String strin = "2016-11-07";
         String strout = "2016-11-11";
         Date in = format.parse(strin);
@@ -39,8 +39,9 @@ public class test {
 
         OrderDaoHelperMySql orderdao = new OrderDaoHelperMySql();
         Date d = new Date();
-        orderdao.insert(order);
-
+        orderdao.insert(order);*/
+        OrderDaoHelperMySql orderdao = new OrderDaoHelperMySql();
+        orderdao.init();
     }
 
 }
