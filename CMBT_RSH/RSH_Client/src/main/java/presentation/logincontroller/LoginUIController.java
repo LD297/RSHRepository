@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -42,6 +43,7 @@ public class LoginUIController {
 
     @FXML
     private ImageView showMoreImage;
+
 
     private AnchorPane parentAnchorPane;
     private Role role;
@@ -129,6 +131,7 @@ public class LoginUIController {
         assert idField != null : "fx:id=\"idField\" was not injected: check your FXML file '登陆.fxml'.";
         assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file '登陆.fxml'.";
         assert showMoreImage != null : "fx:id=\"showMoreImage\" was not injected: check your FXML file '登陆.fxml'.";
+
 
     }
 }

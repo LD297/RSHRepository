@@ -54,7 +54,7 @@ public class RoleChooseUIController {
     private Image webManager_dark = new Image("/images/身份选择界面素材/WM_dark.png");
 
     @FXML
-    void changeDarkToLight(MouseDragEvent event) {
+    void changeDarkToLight(MouseEvent event) {
         ImageView imageView = (ImageView)event.getSource();
         if(imageView==userImage){
             userImage.setImage(user_bright);
@@ -69,7 +69,7 @@ public class RoleChooseUIController {
     }
 
     @FXML
-    void changeLightToDark(MouseDragEvent event) {
+    void changeLightToDark(MouseEvent event) {
         ImageView imageView = (ImageView)event.getSource();
         if(imageView==userImage){
             userImage.setImage(user_dark);

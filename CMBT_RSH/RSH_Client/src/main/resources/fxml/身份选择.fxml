@@ -19,7 +19,7 @@
       </AnchorPane>
       <AnchorPane layoutX="293.0" layoutY="260.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="490.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="30.0">
          <children>
-            <ImageView fx:id="userImage" fitHeight="160.0" fitWidth="160.0" onMouseClicked="#changeToLogin" onMouseDragEntered="#changeDarkToLight" onMouseDragExited="#changeLightToDark" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
+            <ImageView fx:id="userImage" fitHeight="160.0" fitWidth="160.0" onMouseClicked="#changeToLogin" onMouseEntered="#changeDarkToLight" onMouseExited="#changeLightToDark" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
                <image>
                   <Image url="@../images/身份选择界面素材/User_dark.png" />
                </image>
@@ -33,7 +33,7 @@
       </AnchorPane>
       <AnchorPane layoutX="300.0" layoutY="497.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="490.0">
          <children>
-            <ImageView fx:id="hotelStaffImage" fitHeight="160.0" fitWidth="160.0" onMouseClicked="#changeToLogin" onMouseDragEntered="#changeDarkToLight" onMouseDragExited="#changeLightToDark" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+            <ImageView fx:id="hotelStaffImage" fitHeight="160.0" fitWidth="160.0" onMouseClicked="#changeToLogin" onMouseEntered="#changeDarkToLight" onMouseExited="#changeLightToDark" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
                <image>
                   <Image url="@../images/身份选择界面素材/HM_dark.png" />
                </image>
@@ -47,7 +47,7 @@
       </AnchorPane>
       <AnchorPane layoutX="27.0" layoutY="260.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="260.0">
          <children>
-            <ImageView fx:id="webSalesmanImge" fitHeight="160.0" fitWidth="175.0" layoutX="52.0" layoutY="-16.0" onMouseClicked="#changeToLogin" onMouseDragEntered="#changeDarkToLight" onMouseDragExited="#changeLightToDark" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="12.5" AnchorPane.rightAnchor="12.5" AnchorPane.topAnchor="10.0">
+            <ImageView fx:id="webSalesmanImge" fitHeight="160.0" fitWidth="175.0" layoutX="52.0" layoutY="-16.0" onMouseClicked="#changeToLogin" onMouseEntered="#changeDarkToLight" onMouseExited="#changeLightToDark" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="12.5" AnchorPane.rightAnchor="12.5" AnchorPane.topAnchor="10.0">
                <image>
                   <Image url="@../images/身份选择界面素材/WS_dark.png" />
                </image>
@@ -61,7 +61,7 @@
       </AnchorPane>
       <AnchorPane layoutX="558.0" layoutY="282.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="550.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="260.0">
          <children>
-            <ImageView fx:id="webManagerImage" fitHeight="162.0" fitWidth="175.0" layoutX="16.0" layoutY="-1.0" onMouseClicked="#changeToLogin" onMouseDragEntered="#changeDarkToLight" onMouseDragExited="#changeLightToDark" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="8.0">
+            <ImageView fx:id="webManagerImage" fitHeight="162.0" fitWidth="175.0" layoutX="16.0" layoutY="-1.0" onMouseClicked="#changeToLogin" onMouseEntered="#changeDarkToLight" onMouseExited="#changeLightToDark" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="8.0">
                <image>
                   <Image url="@../images/身份选择界面素材/WM_dark.png" />
                </image>

@@ -99,7 +99,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label prefHeight="51.0" prefWidth="248.0" style="-fx-background-color: rgba(3,3,3,0.1);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label prefHeight="51.0" prefWidth="248.0" style="-fx-background-color: rgba(3,3,3,0.1);" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
          <effect>
             <DropShadow />
