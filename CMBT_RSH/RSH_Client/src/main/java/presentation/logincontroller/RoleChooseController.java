@@ -6,6 +6,8 @@ package presentation.logincontroller;
  */
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import constant.Role;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -98,7 +100,22 @@ public class RoleChooseController {
         AnchorPane.setTopAnchor(login,130.0);
         AnchorPane.setLeftAnchor(login,276.0);
         AnchorPane.setRightAnchor(login,276.0);
-
+        //用于在loginController里面设置BelowLoginController的位置
+        LoginUIController loginUIController = (LoginUIController)loader.getController();
+        loginUIController.setParentAnchorPane(anchorPanel);
+        //设置LoginController的Role
+        Role role;
+        ImageView imageView = (ImageView)event.getSource();
+        if(imageView==userImage){
+            role = Role.user;
+        }else if(imageView==hotelStaffImage){
+            role = Role.hotel;
+        }else if(imageView==webSalesmanImge){
+            role = Role.websalesman;
+        }else{
+            role = Role.webmanager;
+        }
+        loginUIController.setRole(role);
     }
 
     @FXML
