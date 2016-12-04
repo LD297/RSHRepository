@@ -1,5 +1,7 @@
 package runner;
 
+import presentation.Main.Launcher;
+import presentation.logincontroller.RoleChooseController;
 import rmi.RemoteHelper;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -30,6 +32,7 @@ public class ClientRunner {
 	public static void main(String[] args){
 		ClientRunner cr = new ClientRunner();
 		cr.test();
+		new Launcher().startLaunch(args);
 	}
 }
 

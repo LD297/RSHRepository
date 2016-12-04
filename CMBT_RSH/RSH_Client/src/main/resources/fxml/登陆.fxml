@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="248.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="248.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="72.0" layoutY="28.0" prefHeight="120.0" prefWidth="120.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="36.0">
          <children>
             <ImageView fitHeight="108.0" fitWidth="110.0" layoutX="2.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                <image>
                   <Image url="@../images/登录头像.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="108.0" fitWidth="110.0" layoutX="12.0" layoutY="10.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../images/头像背景.png" />
                </image>
             </ImageView>
          </children>
@@ -26,10 +33,17 @@
             <PasswordField layoutX="29.0" layoutY="1.0" opacity="0.75" prefHeight="28.0" prefWidth="180.0" promptText="输入密码                           ➡" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="1.0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="30.0" prefWidth="248.0" AnchorPane.bottomAnchor="38.0">
+      <AnchorPane layoutY="279.0" prefHeight="30.0" prefWidth="248.0" AnchorPane.bottomAnchor="7.0">
          <children>
-            <Button layoutX="101.0" layoutY="2.0" mnemonicParsing="false" opacity="0.5" text="注册" AnchorPane.bottomAnchor="1.0" AnchorPane.topAnchor="2.0" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="109.0" layoutY="1.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/下拉箭头.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </AnchorPane>
