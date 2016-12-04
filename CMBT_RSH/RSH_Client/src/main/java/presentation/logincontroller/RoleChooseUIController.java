@@ -94,17 +94,17 @@ public class RoleChooseUIController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        //设置Login的位置
+        //在身份选择界面添加登陆界面
         anchorPanel.getChildren().add(login);
+        //设置Login的位置
         AnchorPane.setBottomAnchor(login,274.0);
         AnchorPane.setTopAnchor(login,130.0);
         AnchorPane.setLeftAnchor(login,276.0);
         AnchorPane.setRightAnchor(login,276.0);
-        //用于在loginController里面设置BelowLoginController的位置
+        //用于在loginUIController里面设置BelowLoginUIController的位置
         LoginUIController loginUIController = (LoginUIController)loader.getController();
-
         loginUIController.setParentAnchorPane(anchorPanel);
-        //设置LoginController的Role
+        //设置LoginUIController的Role
         Role role;
         ImageView imageView = (ImageView)event.getSource();
         if(imageView==userImage){

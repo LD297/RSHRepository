@@ -8,32 +8,32 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.SearchHotelUIController">
    <children>
-      <Label layoutX="49.0" layoutY="195.0" prefHeight="63.0" prefWidth="361.0" text="尊贵享受，专属预订，" textFill="#ff5a5f">
+      <Label layoutX="49.0" layoutY="132.0" prefHeight="63.0" prefWidth="361.0" text="尊贵享受，专属预订，" textFill="#ff5a5f">
          <font>
             <Font name="Times New Roman" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="410.0" layoutY="195.0" prefHeight="63.0" prefWidth="101.0" text="开启" textFill="#484848">
+      <Label layoutX="410.0" layoutY="132.0" prefHeight="63.0" prefWidth="101.0" text="开启" textFill="#484848">
          <font>
             <Font name="Times New Roman" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="49.0" layoutY="258.0" prefHeight="63.0" prefWidth="220.0" text="全新酒店生活" textFill="#484848">
+      <Label layoutX="49.0" layoutY="195.0" prefHeight="63.0" prefWidth="220.0" text="全新酒店生活" textFill="#484848">
          <font>
             <Font name="Times New Roman" size="36.0" />
          </font>
       </Label>
-      <Button layoutX="622.0" layoutY="360.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="83.0" style="-fx-background-color: #ff5a5f;" text="搜索" textFill="WHITE">
+      <Button layoutX="622.0" layoutY="304.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="83.0" style="-fx-background-color: #ff5a5f;" text="搜索" textFill="WHITE">
          <font>
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Button>
-      <TextField focusTraversable="false" layoutX="49.0" layoutY="360.0" prefHeight="63.0" prefWidth="295.0" promptText="输入地址">
+      <TextField focusTraversable="false" layoutX="49.0" layoutY="304.0" prefHeight="63.0" prefWidth="295.0" promptText="输入地址">
          <font>
             <Font name="Times New Roman" size="18.0" />
          </font>
       </TextField>
-      <TextField layoutX="344.0" layoutY="360.0" prefHeight="63.0" prefWidth="278.0" promptText="输入商圈">
+      <TextField layoutX="344.0" layoutY="304.0" prefHeight="63.0" prefWidth="278.0" promptText="输入商圈">
          <font>
             <Font name="Times New Roman" size="18.0" />
          </font>
