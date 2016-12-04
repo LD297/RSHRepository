@@ -2,23 +2,12 @@ package data.daohelperimpl.orderdaohelperimpl;
 
 
 import java.rmi.RemoteException;
-import java.util.Date;
-
-import constant.StateOfOrder;
-import data.daoimpl.databasefactoryimpl.DatabaseFactoryImpl;
-import po.OrderPO;
 
 /**
  * Created by sky-PC on 2016/12/2.
  */
-import constant.RoomType;
-import po.OrderPO;
-import vo.RoomNormVO;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class test {
     public static void main(String[] args) throws RemoteException ,ParseException{

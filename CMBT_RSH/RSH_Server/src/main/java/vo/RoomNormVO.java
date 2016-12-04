@@ -1,7 +1,5 @@
 package vo;
 
-import constant.RoomType;
-
 public class RoomNormVO {
 	String id;
     public String roomType;

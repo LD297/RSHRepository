@@ -3,7 +3,6 @@ package bl.promotionServiceimpl;
 import java.util.ArrayList;
 import java.util.Date;
 
-import constant.RoomType;
 import vo.PromotionVO;
 
 /**
@@ -30,7 +29,7 @@ public class Show {
 	 * @param type
 	 * @return
 	 */
-	public static ArrayList<PromotionVO> getPrmotionOfRoom(String hotelID, RoomType type) {
+	public static ArrayList<PromotionVO> getPrmotionOfRoom(String hotelID, String type) {
 		// TODO Auto-generated method stub
 		return null;
 	}

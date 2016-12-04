@@ -1,7 +1,5 @@
 package vo;
 
-import constant.RoomType;
-
 import java.util.ArrayList;
 import java.util.Date;
 

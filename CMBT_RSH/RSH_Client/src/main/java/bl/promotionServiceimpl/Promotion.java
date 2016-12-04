@@ -3,7 +3,6 @@ package bl.promotionServiceimpl;
 import constant.ConditionType;
 import constant.DeductionType;
 import constant.ResultMessage;
-import constant.RoomType;
 
 import java.util.Date;
 
@@ -39,7 +38,7 @@ public class Promotion {
 		return null;
 	}
 
-	public ResultMessage setScope(constant.ScopeType stype, String id, RoomType rtype) {
+	public ResultMessage setScope(constant.ScopeType stype, String id, String rtype) {
 		// TODO Auto-generated method stub
 		scopeType =new ScopeType();
 		return null;

@@ -9,11 +9,10 @@ import vo.RoomVO;
 import vo.SelectConditionVO;
 
 import constant.ResultMessage;
-import constant.RoomType;
 import constant.SortBy;
 import constant.SortMethod;
 import data.daohelper.DaoHelperMySql;
-import javax.xml.transform.Result;
+
 import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;

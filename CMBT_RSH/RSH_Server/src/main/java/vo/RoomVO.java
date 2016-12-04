@@ -1,10 +1,5 @@
 package vo;
 
-import constant.RoomType;
-
-import java.sql.Date;
-import java.util.ArrayList;
-
 public class RoomVO {
 	/**
 	 * 酒店名称

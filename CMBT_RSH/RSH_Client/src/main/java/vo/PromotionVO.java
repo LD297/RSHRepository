@@ -2,7 +2,6 @@ package vo;
 
 import constant.ConditionType;
 import constant.DeductionType;
-import constant.RoomType;
 import constant.ScopeType;
 
 import java.util.Date;
@@ -17,7 +16,7 @@ public class PromotionVO {
 
     public  ScopeType scopeType;
     public String id;
-    public RoomType roomType;
+    public String roomType;
 
     public ConditionType conditionType;
     public int requirement;

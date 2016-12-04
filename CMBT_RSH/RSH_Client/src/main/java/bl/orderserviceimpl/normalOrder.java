@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by john on 2016/11/27.
+ * Created by sky-PC on 2016/11/27.
  */
 public class NormalOrder {
     HotelInfoService hotelinfo;

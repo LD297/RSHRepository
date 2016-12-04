@@ -1,7 +1,9 @@
 package bl.orderserviceimpl;
 
-import constant.RoomType;
-import org.junit.Test;
+/**
+ * Created by sky-PC on 2016/12/4.
+ */
+
 import po.OrderPO;
 import vo.RoomNormVO;
 
@@ -9,9 +11,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import static org.junit.Assert.assertEquals;
-
 /**
  * Created by john on 2016/11/27.
  */
@@ -46,4 +45,5 @@ public class InitialOrderTest {
     }
 */
 }
+
 

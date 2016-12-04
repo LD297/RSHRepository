@@ -1,7 +1,6 @@
 package bl.hotelserviceimpl;
 
 import constant.ResultMessage;
-import constant.RoomType;
 import data.dao.hoteldao.HotelDao;
 import vo.RoomAvailVO;
 
@@ -19,7 +18,7 @@ public class RoomAvail {
 
 	// 供给order模块
 	// 返回该酒店指定日期下该房间类型的可用数量
-	public int numOfRoomAvail(String id, RoomType roomType, Date checkIn, Date checkOut) {
+	public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) {
 		int numOfRoomAvail = 0;
 		try{
 			numOfRoomAvail = hotelDao.numOfRoomAvail(id, roomType, checkIn, checkOut);
@@ -31,7 +30,7 @@ public class RoomAvail {
 	
 	// 供给order模块
 	// 更新系统的可用客房信息
-	public ResultMessage changeRoomAvail(String id, RoomType roomType, int num, Date checkIn, Date checkOut) {
+	public ResultMessage changeRoomAvail(String id, String roomType, int num, Date checkIn, Date checkOut) {
 		ResultMessage resultMessage = null;
 		try {
 			resultMessage = hotelDao.changeRoomAvail(id, roomType, num, checkIn, checkOut);

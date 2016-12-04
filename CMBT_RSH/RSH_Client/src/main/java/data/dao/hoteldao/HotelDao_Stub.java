@@ -1,7 +1,6 @@
 package data.dao.hoteldao;
 
 import constant.ResultMessage;
-import constant.RoomType;
 import constant.SortBy;
 import constant.SortMethod;
 import po.CommentPO;
@@ -81,14 +80,14 @@ public class HotelDao_Stub implements  HotelDao{
 
     @Override
     public ResultMessage updateRoomList(ArrayList<RoomPO> roomPOList) {
-        if(roomPOList.get(0).getType().equals(RoomType.singleRoom))
+        if(roomPOList.get(0).getType().equals("singleRoom"))
             return ResultMessage.succeed;
         else
             return null;
     }
 
     @Override
-    public ResultMessage changeRoomAvail(String id, RoomType roomType, int num, Date checkIn, Date checkOut) {
+    public ResultMessage changeRoomAvail(String id, String roomType, int num, Date checkIn, Date checkOut) {
         if(id.equals("12345678912"))
             return ResultMessage.succeed;
         else
@@ -96,8 +95,8 @@ public class HotelDao_Stub implements  HotelDao{
     }
 
     @Override
-    public int numOfRoomAvail(String id, RoomType roomType, Date checkIn, Date checkOut) {
-        if(id.equals("12345678912")&&roomType.equals(RoomType.singleRoom))
+    public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) {
+        if(id.equals("12345678912")&&roomType.equals("singleRoom"))
             return 10;
         else
             return 0;
