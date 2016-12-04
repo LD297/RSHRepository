@@ -87,7 +87,7 @@
          </children>
       </AnchorPane>
       <Label prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.5);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane layoutX="275.0" layoutY="446.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="248.0" style="-fx-background-color: #f4f4f4;" AnchorPane.leftAnchor="276.0" AnchorPane.rightAnchor="276.0">
+      <AnchorPane layoutX="275.0" layoutY="446.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="248.0" style="-fx-background-color: #f4f4f4;" AnchorPane.bottomAnchor="223.0" AnchorPane.leftAnchor="276.0" AnchorPane.rightAnchor="276.0" AnchorPane.topAnchor="446.0">
          <children>
             <RadioButton layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="91.0" text="记住密码" textFill="#484848">
                <font>
@@ -99,7 +99,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label prefHeight="51.0" prefWidth="248.0" style="-fx-background-color: rgba(3,3,3,0.1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Label prefHeight="51.0" prefWidth="248.0" style="-fx-background-color: rgba(3,3,3,0.1);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
          <effect>
             <DropShadow />

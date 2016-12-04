@@ -13,7 +13,9 @@ public class Launcher extends Application{
     public void start(Stage stage){
         try{
             FXMLLoader loader = new FXMLLoader();
-            AnchorPane root = loader.load(getClass().getResource("/身份选择.fxml"));
+            loader.setLocation(getClass().getResource("d:/身份选择.fxml"));
+            System.out.print(loader.getLocation());
+            AnchorPane root = loader.load();
             Scene scene = new Scene(root,800,720);
             stage.setScene(scene);
             stage.show();
