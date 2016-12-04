@@ -20,9 +20,7 @@ import java.io.IOException;
 
 public class WebSalesmanDaoImpl extends UnicastRemoteObject implements WebSalesmanDao {
 
- //   private static WebSalesmanDaoImpl webSalesmanDaoImpl;
-    public WebSalesmanDaoImpl()throws RemoteException{
-    }
+      public WebSalesmanDaoImpl()throws  RemoteException{}
 
  /*   public static WebSalesmanDaoImpl getWebSalesmanDaoImplInstance(){
         if(webSalesmanDaoImpl ==null) {
@@ -36,27 +34,27 @@ public class WebSalesmanDaoImpl extends UnicastRemoteObject implements WebSalesm
     }*/
 
 
-    public ResultMessage addWebSalesman(WebSalesmanPO webSalesmanPO) {
+    public ResultMessage addWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException {
         return null;
     }
 
-    public ResultMessage updateWebSalesman(WebSalesmanPO webSalesmanPO) {
+    public ResultMessage updateWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException  {
         return null;
     }
 
-    public ResultMessage delWebSalesman(WebSalesmanPO webSalesmanPO) {
+    public ResultMessage delWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException  {
         return null;
     }
 
-    public WebSalesmanPO getSalesmanInstance(String SalesmanID) {
+    public WebSalesmanPO getSalesmanInstance(String SalesmanID)throws RemoteException  {
         return null;
     }
 
-    public ArrayList<WebSalesmanPO> finds(String district) {
+    public ArrayList<WebSalesmanPO> finds(String district)throws RemoteException  {
         return null;
     }
 
-    public ArrayList<WebSalesmanPO> getAll() {
+    public ArrayList<WebSalesmanPO> getAll()throws RemoteException {
         return null;
     }
 }
