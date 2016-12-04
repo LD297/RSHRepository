@@ -5,7 +5,6 @@ package presentation.logincontroller;
  */
 import java.io.IOException;
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import bl.loginservice.LoginService;
@@ -51,6 +50,8 @@ public class LoginUIController {
     private Image showImage = new Image("/images/下拉箭头.png");
     private Image hideImage = new Image("/images/收回箭头.png");
 
+    private boolean show = true;
+
     @FXML
     void finishInput(ActionEvent event) {
         String id = idField.getText();
@@ -63,7 +64,7 @@ public class LoginUIController {
                 //跳转到搜索酒店界面
                 AnchorPane guide = null;
                 try {
-                    guide = loader.load(getClass().getResource("/导航栏.fxml"));
+                    guide = loader.load(getClass().getResource("/fxml/导航栏.fxml"));
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -84,24 +85,30 @@ public class LoginUIController {
 
     @FXML
     void hideOrShow(MouseEvent event) {
-        if(showMoreImage.getImage()==showImage){//如果当前是下拉箭头
+        if(show){//如果当前是下拉箭头
             showMoreImage.setImage(hideImage);
+            show = false;
             //加载登陆下拉界面
             FXMLLoader loader = new FXMLLoader();
             AnchorPane belowLogin = null;
             try {
-                belowLogin = loader.load(getClass().getResource("/登陆下拉.fxml"));
+                belowLogin = loader.load(getClass().getResource("/fxml/登陆下拉.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            //在身份选择界面添加登陆下拉界面
+            AnchorPane temp =(AnchorPane) parentAnchorPane.getChildren().get(parentAnchorPane.getChildren().size()-1);
+            parentAnchorPane.getChildren().set(parentAnchorPane.getChildren().size()-1,belowLogin);
+            parentAnchorPane.getChildren().add(temp);
             //设置登陆下拉在身份选择界面的位置
-            parentAnchorPane.getChildren().add(belowLogin);
             AnchorPane.setRightAnchor(belowLogin,276.0);
             AnchorPane.setLeftAnchor(belowLogin,276.0);
             AnchorPane.setBottomAnchor(belowLogin,223.0);
             AnchorPane.setTopAnchor(belowLogin,446.0);
-        }else{//如果当前是收起箭头
+        }else {//如果当前是收起箭头
+            System.out.print("true");
             showMoreImage.setImage(showImage);
+            show = true;
             //删除登陆下拉界面
             int size = parentAnchorPane.getChildren().size();
             parentAnchorPane.getChildren().remove(size-1);

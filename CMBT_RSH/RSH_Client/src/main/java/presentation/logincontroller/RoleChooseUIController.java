@@ -44,10 +44,10 @@ public class RoleChooseUIController {
     private Label maskLabel;
 
     //image
-    private Image user_bright = new Image("/images/身份选择界面素材/User_bright.png");
-    private Image hotelStaff_bright = new Image("/images/身份选择界面素材/HM_bright.png");
-    private Image webSalesman_bright = new Image("/images/身份选择界面素材/WS_bright.png");
-    private Image webManager_bright = new Image("/images/身份选择界面素材/WM_bright.png");
+    private Image user_bright = new Image("/images/身份选择界面素材/User_bright.jpg");
+    private Image hotelStaff_bright = new Image("/images/身份选择界面素材/HM_bright.jpg");
+    private Image webSalesman_bright = new Image("/images/身份选择界面素材/WS_bright.jpg");
+    private Image webManager_bright = new Image("/images/身份选择界面素材/WM_bright.jpg");
     private Image user_dark = new Image("/images/身份选择界面素材/User_dark.png");
     private Image hotelStaff_dark = new Image("/images/身份选择界面素材/HM_dark.png");
     private Image webSalesman_dark = new Image("/images/身份选择界面素材/WS_dark.png");
@@ -88,9 +88,9 @@ public class RoleChooseUIController {
         maskLabel.setVisible(true);
         //跳转到login界面
         AnchorPane login = null;
-        FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/登陆.fxml"));
         try {
-            login = loader.load(getClass().getResource("/登陆.fxml"));
+            login = loader.load();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -102,6 +102,7 @@ public class RoleChooseUIController {
         AnchorPane.setRightAnchor(login,276.0);
         //用于在loginController里面设置BelowLoginController的位置
         LoginUIController loginUIController = (LoginUIController)loader.getController();
+
         loginUIController.setParentAnchorPane(anchorPanel);
         //设置LoginController的Role
         Role role;
@@ -115,7 +116,7 @@ public class RoleChooseUIController {
         }else{
             role = Role.webmanager;
         }
-        loginUIController.setRole(role);
+       loginUIController.setRole(role);
     }
 
     @FXML
