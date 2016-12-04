@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import presentation.usercontroller.SearchHotelUIController;
 
 public class LoginUIController {
 
@@ -67,14 +68,16 @@ public class LoginUIController {
         LoginService loginService = new LoginController();
         ResultMessage resultMessage = loginService.checkOnline(role,id,password);
         if(resultMessage==resultMessage.succeed){
-            FXMLLoader loader = new FXMLLoader();
+
             if(role == Role.user){
                 //跳转到搜索酒店界面
                 AnchorPane guide = null;
                 AnchorPane searchHotel = null;
+                FXMLLoader guideLoader = new FXMLLoader(getClass().getResource("/fxml/导航栏.fxml"));
+                FXMLLoader searchHotelLoader = new FXMLLoader(getClass().getResource("/fxml/搜索酒店.fxml"));
                 try {
-                    guide = loader.load(getClass().getResource("/fxml/导航栏.fxml"));
-                    searchHotel = loader.load(getClass().getResource("/fxml/搜索酒店.fxml"));
+                    guide = guideLoader.load();
+                    searchHotel = searchHotelLoader.load();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -83,6 +86,9 @@ public class LoginUIController {
                 Scene scene = new Scene(guide,800.0,720.0);
                 Stage stage = (Stage)parentAnchorPane.getScene().getWindow();
                 stage.setScene(scene);
+                //用于从酒店搜索界面跳转到酒店浏览界面
+                SearchHotelUIController searchHotelUIController = (SearchHotelUIController)searchHotelLoader.getController();
+                searchHotelUIController.setGuide(guide);
             }else if(role==Role.hotel){
                 //跳转到hotel主界面
             }else if(role==Role.websalesman){
