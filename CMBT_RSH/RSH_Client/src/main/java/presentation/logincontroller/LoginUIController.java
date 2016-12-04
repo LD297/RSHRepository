@@ -15,7 +15,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -54,9 +53,9 @@ public class LoginUIController {
     private Image showImage = new Image("/images/下拉箭头.png");
     private Image hideImage = new Image("/images/收回箭头.png");
 
-    private boolean show = true;
+    private boolean show = true;//true表示当前是下拉箭头
 
-    
+
     @FXML
     void finishInput(ActionEvent event) {
         String id = idField.getText();
@@ -73,7 +72,7 @@ public class LoginUIController {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-                Scene scene = new Scene(guide,800,720);
+                Scene scene = new Scene(guide,800.0,720.0);
                 Stage stage = (Stage)parentAnchorPane.getScene().getWindow();
                 stage.setScene(scene);
             }else if(role==Role.hotel){
@@ -123,7 +122,15 @@ public class LoginUIController {
     //取消登陆，返回身份选择界面
     @FXML
     void backToRoleChoose(MouseEvent event) {
-
+  /*      if(!show){//如果当前是收起箭头，说明登陆下拉界面已经被放在身份选择界面上，这时要先删除登陆下拉界面
+            //删除登陆下拉界面
+            int size = parentAnchorPane.getChildren().size();
+            parentAnchorPane.getChildren().remove(size-1);
+        }
+        //删除登陆界面
+        parentAnchorPane.getChildren().remove(parentAnchorPane.getChildren().size() - 1);
+        //将身份选择界面的蒙板去掉
+        ((Label) parentAnchorPane.getChildren().get(parentAnchorPane.getChildren().size() - 1)).setVisible(false);*/
     }
 
     //将取消的叉叉变为灰色

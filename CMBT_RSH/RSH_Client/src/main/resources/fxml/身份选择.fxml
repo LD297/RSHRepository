@@ -10,11 +10,11 @@
    <children>
       <AnchorPane prefHeight="50.0" prefWidth="800.0">
          <children>
-            <Label layoutX="18.0" layoutY="11.0" text="LOGO" textFill="#ff5a5f">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+            <ImageView fitHeight="32.0" fitWidth="52.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/LOGO.jpg" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="293.0" layoutY="260.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="490.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="30.0">
@@ -47,7 +47,7 @@
       </AnchorPane>
       <AnchorPane layoutX="27.0" layoutY="260.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="260.0">
          <children>
-            <ImageView fx:id="webSalesmanImge" fitHeight="160.0" fitWidth="175.0" layoutX="52.0" layoutY="-16.0" onMouseClicked="#changeToLogin" onMouseEntered="#changeDarkToLight" onMouseExited="#changeLightToDark" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="12.5" AnchorPane.rightAnchor="12.5" AnchorPane.topAnchor="10.0">
+            <ImageView fx:id="webSalesmanImage" fitHeight="160.0" fitWidth="175.0" layoutX="52.0" layoutY="-16.0" onMouseClicked="#changeToLogin" onMouseEntered="#changeDarkToLight" onMouseExited="#changeLightToDark" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="12.5" AnchorPane.rightAnchor="12.5" AnchorPane.topAnchor="10.0">
                <image>
                   <Image url="@../images/身份选择界面素材/WS_dark.png" />
                </image>

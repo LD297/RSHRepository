@@ -13,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -35,7 +34,7 @@ public class RoleChooseUIController {
     private ImageView hotelStaffImage;
 
     @FXML
-    private ImageView webSalesmanImge;
+    private ImageView webSalesmanImage;
 
     @FXML
     private ImageView webManagerImage;
@@ -61,8 +60,8 @@ public class RoleChooseUIController {
             userImage.setImage(user_bright);
         }else if(imageView==hotelStaffImage){
             hotelStaffImage.setImage(hotelStaff_bright);
-        }else if(imageView==webSalesmanImge){
-            webSalesmanImge.setImage(webSalesman_bright);
+        }else if(imageView==webSalesmanImage){
+            webSalesmanImage.setImage(webSalesman_bright);
         }else{
             webManagerImage.setImage(webManager_bright);
         }
@@ -76,8 +75,8 @@ public class RoleChooseUIController {
             userImage.setImage(user_dark);
         }else if(imageView==hotelStaffImage){
             hotelStaffImage.setImage(hotelStaff_dark);
-        }else if(imageView==webSalesmanImge){
-            webSalesmanImge.setImage(webSalesman_dark);
+        }else if(imageView==webSalesmanImage){
+            webSalesmanImage.setImage(webSalesman_dark);
         }else{
             webManagerImage.setImage(webManager_dark);
         }
@@ -112,7 +111,7 @@ public class RoleChooseUIController {
             role = Role.user;
         }else if(imageView==hotelStaffImage){
             role = Role.hotel;
-        }else if(imageView==webSalesmanImge){
+        }else if(imageView==webSalesmanImage){
             role = Role.websalesman;
         }else{
             role = Role.webmanager;
@@ -125,7 +124,7 @@ public class RoleChooseUIController {
         assert anchorPanel != null : "fx:id=\"anchorPanel\" was not injected: check your FXML file '身份选择.fxml'.";
         assert userImage != null : "fx:id=\"userImage\" was not injected: check your FXML file '身份选择.fxml'.";
         assert hotelStaffImage != null : "fx:id=\"hotelStaffImage\" was not injected: check your FXML file '身份选择.fxml'.";
-        assert webSalesmanImge != null : "fx:id=\"webSalesmanImge\" was not injected: check your FXML file '身份选择.fxml'.";
+        assert webSalesmanImage != null : "fx:id=\"webSalesmanImage\" was not injected: check your FXML file '身份选择.fxml'.";
         assert webManagerImage != null : "fx:id=\"webManagerImage\" was not injected: check your FXML file '身份选择.fxml'.";
         assert maskLabel != null : "fx:id=\"maskLabel\" was not injected: check your FXML file '身份选择.fxml'.";
 
