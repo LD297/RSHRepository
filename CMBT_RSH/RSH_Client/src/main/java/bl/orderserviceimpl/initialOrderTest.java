@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.junit.Test;import org.junit.Test;
+import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 /**
  * Created by john on 2016/11/27.
