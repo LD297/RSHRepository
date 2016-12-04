@@ -44,6 +44,8 @@ public class LoginUIController {
     @FXML
     private ImageView showMoreImage;
 
+    @FXML
+    private ImageView cancelImage;
 
     private AnchorPane parentAnchorPane;
     private Role role;
@@ -54,6 +56,7 @@ public class LoginUIController {
 
     private boolean show = true;
 
+    
     @FXML
     void finishInput(ActionEvent event) {
         String id = idField.getText();
@@ -117,6 +120,24 @@ public class LoginUIController {
         }
     }
 
+    //取消登陆，返回身份选择界面
+    @FXML
+    void backToRoleChoose(MouseEvent event) {
+
+    }
+
+    //将取消的叉叉变为灰色
+    @FXML
+    void changeToGray(MouseEvent event) {
+
+    }
+
+    //将取消的叉叉变为红色
+    @FXML
+    void changeToRed(MouseEvent event) {
+
+    }
+
     void setParentAnchorPane(AnchorPane parentAnchorPane){
         this.parentAnchorPane = parentAnchorPane;
     }
@@ -131,6 +152,7 @@ public class LoginUIController {
         assert idField != null : "fx:id=\"idField\" was not injected: check your FXML file '登陆.fxml'.";
         assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file '登陆.fxml'.";
         assert showMoreImage != null : "fx:id=\"showMoreImage\" was not injected: check your FXML file '登陆.fxml'.";
+        assert cancelImage != null : "fx:id=\"cancelImage\" was not injected: check your FXML file '登陆.fxml'.";
 
 
     }

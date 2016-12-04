@@ -53,6 +53,7 @@ public class RoleChooseUIController {
     private Image webSalesman_dark = new Image("/images/身份选择界面素材/WS_dark.png");
     private Image webManager_dark = new Image("/images/身份选择界面素材/WM_dark.png");
 
+    //考虑能不能用一个map
     @FXML
     void changeDarkToLight(MouseEvent event) {
         ImageView imageView = (ImageView)event.getSource();

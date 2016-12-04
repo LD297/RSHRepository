@@ -35,13 +35,18 @@
       </AnchorPane>
       <AnchorPane layoutY="279.0" prefHeight="30.0" prefWidth="248.0" AnchorPane.bottomAnchor="7.0">
          <children>
-            <ImageView fx:id="showMoreImage" fitHeight="30.0" fitWidth="30.0" layoutX="109.0" layoutY="1.0" onMouseClicked="#hideOrShow" pickOnBounds="true">
+            <ImageView fx:id="showMoreImage" fitHeight="30.0" fitWidth="30.0" layoutX="109.0" layoutY="1.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="109.0" AnchorPane.topAnchor="1.0">
                <image>
                   <Image url="@../images/下拉箭头.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
+      <ImageView fx:id="cancelImage" fitHeight="30.0" fitWidth="30.0" layoutX="219.0" layoutY="-1.0" onMouseClicked="#backToRoleChoose" onMouseEntered="#changeToRed" onMouseExited="#changeToGray" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../images/cancel.png" />
+         </image>
+      </ImageView>
    </children>
    <effect>
       <DropShadow />
