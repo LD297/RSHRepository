@@ -1,7 +1,5 @@
 package vo;
 
-import constant.RoomType;
-
 public class RoomVO {
 	/**
 	 * 酒店名称

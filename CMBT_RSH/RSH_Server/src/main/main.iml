@@ -7,14 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://D:/360downloads/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" name="org.apache.ant:ant-junit4:1.8.3" level="project" />
   </component>
 </module>

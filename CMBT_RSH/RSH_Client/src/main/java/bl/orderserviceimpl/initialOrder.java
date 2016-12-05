@@ -1,5 +1,9 @@
 package bl.orderserviceimpl;
 
+/**
+ * Created by sky-PC on 2016/12/4.
+ */
+
 import bl.hotelserviceimpl.HotelController;
 import bl.orderservice.HotelInfoService;
 import bl.promotionServiceimpl.Count;
@@ -11,9 +15,6 @@ import vo.RoomNormVO;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by john on 2016/11/27.
- */
 public class InitialOrder {
 
     private String hotelid;
@@ -122,8 +123,8 @@ public class InitialOrder {
         //检查房间信息
         ArrayList<RoomNormVO> rooms = orderpo.getRooms();
         int[] nums = orderpo.getRoomNums();
-        Date checkIn = orderpo.getInTime()[0];
-        Date checkOut = orderpo.getInTime()[1];
+        Date checkIn = orderpo.getTime()[0];
+        Date checkOut = orderpo.getTime()[1];
         for(int i=0;i<rooms.size();i++){
             if(hotelinfo.numOfRoomAvail(rooms.get(i).roomType,checkIn,checkOut)<nums[i])
                 return ResultMessage.fail;
@@ -148,3 +149,4 @@ public class InitialOrder {
         return;
     }
 }
+

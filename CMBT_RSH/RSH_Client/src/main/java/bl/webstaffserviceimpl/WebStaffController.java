@@ -4,6 +4,7 @@ import bl.webstaffservice.WebStaffService;
 import constant.ResultMessage;
 import vo.WebSalesmanVO;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 /**
  * 网站工作人员总控
@@ -33,7 +34,7 @@ public class WebStaffController implements WebStaffService{
 	}
 
 	@Override
-	public ResultMessage changePassword(String ID, String oldPassword, String newPassword) {
+	public ResultMessage changePassword(String ID, String oldPassword, String newPassword)throws RemoteException {
 		// TODO Auto-generated method stub
 		if(ID=="0000000000"){
 			WebManager manager = WebManager.getInstance();

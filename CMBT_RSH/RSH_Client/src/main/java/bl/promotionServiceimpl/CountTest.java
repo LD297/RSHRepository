@@ -1,7 +1,5 @@
 package bl.promotionServiceimpl;
 
-import constant.RoomType;
-
 import static org.junit.Assert.*;
 
 import java.util.Date;
@@ -17,7 +15,7 @@ import org.junit.Test;
 public class CountTest {
 
 	MockOrder order ;
-	RoomType rType ;
+	String rType ;
 	Date beginDate;
 	Date endDate;
 	String hotelID;

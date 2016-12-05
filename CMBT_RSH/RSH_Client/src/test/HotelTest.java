@@ -1,7 +1,6 @@
 package bl.hotelserviceimpl;
 
 import constant.ResultMessage;
-import constant.RoomType;
 import data.dao.hoteldao.HotelDao_Stub;
 import org.junit.Test;
 import vo.HotelVO;

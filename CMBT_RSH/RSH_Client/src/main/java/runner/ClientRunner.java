@@ -1,9 +1,8 @@
 package runner;
 
+import presentation.Main.Launcher;
 import rmi.RemoteHelper;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
+
 import java.rmi.RemoteException;
 import constant.ResultMessage;
 
@@ -30,6 +29,7 @@ public class ClientRunner {
 	public static void main(String[] args){
 		ClientRunner cr = new ClientRunner();
 		cr.test();
+		new Launcher().startLaunch(args);
 	}
 }
 

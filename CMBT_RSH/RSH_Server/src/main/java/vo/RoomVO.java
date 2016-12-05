@@ -1,10 +1,5 @@
 package vo;
 
-import constant.RoomType;
-
-import java.sql.Date;
-import java.util.ArrayList;
-
 public class RoomVO {
 	/**
 	 * 酒店名称
@@ -31,12 +26,14 @@ public class RoomVO {
 		this.id = id;
 		this.type = type;
 	}
+
     public RoomVO(String id, String type,int amountTotal, double price, Boolean basicOrSpecial) {
         this.id = id;
         this.type = type;
         this.amountTotal = amountTotal;
         this.price = price;
         this.basicOrSpecial = basicOrSpecial;
+
     }
 
 	public String getID(){

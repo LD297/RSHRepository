@@ -1,7 +1,5 @@
 package bl.promotionServiceimpl;
 
-import constant.RoomType;
-
 /**
  * 适用某酒店特定房间
  * @author aa
@@ -10,8 +8,8 @@ import constant.RoomType;
 public class RoomScope extends ScopeType {
 
 	String hotelID;
-	RoomType rType;
-	public RoomScope(String hotel, RoomType type){
+	String rType;
+	public RoomScope(String hotel, String type){
 		hotelID=hotel;
 		rType=type;
 	}

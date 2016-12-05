@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.HotelBasicInfoUIController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="800.0">
+         <image>
+            <Image url="@../images/白色背景.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="42.0" fitWidth="45.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../images/LOGO.jpg" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="260.0" layoutY="207.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="260.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.0" minWidth="10.0" prefWidth="64.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="576.0" minWidth="10.0" prefWidth="576.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="168.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="168.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="88.0" layoutY="16.0" text="地址:" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="16.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Label layoutX="83.0" layoutY="16.0" text="商圈: " AnchorPane.leftAnchor="18.0">
+                     <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <Label layoutX="84.0" layoutY="61.0" text="简介: " AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="16.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <Label layoutX="73.0" layoutY="16.0" text="设施服务:" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="16.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <TextField layoutX="-3.0" layoutY="12.0" prefHeight="27.0" prefWidth="537.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="12.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <TextArea layoutY="7.0" prefHeight="125.0" prefWidth="537.0" AnchorPane.leftAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <TextField layoutX="1.0" layoutY="11.0" prefHeight="27.0" prefWidth="537.0" AnchorPane.leftAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <TextArea layoutX="-3.0" layoutY="24.0" prefHeight="125.0" prefWidth="537.0" AnchorPane.leftAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+      <GridPane layoutX="285.0" layoutY="75.0" prefHeight="149.0" prefWidth="640.0" AnchorPane.bottomAnchor="496.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="75.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="202.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="439.0" minWidth="10.0" prefWidth="438.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <Label layoutX="37.0" layoutY="13.0" text="名称: " AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="47.0" layoutY="53.0" text="ID: " AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="53.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="40.0" layoutY="68.0" text="星级: " AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="84.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="268.0" layoutY="12.0" text="评分: " AnchorPane.bottomAnchor="123.0" AnchorPane.leftAnchor="268.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="84.0" layoutY="10.0" prefHeight="26.0" prefWidth="160.0" promptText="泰国风情大酒店" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="10.0" />
+                  <Label layoutX="84.0" layoutY="53.0" text="2100460002" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="53.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="84.0" layoutY="79.0" prefHeight="26.0" prefWidth="160.0" promptText="四星级" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="79.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="304.0" layoutY="10.0" text="4.8" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="352.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: e5e5e5;" text="编辑" AnchorPane.topAnchor="11.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="40.0" layoutY="108.0" text="最晚入住时间:" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="40.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="143.0" layoutY="103.0" prefHeight="27.0" prefWidth="100.0" promptText="23:45:59" AnchorPane.bottomAnchor="10.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="133.0" fitWidth="200.0">
+               <image>
+                  <Image url="@../images/hotel/酒店图片.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <Button layoutX="144.0" layoutY="228.0" mnemonicParsing="false" style="-fx-background-color: e5e5e5;" text="更换图片" AnchorPane.leftAnchor="144.0">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="144.0" layoutY="663.0" mnemonicParsing="false" style="-fx-background-color: e5e5e5;" text="录入客房" AnchorPane.leftAnchor="144.0">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="confirmButton" layoutX="633.0" layoutY="663.0" mnemonicParsing="false" onMouseClicked="#confimButtonClicked" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.rightAnchor="119.0">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

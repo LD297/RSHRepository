@@ -1,7 +1,6 @@
 package data.dao.hoteldao;
 
 import constant.ResultMessage;
-import constant.RoomType;
 import constant.SortBy;
 import constant.SortMethod;
 import po.CommentPO;
@@ -70,7 +69,7 @@ public class HotelDao_Stub implements  HotelDao{
     @Override
     public ArrayList<RoomVO> getRoomList(String id) {
         if(id.equals("")){
-            RoomVO roomVO = new RoomVO("12345678912", RoomType.doubleRoom, 20, 300, "basic");
+            RoomVO roomVO = new RoomVO("12345678912", "doubleRoom", 20, 300, "basic");
             ArrayList<RoomVO> rooms = new ArrayList<RoomVO>();
             rooms.add(roomVO);
             return rooms;
@@ -81,14 +80,14 @@ public class HotelDao_Stub implements  HotelDao{
 
     @Override
     public ResultMessage updateRoomList(ArrayList<RoomPO> roomPOList) {
-        if(roomPOList.get(0).getType().equals(RoomType.singleRoom))
+        if(roomPOList.get(0).getType().equals("singleRoom"))
             return ResultMessage.succeed;
         else
             return null;
     }
 
     @Override
-    public ResultMessage changeRoomAvail(String id, RoomType roomType, int num, Date checkIn, Date checkOut) {
+    public ResultMessage changeRoomAvail(String id, String roomType, int num, Date checkIn, Date checkOut) {
         if(id.equals("12345678912"))
             return ResultMessage.succeed;
         else
@@ -96,8 +95,8 @@ public class HotelDao_Stub implements  HotelDao{
     }
 
     @Override
-    public int numOfRoomAvail(String id, RoomType roomType, Date checkIn, Date checkOut) {
-        if(id.equals("12345678912")&&roomType.equals(RoomType.singleRoom))
+    public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) {
+        if(id.equals("12345678912")&&roomType.equals("singleRoom"))
             return 10;
         else
             return 0;
@@ -106,7 +105,7 @@ public class HotelDao_Stub implements  HotelDao{
     @Override
     public ArrayList<RoomAvailVO> getRoomAvailList(String id, Date date) {
         if(id.equals("6666666666")){
-            RoomAvailVO roomAvail = new RoomAvailVO(id, RoomType.doubleRoom, 10, 200, "basic");
+            RoomAvailVO roomAvail = new RoomAvailVO(id, "doubleRoom", 10, 200, "basic");
             ArrayList<RoomAvailVO> list = new ArrayList<RoomAvailVO>();
             list.add(roomAvail);
             return list;

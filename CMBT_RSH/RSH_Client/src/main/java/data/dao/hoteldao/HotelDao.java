@@ -1,7 +1,6 @@
 package data.dao.hoteldao;
 
 import constant.ResultMessage;
-import constant.RoomType;
 import constant.SortBy;
 import constant.SortMethod;
 import po.CommentPO;
@@ -35,8 +34,8 @@ public interface HotelDao extends Remote{
     public ResultMessage deleteSpecialRoom(RoomPO po) throws RemoteException;
     public ArrayList<RoomVO> getRoomList(String id) throws RemoteException;
     public ResultMessage updateRoomList(ArrayList<RoomPO> roomPOList) throws RemoteException;
-    public ResultMessage changeRoomAvail(String id, RoomType roomType, int num, Date checkIn, Date checkOut) throws RemoteException;
-    public int numOfRoomAvail(String id, RoomType roomType, Date checkIn, Date checkOut) throws RemoteException;
+    public ResultMessage changeRoomAvail(String id, String roomType, int num, Date checkIn, Date checkOut) throws RemoteException;
+    public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) throws RemoteException;
     public ArrayList<RoomAvailVO> getRoomAvailList(String id, Date date) throws RemoteException;
     public ResultMessage updateRoomAvailList(String id, ArrayList<RoomAvailVO> roomAvailList) throws RemoteException;
     public ArrayList<RoomNormVO> getRoomNorms(String id) throws RemoteException;

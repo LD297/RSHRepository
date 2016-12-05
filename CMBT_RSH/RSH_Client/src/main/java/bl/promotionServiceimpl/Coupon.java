@@ -3,7 +3,6 @@ package bl.promotionServiceimpl;
 import java.util.Date;
 
 import constant.ResultMessage;
-import constant.RoomType;
 
 /**
  * 卡券类
@@ -13,7 +12,7 @@ import constant.RoomType;
 public class Coupon {
 
 	String hotelID;
-	RoomType type;
+	String type;
 	Date beginDate;
 	Date endDate;
 	public Coupon(){

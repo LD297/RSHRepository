@@ -1,7 +1,6 @@
 package data.daohelperimpl.orderdaohelperimpl;
 
 import constant.ResultMessage;
-import constant.RoomType;
 import constant.StateOfOrder;
 import data.daohelper.DaoHelperMySql;
 import data.daohelperimpl.jdbc.DBHelper;

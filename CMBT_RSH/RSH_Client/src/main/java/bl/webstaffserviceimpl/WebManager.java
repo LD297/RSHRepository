@@ -5,6 +5,8 @@ import data.dao.webstaffdao.WebManagerDao;
 import po.WebManagerPO;
 import rmi.RemoteHelper;
 
+import java.rmi.RemoteException;
+
 
 /**
  * 网站管理人员类
@@ -31,7 +33,7 @@ public class WebManager {
 	 * @param tempPass
 	 * @return
 	 */
-	public static ResultMessage register(String id,String tempPass){
+	public static ResultMessage register(String id,String tempPass)throws RemoteException{
 		if(webManager==null){
 			webManager=WebManager.getInstance();
 			if(webManager!=null)
@@ -49,7 +51,7 @@ public class WebManager {
 	 * 需要数据层中提取数据，判断是否已经初始化
 	 * @return
 	 */
-	public static WebManager getInstance(){;
+	public static WebManager getInstance()throws RemoteException{;
 		if(webManager==null){
 			WebManagerPO  webManagerPO = webManagerDao.getManagerInstance(ID);
 			String tempPassword = webManagerPO.getPassword();
@@ -69,7 +71,7 @@ public class WebManager {
 	 * @param newPassword
 	 * @return 是否成功
 	 */
-	public ResultMessage changePassword(String oldPassword, String newPassword){
+	public ResultMessage changePassword(String oldPassword, String newPassword)throws RemoteException{
 		if(webManager==null){
 			webManager = WebManager.getInstance();
 			if(webManager==null)
@@ -88,7 +90,7 @@ public class WebManager {
 	 * 在数据层增加
 	 * @return
 	 */
-	private ResultMessage update() {
+	private ResultMessage update() throws RemoteException{
 		if(webManager==null)
 			return ResultMessage.fail;
 		return	webManagerDao.updateManager(ID,password);

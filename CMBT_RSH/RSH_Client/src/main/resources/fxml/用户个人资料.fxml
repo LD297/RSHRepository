@@ -72,21 +72,21 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <TextField editable="false" layoutX="189.0" layoutY="24.0" prefHeight="38.0" prefWidth="398.0">
+                  <TextField focusTraversable="false" layoutX="189.0" layoutY="24.0" prefHeight="38.0" prefWidth="398.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font></TextField>
-                  <RadioButton disable="true" layoutX="189.0" layoutY="180.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="男" textFill="#484848">
+                  <RadioButton focusTraversable="false" layoutX="189.0" layoutY="180.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="男" textFill="#484848">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton layoutX="294.0" layoutY="180.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="女" textFill="#484848">
+                  <RadioButton focusTraversable="false" layoutX="294.0" layoutY="180.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="女" textFill="#484848">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </RadioButton>
-                  <DatePicker editable="false" layoutX="189.0" layoutY="233.0" prefHeight="38.0" prefWidth="219.0" />
+                  <DatePicker focusTraversable="false" layoutX="189.0" layoutY="233.0" prefHeight="38.0" prefWidth="219.0" />
                   <Button layoutX="400.0" layoutY="501.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="121.0" style="-fx-background-color: #ff5a5f;" text="确认" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
@@ -97,22 +97,22 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Button>
-                  <TextField editable="false" layoutX="189.0" layoutY="76.0" prefHeight="38.0" prefWidth="398.0">
+                  <TextField focusTraversable="false" layoutX="189.0" layoutY="76.0" prefHeight="38.0" prefWidth="398.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField editable="false" layoutX="189.0" layoutY="123.0" prefHeight="38.0" prefWidth="398.0">
+                  <TextField focusTraversable="false" layoutX="189.0" layoutY="123.0" prefHeight="38.0" prefWidth="398.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField editable="false" layoutX="189.0" layoutY="290.0" prefHeight="38.0" prefWidth="398.0">
+                  <TextField focusTraversable="false" layoutX="189.0" layoutY="290.0" prefHeight="38.0" prefWidth="398.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField editable="false" layoutX="189.0" layoutY="350.0" prefHeight="38.0" prefWidth="398.0">
+                  <TextField focusTraversable="false" layoutX="189.0" layoutY="350.0" prefHeight="38.0" prefWidth="398.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -132,5 +132,6 @@
             </AnchorPane>
          </children>
       </GridPane>
+      <Label focusTraversable="false" prefHeight="630.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.3);" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

@@ -2,7 +2,6 @@ package bl.promotionServiceimpl;
 
 import java.util.Date;
 
-import constant.RoomType;
 import po.OrderPO;
 
 /**
@@ -21,7 +20,7 @@ public class Count {
 	 * @param endDate
 	 * @return 优惠原因#优惠后价格
 	 */
-	public static String countPromotionOfRoom(String hotelID, RoomType type, int num, Date beginDate, Date endDate) {
+	public static String countPromotionOfRoom(String hotelID, String type, int num, Date beginDate, Date endDate) {
 		// TODO Auto-generated method stub
 		String reason ="双十一特惠";
 		String money = "120";

@@ -55,11 +55,6 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="529.0" layoutY="5.0" prefHeight="20.0" prefWidth="20.0" text="？" textFill="#ff5a5f" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
-                     <font>
-                        <Font name="Microsoft YaHei" size="18.0" />
-                     </font>
-                  </Label>
                   <Label layoutX="574.0" prefHeight="30.0" prefWidth="58.0" text="撤销异常" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
@@ -78,6 +73,11 @@
                   <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="713.0" layoutY="10.0" pickOnBounds="true" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="5.0">
                      <image>
                         <Image url="@../images/NOTEPAD%20_%20OK.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="529.0" layoutY="8.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/exclamation.png" />
                      </image>
                   </ImageView>
                </children>
@@ -299,46 +299,41 @@
                                     <Image url="@../images/撤销.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="186.0" layoutY="163.0" prefHeight="20.0" prefWidth="20.0" text="？" textFill="#ff5a5f">
-                                 <font>
-                                    <Font name="Microsoft YaHei" size="18.0" />
-                                 </font>
-                              </Label>
                               <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="186.0" layoutY="81.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../images/NOTEPAD%20_%20OK.png" />
                                  </image>
                               </ImageView>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label layoutX="221.0" layoutY="506.0" prefHeight="30.0" prefWidth="18.0" text="第" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="221.0" AnchorPane.topAnchor="506.0">
+                              <Label layoutX="77.0" layoutY="487.0" prefHeight="30.0" prefWidth="63.0" text="&lt;  上一页" textFill="#26518acf">
                                  <font>
                                     <Font name="Times New Roman" size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="272.0" layoutY="506.0" prefHeight="30.0" prefWidth="18.0" text="页" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="511.0" AnchorPane.topAnchor="506.0">
+                              <Label layoutX="151.0" layoutY="487.0" prefHeight="30.0" prefWidth="18.0" text="第">
                                  <font>
                                     <Font name="Times New Roman" size="14.0" />
                                  </font>
                               </Label>
-                              <Line endX="700.0" layoutX="70.0" layoutY="14.0" startX="70.0" stroke="#0000001b" AnchorPane.bottomAnchor="15.5" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0" />
-                              <TextField layoutX="239.0" layoutY="509.0" prefHeight="23.0" prefWidth="24.0" text="1">
+                              <TextField layoutX="174.0" layoutY="491.0" prefHeight="23.0" prefWidth="24.0" text="1">
                                  <font>
                                     <Font name="Times New Roman" size="12.0" />
                                  </font>
                               </TextField>
-                              <Label layoutX="122.0" layoutY="504.0" prefHeight="30.0" prefWidth="63.0" text="&lt;  上一页" textFill="#26518acf" AnchorPane.bottomAnchor="62.0" AnchorPane.topAnchor="504.0">
+                              <Label layoutX="207.0" layoutY="487.0" prefHeight="30.0" prefWidth="18.0" text="页">
                                  <font>
                                     <Font name="Times New Roman" size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="320.0" layoutY="506.0" prefHeight="30.0" prefWidth="63.0" text="下一页  &gt;" textFill="#26518acf" AnchorPane.rightAnchor="418.0">
+                              <Label layoutX="237.0" layoutY="487.0" prefHeight="30.0" prefWidth="63.0" text="下一页  &gt;" textFill="#26518acf">
                                  <font>
                                     <Font name="Times New Roman" size="14.0" />
                                  </font>
                               </Label>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="186.0" layoutY="165.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../images/exclamation.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>

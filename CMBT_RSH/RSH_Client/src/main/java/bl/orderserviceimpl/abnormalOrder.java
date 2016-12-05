@@ -49,8 +49,8 @@ public class AbnormalOrder {
             int size = rooms.size();
             int nums[] = new int[size];
             nums = abList.get(i).getRoomNums();
-            Date checkIn = abList.get(i).getInTime()[0];
-            Date checkOut = abList.get(i).getInTime()[1];
+            Date checkIn = abList.get(i).getTime()[0];
+            Date checkOut = abList.get(i).getTime()[1];
 
             for(int j=0;j<size;j++)//rooms.size
                 hotelinfo.changeRoomAvail(rooms.get(j).roomType,nums[j] , checkIn, checkOut);

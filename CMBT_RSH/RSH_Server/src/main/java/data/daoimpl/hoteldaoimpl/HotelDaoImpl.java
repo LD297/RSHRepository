@@ -1,7 +1,6 @@
 package data.daoimpl.hoteldaoimpl;
 
 import constant.ResultMessage;
-import constant.RoomType;
 import constant.SortBy;
 import constant.SortMethod;
 import data.dao.hoteldao.HotelDao;
@@ -58,11 +57,11 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
         return null;
     }
 
-    public ResultMessage changeRoomAvail(RoomType roomType, int num, Date checkIn, Date checkOut)throws RemoteException {
+    public ResultMessage changeRoomAvail(String roomType, int num, Date checkIn, Date checkOut)throws RemoteException {
         return null;
     }
 
-    public int numOfRoomAvail(RoomType roomType, Date checkIn, Date checkOut)throws RemoteException {
+    public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut)throws RemoteException {
         return 0;
     }
 

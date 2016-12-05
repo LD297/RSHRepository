@@ -39,8 +39,8 @@ public interface HotelDao extends Remote {
     public ArrayList<RoomVO> getRoomList() throws RemoteException;
     public ResultMessage updateRoomList(ArrayList<RoomVO> roomList) throws RemoteException;
 
-    public ResultMessage changeRoomAvail(RoomType roomType, int num, Date checkIn, Date checkOut) throws RemoteException;
-    public int numOfRoomAvail(RoomType roomType, Date checkIn, Date checkOut) throws RemoteException;
+    public ResultMessage changeRoomAvail(String roomType, int num, Date checkIn, Date checkOut) throws RemoteException;
+    public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut) throws RemoteException;
     public ArrayList<RoomAvailVO> getRoomAvailList(Date date) throws RemoteException;
     public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> roomAvailList) throws RemoteException;
 

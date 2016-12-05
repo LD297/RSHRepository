@@ -2,7 +2,6 @@ package bl.promotionServiceimpl;
 
 import bl.promotionservice.PromotionService;
 import constant.ResultMessage;
-import constant.RoomType;
 import po.OrderPO;
 import vo.PromotionVO;
 
@@ -49,7 +48,7 @@ public class PromotionController implements PromotionService {
 	}
 
 	@Override
-	public ArrayList<PromotionVO> getPromotionOfRoom(String hotelID, RoomType type) {
+	public ArrayList<PromotionVO> getPromotionOfRoom(String hotelID, String type) {
 		// TODO Auto-generated method stub
 		return Show.getPrmotionOfRoom(hotelID,type);
 	}
@@ -67,7 +66,7 @@ public class PromotionController implements PromotionService {
 	}
 
 	@Override
-	public String countPromotionOfRoom(String hotelID, RoomType type, int num, Date beginDate, Date endDate) {
+	public String countPromotionOfRoom(String hotelID, String type, int num, Date beginDate, Date endDate) {
 		// TODO Auto-generated method stub
 		return Count.countPromotionOfRoom(hotelID,type,num,beginDate,endDate);
 	}
