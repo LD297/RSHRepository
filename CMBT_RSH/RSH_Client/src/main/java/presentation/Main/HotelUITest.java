@@ -1,10 +1,10 @@
-package presentation.hotelcontroler;
+package presentation.Main;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import presentation.tools.HotelUIFactory;
 
 import java.io.IOException;
 
@@ -12,11 +12,12 @@ import java.io.IOException;
  * Created by a297 on 16/12/5.
  */
 public class HotelUITest extends Application {
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../../resources/fxml/酒店首页.fxml"));
+        Parent root = HotelUIFactory.getInstance().getHomepageUILoader().load();
         primaryStage.setTitle("hotel");
-        primaryStage.setScene(new Scene(root, 800, 720));
+        primaryStage.setScene(new Scene(root, HotelUIFactory.UI_WIDTH, HotelUIFactory.UI_HEIGHT));
         primaryStage.show();
 
     }
