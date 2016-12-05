@@ -19,8 +19,13 @@ public class Promotion {
 	Date endDate;
 
 	ScopeType scopeType;
+	String scope;
+
 	ConditionType conditionType;
+	int conditionNum = 0;
+
 	DeductionType deductionType;
+	int deductionNum = 0;
 
 	public Promotion (String Reason, String ID){
 		reason=Reason;

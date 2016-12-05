@@ -8,4 +8,5 @@ public class WebManagerPO {
 	public String getPassword(){
 		return password;
 	}
+
 }

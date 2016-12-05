@@ -1,5 +1,7 @@
 package po;
 
+import bl.webstaffserviceimpl.WebSalesman;
+
 public class WebSalesmanPO {
 
 	String id;
@@ -17,4 +19,13 @@ public class WebSalesmanPO {
 	public String getDistrict(){
 		return district;
 	}
+
+	public static WebSalesman getInstance (String tempid){
+		return null;
+	}
+
+	public static WebSalesmanPO changeIntoPo(WebSalesman tempWebSalesman){
+		return null;
+	}
+
 }

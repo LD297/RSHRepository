@@ -5,18 +5,16 @@ import data.dao.hoteldao.HotelDao;
 import data.dao.logindao.LoginDao;
 import data.dao.orderdao.OrderDao;
 import data.dao.promotiondao.PromotionDao;
-import data.dao.userdao.CreditRecordListDao;
 import data.dao.userdao.UserDao;
 import data.dao.webstaffdao.WebManagerDao;
 import data.dao.webstaffdao.WebSalesmanDao;
 import data.daoimpl.hoteldaoimpl.HotelDaoImpl;
 import data.daoimpl.logindaoimpl.LoginDaoImpl;
 import data.daoimpl.orderdaoimpl.OrderDaoImpl;
-import data.daoimpl.userdaoimpl.CreditRecordListDaoImpl;
 import data.daoimpl.userdaoimpl.UserDaoImpl;
 import data.daoimpl.webstaffdaoimpl.WebManagerDaoImpl;
 import data.daoimpl.promotiondaoimpl.PromotionDaoImpl;
-import data.daoimpl.webstaffdaoimpl.WebSalesmanDaoImpl;
+import data.daoimpl.webstaffdaoimpl.WebSalesmanDaoTXTImpl;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,7 +76,7 @@ public class DatabaseFactoryImpl implements DatabaseFactory {
     };
 
     public WebSalesmanDao getWebSalesmanDatabase()throws RemoteException{
-        WebSalesmanDao webSalesmanDatabase = new WebSalesmanDaoImpl();
+        WebSalesmanDao webSalesmanDatabase = new WebSalesmanDaoTXTImpl();
         return webSalesmanDatabase;
         }
     }

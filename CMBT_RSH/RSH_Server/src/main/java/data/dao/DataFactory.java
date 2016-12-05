@@ -8,6 +8,7 @@ import data.dao.webstaffdao.WebSalesmanDao;
  * Created by a297 on 16/11/27.
  */
 public interface DataFactory {
+
     public HotelDao getHotelDao();
 
     public WebManagerDao getWebManagerDao();
