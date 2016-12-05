@@ -1,5 +1,6 @@
 package presentation.tools;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 /**
@@ -14,7 +15,15 @@ public class HotelUIFactory {
 
     private FXMLLoader homepageUILoader;
 
-    private FXMLLoader hotelInfoUILoader;
+    private FXMLLoader hotelBasicInfoUILoader;
+
+    private FXMLLoader promotionUILoader;
+
+    private FXMLLoader checkOrderUILoader;
+
+    private FXMLLoader aboutUsUILoader;
+
+    private FXMLLoader roomAvailUILoader;
 
     public static HotelUIFactory getInstance(){
         if(hotelUIFactory==null)
@@ -28,9 +37,33 @@ public class HotelUIFactory {
         return homepageUILoader;
     }
 
-    public FXMLLoader getHotelInfoLoader(){
-        if(hotelInfoUILoader==null)
-            hotelInfoUILoader = new FXMLLoader(getClass().getResource("/fxml/酒店信息维护.fxml"));
-        return hotelInfoUILoader;
+    public FXMLLoader getHotelBasicInfoUILoader(){
+        if(hotelBasicInfoUILoader==null)
+            hotelBasicInfoUILoader = new FXMLLoader(getClass().getResource("/fxml/酒店信息维护.fxml"));
+        return hotelBasicInfoUILoader;
+    }
+
+    public FXMLLoader getPromotionUILoader() {
+        if(promotionUILoader==null)
+            promotionUILoader = new FXMLLoader(getClass().getResource("/fxml/酒店促销策略维护.fxml"));
+        return promotionUILoader;
+    }
+
+    public FXMLLoader getCheckOrderUILoader() {
+        if(checkOrderUILoader==null)
+            checkOrderUILoader = new FXMLLoader(getClass().getResource("/fxml/订单搜索并浏览（酒店）.fxml"));
+        return checkOrderUILoader;
+    }
+
+    public FXMLLoader getAboutUsUILoader() {
+        if(aboutUsUILoader==null)
+            aboutUsUILoader = new FXMLLoader(getClass().getResource("/fxml/关于我们.fxml"));
+        return aboutUsUILoader;
+    }
+
+    public FXMLLoader getRoomAvailUILoader() {
+        if(roomAvailUILoader==null)
+            roomAvailUILoader = new FXMLLoader(getClass().getResource("/fxml/可用客房信息维护.fxml"));
+        return roomAvailUILoader;
     }
 }

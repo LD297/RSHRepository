@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
@@ -7,17 +8,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.CheckOrderUIController">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="102.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-         <children>
-            <Label text="LOGO" textFill="#ff5a5f" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="Times New Roman" size="28.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
+      <ImageView fitHeight="720.0" fitWidth="800.0">
+         <image>
+            <Image url="@../images/白色背景.png" />
+         </image>
+      </ImageView>
       <TabPane layoutX="91.0" layoutY="160.0" prefHeight="461.0" prefWidth="610.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="129.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="130.0">
         <tabs>
           <Tab text="未执行订单">
@@ -432,5 +429,15 @@
           </Tab>
         </tabs>
       </TabPane>
+      <ImageView fitHeight="42.0" fitWidth="45.0" AnchorPane.bottomAnchor="668.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../images/LOGO.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="710.0" layoutY="634.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

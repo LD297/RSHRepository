@@ -7,8 +7,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.PromotionUIController">
    <children>
+      <ImageView fitHeight="720.0" fitWidth="800.0">
+         <image>
+            <Image url="@../images/白色背景.png" />
+         </image>
+      </ImageView>
       <ScrollPane layoutX="258.0" layoutY="168.0" prefHeight="428.0" prefWidth="610.0" AnchorPane.bottomAnchor="162.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="130.0">
          <content>
             <AnchorPane prefHeight="429.0" prefWidth="583.0">
@@ -38,20 +43,12 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button layoutX="650.0" layoutY="624.0" mnemonicParsing="false" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="615.0">
+      <Button fx:id="confirmButton" layoutX="650.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClicked" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="615.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="102.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-         <children>
-            <Label text="LOGO" textFill="#ff5a5f" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="Times New Roman" size="28.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="102.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
       <AnchorPane layoutX="670.0" layoutY="68.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="68.0" />
       <AnchorPane layoutX="618.0" layoutY="577.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="560.0">
          <children>
@@ -74,6 +71,11 @@
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="672.0" layoutY="71.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="70.0">
          <image>
             <Image url="@../images/pen_grey.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="42.0" fitWidth="45.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../images/LOGO.jpg" />
          </image>
       </ImageView>
    </children>
