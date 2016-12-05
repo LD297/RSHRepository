@@ -25,6 +25,9 @@ public class DBHelper {
             e.printStackTrace();
         }
     }
+    public Connection getConn(){
+        return this.connection;
+    }
     public void close() {
         try {
             this.connection.close();

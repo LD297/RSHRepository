@@ -26,12 +26,14 @@ public class RoomVO {
 		this.id = id;
 		this.type = type;
 	}
+
     public RoomVO(String id, String type,int amountTotal, double price, Boolean basicOrSpecial) {
         this.id = id;
         this.type = type;
         this.amountTotal = amountTotal;
         this.price = price;
         this.basicOrSpecial = basicOrSpecial;
+
     }
 
 	public String getID(){
