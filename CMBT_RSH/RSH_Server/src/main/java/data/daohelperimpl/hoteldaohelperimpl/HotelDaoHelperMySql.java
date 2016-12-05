@@ -307,6 +307,7 @@ public class HotelDaoHelperMySql extends DaoHelperMySql{
         return ResultMessage.fail;
     }
     // 登记退房时间？？改变数量
+    // 如果退房时间 超过 最晚入住时间 不更改当天的信息  更改下一天的信息
     // 根据入住时间得到可用房间数量
     public int numOfRoomAvail(String hotelid,String roomType, Date checkIn, Date checkOut)throws RemoteException {
         String findNumOfRoomAvailSql = "SELECT aList FROM RoomInfo WHERE hotelID='"+hotelid+"' and roomType='"+roomType+"' LIMIT 1";
@@ -335,10 +336,9 @@ public class HotelDaoHelperMySql extends DaoHelperMySql{
             e.printStackTrace();
             return -1;
         }
-
         return -1;
     }
-
+    // 酒店工作人员 根据日期查看可用客房信息
     public ArrayList<RoomAvailVO> getRoomAvailList(String hotelid, Date date)throws RemoteException {
         String getRoomTypeNumSql = "SELECT roomTypeNum FROM HotelInfo"+
                 " WHERE hotelID='"+hotelid+"' LIMIT 1";
@@ -373,7 +373,7 @@ public class HotelDaoHelperMySql extends DaoHelperMySql{
         }
         return null;
     }
-    // 一天过去 修改可用客房日期列表
+    // 一天过去 修改可用客房日期列表 每天12:00
     /*public void updateRoomAListWithDayChangedExecute(){
         Timer timer = new Timer();
 　　    timer.schedule(new class(), 60 * 1000);
@@ -419,9 +419,8 @@ public class HotelDaoHelperMySql extends DaoHelperMySql{
             e.printStackTrace();
         }
     }
-    // 续房
-    public ResultMessage updateRoomAvailList(RoomAvailVO availableRoomList)throws RemoteException {
-
+    // 续房？先保留
+    public ResultMessage updateRoomAvailList(RoomAvailVO availableRoom)throws RemoteException {
         return null;
     }
     // 初始  根据地址商圈得到 酒店列表
@@ -430,7 +429,7 @@ public class HotelDaoHelperMySql extends DaoHelperMySql{
         ResultSet result = db.query(getHotelListSql);
         return this.resultsetToHotelVO(result);
     }
-
+    //  网站管理人员 根据id 得到酒店信息
     public HotelVO getHotelInfo(String id)throws RemoteException {
         // 编号 密码 电话 名称
         // 地址 商圈 简介 设施
@@ -441,7 +440,7 @@ public class HotelDaoHelperMySql extends DaoHelperMySql{
         return this.resultsetToHotelVO(result).get(0);
     }
 
-    public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM)throws RemoteException {
+    public ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelList,SortBy sortBy, SortMethod sortM)throws RemoteException {
        /* if(sortBy==SortBy.grade){
 
         }
@@ -477,7 +476,7 @@ public class HotelDaoHelperMySql extends DaoHelperMySql{
         return null;
     }
 
-    //得到数据库中符合该地址的酒店数量
+    // 网站管理人员 得到数据库中符合该地址的酒店数量 来生成酒店id
     public int getHotelNum(String address)throws RemoteException {
         String getHotelNumSql = "SELECT count(*) FROM HotelInfo WHERE address='"+address+"'";
         ResultSet result = db.query(getHotelNumSql);
@@ -545,7 +544,6 @@ public class HotelDaoHelperMySql extends DaoHelperMySql{
                 hotelList.add(new HotelPO(idname, password, tel, name, address, bArea, briefintro, facility, level, grade, time){});
             }
             return hotelList;
-
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

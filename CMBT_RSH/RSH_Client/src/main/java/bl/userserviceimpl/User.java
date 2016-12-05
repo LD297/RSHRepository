@@ -78,9 +78,9 @@ public class User {
 	 * @return
 	 */
 	private UserPO create(UserVO vo) {
-		UserPO po = new UserPO(vo.getId(), vo.getPassword(), vo.getNickName(),
-				vo.getImageAddress(), vo.getLevel(), vo.getMemberType(), vo.getName(),
-				vo.getSexuality(), vo.geteMail(), vo.getCredit());
+		UserPO po = new UserPO(vo.getId(), vo.getPassword(), vo.getNickName(),vo.getImageAddress(),
+				vo.getLevel(), vo.getMemberType(), vo.getCredit(),
+				vo.getName(), vo.getSexuality(), vo.geteMail() ){};
 		return po;
 	}
 	/**

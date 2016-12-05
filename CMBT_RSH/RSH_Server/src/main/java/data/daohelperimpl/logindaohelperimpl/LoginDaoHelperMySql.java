@@ -45,7 +45,7 @@ public class LoginDaoHelperMySql {
 
     public ResultMessage addOnline(OnlinePersonPO po) throws RemoteException {
         String addOnlineSql = "INSERT INTO OnlineInfo VALUES("+
-                this.roleToInt(po.getRole())+",'"+po.getId()+"','"+po.getPassword()+"')";
+                String.valueOf(this.roleToInt(po.getRole()))+",'"+po.getId()+"','"+po.getPassword()+"')";
         db.executeSql(addOnlineSql);
         return ResultMessage.succeed;
     }

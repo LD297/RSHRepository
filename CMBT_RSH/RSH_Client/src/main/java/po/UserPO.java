@@ -21,9 +21,9 @@ public class UserPO implements Serializable{
 	String eMail;
 	int credit;
 	
-	public UserPO(String id, String password, String nickName, 
-			String imageAddress, int level, MemberType memberType, String name,
-			Sexuality sexuality, String eMail, int credit) {
+	public UserPO(String id, String password, String nickName, String imageAddress,
+				  int level, MemberType memberType, int credit,
+				  String name, Sexuality sexuality, String eMail) {
 		this.id = id;
 		this.nickName = nickName;
 		this.imageAddress = imageAddress;
