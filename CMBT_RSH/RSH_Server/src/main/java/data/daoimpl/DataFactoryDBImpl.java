@@ -4,15 +4,13 @@ import data.dao.DataFactory;
 import data.dao.hoteldao.HotelDao;
 import data.dao.webstaffdao.WebManagerDao;
 import data.dao.webstaffdao.WebSalesmanDao;
-import data.daoimpl.webstaffdaoimpl.WebManagerDaoImpl;
-import data.daoimpl.webstaffdaoimpl.WebSalesmanDaoImpl;
-
-import java.rmi.RemoteException;
+import data.daoimpl.webstaffdaoimpl.WebSalesmanDaoTXTImpl;
 
 /**
  * Created by aa on 2016/12/2.
  */
 public class DataFactoryDBImpl implements DataFactory {
+
     public HotelDao getHotelDao() {
 
         return null;
@@ -23,7 +21,7 @@ public class DataFactoryDBImpl implements DataFactory {
     }
 
     public WebSalesmanDao getWebSalesmanDao() {
-        WebSalesmanDao webSalesmanDao= WebSalesmanDaoImpl.getWebSalesmanDaoImplInstance();
+        WebSalesmanDao webSalesmanDao= WebSalesmanDaoTXTImpl.getWebSalesmanDaoImplInstance();
         return webSalesmanDao;
     }
 }
