@@ -32,7 +32,7 @@ public class DaoHelperFactoryImpl implements DaoHelperFactory {
     }
 
     @Override
-    public CredeiRecordListDaoHelper getCrediRecordListDdaoHelper() {
+    public CreditRecordListDaoHelper getCrediRecordListDdaoHelper() {
         return null;
     }
 

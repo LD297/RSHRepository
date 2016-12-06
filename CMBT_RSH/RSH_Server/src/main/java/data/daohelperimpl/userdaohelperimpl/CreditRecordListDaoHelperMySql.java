@@ -2,12 +2,10 @@ package data.daohelperimpl.userdaohelperimpl;
 
 import constant.CreditAction;
 import constant.ResultMessage;
-import data.daohelper.CredeiRecordListDaoHelper;
+import data.daohelper.CreditRecordListDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.CreditRecordPO;
 
-import java.io.File;
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +17,7 @@ import java.util.Iterator;
 /**
  * Created by sky-PC on 2016/12/3.
  */
-public class CreditRecordListDaoHelperMySql implements CredeiRecordListDaoHelper{
+public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper {
 
     private DBHelper db = new DBHelper();
 

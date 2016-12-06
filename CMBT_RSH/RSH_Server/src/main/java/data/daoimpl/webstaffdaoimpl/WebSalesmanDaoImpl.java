@@ -2,6 +2,8 @@ package data.daoimpl.webstaffdaoimpl;
 
 import constant.ResultMessage;
 import data.dao.webstaffdao.WebSalesmanDao;
+import data.daohelper.DaoHelperFactory;
+import data.daohelper.WebManagerDaoHelper;
 import po.WebSalesmanPO;
 
 import java.rmi.RemoteException;
@@ -20,10 +22,14 @@ import java.io.IOException;
 
 public class WebSalesmanDaoImpl extends UnicastRemoteObject implements WebSalesmanDao {
 
-      public WebSalesmanDaoImpl()throws  RemoteException{}
+    private static WebSalesmanDaoImpl webSalesmanDaoImpl;
+    private WebManagerDaoHelper webManagerDaoHelper;
+    private DaoHelperFactory daoHelperFactory;
 
- /*   public static WebSalesmanDaoImpl getWebSalesmanDaoImplInstance(){
-        if(webSalesmanDaoImpl ==null) {
+    private WebSalesmanDaoImpl()throws  RemoteException{}
+
+    public static WebSalesmanDaoImpl getInstance(){
+        if(webSalesmanDaoImpl == null){
             try {
                 webSalesmanDaoImpl = new WebSalesmanDaoImpl();
             } catch (RemoteException e) {
@@ -31,7 +37,7 @@ public class WebSalesmanDaoImpl extends UnicastRemoteObject implements WebSalesm
             }
         }
         return webSalesmanDaoImpl;
-    }*/
+    }
 
 
 

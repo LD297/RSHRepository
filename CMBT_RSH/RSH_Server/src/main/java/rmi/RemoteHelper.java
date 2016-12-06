@@ -42,21 +42,21 @@ public class RemoteHelper {
     public void init(){
         try {
             LocateRegistry.createRegistry(8888);
-            loginDaoImpl = new LoginDaoImpl();
+            loginDaoImpl = LoginDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/LoginDaoImpl", loginDaoImpl);
-            creditRecordListDaoImpl = new CreditRecordListDaoImpl();
+            creditRecordListDaoImpl = creditRecordListDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/CreditRecordListDaoImpl", creditRecordListDaoImpl);
-            userDaoImpl = new UserDaoImpl();
+            userDaoImpl = UserDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/UserDaoImpl", userDaoImpl);
-            hotelDaoImpl = new HotelDaoImpl();
+            hotelDaoImpl = HotelDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/HotelDaoImpl", hotelDaoImpl);
-            orderDaoImpl = new OrderDaoImpl();
+            orderDaoImpl = OrderDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/OrderDaoImpl",orderDaoImpl );
-            webManagerDaoImpl = new WebManagerDaoImpl();
+            webManagerDaoImpl = WebManagerDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/WebManagerDaoImpl",webManagerDaoImpl );
-            webSalesmanDaoImpl = new WebSalesmanDaoImpl();
+            webSalesmanDaoImpl = WebSalesmanDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/WebSalesmanDaoImpl", webSalesmanDaoImpl);
-            promotionDaoImpl = new PromotionDaoImpl();
+            promotionDaoImpl = PromotionDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/PromotionDaoImpl",promotionDaoImpl);
 
         } catch (RemoteException e) {

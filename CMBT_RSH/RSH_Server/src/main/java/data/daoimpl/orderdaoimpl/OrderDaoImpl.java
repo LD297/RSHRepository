@@ -2,9 +2,11 @@ package data.daoimpl.orderdaoimpl;
 
 import constant.ResultMessage;
 import constant.StateOfOrder;
-import data.dao.databasefactory.DatabaseFactory;
+//import data.dao.databasefactory.DatabaseFactory;
 import data.dao.orderdao.OrderDao;
-import data.daoimpl.databasefactoryimpl.DatabaseFactoryImpl;
+import data.daohelper.DaoHelperFactory;
+import data.daohelper.OrderDaoHelper;
+//import data.daoimpl.databasefactoryimpl.DatabaseFactoryImpl;
 import po.OrderPO;
 
 import java.rmi.ConnectException;
@@ -18,14 +20,28 @@ import java.util.Date;
  * Created by sky-PC on 2016/11/27.
  */
 public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao{
-    //根据订单编号查找订单
+    /*//根据订单编号查找订单
     private DatabaseFactoryImpl mysql = new DatabaseFactoryImpl();
     private final String tableName = "OrderInfo";
-    private Connection conn = null;
+    private Connection conn = null;**/
 
-    public OrderDaoImpl()throws RemoteException{
+    private static OrderDaoImpl orderDaoImpl;
+    private OrderDaoHelper orderDaoHelper;
+    private DaoHelperFactory daoHelperFactory;
 
+    private OrderDaoImpl()throws RemoteException{
 
+    }
+
+    public static OrderDaoImpl getInstance(){
+        if(orderDaoImpl == null){
+            try {
+                orderDaoImpl = new OrderDaoImpl();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+        return orderDaoImpl;
     }
     public OrderPO find(String orderid) throws RemoteException{
         return null;

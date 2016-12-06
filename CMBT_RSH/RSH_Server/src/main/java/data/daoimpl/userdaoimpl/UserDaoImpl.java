@@ -5,13 +5,29 @@ import java.rmi.server.UnicastRemoteObject;
 
 import constant.ResultMessage;
 import data.dao.userdao.UserDao;
+import data.daohelper.DaoHelperFactory;
+import data.daohelper.UserDaoHelper;
 import po.UserPO;
 
 public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 
-	public UserDaoImpl() throws RemoteException {
+	private static UserDaoImpl userDaoImpl;
+	private UserDaoHelper userDaoHelper;
+	private DaoHelperFactory daoHelperFactory;
+
+	private UserDaoImpl() throws RemoteException {
 	}
 
+	public static UserDaoImpl getInstance() {
+		if(userDaoImpl == null){
+			try {
+				userDaoImpl = new UserDaoImpl();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+		return userDaoImpl;
+	}
 	public UserPO getInfo(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
@@ -47,5 +63,4 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 		return null;
 	}
 
-	
 }

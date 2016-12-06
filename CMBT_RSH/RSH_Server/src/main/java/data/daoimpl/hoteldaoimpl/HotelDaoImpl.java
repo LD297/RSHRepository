@@ -4,6 +4,8 @@ import constant.ResultMessage;
 import constant.SortBy;
 import constant.SortMethod;
 import data.dao.hoteldao.HotelDao;
+import data.daohelper.DaoHelperFactory;
+import data.daohelper.HotelDaoHelper;
 import po.HotelPO;
 import po.HotelStaffPO;
 import vo.HotelVO;
@@ -20,7 +22,22 @@ import java.util.Date;
  * Created by a297 on 16/11/26.
  */
 public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
+    private static HotelDaoImpl hotelDaoImpl;
+    private HotelDaoHelper hotelDaoHelper;
+    private DaoHelperFactory daoHelperFactory;
+
     public HotelDaoImpl()throws RemoteException{}
+
+    public static HotelDaoImpl getInstance(){
+        if(hotelDaoImpl ==null){
+            try {
+                hotelDaoImpl = new HotelDaoImpl();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+        return hotelDaoImpl;
+    }
     public ResultMessage addComment(String id, String userID, String comment)throws RemoteException {
         return null;
     }
