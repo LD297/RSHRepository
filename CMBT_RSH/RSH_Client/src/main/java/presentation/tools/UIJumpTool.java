@@ -23,6 +23,7 @@ import java.util.Stack;
 public class UIJumpTool {
     private static UIJumpTool uiJumpTool = null;
     private Stage stage = null;
+    private Stack<AnchorPane> anchorPanes = new Stack<AnchorPane>();
 
     private AnchorPane guide = UserUIFXMLFactory.getUserUIFXMLFactory().getGuide();
     private AnchorPane searchHotel = UserUIFXMLFactory.getUserUIFXMLFactory().getSearchHotel();
@@ -68,7 +69,8 @@ public class UIJumpTool {
     //从搜索酒店界面跳转到酒店浏览界面
     public void changeSearchHotelToBrowseHotel(){
         GridPane gridPane = (GridPane)guide.getChildren().get(0);
-        gridPane.getChildren().remove(1);
+        gridPane.getChildren().remove(1);//删除searchhotel
+        anchorPanes.push(searchHotel);
         gridPane.add(browseHotel,0,1);
         //设置导航栏上的箭头可点
         if(guideUIController==null){
@@ -97,7 +99,13 @@ public class UIJumpTool {
     public AnchorPane changeToSearchHotel(){
         GridPane gridPane = (GridPane)guide.getChildren().get(0);//单单导航栏界面的AnchorPane只有一个子女
         gridPane.add(searchHotel,0,1);//将搜索酒店界面添加到导航栏界面的gridpane里
-        Scene scene = new Scene(guide,800,720);
+        Scene scene = null;
+        if(guide.getScene()==null){
+            scene = new Scene(guide,800,720);
+        }else {
+            scene = guide.getScene();
+        }
+
         stage.setScene(scene);
         //TODO 设置光标
         return searchHotel;
@@ -106,6 +114,8 @@ public class UIJumpTool {
 
     //从导航栏点击退出跳转到到登陆界面
     public void changeGuideToLogin(){
+        //将界面清空
+        ((GridPane)guide.getChildren().get(0)).getChildren().remove(1);
         stage.setScene(roleChoose.getScene());
     }
 
@@ -131,7 +141,12 @@ public class UIJumpTool {
 
     //从登陆下拉界面跳转到注册界面
     public UserRegisterUIController changeLoginToRegister(){
-        Scene scene = new Scene(userRegister,800,720);
+        Scene scene = null;
+        if(userRegister.getScene()!=null){
+            scene = userRegister.getScene();
+        }else {
+            scene = new Scene(userRegister,800,720);
+        }
         stage.setScene(scene);
         if(userRegisterUIController==null){
             userRegisterUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getUserRegisterUIController();
@@ -190,6 +205,7 @@ public class UIJumpTool {
     public void changeBrowseHotelToHotelInfo(String hotelName){
         GridPane gridPane =(GridPane) guide.getChildren().get(0);
         gridPane.getChildren().remove(1);//删除酒店浏览界面
+        anchorPanes.push(browseHotel);
         gridPane.add(hotelInfo,0,1);//增加酒店详情界面
         //在酒店详情界面中添加客房信息界面，并让客房信息界面显示在变迁下面
         GridPane gridPaneInHotelInfo = (GridPane)hotelInfo.getChildren().get(0);
@@ -239,4 +255,23 @@ public class UIJumpTool {
         gridPaneInHotelInfo.add(roomInfo,0,2);
         gridPaneInHotelInfo.add(temp,0,1);
     }
+
+    //在导航栏上点击返回箭头，返回到原来的界面
+    public void back(){
+        GridPane gridPane = (GridPane)guide.getChildren().get(0);
+        AnchorPane presentAnchorPane = (AnchorPane) gridPane.getChildren().get(1);
+        if(presentAnchorPane==hotelInfo){
+            ((GridPane)hotelInfo.getChildren().get(0)).getChildren().remove(1);
+        }
+        gridPane.getChildren().remove(1);
+        if(!anchorPanes.empty()){
+            AnchorPane anchorPane = anchorPanes.pop();
+            if(anchorPane==searchHotel){
+                guideUIController.setBackImage(false);
+            }
+            gridPane.add(anchorPane,0,1);
+        }
+
+    }
+
 }

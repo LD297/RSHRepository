@@ -81,6 +81,8 @@ public class RoleChooseUIController {
         loginUIController.setRole(role);
         if(role!=Role.user){//只有用户才可以看到下拉箭头
             loginUIController.setShowMoreImage(false);
+        }else {
+            loginUIController.setShowMoreImage(true);
         }
     }
 

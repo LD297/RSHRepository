@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.HotelInfoUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane layoutX="14.0" layoutY="111.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -27,7 +27,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="hotelImage" fitHeight="400.0" fitWidth="800.0" layoutX="-2.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fitHeight="400.0" fitWidth="800.0" layoutX="-2.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
                         <Image url="@../images/hotel/酒店背景图111.png" />
                      </image>
@@ -37,7 +37,7 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="hotelNameLabel" layoutX="10.0" layoutY="11.0" prefHeight="57.0" prefWidth="196.0" text="南京英尊大酒店" textFill="WHITE">
+                  <Label layoutX="10.0" layoutY="11.0" prefHeight="57.0" prefWidth="196.0" text="南京英尊大酒店" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -47,12 +47,12 @@
                         <Image url="@../images/地址图标.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="addressLabel" layoutX="243.0" layoutY="33.0" prefHeight="30.0" prefWidth="161.0" text="仙林学府区" textFill="WHITE" AnchorPane.leftAnchor="243.0">
+                  <Label layoutX="243.0" layoutY="33.0" prefHeight="30.0" prefWidth="94.0" text="仙林学府区" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="briefLabel" layoutX="14.0" layoutY="100.0" prefHeight="100.0" prefWidth="340.0" text="南京英尊假日酒店位于仙林大学城，南大仙林校区正对面，校园文化气息浓厚，并且周边高校林立，出行交通十分方便。酒店房内基本设施完善，装修温馨现代，住宿环境十分舒适，服务态度周到。紧邻南京中医药大学，仙林南外，南京邮电大学，金鹰奥莱城，是您商务办公的理想之所。" textFill="WHITE" wrapText="true">
+                  <Label layoutX="14.0" layoutY="100.0" prefHeight="100.0" prefWidth="340.0" text="南京英尊假日酒店位于仙林大学城，南大仙林校区正对面，校园文化气息浓厚，并且周边高校林立，出行交通十分方便。酒店房内基本设施完善，装修温馨现代，住宿环境十分舒适，服务态度周到。紧邻南京中医药大学，仙林南外，南京邮电大学，金鹰奥莱城，是您商务办公的理想之所。" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font>
@@ -63,42 +63,42 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="wifiImage" fitHeight="26.0" fitWidth="26.0" layoutX="14.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="14.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/无线图标.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="wifiLabel" layoutX="47.0" layoutY="260.0" prefHeight="30.0" prefWidth="76.0" text="无线网络" textFill="WHITE">
+                  <Label layoutX="47.0" layoutY="260.0" prefHeight="30.0" prefWidth="76.0" text="无线网络" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="swimpoolImage" fitHeight="30.0" fitWidth="26.0" layoutX="201.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="201.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/游泳池图标.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="swimLabel" layoutX="243.0" layoutY="260.0" prefHeight="30.0" prefWidth="76.0" text="游泳池" textFill="WHITE">
+                  <Label layoutX="243.0" layoutY="260.0" prefHeight="30.0" prefWidth="76.0" text="游泳池" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="parkImage" fitHeight="26.0" fitWidth="26.0" layoutX="14.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="14.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/停车场图标.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="parkLabel" layoutX="47.0" layoutY="322.0" prefHeight="30.0" prefWidth="76.0" text="停车场" textFill="WHITE">
+                  <Label layoutX="47.0" layoutY="322.0" prefHeight="30.0" prefWidth="76.0" text="停车场" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="diningroomImage" fitHeight="30.0" fitWidth="26.0" layoutX="201.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="201.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/餐厅图标.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="diningroomLabel" layoutX="243.0" layoutY="322.0" prefHeight="30.0" prefWidth="76.0" text="餐厅" textFill="WHITE">
+                  <Label layoutX="243.0" layoutY="322.0" prefHeight="30.0" prefWidth="76.0" text="餐厅" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
@@ -113,17 +113,17 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="createOrderButton" layoutX="621.0" layoutY="352.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: rgba(3,3,3,0.5);" text="新建订单" textFill="WHITE">
+                  <Button layoutX="621.0" layoutY="352.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: rgba(3,3,3,0.5);" text="新建订单" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Button>
-                  <Label fx:id="startLevelLabel" layoutX="75.0" layoutY="62.0" prefHeight="30.0" prefWidth="55.0" text="5" textFill="WHITE">
+                  <Label layoutX="75.0" layoutY="62.0" prefHeight="30.0" prefWidth="55.0" text="5" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="gradeLabel" layoutX="191.0" layoutY="62.0" prefHeight="30.0" prefWidth="55.0" text="96" textFill="WHITE">
+                  <Label layoutX="191.0" layoutY="62.0" prefHeight="30.0" prefWidth="55.0" text="96" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
@@ -132,22 +132,22 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Rectangle fx:id="roomInfoEffect" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="37.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="178.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="0.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="37.0" stroke="BLACK" strokeType="INSIDE" width="178.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="0.0">
                      <effect>
                         <Shadow />
                      </effect>
                   </Rectangle>
-                  <Rectangle fx:id="commentEffect" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="37.0" layoutX="178.0" stroke="BLACK" strokeType="INSIDE" width="178.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="37.0" layoutX="178.0" stroke="BLACK" strokeType="INSIDE" width="178.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <effect>
                         <Shadow />
                      </effect>
                   </Rectangle>
-                  <Button fx:id="roonInfoButton" layoutX="14.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#changeToRoomInfo" onMouseEntered="#roomInfoEntered" onMouseExited="#roomInfoExited" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #ffffff;" text="客房信息" textFill="#1b0101" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="0.0">
+                  <Button layoutX="14.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #ffffff;" text="客房信息" textFill="#1b0101" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="622.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Button>
-                  <Button layoutX="178.0" mnemonicParsing="false" onMouseClicked="#changeToComment" onMouseEntered="#commentEntered" onMouseExited="#commentExited" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #ffffff;" text="查看评价" textFill="#1b0101" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="444.0" AnchorPane.topAnchor="0.0">
+                  <Button layoutX="178.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #ffffff;" text="查看评价" textFill="#1b0101" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="444.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>

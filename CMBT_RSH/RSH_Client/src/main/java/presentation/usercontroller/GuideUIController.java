@@ -67,9 +67,10 @@ public class GuideUIController {
 
     }
 
+    //点击返回箭头
     @FXML
     void back(MouseEvent event) {
-
+        UIJumpTool.getUiJumpTool().back();
     }
 
     public void setBackImage(boolean visible){backImage.setVisible(visible);}

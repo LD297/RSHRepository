@@ -12,6 +12,7 @@ import java.io.IOException;
 
 /**
  * Created by john on 2016/12/4.
+ * 启动界面
  */
 public class Launcher extends Application{
     public void start(Stage stage){

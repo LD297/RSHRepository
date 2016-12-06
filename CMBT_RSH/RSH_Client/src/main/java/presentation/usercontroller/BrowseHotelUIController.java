@@ -122,10 +122,17 @@ public class BrowseHotelUIController {
     @FXML
     void changeToHotelInfo(MouseEvent event) {
         Label label = (Label) event.getSource();
+        String hotelName = "";
         if(label==maskLULabel){
-            String hotelName = hotelNameLULabel.getText().trim();
-            UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo(hotelName);
+            hotelName = hotelNameLULabel.getText().trim();
+        }else if(label==maskLDLabel){
+            hotelName = hotelNameLDLabel.getText().trim();
+        }else if(label==maskRDLabel){
+            hotelName = hotelNameRDLabel.getText().trim();
+        }else {
+            hotelName = hotelNameRULabel.getText().trim();
         }
+        UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo(hotelName);
     }
 
     @FXML
