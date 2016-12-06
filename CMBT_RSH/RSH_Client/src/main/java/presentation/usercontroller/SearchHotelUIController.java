@@ -52,7 +52,7 @@ public class SearchHotelUIController {
     private void myChangeToHotelBrowse(){
         ResultMessage resultMessage = checkInput();
         if(resultMessage==ResultMessage.succeed){
-            //TODO 传入地址和商圈
+            //TODO 根据地址和商圈
             UIJumpTool.getUiJumpTool().changeSearchHotelToBrowseHotel();
         }else{
             //TODO 提示框

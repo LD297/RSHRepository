@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import presentation.tools.UIJumpTool;
 
 public class BrowseHotelUIController {
 
@@ -114,8 +115,17 @@ public class BrowseHotelUIController {
     private TextField pageField;
 
     @FXML
-    void changeToHotelInfo(MouseEvent event) {
+    private Label maskLabel;
 
+
+    //点击图片上蒙的label跳转到酒店详情界面
+    @FXML
+    void changeToHotelInfo(MouseEvent event) {
+        Label label = (Label) event.getSource();
+        if(label==maskLULabel){
+            String hotelName = hotelNameLULabel.getText().trim();
+            UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo(hotelName);
+        }
     }
 
     @FXML
@@ -143,11 +153,14 @@ public class BrowseHotelUIController {
 
     }
 
+    //点击筛选条件按钮，跳出筛选条件界面
     @FXML
     void changeToSelectCondition(MouseEvent event) {
-
+        maskLabel.setVisible(true);
+        UIJumpTool.getUiJumpTool().changeToSelectCondition();
     }
 
+    //点击新建订单，跳转到新建订单界面
     @FXML
     void createOrder(MouseEvent event) {
 
@@ -157,6 +170,8 @@ public class BrowseHotelUIController {
     void searchByName(ActionEvent event) {
 
     }
+
+    public void setMaskLabel(boolean visible){maskLabel.setVisible(visible);}
 
     @FXML
     void initialize() {
@@ -190,6 +205,6 @@ public class BrowseHotelUIController {
         assert lastPageLabel != null : "fx:id=\"lastPageLabel\" was not injected: check your FXML file '酒店浏览（用户视角）.fxml'.";
         assert nextPageLable != null : "fx:id=\"nextPageLable\" was not injected: check your FXML file '酒店浏览（用户视角）.fxml'.";
         assert pageField != null : "fx:id=\"pageField\" was not injected: check your FXML file '酒店浏览（用户视角）.fxml'.";
-
+        assert maskLabel != null : "fx:id=\"maskLabel\" was not injected: check your FXML file '酒店浏览（用户视角）.fxml'.";
     }
 }

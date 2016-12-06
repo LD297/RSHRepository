@@ -190,7 +190,7 @@
                </font>
             </Label>
          </children></AnchorPane>
-      <AnchorPane layoutX="369.0" layoutY="600.0" prefHeight="50.0" prefWidth="240.0" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="20.0">
+      <AnchorPane layoutX="540.0" layoutY="589.0" prefHeight="50.0" prefWidth="240.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0">
          <children>
             <Button layoutX="139.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #ff5a5f;" text="提交订单" textFill="WHITE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                <font>
@@ -209,24 +209,16 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="750.0" layoutY="603.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="145.0" AnchorPane.rightAnchor="20.0">
-         <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-1.0" layoutY="-15.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="@../images/加号.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="720.0" layoutY="585.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="145.0" AnchorPane.rightAnchor="54.0">
-         <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-1.0" layoutY="-15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="@../images/减号.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
       <Separator layoutX="378.0" layoutY="66.0" orientation="VERTICAL" prefHeight="120.0" prefWidth="5.0" AnchorPane.leftAnchor="396.0" AnchorPane.topAnchor="16.0" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="711.0" layoutY="543.0" AnchorPane.bottomAnchor="-543.0" AnchorPane.leftAnchor="711.0" AnchorPane.rightAnchor="-711.0" AnchorPane.topAnchor="543.0">
+         <image>
+            <Image url="@../images/减号.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="750.0" layoutY="543.0" AnchorPane.leftAnchor="750.0" AnchorPane.topAnchor="543.0">
+         <image>
+            <Image url="@../images/加号.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
