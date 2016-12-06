@@ -1,5 +1,6 @@
 package data.daohelperimpl.hoteldaohelperimpl;
 
+import data.daohelper.HotelDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.HotelPO;
 import po.HotelStaffPO;
@@ -11,7 +12,6 @@ import vo.SelectConditionVO;
 import constant.ResultMessage;
 import constant.SortBy;
 import constant.SortMethod;
-import data.daohelper.DaoHelperMySql;
 
 import java.rmi.RemoteException;
 import java.sql.Connection;
@@ -23,12 +23,11 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
-import java.util.Timer;
 
 /**
  * Created by a297 on 16/11/27.
  */
-public class HotelDaoHelperMySql extends DaoHelperMySql{
+public class HotelDaoHelperMySql implements HotelDaoHelper{
     private DBHelper db = new DBHelper();
 
     public void init(){

@@ -2,13 +2,11 @@ package data.daohelperimpl.orderdaohelperimpl;
 
 import constant.ResultMessage;
 import constant.StateOfOrder;
-import data.daohelper.DaoHelperMySql;
+import data.daohelper.OrderDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.OrderPO;
 import vo.RoomNormVO;
 
-import java.io.File;
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,7 +17,7 @@ import java.sql.SQLException;
 /**
  * Created by sky-PC on 2016/11/27.
  */
-public class OrderDaoHelperMySql extends DaoHelperMySql {
+public class OrderDaoHelperMySql implements OrderDaoHelper{
 
     private DBHelper db = new DBHelper();
 

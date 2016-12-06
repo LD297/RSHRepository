@@ -14,5 +14,7 @@ public interface DaoHelperFactory {
 
     public UserDaoHelper getUserDaoHelper();
 
+    public CredeiRecordListDaoHelper getCrediRecordListDdaoHelper();
+
     public LoginDaoHelper getLoginDaoHelper();
 }

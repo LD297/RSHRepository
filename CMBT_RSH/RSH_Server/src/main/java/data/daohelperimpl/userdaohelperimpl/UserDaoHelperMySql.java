@@ -4,6 +4,7 @@ import constant.MemberType;
 import constant.ResultMessage;
 import constant.Sexuality;
 import data.dao.userdao.UserDao;
+import data.daohelper.UserDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.UserPO;
 
@@ -16,7 +17,7 @@ import java.sql.SQLException;
 /**
  * Created by sky-PC on 2016/12/3.
  */
-public class UserDaoHelperMySql {
+public class UserDaoHelperMySql implements UserDaoHelper{
 
     private DBHelper db = new DBHelper();
 

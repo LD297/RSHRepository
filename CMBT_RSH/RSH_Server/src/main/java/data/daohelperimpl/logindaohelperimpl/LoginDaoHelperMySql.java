@@ -2,6 +2,7 @@ package data.daohelperimpl.logindaohelperimpl;
 
 import constant.ResultMessage;
 import constant.Role;
+import data.daohelper.LoginDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.OnlinePersonPO;
 
@@ -12,7 +13,7 @@ import java.rmi.RemoteException;
 /**
  * Created by sky-PC on 2016/12/3.
  */
-public class LoginDaoHelperMySql {
+public class LoginDaoHelperMySql implements LoginDaoHelper{
     private DBHelper db = new DBHelper();
 
     public void init(){

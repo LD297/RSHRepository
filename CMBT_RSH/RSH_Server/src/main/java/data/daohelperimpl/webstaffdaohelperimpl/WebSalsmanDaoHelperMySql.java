@@ -1,6 +1,7 @@
 package data.daohelperimpl.webstaffdaohelperimpl;
 
 import constant.ResultMessage;
+import data.daohelper.WebSalesmanDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.WebSalesmanPO;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by sky-PC on 2016/12/3.
  */
-public class WebSalsmanDaoHelperMySql {
+public class WebSalsmanDaoHelperMySql implements WebSalesmanDaoHelper{
     private DBHelper db = new DBHelper();
 
     public void init(){

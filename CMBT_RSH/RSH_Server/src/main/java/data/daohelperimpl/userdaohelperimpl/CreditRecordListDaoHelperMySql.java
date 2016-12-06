@@ -2,6 +2,7 @@ package data.daohelperimpl.userdaohelperimpl;
 
 import constant.CreditAction;
 import constant.ResultMessage;
+import data.daohelper.CredeiRecordListDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.CreditRecordPO;
 
@@ -18,7 +19,7 @@ import java.util.Iterator;
 /**
  * Created by sky-PC on 2016/12/3.
  */
-public class CreditRecordListDaoHelperMySql {
+public class CreditRecordListDaoHelperMySql implements CredeiRecordListDaoHelper{
 
     private DBHelper db = new DBHelper();
 

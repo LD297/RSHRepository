@@ -19,8 +19,8 @@ public class PromotionPO {
 	String  conditionType;
 	int condionNum;
 
-    String promotionType;
-	int promotionNum;
+    String deductionType;
+	int deductionNum;
 
 	public static PromotionPO changeIntoPo(Promotion tempPromotion){
 

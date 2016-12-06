@@ -1,6 +1,7 @@
 package data.daohelperimpl.promotiondaohelperimpl;
 
 import constant.ResultMessage;
+import data.daohelper.PromotionDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.PromotionPO;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by sky-PC on 2016/12/3.
  */
-public class PromotionDaoHelperMySql {
+public class PromotionDaoHelperMySql implements PromotionDaoHelper{
 
     private DBHelper db = new DBHelper();
 
