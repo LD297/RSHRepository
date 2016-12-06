@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public interface WebSalesmanDao extends Remote{
 
-    public ResultMessage addWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
+    public ResultMessage insertWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
 
     public ResultMessage updateWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
 

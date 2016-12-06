@@ -7,7 +7,7 @@ import data.daoimpl.promotiondaoimpl.PromotionDaoImpl;
 import data.daoimpl.userdaoimpl.CreditRecordListDaoImpl;
 import data.daoimpl.userdaoimpl.UserDaoImpl;
 import data.daoimpl.webstaffdaoimpl.WebManagerDaoImpl;
-import data.daoimpl.webstaffdaoimpl.WebSalesmanDaoTXTImpl;
+import data.daoimpl.webstaffdaoimpl.WebSalesmanDaoImpl;
 
 import java.net.MalformedURLException;
 import java.rmi.AlreadyBoundException;
@@ -28,7 +28,7 @@ public class RemoteHelper {
     private HotelDaoImpl hotelDaoImpl = null;
     private OrderDaoImpl orderDaoImpl = null;
     private WebManagerDaoImpl webManagerDaoImpl = null;
-    private WebSalesmanDaoTXTImpl webSalesmanDaoTXTImpl = null;
+    private WebSalesmanDaoImpl webSalesmanDaoImpl = null;
     private PromotionDaoImpl   promotionDaoImpl = null;
 
 
@@ -54,8 +54,8 @@ public class RemoteHelper {
             Naming.bind("rmi://localhost:8888/OrderDaoImpl",orderDaoImpl );
             webManagerDaoImpl = new WebManagerDaoImpl();
             Naming.bind("rmi://localhost:8888/WebManagerDaoImpl",webManagerDaoImpl );
-            webSalesmanDaoTXTImpl = new WebSalesmanDaoTXTImpl();
-            Naming.bind("rmi://localhost:8888/WebSalesmanDaoTXTImpl", webSalesmanDaoTXTImpl);
+            webSalesmanDaoImpl = new WebSalesmanDaoImpl();
+            Naming.bind("rmi://localhost:8888/WebSalesmanDaoImpl", webSalesmanDaoImpl);
             promotionDaoImpl = new PromotionDaoImpl();
             Naming.bind("rmi://localhost:8888/PromotionDaoImpl",promotionDaoImpl);
 

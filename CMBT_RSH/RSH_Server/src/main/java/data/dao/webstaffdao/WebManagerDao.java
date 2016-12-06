@@ -10,6 +10,9 @@ import java.rmi.RemoteException;
  * Created by aa on 2016/11/22.
  */
 public interface WebManagerDao extends Remote{
-    public ResultMessage updateManager (String managerID, String password)throws RemoteException;
+    public ResultMessage updateManager (WebManagerPO webManagerPO)throws RemoteException;
+
     public WebManagerPO getManagerInstance(String managerID)throws RemoteException;
+
+//    public ResultMessage insertManagerPO(WebManagerPO webManagerPO)throws RemoteException;
 }

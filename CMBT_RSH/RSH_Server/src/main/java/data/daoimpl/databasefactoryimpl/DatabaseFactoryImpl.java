@@ -14,7 +14,7 @@ import data.daoimpl.orderdaoimpl.OrderDaoImpl;
 import data.daoimpl.userdaoimpl.UserDaoImpl;
 import data.daoimpl.webstaffdaoimpl.WebManagerDaoImpl;
 import data.daoimpl.promotiondaoimpl.PromotionDaoImpl;
-import data.daoimpl.webstaffdaoimpl.WebSalesmanDaoTXTImpl;
+import data.daoimpl.webstaffdaoimpl.WebSalesmanDaoImpl;
 
 import java.io.File;
 import java.io.IOException;
@@ -76,7 +76,7 @@ public class DatabaseFactoryImpl implements DatabaseFactory {
     };
 
     public WebSalesmanDao getWebSalesmanDatabase()throws RemoteException{
-        WebSalesmanDao webSalesmanDatabase = new WebSalesmanDaoTXTImpl();
+        WebSalesmanDao webSalesmanDatabase = new WebSalesmanDaoImpl();
         return webSalesmanDatabase;
         }
     }

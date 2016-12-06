@@ -7,6 +7,7 @@ import po.PromotionPO;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by aa on 2016/11/27.
@@ -31,6 +32,11 @@ public class PromotionDaoImpl extends UnicastRemoteObject implements PromotionDa
     }
 
     public ArrayList<PromotionPO> finds(String str)throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public ArrayList<PromotionPO> finds(Date beginDate, Date endDate) throws RemoteException {
         return null;
     }
 }

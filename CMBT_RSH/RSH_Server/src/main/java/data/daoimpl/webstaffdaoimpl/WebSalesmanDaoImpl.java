@@ -34,7 +34,9 @@ public class WebSalesmanDaoImpl extends UnicastRemoteObject implements WebSalesm
     }*/
 
 
-    public ResultMessage addWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException {
+
+    @Override
+    public ResultMessage insertWebSalesman(WebSalesmanPO webSalesmanPO) throws RemoteException {
         return null;
     }
 
