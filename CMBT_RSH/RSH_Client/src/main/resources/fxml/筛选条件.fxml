@@ -13,11 +13,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.SelectConditionUIController">
    <children>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="471.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cancelImage" fitHeight="30.0" fitWidth="30.0" layoutX="471.0" layoutY="-1.0" onMouseClicked="#closeSelectContion" onMouseEntered="#changeCancelImageToRed" onMouseExited="#changeCancelImageToGray" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/CIRCLE%20_%20DELETE.png" />
+            <Image url="@../images/cancel.png" />
          </image>
       </ImageView>
       <Label layoutX="14.0" layoutY="29.0" prefHeight="30.0" prefWidth="46.0" text="房间" textFill="#484848">
@@ -25,26 +25,26 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <DatePicker layoutX="91.0" layoutY="83.0" prefHeight="30.0" prefWidth="155.0" promptText="入住" />
-      <DatePicker layoutX="308.0" layoutY="83.0" prefHeight="30.0" prefWidth="155.0" promptText="退房" />
+      <DatePicker fx:id="checkinTimePicker" layoutX="91.0" layoutY="83.0" prefHeight="30.0" prefWidth="155.0" promptText="入住" />
+      <DatePicker fx:id="checkoutTimePicker" layoutX="308.0" layoutY="83.0" prefHeight="30.0" prefWidth="155.0" promptText="退房" />
       <Label layoutX="254.0" layoutY="83.0" prefHeight="30.0" prefWidth="46.0" text="    ~" textFill="#484848">
          <font>
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="206.0" layoutY="29.0" prefHeight="30.0" prefWidth="124.0" promptText="最低价格">
+      <TextField fx:id="lowestPriceField" layoutX="206.0" layoutY="29.0" prefHeight="30.0" prefWidth="124.0" promptText="最低价格">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </TextField>
-      <TextField layoutX="330.0" layoutY="29.0" prefHeight="30.0" prefWidth="133.0" promptText="最高价格">
+      <TextField fx:id="highestPriceField" layoutX="330.0" layoutY="29.0" prefHeight="30.0" prefWidth="133.0" promptText="最高价格">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </TextField>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="30.0" layoutX="91.0" layoutY="29.0" stroke="#bcbcbc" strokeType="INSIDE" width="89.0" />
-      <ComboBox layoutX="96.0" layoutY="31.0" prefHeight="26.0" prefWidth="80.0" promptText="类型" style="-fx-background-color: #f4f4f4;" />
-      <TextField layoutX="91.0" layoutY="135.0" prefHeight="30.0" prefWidth="124.0" promptText="数量">
+      <ComboBox fx:id="roomtypeCombobox" layoutX="96.0" layoutY="31.0" prefHeight="26.0" prefWidth="80.0" promptText="类型" style="-fx-background-color: #f4f4f4;" />
+      <TextField fx:id="roomNumField" layoutX="91.0" layoutY="135.0" prefHeight="30.0" prefWidth="124.0" promptText="数量">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
@@ -54,44 +54,44 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="91.0" layoutY="186.0" prefHeight="30.0" prefWidth="124.0" promptText="最低评分">
+      <TextField fx:id="lowestGradeField" layoutX="91.0" layoutY="186.0" prefHeight="30.0" prefWidth="124.0" promptText="最低评分">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </TextField>
-      <TextField layoutX="215.0" layoutY="186.0" prefHeight="30.0" prefWidth="124.0" promptText="最高评分">
+      <TextField fx:id="highestGradeField" layoutX="215.0" layoutY="186.0" prefHeight="30.0" prefWidth="124.0" promptText="最高评分">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </TextField>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="30.0" layoutX="374.0" layoutY="186.0" stroke="#bcbcbc" strokeType="INSIDE" width="89.0" />
-      <ComboBox layoutX="379.0" layoutY="188.0" prefHeight="26.0" prefWidth="80.0" promptText="星级" style="-fx-background-color: #f4f4f4;" />
+      <ComboBox fx:id="starLevelCombobox" layoutX="379.0" layoutY="188.0" prefHeight="26.0" prefWidth="80.0" promptText="星级" style="-fx-background-color: #f4f4f4;" />
       <Label layoutX="14.0" layoutY="243.0" prefHeight="30.0" prefWidth="46.0" text="排序" textFill="#484848">
          <font>
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <RadioButton layoutX="96.0" layoutY="249.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="133.0" text="价格从高到低" textFill="#484848">
+      <RadioButton fx:id="priceFromHighToLow" layoutX="96.0" layoutY="249.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="133.0" text="价格从高到低" textFill="#484848">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="296.0" layoutY="249.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="133.0" text="价格从低到高" textFill="#484848">
+      <RadioButton fx:id="priceFromLowToHigh" layoutX="296.0" layoutY="249.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="133.0" text="价格从低到高" textFill="#484848">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="96.0" layoutY="285.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="133.0" text="评分从高到低" textFill="#484848">
+      <RadioButton fx:id="gradeFromHighToLow" layoutX="96.0" layoutY="285.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="133.0" text="评分从高到低" textFill="#484848">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="296.0" layoutY="285.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="133.0" text="评分从低到高" textFill="#484848">
+      <RadioButton fx:id="gradeFromLowToHigh" layoutX="296.0" layoutY="285.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="133.0" text="评分从低到高" textFill="#484848">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </RadioButton>
-      <Button layoutX="308.0" layoutY="352.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="155.0" style="-fx-background-color: #ff5a5f;" text="过滤筛选结果" textFill="WHITE">
+      <Button fx:id="selectButton" layoutX="308.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#finishSelect" prefHeight="23.0" prefWidth="155.0" style="-fx-background-color: #ff5a5f;" text="过滤筛选结果" textFill="WHITE">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
@@ -101,12 +101,12 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <RadioButton layoutX="96.0" layoutY="321.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="46.0" text="是" textFill="#484848">
+      <RadioButton fx:id="reservedButton" layoutX="96.0" layoutY="321.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="46.0" text="是" textFill="#484848">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="169.0" layoutY="321.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="38.0" text="否" textFill="#484848">
+      <RadioButton fx:id="unreservedButton" layoutX="169.0" layoutY="321.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="38.0" text="否" textFill="#484848">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>

@@ -16,13 +16,11 @@ import java.io.IOException;
 public class Launcher extends Application{
     public void start(Stage stage){
         try{
-            FXMLLoader loader = UserUIFXMLFactory.getUserUIFXMLFactory().getRoleChooseLoader();
-            AnchorPane root = loader.load();
-            Scene scene = new Scene(root,800,720);
+            AnchorPane roleChoose = UserUIFXMLFactory.getUserUIFXMLFactory().getRoleChoose();
+            Scene scene = new Scene(roleChoose,800,720);
             stage.setTitle("RSH");
             stage.setScene(scene);
             UIJumpTool.getUiJumpTool().setStage(stage);
-
             stage.show();
         }catch (Exception e){
             e.printStackTrace();

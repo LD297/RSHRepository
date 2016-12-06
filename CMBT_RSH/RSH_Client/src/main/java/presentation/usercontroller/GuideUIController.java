@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import presentation.tools.UIJumpTool;
 
 public class GuideUIController {
 
@@ -41,23 +42,26 @@ public class GuideUIController {
     @FXML
     private ImageView headMaskImage;
 
-    private AnchorPane lastPane = null;
 
+    //点击help label跳出help提示框
     @FXML
     void changeToHeplInfo(MouseEvent event) {
 
     }
 
+    //点击退出label跳转到登陆界面
     @FXML
     void changeToLogin(MouseEvent event) {
-
+        UIJumpTool.getUiJumpTool().changeGuideToLogin();
     }
 
+    //点击搜索框跳转到搜索酒店界面，并且设置光标
     @FXML
     void changeToSearchHotel(ActionEvent event) {
-
+        UIJumpTool.getUiJumpTool().changeToSearchHotel();
     }
 
+    //点击头像跳转到用户个人信息界面
     @FXML
     void changeToUserInfo(MouseEvent event) {
 
@@ -68,7 +72,7 @@ public class GuideUIController {
 
     }
 
-    void setLastPane(AnchorPane lastPane){this.lastPane = lastPane; }
+    public void setBackImage(boolean visible){backImage.setVisible(visible);}
 
     @FXML
     void initialize() {
