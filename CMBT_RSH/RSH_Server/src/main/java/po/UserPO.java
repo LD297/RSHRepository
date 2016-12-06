@@ -20,13 +20,15 @@ public class UserPO implements Serializable{
 	Sexuality sexuality;
 	String eMail;
 	int credit;
+	String birthday;
 	
 	public UserPO(String id, String password, String nickName, String imageAddress,
-			int level, MemberType memberType, int credit,
+            String birth,int level, MemberType memberType, int credit,
 				  String name, Sexuality sexuality, String eMail) {
 		this.id = id;
 		this.nickName = nickName;
 		this.imageAddress = imageAddress;
+        this.birthday = birth;
 		this.level = level;
 		this.memberType = memberType;
 		this.name = name;
@@ -44,6 +46,9 @@ public class UserPO implements Serializable{
 	public String getImageAddress() {
 		return imageAddress;
 	}
+	public String getBirthday(){
+        return birthday;
+    }
 	public int getLevel() {
 		return level;
 	}

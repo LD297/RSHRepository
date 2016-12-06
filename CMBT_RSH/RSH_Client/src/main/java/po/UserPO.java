@@ -1,13 +1,13 @@
 package po;
 
+import java.io.Serializable;
+
 import constant.MemberType;
 import constant.Sexuality;
 
-import java.io.Serializable;
-
 public class UserPO implements Serializable{
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -8288241397984958515L;
 	String id;
@@ -20,13 +20,15 @@ public class UserPO implements Serializable{
 	Sexuality sexuality;
 	String eMail;
 	int credit;
-	
+	String birthday;
+
 	public UserPO(String id, String password, String nickName, String imageAddress,
-				  int level, MemberType memberType, int credit,
+				  String birth,int level, MemberType memberType, int credit,
 				  String name, Sexuality sexuality, String eMail) {
 		this.id = id;
 		this.nickName = nickName;
 		this.imageAddress = imageAddress;
+		this.birthday = birth;
 		this.level = level;
 		this.memberType = memberType;
 		this.name = name;
@@ -35,7 +37,6 @@ public class UserPO implements Serializable{
 		this.credit = credit;
 		this.password = password;
 	}
-
 	public String getId() {
 		return id;
 	}
@@ -44,6 +45,9 @@ public class UserPO implements Serializable{
 	}
 	public String getImageAddress() {
 		return imageAddress;
+	}
+	public String getBirthday(){
+		return birthday;
 	}
 	public int getLevel() {
 		return level;

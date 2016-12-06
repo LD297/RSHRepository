@@ -8,6 +8,7 @@ public class UserVO {
 	String password;
 	String nickName;
 	String imageAddress;
+	String birthday;
 	int level;
 	MemberType memberType;
 	String name;
@@ -16,11 +17,12 @@ public class UserVO {
 	int credit;
 	
 	public UserVO(String id, String password, String nickName, 
-			String imageAddress, int level, MemberType memberType, String name,
+			String imageAddress,String birth, int level, MemberType memberType, String name,
 			Sexuality sexuality, String eMail, int credit) {
 		this.id = id;
 		this.nickName = nickName;
 		this.imageAddress = imageAddress;
+		this.birthday = birth;
 		this.level = level;
 		this.memberType = memberType;
 		this.name = name;
@@ -37,6 +39,9 @@ public class UserVO {
 	}
 	public String getImageAddress() {
 		return imageAddress;
+	}
+	public String getBirthday(){
+		return birthday;
 	}
 	public int getLevel() {
 		return level;

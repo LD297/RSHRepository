@@ -24,23 +24,7 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
     private DBHelper db = new DBHelper();
 
     public void init(){
-        String path = "D:\\360downloads";
-        File f = new File(path);
-        if(!f.exists()){
-            f.mkdirs();
-        }
-        // fileName表示你创建的文件名；
-        String fileName = "Order.db";
-        File file = new File(f,fileName);
-        if(!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
-        db.executeSql("USE Test");
         //订单编号 房间类型 房间原价 房间现价 房间数量 促销策略
         db.executeSql("CREATE TABLE OrderRooms(orderID char(26),roomType varchar(10),originPrice double,truePrice double,roomNum tinyint,promotion varchar(20))");
         // 订单编号 用户编号 酒店编号 订单状态
@@ -51,13 +35,14 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
                 "comment varchar(30),grade tinyint,checkIn datetime,checkOut datetime,limitNum tinyint)");
     }
     public void finish(){
-        File f = new File("D:\\360downloads\\OrderList.db");  // 输入要删除的文件位置
-        if(f.exists())
-            f.delete();
+        db.executeSql("USE OurData");
+        db.executeSql("DROP TABLE IF EXIST OrderGeneral");
+        db.executeSql("DROP TABLE IF EXIST OrderRooms ");
     }
     //根据订单编号查找订单
     public OrderPO find(String orderid) throws RemoteException{
-        db.executeSql("USE Test");
+        db.executeSql("USE OurData");
+
         String sqlDetail = "SELECT *FROM OrderGeneral WHERE orderID='"+orderid+"'LIMIT 1";
         ResultSet result = db.query(sqlDetail);
         System.out.println("selectsql!");
@@ -119,6 +104,8 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
     }
     //根据用户编号查找订单
     public ArrayList<OrderPO> userFind(String userid) throws RemoteException {
+        db.executeSql("USE OurData");
+
         String sqlGeneral = "SELECT *FROM OrderGeneral WHERE userID='" + userid + "'";
         ResultSet result = db.query(sqlGeneral);
         ArrayList<OrderPO> userOrderList = new ArrayList<OrderPO>();
@@ -147,6 +134,8 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
     }
     //根据酒店编号查找订单
     public ArrayList<OrderPO> hotelFind(String hotelid) throws RemoteException{
+        db.executeSql("USE OurData");
+
         String sqlGeneral = "SELECT *FROM OrderGeneral WHERE userID = '" + hotelid + "'";
         ResultSet result = db.query(sqlGeneral);
         ArrayList<OrderPO> hotelOrderList = new ArrayList<OrderPO>();
@@ -178,6 +167,8 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
     };
     //根据状态查找订单
     public ArrayList<OrderPO> stateFind(StateOfOrder state) throws RemoteException{
+        db.executeSql("USE OurData");
+
         int s = this.getStateNum(state);
         String sqlGeneral = "SELECT *FROM OrderGeneral WHERE state='" +String.valueOf(s)+ "'";
         ResultSet result = db.query(sqlGeneral);
@@ -206,6 +197,7 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
     };
     //新建订单
     public ResultMessage insert(OrderPO orderpo) throws RemoteException{
+        db.executeSql("USE OurData");
 
         String orderid = orderpo.getOrderid();
         String userid = orderpo.getUserid();
@@ -243,6 +235,8 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
 
     //订单状态更新
     public ResultMessage stateUpdate(String orderid,StateOfOrder newstate) throws RemoteException{
+        db.executeSql("USE OurData");
+
         int s = this.getStateNum(newstate);
         String stateupdateSql = "UPDATE OrderGeneral SET state=" +String.valueOf(s)+" WHERE orderID='"+orderid+"'";
         db.executeSql(stateupdateSql);
@@ -250,6 +244,8 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
     }
     //评价订单
     public ResultMessage commentUpdate(String orderid, double grade, String comment) throws RemoteException{
+        db.executeSql("USE OurData");
+
         String updatecommentSql = "UPDATE OrderGeneral SET grade="+String.valueOf(grade)+
                 ",comment='"+comment+"' WHERE orderID='"+orderid+"'";
         db.executeSql(updatecommentSql);
@@ -257,6 +253,8 @@ public class OrderDaoHelperMySql extends DaoHelperMySql {
     }
     //订单实际离开时间更新
     public ResultMessage leaveUpdate(String orderid,Date leavetime) throws RemoteException{
+        db.executeSql("USE OurData");
+
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         String str=sdf.format(leavetime);
         String leavetimeupdateSql = "UPDATE OrderGeneral SET checkOut='"+str+"' WHERE orderID='"+orderid+"'";

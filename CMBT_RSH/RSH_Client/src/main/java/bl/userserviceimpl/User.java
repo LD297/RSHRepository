@@ -78,7 +78,7 @@ public class User {
 	 * @return
 	 */
 	private UserPO create(UserVO vo) {
-		UserPO po = new UserPO(vo.getId(), vo.getPassword(), vo.getNickName(),vo.getImageAddress(),
+		UserPO po = new UserPO(vo.getId(), vo.getPassword(), vo.getNickName(),vo.getImageAddress(),vo.getBirthday(),
 				vo.getLevel(), vo.getMemberType(), vo.getCredit(),
 				vo.getName(), vo.getSexuality(), vo.geteMail() ){};
 		return po;
@@ -90,7 +90,7 @@ public class User {
 	 */
 	private UserVO unpackedPO(UserPO po) {
 		UserVO vo = new UserVO(po.getId(),po.getPassword(),po.getNickName(),
-				po.getImageAddress(),po.getLevel(),po.getMemberType(),po.getName(),
+				po.getImageAddress(),po.getBirthday(),po.getLevel(),po.getMemberType(),po.getName(),
 				po.getSexuality(),po.geteMail(),po.getCredit());
 		return vo;
 	}
