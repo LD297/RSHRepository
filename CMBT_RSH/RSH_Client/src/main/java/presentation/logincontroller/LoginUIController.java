@@ -14,6 +14,7 @@ import constant.Role;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -24,6 +25,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import presentation.tools.*;
+import presentation.usercontroller.GuideUIController;
 import presentation.usercontroller.SearchHotelUIController;
 
 public class LoginUIController {
@@ -49,107 +52,68 @@ public class LoginUIController {
     @FXML
     private ImageView cancelImage;
 
-    private AnchorPane parentAnchorPane;
     private Role role;
 
     //image
-    private Image showImage = new Image("/images/下拉箭头.png");
-    private Image hideImage = new Image("/images/收回箭头.png");
-    private Image cancel_gray = new Image("images/cancel.png");
-    private Image cancel_red = new Image("images/red_cancel.png");
+    private Image showImage = ImageFactory.getImageFactory().getShowImage();
+    private Image hideImage = ImageFactory.getImageFactory().getHideImage();
+    private Image cancel_gray = ImageFactory.getImageFactory().getCancel_gray();
+    private Image cancel_red = ImageFactory.getImageFactory().getCancel_red();
 
     private boolean show = true;//true表示当前是下拉箭头
 
 
+    //输入用户名和密码之后敲击回车完成登陆，跳转到相应的客户端的主界面
     @FXML
     void finishInput(ActionEvent event) {
         String id = idField.getText();
         String password = passwordField.getText();
+        //TODO 输入格式检查
         LoginService loginService = new LoginController();
         ResultMessage resultMessage = loginService.checkOnline(role,id,password);
         if(resultMessage==resultMessage.succeed){
-
             if(role == Role.user){
                 //跳转到搜索酒店界面
-                AnchorPane guide = null;
-                AnchorPane searchHotel = null;
-                FXMLLoader guideLoader = new FXMLLoader(getClass().getResource("/fxml/导航栏.fxml"));
-                FXMLLoader searchHotelLoader = new FXMLLoader(getClass().getResource("/fxml/搜索酒店.fxml"));
-                try {
-                    guide = guideLoader.load();
-                    searchHotel = searchHotelLoader.load();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-                GridPane gridPane = (GridPane)guide.getChildren().get(0);
-                gridPane.add(searchHotel,0,1);
-                Scene scene = new Scene(guide,800.0,720.0);
-                Stage stage = (Stage)parentAnchorPane.getScene().getWindow();
-                stage.setScene(scene);
-                //用于从酒店搜索界面跳转到酒店浏览界面
-                SearchHotelUIController searchHotelUIController = (SearchHotelUIController)searchHotelLoader.getController();
-                searchHotelUIController.setGuide(guide);
+                UIJumpTool.getUiJumpTool().changeLoginToSearchHotel();
             }else if(role==Role.hotel){
                 //跳转到hotel主界面
+                UIJumpTool.getUiJumpTool().changeLoginToHotelHomePage();
             }else if(role==Role.websalesman){
-                //跳转到websalesman主界面
+                //TODO 跳转到websalesman主界面
             }else{
-                //跳转到webmanager主界面
+                //TODO 跳转到webmanager主界面
             }
         }else{
-            //用户名和密码错误，或者登陆冲突
+            //TODO 用户名和密码错误，或者登陆冲突
         }
     }
 
+    //展开或收起登陆下拉界面
     @FXML
     void hideOrShow(MouseEvent event) {
         if(show){//如果当前是下拉箭头
-            showMoreImage.setImage(hideImage);
+            showMoreImage.setImage(hideImage);//将箭头改为收起箭头
             show = false;
-            //加载登陆下拉界面
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/登陆下拉.fxml"));
-            AnchorPane belowLogin = null;
-            try {
-                belowLogin = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //在身份选择界面添加登陆下拉界面
-            AnchorPane temp =(AnchorPane) parentAnchorPane.getChildren().get(parentAnchorPane.getChildren().size()-1);
-            parentAnchorPane.getChildren().set(parentAnchorPane.getChildren().size()-1,belowLogin);
-            parentAnchorPane.getChildren().add(temp);
-            //设置登陆下拉在身份选择界面的位置
-            AnchorPane.setRightAnchor(belowLogin,276.0);
-            AnchorPane.setLeftAnchor(belowLogin,276.0);
-            AnchorPane.setBottomAnchor(belowLogin,223.0);
-            AnchorPane.setTopAnchor(belowLogin,446.0);
-            //用于在注册界面关闭时还原登陆场景
-            BelowLoginUIController belowLoginUIController = (BelowLoginUIController)loader.getController();
+            BelowLoginUIController belowLoginUIController = UIJumpTool.getUiJumpTool().addLoginBelow();
             belowLoginUIController.setRole(role);
-            belowLoginUIController.setParentAnchorPane(parentAnchorPane);
             belowLoginUIController.setLoginUIController(this);
         }else {//如果当前是收起箭头
-            System.out.print("true");
-            showMoreImage.setImage(showImage);
+            showMoreImage.setImage(showImage);//将箭头改为下拉箭头
             show = true;
             //删除登陆下拉界面
-            int size = parentAnchorPane.getChildren().size();
-            parentAnchorPane.getChildren().remove(size-2);
+            UIJumpTool.getUiJumpTool().removeLoginBelow();
         }
     }
 
-    //取消登陆，返回身份选择界面
+    //点击叉叉，取消登陆，返回身份选择界面
     @FXML
     void backToRoleChoose(MouseEvent event) {
         if(!show){//如果当前是收起箭头，说明登陆下拉界面已经被放在身份选择界面上，这时要先删除登陆下拉界面
             //删除登陆下拉界面
-            int size = parentAnchorPane.getChildren().size();
-            parentAnchorPane.getChildren().remove(size-1);
+            UIJumpTool.getUiJumpTool().removeLoginBelow();
         }
         //删除登陆界面
-        parentAnchorPane.getChildren().remove(parentAnchorPane.getChildren().size() - 1);
-        //将身份选择界面的蒙板去掉
-        ((Label) parentAnchorPane.getChildren().get(parentAnchorPane.getChildren().size() - 1)).setVisible(false);
+         UIJumpTool.getUiJumpTool().removeLogin();
     }
 
     //将取消的叉叉变为灰色
@@ -164,17 +128,22 @@ public class LoginUIController {
         cancelImage.setImage(cancel_red);
     }
 
-    void setParentAnchorPane(AnchorPane parentAnchorPane){
-        this.parentAnchorPane = parentAnchorPane;
-    }
-
     void setRole(Role role){
         this.role = role;
     }
 
-    ImageView getShowMoreImage(){return showMoreImage;}
+    void setShow(boolean show){
+        this.show = show;
+        if(show){
+            showMoreImage.setImage(showImage);
+        }else {
+            showMoreImage.setImage(hideImage);
+        }
+    }
 
-    void setShow(boolean show){this.show = show;}
+    void setShowMoreImage(boolean visible){
+        showMoreImage.setVisible(visible);
+    }
 
     @FXML
     void initialize() {

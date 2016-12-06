@@ -18,6 +18,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.logincontroller.LoginUIController;
+import presentation.tools.UIJumpTool;
 
 public class UserRegisterUIController {
 
@@ -60,32 +62,27 @@ public class UserRegisterUIController {
     @FXML
     private ImageView returnImage;
 
-    private AnchorPane parentAnchorPane;
+    private LoginUIController loginUIController = null;
 
-    //舍弃一切注册的内容，直接返回
+    //点击返回箭头，舍弃一切注册的内容，直接返回
     @FXML
     void backToLogin(MouseEvent event) {
-        back();
+        UIJumpTool.getUiJumpTool().changeRegisterToLogin();
     }
 
-    //将该用户注册的内容存到数据库，并且返回到登陆界面，set登陆界面的用户名和密码
+    //点击完成注册，将该用户注册的内容存到数据库，并且返回到登陆界面，set登陆界面的用户名和密码
     @FXML
     void finishRegister(MouseEvent event) {
         //TODO 将该用户注册的内容存到数据库
         //返回到登陆界面
-        back();
+        UIJumpTool.getUiJumpTool().changeRegisterToLogin();
         //TODO set登陆界面的用户名和密码
 
     }
 
-    //返回到登陆场景
-    private void back(){
-        Stage stage = (Stage)nameField.getScene().getWindow();
-        stage.setScene(parentAnchorPane.getScene());
-
+    public void setLoginUIController(LoginUIController loginUIController) {
+        this.loginUIController = loginUIController;
     }
-
-    public void setParentAnchorPane(AnchorPane parentAnchorPane){this.parentAnchorPane = parentAnchorPane;}
 
     @FXML
     void initialize() {

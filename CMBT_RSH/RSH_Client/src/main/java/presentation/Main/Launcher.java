@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.tools.UIJumpTool;
+import presentation.tools.UserUIFXMLFactory;
 
 import java.io.IOException;
 
@@ -14,11 +16,13 @@ import java.io.IOException;
 public class Launcher extends Application{
     public void start(Stage stage){
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/身份选择.fxml"));
+            FXMLLoader loader = UserUIFXMLFactory.getUserUIFXMLFactory().getRoleChooseLoader();
             AnchorPane root = loader.load();
             Scene scene = new Scene(root,800,720);
             stage.setTitle("RSH");
             stage.setScene(scene);
+            UIJumpTool.getUiJumpTool().setStage(stage);
+
             stage.show();
         }catch (Exception e){
             e.printStackTrace();

@@ -5,7 +5,9 @@ package presentation.logincontroller;
  * Created by john on 2016/12/4.
  */
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 import constant.Role;
 import javafx.fxml.FXML;
@@ -15,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import presentation.tools.*;
 
 public class RoleChooseUIController {
     @FXML
@@ -41,81 +44,44 @@ public class RoleChooseUIController {
     @FXML
     private Label maskLabel;
 
-    //image
-    private Image user_bright = new Image("/images/身份选择界面素材/User_bright.jpg");
-    private Image hotelStaff_bright = new Image("/images/身份选择界面素材/HM_bright.jpg");
-    private Image webSalesman_bright = new Image("/images/身份选择界面素材/WS_bright.jpg");
-    private Image webManager_bright = new Image("/images/身份选择界面素材/WM_bright.jpg");
-    private Image user_dark = new Image("/images/身份选择界面素材/User_dark.png");
-    private Image hotelStaff_dark = new Image("/images/身份选择界面素材/HM_dark.png");
-    private Image webSalesman_dark = new Image("/images/身份选择界面素材/WS_dark.png");
-    private Image webManager_dark = new Image("/images/身份选择界面素材/WM_dark.png");
-
     //考虑能不能用一个map
+    //鼠标移到头像上，头像变亮
     @FXML
     void changeDarkToLight(MouseEvent event) {
         ImageView imageView = (ImageView)event.getSource();
-        if(imageView==userImage){
-            userImage.setImage(user_bright);
-        }else if(imageView==hotelStaffImage){
-            hotelStaffImage.setImage(hotelStaff_bright);
-        }else if(imageView==webSalesmanImage){
-            webSalesmanImage.setImage(webSalesman_bright);
-        }else{
-            webManagerImage.setImage(webManager_bright);
-        }
+        MyMap turnBright = ImageFactory.getImageFactory().
+                getTurnBright(userImage, hotelStaffImage, webSalesmanImage, webManagerImage);
+        imageView.setImage((Image) turnBright.get(imageView));
 
     }
 
+    //鼠标离开头像，头像变暗
     @FXML
     void changeLightToDark(MouseEvent event) {
         ImageView imageView = (ImageView)event.getSource();
-        if(imageView==userImage){
-            userImage.setImage(user_dark);
-        }else if(imageView==hotelStaffImage){
-            hotelStaffImage.setImage(hotelStaff_dark);
-        }else if(imageView==webSalesmanImage){
-            webSalesmanImage.setImage(webSalesman_dark);
-        }else{
-            webManagerImage.setImage(webManager_dark);
-        }
+        MyMap turnDark = ImageFactory.getImageFactory().
+                getTurnDark(userImage, hotelStaffImage, webSalesmanImage, webManagerImage);
+        imageView.setImage((Image) turnDark.get(imageView));
     }
 
+    //点击头像跳转到登陆界面
     @FXML
     void changeToLogin(MouseEvent event) {
         //设置背景
         maskLabel.setVisible(true);
+        //设置uijumptool中的role choose用于之后的界面跳转
+        UIJumpTool.getUiJumpTool().setRoleChoose(anchorPanel);
         //跳转到login界面
-        AnchorPane login = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/登陆.fxml"));
-        try {
-            login = loader.load();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        //在身份选择界面添加登陆界面
-        anchorPanel.getChildren().add(login);
-        //设置Login的位置
-        AnchorPane.setBottomAnchor(login,274.0);
-        AnchorPane.setTopAnchor(login,130.0);
-        AnchorPane.setLeftAnchor(login,276.0);
-        AnchorPane.setRightAnchor(login,276.0);
-        //用于在loginUIController里面设置BelowLoginUIController的位置
-        LoginUIController loginUIController = (LoginUIController)loader.getController();
-        loginUIController.setParentAnchorPane(anchorPanel);
+        LoginUIController loginUIController = UIJumpTool.getUiJumpTool().addLogin();
         //设置LoginUIController的Role
-        Role role;
         ImageView imageView = (ImageView)event.getSource();
-        if(imageView==userImage){
-            role = Role.user;
-        }else if(imageView==hotelStaffImage){
-            role = Role.hotel;
-        }else if(imageView==webSalesmanImage){
-            role = Role.websalesman;
-        }else{
-            role = Role.webmanager;
+        MyMap viewRoleMap = ImageFactory.getImageFactory().
+                getViewRoleMap(userImage, hotelStaffImage, webSalesmanImage, webManagerImage);
+        Role role = (Role) viewRoleMap.get(imageView);
+        loginUIController.setRole(role);
+        if(role!=Role.user){//只有用户才可以看到下拉箭头
+            loginUIController.setShowMoreImage(false);
         }
-       loginUIController.setRole(role);
     }
 
     @FXML

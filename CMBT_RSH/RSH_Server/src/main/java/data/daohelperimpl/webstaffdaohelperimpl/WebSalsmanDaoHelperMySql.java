@@ -17,59 +17,65 @@ public class WebSalsmanDaoHelperMySql {
     private DBHelper db = new DBHelper();
 
     public void init(){
-        //path表示你所创建文件的路径
-        String path = "D:\\360downloads";
-        File f = new File(path);
-        if(!f.exists()){
-            f.mkdirs();
-        }
-        // fileName表示你创建的文件名；
-        String fileName = "WebSalsman.db";
-        File file = new File(f,fileName);
-        if(!file.exists()){
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();}
-        }
 
-        db.executeSql("USE WebSalsman");
+        db.executeSql("USE OurData");
         // 账号 密码
-        db.executeSql("CREATE TABLE WebSalsmanInfo(id char(12),password varchar(30),district varchar(20)" );
+        db.executeSql("CREATE TABLE WebStaffInfo(id char(12),password varchar(30),district varchar(20)" );
     }
 
     public void finish(){
-        File f = new File("D:\\360downloads\\Login.db");  // 输入要删除的文件位置
-        if(f.exists())
-            f.delete();
+        db.executeSql("USE OurData");
+        db.executeSql("DROP TABLE IF EXISTS WebStaffInfo");
     }
+    // 网站营销人员添加
     public ResultMessage addWebSalesman(WebSalesmanPO webSalesmanPO) {
-        String addWebSalesmanSql = "INSERT INTO WebSalesmanInfo VALUES('"+
+        db.executeSql("USE OurData");
+
+        String addWebSalesmanSql = "INSERT INTO WebStaffInfo VALUES('"+
                webSalesmanPO.getID()+"','"+webSalesmanPO.getPassword()+"','"+webSalesmanPO.getDistrict()+"')";
         db.executeSql(addWebSalesmanSql);
         return ResultMessage.succeed;
     }
-
+    // 网站营销人员更新
     public ResultMessage updateWebSalesman(WebSalesmanPO webSalesmanPO) {
-        String updateWebSalesmanSql = "UPDATE WebSalesmanInfo " +
+        db.executeSql("USE OurData");
+
+        String updateWebSalesmanSql = "UPDATE WebStaffInfo " +
                 "SET password='"+webSalesmanPO.getPassword()+"',district='"+webSalesmanPO.getDistrict()+"'"+
                 " WHERE id='"+webSalesmanPO.getID()+"' LIMIT 1";
         db.executeSql(updateWebSalesmanSql);
         return ResultMessage.succeed;
     }
+    // 网站营销人员注销
+    public ResultMessage delWebSalesman(String webSalesmanID) {
+        db.executeSql("USE OurData");
 
-    public ResultMessage delWebSalesman(String SalesmanID) {
-        String delWebSalesmanSql = "DELETE FROM WebSalesmanInfo WHERE id='"+SalesmanID+"' LIMIT 1";
+        String delWebSalesmanSql = "DELETE FROM WebStaffInfo WHERE id='"+webSalesmanID+"' LIMIT 1";
         db.executeSql(delWebSalesmanSql);
         return ResultMessage.succeed;
     }
+    // 网站管理人员 根据id查找 网站营销人员
+    public WebSalesmanPO getSalesmanByID(String webSalesmanID) {
+        db.executeSql("USE OurData");
 
-    public WebSalesmanPO getSalesmanInstance(String SalesmanID) {
+        String getSalesmanByIDSql = "SELECT *FROM WebStaffInfo WHERE id='"+webSalesmanID+"' LIMIT 1";
+        ResultSet result = db.query(getSalesmanByIDSql);
+        try{
+            while (result.next()){
+                WebSalesmanPO po = new WebSalesmanPO(result.getString(1),result.getString(2),result.getString(3));
+                return po;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
         return null;
     }
-
+    // 网站管理人员 根据地区查找 网站营销人员
     public ArrayList<WebSalesmanPO> finds(String district) {
-        String findWebSalesmanByDistrictSql = "SELECT *FROM WebSalesmanInfo WHERE district='"+district +"'";
+        db.executeSql("USE OurData");
+
+        String findWebSalesmanByDistrictSql = "SELECT *FROM WebStaffInfo WHERE district='"+district +"'";
         ResultSet result = db.query(findWebSalesmanByDistrictSql);
         ArrayList<WebSalesmanPO> webSalesmanlist = new ArrayList<WebSalesmanPO>();
         try{
@@ -83,9 +89,11 @@ public class WebSalsmanDaoHelperMySql {
             return null;
         }
     }
-
+    // 网站管理人员 查找 网站营销人员
     public ArrayList<WebSalesmanPO> getAll() {
-        String findAllWebSalesmanSql = "SELECT *FROM WebSalesmanInfo";
+        db.executeSql("USE OurData");
+
+        String findAllWebSalesmanSql = "SELECT *FROM WebStaffInfo";
         ResultSet result = db.query(findAllWebSalesmanSql);
         ArrayList<WebSalesmanPO> webSalesmanlist = new ArrayList<WebSalesmanPO>();
         try{

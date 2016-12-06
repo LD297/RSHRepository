@@ -13,6 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.tools.ImageFactory;
+import presentation.tools.UIJumpTool;
+import presentation.tools.UserUIFXMLFactory;
 import presentation.usercontroller.UserRegisterUIController;
 
 /**
@@ -34,42 +37,26 @@ public class BelowLoginUIController {
     private Label registerLabel;
 
     private Role role;
-    private AnchorPane parentAnchorPane;
     private LoginUIController loginUIController;
+
+
+    //点击注册账号label跳转到注册界面
     @FXML
     void changeToRegister(MouseEvent event) {
         if(role==Role.user){
             //关闭登陆下拉界面
-            int size = parentAnchorPane.getChildren().size();
-            parentAnchorPane.getChildren().remove(size-2);
+            UIJumpTool.getUiJumpTool().removeLoginBelow();
             //将登陆界面的收回箭头改为下拉箭头
-            Image showImage = new Image("/images/下拉箭头.png");
-            loginUIController.getShowMoreImage().setImage(showImage);
             loginUIController.setShow(true);
             //跳转到用户注册界面
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/用户注册.fxml"));
-            AnchorPane userRegister = null;
-            try {
-                userRegister = loader.load();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            Stage stage = (Stage)parentAnchorPane.getScene().getWindow();
-            Scene scene = new Scene(userRegister,800,720);
-            stage.setScene(scene);
-            stage.setTitle("用户注册");
-            //用于在注册界面关闭时还原登陆场景
-            UserRegisterUIController userRegisterUIController = (UserRegisterUIController)loader.getController();
-            userRegisterUIController.setParentAnchorPane(parentAnchorPane);
-
+            UserRegisterUIController userRegisterUIController = UIJumpTool.getUiJumpTool().changeLoginToRegister();
+            userRegisterUIController.setLoginUIController(loginUIController);//用于将用户名和密码返回给登陆界面
         }
     }
 
     void setRole(Role role){
         this.role = role;
     }
-
-    void setParentAnchorPane(AnchorPane parentAnchorPane){this.parentAnchorPane = parentAnchorPane;}
 
     void setLoginUIController(LoginUIController loginUIController){this.loginUIController = loginUIController;}
 

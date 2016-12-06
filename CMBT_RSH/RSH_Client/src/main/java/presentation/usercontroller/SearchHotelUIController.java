@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import presentation.tools.UIJumpTool;
+import presentation.tools.UserUIFXMLFactory;
 
 public class SearchHotelUIController {
 
@@ -50,14 +52,8 @@ public class SearchHotelUIController {
     private void myChangeToHotelBrowse(){
         ResultMessage resultMessage = checkInput();
         if(resultMessage==ResultMessage.succeed){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/酒店浏览（用户视角）.fxml"));
-            AnchorPane browseHotel = null;
-            try {
-                browseHotel = loader.load();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            ((GridPane)guide.getChildren().get(0)).add(browseHotel,0,1);
+            //TODO 传入地址和商圈
+            UIJumpTool.getUiJumpTool().changeSearchHotelToBrowseHotel();
         }else{
             //TODO 提示框
         }
