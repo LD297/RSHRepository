@@ -35,7 +35,7 @@ public class HotelPO implements Serializable{
 	/**
 	 * 酒店评分（根据每次用户评分加权计算后取整）
 	 */
-	private int grade;
+	private double grade;
 	/**
 	 * 最晚入住时间
 	 */
@@ -113,11 +113,11 @@ public class HotelPO implements Serializable{
 		this.level = level;
 	}
 
-	public int getGrade() {
+	public double getGrade() {
 		return grade;
 	}
 
-	public void setGrade(int grade) {
+	public void setGrade(double grade) {
 		this.grade = grade;
 	}
 

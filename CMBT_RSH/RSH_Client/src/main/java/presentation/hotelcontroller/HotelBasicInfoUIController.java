@@ -21,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.tools.HotelUIFactory;
+import vo.HotelVO;
 
 public class HotelBasicInfoUIController {
 
@@ -67,6 +68,8 @@ public class HotelBasicInfoUIController {
     private TextArea facilityTextArea;
 
     private AnchorPane prePane;
+
+    private HotelVO hotelVO;
 
     // 客房信息维护界面根结点
     private AnchorPane roomInfoUIPane;
@@ -176,6 +179,13 @@ public class HotelBasicInfoUIController {
     @FXML
     void confimButtonClicked(MouseEvent event) {
         // TODO 处理信息
+        String name = nameTextField.getText();
+        int level = Integer.valueOf(levelTextField.getText());
+        String latestCheckinTime = checkInDDLTextField.getText();
+        String address = addressTextField.getText();
+        String businessArea = businessAreaTextField.getText();
+
+
         editable = false;
     }
 
@@ -208,4 +218,19 @@ public class HotelBasicInfoUIController {
         assert facilityTextArea != null : "fx:id=\"facilityTextArea\" was not injected: check your FXML file '酒店信息维护.fxml'.";
 
     }
+
+    public void setHotelVO(HotelVO hotelVO) {
+        this.hotelVO = hotelVO;
+        init();
+    }
+
+    public void init(){
+        nameTextField.setText(hotelVO.name);
+        addressTextField.setText(hotelVO.addr);
+        businessAreaTextField.setText(hotelVO.businessArea);
+        checkInDDLTextField.setText(hotelVO.latestCheckinTime);
+        introductionTextArea.setText(hotelVO.briefIntro);
+        facilityTextArea.setText(hotelVO.facility);
+    }
+
 }

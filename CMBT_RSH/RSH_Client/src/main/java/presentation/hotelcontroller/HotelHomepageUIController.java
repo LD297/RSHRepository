@@ -3,6 +3,8 @@ package presentation.hotelcontroller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import bl.hotelserviceimpl.Hotel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.tools.HotelUIFactory;
+import vo.HotelVO;
 
 public class HotelHomepageUIController {
 
@@ -69,6 +72,17 @@ public class HotelHomepageUIController {
     // 关于我们界面控制器
     private static AboutUsUIController aboutUsUIController;
 
+    private HotelVO hotelVO;
+
+    public void setHotelVO(HotelVO hotelVO){
+        this.hotelVO = hotelVO;
+        init();
+    }
+
+    private void init() {
+        // TODO 看看要不要在首页加每个酒店的id或者头像或者名称信息
+    }
+
     // TODO 代码格式一致，后期考虑优化
 
     @FXML
@@ -89,6 +103,7 @@ public class HotelHomepageUIController {
         hotelBasicInfoUIController.setAnchorPane(hotelBasicInUIfoPane);
         // 传入酒店首页根结点引用
         hotelBasicInfoUIController.setPrePane(anchorPane);
+        hotelBasicInfoUIController.setHotelVO(hotelVO);
 
         Scene scene = null;
         if(hotelBasicInUIfoPane.getScene()==null)
