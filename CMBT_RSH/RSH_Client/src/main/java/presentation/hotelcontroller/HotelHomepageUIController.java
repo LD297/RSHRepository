@@ -141,7 +141,7 @@ public class HotelHomepageUIController {
         // 加载关于我们界面根结点
         if(aboutUsUIPane==null)
             try {
-                aboutUsUIPane = loader.load();
+                aboutUsUIPane = (AnchorPane) loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }

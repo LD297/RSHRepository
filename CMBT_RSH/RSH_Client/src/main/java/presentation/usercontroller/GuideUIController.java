@@ -57,19 +57,20 @@ public class GuideUIController {
 
     //点击搜索框跳转到搜索酒店界面，并且设置光标
     @FXML
-    void changeToSearchHotel(ActionEvent event) {
+    void changeToSearchHotel(MouseEvent event) {
         UIJumpTool.getUiJumpTool().changeToSearchHotel();
     }
 
     //点击头像跳转到用户个人信息界面
     @FXML
     void changeToUserInfo(MouseEvent event) {
-
+        UIJumpTool.getUiJumpTool().changeToUserGuide();
     }
 
+    //点击返回箭头
     @FXML
     void back(MouseEvent event) {
-
+        UIJumpTool.getUiJumpTool().back();
     }
 
     public void setBackImage(boolean visible){backImage.setVisible(visible);}

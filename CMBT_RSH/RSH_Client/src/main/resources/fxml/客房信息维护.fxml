@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.RoomInfoUIController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="800.0">
          <image>
@@ -18,7 +18,7 @@
          <content>
             <AnchorPane prefHeight="429.0" prefWidth="583.0">
                <children>
-                  <ListView layoutY="43.0" prefHeight="388.0" prefWidth="578.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                  <ListView layoutY="43.0" prefHeight="501.0" prefWidth="584.0" AnchorPane.bottomAnchor="-112.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="40.0" />
                   <Label layoutX="126.0" layoutY="18.0" text="基本/特色" textFill="#00a699" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="10.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
@@ -43,7 +43,7 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button layoutX="650.0" layoutY="624.0" mnemonicParsing="false" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="615.0">
+      <Button fx:id="confirmButton" layoutX="650.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClicked" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="615.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
@@ -78,5 +78,10 @@
             <Image url="@../images/LOGO.jpg" />
          </image>
       </ImageView>
+      <Button fx:id="backButton" layoutX="601.0" layoutY="615.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

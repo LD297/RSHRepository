@@ -62,8 +62,6 @@ public class UserRegisterUIController {
     @FXML
     private ImageView returnImage;
 
-    private LoginUIController loginUIController = null;
-
     //点击返回箭头，舍弃一切注册的内容，直接返回
     @FXML
     void backToLogin(MouseEvent event) {
@@ -78,10 +76,6 @@ public class UserRegisterUIController {
         UIJumpTool.getUiJumpTool().changeRegisterToLogin();
         //TODO set登陆界面的用户名和密码
 
-    }
-
-    public void setLoginUIController(LoginUIController loginUIController) {
-        this.loginUIController = loginUIController;
     }
 
     @FXML
