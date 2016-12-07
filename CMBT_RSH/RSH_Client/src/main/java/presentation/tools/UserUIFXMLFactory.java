@@ -31,6 +31,83 @@ public class UserUIFXMLFactory {
         return userUIFXMLFactory;
     }
 
+    public AnchorPane getUserGuide(){
+        FXMLLoader userGuideLoader = new FXMLLoader(getClass().getResource("/fxml/用户导航栏.fxml"));
+        AnchorPane userGuide = null;
+        try {
+            userGuide = userGuideLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return userGuide;
+    }
+
+    public AnchorPane getUserInfo(){
+        FXMLLoader userInfoLoader = new FXMLLoader(getClass().getResource("/fxml/我的信息.fxml"));
+        AnchorPane userInfo = null;
+        try {
+            userInfo = userInfoLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return userInfo;
+    }
+
+    public AnchorPane getUserOrder(){
+        FXMLLoader userOrderLoader = new FXMLLoader(getClass().getResource("/fxml/订单浏览（用户视角）.fxml"));
+        AnchorPane userOrder = null;
+        try {
+            userOrder = userOrderLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return userOrder;
+    }
+
+    public AnchorPane getUserCreditRecord(){
+        FXMLLoader userCreditRecordLoader = new FXMLLoader(getClass().getResource("/fxml/信用记录.fxml"));
+        AnchorPane userCreditRecord = null;
+        try {
+            userCreditRecord = userCreditRecordLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return userCreditRecord;
+    }
+
+    public AnchorPane getMyMember(){
+        FXMLLoader myMemberloader = new FXMLLoader(getClass().getResource("/fxml/我的会员.fxml"));
+        AnchorPane myMember = null;
+        try {
+            myMember = myMemberloader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return myMember;
+    }
+
+    public AnchorPane getIsMember(){
+        FXMLLoader isMemberLoader = new FXMLLoader(getClass().getResource("/fxml/是会员.fxml"));
+        AnchorPane isMember = null;
+        try {
+            isMember = isMemberLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return isMember;
+    }
+
+    public AnchorPane getIsnotMember(){
+        FXMLLoader isnotMemberLoader = new FXMLLoader(getClass().getResource("/fxml/不是会员.fxml"));
+        AnchorPane isnotMember = null;
+        try {
+            isnotMember = isnotMemberLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return isnotMember;
+    }
+
     public AnchorPane getComment() {
         FXMLLoader commentLoader = new FXMLLoader(getClass().getResource("/fxml/查看评价.fxml"));
         AnchorPane comment = null;

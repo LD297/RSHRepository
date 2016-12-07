@@ -24,7 +24,7 @@ public class UIJumpTool {
     private static UIJumpTool uiJumpTool = null;
     private Stage stage = null;
     private Stack<AnchorPane> anchorPanes = new Stack<AnchorPane>();
-
+    private AnchorPane roleChoose = null;
     private AnchorPane guide = null;
     private AnchorPane searchHotel = null;
     private AnchorPane browseHotel = null;
@@ -35,14 +35,16 @@ public class UIJumpTool {
     private AnchorPane login = null;
     private AnchorPane belowLogin = null;
     private AnchorPane userRegister = null;
-
+    private AnchorPane userGuide = null;
+    private AnchorPane userInfo = null;
+    private AnchorPane myMember = null;
+    private AnchorPane userCreditRecord = null;
+    private AnchorPane userOrder = null;
     private GuideUIController guideUIController = null;
     private BrowseHotelUIController browseHotelUIController = null;
     private LoginUIController loginUIController = null;
     private BelowLoginUIController belowLoginUIController = null;
     private UserRegisterUIController userRegisterUIController = null;
-
-    private AnchorPane roleChoose = null;
     private boolean withLoginBelow = false;
     private UIJumpTool(){}
 
@@ -62,6 +64,53 @@ public class UIJumpTool {
     }
 
     public Stage getStage(){return stage;}
+
+    //跳转到用户导航栏
+    public void changeToUserGuide(){
+        //将当前界面压栈
+        GridPane gridPane = (GridPane)guide.getChildren().get(0);
+        AnchorPane prePane = (AnchorPane) gridPane.getChildren().get(1);
+        anchorPanes.push(prePane);
+        gridPane.getChildren().remove(1);
+        //将用户导航栏set进guide
+        userGuide = UserUIFXMLFactory.getUserUIFXMLFactory().getUserGuide();
+        userInfo = UserUIFXMLFactory.getUserUIFXMLFactory().getUserInfo();
+        ((GridPane)userGuide.getChildren().get(0)).add(userInfo,0,1);
+        gridPane.add(userGuide,0,1);
+        guideUIController.setBackImage(true);
+    }
+
+    //跳转到用户个人资料
+    public void changeToUserInfo(){
+        userInfo = UserUIFXMLFactory.getUserUIFXMLFactory().getUserInfo();
+        GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
+        gridPane.getChildren().remove(1);
+        gridPane.add(userInfo,0,1);
+    }
+
+    //跳转到我的会员
+    public void changeToMyMember(){
+        myMember = UserUIFXMLFactory.getUserUIFXMLFactory().getMyMember();
+        GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
+        gridPane.getChildren().remove(1);
+        gridPane.add(myMember,0,1);
+    }
+
+    //跳转到我的订单
+    public void changeToUserOrder(){
+        userOrder = UserUIFXMLFactory.getUserUIFXMLFactory().getUserOrder();
+        GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
+        gridPane.getChildren().remove(1);
+        gridPane.add(userOrder,0,1);
+    }
+
+    //跳转到我的信用
+    public void changeToUserCreditRecord(){
+        userCreditRecord = UserUIFXMLFactory.getUserUIFXMLFactory().getUserCreditRecord();
+        GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
+        gridPane.getChildren().remove(1);
+        gridPane.add(userCreditRecord,0,1);
+    }
 
     //从搜索酒店界面跳转到酒店浏览界面
     public void changeSearchHotelToBrowseHotel(){
@@ -100,12 +149,10 @@ public class UIJumpTool {
         }else {
             scene = guide.getScene();
         }
-
         stage.setScene(scene);
         //TODO 设置光标
         return searchHotel;
     }
-
 
     //从导航栏点击退出跳转到到登陆界面
     public void changeGuideToLogin(){
@@ -113,7 +160,6 @@ public class UIJumpTool {
         ((GridPane)guide.getChildren().get(0)).getChildren().remove(1);
         stage.setScene(roleChoose.getScene());
     }
-
 
     /**
      * 从登陆界面跳转到酒店主界面
@@ -255,20 +301,15 @@ public class UIJumpTool {
 
     //在导航栏上点击返回箭头，返回到原来的界面
     public void back(){
+        //删除当前界面
         GridPane gridPane = (GridPane)guide.getChildren().get(0);
-        AnchorPane presentAnchorPane = (AnchorPane) gridPane.getChildren().get(1);
-        if(presentAnchorPane==hotelInfo){
-            ((GridPane)hotelInfo.getChildren().get(0)).getChildren().remove(1);
-        }
         gridPane.getChildren().remove(1);
-        if(!anchorPanes.empty()){
+        if(!anchorPanes.empty()){//将栈顶出栈，并set进guide里面
             AnchorPane anchorPane = anchorPanes.pop();
             if(anchorPane==searchHotel){
                 guideUIController.setBackImage(false);
             }
             gridPane.add(anchorPane,0,1);
         }
-
     }
-
 }
