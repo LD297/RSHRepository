@@ -7,6 +7,7 @@ import constant.ResultMessage;
 import data.dao.userdao.UserDao;
 import data.daohelper.DaoHelperFactory;
 import data.daohelper.UserDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import po.UserPO;
 
 public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
@@ -16,6 +17,8 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 	private DaoHelperFactory daoHelperFactory;
 
 	private UserDaoImpl() throws RemoteException {
+		daoHelperFactory = new DaoHelperFactoryImpl();
+		userDaoHelper = daoHelperFactory.getUserDaoHelper();
 	}
 
 	public static UserDaoImpl getInstance() {

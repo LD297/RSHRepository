@@ -6,6 +6,7 @@ import constant.SortMethod;
 import data.dao.hoteldao.HotelDao;
 import data.daohelper.DaoHelperFactory;
 import data.daohelper.HotelDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import po.HotelPO;
 import po.HotelStaffPO;
 import vo.HotelVO;
@@ -26,7 +27,10 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
     private HotelDaoHelper hotelDaoHelper;
     private DaoHelperFactory daoHelperFactory;
 
-    public HotelDaoImpl()throws RemoteException{}
+    private HotelDaoImpl()throws RemoteException{
+        daoHelperFactory = new DaoHelperFactoryImpl();
+        hotelDaoHelper = daoHelperFactory.getHotelDaoHelper();
+    }
 
     public static HotelDaoImpl getInstance(){
         if(hotelDaoImpl ==null){
