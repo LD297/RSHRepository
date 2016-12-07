@@ -29,9 +29,9 @@
       <PasswordField layoutX="130.0" layoutY="203.0" prefHeight="43.0" prefWidth="220.0" promptText="请输入原密码" />
       <PasswordField layoutX="130.0" layoutY="327.0" prefHeight="43.0" prefWidth="220.0" promptText="请确认新密码" />
       <PasswordField layoutX="130.0" layoutY="267.0" prefHeight="43.0" prefWidth="220.0" promptText="请输入新密码" />
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="371.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="371.0" layoutY="-1.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/CIRCLE%20_%20DELETE.png" />
+            <Image url="@../images/cancel.png" />
          </image>
       </ImageView>
       <Label layoutX="22.0" layoutY="209.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="输入原密码：" textFill="#484848">

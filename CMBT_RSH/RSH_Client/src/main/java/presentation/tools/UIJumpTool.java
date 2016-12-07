@@ -12,6 +12,7 @@ import presentation.logincontroller.BelowLoginUIController;
 import presentation.logincontroller.LoginUIController;
 import presentation.usercontroller.BrowseHotelUIController;
 import presentation.usercontroller.GuideUIController;
+import presentation.usercontroller.UserOrderUIController;
 import presentation.usercontroller.UserRegisterUIController;
 
 import java.io.IOException;
@@ -37,14 +38,23 @@ public class UIJumpTool {
     private AnchorPane userRegister = null;
     private AnchorPane userGuide = null;
     private AnchorPane userInfo = null;
-    private AnchorPane myMember = null;
+    private AnchorPane modifyUserInfo = null;
+    private AnchorPane modifyUserPassword = null;
+    private AnchorPane myMember = null;//不是会员
+    private AnchorPane isMember = null;//是会员
     private AnchorPane userCreditRecord = null;
     private AnchorPane userOrder = null;
+    private AnchorPane registerCommonMember = null;
+    private AnchorPane registerCommerceMember = null;
+    private AnchorPane addComment = null;
+    private AnchorPane createOrder = null;
+    private AnchorPane orderInfo = null;
     private GuideUIController guideUIController = null;
     private BrowseHotelUIController browseHotelUIController = null;
     private LoginUIController loginUIController = null;
     private BelowLoginUIController belowLoginUIController = null;
     private UserRegisterUIController userRegisterUIController = null;
+    private UserOrderUIController userOrderUIController = null;
     private boolean withLoginBelow = false;
     private UIJumpTool(){}
 
@@ -64,6 +74,62 @@ public class UIJumpTool {
     }
 
     public Stage getStage(){return stage;}
+
+    //在我的订单界面上弹出订单详情界面
+    public void changeToOrderInfo(){
+        orderInfo = UserUIFXMLFactory.getUserUIFXMLFactory().getOrderInfo();
+        userOrderUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getUserOrderUIController();
+        userOrderUIController.getOrderlistAnchorPane().getChildren().add(orderInfo);
+        Locator.getLocator().setLocation(orderInfo,0.0,0.0,0.0,0.0);
+    }
+
+    //在酒店浏览界面上弹出订单生成界面
+    public void changeToCreateOrder(){
+        createOrder = UserUIFXMLFactory.getUserUIFXMLFactory().getCreateOrder();
+        guide.getChildren().add(createOrder);
+    }
+
+    //关闭订单生成界面
+    public void closeCreateOrder(){
+        guide.getChildren().remove(guide.getChildren().size()-1);
+    }
+
+    //从订单浏览界面跳转到添加评价界面
+    public void changeUserOrderToAddComment(){
+        addComment = UserUIFXMLFactory.getUserUIFXMLFactory().getAddComment();
+        userOrder.getChildren().add(addComment);
+    }
+
+    //从添加评价界面返回到订单浏览界面
+    public void changeAddCommentToUserOrder(){
+        userOrder.getChildren().remove(userOrder.getChildren().size()-1
+        );
+    }
+
+    //从会员注册界面返回到我的会员(是会员)界面
+    public void changeMemberRegisterToMember(){
+        isMember = UserUIFXMLFactory.getUserUIFXMLFactory().getIsMember();
+        GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
+        gridPane.getChildren().remove(1);
+        gridPane.add(isMember,0,1);
+    }
+
+    //从会员注册界面返回到我的会员（不是会员）界面
+    public void changeMemberRegisterToMyMember(){
+        myMember.getChildren().remove(myMember.getChildren().size()-1);
+    }
+
+    //跳转到普通会员注册界面
+    public void changeToCommonMemberRegister(){
+        registerCommonMember = UserUIFXMLFactory.getUserUIFXMLFactory().getRegisterCommonMember();
+        myMember.getChildren().add(registerCommonMember);
+    }
+
+    //跳转到企业会员注册界面
+    public void changeToCommerceMemberRegister(){
+        registerCommerceMember = UserUIFXMLFactory.getUserUIFXMLFactory().getRegisterCommerceMember();
+        myMember.getChildren().add(registerCommerceMember);
+    }
 
     //跳转到用户导航栏
     public void changeToUserGuide(){
@@ -86,6 +152,25 @@ public class UIJumpTool {
         GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
         gridPane.getChildren().remove(1);
         gridPane.add(userInfo,0,1);
+    }
+
+    //跳转到修改密码
+    public void changeToModifyPassword(){
+        modifyUserPassword = UserUIFXMLFactory.getUserUIFXMLFactory().getModifyPassword();
+        modifyUserInfo.getChildren().add(modifyUserPassword);
+    }
+
+    //从修改密码返回到编辑用户个人资料
+    public void changeModifypasswordToModifyuserinfo(){
+        modifyUserInfo.getChildren().remove(modifyUserInfo.getChildren().size()-1);
+    }
+
+    //跳转到编辑用户个人资料
+    public void changeToModifyUserInfo(){
+        modifyUserInfo = UserUIFXMLFactory.getUserUIFXMLFactory().getModifyUserInfo();
+        GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
+        gridPane.getChildren().remove(1);
+        gridPane.add(modifyUserInfo,0,1);
     }
 
     //跳转到我的会员
