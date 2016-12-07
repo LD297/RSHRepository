@@ -15,30 +15,6 @@ import java.io.IOException;
  */
 public class UserUIFXMLFactory {
     private static UserUIFXMLFactory userUIFXMLFactory = null;
-    //loader
-    private FXMLLoader guideLoader = new FXMLLoader(getClass().getResource("/fxml/导航栏.fxml"));
-    private FXMLLoader searchHotelLoader = new FXMLLoader(getClass().getResource("/fxml/搜索酒店.fxml"));
-    private FXMLLoader browseHotelLoader = new FXMLLoader(getClass().getResource("/fxml/酒店浏览（用户视角）.fxml"));
-    private FXMLLoader hotelInfoLoader = new FXMLLoader(getClass().getResource("/fxml/酒店详情.fxml"));
-    private FXMLLoader roomInfoLoader = new FXMLLoader(getClass().getResource("/fxml/客房信息.fxml"));
-    private FXMLLoader commentLoader = new FXMLLoader(getClass().getResource("/fxml/查看评价.fxml"));
-    private FXMLLoader selectConditionLoader = new FXMLLoader(getClass().getResource("/fxml/筛选条件.fxml"));
-    private FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/fxml/登陆.fxml"));
-    private FXMLLoader loginBelowLoader = new FXMLLoader(getClass().getResource("/fxml/登陆下拉.fxml"));
-    private FXMLLoader userRegisterLoader = new FXMLLoader(getClass().getResource("/fxml/用户注册.fxml"));
-    private FXMLLoader roleChooseLoader = new FXMLLoader(getClass().getResource("/fxml/身份选择.fxml"));
-    //AnchorPane
-    private AnchorPane comment = null;
-    private AnchorPane guide = null;
-    private AnchorPane searchHotel = null;
-    private AnchorPane browseHotel = null;
-    private AnchorPane hotelInfo = null;
-    private AnchorPane roomInfo = null;
-    private AnchorPane selectionCondition = null;
-    private AnchorPane login = null;
-    private AnchorPane loginBelow = null;
-    private AnchorPane userRegister = null;
-    private AnchorPane roleChoose = null;
     //UIController
     private GuideUIController guideUIController = null;
     private BrowseHotelUIController browseHotelUIController = null;
@@ -56,104 +32,126 @@ public class UserUIFXMLFactory {
     }
 
     public AnchorPane getComment() {
-        try{
+        FXMLLoader commentLoader = new FXMLLoader(getClass().getResource("/fxml/查看评价.fxml"));
+        AnchorPane comment = null;
+        try {
             comment = commentLoader.load();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return comment;
     }
 
     public AnchorPane getGuide(){
+        FXMLLoader guideLoader = new FXMLLoader(getClass().getResource("/fxml/导航栏.fxml"));
+        AnchorPane guide = null;
         try {
             guide = guideLoader.load();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        guideUIController = (GuideUIController)guideLoader.getController();
+        guideUIController = (GuideUIController) guideLoader.getController();
         return guide;
     }
 
     public AnchorPane getSearchHotel(){
+        FXMLLoader searchHotelLoader = new FXMLLoader(getClass().getResource("/fxml/搜索酒店.fxml"));
+        AnchorPane searchHotel = null;
         try {
             searchHotel = searchHotelLoader.load();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return searchHotel;
     }
 
     public AnchorPane getUserRegister() {
-        try {
-            userRegister = userRegisterLoader.load();
-        }catch (Exception e){
-            e.printStackTrace();
+        FXMLLoader userRegisterLoader = new FXMLLoader(getClass().getResource("/fxml/用户注册.fxml"));
+        AnchorPane userRegister = null;
+            try {
+                userRegister = userRegisterLoader.load();
+            }catch (Exception e){
+                e.printStackTrace();
+            userRegisterUIController = (UserRegisterUIController)userRegisterLoader.getController();
         }
-        userRegisterUIController = (UserRegisterUIController)userRegisterLoader.getController();
         return userRegister;
     }
 
     public AnchorPane getLogin() {
+        FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/fxml/登陆.fxml"));
+        AnchorPane login = null;
         try {
             login = loginLoader.load();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        loginUIController = (LoginUIController)loginLoader.getController();
+        loginUIController = (LoginUIController) loginLoader.getController();
         return login;
     }
 
     public AnchorPane getHotelInfo() {
+        FXMLLoader hotelInfoLoader = new FXMLLoader(getClass().getResource("/fxml/酒店详情.fxml"));
+        AnchorPane hotelInfo = null;
         try {
             hotelInfo = hotelInfoLoader.load();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return hotelInfo;
     }
 
     public AnchorPane getRoomInfo() {
+        FXMLLoader roomInfoLoader = new FXMLLoader(getClass().getResource("/fxml/客房信息.fxml"));
+        AnchorPane roomInfo = null;
         try {
             roomInfo = roomInfoLoader.load();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return roomInfo;
     }
 
     public AnchorPane getBrowseHotel() {
+        FXMLLoader browseHotelLoader = new FXMLLoader(getClass().getResource("/fxml/酒店浏览（用户视角）.fxml"));
+        AnchorPane browseHotel = null;
         try {
             browseHotel = browseHotelLoader.load();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        browseHotelUIController = (BrowseHotelUIController)browseHotelLoader.getController();
+        browseHotelUIController = (BrowseHotelUIController) browseHotelLoader.getController();
         return browseHotel;
     }
 
     public AnchorPane getSelectionCondition(){
+        FXMLLoader selectConditionLoader = new FXMLLoader(getClass().getResource("/fxml/筛选条件.fxml"));
+        AnchorPane selectionCondition = null;
         try {
             selectionCondition = selectConditionLoader.load();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return selectionCondition;
     }
 
     public AnchorPane getLoginBelow() {
+        FXMLLoader loginBelowLoader = new FXMLLoader(getClass().getResource("/fxml/登陆下拉.fxml"));
+        AnchorPane loginBelow = null;
         try {
             loginBelow = loginBelowLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        belowLoginUIController = (BelowLoginUIController)loginBelowLoader.getController();
+        belowLoginUIController = (BelowLoginUIController) loginBelowLoader.getController();
         return loginBelow;
     }
 
-    public AnchorPane getRoleChoose(){
+    public AnchorPane getRoleChoose() {
+        FXMLLoader roleChooseLoader = new FXMLLoader(getClass().getResource("/fxml/身份选择.fxml"));
+        AnchorPane roleChoose = null;
         try {
             roleChoose = roleChooseLoader.load();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return roleChoose;
