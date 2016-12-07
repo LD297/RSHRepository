@@ -2,6 +2,8 @@ package po;
 
 import bl.promotionServiceimpl.Promotion;
 import constant.ConditionType;
+import constant.DeductionType;
+import constant.ScopeType;
 
 import java.util.Date;
 
@@ -13,13 +15,13 @@ public class PromotionPO {
 	Date beginDate;
 	Date endDate;
 
-	String scope;
+	ScopeType scope;
 	String scopeNum;
 
-	String  conditionType;
+	ConditionType  conditionType;
 	int condionNum;
 
-    String deductionType;
+    DeductionType deductionType;
 	int deductionNum;
 
 	public static PromotionPO changeIntoPo(Promotion tempPromotion){

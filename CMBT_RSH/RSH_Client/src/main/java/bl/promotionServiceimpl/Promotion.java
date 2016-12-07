@@ -3,7 +3,11 @@ package bl.promotionServiceimpl;
 import constant.ConditionType;
 import constant.DeductionType;
 import constant.ResultMessage;
+import data.dao.promotiondao.PromotionDao;
+import po.PromotionPO;
+import rmi.RemoteHelper;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 /**
@@ -13,13 +17,16 @@ import java.util.Date;
  */
 public class Promotion {
 
+	private static PromotionDao promotionDao;
+	String setter;
+	String id;
 	String reason;
-	String Setter;
+
 	Date beginDate;
 	Date endDate;
 
 	ScopeType scopeType;
-	String scope;
+	String scopeNum ;
 
 	ConditionType conditionType;
 	int conditionNum = 0;
@@ -28,19 +35,27 @@ public class Promotion {
 	int deductionNum = 0;
 
 	public Promotion (String Reason, String ID){
+		RemoteHelper remoteHelper = RemoteHelper.getInstance();
+		promotionDao = remoteHelper.getPromotionDao();
 		reason=Reason;
-		Setter = ID;
+		setter = ID;
 	}
 
 	/**
 	 * 读取数据层中数据，若无返回null
-	 * @param Reason
+	 * @param tempSetter
 	 * @param ID
 	 * @return
 	 */
-	public static Promotion getInstance(String Reason, String ID){
-
-		return null;
+	public static Promotion getInstance(String tempSetter, String ID){
+		Promotion promotion = null;
+		try {
+			PromotionPO promotionPO = promotionDao.find(tempSetter,ID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+//		promotion = PromotionPO.
+		return promotion;
 	}
 
 	public ResultMessage setScope(constant.ScopeType stype, String id, String rtype) {
