@@ -10,6 +10,9 @@ import data.daohelper.HotelDaoHelperMySql;
 =======
 import data.daohelper.HotelDaoHelper;
 import data.daohelperimpl.DaoHelperFactoryImpl;
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 import po.HotelPO;
 import po.HotelStaffPO;

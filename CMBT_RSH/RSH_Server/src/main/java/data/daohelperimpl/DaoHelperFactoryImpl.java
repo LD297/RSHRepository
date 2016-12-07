@@ -27,8 +27,14 @@ public class DaoHelperFactoryImpl implements DaoHelperFactory {
 
     @Override
 <<<<<<< HEAD
+<<<<<<< HEAD
     public HotelDaoHelperMySql getHotelDaoHelper() {
         return null;
+=======
+    public HotelDaoHelper getHotelDaoHelper() {
+        HotelDaoHelper hotelDaoHelper = new HotelDaoHelperMySql();
+        return hotelDaoHelper;
+>>>>>>> origin/master
 =======
     public HotelDaoHelper getHotelDaoHelper() {
         HotelDaoHelper hotelDaoHelper = new HotelDaoHelperMySql();
