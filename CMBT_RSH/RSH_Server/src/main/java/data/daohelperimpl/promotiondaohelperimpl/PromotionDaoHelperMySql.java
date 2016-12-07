@@ -20,19 +20,16 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
     public void init(){
 
         db.executeSql("USE OurData");
-        // String setter;
-        String reason;
-        String scope;
-        String  conditionType;
-        String promotionType;
         db.executeSql("CREATE TABLE PromotionInfo(role tinyint,id char(26),password varchar(30))" );
     }
 
     public void finish(){
         db.executeSql("USE OurData");
+        db.executeSql("DROP TABLE IF EXISTS PromotionInfo");
     }
     public ResultMessage insert(PromotionPO po)throws RemoteException {
         db.executeSql("USE OurData");
+
         return null;
     }
 

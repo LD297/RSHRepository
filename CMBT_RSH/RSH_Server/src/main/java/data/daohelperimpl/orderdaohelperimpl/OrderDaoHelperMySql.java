@@ -43,7 +43,6 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
         String sqlDetail = "SELECT *FROM OrderGeneral WHERE orderID='"+orderid+"'LIMIT 1";
         ResultSet result = db.query(sqlDetail);
-        System.out.println("selectsql!");
         try {
             while(result.next()){
                 String ordername = result.getString(1);
