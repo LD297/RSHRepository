@@ -461,7 +461,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         return this.resultsetToHotelVO(resultByName);
     }
     public String roomType;
-    public double lowestPrice;
+    public double lowestPrice ;
     public double highestPrice;
     public int roomNum;
     public Date begin;
@@ -472,7 +472,32 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
     public String userID;
     public Boolean reserved;
     public ArrayList<HotelVO> selectByCondition(SelectConditionVO vo)throws RemoteException {
+        String getAllSql = "SELECT *FROM RoomInfo";
+        ResultSet result = db.query(getAllSql);
+        ArrayList<String> hotelidList = new ArrayList<String>();
+        try{// 酒店 类型 总量
+            // 价格 是否特色 可用数量日期列表
+            while(result.next()){
+                if(vo.roomType!=null){
+                    if(!result.getString(2).equals(vo.roomType))
+                        continue;
+                }
+                if(vo.lowestPrice>=0){
+                    if(result.getDouble(4)<vo.lowestPrice)
+                        continue;
+                }
+                if(vo.highestPrice>=0){
+                    if(result.getDouble(4)>vo.highestPrice)
+                        continue;
+                }
+                if(vo.roomNum>0){
 
+                }
+                hotelidList.add(result.getString(1));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
         return null;
     }

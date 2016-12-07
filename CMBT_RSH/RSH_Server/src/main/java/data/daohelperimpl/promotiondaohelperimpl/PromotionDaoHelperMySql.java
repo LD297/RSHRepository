@@ -28,7 +28,7 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
 
         db.executeSql("USE OurData");
         db.executeSql("CREATE TABLE PromotionInfo(setter char(10),id char(3),name varchar(15)," +
-                "beginDate date,endDate date,scopeType tinyint,scopeNum char(20)," +
+                "beginDate date,endDate date,scopeType tinyint,scopeNum varchar(20)," +
                 "conditionType tinyint,conditionNum int,deductionType tinyint,deductionNum int)" );
     }
 
