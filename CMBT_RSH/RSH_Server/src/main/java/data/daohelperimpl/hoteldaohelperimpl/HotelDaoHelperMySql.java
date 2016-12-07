@@ -1,6 +1,5 @@
 package data.daohelperimpl.hoteldaohelperimpl;
 
-import data.daohelper.HotelDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.HotelPO;
 import po.HotelStaffPO;
@@ -27,7 +26,7 @@ import java.util.Calendar;
 /**
  * Created by a297 on 16/11/27.
  */
-public class HotelDaoHelperMySql implements HotelDaoHelper{
+public class HotelDaoHelperMySql implements data.daohelper.HotelDaoHelperMySql {
     private DBHelper db = new DBHelper();
 
     public void init(){
@@ -38,7 +37,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper{
         // 星级 评分 最晚入住时间 评论人数 房间类型数量
         db.executeSql("CREATE TABLE HotelInfo(hotelID char(10),password varchar(20),phoneNumber bigint,name varchar(15)," +
                 "address varchar(30),businessArea varchar(10),briefIntro tinytext,facility varchar(20)," +
-                "level tinyint,grade double,latestCheckinTime int,commentNum int，roomTypeNum tinyint)");
+                "level tinyint,grade double,latestCheckinTime char(8),commentNum int，roomTypeNum tinyint)");
         // 酒店 类型 总量
         // 价格 是否特色 可用数量日期列表
         db.executeSql("CREATE TABLE RoomInfo(hotelID char(10),roomType varchar(10),amountTotal int,"
@@ -131,19 +130,19 @@ public class HotelDaoHelperMySql implements HotelDaoHelper{
         // 地址 商圈 简介 设施
         // 星级 评分 最晚入住时间
         String password = vo.getPassword();
-        String tel = vo.getTel();
-        String name = vo.getName();
-        String address = vo.getAddr();
-        String bArea = vo.getBusinessArea();
-        String briefIntro = vo.getBriefIntro();
-        String facility = vo.getFacility();
-        int level = vo.getLevel();
-        double grade = vo.getGrade();
-        int lastestTime = vo.getLatestCheckinTime();
+        String tel = vo.tel;
+        String name = vo.name;
+        String address = vo.addr;
+        String bArea = vo.businessArea;
+        String briefIntro = vo.briefIntro;
+        String facility = vo.facility;
+        int level = vo.level;
+        double grade = vo.grade;
+        String lastestTime = vo.latestCheckinTime;
         String updateHotelSql = "UPDATE HotelInfo SET password='"+password+"',phoneNumber="+tel+",name='"+name+"',"+
                 "address='"+address+"',bussinessArea='"+bArea+"',briefIntro='"+briefIntro+"',facility='"+facility+","+
                 "level="+level+",grade="+grade+",lastestCheckinTime="+lastestTime
-                +" WHERE hotelID='"+vo.getId()+"' LIMIT 1";
+                +" WHERE hotelID='"+vo.id+"' LIMIT 1";
         db.executeSql(updateHotelSql);
         return ResultMessage.succeed;
     }
@@ -388,19 +387,13 @@ public class HotelDaoHelperMySql implements HotelDaoHelper{
         ArrayList<Integer> totalNumList = new ArrayList<Integer>();
         ArrayList<String> hotelIDList = new ArrayList<String>();
 
-        String getAListSql = "SELECT hotelID,amountTotal,aList FROM RoomInfo LIMIT ?,1";
-        con = db.getConn();
-        ResultSet result = null;
+        String getAListSql = "SELECT hotelID,amountTotal,aList FROM RoomInfo";
+        ResultSet result = db.query(getAListSql);
         try{
-            pst = con.prepareStatement(getAListSql);
-            for(int i=0;i<180;i++){
-                pst.setString(1,String.valueOf(i));
-                result = pst.executeQuery(getAListSql);
-                while(result.next()){
-                    hotelIDList.add(result.getString(1));
-                    totalNumList.add(result.getInt(2));
-                    aListList.add(result.getString(3));
-                }
+            while(result.next()){
+                hotelIDList.add(result.getString(1));
+                totalNumList.add(result.getInt(2));
+                aListList.add(result.getString(3));
             }
         }catch(SQLException e){
             e.printStackTrace();
@@ -554,9 +547,10 @@ public class HotelDaoHelperMySql implements HotelDaoHelper{
                 String facility = result.getString(8);
                 int level = result.getInt(9);
                 int grade = result.getInt(10);
-                int time = result.getInt(11);
+                String time = result.getString(11);
 
-                hotelList.add(new HotelPO(idname, password, tel, name, address, bArea, briefintro, facility, level, grade, time){});
+                HotelPO hotelPO = HotelPO.createHotelPO(new HotelVO(idname, tel, name, address, bArea, briefintro, facility, level, grade, time));
+                hotelList.add(hotelPO);
             }
             return hotelList;
         } catch (SQLException e) {
@@ -569,18 +563,11 @@ public class HotelDaoHelperMySql implements HotelDaoHelper{
         ArrayList<HotelVO> hotelList = new ArrayList<HotelVO>();
         try{
             while(result.next()){
-                HotelVO hotel = new HotelVO(result.getString(1));
+                HotelVO hotel = new HotelVO(result.getString(1),result.getString(3),
+                        result.getString(4),result.getString(5),result.getString(6),
+                        result.getString(7),result.getString(8),result.getInt(9),
+                        result.getDouble(10),result.getString(11));
                 hotel.setPassword(result.getString(2));
-                hotel.setTel(result.getString(3));
-                hotel.setName(result.getString(4));
-                hotel.setAddr(result.getString(5));
-                hotel.setBusinessArea(result.getString(6));
-                hotel.setBriefIntro(result.getString(7));
-                hotel.setFacility(result.getString(8));
-                hotel.setLevel(result.getInt(9));
-                hotel.setGrade(result.getInt(10));
-                hotel.setLatestCheckinTime(result.getInt(11));
-
                 hotelList.add(hotel);
             }
             return hotelList;

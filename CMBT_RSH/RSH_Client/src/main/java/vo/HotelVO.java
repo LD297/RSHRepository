@@ -33,7 +33,7 @@ public class HotelVO {
 	/**
 	 * 酒店评分（根据每次用户评分加权计算后取整）
 	 */
-	public int grade;
+	public double grade;
 	/**
 	 * 最晚入住时间
 	 */
@@ -45,7 +45,7 @@ public class HotelVO {
 
 	//构造方法重载 (不含密码信息)
 	public HotelVO(String id, String tel, String name, String addr, String businessArea,
-					String briefIntro, String facility, int level,int grade, String latestCheckinTime){
+					String briefIntro, String facility, int level,double grade, String latestCheckinTime){
 		this.id =  id;
 		this.tel = tel;
 		this.name = name;
@@ -84,5 +84,6 @@ public class HotelVO {
 		hotelVO.latestCheckinTime = hotelPO.getLatestCheckinTime();
 		return hotelVO;
 	}
+
 
 }

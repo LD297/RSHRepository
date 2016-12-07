@@ -8,6 +8,7 @@ import constant.Role;
 import data.dao.logindao.LoginDao;
 import data.daohelper.DaoHelperFactory;
 import data.daohelper.LoginDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import po.OnlinePersonPO;
 
 public class LoginDaoImpl extends UnicastRemoteObject implements LoginDao{
@@ -16,6 +17,8 @@ public class LoginDaoImpl extends UnicastRemoteObject implements LoginDao{
 	private LoginDaoHelper loginDaoHelper;
 	private DaoHelperFactory daoHelperFactory;
 	private LoginDaoImpl() throws RemoteException {
+		daoHelperFactory = new DaoHelperFactoryImpl();
+		loginDaoHelper = daoHelperFactory.getLoginDaoHelper();
 	}
 
 	public static LoginDaoImpl getInstance(){

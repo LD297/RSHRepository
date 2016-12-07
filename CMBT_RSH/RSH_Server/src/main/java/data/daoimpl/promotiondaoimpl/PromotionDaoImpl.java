@@ -21,7 +21,7 @@ public class PromotionDaoImpl extends UnicastRemoteObject implements PromotionDa
     private  DaoHelperFactory daoHelperFactory ;
     private PromotionDaoHelper promotionDaoHelper;
 
-    public PromotionDaoImpl()throws RemoteException{
+    private PromotionDaoImpl()throws RemoteException{
         daoHelperFactory = new DaoHelperFactoryImpl();
         promotionDaoHelper = daoHelperFactory.getPromotionDaoHelper();
     }

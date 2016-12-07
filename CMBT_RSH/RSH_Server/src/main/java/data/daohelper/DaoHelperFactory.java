@@ -8,7 +8,7 @@ public interface DaoHelperFactory {
 
     public PromotionDaoHelper getPromotionDaoHelper();
 
-    public HotelDaoHelper getHotelDaoHelper();
+    public HotelDaoHelperMySql getHotelDaoHelper();
 
     public OrderDaoHelper getOrderDaoHelper();
 

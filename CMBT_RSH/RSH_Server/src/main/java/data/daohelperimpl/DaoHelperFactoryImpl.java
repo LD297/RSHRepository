@@ -13,37 +13,54 @@ import data.daohelperimpl.webstaffdaohelperimpl.WebManagerDaoHelperMySql;
  * Created by aa on 2016/12/6.
  */
 public class DaoHelperFactoryImpl implements DaoHelperFactory {
-
+    @Override
     public WebManagerDaoHelper getWebStaffDaoHelper() {
         WebManagerDaoHelper webManagerDaoHelper = new WebManagerDaoHelperMySql();
         return webManagerDaoHelper;
     }
 
+    @Override
     public PromotionDaoHelper getPromotionDaoHelper() {
         PromotionDaoHelper promotionDaoHelper = new PromotionDaoHelperMySql();
         return promotionDaoHelper;
     }
 
+    @Override
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public HotelDaoHelperMySql getHotelDaoHelper() {
+        return null;
+=======
     public HotelDaoHelper getHotelDaoHelper() {
         HotelDaoHelper hotelDaoHelper = new HotelDaoHelperMySql();
         return hotelDaoHelper;
+>>>>>>> origin/master
+=======
+    public HotelDaoHelper getHotelDaoHelper() {
+        HotelDaoHelper hotelDaoHelper = new HotelDaoHelperMySql();
+        return hotelDaoHelper;
+>>>>>>> origin/master
     }
 
+    @Override
     public OrderDaoHelper getOrderDaoHelper() {
         OrderDaoHelper orderDaoHelper = new OrderDaoHelperMySql();
         return orderDaoHelper;
     }
 
+    @Override
     public UserDaoHelper getUserDaoHelper() {
         UserDaoHelper userDaoHelper = new UserDaoHelperMySql();
         return userDaoHelper;
     }
 
+    @Override
     public CreditRecordListDaoHelper getCrediRecordListDdaoHelper() {
         CreditRecordListDaoHelper creditRecordListDaoHelper = new CreditRecordListDaoHelperMySql();
         return creditRecordListDaoHelper;
     }
 
+    @Override
     public LoginDaoHelper getLoginDaoHelper() {
         LoginDaoHelper loginDaoHelper = new LoginDaoHelperMySql();
         return loginDaoHelper;

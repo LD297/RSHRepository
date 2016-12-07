@@ -3,5 +3,5 @@ package data.daohelperimpl.hoteldaohelperimpl;
 /**
  * Created by a297 on 16/11/27.
  */
-public class HotelDaoHelperSerializable {
+public class HotelDaoHelperTextFileImpl {
 }

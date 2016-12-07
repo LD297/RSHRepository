@@ -44,7 +44,7 @@ public class HotelDao_Stub implements  HotelDao{
 
     @Override
     public ResultMessage updateHotel(HotelPO hotelPO) {
-        if(hotelPO.getId().equals("12345678912"))
+        if(hotelPO.getName().equals("4142"))
             return ResultMessage.succeed;
         else
             return ResultMessage.fail;
