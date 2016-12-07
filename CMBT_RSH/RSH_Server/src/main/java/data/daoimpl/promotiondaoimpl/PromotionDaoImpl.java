@@ -55,12 +55,8 @@ public class PromotionDaoImpl extends UnicastRemoteObject implements PromotionDa
         return null;
     }
 
-    public ArrayList<PromotionPO> finds(String str)throws RemoteException {
+    public ArrayList<PromotionPO> finds(String district,String hotel)throws RemoteException {
         return null;
     }
 
-    @Override
-    public ArrayList<PromotionPO> finds(Date beginDate, Date endDate) throws RemoteException {
-        return null;
-    }
 }

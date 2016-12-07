@@ -22,8 +22,6 @@ public interface PromotionDao extends Remote{
 	public ResultMessage  update (PromotionPO po)throws RemoteException;
 	
 	public PromotionPO find(String setterID,String id)throws RemoteException;
-	
-	public ArrayList<PromotionPO> finds(String setter) throws RemoteException;
 
-	public ArrayList<PromotionPO> finds(Date beginDate, Date endDate) throws RemoteException;
+	public ArrayList<PromotionPO> finds(String district,String hotel) throws RemoteException;
 }
