@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import presentation.controller.HotelServiceFactory;
 import presentation.hotelcontroller.HotelHomepageUIController;
 import presentation.tools.HotelUIFactory;
 import vo.HotelVO;
@@ -30,7 +31,7 @@ public class HotelUITest extends Application {
                 4, 4.8, "23:44:59");
         controller.setHotelVO(hotelVO);
         // TODO 配置hotelService
-        HotelService hotelService = new HotelController("0123456789");
+        HotelService hotelService = HotelServiceFactory.getHotelService("0123456789");
         controller.setHotelService(hotelService);
 
         primaryStage.setTitle("hotel");

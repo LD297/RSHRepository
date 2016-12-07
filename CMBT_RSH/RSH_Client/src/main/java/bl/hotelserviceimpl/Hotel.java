@@ -22,9 +22,9 @@ public class Hotel{
 	HotelPO hotelPO;
 	HotelManager hotelManager;
 	RoomAvail roomAvail;
-	HotelDao hotelDao = new HotelDao_Stub();
+	HotelDao hotelDao;
 	
-	Hotel(String id){
+	public Hotel(String id){
 		this.id = id;
 		try{
 			this.hotelPO = hotelDao.getHotel(this.id);

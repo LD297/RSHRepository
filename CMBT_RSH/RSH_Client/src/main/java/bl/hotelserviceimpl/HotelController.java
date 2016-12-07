@@ -3,6 +3,7 @@ package bl.hotelserviceimpl;
 import bl.hotelservice.HotelService;
 import bl.orderservice.HotelInfoService;
 import constant.ResultMessage;
+import presentation.controller.HotelServiceFactory;
 import vo.HotelVO;
 import vo.RoomAvailVO;
 import vo.RoomNormVO;
@@ -35,13 +36,13 @@ public class HotelController implements HotelService, HotelInfoService{
 	 * @param id 酒店id
 	 */
 	public HotelController(String id){
-		hotel = new Hotel(id);
+		hotel = HotelServiceFactory.getHotel(id);
 		this.initDefaultHotel();
 	}
 
 	private void initDefaultHotel(){
 		if(this.defaultHotel==null)
-			this.defaultHotel = new Hotel("0000000000");
+			this.defaultHotel = HotelServiceFactory.getHotel("0000000000");
 	}
 
 	public ResultMessage checkPassword(String id, String password) {

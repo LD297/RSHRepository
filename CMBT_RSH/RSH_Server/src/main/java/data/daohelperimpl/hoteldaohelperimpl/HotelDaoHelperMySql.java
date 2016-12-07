@@ -1,5 +1,6 @@
 package data.daohelperimpl.hoteldaohelperimpl;
 
+import data.daohelper.HotelDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.HotelPO;
 import po.HotelStaffPO;
@@ -26,7 +27,7 @@ import java.util.Calendar;
 /**
  * Created by a297 on 16/11/27.
  */
-public class HotelDaoHelperMySql implements data.daohelper.HotelDaoHelperMySql {
+public class HotelDaoHelperMySql implements HotelDaoHelper {
     private DBHelper db = new DBHelper();
 
     public void init(){
