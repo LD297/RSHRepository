@@ -47,18 +47,16 @@ public class BelowLoginUIController {
             //关闭登陆下拉界面
             UIJumpTool.getUiJumpTool().removeLoginBelow();
             //将登陆界面的收回箭头改为下拉箭头
+            loginUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getLoginUIController();
             loginUIController.setShow(true);
             //跳转到用户注册界面
-            UserRegisterUIController userRegisterUIController = UIJumpTool.getUiJumpTool().changeLoginToRegister();
-            userRegisterUIController.setLoginUIController(loginUIController);//用于将用户名和密码返回给登陆界面
+            UIJumpTool.getUiJumpTool().changeLoginToRegister();
         }
     }
 
     void setRole(Role role){
         this.role = role;
     }
-
-    void setLoginUIController(LoginUIController loginUIController){this.loginUIController = loginUIController;}
 
     @FXML
     void initialize() {

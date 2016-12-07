@@ -7,6 +7,7 @@ import data.dao.orderdao.OrderDao;
 import data.daohelper.DaoHelperFactory;
 import data.daohelper.OrderDaoHelper;
 //import data.daoimpl.databasefactoryimpl.DatabaseFactoryImpl;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import po.OrderPO;
 
 import java.rmi.ConnectException;
@@ -31,6 +32,8 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao{
 
     private OrderDaoImpl()throws RemoteException{
 
+        daoHelperFactory = new DaoHelperFactoryImpl();
+        orderDaoHelper = daoHelperFactory.getOrderDaoHelper();
     }
 
     public static OrderDaoImpl getInstance(){

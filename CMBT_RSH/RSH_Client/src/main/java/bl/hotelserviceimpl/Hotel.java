@@ -2,6 +2,7 @@ package bl.hotelserviceimpl;
 
 import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
+import data.dao.hoteldao.HotelDao_Stub;
 import po.HotelPO;
 import vo.HotelVO;
 import vo.RoomAvailVO;
@@ -21,7 +22,7 @@ public class Hotel{
 	HotelPO hotelPO;
 	HotelManager hotelManager;
 	RoomAvail roomAvail;
-	HotelDao hotelDao;
+	HotelDao hotelDao = new HotelDao_Stub();
 	
 	Hotel(String id){
 		this.id = id;

@@ -85,5 +85,4 @@ public class HotelVO {
 		return hotelVO;
 	}
 
-
 }

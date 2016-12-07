@@ -78,6 +78,9 @@ public class HotelInfoUIController {
     @FXML
     private Button roonInfoButton;
 
+    @FXML
+    private Button commentButton;
+
     private boolean isRoomInfo = true;
 
     @FXML
@@ -141,6 +144,7 @@ public class HotelInfoUIController {
         assert roomInfoEffect != null : "fx:id=\"roomInfoEffect\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert commentEffect != null : "fx:id=\"commentEffect\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert roonInfoButton != null : "fx:id=\"roonInfoButton\" was not injected: check your FXML file '酒店详情.fxml'.";
+        assert commentButton != null : "fx:id=\"commentButton\" was not injected: check your FXML file '酒店详情.fxml'.";
 
     }
 }

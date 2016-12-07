@@ -5,7 +5,12 @@ import constant.SortBy;
 import constant.SortMethod;
 import data.dao.hoteldao.HotelDao;
 import data.daohelper.DaoHelperFactory;
+<<<<<<< HEAD
+import data.daohelper.HotelDaoHelperMySql;
+=======
 import data.daohelper.HotelDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
+>>>>>>> origin/master
 import po.HotelPO;
 import po.HotelStaffPO;
 import vo.HotelVO;
@@ -23,10 +28,13 @@ import java.util.Date;
  */
 public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
     private static HotelDaoImpl hotelDaoImpl;
-    private HotelDaoHelper hotelDaoHelper;
+    private HotelDaoHelperMySql hotelDaoHelper;
     private DaoHelperFactory daoHelperFactory;
 
-    public HotelDaoImpl()throws RemoteException{}
+    private HotelDaoImpl()throws RemoteException{
+        daoHelperFactory = new DaoHelperFactoryImpl();
+        hotelDaoHelper = daoHelperFactory.getHotelDaoHelper();
+    }
 
     public static HotelDaoImpl getInstance(){
         if(hotelDaoImpl ==null){

@@ -96,7 +96,6 @@ public class LoginUIController {
             show = false;
             BelowLoginUIController belowLoginUIController = UIJumpTool.getUiJumpTool().addLoginBelow();
             belowLoginUIController.setRole(role);
-            belowLoginUIController.setLoginUIController(this);
         }else {//如果当前是收起箭头
             showMoreImage.setImage(showImage);//将箭头改为下拉箭头
             show = true;

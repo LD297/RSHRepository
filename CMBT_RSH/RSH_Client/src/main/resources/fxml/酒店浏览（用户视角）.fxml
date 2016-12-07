@@ -256,6 +256,6 @@
             </AnchorPane>
          </children>
       </GridPane>
-      <Label prefHeight="670.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.5);" visible="false" />
+      <Label fx:id="maskLabel" prefHeight="670.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.5);" visible="false" />
    </children>
 </AnchorPane>

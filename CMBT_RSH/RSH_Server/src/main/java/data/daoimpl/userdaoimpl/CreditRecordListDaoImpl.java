@@ -4,6 +4,7 @@ import constant.ResultMessage;
 import data.dao.userdao.CreditRecordListDao;
 import data.daohelper.CreditRecordListDaoHelper;
 import data.daohelper.DaoHelperFactory;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import po.CreditRecordPO;
 
 import java.rmi.RemoteException;
@@ -27,6 +28,8 @@ public class CreditRecordListDaoImpl extends UnicastRemoteObject implements Cred
 		return creditRecordListDaoImpl;
 }
 	private CreditRecordListDaoImpl() throws RemoteException {
+		daoHelperFactory = new DaoHelperFactoryImpl();
+		creditRecordListDaoHelper = daoHelperFactory.getCrediRecordListDdaoHelper();
 	}
 
 	public Iterator<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException {

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.Hotel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,9 +75,16 @@ public class HotelHomepageUIController {
 
     private HotelVO hotelVO;
 
+    private HotelService hotelService;
+
     public void setHotelVO(HotelVO hotelVO){
         this.hotelVO = hotelVO;
         init();
+    }
+
+
+    public void setHotelService(HotelService hotelService) {
+        this.hotelService = hotelService;
     }
 
     private void init() {
@@ -103,7 +111,10 @@ public class HotelHomepageUIController {
         hotelBasicInfoUIController.setAnchorPane(hotelBasicInUIfoPane);
         // 传入酒店首页根结点引用
         hotelBasicInfoUIController.setPrePane(anchorPane);
+        // 传入酒店基本信息
         hotelBasicInfoUIController.setHotelVO(hotelVO);
+        // 配置hotelService
+        hotelBasicInfoUIController.setHotelService(hotelService);
 
         Scene scene = null;
         if(hotelBasicInUIfoPane.getScene()==null)
