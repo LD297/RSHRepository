@@ -12,15 +12,15 @@ import java.util.ArrayList;
  */
 public interface WebSalesmanDao extends Remote{
 
-    public ResultMessage insertWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
+    public ResultMessage insert(WebSalesmanPO webSalesmanPO)throws RemoteException;
 
-    public ResultMessage updateWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
+    public ResultMessage update(WebSalesmanPO webSalesmanPO)throws RemoteException;
 
-    public ResultMessage delWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
+    public ResultMessage delete(String websalesmanid)throws RemoteException;
 
-    public WebSalesmanPO getSalesmanInstance(String SalesmanID)throws RemoteException;
+    public WebSalesmanPO findByID(String websalesmanid)throws RemoteException;
 
-    public ArrayList<WebSalesmanPO> finds(String district)throws RemoteException;
+    public ArrayList<WebSalesmanPO> findByDistrict(String district)throws RemoteException;
 
     public ArrayList<WebSalesmanPO> getAll()throws RemoteException;
 

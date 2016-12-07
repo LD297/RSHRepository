@@ -47,40 +47,40 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao{
         return orderDaoImpl;
     }
     public OrderPO find(String orderid) throws RemoteException{
-        return null;
-    };
+        return orderDaoHelper.find(orderid);
+    }
     //根据用户编号查找订单
-    public ArrayList<OrderPO> userFind(String uderid) throws RemoteException{
-        return null;
-    };
+    public ArrayList<OrderPO> userFind(String userid) throws RemoteException{
+        return orderDaoHelper.userFind(userid);
+    }
     //根据酒店编号查找订单
     public ArrayList<OrderPO> hotelFind(String hotelid) throws RemoteException{
-        return null;
-    };
+        return orderDaoHelper.hotelFind(hotelid);
+    }
     //根据状态编号查找订单
     public ArrayList<OrderPO> stateFind(StateOfOrder state) throws RemoteException{
-        return null;
-    };
+        return orderDaoHelper.stateFind(state);
+    }
     //新建订单
     public ResultMessage insert(OrderPO orderpo) throws RemoteException{
-        return null;
-    };
+        return orderDaoHelper.insert(orderpo);
+    }
     //删除订单
-    public ResultMessage delete(String orderid) throws RemoteException{
+/*    public ResultMessage delete(String orderid) throws RemoteException{
         return null;
-    };
+    };*/
     //订单状态更新
     public ResultMessage stateUpdate(String orderid,StateOfOrder newstate) throws RemoteException{
-        return null;
-    };
+        return orderDaoHelper.stateUpdate(orderid,newstate);
+    }
     //评价订单
-    public ResultMessage commentUpdate(String orderid, double grade, String comment) throws RemoteException{
-        return null;
-    };
+    public ResultMessage commentUpdate(String orderid, int grade, String comment) throws RemoteException{
+        return orderDaoHelper.commentUpdate(orderid,grade,comment);
+    }
     //订单实际离开时间更新
     public ResultMessage leaveUpdate(String orderid,Date leavetime) throws RemoteException{
-        return null;
-    };
+        return orderDaoHelper.leaveUpdate(orderid,leavetime);
+    }
 
     public void init() throws RemoteException{};
 

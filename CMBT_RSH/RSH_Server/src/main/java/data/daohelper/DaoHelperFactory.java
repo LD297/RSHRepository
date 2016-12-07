@@ -4,7 +4,9 @@ package data.daohelper;
  * Created by aa on 2016/12/3.
  */
 public interface DaoHelperFactory {
-    public WebManagerDaoHelper getWebStaffDaoHelper();
+    public WebManagerDaoHelper getWebManagerDaoHelper();
+
+    public WebSalesmanDaoHelper getWebSalesManDaoHelper();
 
     public PromotionDaoHelper getPromotionDaoHelper();
 

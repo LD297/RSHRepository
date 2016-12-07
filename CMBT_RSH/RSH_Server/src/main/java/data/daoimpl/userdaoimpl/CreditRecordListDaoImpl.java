@@ -33,12 +33,12 @@ public class CreditRecordListDaoImpl extends UnicastRemoteObject implements Cred
 	}
 
 	public Iterator<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException {
-		return null;
+		return creditRecordListDaoHelper.getCreditRecordList(userid);
 	}
 
 	public ResultMessage addCreditRecord(CreditRecordPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return creditRecordListDaoHelper.addCreditRecord(po);
 	}
 
 

@@ -4,6 +4,8 @@ import constant.ResultMessage;
 import data.dao.webstaffdao.WebSalesmanDao;
 import data.daohelper.DaoHelperFactory;
 import data.daohelper.WebManagerDaoHelper;
+import data.daohelper.WebSalesmanDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import po.WebSalesmanPO;
 
 import java.rmi.RemoteException;
@@ -23,10 +25,13 @@ import java.io.IOException;
 public class WebSalesmanDaoImpl extends UnicastRemoteObject implements WebSalesmanDao {
 
     private static WebSalesmanDaoImpl webSalesmanDaoImpl;
-    private WebManagerDaoHelper webManagerDaoHelper;
+    private WebSalesmanDaoHelper webSalesmanDaoHelper;
     private DaoHelperFactory daoHelperFactory;
 
-    private WebSalesmanDaoImpl()throws  RemoteException{}
+    private WebSalesmanDaoImpl()throws  RemoteException{
+        daoHelperFactory = new DaoHelperFactoryImpl();
+        webSalesmanDaoHelper = daoHelperFactory.getWebSalesManDaoHelper();
+    }
 
     public static WebSalesmanDaoImpl getInstance(){
         if(webSalesmanDaoImpl == null){
@@ -39,30 +44,27 @@ public class WebSalesmanDaoImpl extends UnicastRemoteObject implements WebSalesm
         return webSalesmanDaoImpl;
     }
 
-
-
-    @Override
-    public ResultMessage insertWebSalesman(WebSalesmanPO webSalesmanPO) throws RemoteException {
-        return null;
+    public ResultMessage insert(WebSalesmanPO po) throws RemoteException {
+        return webSalesmanDaoHelper.insert(po);
     }
 
-    public ResultMessage updateWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException  {
-        return null;
+    public ResultMessage update(WebSalesmanPO po)throws RemoteException  {
+        return webSalesmanDaoHelper.update(po);
     }
 
-    public ResultMessage delWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException  {
-        return null;
+    public ResultMessage delete(String websalesmanid)throws RemoteException  {
+        return webSalesmanDaoHelper.delete(websalesmanid);
     }
 
-    public WebSalesmanPO getSalesmanInstance(String SalesmanID)throws RemoteException  {
-        return null;
+    public WebSalesmanPO findByID(String websalesmanid)throws RemoteException  {
+        return webSalesmanDaoHelper.findByID(websalesmanid);
     }
 
-    public ArrayList<WebSalesmanPO> finds(String district)throws RemoteException  {
-        return null;
+    public ArrayList<WebSalesmanPO> findByDistrict(String district)throws RemoteException  {
+        return webSalesmanDaoHelper.findByDistrict(district);
     }
 
     public ArrayList<WebSalesmanPO> getAll()throws RemoteException {
-        return null;
+        return webSalesmanDaoHelper.getAll();
     }
 }
