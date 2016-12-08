@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +23,13 @@ public class AddCommentUIController {
 
     @FXML
     private URL location;
+
+    @FXML
+    private Label noCommentLabel;
+
+    @FXML
+    private Label encourageLabel;
+
 
     @FXML
     private ImageView addCommentImage;
@@ -70,6 +78,8 @@ public class AddCommentUIController {
         assert commentTextarea != null : "fx:id=\"commentTextarea\" was not injected: check your FXML file '添加评价.fxml'.";
         assert cancelImage != null : "fx:id=\"cancelImage\" was not injected: check your FXML file '添加评价.fxml'.";
         assert saveButton != null : "fx:id=\"saveButton\" was not injected: check your FXML file '添加评价.fxml'.";
+        assert noCommentLabel != null : "fx:id=\"noCommentLabel\" was not injected: check your FXML file '添加评价.fxml'.";
+        assert encourageLabel != null : "fx:id=\"encourageLabel\" was not injected: check your FXML file '添加评价.fxml'.";
 
     }
 }

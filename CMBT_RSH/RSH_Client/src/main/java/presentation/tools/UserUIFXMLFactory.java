@@ -33,17 +33,6 @@ public class UserUIFXMLFactory {
         return userUIFXMLFactory;
     }
 
-    public AnchorPane getNoComment(){
-        FXMLLoader noCommentLoader = new FXMLLoader(getClass().getResource("/fxml/暂无评价.fxml"));
-        AnchorPane noComment = null;
-        try {
-            noComment = noCommentLoader.load();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return noComment;
-    }
-
     public AnchorPane getAddComment(){
         FXMLLoader addCommentLoader = new FXMLLoader(getClass().getResource("/fxml/添加评价.fxml"));
         AnchorPane addComment = null;

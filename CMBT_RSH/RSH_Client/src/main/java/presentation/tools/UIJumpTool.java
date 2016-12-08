@@ -49,6 +49,7 @@ public class UIJumpTool {
     private AnchorPane addComment = null;
     private AnchorPane createOrder = null;
     private AnchorPane orderInfo = null;
+    private AnchorPane orderList = null;
     private GuideUIController guideUIController = null;
     private BrowseHotelUIController browseHotelUIController = null;
     private LoginUIController loginUIController = null;
@@ -79,8 +80,13 @@ public class UIJumpTool {
     public void changeToOrderInfo(){
         orderInfo = UserUIFXMLFactory.getUserUIFXMLFactory().getOrderInfo();
         userOrderUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getUserOrderUIController();
-        userOrderUIController.getOrderlistAnchorPane().getChildren().add(orderInfo);
-        Locator.getLocator().setLocation(orderInfo,0.0,0.0,0.0,0.0);
+        orderList = userOrderUIController.getOrderlistAnchorPane();
+        orderList.getChildren().add(orderInfo);
+    }
+
+    //关闭订单详情
+    public void closeOrderInfo(){
+        orderList.getChildren().remove(orderList.getChildren().size()-1);
     }
 
     //在酒店浏览界面上弹出订单生成界面
@@ -100,10 +106,10 @@ public class UIJumpTool {
         userOrder.getChildren().add(addComment);
     }
 
+
     //从添加评价界面返回到订单浏览界面
     public void changeAddCommentToUserOrder(){
-        userOrder.getChildren().remove(userOrder.getChildren().size()-1
-        );
+        userOrder.getChildren().remove(userOrder.getChildren().size()-1);
     }
 
     //从会员注册界面返回到我的会员(是会员)界面

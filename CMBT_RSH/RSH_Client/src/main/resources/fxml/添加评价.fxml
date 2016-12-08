@@ -24,7 +24,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Button>
-            <TextArea fx:id="commentTextarea" editable="false" layoutX="32.0" layoutY="163.0" prefHeight="220.0" prefWidth="341.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="163.0" />
+            <TextArea fx:id="commentTextarea" editable="false" layoutX="32.0" layoutY="163.0" prefHeight="220.0" prefWidth="341.0" visible="false" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="163.0" />
             <ImageView fx:id="cancelImage" fitHeight="30.0" fitWidth="30.0" layoutX="370.0" layoutY="-1.0" onMouseClicked="#closeAddComment" onMouseEntered="#changeCancelImageToRed" onMouseExited="#changeCancleImageToGray" pickOnBounds="true">
                <image>
                   <Image url="@../images/cancel.png" />
@@ -35,6 +35,12 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Button>
+            <Label fx:id="noCommentLabel" layoutX="125.0" layoutY="138.0" prefHeight="51.0" prefWidth="150.0" text="暂无评价">
+               <font>
+                  <Font name="Times New Roman" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="encourageLabel" layoutX="52.0" layoutY="216.0" prefHeight="30.0" prefWidth="321.0" text="亲，您的评价将会对我们改善服务酒店工作有很大的帮助哦" textFill="#0000008d" />
          </children>
          <effect>
             <DropShadow />
