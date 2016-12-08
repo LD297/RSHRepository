@@ -52,6 +52,7 @@ public class AddCommentUIController {
         encourageLabel.setVisible(false);
         commentTextarea.setVisible(true);
         commentTextarea.setEditable(true);
+        saveButton.setVisible(true);
     }
 
     @FXML
@@ -83,6 +84,8 @@ public class AddCommentUIController {
         assert saveButton != null : "fx:id=\"saveButton\" was not injected: check your FXML file '添加评价.fxml'.";
         assert noCommentLabel != null : "fx:id=\"noCommentLabel\" was not injected: check your FXML file '添加评价.fxml'.";
         assert encourageLabel != null : "fx:id=\"encourageLabel\" was not injected: check your FXML file '添加评价.fxml'.";
-
+        if(noCommentLabel.isVisible()){
+            saveButton.setVisible(false);
+        }
     }
 }
