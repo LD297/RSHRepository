@@ -29,7 +29,7 @@ public class ClientRunner {
 	public static void main(String[] args){
 		ClientRunner cr = new ClientRunner();
 		cr.test();
-		new Launcher().startLaunch(args);
+	//	new Launcher().startLaunch(args);
 	}
 }
 

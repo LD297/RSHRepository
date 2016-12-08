@@ -48,6 +48,9 @@ public class AddCommentUIController {
 
     @FXML
     void addComment(MouseEvent event) {
+        noCommentLabel.setVisible(false);
+        encourageLabel.setVisible(false);
+        commentTextarea.setVisible(true);
         commentTextarea.setEditable(true);
     }
 

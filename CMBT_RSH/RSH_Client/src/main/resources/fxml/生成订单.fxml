@@ -11,14 +11,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.CreateOrderUIController">
    <children>
       <Label layoutX="126.0" layoutY="251.0" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.5);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="518.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="141.0" AnchorPane.rightAnchor="141.0" AnchorPane.topAnchor="60.0">
          <children>
             <Line endX="468.0" layoutX="50.0" layoutY="141.0" startX="50.0" stroke="#bababa" strokeWidth="0.7" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="140.0" />
-            <Label layoutX="51.0" layoutY="31.0" prefHeight="32.0" prefWidth="244.0" text="泰国风情大酒店10个字" textFill="#484848">
+            <Label fx:id="hotelName" layoutX="51.0" layoutY="31.0" prefHeight="32.0" prefWidth="244.0" text="泰国风情大酒店10个字" textFill="#484848">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>
@@ -28,7 +27,7 @@
                   <Image url="@../images/地址图标（灰色）.png" />
                </image>
             </ImageView>
-            <Label layoutX="70.0" layoutY="78.0" prefHeight="26.0" prefWidth="402.0" text="仙林学府区" textFill="#484848" AnchorPane.topAnchor="70.0">
+            <Label fx:id="hoteladdressLabel" layoutX="70.0" layoutY="78.0" prefHeight="26.0" prefWidth="402.0" text="仙林学府区" textFill="#484848" AnchorPane.topAnchor="70.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -38,7 +37,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="150.0" layoutY="114.0" prefHeight="26.0" prefWidth="100.0" text="12334465234" textFill="#484848" AnchorPane.topAnchor="100.0">
+            <Label fx:id="hotelPhonenumberLabel" layoutX="150.0" layoutY="114.0" prefHeight="26.0" prefWidth="100.0" text="12334465234" textFill="#484848" AnchorPane.topAnchor="100.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -54,12 +53,12 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="123.0" layoutY="217.0" prefHeight="26.0" prefWidth="100.0" text="12345678901" textFill="#484848" AnchorPane.topAnchor="190.0">
+            <Label fx:id="userPhoneNumberLabel" layoutX="123.0" layoutY="217.0" prefHeight="26.0" prefWidth="100.0" text="12345678901" textFill="#484848" AnchorPane.topAnchor="190.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="123.0" layoutY="175.0" prefHeight="26.0" prefWidth="73.0" text="杨洋" textFill="#484848" AnchorPane.topAnchor="155.0">
+            <Label fx:id="userNameLabel" layoutX="123.0" layoutY="175.0" prefHeight="26.0" prefWidth="73.0" text="杨洋" textFill="#484848" AnchorPane.topAnchor="155.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -69,7 +68,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="337.0" layoutY="175.0" prefHeight="26.0" prefWidth="73.0" text="非会员" textFill="#484848" AnchorPane.leftAnchor="337.0" AnchorPane.topAnchor="155.0">
+            <Label fx:id="memberLevelLabel" layoutX="337.0" layoutY="175.0" prefHeight="26.0" prefWidth="73.0" text="非会员" textFill="#484848" AnchorPane.leftAnchor="337.0" AnchorPane.topAnchor="155.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -79,7 +78,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="337.0" layoutY="217.0" prefHeight="26.0" prefWidth="73.0" text="10000" textFill="#484848" AnchorPane.leftAnchor="337.0" AnchorPane.topAnchor="190.0">
+            <Label fx:id="userCreditLabel" layoutX="337.0" layoutY="217.0" prefHeight="26.0" prefWidth="73.0" text="10000" textFill="#484848" AnchorPane.leftAnchor="337.0" AnchorPane.topAnchor="190.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -90,7 +89,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="123.0" layoutY="280.0" prefHeight="26.0" prefWidth="73.0" text="2016-12-08" textFill="#484848" AnchorPane.topAnchor="245.0">
+            <Label fx:id="dateOfOrderCreatedLabel" layoutX="123.0" layoutY="280.0" prefHeight="26.0" prefWidth="73.0" text="2016-12-08" textFill="#484848" AnchorPane.topAnchor="245.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -110,7 +109,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="250.0" layoutY="396.0" prefHeight="26.0" prefWidth="73.0" text="18：00：00" textFill="#484848" AnchorPane.topAnchor="350.0">
+            <Label fx:id="latestCheckinTimeLabel" layoutX="250.0" layoutY="396.0" prefHeight="26.0" prefWidth="73.0" text="18：00：00" textFill="#484848" AnchorPane.topAnchor="350.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -141,7 +140,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="123.0" layoutY="497.0" prefHeight="26.0" prefWidth="73.0" text="￥400" textFill="#484848" AnchorPane.topAnchor="475.0">
+            <Label fx:id="priceOfPerRoomLabel" layoutX="123.0" layoutY="497.0" prefHeight="26.0" prefWidth="73.0" text="￥400" textFill="#484848" AnchorPane.topAnchor="475.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -151,12 +150,12 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="337.0" layoutY="497.0" prefHeight="26.0" prefWidth="73.0" text="￥380" textFill="#484848" AnchorPane.topAnchor="475.0">
+            <Label fx:id="totalPriceLabel" layoutX="337.0" layoutY="497.0" prefHeight="26.0" prefWidth="73.0" text="￥380" textFill="#484848" AnchorPane.topAnchor="475.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Button layoutX="364.0" layoutY="526.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="108.0" style="-fx-background-color: #ff5a5f;" text="提交订单" textFill="WHITE" AnchorPane.topAnchor="526.0">
+            <Button fx:id="finishCreateOrder" layoutX="364.0" layoutY="526.0" mnemonicParsing="false" onMouseClicked="#finishCreateOrder" prefHeight="32.0" prefWidth="108.0" style="-fx-background-color: #ff5a5f;" text="提交订单" textFill="WHITE" AnchorPane.topAnchor="526.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -166,17 +165,17 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Button>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="472.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="cancelImage" fitHeight="30.0" fitWidth="30.0" layoutX="472.0" layoutY="14.0" onMouseClicked="#closeCreateOrder" onMouseEntered="#changeCancelImageToRed" onMouseExited="#changeCancelImageToGray" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/cancel.png" />
                </image>
             </ImageView>
-            <DatePicker layoutX="250.0" layoutY="282.0" prefHeight="23.0" prefWidth="163.0" AnchorPane.rightAnchor="100.0" />
-            <DatePicker layoutX="250.0" layoutY="317.0" prefHeight="23.0" prefWidth="163.0" AnchorPane.rightAnchor="100.0" />
-            <ChoiceBox layoutX="121.0" layoutY="412.0" prefHeight="23.0" prefWidth="80.0" />
-            <TextField layoutX="123.0" layoutY="445.0" prefHeight="23.0" prefWidth="32.0" />
-            <ChoiceBox layoutX="338.0" layoutY="445.0" prefHeight="23.0" prefWidth="80.0" />
-            <ChoiceBox layoutX="338.0" layoutY="412.0" prefHeight="23.0" prefWidth="80.0" AnchorPane.rightAnchor="100.0" />
+            <DatePicker fx:id="expectedCheckinTimepicker" layoutX="250.0" layoutY="282.0" prefHeight="23.0" prefWidth="163.0" AnchorPane.rightAnchor="100.0" />
+            <DatePicker fx:id="expectedCheckoutTimepicker" layoutX="250.0" layoutY="317.0" prefHeight="23.0" prefWidth="163.0" AnchorPane.rightAnchor="100.0" />
+            <ChoiceBox fx:id="roomtypeChoicebox" layoutX="121.0" layoutY="412.0" prefHeight="23.0" prefWidth="80.0" />
+            <TextField fx:id="personnumField" layoutX="123.0" layoutY="445.0" prefHeight="23.0" prefWidth="32.0" />
+            <ChoiceBox fx:id="haveChildrenOrnotbox" layoutX="338.0" layoutY="445.0" prefHeight="23.0" prefWidth="80.0" />
+            <ChoiceBox fx:id="roomnumChoicebox" layoutX="338.0" layoutY="412.0" prefHeight="23.0" prefWidth="80.0" AnchorPane.rightAnchor="100.0" />
          </children>
       </AnchorPane>
    </children>

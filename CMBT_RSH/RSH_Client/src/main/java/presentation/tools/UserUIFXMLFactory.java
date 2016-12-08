@@ -2,14 +2,11 @@ package presentation.tools;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import presentation.logincontroller.BelowLoginUIController;
 import presentation.logincontroller.LoginUIController;
 import presentation.usercontroller.BrowseHotelUIController;
 import presentation.usercontroller.GuideUIController;
 import presentation.usercontroller.UserOrderUIController;
 import presentation.usercontroller.UserRegisterUIController;
-
-import java.io.IOException;
 
 /**
  * Created by john on 2016/12/5.
@@ -20,7 +17,6 @@ public class UserUIFXMLFactory {
     private GuideUIController guideUIController = null;
     private BrowseHotelUIController browseHotelUIController = null;
     private LoginUIController loginUIController = null;
-    private BelowLoginUIController belowLoginUIController = null;
     private UserRegisterUIController userRegisterUIController = null;
     private UserOrderUIController userOrderUIController = null;
 
@@ -280,18 +276,6 @@ public class UserUIFXMLFactory {
         return selectionCondition;
     }
 
-    public AnchorPane getLoginBelow() {
-        FXMLLoader loginBelowLoader = new FXMLLoader(getClass().getResource("/fxml/登陆下拉.fxml"));
-        AnchorPane loginBelow = null;
-        try {
-            loginBelow = loginBelowLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        belowLoginUIController = (BelowLoginUIController) loginBelowLoader.getController();
-        return loginBelow;
-    }
-
     public AnchorPane getRoleChoose() {
         FXMLLoader roleChooseLoader = new FXMLLoader(getClass().getResource("/fxml/身份选择.fxml"));
         AnchorPane roleChoose = null;
@@ -313,10 +297,6 @@ public class UserUIFXMLFactory {
 
     public LoginUIController getLoginUIController() {
         return loginUIController;
-    }
-
-    public BelowLoginUIController getBelowLoginUIController() {
-        return belowLoginUIController;
     }
 
     public UserOrderUIController getUserOrderUIController() {

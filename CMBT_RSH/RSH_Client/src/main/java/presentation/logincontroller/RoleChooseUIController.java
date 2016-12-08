@@ -41,9 +41,6 @@ public class RoleChooseUIController {
     @FXML
     private ImageView webManagerImage;
 
-    @FXML
-    private Label maskLabel;
-
     //考虑能不能用一个map
     //鼠标移到头像上，头像变亮
     @FXML
@@ -67,8 +64,6 @@ public class RoleChooseUIController {
     //点击头像跳转到登陆界面
     @FXML
     void changeToLogin(MouseEvent event) {
-        //设置背景
-        maskLabel.setVisible(true);
         //设置uijumptool中的role choose用于之后的界面跳转
         UIJumpTool.getUiJumpTool().setRoleChoose(anchorPanel);
         //跳转到login界面
@@ -93,7 +88,6 @@ public class RoleChooseUIController {
         assert hotelStaffImage != null : "fx:id=\"hotelStaffImage\" was not injected: check your FXML file '身份选择.fxml'.";
         assert webSalesmanImage != null : "fx:id=\"webSalesmanImage\" was not injected: check your FXML file '身份选择.fxml'.";
         assert webManagerImage != null : "fx:id=\"webManagerImage\" was not injected: check your FXML file '身份选择.fxml'.";
-        assert maskLabel != null : "fx:id=\"maskLabel\" was not injected: check your FXML file '身份选择.fxml'.";
 
     }
 }
