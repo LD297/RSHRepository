@@ -3,6 +3,9 @@ package presentation.hotelcontroller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import bl.hotelservice.HotelService;
+import bl.hotelserviceimpl.Hotel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.tools.HotelUIFactory;
+import vo.HotelVO;
 
 public class HotelHomepageUIController {
 
@@ -25,9 +29,6 @@ public class HotelHomepageUIController {
 
     @FXML
     private ImageView promotin;
-
-    @FXML
-    private ImageView executeOrder;
 
     @FXML
     private ImageView logo;
@@ -45,7 +46,7 @@ public class HotelHomepageUIController {
     private ImageView basicInfo;
 
     // 酒店信息维护界面根结点
-    private static AnchorPane hotelBasicInUIfoPane;
+    private static AnchorPane hotelBasicInfoUIPane;
     // 酒店信息维护界面控制器
     private static HotelBasicInfoUIController hotelBasicInfoUIController;
 
@@ -69,16 +70,36 @@ public class HotelHomepageUIController {
     // 关于我们界面控制器
     private static AboutUsUIController aboutUsUIController;
 
+    private HotelVO hotelVO;
+
+    private HotelService hotelService;
+
+    public void setHotelVO(HotelVO hotelVO){
+        this.hotelVO = hotelVO;
+        init();
+    }
+
+
+    public void setHotelService(HotelService hotelService) {
+        this.hotelService = hotelService;
+    }
+
+    private void init() {
+        // TODO 看看要不要在首页加每个酒店的id或者头像或者名称信息
+    }
+
     // TODO 代码格式一致，后期考虑优化
 
     @FXML
     void changeToBasicInfoUI(MouseEvent event) {
         // 加载酒店基本信息维护界面
         FXMLLoader loader = HotelUIFactory.getInstance().getHotelBasicInfoUILoader();
+//        System.out.println(loader==null);
         // 加载酒店信息维护界面根结点
-        if(hotelBasicInUIfoPane==null)
+        if(hotelBasicInfoUIPane==null)
             try {
-                hotelBasicInUIfoPane = (AnchorPane) loader.load();
+//                System.out.println("made");
+                hotelBasicInfoUIPane = (AnchorPane) loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
         }
@@ -86,15 +107,20 @@ public class HotelHomepageUIController {
         if(hotelBasicInfoUIController==null)
             hotelBasicInfoUIController = loader.getController();
         // 设置酒店信息维护界面根结点
-        hotelBasicInfoUIController.setAnchorPane(hotelBasicInUIfoPane);
+        hotelBasicInfoUIController.setAnchorPane(hotelBasicInfoUIPane);
         // 传入酒店首页根结点引用
         hotelBasicInfoUIController.setPrePane(anchorPane);
+        // 传入酒店基本信息
+        hotelBasicInfoUIController.setHotelVO(hotelVO);
+        hotelBasicInfoUIController.init();
+        // 配置hotelService
+        hotelBasicInfoUIController.setHotelService(hotelService);
 
         Scene scene = null;
-        if(hotelBasicInUIfoPane.getScene()==null)
-            scene = new Scene(hotelBasicInUIfoPane, HotelUIFactory.UI_WIDTH, HotelUIFactory.UI_HEIGHT);
+        if(hotelBasicInfoUIPane.getScene()==null)
+            scene = new Scene(hotelBasicInfoUIPane, HotelUIFactory.UI_WIDTH, HotelUIFactory.UI_HEIGHT);
         else
-            scene = hotelBasicInUIfoPane.getScene();
+            scene = hotelBasicInfoUIPane.getScene();
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
         stage.setScene(scene);
@@ -226,7 +252,6 @@ public class HotelHomepageUIController {
     @FXML
     void initialize() {
         assert promotin != null : "fx:id=\"promotin\" was not injected: check your FXML file '酒店首页.fxml'.";
-        assert executeOrder != null : "fx:id=\"executeOrder\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert logo != null : "fx:id=\"logo\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert whiteBackground != null : "fx:id=\"whiteBackground\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert checkOrder != null : "fx:id=\"checkOrder\" was not injected: check your FXML file '酒店首页.fxml'.";

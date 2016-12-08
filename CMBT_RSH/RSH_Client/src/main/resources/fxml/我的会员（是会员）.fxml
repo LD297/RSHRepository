@@ -28,13 +28,37 @@
                         <Image url="@../images/用户头像.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="81.0" layoutY="262.0" prefHeight="34.0" prefWidth="81.0" text="个人信息 &gt;" textFill="#484848">
+                  <Line endX="249.5" endY="630.0" layoutX="149.0" startX="249.5" stroke="#bcbcbc" strokeWidth="0.5" AnchorPane.rightAnchor="0.5" />
+                  <Label focusTraversable="false" prefHeight="630.0" prefWidth="250.0" style="-fx-background-color: rgba(3,3,3,0.3);" visible="false" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="630.0" prefWidth="550.0" GridPane.columnIndex="1">
+               <children>
+                  <Label layoutX="14.0" layoutY="21.0" prefHeight="46.0" prefWidth="154.0" text="普通会员" textFill="#484848">
+                     <font>
+                        <Font name="Times New Roman" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="73.0" prefHeight="27.0" prefWidth="81.0" text="注册时间:" textFill="#484848">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="91.0" layoutY="73.0" prefHeight="27.0" prefWidth="106.0" text="2016年12月" textFill="#484848">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="109.0" prefHeight="34.0" prefWidth="81.0" text="会员等级：" textFill="#00a699">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Line endX="249.5" endY="630.0" layoutX="149.0" startX="249.5" stroke="#bcbcbc" strokeWidth="0.5" AnchorPane.rightAnchor="0.5" />
-                  <Label focusTraversable="false" prefHeight="630.0" prefWidth="250.0" style="-fx-background-color: rgba(3,3,3,0.3);" visible="false" />
+                  <Label layoutX="95.0" layoutY="109.0" prefHeight="34.0" prefWidth="19.0" text="4" textFill="#00a699">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

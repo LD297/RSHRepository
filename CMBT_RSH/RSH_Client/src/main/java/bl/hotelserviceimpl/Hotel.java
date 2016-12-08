@@ -2,6 +2,7 @@ package bl.hotelserviceimpl;
 
 import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
+import data.dao.hoteldao.HotelDao_Stub;
 import po.HotelPO;
 import vo.HotelVO;
 import vo.RoomAvailVO;
@@ -23,13 +24,8 @@ public class Hotel{
 	RoomAvail roomAvail;
 	HotelDao hotelDao;
 	
-	Hotel(String id){
+	public Hotel(String id){
 		this.id = id;
-		try{
-			this.hotelPO = hotelDao.getHotel(this.id);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
 	}
 
 	public void setHotelManager(HotelManager hotelManager) {
@@ -40,7 +36,18 @@ public class Hotel{
 		this.roomAvail = roomavail;
 	}
 
-	public void setHotelDao(HotelDao hotelDao){this.hotelDao = hotelDao;}
+	public void setHotelDao(HotelDao hotelDao){
+		this.hotelDao = hotelDao;
+		initHotelPO();
+	}
+
+	private void initHotelPO() {
+		try {
+			hotelPO = hotelDao.getHotel(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 
 	// 调用自身数据库
 	public ResultMessage checkPassword(String id, String password) {
@@ -53,7 +60,7 @@ public class Hotel{
 		return resultMessage;
 	}
 	
-	// 调用自身数据库
+	// 酒店自身dao建立后，随即初始化该酒店po，用来生成vo，供展示层用
 	public HotelVO getHotel() {
 		return HotelVO.createHotelVO(hotelPO);
 	}

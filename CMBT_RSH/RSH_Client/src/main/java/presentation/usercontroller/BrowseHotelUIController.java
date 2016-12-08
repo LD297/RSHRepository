@@ -170,7 +170,7 @@ public class BrowseHotelUIController {
     //点击新建订单，跳转到新建订单界面
     @FXML
     void createOrder(MouseEvent event) {
-
+        UIJumpTool.getUiJumpTool().changeToCreateOrder();
     }
 
     @FXML

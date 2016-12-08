@@ -31,34 +31,34 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 		}
 		return userDaoImpl;
 	}
-	public UserPO getInfo(String id) throws RemoteException {
+	public UserPO getInfo(String userid) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return userDaoHelper.getInfo(userid);
 	}
 
 	public ResultMessage update(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return userDaoHelper.update(po);
 	}
 
-	public ResultMessage add(UserPO po) throws RemoteException {
+	public ResultMessage insert(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return userDaoHelper.insert(po);
 	}
 
-	public ResultMessage checkPassword(String id, String password) throws RemoteException {
+	public ResultMessage checkPassword(String userid, String password) throws RemoteException {
 		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
+		return userDaoHelper.checkPassword(userid,password);
 	}
 
-	public ResultMessage register(String id) throws RemoteException {
+	public ResultMessage register(String userid) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return userDaoHelper.register(userid);
 	}
 
-	public ResultMessage register(String id, String commerceName) throws RemoteException {
+	public ResultMessage register(String userid, String commerceName) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return userDaoHelper.register(userid,commerceName);
 	}
 
 	public ResultMessage setMemberLevel(int[][] gradeWithCredit) throws RemoteException {

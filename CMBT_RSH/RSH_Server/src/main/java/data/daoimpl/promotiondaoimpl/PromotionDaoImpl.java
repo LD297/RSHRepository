@@ -40,27 +40,23 @@ public class PromotionDaoImpl extends UnicastRemoteObject implements PromotionDa
     }
 
     public ResultMessage insert(PromotionPO po)throws RemoteException {
-        return null;
+        return promotionDaoHelper.insert(po);
     }
 
-    public ResultMessage del(String id, String reason)throws RemoteException {
-        return null;
+    public ResultMessage delete(String setter, String id)throws RemoteException {
+        return promotionDaoHelper.delete(setter,id);
     }
 
     public ResultMessage update(PromotionPO po)throws RemoteException {
-        return null;
+        return promotionDaoHelper.update(po);
     }
 
-    public PromotionPO find(String id, String reason)throws RemoteException {
-        return null;
+    public PromotionPO find(String setter, String id)throws RemoteException {
+        return promotionDaoHelper.find(setter, id);
     }
 
-    public ArrayList<PromotionPO> finds(String str)throws RemoteException {
-        return null;
+    public ArrayList<PromotionPO> finds(String district,String hotel)throws RemoteException {
+        return promotionDaoHelper.finds(district, hotel);
     }
 
-    @Override
-    public ArrayList<PromotionPO> finds(Date beginDate, Date endDate) throws RemoteException {
-        return null;
-    }
 }

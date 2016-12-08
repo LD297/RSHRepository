@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.HotelBasicInfoUIController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="800.0">
+      <ImageView fx:id="白色背景" fitHeight="720.0" fitWidth="800.0">
          <image>
             <Image url="@../images/白色背景.png" />
          </image>
@@ -68,7 +68,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <TextField fx:id="addressTextField" layoutX="-3.0" layoutY="12.0" onMouseClicked="#editAddress" prefHeight="27.0" prefWidth="537.0" text="南京市栖霞区" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="12.0">
+                  <TextField fx:id="addressTextField" layoutX="-3.0" layoutY="12.0" onMouseClicked="#editAddress" prefHeight="27.0" prefWidth="537.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="12.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -77,17 +77,23 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <TextArea fx:id="introductionTextArea" layoutY="7.0" onMouseClicked="#editIntroduction" prefHeight="125.0" prefWidth="537.0" text="优雅,浪漫" AnchorPane.leftAnchor="0.0" />
+                  <TextArea fx:id="introductionTextArea" layoutY="7.0" onMouseClicked="#editIntroduction" prefHeight="125.0" prefWidth="537.0" AnchorPane.leftAnchor="0.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font></TextArea>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <TextField fx:id="businessAreaTextField" layoutX="1.0" layoutY="11.0" onMouseClicked="#editBusinessArea" prefHeight="27.0" prefWidth="537.0" text="仙林大学城" AnchorPane.leftAnchor="0.0" />
+                  <TextField fx:id="businessAreaTextField" layoutX="1.0" layoutY="11.0" onMouseClicked="#editBusinessArea" prefHeight="27.0" prefWidth="537.0" AnchorPane.leftAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <TextArea fx:id="facilityTextArea" layoutX="-3.0" layoutY="24.0" onMouseClicked="#editFacility" prefHeight="125.0" prefWidth="537.0" text="一应俱全" AnchorPane.leftAnchor="0.0" />
+                  <TextArea fx:id="facilityTextArea" layoutX="-3.0" layoutY="24.0" onMouseClicked="#editFacility" prefHeight="125.0" prefWidth="537.0" AnchorPane.leftAnchor="0.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font></TextArea>
                </children>
             </AnchorPane>
          </children>
@@ -113,32 +119,27 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="40.0" layoutY="68.0" text="星级: " AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="84.0">
+                  <Label layoutX="40.0" layoutY="68.0" text="联系方式: " AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="84.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="268.0" layoutY="12.0" text="评分: " AnchorPane.bottomAnchor="123.0" AnchorPane.leftAnchor="268.0" AnchorPane.topAnchor="15.0">
+                  <Label layoutX="260.0" layoutY="16.0" text="评分: " AnchorPane.bottomAnchor="122.0" AnchorPane.leftAnchor="262.0" AnchorPane.topAnchor="16.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="nameTextField" layoutX="84.0" layoutY="10.0" onMouseClicked="#editHotelName" prefHeight="26.0" prefWidth="160.0" text="泰国风情大酒店" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="10.0" />
-                  <Label layoutX="84.0" layoutY="53.0" text="2100460002" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="53.0">
+                  <TextField fx:id="nameTextField" layoutX="84.0" layoutY="10.0" onMouseClicked="#editHotelName" prefHeight="26.0" prefWidth="160.0" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="10.0" />
+                  <Label fx:id="idLabel" layoutX="84.0" layoutY="53.0" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="53.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="levelTextField" layoutX="84.0" layoutY="79.0" onMouseClicked="#editHotelLevel" prefHeight="26.0" prefWidth="160.0" text="四星级" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="79.0">
+                  <TextField fx:id="telTextField" layoutX="109.0" layoutY="79.0" onMouseClicked="#editHotelTel" prefHeight="26.0" prefWidth="135.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="194.0" AnchorPane.topAnchor="79.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="304.0" layoutY="10.0" text="4.8" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="15.0">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
                   <Button fx:id="editButton" layoutX="352.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#editButtonClicked" style="-fx-background-color: e5e5e5;" text="编辑" AnchorPane.topAnchor="11.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
@@ -149,26 +150,37 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="checkInDDLTextField" layoutX="143.0" layoutY="103.0" onMouseClicked="#editCheckInDDL" prefHeight="27.0" prefWidth="100.0" text="23:45:59" AnchorPane.bottomAnchor="10.0">
+                  <TextField fx:id="checkInDDLTextField" layoutX="143.0" layoutY="103.0" onMouseClicked="#editCheckInDDL" prefHeight="27.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </TextField>
+                  <Label layoutX="265.0" layoutY="53.0" text="星级:" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="262.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="levelTextField" layoutX="297.0" layoutY="48.0" onMouseClicked="#editLevel" prefHeight="27.0" prefWidth="48.0" />
+                  <Label fx:id="gradeLabel" layoutX="298.0" layoutY="16.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <ImageView fitHeight="133.0" fitWidth="200.0">
+            <ImageView fx:id="hotelImage" fitHeight="133.0" fitWidth="200.0">
                <image>
                   <Image url="@../images/hotel/酒店图片.jpg" />
                </image>
             </ImageView>
          </children>
       </GridPane>
-      <Button fx:id="changePictureButton" layoutX="144.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#changePictureButtonClicked" style="-fx-background-color: e5e5e5;" text="更换图片" AnchorPane.leftAnchor="144.0">
+      <Button fx:id="changeImageButton" layoutX="144.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#changeImageButtonClicked" style="-fx-background-color: e5e5e5;" text="更换图片" AnchorPane.leftAnchor="144.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="roomInfoButton" layoutX="144.0" layoutY="663.0" mnemonicParsing="false" onMouseClicked="#changeToRoomInfoUI" style="-fx-background-color: e5e5e5;" text="客房信息" AnchorPane.leftAnchor="144.0">
+      <Button fx:id="roomInfoButton" layoutX="144.0" layoutY="663.0" mnemonicParsing="false" onMouseClicked="#changeToRoomInfoUI" style="-fx-background-color: e5e5e5;" text="客房信息" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="580.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>

@@ -10,7 +10,7 @@ public class PromotionPO {
 
 	String setter;
 	String id;
-	String reason;
+	String name;
 	Date beginDate;
 	Date endDate;
 
@@ -30,7 +30,7 @@ public class PromotionPO {
 					   DeductionType tempDType, int tempDNum){
 		setter = tempSetter;
 		id = tempId;
-		reason = tempReason;
+		name = tempReason;
 		beginDate = tempBeginDate;
 		endDate = tempEndDate;
 
@@ -39,5 +39,41 @@ public class PromotionPO {
 
 		conditionType = tempCType;
 		condionNum = tempCNum;
+
+		deductionType = tempDType;
+		deductionNum =tempDNum;
+	}
+	public String getSetter(){
+		return this.setter;
+	}
+	public String getId(){
+		return this.id;
+	}
+	public String getName(){
+		return this.name;
+	}
+	public Date getBeginDate(){
+		return this.beginDate;
+	}
+	public Date getEndDate(){
+		return this.endDate;
+	}
+	public ScopeType getScopeType(){
+		return this.scopeType;
+	}
+	public String getScopeNum(){
+		return this.scopeNum;
+	}
+	public ConditionType getConditionType(){
+		return this.conditionType;
+	}
+	public int getCondionNum(){
+		return this.condionNum;
+	}
+	public DeductionType getDeductionType(){
+		return this.deductionType;
+	}
+	public int getDeductionNum(){
+		return this.deductionNum;
 	}
 }

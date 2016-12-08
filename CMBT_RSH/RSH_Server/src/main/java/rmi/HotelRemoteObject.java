@@ -30,8 +30,8 @@ public class HotelRemoteObject extends UnicastRemoteObject implements HotelDao {
     }
 
 
-    public ResultMessage addComment(String id, String userID, String comment) throws RemoteException {
-        return hotelDao.addComment(id, userID,comment);
+    public ResultMessage addComment(String id, String userID,int grade, String comment) throws RemoteException {
+        return hotelDao.addComment(id, userID,grade,comment);
     }
 
     public ResultMessage checkPassword(String id, String password) throws RemoteException {
@@ -42,8 +42,8 @@ public class HotelRemoteObject extends UnicastRemoteObject implements HotelDao {
         return hotelDao.getHotel(id);
     }
 
-    public ResultMessage updateGrade(double grade) throws RemoteException {
-        return hotelDao.updateGrade(grade);
+    public ResultMessage updateGrade(String hotelID,int grade) throws RemoteException {
+        return hotelDao.updateGrade(hotelID,grade);
     }
 
     public ResultMessage updateHotel(HotelVO vo) throws RemoteException {
@@ -58,28 +58,28 @@ public class HotelRemoteObject extends UnicastRemoteObject implements HotelDao {
         return hotelDao.deleteSpecialRoom(vo);
     }
 
-    public ArrayList<RoomVO> getRoomList() throws RemoteException {
-        return hotelDao.getRoomList();
+    public ArrayList<RoomVO> getRoomList(String hotelID) throws RemoteException {
+        return hotelDao.getRoomList(hotelID);
     }
 
-    public ResultMessage updateRoomList(ArrayList<RoomVO> roomList) throws RemoteException {
-        return hotelDao.updateRoomList(roomList);
+    public ResultMessage updateRoom(RoomVO vo) throws RemoteException {
+        return hotelDao.updateRoom(vo);
     }
 
-    public ResultMessage changeRoomAvail(String roomType, int num, Date checkIn, Date checkOut) throws RemoteException {
-        return hotelDao.changeRoomAvail(roomType, num, checkIn, checkOut);
+    public ResultMessage changeRoomAvail(String hotelID,String roomType,Boolean isPlus,int num,Date checkIn, Date checkOut) throws RemoteException {
+        return hotelDao.changeRoomAvail(hotelID,roomType,isPlus,num,checkIn, checkOut);
     }
 
-    public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut) throws RemoteException{
-        return hotelDao.numOfRoomAvail(roomType, checkIn, checkOut);
+    public int numOfRoomAvail(String hotelID,String roomType, Date checkIn, Date checkOut) throws RemoteException{
+        return hotelDao.numOfRoomAvail(hotelID,roomType, checkIn, checkOut);
     }
 
-    public ArrayList<RoomAvailVO> getRoomAvailList(Date date) throws RemoteException {
-        return hotelDao.getRoomAvailList(date);
+    public ArrayList<RoomAvailVO> getRoomAvailList(String hotelID,Date date) throws RemoteException {
+        return hotelDao.getRoomAvailList(hotelID,date);
     }
 
-    public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> roomAvailList)  throws RemoteException{
-        return hotelDao.updateRoomAvailList(roomAvailList);
+    public ResultMessage updateRoomAvail(RoomAvailVO vo)  throws RemoteException{
+        return hotelDao.updateRoomAvail(vo);
     }
 
     public ArrayList<HotelVO> getHotelList(String address, String businessArea) throws RemoteException {
@@ -90,12 +90,16 @@ public class HotelRemoteObject extends UnicastRemoteObject implements HotelDao {
         return hotelDao.getHotelInfo(id);
     }
 
-    public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM) throws RemoteException {
+ /*   public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM) throws RemoteException {
         return hotelDao.sort(sortBy, sortM);
+    }*/
+
+    public ArrayList<HotelVO> selectByName(String hotelName) throws RemoteException {
+        return hotelDao.selectByName(hotelName);
     }
 
-    public ArrayList<HotelVO> select(SelectConditionVO vo) throws RemoteException {
-        return hotelDao.select(vo);
+    public ArrayList<HotelVO> selectByCondition(SelectConditionVO vo) throws RemoteException {
+        return hotelDao.selectByCondition(vo);
     }
 
     public int getHotelNum(String address) throws RemoteException {

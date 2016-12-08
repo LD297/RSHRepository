@@ -240,7 +240,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         return ResultMessage.succeed;
     }
     //评价订单
-    public ResultMessage commentUpdate(String orderid, double grade, String comment) throws RemoteException{
+    public ResultMessage commentUpdate(String orderid, int grade, String comment) throws RemoteException{
         db.executeSql("USE OurData");
 
         String updatecommentSql = "UPDATE OrderGeneral SET grade="+String.valueOf(grade)+

@@ -106,7 +106,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     }
     // 用户核实密码
     public ResultMessage checkPassword(String id, String password) throws RemoteException {
-        db.executeSql("USE OurData");
+        /*db.executeSql("USE OurData");
 
         String checkPasswordSql = "SELECT password FROM UserInfo WHERE userID='"+id+"' LIMIT 1";
         ResultSet result = db.query(checkPasswordSql);
@@ -120,7 +120,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         }catch (SQLException e){
             e.printStackTrace();
             return ResultMessage.fail;
-        }
+        }*/ //fortest
         return ResultMessage.succeed;
     }
     // 用户注册普通会员
@@ -138,6 +138,11 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         String registerSql = "UPDATE UserInfo SET memberType=2 WHERE userID='"+id+"' LIMIT 1";
         db.executeSql(registerSql);
         return ResultMessage.succeed;
+    }
+    // 网站营销人员 制定会员等级制度
+    public ResultMessage setMemberLevel(int[][] gradeWithCredit) throws RemoteException {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     public MemberType intToMemberType(int type){

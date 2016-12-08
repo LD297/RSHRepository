@@ -93,7 +93,7 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
         String change = po.getChange();
         int credit = po.getCredit();
         //creditAction tinyint,isPlus tinyint,changeValue int,credit int
-        String addCreditRecordSql = "INSERT INTO CreditRecordInfo VALUES('"+userid+"',"+dateStr+",'"+orderid+"',"
+        String addCreditRecordSql = "INSERT INTO CreditRecordInfo VALUES('"+userid+"','"+dateStr+"','"+orderid+"',"
                 +String.valueOf(action)+",'"+change.charAt(0)+"',"+Integer.valueOf(change.substring(1))+","+String.valueOf(credit)+")";
         db.executeSql(addCreditRecordSql);
         return ResultMessage.succeed;

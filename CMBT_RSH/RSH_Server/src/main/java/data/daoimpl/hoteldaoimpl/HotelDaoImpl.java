@@ -27,7 +27,7 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
     private HotelDaoHelper hotelDaoHelper;
     private DaoHelperFactory daoHelperFactory;
 
-    private HotelDaoImpl()throws RemoteException{
+    public HotelDaoImpl()throws RemoteException{
         daoHelperFactory = new DaoHelperFactoryImpl();
         hotelDaoHelper = daoHelperFactory.getHotelDaoHelper();
     }
@@ -42,87 +42,90 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
         }
         return hotelDaoImpl;
     }
-    public ResultMessage addComment(String id, String userID, String comment)throws RemoteException {
-        return null;
+    public ResultMessage addComment(String hotelid, String userid, int grade, String comment)throws RemoteException {
+        return hotelDaoHelper.addComment(hotelid,userid,grade,comment);
     }
 
-    public ResultMessage checkPassword(String id, String password)throws RemoteException {
-        return null;
+    public ResultMessage checkPassword(String hotelid, String password)throws RemoteException {
+        return hotelDaoHelper.checkPassword(hotelid,password);
     }
 
     public HotelPO getHotel(String id)throws RemoteException {
-        return null;
+        return hotelDaoHelper.getHotel(id);
     }
 
-    public ResultMessage updateGrade(double grade)throws RemoteException {
-        return null;
+    public ResultMessage updateGrade(String hotelid,int grade)throws RemoteException {
+        return hotelDaoHelper.updateGrade(hotelid,grade);
     }
 
     public ResultMessage updateHotel(HotelVO vo)throws RemoteException {
-        return null;
+        return hotelDaoHelper.updateHotel(vo);
     }
 
     public ResultMessage addSpecialRoom(RoomVO vo)throws RemoteException {
-        return null;
+        return hotelDaoHelper.addSpecialRoom(vo);
     }
 
     public ResultMessage deleteSpecialRoom(RoomVO vo)throws RemoteException {
-        return null;
+        return hotelDaoHelper.deleteSpecialRoom(vo);
     }
 
-    public ArrayList<RoomVO> getRoomList()throws RemoteException {
-        return null;
+    public ArrayList<RoomVO> getRoomList(String hotelid)throws RemoteException {
+        return hotelDaoHelper.getRoomList(hotelid);
     }
 
-    public ResultMessage updateRoomList(ArrayList<RoomVO> roomList)throws RemoteException {
-        return null;
+    public ResultMessage updateRoom(RoomVO vo)throws RemoteException {
+        return hotelDaoHelper.updateRoom(vo);
     }
 
-    public ResultMessage changeRoomAvail(String roomType, int num, Date checkIn, Date checkOut)throws RemoteException {
-        return null;
+    public ResultMessage changeRoomAvail(String hotelid,String roomType,Boolean isPlus, int num, Date checkIn, Date checkOut)throws RemoteException {
+        return hotelDaoHelper.changeRoomAvail(hotelid,roomType,isPlus,num,checkIn,checkOut);
     }
 
-    public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut)throws RemoteException {
-        return 0;
+    public int numOfRoomAvail(String hotelid,String roomType, Date checkIn, Date checkOut)throws RemoteException {
+        return hotelDaoHelper.numOfRoomAvail(hotelid,roomType,checkOut,checkOut);
     }
 
-    public ArrayList<RoomAvailVO> getRoomAvailList(Date date)throws RemoteException {
-        return null;
+    public ArrayList<RoomAvailVO> getRoomAvailList(String hotelid,Date date)throws RemoteException {
+        return hotelDaoHelper.getRoomAvailList(hotelid,date);
     }
 
-    public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> availableRoomList)throws RemoteException {
+    public ResultMessage updateRoomAvail(RoomAvailVO vo)throws RemoteException {
         return null;
     }
 
     public ArrayList<HotelVO> getHotelList(String address, String businessArea)throws RemoteException {
-        return null;
+        return hotelDaoHelper.getHotelList(address,businessArea);
     }
 
-    public HotelVO getHotelInfo(String id)throws RemoteException {
-        return null;
+    public HotelVO getHotelInfo(String hotelid)throws RemoteException {
+        return hotelDaoHelper.getHotelInfo(hotelid);
     }
 
-    public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM)throws RemoteException {
+/*    public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM)throws RemoteException {
         return null;
+    }*/
+    public ArrayList<HotelVO> selectByName(String hotelName)throws RemoteException{
+        return hotelDaoHelper.selectByName(hotelName);
     }
 
-    public ArrayList<HotelVO> select(SelectConditionVO vo)throws RemoteException {
-        return null;
+    public ArrayList<HotelVO> selectByCondition(SelectConditionVO vo)throws RemoteException {
+        return hotelDaoHelper.selectByCondition(vo);
     }
 
     public int getHotelNum(String address)throws RemoteException {
-        return 0;
+        return hotelDaoHelper.getHotelNum(address);
     }
 
-    public ResultMessage addHotel(String id, String password)throws RemoteException {
-        return null;
+    public ResultMessage addHotel(String hotelid, String password)throws RemoteException {
+        return hotelDaoHelper.addHotel(hotelid,password);
     }
 
-    public ResultMessage deleteHotel(String id)throws RemoteException {
-        return null;
+    public ResultMessage deleteHotel(String hotelid)throws RemoteException {
+        return hotelDaoHelper.deleteHotel(hotelid);
     }
 
     public ResultMessage updateHotelStaff(HotelStaffPO po)throws RemoteException {
-        return null;
+        return hotelDaoHelper.updateHotelStaff(po);
     }
 }

@@ -4,6 +4,7 @@ import constant.ResultMessage;
 import data.dao.webstaffdao.WebManagerDao;
 import data.daohelper.DaoHelperFactory;
 import data.daohelper.WebManagerDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import po.WebManagerPO;
 
 import java.rmi.RemoteException;
@@ -17,7 +18,10 @@ public class WebManagerDaoImpl extends UnicastRemoteObject implements WebManager
     private WebManagerDaoHelper webManagerDaoHelper;
     private DaoHelperFactory daoHelperFactory;
 
-    private WebManagerDaoImpl()throws  RemoteException{}
+    private WebManagerDaoImpl()throws  RemoteException{
+        daoHelperFactory = new DaoHelperFactoryImpl();
+        webManagerDaoHelper = daoHelperFactory.getWebManagerDaoHelper();
+    }
 
 
     public static WebManagerDaoImpl getInstance(){
@@ -32,12 +36,11 @@ public class WebManagerDaoImpl extends UnicastRemoteObject implements WebManager
     }
 
 
-    @Override
-    public ResultMessage updateManager(WebManagerPO webManagerPO) throws RemoteException {
-        return null;
+    public ResultMessage update(WebManagerPO po) throws RemoteException {
+        return webManagerDaoHelper.update(po);
     }
 
-    public WebManagerPO getManagerInstance(String managerID)throws RemoteException{
-        return null;
+    public WebManagerPO getManagerInfo(String webmanagerid)throws RemoteException{
+        return webManagerDaoHelper.getManagerInfo(webmanagerid);
     }
 }

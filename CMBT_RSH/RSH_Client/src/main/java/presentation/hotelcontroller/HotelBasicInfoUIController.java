@@ -8,19 +8,23 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-//import com.sun.deploy.association.Action;
-import javafx.event.ActionEvent;
+import bl.hotelservice.HotelService;
+import constant.HotelBasicInfoUIFeedback;
+import constant.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.hotelControllerHelper.HotelBasicInfoUICheck;
 import presentation.tools.HotelUIFactory;
+import vo.HotelVO;
 
 public class HotelBasicInfoUIController {
 
@@ -40,19 +44,34 @@ public class HotelBasicInfoUIController {
     private TextField businessAreaTextField;
 
     @FXML
-    private TextField levelTextField;
+    private TextField telTextField;
 
     @FXML
     private Button editButton;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     private TextField nameTextField;
+
+    @FXML
+    private Label idLabel;
+
+    @FXML
+    private TextField levelTextField;
+
+    @FXML
+    private Label gradeLabel;
+
+    @FXML
+    private ImageView hotelImage;
 
     @FXML
     private TextField checkInDDLTextField;
 
     @FXML
-    private Button changePictureButton;
+    private Button changeImageButton;
 
     @FXML
     private TextArea introductionTextArea;
@@ -67,6 +86,11 @@ public class HotelBasicInfoUIController {
     private TextArea facilityTextArea;
 
     private AnchorPane prePane;
+
+    // 从数据库加载的酒店原始信息
+    private HotelVO hotelVO;
+
+    private HotelService hotelService;
 
     // 客房信息维护界面根结点
     private AnchorPane roomInfoUIPane;
@@ -87,14 +111,15 @@ public class HotelBasicInfoUIController {
             nameTextField.setEditable(false);
         else
             nameTextField.setEditable(true);
+
     }
 
     @FXML
-    void editHotelLevel(MouseEvent event){
+    void editHotelTel(MouseEvent event){
         if(!editable)
-            levelTextField.setEditable(false);
+            telTextField.setEditable(false);
         else
-            levelTextField.setEditable(true);
+            telTextField.setEditable(true);
     }
 
     @FXML
@@ -103,6 +128,14 @@ public class HotelBasicInfoUIController {
             checkInDDLTextField.setEditable(false);
         else
             checkInDDLTextField.setEditable(true);
+    }
+
+    @FXML
+    void editLevel(MouseEvent event){
+        if(!editable)
+            levelTextField.setEditable(false);
+        else
+            levelTextField.setEditable(true);
     }
 
     @FXML
@@ -138,7 +171,7 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void changePictureButtonClicked(MouseEvent event) {
+    void changeImageButtonClicked(MouseEvent event) {
 
     }
 
@@ -176,6 +209,40 @@ public class HotelBasicInfoUIController {
     @FXML
     void confimButtonClicked(MouseEvent event) {
         // TODO 处理信息
+        String name = nameTextField.getText();
+        String id = idLabel.getText();
+        String tel = telTextField.getText();
+        String latestCheckinTime = checkInDDLTextField.getText();
+        String level = levelTextField.getText();
+        String grade = gradeLabel.getText();
+        String address = addressTextField.getText();
+        String businessArea = businessAreaTextField.getText();
+        String briefIntro = introductionTextArea.getText();
+        String facility = facilityTextArea.getText();
+
+        HotelVO newHotelVO = new HotelVO(id, tel, name,
+                address, businessArea, briefIntro,
+                facility,Integer.parseInt(level), Double.parseDouble(grade), latestCheckinTime);
+
+        String[] feedback = HotelBasicInfoUICheck.checkHotelVO(newHotelVO);
+
+        boolean isLegal = true;
+        for(String eachItem:feedback){
+            if(!eachItem.equals(HotelBasicInfoUIFeedback.LEGAL)){
+                isLegal = false;
+                // TODO 结合下面的弹出提示框
+                System.out.println(eachItem);
+            }
+        }
+        if(isLegal){
+            ResultMessage rm = hotelService.updateHotel(newHotelVO);
+            if(rm.equals(ResultMessage.succeed))
+                // TODO 用的stub所以不会有反应
+                System.out.println("成功保存");
+        } else {
+            // TODO 弹出提示框
+        }
+
         editable = false;
     }
 
@@ -194,18 +261,45 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void initialize() {
-        assert anchorPane != null : "fx:id=\"anchorePane\" was not injected: check your FXML file '酒店信息维护.fxml'.";
+        assert gradeLabel != null : "fx:id=\"gradeLabel\" was not injected: check your FXML file '酒店信息维护.fxml'.";
         assert addressTextField != null : "fx:id=\"addressTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
         assert businessAreaTextField != null : "fx:id=\"businessAreaTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
+        assert hotelImage != null : "fx:id=\"hotelImage\" was not injected: check your FXML file '酒店信息维护.fxml'.";
         assert levelTextField != null : "fx:id=\"levelTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert editButton != null : "fx:id=\"editButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
         assert nameTextField != null : "fx:id=\"nameTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
         assert checkInDDLTextField != null : "fx:id=\"checkInDDLTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert changePictureButton != null : "fx:id=\"changePictureButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
         assert introductionTextArea != null : "fx:id=\"introductionTextArea\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert roomInfoButton != null : "fx:id=\"roomInfoButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
+        assert changeImageButton != null : "fx:id=\"changeImageButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
         assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
+        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '酒店信息维护.fxml'.";
+        assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file '酒店信息维护.fxml'.";
+        assert editButton != null : "fx:id=\"editButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
+        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
+        assert telTextField != null : "fx:id=\"telTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
+        assert roomInfoButton != null : "fx:id=\"roomInfoButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
         assert facilityTextArea != null : "fx:id=\"facilityTextArea\" was not injected: check your FXML file '酒店信息维护.fxml'.";
 
+    }
+
+    public void setHotelVO(HotelVO hotelVO) {
+        this.hotelVO = hotelVO;
+    }
+
+
+    public void setHotelService(HotelService hotelService) {
+        this.hotelService = hotelService;
+    }
+
+    public void init(){
+        nameTextField.setText(hotelVO.name);
+        idLabel.setText(hotelVO.id);
+        telTextField.setText(hotelVO.tel);
+        checkInDDLTextField.setText(hotelVO.latestCheckinTime);
+        levelTextField.setText(String.valueOf(hotelVO.level));
+        gradeLabel.setText(String.valueOf(hotelVO.grade));
+        addressTextField.setText(hotelVO.addr);
+        businessAreaTextField.setText(hotelVO.businessArea);
+        introductionTextArea.setText(hotelVO.briefIntro);
+        facilityTextArea.setText(hotelVO.facility);
     }
 }
