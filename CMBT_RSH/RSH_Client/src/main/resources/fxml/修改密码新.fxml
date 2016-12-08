@@ -24,14 +24,23 @@
                   <Image url="@../images/头像背景.png" />
                </image>
             </ImageView>
-            <Button fx:id="finishModifyButton" layoutX="130.0" layoutY="392.0" mnemonicParsing="false" onMouseClicked="#finishModifyButtonClicked" prefHeight="43.0" prefWidth="220.0" style="-fx-background-color: #ff5a5f;" text="确认修改" textFill="WHITE">
+            <Button fx:id="finishModifyButton" layoutX="130.0" layoutY="401.0" mnemonicParsing="false" onMouseClicked="#finishModifyButtonClicked" prefHeight="43.0" prefWidth="220.0" style="-fx-background-color: #ff5a5f;" text="确认修改" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="14.0" />
                </font>
             </Button>
-            <PasswordField fx:id="prePasswordField" layoutX="130.0" layoutY="203.0" prefHeight="43.0" prefWidth="220.0" promptText="请输入原密码" />
-            <PasswordField fx:id="confirmNewPasswordField" layoutX="130.0" layoutY="327.0" prefHeight="43.0" prefWidth="220.0" promptText="请确认新密码" />
-            <PasswordField fx:id="newPasswordField" layoutX="130.0" layoutY="267.0" prefHeight="43.0" prefWidth="220.0" promptText="请输入新密码" />
+            <PasswordField fx:id="prePasswordField" layoutX="130.0" layoutY="209.0" prefHeight="30.0" prefWidth="220.0" promptText="请输入原密码">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font></PasswordField>
+            <PasswordField fx:id="confirmNewPasswordField" layoutX="130.0" layoutY="333.0" prefHeight="30.0" prefWidth="220.0" promptText="请确认新密码">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font></PasswordField>
+            <PasswordField fx:id="newPasswordField" layoutX="130.0" layoutY="273.0" prefHeight="30.0" prefWidth="220.0" promptText="请输入新密码">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font></PasswordField>
             <ImageView fx:id="cancelImage" fitHeight="30.0" fitWidth="30.0" layoutX="371.0" layoutY="-1.0" onMouseClicked="#closeModifyPassword" onMouseExited="#changeCancelImageToGray" onMouseMoved="#changeCancelImageToRed" pickOnBounds="true">
                <image>
                   <Image url="@../images/cancel.png" />
@@ -50,6 +59,21 @@
             <Label layoutX="22.0" layoutY="273.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="输入新密码：" textFill="#484848">
                <font>
                   <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="prepasswordLabel" layoutX="130.0" layoutY="239.0" prefHeight="30.0" prefWidth="269.0" textFill="#ff5a5f">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="confirmnewpasswordLabel" layoutX="130.0" layoutY="363.0" prefHeight="30.0" prefWidth="269.0" textFill="#ff5a5f">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="newpasswordLabel" layoutX="130.0" layoutY="303.0" prefHeight="30.0" prefWidth="269.0" textFill="#ff5a5f">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
          </children>

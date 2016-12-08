@@ -5,7 +5,7 @@ package data.daohelperimpl.jdbc;
  */
 public class Values {
     public static final String DRIVER_MYSQL = "com.mysql.jdbc.Driver";    //MySQL JDBC驱动字符串
-    public static final String URL = "jdbc:mysql://172.26.0.1:3306/OurData?"
+    public static final String URL = "jdbc:mysql://localhost/OurData?"
             + "user=root&password=CMBT4142&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false";//数据库Url,用来标识要连接的数据库，其中数据库名、用户名、密码是根据你自己的数据库情况设定
 
 }
