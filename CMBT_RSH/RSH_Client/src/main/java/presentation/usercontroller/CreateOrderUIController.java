@@ -73,9 +73,8 @@ public class CreateOrderUIController {
 
     @FXML
     private ChoiceBox<?> roomtypeChoicebox;
-
     @FXML
-    private TextField personnumField;
+    private ChoiceBox<?> numOfPersonBox;
 
     @FXML
     private ChoiceBox<?> haveChildrenOrnotbox;
@@ -122,10 +121,9 @@ public class CreateOrderUIController {
         assert expectedCheckinTimepicker != null : "fx:id=\"expectedCheckinTimepicker\" was not injected: check your FXML file '生成订单.fxml'.";
         assert expectedCheckoutTimepicker != null : "fx:id=\"expectedCheckoutTimepicker\" was not injected: check your FXML file '生成订单.fxml'.";
         assert roomtypeChoicebox != null : "fx:id=\"roomtypeChoicebox\" was not injected: check your FXML file '生成订单.fxml'.";
-        assert personnumField != null : "fx:id=\"personnumField\" was not injected: check your FXML file '生成订单.fxml'.";
         assert haveChildrenOrnotbox != null : "fx:id=\"haveChildrenOrnotbox\" was not injected: check your FXML file '生成订单.fxml'.";
         assert roomnumChoicebox != null : "fx:id=\"roomnumChoicebox\" was not injected: check your FXML file '生成订单.fxml'.";
-
+        assert numOfPersonBox != null : "fx:id=\"numOfPersonBox\" was not injected: check your FXML file '生成订单.fxml'.";
     }
 }
 

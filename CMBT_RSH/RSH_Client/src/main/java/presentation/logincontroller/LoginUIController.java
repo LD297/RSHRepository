@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginController;
+import bl.userserviceimpl.User;
 import constant.ResultMessage;
 import constant.Role;
 import javafx.event.ActionEvent;
@@ -62,6 +63,12 @@ public class LoginUIController {
     @FXML
     private Label registerLabel;
 
+    @FXML
+    private Label idFormLabel;
+
+    @FXML
+    private Label passwordFormLabel;
+
     private Role role;
 
     //image
@@ -89,16 +96,34 @@ public class LoginUIController {
     void finishInput(ActionEvent event) {
         String id = idField.getText();
         String password = passwordField.getText();
-        //TODO 输入格式检查
-        LoginService loginService = new LoginController();
-        ResultMessage resultMessage = loginService.checkOnline(role,id,password);
-        if(resultMessage==resultMessage.succeed){
-            if(role == Role.user){
-                //跳转到搜索酒店界面
-                if(loginBelowAnchorpane.isVisible()){//先判断有没有登陆下拉界面,有就删除
-                    loginBelowAnchorpane.setVisible(false);
+        if(role == Role.user){
+            String idResult = UserInputFormCheckTool.getInstance().checkUserID(id);
+            if(idResult!="success"){
+                idFormLabel.setText(idResult);
+            }else {
+                idFormLabel.setText("");
+            }
+            String passwordResult = UserInputFormCheckTool.getInstance().checkUserPassword(password);
+            if(passwordResult!="success"){
+                passwordFormLabel.setText(passwordResult);
+            }else {
+                passwordFormLabel.setText("");
+            }
+            if(idResult=="success"&&passwordResult=="success"){
+                LoginService loginService = new LoginController();
+                ResultMessage resultMessage = loginService.checkOnline(role,id,password);
+                if(resultMessage==ResultMessage.succeed){
+                    //跳转到搜索酒店界面
+                    if(loginBelowAnchorpane.isVisible()){//先判断有没有登陆下拉界面,有就删除
+                        loginBelowAnchorpane.setVisible(false);
+                    }
+                    UIJumpTool.getUiJumpTool().changeLoginToSearchHotel();
                 }
-                UIJumpTool.getUiJumpTool().changeLoginToSearchHotel();
+            }
+        }
+/*        if(resultMessage==resultMessage.succeed){
+            if(role == Role.user){
+
             }else if(role==Role.hotel){
                 //跳转到hotel主界面
                 UIJumpTool.getUiJumpTool().changeLoginToHotelHomePage();
@@ -109,7 +134,7 @@ public class LoginUIController {
             }
         }else{
             //TODO 用户名和密码错误，或者登陆冲突
-        }
+        }*/
     }
 
     //展开或收起登陆下拉界面
@@ -154,15 +179,6 @@ public class LoginUIController {
         this.role = role;
     }
 
-    void setShow(boolean show){
-        this.show = show;
-        if(show){
-            showMoreImage.setImage(showImage);
-        }else {
-            showMoreImage.setImage(hideImage);
-        }
-    }
-
     void setShowMoreImage(boolean visible){
         showMoreImage.setVisible(visible);
     }
@@ -177,6 +193,8 @@ public class LoginUIController {
         assert loginBelowAnchorpane != null : "fx:id=\"loginBelowAnchorpane\" was not injected: check your FXML file '登陆.fxml'.";
         assert rememberPasswordButton != null : "fx:id=\"rememberPasswordButton\" was not injected: check your FXML file '登陆.fxml'.";
         assert registerLabel != null : "fx:id=\"registerLabel\" was not injected: check your FXML file '登陆.fxml'.";
+        assert idFormLabel != null : "fx:id=\"idFormLabel\" was not injected: check your FXML file '登陆.fxml'.";
+        assert passwordFormLabel != null : "fx:id=\"passwordFormLabel\" was not injected: check your FXML file '登陆.fxml'.";
 
     }
 }
