@@ -1,4 +1,4 @@
-package presentation.hotelControllerHelper;
+package presentation.tools;
 
 import constant.HotelBasicInfoUIFeedback;
 import vo.HotelVO;

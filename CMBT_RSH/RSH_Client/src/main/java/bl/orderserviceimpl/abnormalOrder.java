@@ -3,6 +3,7 @@ package bl.orderserviceimpl;
 import bl.orderservice.HotelInfoService;
 import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
+import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import vo.RoomNormVO;
 
@@ -15,8 +16,19 @@ import java.util.Date;
 public class AbnormalOrder {
 
     HotelInfoService hotelinfo;
+    private OrderDao orderDao;
+
     CreditRecordList record;
     OrderPO orderpo;
+
+
+    public void setHotelInfoService(HotelInfoService hotelInfoService) {
+        this.hotelinfo = hotelInfoService;
+    }
+
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
 
     public void setCreditRecordList(CreditRecordList re){
         record = re;
@@ -76,6 +88,5 @@ public class AbnormalOrder {
 		record.addCreditRecord(creditRecord);*/
         return ResultMessage.succeed;
     }
-
 }
 

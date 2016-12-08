@@ -1,5 +1,7 @@
-package bl.orderserviceimpl;
+package bl.orderserviceimpl.miscellaneous;
 
+import bl.orderserviceimpl.NormalOrder;
+import bl.orderserviceimpl.miscellaneous.MockComment;
 import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
 import org.junit.Test;

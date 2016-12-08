@@ -1,11 +1,19 @@
 package bl.orderserviceimpl;
 
 import constant.StateOfOrder;
+import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 
 import java.util.ArrayList;
 
-public class Order {
+public class CheckOrder {
+
+	private OrderDao orderDao;
+
+	public void setOrderDao(OrderDao orderDao) {
+		this.orderDao = orderDao;
+	}
+
 	// 浏览用户的订单
 	public ArrayList<OrderPO> userBrowse(String userid){
 		return null;

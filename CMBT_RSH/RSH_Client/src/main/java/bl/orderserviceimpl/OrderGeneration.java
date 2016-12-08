@@ -9,18 +9,28 @@ import bl.orderservice.HotelInfoService;
 import bl.promotionServiceimpl.Count;
 import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
+import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import vo.RoomNormVO;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class InitialOrder {
+public class OrderGeneration {
 
-    private String hotelid;
+//    private String hotelid;
     private HotelInfoService hotelinfo;
-    private Count count;
+//    private Count count;
+    private OrderDao orderDao;
 
+
+    public void setHotelInfoService(HotelInfoService hotelinfo) {
+        this.hotelinfo = hotelinfo;
+    }
+
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
 
     //根据酒店得到房间规模（房间类型和价格）
     public ArrayList<RoomNormVO> getHotelRoom(String hotelid){
@@ -131,7 +141,7 @@ public class InitialOrder {
         }
 
         //检查价格
-        InitialOrder initial = new InitialOrder();
+        OrderGeneration initial = new OrderGeneration();
         double price = Double.parseDouble(initial.getDiscount(orderpo).split("#")[1]);
         if(orderpo.getTrueValue()<price)
             return ResultMessage.fail;
@@ -141,7 +151,7 @@ public class InitialOrder {
 
     //根据界面信息 生成orderid完善orderpo
     public void add(OrderPO orderpo){
-        InitialOrder initial = new InitialOrder();
+        OrderGeneration initial = new OrderGeneration();
 
         if(initial.check(orderpo).equals(ResultMessage.succeed)){
             //dataservice;

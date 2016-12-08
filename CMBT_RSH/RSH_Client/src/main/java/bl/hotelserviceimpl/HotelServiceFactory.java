@@ -1,4 +1,4 @@
-package presentation.hotelControllerHelper;
+package bl.hotelserviceimpl;
 
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.*;
@@ -6,6 +6,7 @@ import data.dao.hoteldao.HotelDao;
 import data.dao.hoteldao.HotelDao_Stub;
 
 /**
+ * TODO 应该放在bl层
  * Created by a297 on 16/12/7.
  */
 public class HotelServiceFactory {
@@ -26,7 +27,7 @@ public class HotelServiceFactory {
         // 得到该id对应的酒店领域对象
         Hotel hotel = new Hotel(id);
 
-        // 设置酒店业务逻辑的实现类
+        // 设置酒店业务逻辑所需的自身数据层的处理对象
         HotelDao hotelDao = new HotelDao_Stub();
         hotel.setHotelDao(hotelDao);
 

@@ -1,4 +1,4 @@
-package bl.orderserviceimpl;
+package bl.orderserviceimpl.miscellaneous;
 
 import bl.hotelserviceimpl.CommentImpl;
 import constant.ResultMessage;

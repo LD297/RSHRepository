@@ -6,10 +6,12 @@ import bl.orderservice.CommentService;
 import bl.orderservice.HotelInfoService;
 import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
+import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import vo.CreditRecordVO;
 import vo.RoomNormVO;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,12 +20,19 @@ import java.util.Date;
  */
 public class NormalOrder {
     HotelInfoService hotelinfo;
-    OrderPO orderpo ;
-    public void setOrder(OrderPO ord){
-        orderpo = ord;
-    }//方便测试
+    OrderDao orderDao;
+
     CommentService com ;
     CreditRecordList record;
+
+    public void setHotelinfo(HotelInfoService hotelinfo) {
+        this.hotelinfo = hotelinfo;
+    }
+
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
+
     public void setCommentImpl(CommentImpl comm){
         com = comm;
     }
@@ -33,7 +42,12 @@ public class NormalOrder {
 
     // 用户撤销未执行订单
     public void cancelMyOrder(String orderid){
-        //orderdataservice->find->orderpo
+        OrderPO orderpo = null;
+        try {
+            orderpo = orderDao.find(orderid);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         ArrayList<RoomNormVO> rooms =  orderpo.getRooms();
         int[] num = orderpo.getRoomNums();
         Date checkIn = orderpo.getTime()[0];
@@ -88,6 +102,12 @@ public class NormalOrder {
 
     // 实时更新异常订单状况
     public void setAbnormal(String orderid){
+        OrderPO orderpo = null;
+        try {
+            orderpo = orderDao.find(orderid);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         String time = hotelinfo.getCheckInDDL(orderid.substring(10, 20));
         int hour = Integer.valueOf(time.substring(0, 2));
         int minute = Integer.valueOf(time.substring(3));
@@ -116,5 +136,8 @@ public class NormalOrder {
         return null;
     }
 
+    public void setHotelInfoService(HotelInfoService hotelInfoService) {
+        this.hotelinfo = hotelInfoService;
+    }
 }
 
