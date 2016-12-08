@@ -1,6 +1,6 @@
 package data.daohelperimpl.webstaffdaohelperimpl;
 
-import bl.webstaffserviceimpl.WebManager;
+//import bl.webstaffserviceimpl.WebManager;
 import constant.ResultMessage;
 import data.daohelper.WebManagerDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
