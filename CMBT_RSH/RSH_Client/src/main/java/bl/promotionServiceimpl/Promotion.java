@@ -1,5 +1,6 @@
 package bl.promotionServiceimpl;
 
+import constant.ScopeType;
 import constant.ConditionType;
 import constant.DeductionType;
 import constant.ResultMessage;
@@ -18,21 +19,16 @@ import java.util.Date;
 public class Promotion {
 
 	private static PromotionDao promotionDao;
-	String setter;
-	String id;
-	String reason;
+	private String setter;
+	private String id;
+	private String reason;
 
-	Date beginDate;
-	Date endDate;
+	private Date beginDate;
+	private Date endDate;
 
-	ScopeType scopeType;
-	String scopeNum ;
-
-	ConditionType conditionType;
-	int conditionNum = 0;
-
-	DeductionType deductionType;
-	int deductionNum = 0;
+	Scope scope;
+	Condition condition;
+	Deduction deduction;
 
 	public Promotion (String Reason, String ID){
 		RemoteHelper remoteHelper = RemoteHelper.getInstance();
@@ -54,28 +50,49 @@ public class Promotion {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-//		promotion = PromotionPO.
 		return promotion;
 	}
 
-	public ResultMessage setScope(constant.ScopeType stype, String id, String rtype) {
+	public void setScope(ScopeType stype, String scopeNum) {
 		// TODO Auto-generated method stub
-		scopeType =new ScopeType();
-		return null;
+		if(stype == ScopeType.DISTRICT){
+			scope = new DistrictScope(scopeNum);
+		}
+		else if(stype == ScopeType.HOTEL){
+			scope = new HotelScope(scopeNum);
+		}
+		else if(stype == ScopeType.ROOM){
+			scope = new RoomScope(scopeNum.substring(0,10),scopeNum.substring(10));
+		}
 	}
-	public ResultMessage setConditionType(ConditionType type, int requirement) {
+	public void setCondition(ConditionType cType,int cNum) {
 		// TODO Auto-generated method stub
-		return null;
+		if(cType == ConditionType.BIRTHDAY){
+			condition = new BirthdayCondition();
+		}
+		else if(cType == ConditionType.MEMBER){
+			condition = new MemberCondition(cNum);
+		}
+		else if(cType == ConditionType.NUM){
+			condition = new NumCondition(cNum);
+		}
+		else if(cType == ConditionType.TOTAL){
+			condition = new TotalCondition(cNum);
+		}
 	}
-	public ResultMessage setDeductionType(DeductionType type, int num) {
+	public void setDeduction(DeductionType dType, int dNum) {
 		// TODO Auto-generated method stub
-		return null;
+		if(dType == DeductionType.DISCOUNT){
+			deduction = new DiscountDeduction(dNum);
+		}
+		else if(dType == DeductionType.REDUCE){
+			deduction = new ReduceDeduction(dNum);
+		}
 	}
-	public ResultMessage setDate(Date tempBeginDate, Date tempEndDate) {
+	public void setDate(Date tempBeginDate, Date tempEndDate) {
 		// TODO Auto-generated method stub
 		beginDate=tempBeginDate;
 		endDate=tempEndDate;
-		return null;
 	}
 
 	/**
@@ -83,21 +100,29 @@ public class Promotion {
 	 * @return
 	 */
 	public ResultMessage insertPromotion(){
-
-		return null;
+		PromotionPO promotionPO = this.changeIntoPO();
+		try {
+			promotionDao.insert(promotionPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.succeed;
 	}
-
 
 	/**
 	 * 从数据库中删除
-	 * @param tempReason
-	 * @param iD
+	 * @param tempSetter
+	 * @param ID
 	 * @return
 	 */
-	public static ResultMessage delPromotion(String tempReason, String iD) {
+	public static ResultMessage delPromotion(String tempSetter, String ID) {
 		// TODO Auto-generated method stub
-
-		return null;
+		try {
+			promotionDao.del(tempSetter,ID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.succeed;
 	}
 
 	/**
@@ -106,8 +131,21 @@ public class Promotion {
 	 */
 	public ResultMessage update() {
 		// TODO Auto-generated method stub
-		return null;
+		PromotionPO promotionPO = this.changeIntoPO();
+		try {
+			promotionDao.update(promotionPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.succeed;
 	}
 	
-	
+	public PromotionPO changeIntoPO(){
+		PromotionPO promotionPO = new PromotionPO(setter,id,reason,
+				beginDate,endDate,
+				scope.getType(),scope.getNum(),
+				condition.getType(),condition.getNum(),
+				deduction.getType(),deduction.getNum());
+		return promotionPO;
+	}
 }

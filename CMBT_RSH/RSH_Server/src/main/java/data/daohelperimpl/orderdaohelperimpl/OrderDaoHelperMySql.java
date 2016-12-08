@@ -260,31 +260,10 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     }
 
     public StateOfOrder getState(int s) {
-        StateOfOrder state;
-        switch (s){
-            case 1:state = StateOfOrder.unexecuted;
-                break;
-            case 2:state = StateOfOrder.executed;
-                break;
-            case 3:state = StateOfOrder.abnormal;
-                break;
-            case 4:state = StateOfOrder.canceled;
-                break;
-            default:state = null;
-        }
+        StateOfOrder state=StateOfOrder.values()[s];
         return state;
     }
     public int getStateNum(StateOfOrder state){
-        int s;
-        if(state==StateOfOrder.unexecuted)
-            s = 1;
-        else if(state==StateOfOrder.executed)
-            s = 2;
-        else if(state==StateOfOrder.abnormal)
-            s = 3;
-        else
-            s = 4;
-
-        return s;
+        return state.ordinal();
     }
 }

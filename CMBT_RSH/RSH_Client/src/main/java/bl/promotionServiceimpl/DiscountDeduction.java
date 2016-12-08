@@ -1,5 +1,7 @@
 package bl.promotionServiceimpl;
 
+import constant.DeductionType;
+
 /**
  * 折扣优惠
  * @author aa
@@ -12,10 +14,18 @@ public class DiscountDeduction extends Deduction {
 	public DiscountDeduction(int disc){
 		discount=disc;
 	}
-	
-	public int getPromotion(int total){
-		int result=total;
-		
-		return result;
+
+	@Override
+	public DeductionType getType() {
+		return DeductionType.DISCOUNT;
+	}
+
+	@Override
+	public int getNum() {
+		return discount;
+	}
+
+	public int getDeduction(int total){
+		return total*discount;
 	}
 }

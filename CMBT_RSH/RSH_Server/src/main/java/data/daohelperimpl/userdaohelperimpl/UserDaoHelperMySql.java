@@ -141,29 +141,17 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     }
 
     public MemberType intToMemberType(int type){
-        if(type==0)
-            return MemberType.commom;
-        else
-            return MemberType.commerce;
+       return MemberType.values()[type];
     }
     public int memberTypeToInt(MemberType type){
-        if(type==MemberType.commom)
-            return 0;
-        else
-            return 1;
+        return type.ordinal();
     }
 
     public Sexuality intToSexuality(int sex){
-        if(sex==0)
-            return Sexuality.female;
-        else
-            return Sexuality.male;
+        return Sexuality.values()[sex];
     }
     public int sexualityToInt(Sexuality sex){
-        if(sex==Sexuality.female)
-            return 0;
-        else
-            return 1;
+       return sex.ordinal();
     }
 
 }

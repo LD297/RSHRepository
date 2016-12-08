@@ -27,9 +27,9 @@ public class PromotionController implements PromotionService {
 		}
 		promotion=new Promotion(promotionVO.reason,promotionVO.setter);
 		promotion.setDate(promotionVO.beginDate,promotionVO.endDate);
-		promotion.setScope(promotionVO.scopeType,promotionVO.id,promotionVO.roomType);
-		promotion.setConditionType(promotionVO.conditionType,promotionVO.requirement);
-		promotion.setDeductionType(promotionVO.deductionType,promotionVO.deduction);
+		promotion.setScope(promotionVO.scopeType,promotionVO.id+promotionVO.roomType);
+		promotion.setCondition(promotionVO.conditionType,promotionVO.requirement);
+		promotion.setDeduction(promotionVO.deductionType,promotionVO.deduction);
 		promotion.insertPromotion();
 		return ResultMessage.succeed;
 	}		;
@@ -66,9 +66,9 @@ public class PromotionController implements PromotionService {
 	}
 
 	@Override
-	public String countPromotionOfRoom(String hotelID, String type, int num, Date beginDate, Date endDate) {
+	public String countPromotionOfRoom(String hotelID, String type, int num, int price,Date beginDate, Date endDate) {
 		// TODO Auto-generated method stub
-		return Count.countPromotionOfRoom(hotelID,type,num,beginDate,endDate);
+		return Count.countPromotionOfRoom(hotelID,type,num,price,beginDate,endDate);
 	}
 
 	@Override

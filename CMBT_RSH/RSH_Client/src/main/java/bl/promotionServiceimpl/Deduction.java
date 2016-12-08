@@ -1,14 +1,18 @@
 package bl.promotionServiceimpl;
 
+import constant.DeductionType;
+
 /**
  * 优惠的种类
  * @author aa
  *
  */
-public class Deduction {
+public abstract class Deduction {
 
-	public int getPromotion(int total){
-		
-		return total;
-	}
+	DeductionType deductionType;
+	int deductionNum;
+
+	public abstract DeductionType getType();
+	public abstract int getNum();
+	public abstract int getDeduction(int total);
 }

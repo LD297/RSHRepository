@@ -1,6 +1,6 @@
 package po;
 
-import bl.webstaffserviceimpl.WebManager;
+//import bl.webstaffserviceimpl;
 
 public class WebManagerPO {
 

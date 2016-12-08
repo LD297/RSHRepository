@@ -32,7 +32,7 @@ public class CountTest {
 	
 	@Test
 	public void countPromotionOfRoom(){
-		assertEquals("双十一特惠#120",Count.countPromotionOfRoom(hotelID, rType, 2, beginDate,endDate));
+		assertEquals("双十一特惠#120",Count.countPromotionOfRoom(hotelID, rType, 2,100, beginDate,endDate));
 
 	}
 	
