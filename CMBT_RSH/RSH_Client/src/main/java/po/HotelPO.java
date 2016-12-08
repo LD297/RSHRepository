@@ -131,7 +131,7 @@ public class HotelPO implements Serializable{
 
 	public static HotelPO createHotelPO(HotelVO vo){
 		// 根据hotelVO封装一个新的hotelPO，传给下层
-		HotelPO newHotelPO = HotelPO.createHotelPO(vo);
+		HotelPO newHotelPO = new HotelPO(vo.id);
 		newHotelPO.setPassword(vo.getPassword());
 		newHotelPO.setTel(vo.tel);
 		newHotelPO.setName(vo.name);
