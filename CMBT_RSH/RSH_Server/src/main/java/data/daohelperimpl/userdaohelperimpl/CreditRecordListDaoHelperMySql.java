@@ -25,7 +25,7 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
 
         db.executeSql("USE OurData");
         // 账号 日期 订单号 信用更改原因 信用变化 变更后信用值
-        db.executeSql("CREATE TABLE CreditRecordInfo(userID char(9),changeDate date,orderID char(26)," +
+        db.executeSql("CREATE TABLE if not exists CreditRecordInfo(userID char(9),changeDate date,orderID char(26)," +
                 "creditAction tinyint,isPlus tinyint,changeValue int,credit int)" );
     }
 

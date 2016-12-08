@@ -1,6 +1,15 @@
 package data.daohelperimpl.orderdaohelperimpl;
 
 
+import bl.promotionServiceimpl.Promotion;
+import data.daohelper.HotelDaoHelper;
+import data.daohelper.PromotionDaoHelper;
+import data.daohelperimpl.hoteldaohelperimpl.HotelDaoHelperMySql;
+import data.daohelperimpl.logindaohelperimpl.LoginDaoHelperMySql;
+import data.daohelperimpl.promotiondaohelperimpl.PromotionDaoHelperMySql;
+import data.daohelperimpl.userdaohelperimpl.CreditRecordListDaoHelperMySql;
+import data.daohelperimpl.userdaohelperimpl.UserDaoHelperMySql;
+
 import java.rmi.RemoteException;
 
 /**
@@ -32,6 +41,17 @@ public class test {
         orderdao.insert(order);*/
         OrderDaoHelperMySql orderdao = new OrderDaoHelperMySql();
         orderdao.init();
+        HotelDaoHelperMySql hoteldao = new HotelDaoHelperMySql();
+        hoteldao.init();
+        LoginDaoHelperMySql logindao = new LoginDaoHelperMySql();
+        logindao.init();
+        PromotionDaoHelperMySql promotiondao = new PromotionDaoHelperMySql();
+        promotiondao.init();
+        UserDaoHelperMySql userdao = new UserDaoHelperMySql();
+        userdao.init();
+        CreditRecordListDaoHelperMySql cdao = new CreditRecordListDaoHelperMySql();
+        cdao.init();
+
     }
 
 }

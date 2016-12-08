@@ -51,12 +51,12 @@ public class PromotionDaoImpl extends UnicastRemoteObject implements PromotionDa
         return promotionDaoHelper.update(po);
     }
 
-    public PromotionPO find(String setter, String id)throws RemoteException {
-        return promotionDaoHelper.find(setter, id);
+    public PromotionPO findBySetterWithSort(String setter, String id)throws RemoteException {
+        return promotionDaoHelper.findBySetterWithSort(setter, id);
     }
 
-    public ArrayList<PromotionPO> finds(String district,String hotel)throws RemoteException {
-        return promotionDaoHelper.finds(district, hotel);
+    public ArrayList<PromotionPO> findByDistrictWithHotel(String district,String hotel)throws RemoteException {
+        return promotionDaoHelper.findByDistrictWithHotel(district, hotel);
     }
 
 }

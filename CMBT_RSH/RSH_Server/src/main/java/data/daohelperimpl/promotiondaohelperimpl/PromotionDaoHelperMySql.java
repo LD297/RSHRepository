@@ -27,7 +27,11 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
     public void init(){
 
         db.executeSql("USE OurData");
-        db.executeSql("CREATE TABLE PromotionInfo(setter char(10),id char(3),name varchar(15)," +
+        // 制定者 序号 策略名称
+        // 生效日期 失效日期 针对类型（地区，酒店，房间类型） 具体条件（地区id，酒店id，房间类型Str）
+        // 适用条件（房间数量、价值、会员等级（企业会员）、用户生日）
+        // 折扣方式（打折，降价）
+        db.executeSql("CREATE TABLE if not exists PromotionInfo(setter char(10),id char(3),name varchar(15)," +
                 "beginDate date,endDate date,scopeType tinyint,scopeNum varchar(20)," +
                 "conditionType tinyint,conditionNum int,deductionType tinyint,deductionNum int)" );
     }
@@ -36,6 +40,7 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         db.executeSql("USE OurData");
         db.executeSql("DROP TABLE IF EXISTS PromotionInfo");
     }
+    // 添加促销策略
     public ResultMessage insert(PromotionPO po)throws RemoteException {
         db.executeSql("USE OurData");
         String setter = po.getSetter();
@@ -59,7 +64,7 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         db.executeSql(insertSql);
         return ResultMessage.succeed;
     }
-
+    // 删除促销策略
     public ResultMessage delete(String setter, String id)throws RemoteException {
         db.executeSql("USE OurData");
         String deleteSql = "DELETE FROM PromotionInfo WHERE setter='"+setter+"' and id='"+id+"' LIMIT 1";
@@ -67,16 +72,19 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         return ResultMessage.succeed;
     }
 
+    // 更新促销策略
     public ResultMessage update(PromotionPO po)throws RemoteException {
         db.executeSql("USE OurData");
         String setter = po.getSetter();
         String id = po.getId();
         String name = po.getName();
+
         Date beginDate = po.getBeginDate();
         Date endDate = po.getEndDate();
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String begin = sdf.format(beginDate);
         String end =sdf.format(endDate);
+
         int scopeType = po.getScopeType().ordinal();
         String scopeNum = po.getScopeNum();
         int conditionType = po.getConditionType().ordinal();
@@ -88,11 +96,13 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
                 ",conditionNum="+String.valueOf(conditionNum)+",deductionType="+String.valueOf(deductionType)+
                 ",deductionNum="+String.valueOf(deductionNum)+
                 " WHERE setter='"+setter+"' and id='"+id+"' LIMIT 1";
+
         db.executeSql(updateSql);
         return ResultMessage.succeed;
     }
     // 根据制定者和序号数得到策略
-    public PromotionPO find(String setter, String id)throws RemoteException {
+    // 情景：制定者查看自己制定的策略详情
+    public PromotionPO findBySetterWithSort(String setter, String id)throws RemoteException {
         db.executeSql("USE OurData");
 
         String findSql = "SELECT *FROM PromotionInfo  WHERE setter='"+setter+"' and id='"+id+"' LIMIT 1";
@@ -100,14 +110,14 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         return this.resultToPO(result).get(0);
     }
     // 根据制定者得到策略列表
-    public ArrayList<PromotionPO> finds(String district,String hotel)throws RemoteException {
+    public ArrayList<PromotionPO> findByDistrictWithHotel(String district,String hotel)throws RemoteException {
         db.executeSql("USE OurData");
         String findsSql = "SELECT *From PromotionInfo";
         ResultSet result = db.query(findsSql);
         ArrayList<PromotionPO> list = new ArrayList<PromotionPO>();
 
         try{
-            while(result.next()){
+            while(result.next()){// 本地区&本酒店策略
                 if(result.getString(7).substring(0,10).equals(district+"0000")||result.getString(7).substring(0,10)==hotel){
                     String setter = result.getString(1);
                     String id = result.getString(2);
@@ -124,14 +134,13 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
                     PromotionPO po = new PromotionPO(setter,id,name,beginDate,endDate,sType,sNum,cType,cNum,dType,dNum);
                     list.add(po);
                 }
-                return list;
             }
         }catch(SQLException e){
             e.printStackTrace();
         }
-        return null;
+        return list;
     }
-
+    // 从结果集到po
     public ArrayList<PromotionPO> resultToPO(ResultSet result){
         ArrayList<PromotionPO> list = new ArrayList<PromotionPO>();
         try{
@@ -151,10 +160,10 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
                 PromotionPO po = new PromotionPO(setter,id,name,beginDate,endDate,sType,sNum,cType,cNum,dType,dNum);
                 list.add(po);
             }
-            return list;
         }catch (SQLException e){
             e.printStackTrace();
-            return null;
         }
+        return list;
     }
+
 }
