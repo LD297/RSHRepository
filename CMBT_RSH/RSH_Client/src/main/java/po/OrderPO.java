@@ -1,11 +1,11 @@
 package po;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.ArrayList;
-
+import constant.StateOfOrder;
 import vo.RoomNormVO;
-import constant.*;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class OrderPO implements Serializable{
 	private String orderid = null;
@@ -13,9 +13,9 @@ public class OrderPO implements Serializable{
 	private String userName = null;
 	private String hotelid = null;
 	private StateOfOrder state = null;
-	private ArrayList<RoomNormVO> norm = null;
-	private double[] roomPrices =null;
-	private int[] numbers = null;
+	private RoomNormVO norm = null;
+	private double roomPrice = 0;//计算后
+	private int roomNumber = 0;
 	private double originvalue = 0;
 	private double truevalue = 0;
 	private String promotion =  null;
@@ -55,17 +55,14 @@ public class OrderPO implements Serializable{
 		return hotelid;
 	}
 
-	public ArrayList<RoomNormVO> getRooms(){
+	public RoomNormVO getRoom(){
 		return norm;
 	}
-	public int[] getRoomNums(){
-		return numbers;
+	public int getRoomNumber(){
+		return roomNumber;
 	}
-	public double[] getRoomPrices(){
-		return roomPrices;
-	}
-	public int[] getNumbers(){
-		return numbers;
+	public double getRoomPrice(){
+		return roomPrice;
 	}
 	public double getOriginvalue(){
 		return originvalue;
@@ -103,7 +100,7 @@ public class OrderPO implements Serializable{
 	 * @param in
 	 * @param out
 	 */
-	public OrderPO(String order,String hotel,StateOfOrder s,double origin,double discounted,Date in,Date out){
+	public OrderPO(String order, String hotel, StateOfOrder s, double origin, double discounted, Date in, Date out){
 		orderid = order;
 		hotelid = hotel;
 		originvalue = origin;
@@ -113,32 +110,17 @@ public class OrderPO implements Serializable{
 		checkOut = out;
 	}
 
-	/**
-	 * 酒店视角
-	 *
-	 * @param order
-	 * @param userI
-	 * @param userN
-	 * @param s
-	 * @param origin
-	 * @param discounted
-	 * @param in
-	 * @param out
-	 * @param actualIn
-	 * @param actualOut
-	 * @param generationDate
-	 * @param adultonly
-	 * @param peoplenum
-	 */
-	public OrderPO(String order,String userI,String userN, StateOfOrder s,double origin,double discounted,
-				   Date in,Date out, Date actualIn, Date actualOut, Date generationDate,
-				   boolean adultonly,int peoplenum){
-		orderid = order;
-		userid = userI;
-		userName = userN;
-		originvalue = origin;
-		truevalue = discounted;
-		state = s;
+	// 酒店视角
+	public OrderPO(String orderid, String userid, String username, StateOfOrder state,
+				   double origin, double discounted, RoomNormVO type, int num,
+				   Date in, Date out, Date actualIn, Date actualOut, Date generationDate,
+				   boolean adultonly, int peoplenum){
+		this.orderid = orderid;
+		this.userid = userid;
+		this.userName = userName;
+		this.originvalue = origin;
+		this.truevalue = discounted;
+		this.state = state;
 		checkIn = in;
 		checkOut = out;
 		actualCheckIn = actualIn;
@@ -147,7 +129,8 @@ public class OrderPO implements Serializable{
 		adultOnly = adultonly;
 		numOfPeople = peoplenum;
 	}
-	public OrderPO(String order,String user,String hotel,StateOfOrder s,double discounted,Date in,Date out){
+
+	public OrderPO(String order, String user, String hotel, StateOfOrder s, double discounted, Date in, Date out){
 		orderid = order;
 		hotelid = hotel;
 		userid = user;
@@ -164,8 +147,8 @@ public class OrderPO implements Serializable{
 	 * @param hotel
 	 * @param s
 	 * @param type
-	 * @param roomprices
-	 * @param nums
+	 * @param roomprice
+	 * @param num
 	 * @param people
 	 * @param adultonly
 	 * @param origin
@@ -176,20 +159,18 @@ public class OrderPO implements Serializable{
 	 * @param in
 	 * @param out
 	 */
-	public OrderPO(String order,String user,String hotel,StateOfOrder s,
-				   ArrayList<RoomNormVO> type,double[] roomprices,int[] nums,int people,boolean adultonly,
-				   double origin,double discounted, String pro,
-				   String com,int gra,Date in,Date out){
+	public OrderPO(String order, String user, String hotel, StateOfOrder s,
+				   RoomNormVO type, double roomprice, int num, int people, boolean adultonly,
+				   double origin, double discounted, String pro,
+				   String com, int gra, Date in, Date out){
 
 		orderid = order;
 		userid = user;
 		hotelid = hotel;
 
 		norm = type;
-		roomPrices = new double[roomprices.length];
-		roomPrices = roomprices;
-		numbers = new int[nums.length];
-		numbers = nums;
+		roomPrice = roomprice;
+		roomNumber = num;
 		numOfPeople = people;
 		adultOnly = adultonly;
 
@@ -206,3 +187,4 @@ public class OrderPO implements Serializable{
 	}
 
 }
+
