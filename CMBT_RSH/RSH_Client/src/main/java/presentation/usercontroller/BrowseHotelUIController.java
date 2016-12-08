@@ -121,16 +121,17 @@ public class BrowseHotelUIController {
     //点击图片上蒙的label跳转到酒店详情界面
     @FXML
     void changeToHotelInfo(MouseEvent event) {
-        Label label = (Label) event.getSource();
         String hotelName = "";
-        if(label==maskLULabel){
+        if(event.getSource()==maskLULabel){
             hotelName = hotelNameLULabel.getText().trim();
-        }else if(label==maskLDLabel){
+        }else if(event.getSource()==maskLDLabel){
             hotelName = hotelNameLDLabel.getText().trim();
-        }else if(label==maskRDLabel){
+        }else if(event.getSource()==maskRDLabel){
             hotelName = hotelNameRDLabel.getText().trim();
-        }else {
+        }else if(event.getSource()==maskRULabel){
             hotelName = hotelNameRULabel.getText().trim();
+        }else {
+            hotelName = searchNameField.getText().trim();
         }
         UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo(hotelName);
     }
@@ -175,7 +176,9 @@ public class BrowseHotelUIController {
 
     @FXML
     void searchByName(ActionEvent event) {
-
+        String hotelName = searchNameField.getText().trim();
+        //TODO 格式检查
+        UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo(hotelName);
     }
 
     public void setMaskLabel(boolean visible){maskLabel.setVisible(visible);}
