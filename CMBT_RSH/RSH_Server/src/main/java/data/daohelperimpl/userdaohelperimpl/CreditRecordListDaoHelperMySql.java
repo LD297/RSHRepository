@@ -99,29 +99,10 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
         return ResultMessage.succeed;
     }
     public int creditActionToInt(CreditAction action){
-        if(action==CreditAction.bymoney)
-            return 1;
-        else if(action==CreditAction.cancel)
-            return 2;
-        else if(action==CreditAction.abnormal)
-            return 3;
-        else if(action==CreditAction.execute)
-            return 4;
-        else if(action==CreditAction.delay_checkin)
-            return 5;
-        else
-            return 6;
+        return action.ordinal();
     }
     public CreditAction intToCreditAction(int action){
 
-        switch(action){
-            case 1:return CreditAction.bymoney;
-            case 2:return CreditAction.cancel;
-            case 3:return CreditAction.abnormal;
-            case 4:return CreditAction.execute;
-            case 5:return CreditAction.delay_checkin;
-            case 6:return CreditAction.cancel_abnomal;
-            default:return null;
-        }
+        return  CreditAction.values()[action];
     }
 }

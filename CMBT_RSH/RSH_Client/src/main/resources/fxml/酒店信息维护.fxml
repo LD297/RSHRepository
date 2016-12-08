@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.HotelBasicInfoUIController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="800.0">
+      <ImageView fx:id="白色背景" fitHeight="720.0" fitWidth="800.0">
          <image>
             <Image url="@../images/白色背景.png" />
          </image>
@@ -124,7 +124,7 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="261.0" layoutY="53.0" text="评分: " AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="261.0" AnchorPane.topAnchor="53.0">
+                  <Label layoutX="260.0" layoutY="16.0" text="评分: " AnchorPane.bottomAnchor="122.0" AnchorPane.leftAnchor="262.0" AnchorPane.topAnchor="16.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -155,17 +155,13 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="262.0" layoutY="16.0" text="星级:">
+                  <Label layoutX="265.0" layoutY="53.0" text="星级:" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="262.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="levelLabel" layoutX="297.0" layoutY="15.0">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="gradeLabel" layoutX="297.0" layoutY="53.0">
+                  <TextField fx:id="levelTextField" layoutX="297.0" layoutY="48.0" onMouseClicked="#editLevel" prefHeight="27.0" prefWidth="48.0" />
+                  <Label fx:id="gradeLabel" layoutX="298.0" layoutY="16.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -184,7 +180,7 @@
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="roomInfoButton" layoutX="144.0" layoutY="663.0" mnemonicParsing="false" onMouseClicked="#changeToRoomInfoUI" style="-fx-background-color: e5e5e5;" text="客房信息" AnchorPane.leftAnchor="144.0">
+      <Button fx:id="roomInfoButton" layoutX="144.0" layoutY="663.0" mnemonicParsing="false" onMouseClicked="#changeToRoomInfoUI" style="-fx-background-color: e5e5e5;" text="客房信息" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="580.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>

@@ -1,4 +1,4 @@
-package presentation.controller;
+package presentation.hotelControllerHelper;
 
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.*;
@@ -15,12 +15,12 @@ public class HotelServiceFactory {
         return new HotelController();
     }
 
-    // 对应具体酒店
+    // 得到具体酒店的逻辑实现
     public static HotelController getHotelService(String id){
         return new HotelController(id);
     }
 
-    //
+    // 得到具体酒店（配置完逻辑实现）
     public static Hotel getHotel(String id){
 
         // 得到该id对应的酒店领域对象
@@ -42,20 +42,6 @@ public class HotelServiceFactory {
         // 设置酒店的可用房间管理这一成员变量
         hotel.setRoomAvail(roomAvail);
 
-        //  完成一个能处理逻辑的hotel的配置并返回
         return hotel;
     }
-
-//    public static HotelManager getHotelManager(){
-//
-//    }
-//
-//    public static RoomAvail getRoomAvail(){
-//
-//    }
-//
-//    public static RoomManager getRoomManager(){
-//
-//    }
-
 }

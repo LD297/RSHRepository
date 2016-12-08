@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -52,6 +53,15 @@ public class LoginUIController {
     @FXML
     private ImageView cancelImage;
 
+    @FXML
+    private AnchorPane loginBelowAnchorpane;
+
+    @FXML
+    private RadioButton rememberPasswordButton;
+
+    @FXML
+    private Label registerLabel;
+
     private Role role;
 
     //image
@@ -62,6 +72,17 @@ public class LoginUIController {
 
     private boolean show = true;//true表示当前是下拉箭头
 
+    //点击注册跳转到注册界面
+    @FXML
+    void changeToRegister(MouseEvent event) {
+        //关闭登陆下拉界面
+        loginBelowAnchorpane.setVisible(false);
+        //将登陆界面的收回箭头改为下拉箭头
+        show = true;
+        showMoreImage.setImage(ImageFactory.getImageFactory().getShowImage());
+        //跳转
+        UIJumpTool.getUiJumpTool().changeLoginToRegister();
+    }
 
     //输入用户名和密码之后敲击回车完成登陆，跳转到相应的客户端的主界面
     @FXML
@@ -74,6 +95,9 @@ public class LoginUIController {
         if(resultMessage==resultMessage.succeed){
             if(role == Role.user){
                 //跳转到搜索酒店界面
+                if(loginBelowAnchorpane.isVisible()){//先判断有没有登陆下拉界面,有就删除
+                    loginBelowAnchorpane.setVisible(false);
+                }
                 UIJumpTool.getUiJumpTool().changeLoginToSearchHotel();
             }else if(role==Role.hotel){
                 //跳转到hotel主界面
@@ -94,13 +118,12 @@ public class LoginUIController {
         if(show){//如果当前是下拉箭头
             showMoreImage.setImage(hideImage);//将箭头改为收起箭头
             show = false;
-            BelowLoginUIController belowLoginUIController = UIJumpTool.getUiJumpTool().addLoginBelow();
-            belowLoginUIController.setRole(role);
+            loginBelowAnchorpane.setVisible(true);
         }else {//如果当前是收起箭头
             showMoreImage.setImage(showImage);//将箭头改为下拉箭头
             show = true;
             //删除登陆下拉界面
-            UIJumpTool.getUiJumpTool().removeLoginBelow();
+            loginBelowAnchorpane.setVisible(false);
         }
     }
 
@@ -109,7 +132,7 @@ public class LoginUIController {
     void backToRoleChoose(MouseEvent event) {
         if(!show){//如果当前是收起箭头，说明登陆下拉界面已经被放在身份选择界面上，这时要先删除登陆下拉界面
             //删除登陆下拉界面
-            UIJumpTool.getUiJumpTool().removeLoginBelow();
+            loginBelowAnchorpane.setVisible(false);
         }
         //删除登陆界面
          UIJumpTool.getUiJumpTool().removeLogin();
@@ -151,7 +174,9 @@ public class LoginUIController {
         assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file '登陆.fxml'.";
         assert showMoreImage != null : "fx:id=\"showMoreImage\" was not injected: check your FXML file '登陆.fxml'.";
         assert cancelImage != null : "fx:id=\"cancelImage\" was not injected: check your FXML file '登陆.fxml'.";
-
+        assert loginBelowAnchorpane != null : "fx:id=\"loginBelowAnchorpane\" was not injected: check your FXML file '登陆.fxml'.";
+        assert rememberPasswordButton != null : "fx:id=\"rememberPasswordButton\" was not injected: check your FXML file '登陆.fxml'.";
+        assert registerLabel != null : "fx:id=\"registerLabel\" was not injected: check your FXML file '登陆.fxml'.";
 
     }
 }

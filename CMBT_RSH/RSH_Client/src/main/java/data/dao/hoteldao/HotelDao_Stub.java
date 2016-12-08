@@ -32,8 +32,9 @@ public class HotelDao_Stub implements  HotelDao{
 
     @Override
     public HotelPO getHotel(String id) {
-        // TODO: 16/11/20
-        return null;
+        return HotelPO.createHotelPO(new HotelVO("0123456789","11122233344",
+                "天鸿凯莱大酒店", "南京市栖霞区", "仙林大学城", "新开张", "一应俱全",
+                4, 4.8, "23:44:59"));
     }
 
     @Override
@@ -44,7 +45,7 @@ public class HotelDao_Stub implements  HotelDao{
 
     @Override
     public ResultMessage updateHotel(HotelPO hotelPO) {
-        if(hotelPO.getName().equals("4142"))
+        if(hotelPO.getName().equals("~~~"))
             return ResultMessage.succeed;
         else
             return ResultMessage.fail;
@@ -68,7 +69,7 @@ public class HotelDao_Stub implements  HotelDao{
 
     @Override
     public ArrayList<RoomVO> getRoomList(String id) {
-        if(id.equals("")){
+        if(id.equals("~~~")){
             RoomVO roomVO = new RoomVO("12345678912", "doubleRoom", 20, 300, "basic");
             ArrayList<RoomVO> rooms = new ArrayList<RoomVO>();
             rooms.add(roomVO);

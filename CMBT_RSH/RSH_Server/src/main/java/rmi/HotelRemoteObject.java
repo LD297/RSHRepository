@@ -26,7 +26,7 @@ public class HotelRemoteObject extends UnicastRemoteObject implements HotelDao {
     private static final long serialVersioUID = 4029039744279087114L;
     private HotelDao hotelDao;
     protected HotelRemoteObject() throws RemoteException {
-        hotelDao = new HotelDaoImpl();
+        hotelDao = HotelDaoImpl.getInstance();
     }
 
 

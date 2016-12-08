@@ -9,13 +9,13 @@ import java.util.Date;
 
 public class PromotionPO {
 
-	String setter;
+	private String setter;
 	String id;
 	String reason;
 	Date beginDate;
 	Date endDate;
 
-	ScopeType scope;
+	ScopeType scopeType;
 	String scopeNum;
 
 	ConditionType  conditionType;
@@ -24,12 +24,32 @@ public class PromotionPO {
     DeductionType deductionType;
 	int deductionNum;
 
-	public static PromotionPO changeIntoPo(Promotion tempPromotion){
+	public PromotionPO(String Setter,String ID,String Reason,
+					   Date BeginDate,Date EndDate,
+					   ScopeType sType, String sNum,
+					   ConditionType cType, int cNum,
+					   DeductionType dType,int dNum){
+		setter = Setter;
+		id = ID;
+		reason = Reason;
+		beginDate = BeginDate;
+		endDate = EndDate;
 
-		return null;
+		scopeType = sType;
+		scopeNum = sNum;
+		conditionType = cType;
+		condionNum = cNum;
+		deductionType = dType;
+		deductionNum = dNum;
 	}
-	public static Promotion getInstance(String tempSetter, String tempID){
 
-		return null;
+	public static Promotion changeIntoPromotion(PromotionPO promotionPO){
+		Promotion promotion = new Promotion(promotionPO.setter,promotionPO.id);
+		promotion.setDate(promotionPO.beginDate,promotionPO.endDate);
+
+		promotion.setScope(promotionPO.scopeType,promotionPO.scopeNum);
+		promotion.setCondition(promotionPO.conditionType,promotionPO.condionNum);
+		promotion.setDeduction(promotionPO.deductionType,promotionPO.deductionNum);
+		return promotion;
 	}
 }

@@ -24,7 +24,7 @@ public interface PromotionService {
 	
 	public ArrayList <PromotionVO> getPromotionOfDistrict (String district);
 	
-	public String countPromotionOfRoom(String hotelID, String type, int num, Date beginDate, Date endDate);
+	public String countPromotionOfRoom(String hotelID, String type, int num, int price,Date beginDate, Date endDate);
 	
 	public String countPromotionOfOrder(OrderPO order);
 	

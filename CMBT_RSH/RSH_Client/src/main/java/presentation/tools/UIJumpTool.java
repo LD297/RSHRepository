@@ -1,18 +1,13 @@
 package presentation.tools;
 
-import bl.userserviceimpl.User;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import presentation.logincontroller.BelowLoginUIController;
 import presentation.logincontroller.LoginUIController;
 import presentation.usercontroller.BrowseHotelUIController;
 import presentation.usercontroller.GuideUIController;
-import presentation.usercontroller.UserRegisterUIController;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -33,19 +28,23 @@ public class UIJumpTool {
     private AnchorPane comment = null;
     private AnchorPane selectionCondition = null;
     private AnchorPane login = null;
-    private AnchorPane belowLogin = null;
     private AnchorPane userRegister = null;
     private AnchorPane userGuide = null;
     private AnchorPane userInfo = null;
-    private AnchorPane myMember = null;
+    private AnchorPane modifyUserInfo = null;
+    private AnchorPane modifyUserPassword = null;
+    private AnchorPane myMember = null;//不是会员
+    private AnchorPane isMember = null;//是会员
     private AnchorPane userCreditRecord = null;
     private AnchorPane userOrder = null;
+    private AnchorPane registerCommonMember = null;
+    private AnchorPane registerCommerceMember = null;
+    private AnchorPane addComment = null;
+    private AnchorPane createOrder = null;
+    private AnchorPane orderInfo = null;
     private GuideUIController guideUIController = null;
     private BrowseHotelUIController browseHotelUIController = null;
     private LoginUIController loginUIController = null;
-    private BelowLoginUIController belowLoginUIController = null;
-    private UserRegisterUIController userRegisterUIController = null;
-    private boolean withLoginBelow = false;
     private UIJumpTool(){}
 
     public static UIJumpTool getUiJumpTool() {
@@ -64,6 +63,64 @@ public class UIJumpTool {
     }
 
     public Stage getStage(){return stage;}
+
+    //在我的订单界面上弹出订单详情界面
+    public void changeToOrderInfo(){
+        orderInfo = UserUIFXMLFactory.getUserUIFXMLFactory().getOrderInfo();
+        guide.getChildren().add(orderInfo);
+    }
+
+    //关闭订单详情
+    public void closeOrderInfo(){
+        guide.getChildren().remove(guide.getChildren().size()-1);
+    }
+
+    //在酒店浏览界面上弹出订单生成界面
+    public void changeToCreateOrder(){
+        createOrder = UserUIFXMLFactory.getUserUIFXMLFactory().getCreateOrder();
+        guide.getChildren().add(createOrder);
+    }
+
+    //关闭订单生成界面
+    public void closeCreateOrder(){
+        guide.getChildren().remove(guide.getChildren().size()-1);
+    }
+
+    //从订单浏览界面跳转到添加评价界面
+    public void changeUserOrderToAddComment(){
+        addComment = UserUIFXMLFactory.getUserUIFXMLFactory().getAddComment();
+        guide.getChildren().add(addComment);
+    }
+
+    //从添加评价界面返回到订单浏览界面
+    public void changeAddCommentToUserOrder(){
+        guide.getChildren().remove(guide.getChildren().size()-1);
+    }
+
+    //从会员注册界面返回到我的会员(是会员)界面
+    public void changeMemberRegisterToMember(){
+        isMember = UserUIFXMLFactory.getUserUIFXMLFactory().getIsMember();
+        GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
+        gridPane.getChildren().remove(1);
+        gridPane.add(isMember,0,1);
+    }
+
+    //从会员注册界面返回到我的会员（不是会员）界面
+    public void changeMemberRegisterToMyMember(){
+        myMember.getChildren().remove(myMember.getChildren().size()-1);
+    }
+
+    //跳转到普通会员注册界面
+    public void changeToCommonMemberRegister(){
+        registerCommonMember = UserUIFXMLFactory.getUserUIFXMLFactory().getRegisterCommonMember();
+        myMember.getChildren().add(registerCommonMember);
+    }
+
+    //跳转到企业会员注册界面
+    public void changeToCommerceMemberRegister(){
+        registerCommerceMember = UserUIFXMLFactory.getUserUIFXMLFactory().getRegisterCommerceMember();
+        myMember.getChildren().add(registerCommerceMember);
+    }
 
     //跳转到用户导航栏
     public void changeToUserGuide(){
@@ -86,6 +143,25 @@ public class UIJumpTool {
         GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
         gridPane.getChildren().remove(1);
         gridPane.add(userInfo,0,1);
+    }
+
+    //跳转到修改密码
+    public void changeToModifyPassword(){
+        modifyUserPassword = UserUIFXMLFactory.getUserUIFXMLFactory().getModifyPassword();
+        modifyUserInfo.getChildren().add(modifyUserPassword);
+    }
+
+    //从修改密码返回到编辑用户个人资料
+    public void changeModifypasswordToModifyuserinfo(){
+        modifyUserInfo.getChildren().remove(modifyUserInfo.getChildren().size()-1);
+    }
+
+    //跳转到编辑用户个人资料
+    public void changeToModifyUserInfo(){
+        modifyUserInfo = UserUIFXMLFactory.getUserUIFXMLFactory().getModifyUserInfo();
+        GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
+        gridPane.getChildren().remove(1);
+        gridPane.add(modifyUserInfo,0,1);
     }
 
     //跳转到我的会员
@@ -127,10 +203,6 @@ public class UIJumpTool {
 
     //从登陆界面跳转到搜索酒店界面
     public void changeLoginToSearchHotel(){
-        //先判断有没有登陆下拉界面,有就删除
-        if(withLoginBelow){
-            removeLoginBelow();
-        }
        changeToSearchHotel();
         //导航栏设置返回箭头不可点
         guideUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getGuideUIController();
@@ -181,7 +253,7 @@ public class UIJumpTool {
     }
 
     //从登陆下拉界面跳转到注册界面
-    public UserRegisterUIController changeLoginToRegister(){
+    public void changeLoginToRegister(){
         Scene scene = null;
         userRegister = UserUIFXMLFactory.getUserUIFXMLFactory().getUserRegister();
         if(userRegister.getScene()!=null){
@@ -190,30 +262,7 @@ public class UIJumpTool {
             scene = new Scene(userRegister,800,720);
         }
         stage.setScene(scene);
-        userRegisterUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getUserRegisterUIController();
-        return userRegisterUIController;
-    }
-
-    //在登陆界面上添加登陆下拉界面（以身份选择界面为背景）
-    public BelowLoginUIController addLoginBelow(){
-        //在身份选择界面添加登陆下拉界面
-        AnchorPane temp =(AnchorPane) roleChoose.getChildren().get(roleChoose.getChildren().size()-1);
-        belowLogin = UserUIFXMLFactory.getUserUIFXMLFactory().getLoginBelow();
-        roleChoose.getChildren().set(roleChoose.getChildren().size()-1,belowLogin);
-        roleChoose.getChildren().add(temp);
-        withLoginBelow = true;
-        //设置登陆下拉在身份选择界面的位置
-        Locator.getLocator().setLocation(belowLogin,446.0,223.0,276.0,276.0);
-        //设置登陆下拉界面的身份属性
-        belowLoginUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getBelowLoginUIController();
-        return belowLoginUIController;
-    }
-
-    //删除登陆下拉界面
-    public void removeLoginBelow(){
-        int size = roleChoose.getChildren().size();
-        roleChoose.getChildren().remove(size-2);
-        withLoginBelow = false;
+        UserUIFXMLFactory.getUserUIFXMLFactory().getUserRegisterUIController();
     }
 
     //在身份选择界面上添加登陆界面
@@ -222,7 +271,7 @@ public class UIJumpTool {
         //在身份选择界面添加登陆界面
         roleChoose.getChildren().add(login);
         //设置Login的位置
-        Locator.getLocator().setLocation(login,130.0,274.0,276.0,276.0);
+//        Locator.getLocator().setLocation(login,130.0,274.0,276.0,276.0);
         //返回loginuicontroller
         loginUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getLoginUIController();
         return loginUIController;
@@ -232,12 +281,7 @@ public class UIJumpTool {
     public void removeLogin(){
         int size = roleChoose.getChildren().size();
         roleChoose.getChildren().remove(size-1);//删除登陆界面
-        size--;
-        //将身份选择界面的蒙板去掉
-        Label label = (Label)roleChoose.getChildren().get(size-1);
-        label.setVisible(false);
     }
-
 
     //从酒店浏览界面跳转到酒店详情界面
     public void changeBrowseHotelToHotelInfo(String hotelName){
@@ -267,11 +311,6 @@ public class UIJumpTool {
         browseHotel.getChildren().remove(browseHotel.getChildren().size()-1);
         browseHotelUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotelUIController();
         browseHotelUIController.setMaskLabel(false);
-
-    }
-
-    //TODO 从酒店浏览界面跳转到新建订单界面
-    public void changeBrowseHotelToCreateOrder(){
 
     }
 

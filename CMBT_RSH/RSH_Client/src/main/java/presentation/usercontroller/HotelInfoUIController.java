@@ -84,6 +84,11 @@ public class HotelInfoUIController {
     private boolean isRoomInfo = true;
 
     @FXML
+    void changeToCreateOrder(MouseEvent event) {
+        UIJumpTool.getUiJumpTool().changeToCreateOrder();
+    }
+
+    @FXML
     void changeToComment(MouseEvent event) {
         commentEffect.setVisible(false);
         isRoomInfo = false;

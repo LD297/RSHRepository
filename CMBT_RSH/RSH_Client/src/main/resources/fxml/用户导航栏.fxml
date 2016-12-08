@@ -21,21 +21,21 @@
             <AnchorPane maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="800.0">
                <children>
                   <Label layoutY="7.0" prefHeight="40.0" prefWidth="800.0" style="-fx-background-color: #484848;" text="导航栏背景" textFill="#484848" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <Label fx:id="userInfoLabelBelow" layoutX="19.0" layoutY="26.0" maxHeight="5.0" minHeight="5.0" prefHeight="5.0" prefWidth="70.0" style="-fx-background-color: #bcbcbc;" text="个人资料底" textFill="#bcbcbc" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="711.0" AnchorPane.topAnchor="35.0" />
-                  <Label fx:id="myMemberLabelbelow" layoutX="115.0" layoutY="36.0" maxHeight="5.0" minHeight="5.0" prefHeight="5.0" prefWidth="70.0" style="-fx-background-color: #bcbcbc;" text="我的会员底" textFill="#bcbcbc" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="35.0" />
+                  <Label fx:id="userInfoLabelBelow" layoutX="19.0" layoutY="36.0" maxHeight="5.0" maxWidth="70.0" minHeight="5.0" prefHeight="5.0" prefWidth="70.0" style="-fx-background-color: #bcbcbc;" text="个人资料底" textFill="#bcbcbc" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="711.0" AnchorPane.topAnchor="35.0" />
+                  <Label fx:id="myMemberLabelbelow" layoutX="115.0" layoutY="36.0" maxHeight="5.0" maxWidth="70.0" minHeight="5.0" prefHeight="5.0" prefWidth="70.0" style="-fx-background-color: #bcbcbc;" text="我的会员底" textFill="#bcbcbc" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="35.0" />
                   <Label fx:id="userOrderLabelBelow" layoutX="214.0" layoutY="36.0" maxHeight="5.0" maxWidth="70.0" minHeight="5.0" prefHeight="5.0" prefWidth="70.0" style="-fx-background-color: #bcbcbc;" text="我的订单底" textFill="#bcbcbc" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="35.0" />
                   <Label fx:id="userCreditRecordLabelBelow" layoutX="314.0" layoutY="36.0" maxHeight="5.0" maxWidth="70.0" minHeight="5.0" prefHeight="5.0" prefWidth="70.0" style="-fx-background-color: #bcbcbc;" text="我的信用底" textFill="#bcbcbc" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="35.0" />
-                  <Label fx:id="userInfoLabel" layoutX="19.0" layoutY="7.0" onMouseClicked="#userInfoLabelClicked" onMouseEntered="#userInfoLabelEntered" onMouseExited="#userInfoLabelExited" prefHeight="28.0" prefWidth="70.0" text="  个人资料" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="711.0" AnchorPane.topAnchor="7.0">
+                  <Label fx:id="userInfoLabel" layoutX="19.0" layoutY="8.0" onMouseClicked="#userInfoLabelClicked" onMouseEntered="#userInfoLabelEntered" onMouseExited="#userInfoLabelExited" prefHeight="28.0" prefWidth="70.0" text="  个人资料" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="711.0" AnchorPane.topAnchor="8.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="myMemberLabel" layoutX="115.0" layoutY="8.0" onMouseClicked="#myMemberLabelClicked" onMouseEntered="#myMemberLabelEntered" onMouseExited="#myMemberLabelExited" prefHeight="28.0" prefWidth="70.0" text="  我的会员" textFill="#bbbbbb">
+                  <Label fx:id="myMemberLabel" layoutX="115.0" layoutY="8.0" onMouseClicked="#myMemberLabelClicked" onMouseEntered="#myMemberLabelEntered" onMouseExited="#myMemberLabelExited" prefHeight="28.0" prefWidth="70.0" text="  我的会员" textFill="#bbbbbb" AnchorPane.bottomAnchor="4.0" AnchorPane.topAnchor="8.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="userOrderLabel" layoutX="214.0" layoutY="8.0" onMouseClicked="#userOrderLabelClicked" onMouseEntered="#userOrderLabelEntered" onMouseExited="#userOrderLabelExited" prefHeight="28.0" prefWidth="70.0" text="  我的订单" textFill="#bbbbbb">
+                  <Label fx:id="userOrderLabel" layoutX="214.0" layoutY="8.0" onMouseClicked="#userOrderLabelClicked" onMouseEntered="#userOrderLabelEntered" onMouseExited="#userOrderLabelExited" prefHeight="28.0" prefWidth="70.0" text="  我的订单" textFill="#bbbbbb" AnchorPane.bottomAnchor="4.0" AnchorPane.topAnchor="8.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>

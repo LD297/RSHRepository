@@ -3,7 +3,7 @@ package bl.hotelserviceimpl;
 import bl.hotelservice.HotelService;
 import bl.orderservice.HotelInfoService;
 import constant.ResultMessage;
-import presentation.controller.HotelServiceFactory;
+import presentation.hotelControllerHelper.HotelServiceFactory;
 import vo.HotelVO;
 import vo.RoomAvailVO;
 import vo.RoomNormVO;

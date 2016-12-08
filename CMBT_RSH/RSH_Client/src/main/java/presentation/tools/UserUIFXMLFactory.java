@@ -2,13 +2,11 @@ package presentation.tools;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import presentation.logincontroller.BelowLoginUIController;
 import presentation.logincontroller.LoginUIController;
 import presentation.usercontroller.BrowseHotelUIController;
 import presentation.usercontroller.GuideUIController;
+import presentation.usercontroller.UserOrderUIController;
 import presentation.usercontroller.UserRegisterUIController;
-
-import java.io.IOException;
 
 /**
  * Created by john on 2016/12/5.
@@ -19,8 +17,8 @@ public class UserUIFXMLFactory {
     private GuideUIController guideUIController = null;
     private BrowseHotelUIController browseHotelUIController = null;
     private LoginUIController loginUIController = null;
-    private BelowLoginUIController belowLoginUIController = null;
     private UserRegisterUIController userRegisterUIController = null;
+    private UserOrderUIController userOrderUIController = null;
 
     private UserUIFXMLFactory(){}
 
@@ -29,6 +27,28 @@ public class UserUIFXMLFactory {
             userUIFXMLFactory = new UserUIFXMLFactory();
         }
         return userUIFXMLFactory;
+    }
+
+    public AnchorPane getAddComment(){
+        FXMLLoader addCommentLoader = new FXMLLoader(getClass().getResource("/fxml/添加评价.fxml"));
+        AnchorPane addComment = null;
+        try {
+            addComment = addCommentLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return addComment;
+    }
+
+    public AnchorPane getModifyUserInfo(){
+        FXMLLoader modifyUserInfoLoader = new FXMLLoader(getClass().getResource("/fxml/用户个人资料.fxml"));
+        AnchorPane modifyUserInfo = null;
+        try {
+            modifyUserInfo = modifyUserInfoLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return modifyUserInfo;
     }
 
     public AnchorPane getUserGuide(){
@@ -40,6 +60,17 @@ public class UserUIFXMLFactory {
             e.printStackTrace();
         }
         return userGuide;
+    }
+
+    public AnchorPane getModifyPassword(){
+        FXMLLoader modifyPasswordLoader = new FXMLLoader(getClass().getResource("/fxml/修改密码新.fxml"));
+        AnchorPane modifyPassword = null;
+        try {
+            modifyPassword = modifyPasswordLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return modifyPassword;
     }
 
     public AnchorPane getUserInfo(){
@@ -61,7 +92,30 @@ public class UserUIFXMLFactory {
         }catch (Exception e){
             e.printStackTrace();
         }
+        userOrderUIController =(UserOrderUIController) userOrderLoader.getController();
         return userOrder;
+    }
+
+    public AnchorPane getCreateOrder(){
+        FXMLLoader createOrderLoader = new FXMLLoader(getClass().getResource("/fxml/生成订单.fxml"));
+        AnchorPane createOrder = null;
+        try {
+            createOrder = createOrderLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return createOrder;
+    }
+
+    public AnchorPane getOrderInfo(){
+        FXMLLoader orderInfoLoader = new FXMLLoader(getClass().getResource("/fxml/订单详情（user）.fxml"));
+        AnchorPane orderInfo = null;
+        try {
+            orderInfo = orderInfoLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return orderInfo;
     }
 
     public AnchorPane getUserCreditRecord(){
@@ -75,8 +129,30 @@ public class UserUIFXMLFactory {
         return userCreditRecord;
     }
 
+    public AnchorPane getRegisterCommonMember(){
+        FXMLLoader registerCommonMemberLoader = new FXMLLoader(getClass().getResource("/fxml/普通会员注册.fxml"));
+        AnchorPane registerCommonMember = null;
+        try {
+            registerCommonMember = registerCommonMemberLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return registerCommonMember;
+    }
+
+    public AnchorPane getRegisterCommerceMember(){
+        FXMLLoader registerCommerceMemberLoader = new FXMLLoader(getClass().getResource("/fxml/企业会员注册.fxml"));
+        AnchorPane registerCommerceMember = null;
+        try {
+            registerCommerceMember = registerCommerceMemberLoader.load();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return registerCommerceMember;
+    }
+
     public AnchorPane getMyMember(){
-        FXMLLoader myMemberloader = new FXMLLoader(getClass().getResource("/fxml/我的会员.fxml"));
+        FXMLLoader myMemberloader = new FXMLLoader(getClass().getResource("/fxml/我的会员（不是会员）.fxml"));
         AnchorPane myMember = null;
         try {
             myMember = myMemberloader.load();
@@ -87,7 +163,7 @@ public class UserUIFXMLFactory {
     }
 
     public AnchorPane getIsMember(){
-        FXMLLoader isMemberLoader = new FXMLLoader(getClass().getResource("/fxml/是会员.fxml"));
+        FXMLLoader isMemberLoader = new FXMLLoader(getClass().getResource("/fxml/我的会员（是会员）.fxml"));
         AnchorPane isMember = null;
         try {
             isMember = isMemberLoader.load();
@@ -95,17 +171,6 @@ public class UserUIFXMLFactory {
             e.printStackTrace();
         }
         return isMember;
-    }
-
-    public AnchorPane getIsnotMember(){
-        FXMLLoader isnotMemberLoader = new FXMLLoader(getClass().getResource("/fxml/不是会员.fxml"));
-        AnchorPane isnotMember = null;
-        try {
-            isnotMember = isnotMemberLoader.load();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return isnotMember;
     }
 
     public AnchorPane getComment() {
@@ -211,18 +276,6 @@ public class UserUIFXMLFactory {
         return selectionCondition;
     }
 
-    public AnchorPane getLoginBelow() {
-        FXMLLoader loginBelowLoader = new FXMLLoader(getClass().getResource("/fxml/登陆下拉.fxml"));
-        AnchorPane loginBelow = null;
-        try {
-            loginBelow = loginBelowLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        belowLoginUIController = (BelowLoginUIController) loginBelowLoader.getController();
-        return loginBelow;
-    }
-
     public AnchorPane getRoleChoose() {
         FXMLLoader roleChooseLoader = new FXMLLoader(getClass().getResource("/fxml/身份选择.fxml"));
         AnchorPane roleChoose = null;
@@ -246,8 +299,8 @@ public class UserUIFXMLFactory {
         return loginUIController;
     }
 
-    public BelowLoginUIController getBelowLoginUIController() {
-        return belowLoginUIController;
+    public UserOrderUIController getUserOrderUIController() {
+        return userOrderUIController;
     }
 
     public UserRegisterUIController getUserRegisterUIController() {
