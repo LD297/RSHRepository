@@ -131,14 +131,13 @@ public class OrderGeneration {
         hotelinfo = new HotelController(orderpo.getHotelid());
 
         //检查房间信息
-        ArrayList<RoomNormVO> rooms = orderpo.getRooms();
-        int[] nums = orderpo.getRoomNums();
+        RoomNormVO room = orderpo.getRoom();
+        int roomNum = orderpo.getRoomNumber();
         Date checkIn = orderpo.getTime()[0];
         Date checkOut = orderpo.getTime()[1];
-        for(int i=0;i<rooms.size();i++){
-            if(hotelinfo.numOfRoomAvail(rooms.get(i).roomType,checkIn,checkOut)<nums[i])
+        if(hotelinfo.numOfRoomAvail(room.roomType,checkIn,checkOut)<roomNum)
                 return ResultMessage.fail;
-        }
+
 
         //检查价格
         OrderGeneration initial = new OrderGeneration();

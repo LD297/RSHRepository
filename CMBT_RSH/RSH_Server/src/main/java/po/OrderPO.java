@@ -54,6 +54,9 @@ public class OrderPO implements Serializable{
 	public String getHotelid(){
 		return hotelid;
 	}
+	public StateOfOrder getState(){
+		return state;
+	}
 
 	public RoomNormVO getRoom(){
 		return norm;

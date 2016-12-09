@@ -1,6 +1,7 @@
 package bl.userserviceimpl;
 
 import constant.ResultMessage;
+import data.dao.userdao.CreditRecordListDao;
 import po.CreditRecordPO;
 import rmi.RemoteHelper;
 import vo.CreditRecordVO;
@@ -12,8 +13,12 @@ import java.util.Iterator;
 public class CreditRecordList {
 	private String userid = "";
 	ArrayList<CreditRecordVO> creditRecordVOArrayList = null;
-	public CreditRecordList(String userid) {
+	CreditRecordListDao creditRecordListDao;
 
+	public	void setCreditRecordListDao(CreditRecordListDao creditRecordListDao) {
+		this.creditRecordListDao = creditRecordListDao;
+	}
+	public CreditRecordList(String userid) {
 		this.userid = userid;
 		creditRecordVOArrayList = getCreditRecords();
 	}

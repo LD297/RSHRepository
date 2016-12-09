@@ -13,22 +13,26 @@ import java.util.Date;
  */
 public class OrderDao_Stub implements OrderDao {
     @Override
-    public OrderPO find(String orderid) throws RemoteException {
+    public OrderPO findByID(String orderid) throws RemoteException {
         return null;
     }
 
     @Override
-    public ArrayList<OrderPO> userFind(String userid) throws RemoteException {
+    public ArrayList<OrderPO> findByUser(String userid) throws RemoteException {
+        return null;
+    }
+    @Override
+    public ArrayList<OrderPO> findByHotelWithUser(String userID, String hotelID)throws RemoteException{
         return null;
     }
 
     @Override
-    public ArrayList<OrderPO> hotelFind(String hotelid) throws RemoteException {
+    public ArrayList<OrderPO> findByHotel(String hotelid) throws RemoteException {
         return null;
     }
 
     @Override
-    public ArrayList<OrderPO> stateFind(StateOfOrder state) throws RemoteException {
+    public ArrayList<OrderPO> findByState(StateOfOrder state) throws RemoteException {
         return null;
     }
 
@@ -54,6 +58,11 @@ public class OrderDao_Stub implements OrderDao {
 
     @Override
     public ResultMessage leaveUpdate(String orderid, Date leavetime) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public ResultMessage cancelTimeUpdate(String orderID, Date cancelTime) throws RemoteException{
         return null;
     }
 

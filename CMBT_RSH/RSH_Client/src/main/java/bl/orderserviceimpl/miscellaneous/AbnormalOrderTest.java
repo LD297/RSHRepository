@@ -38,7 +38,7 @@ public class AbnormalOrderTest {
     	OrderPO order = new OrderPO("2016-11-072153001234000000","123456789","2153001234",type,nums,0,0,"","",0,in,out);
     	abnormal.setOrder(order);
 */
-        assertEquals(ResultMessage.succeed,abnormal.webCancelAbnormal("2016-11-072153001234000000"));
+        assertEquals(ResultMessage.succeed,abnormal.webCancelAbnormal("2016-11-072153001234000000",true));
     }
 
     /**

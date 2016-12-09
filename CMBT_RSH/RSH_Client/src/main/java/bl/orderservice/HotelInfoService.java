@@ -14,8 +14,8 @@ public interface HotelInfoService {
 	public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut);
 	
 	// 改变可用客房数
-	public ResultMessage changeRoomAvail(String roomType, int num, Date checkIn, Date checkOut);
+	public ResultMessage changeRoomAvail(String roomType, boolean isPlus,int num, Date checkIn, Date checkOut);
 	
 	// 得到某酒店的最晚入住时间
-	public String getCheckInDDL(String id);
+	public String getCheckInDDL(String hotelID);
 }

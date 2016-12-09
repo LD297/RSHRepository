@@ -94,8 +94,8 @@ public class HotelController implements HotelService, HotelInfoService{
 
 	// 供给order模块
 	// 更新系统的可用客房信息
-	public ResultMessage changeRoomAvail(String roomType, int num, Date checkIn, Date checkOut) {
-		return hotel.changeRoomAvail(roomType, num, checkIn, checkOut);
+	public ResultMessage changeRoomAvail(String roomType, boolean isPlus,int num, Date checkIn, Date checkOut) {
+		return hotel.changeRoomAvail(roomType,isPlus, num, checkIn, checkOut);
 	}
 
 	// 供给order模块

@@ -83,7 +83,7 @@ public class OtherOrderController implements OtherOrderService {
 
 	// 网站营销人员查看未执行订单
 	public ArrayList<OrderPO> browseUnperformed(){
-		return normalOrder.browseUnperformed();
+		return normalOrder.browseUnexecuted();
 	}
 
 	// 网站营销人员撤销异常订单
@@ -92,8 +92,8 @@ public class OtherOrderController implements OtherOrderService {
 	}
 
 	// 网站营销人员撤销异常订单
-	public ResultMessage webCancelAbnormal(String orderid){
-		abnormalOrder.webCancelAbnormal(orderid);
+	public ResultMessage webCancelAbnormal(String orderID,boolean isHalf){
+		abnormalOrder.webCancelAbnormal(orderID,isHalf);
 		return ResultMessage.succeed;
 	}
 	// 提供给酒店

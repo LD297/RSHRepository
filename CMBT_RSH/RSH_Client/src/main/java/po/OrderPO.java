@@ -41,6 +41,7 @@ public class OrderPO implements Serializable{
 	 * 订单生成日期（界面暂时不显示时间，但可以保存以备需求变更）
 	 */
 	private Date generationDate = null;
+	private Date cancelTime = null;
 
 	private int numOfPeople = 0;
 	private boolean adultOnly = false;
@@ -53,6 +54,9 @@ public class OrderPO implements Serializable{
 	}
 	public String getHotelid(){
 		return hotelid;
+	}
+	public StateOfOrder getState(){
+		return state;
 	}
 
 	public RoomNormVO getRoom(){
@@ -89,7 +93,12 @@ public class OrderPO implements Serializable{
 	public void setState(StateOfOrder condition){
 		state = condition;
 	}
-
+	public  Date getCancelTime(){
+		return cancelTime;
+	}
+	public void setCancelTime(Date cancelTime){
+		this.cancelTime = cancelTime;
+	}
 	/**
 	 *
 	 * @param order
