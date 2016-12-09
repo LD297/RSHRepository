@@ -9,7 +9,6 @@ import vo.RoomNormVO;
 import vo.RoomVO;
 
 import java.rmi.RemoteException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -69,8 +68,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                 String comment = result.getString("comment");
                 int grade = result.getInt("grade");
 
-                LocalDate checkIn = result.getDate(1);
-                ("checkIn");
+                Date checkIn = result.getTimestamp("checkIn");
                 Date checkOut = result.getTimestamp("checkOut");
                 Date actCheckIn = result.getTimestamp("actCheckIn");
                 Date actCheckOut = result.getTimestamp("actCheckOut");
