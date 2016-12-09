@@ -9,6 +9,7 @@ import vo.RoomNormVO;
 import vo.RoomVO;
 
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -26,18 +27,20 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
         // 订单编号
         // 房间类型 房间原价 房间现价
-        // 房间数量 促销策略
+        // 房间数量 房间促销策略
         db.executeSql("CREATE TABLE if not exists OrderRooms(orderID char(26)," +
                 "roomType varchar(10),originPrice double,truePrice double," +
                 "roomNum tinyint,promotion varchar(20))");
-        // 订单编号 用户编号 用户姓名 酒店编号 订单状态
+        // 订单编号 用户编号 用户姓名
+        // 酒店编号 订单状态
         // 入住人数 是否有儿童 原价 折后 促销策略
         // 评价 评分 预计入住、退房时间
-        // 实际入住、退房时间 订单生成时间
-        db.executeSql("CREATE TABLE if not exists OrderGeneral(orderID char(26),userID char(9),userName char(10),hotelID char(10),state tinyint," +
+        // 实际入住、退房时间 订单生成时间 撤销订单时间 撤销异常时间
+        db.executeSql("CREATE TABLE if not exists OrderGeneral(orderID char(26),userID char(9),userName char(10)," +
+                "hotelID char(10),state tinyint," +
                 "numOfPeople tinyint,adultOnly tinyint,originalValue double,trueValue double,promotion varchar(20)," +
                 "comment varchar(30),grade tinyint,checkIn datetime,checkOut datetime," +
-                "ACheckIn datetime,ACheckOut datetime，OrderBorn date)");
+                "actCheckIn datetime,actCheckOut datetime，bornTime date，cancelTime datetime,cancelAbTime datetime)");
     }
     public void finish(){
         db.executeSql("USE OurData");
@@ -45,43 +48,45 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         db.executeSql("DROP TABLE IF EXIST OrderRooms ");
     }
     //根据订单编号查找订单
-    public OrderPO find(String orderid) throws RemoteException{
+    public OrderPO find(String orderID) throws RemoteException{
         db.executeSql("USE OurData");
 
-        String sqlDetail = "SELECT *FROM OrderGeneral WHERE orderID='"+orderid+"'LIMIT 1";
+        String sqlDetail = "SELECT *FROM OrderGeneral WHERE orderID='"+orderID+"'LIMIT 1";
         ResultSet result = db.query(sqlDetail);
         try {
             while(result.next()) {
-                String userid = result.getString(2);
-                String username = result.getString(3);
-                String hotelid = result.getString(4);
+                String userID = result.getString("userID");
+                String userName = result.getString("userName");
+                String hotelID = result.getString("hotelID");
 
-                StateOfOrder state = StateOfOrder.values()[result.getInt(5)];
+                StateOfOrder state = StateOfOrder.values()[result.getInt("state")];
 //unexecuted,executed,abnormal,canceled
-                int peoplenum = result.getInt(6);
-                Boolean adultonly = result.getBoolean(7);
-                double originvalue = result.getDouble(8);
-                double truevalue = result.getDouble(9);
-                String promotion = result.getString(10);
-                String comment = result.getString(11);
-                int grade = result.getInt(12);
+                int peopleNum = result.getInt("numOfPeople");
+                Boolean adultOnly = result.getBoolean("adultOnly");
+                double originValue = result.getDouble("originalValue");
+                double trueValue = result.getDouble("trueValue");
+                String promotion = result.getString("promotion");
+                String comment = result.getString("comment");
+                int grade = result.getInt("grade");
 
-                Date checkin = result.getTimestamp(12);
-                Date checkout = result.getTimestamp(13);
-                Date Acheckin = result.getTimestamp(15);
-                Date Acheckout = result.getTimestamp(16);
-                Date borntime = result.getDate(17);
-                RoomNormVO roomvo;
+                LocalDate checkIn = result.getDate(1);
+                ("checkIn");
+                Date checkOut = result.getTimestamp("checkOut");
+                Date actCheckIn = result.getTimestamp("actCheckIn");
+                Date actCheckOut = result.getTimestamp("actCheckOut");
+                Date bornTime = result.getDate("bornTime");
 
-                String sqlRoom = "SELECT *FROM OrderRooms WHERE orderID='" + orderid + "'LIMIT 1" ;
-                ResultSet resultRoom = db.query(sqlRoom);
+                RoomNormVO roomVO;
+
+                String roomSql = "SELECT *FROM OrderRooms WHERE orderID='" + orderID + "'LIMIT 1" ;
+                ResultSet resultRoom = db.query(roomSql);
                 try{
                     while (resultRoom.next()) {
-                        roomvo = new RoomNormVO(resultRoom.getString(1).substring(0, 10), resultRoom.getString(2), resultRoom.getDouble(3));
-                        OrderPO orderpo = new OrderPO(orderid, userid, username, state,
-                                originvalue, truevalue,roomvo, result.getInt(5),
-                                checkin, checkout,Acheckin,Acheckout,borntime,
-                                adultonly, peoplenum) ;
+                        roomVO = new RoomNormVO(resultRoom.getString("orderID").substring(0, 10), resultRoom.getString(2), resultRoom.getDouble(3));
+                        OrderPO orderpo = new OrderPO(orderID, userID, userName, state,
+                                originValue, trueValue,roomVO, result.getInt(5),
+                                checkIn, checkOut,actCheckIn,actCheckOut,bornTime,
+                                adultOnly, peopleNum) ;
                         return orderpo;
                     }
                 }catch(SQLException e){
@@ -103,19 +108,21 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         ArrayList<OrderPO> userOrderList = new ArrayList<OrderPO>();
         try {
             while(result.next()){
-                // 订单编号 用户编号 酒店编号 订单状态
+                // 订单编号 用户编号 用户姓名
+                // 酒店编号 订单状态
                 // 入住人数 是否有儿童 原价 折后 促销策略
-                // 评价 评分 入住、退房时间 房间记录存储数量
-                String ordername = result.getString(1);
-                String hotelname = result.getString(3);
-                int orderstate = result.getInt(4);
-                StateOfOrder state = this.getState(orderstate);
-                double originvalue = result.getDouble(7);
-                double truevalue = result.getDouble(8);
-                Date checkin = result.getDate(12);
-                Date checkout = result.getDate(13);
+                // 评价 评分 预计入住、退房时间
+                // 实际入住、退房时间 订单生成时间 撤销订单时间 撤销异常时间
+                String orderID = result.getString("orderID");
+                String hotelID = result.getString("hotelID");
+                int state = result.getInt("state");
+                StateOfOrder stateOfOrder = StateOfOrder.values()[state];
+                double originValue = result.getDouble("originalValue");
+                double trueValue = result.getDouble("trueValue");
+                Date checkIn = result.getDate("checkIn");
+                Date checkOut = result.getDate("checkOut");
 
-                OrderPO orderpo = new OrderPO(ordername,hotelname,state,originvalue,truevalue,checkin,checkout) {};
+                OrderPO orderpo = new OrderPO(orderID,hotelID,stateOfOrder,originValue,trueValue,checkIn,checkOut) {};
                 userOrderList.add(orderpo);
             }
         } catch (SQLException e) {// TODO Auto-generated catch block
@@ -133,18 +140,25 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         ArrayList<OrderPO> hotelOrderList = new ArrayList<OrderPO>();
         try {
             while (result.next()) {
-                // 订单编号 用户编号 用户姓名 酒店编号 订单状态
+                // 订单编号 用户编号 用户姓名
+                // 酒店编号 订单状态
                 // 入住人数 是否有儿童 原价 折后 促销策略
                 // 评价 评分 预计入住、退房时间
-                // 实际入住、退房时间 订单生成时间
-                String orderid = result.getString(1);
-                String userid = result.getString(2);
-                String username = result.getString(3);
+                // 实际入住、退房时间 订单生成时间 撤销订单时间 撤销异常时间
+                "orderID ,userID ,userName ," +
+                "hotelID ,state ," +
+                 "numOfPeople ,adultOnly ,originalValue,trueValue ,promotion," +
+               "comment,grade ,checkIn,checkOut," +
+                  "actCheckIn,actCheckOut，bornTime，cancelTime,cancelAbTime )");
+
+                String orderID = result.getString("orderID");
+                String userID = result.getString("userID");
+                String userName = result.getString("userName");
 
                 StateOfOrder state = StateOfOrder.values()[result.getInt(5)];
 //unexecuted,executed,abnormal,canceled
-                int peoplenum = result.getInt(6);
-                Boolean adultonly = result.getBoolean(7);
+                int peoplenum = result.getInt("numOfPeople");
+                Boolean adultonly = result.getBoolean("adultOnly");
                 double originvalue = result.getDouble(8);
                 double truevalue = result.getDouble(9);
 
