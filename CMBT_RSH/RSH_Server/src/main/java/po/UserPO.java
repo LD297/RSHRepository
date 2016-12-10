@@ -1,6 +1,8 @@
 package po;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
 
 import constant.MemberType;
 import constant.Sexuality;
@@ -20,10 +22,10 @@ public class UserPO implements Serializable{
 	Sexuality sexuality;
 	String eMail;
 	int credit;
-	String birthday;
+	LocalDate birthday;
 	
 	public UserPO(String id, String password, String nickName, String imageAddress,
-            String birth,int level, MemberType memberType, int credit,
+            LocalDate birth,int level, MemberType memberType, int credit,
 				  String name, Sexuality sexuality, String eMail) {
 		this.id = id;
 		this.nickName = nickName;
@@ -46,7 +48,7 @@ public class UserPO implements Serializable{
 	public String getImageAddress() {
 		return imageAddress;
 	}
-	public String getBirthday(){
+	public LocalDate getBirthday(){
         return birthday;
     }
 	public int getLevel() {

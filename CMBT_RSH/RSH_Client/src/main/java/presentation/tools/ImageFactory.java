@@ -28,11 +28,37 @@ public class ImageFactory {
     private Image hideImage = new Image("/images/收回箭头.png");
     private Image cancel_gray = new Image("images/cancel.png");
     private Image cancel_red = new Image("images/red_cancel.png");
+    private Image female = new Image("/images/female.png");
+    private Image male = new Image("/images/male.png");
+    private Image lastImageArrow = new Image("/images/返回左箭头 - 副本.png");
+    private Image nextImageArrow = new Image("/images/返回右箭头 - 副本.png");
+    private Image hotelImage = new Image("/images/hotel/酒店背景图111.png");
+    
 
-    private ImageFactory(){
+    public Image getHotelImage() {
+		return hotelImage;
+	}
+
+	public Image getLastImageArrow() {
+		return lastImageArrow;
+	}
+
+	public Image getNextImageArrow() {
+		return nextImageArrow;
+	}
+
+	private ImageFactory(){
     }
 
-    public static ImageFactory getImageFactory() {
+    public Image getFemale() {
+		return female;
+	}
+
+	public Image getMale() {
+		return male;
+	}
+
+	public static ImageFactory getImageFactory() {
         if(imageFactory==null){
             imageFactory = new ImageFactory();
         }

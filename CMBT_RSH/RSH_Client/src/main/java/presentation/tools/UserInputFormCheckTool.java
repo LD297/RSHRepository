@@ -50,4 +50,61 @@ public class UserInputFormCheckTool {
         }
         return "success";
     }
+
+    //检查邮件格式
+    public String checkEmail(String email){
+        boolean rightInput = true;
+        String before = "";
+        String after = "";
+        try {
+            before = email.split("@")[0];
+            after = email.split("@")[1];
+        }catch (Exception e){
+            rightInput = false;
+        }
+        String end = "";
+        try {
+            end = after.substring(after.length()-4);
+        }catch (Exception e){
+            rightInput = false;
+        }
+        if(!end.equals(".com")){
+            rightInput = false;
+        }
+        for(int i=0;i<before.length();i++){
+            if(!((before.charAt(i)<='9'&&before.charAt(i)>='0')||
+                    (before.charAt(i)<='z'&&before.charAt(i)>='a')||
+                    (before.charAt(i)<='Z'&&before.charAt(i)>='A'))){
+                rightInput = false;
+            }
+        }
+        for(int i=0;i<end.length();i++){
+            if(!((end.charAt(i)<='9'&&end.charAt(i)>='0')||
+                    (end.charAt(i)<='z'&&end.charAt(i)>='a')||
+                    (end.charAt(i)<='Z'&&end.charAt(i)>='A'))){
+                rightInput = false;
+            }
+        }
+        if(!rightInput){
+            return "电子邮件格式错误";
+        }
+        return "success";
+    }
+
+    //检查昵称格式
+    public String checkNickName(String nickName){
+        for(int i=0;i<nickName.length();i++){
+            if(!((nickName.charAt(i)<='9'&&nickName.charAt(i)>='0')||
+                    (nickName.charAt(i)<='z'&&nickName.charAt(i)>='a')||
+                    (nickName.charAt(i)<='Z'&&nickName.charAt(i)>='A')||
+                    nickName.charAt(i)=='_')){
+                return "昵称必须只包含数字、字母、下划线";
+            }
+        }
+        if(nickName.length()>10){
+            return "昵称长度不能大于10";
+        }
+        return "success";
+    }
+
 }

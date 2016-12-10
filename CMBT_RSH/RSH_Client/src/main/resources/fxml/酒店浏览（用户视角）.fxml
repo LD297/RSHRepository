@@ -3,8 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -46,7 +44,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <GridPane layoutX="105.0" layoutY="105.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="gridpaneFilledWithhotel" layoutX="105.0" layoutY="105.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" />
@@ -55,173 +53,6 @@
                       <RowConstraints maxHeight="295.0" minHeight="295.0" prefHeight="295.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="295.0" minHeight="295.0" prefHeight="295.0" vgrow="SOMETIMES" />
                     </rowConstraints>
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fitHeight="229.0" fitWidth="330.0" layoutX="56.0" layoutY="14.0" pickOnBounds="true" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
-                                 <image>
-                                    <Image url="@../images/hotel/酒店图片2.jpg" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="maskLULabel" layoutX="56.0" layoutY="14.0" onMouseClicked="#changeToHotelInfo" prefHeight="229.0" prefWidth="330.0" style="-fx-background-color: rgba(3,3,3,0.2);" AnchorPane.rightAnchor="14.0" />
-                              <ImageView fx:id="lastImageLU" fitHeight="95.0" fitWidth="65.0" layoutX="56.0" layoutY="81.0" onMouseClicked="#changeToLastImage" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../images/返回左箭头%20-%20副本.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="nextImageLU" fitHeight="95.0" fitWidth="65.0" layoutX="321.0" layoutY="81.0" onMouseClicked="#changeToNextImage" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../images/返回右箭头%20-%20副本.png" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="hotelNameLULabel" layoutX="67.0" layoutY="26.0" prefHeight="32.0" prefWidth="174.0" text="一个有故事的客栈" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="createOrderLUButton" layoutX="281.0" layoutY="197.0" mnemonicParsing="false" onMouseClicked="#createOrder" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: rgba(0,0,0,0.5);" text="新建订单" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="14.0" />
-                                 </font>
-                              </Button>
-                              <Label fx:id="priceLULabel" layoutX="56.0" layoutY="243.0" prefHeight="26.0" prefWidth="64.0" text="￥26800/晚">
-                                 <font>
-                                    <Font name="Agency FB" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Button layoutX="56.0" layoutY="269.0" mnemonicParsing="false" style="-fx-background-color: #ff5a5f;" text="满减" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="14.0" />
-                                 </font>
-                              </Button>
-                              <Button layoutX="106.0" layoutY="269.0" mnemonicParsing="false" style="-fx-background-color: #ff5a5f;" text="买送" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="14.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <children>
-                              <ImageView fitHeight="229.0" fitWidth="330.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
-                                 <image>
-                                    <Image url="@../images/hotel/酒店背景图111.png" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="maskLDLabel" layoutX="56.0" layoutY="14.0" onMouseClicked="#changeToHotelInfo" prefHeight="229.0" prefWidth="330.0" style="-fx-background-color: rgba(3,3,3,0.2);" />
-                              <ImageView fx:id="lastImageLD" fitHeight="95.0" fitWidth="65.0" layoutX="56.0" layoutY="90.0" onMouseClicked="#changeToLastImage" pickOnBounds="true" AnchorPane.bottomAnchor="113.0" AnchorPane.topAnchor="91.0">
-                                 <image>
-                                    <Image url="@../images/返回左箭头%20-%20副本.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="nextImageLD" fitHeight="95.0" fitWidth="65.0" layoutX="321.0" layoutY="91.0" onMouseClicked="#changeToNextImage" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../images/返回右箭头%20-%20副本.png" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="hotelNameLDLabel" layoutX="73.0" layoutY="32.0" prefHeight="32.0" prefWidth="174.0" text="南京英尊酒店" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="createOrderLDButton" layoutX="280.0" layoutY="201.0" mnemonicParsing="false" onMouseClicked="#createOrder" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: rgba(0,0,0,0.5);" text="新建订单" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="14.0" />
-                                 </font>
-                              </Button>
-                              <Label fx:id="priceLDLabel" layoutX="56.0" layoutY="244.0" prefHeight="26.0" prefWidth="64.0" text="￥340/晚">
-                                 <font>
-                                    <Font name="Agency FB" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Button layoutX="56.0" layoutY="272.0" mnemonicParsing="false" style="-fx-background-color: #ff5a5f;" text="八折优惠" textFill="WHITE" AnchorPane.bottomAnchor="2.0">
-                                 <font>
-                                    <Font name="Times New Roman" size="14.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                           <children>
-                              <ImageView fitHeight="229.0" fitWidth="330.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="14.0">
-                                 <image>
-                                    <Image url="@../images/hotel/酒店图片3.jpg" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="maskRULabel" layoutX="14.0" layoutY="14.0" onMouseClicked="#changeToHotelInfo" prefHeight="229.0" prefWidth="330.0" style="-fx-background-color: rgba(3,3,3,0.2);" />
-                              <ImageView fx:id="lastImageRU" fitHeight="95.0" fitWidth="65.0" layoutX="14.0" layoutY="81.0" onMouseClicked="#changeToLastImage" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../images/返回左箭头%20-%20副本.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="nextImageRU" fitHeight="95.0" fitWidth="65.0" layoutX="279.0" layoutY="81.0" onMouseClicked="#changeToNextImage" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../images/返回右箭头%20-%20副本.png" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="hotelNameRULabel" layoutX="26.0" layoutY="27.0" prefHeight="32.0" prefWidth="174.0" text="皇家酒店" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="createOrderRUButton" layoutX="240.0" layoutY="198.0" mnemonicParsing="false" onMouseClicked="#createOrder" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: rgba(0,0,0,0.5);" text="新建订单" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="14.0" />
-                                 </font>
-                              </Button>
-                              <Label fx:id="priceRULabel" layoutX="15.0" layoutY="243.0" prefHeight="26.0" prefWidth="64.0" text="￥700/晚">
-                                 <font>
-                                    <Font name="Agency FB" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Button layoutX="15.0" layoutY="269.0" mnemonicParsing="false" style="-fx-background-color: #ff5a5f;" text="双11" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="14.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <ImageView fitHeight="229.0" fitWidth="330.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../images/hotel/酒店图片.jpg" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="maskRDLabel" layoutX="14.0" layoutY="14.0" onMouseClicked="#changeToHotelInfo" prefHeight="229.0" prefWidth="330.0" style="-fx-background-color: rgba(3,3,3,0.2);" />
-                              <ImageView fx:id="lastImageRD" fitHeight="95.0" fitWidth="65.0" layoutX="14.0" layoutY="89.0" onMouseClicked="#changeToLastImage" pickOnBounds="true" AnchorPane.bottomAnchor="113.0" AnchorPane.topAnchor="91.0">
-                                 <image>
-                                    <Image url="@../images/返回左箭头%20-%20副本.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="nextImageRD" fitHeight="95.0" fitWidth="65.0" layoutX="279.0" layoutY="91.0" onMouseClicked="#changeToNextImage" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../images/返回右箭头%20-%20副本.png" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="hotelNameRDLabel" layoutX="37.0" layoutY="28.0" prefHeight="32.0" prefWidth="174.0" text="泰国风情酒店" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="createOrderRDButton" layoutX="240.0" layoutY="198.0" mnemonicParsing="false" onMouseClicked="#createOrder" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: rgba(0,0,0,0.5);" text="新建订单" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="14.0" />
-                                 </font>
-                              </Button>
-                              <Label fx:id="priceRDLabel" layoutX="15.0" layoutY="243.0" prefHeight="26.0" prefWidth="64.0" text="￥400/晚">
-                                 <font>
-                                    <Font name="Agency FB" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Button layoutX="13.0" layoutY="269.0" mnemonicParsing="false" style="-fx-background-color: #ff5a5f;" text="满减" textFill="WHITE">
-                                 <font>
-                                    <Font name="Times New Roman" size="14.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </AnchorPane>
-                     </children>
                   </GridPane>
                </children>
             </AnchorPane>
@@ -256,6 +87,5 @@
             </AnchorPane>
          </children>
       </GridPane>
-      <Label fx:id="maskLabel" prefHeight="670.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.5);" visible="false" />
    </children>
 </AnchorPane>

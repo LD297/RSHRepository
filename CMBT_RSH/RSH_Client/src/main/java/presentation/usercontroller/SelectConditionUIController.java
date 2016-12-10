@@ -5,8 +5,10 @@ package presentation.usercontroller;
  */
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -55,28 +57,22 @@ public class SelectConditionUIController {
     private TextField highestGradeField;
 
     @FXML
-    private ComboBox<?> starLevelCombobox;
+    private ComboBox<Integer> starLevelCombobox;
+    @FXML
+    private ComboBox<String> priceSortComBox;
 
     @FXML
-    private RadioButton priceFromHighToLow;
+    private ComboBox<String> starLevelSortComBox;
 
     @FXML
-    private RadioButton priceFromLowToHigh;
+    private ComboBox<String> gradeSortComBox;
 
-    @FXML
-    private RadioButton gradeFromHighToLow;
-
-    @FXML
-    private RadioButton gradeFromLowToHigh;
 
     @FXML
     private Button selectButton;
 
     @FXML
     private RadioButton reservedButton;
-
-    @FXML
-    private RadioButton unreservedButton;
 
     private Image cancel_red = ImageFactory.getImageFactory().getCancel_red();
     private Image cancel_gray = ImageFactory.getImageFactory().getCancel_gray();
@@ -115,14 +111,23 @@ public class SelectConditionUIController {
         assert lowestGradeField != null : "fx:id=\"lowestGradeField\" was not injected: check your FXML file '筛选条件.fxml'.";
         assert highestGradeField != null : "fx:id=\"highestGradeField\" was not injected: check your FXML file '筛选条件.fxml'.";
         assert starLevelCombobox != null : "fx:id=\"starLevelCombobox\" was not injected: check your FXML file '筛选条件.fxml'.";
-        assert priceFromHighToLow != null : "fx:id=\"priceFromHighToLow\" was not injected: check your FXML file '筛选条件.fxml'.";
-        assert priceFromLowToHigh != null : "fx:id=\"priceFromLowToHigh\" was not injected: check your FXML file '筛选条件.fxml'.";
-        assert gradeFromHighToLow != null : "fx:id=\"gradeFromHighToLow\" was not injected: check your FXML file '筛选条件.fxml'.";
-        assert gradeFromLowToHigh != null : "fx:id=\"gradeFromLowToHigh\" was not injected: check your FXML file '筛选条件.fxml'.";
         assert selectButton != null : "fx:id=\"selectButton\" was not injected: check your FXML file '筛选条件.fxml'.";
         assert reservedButton != null : "fx:id=\"reservedButton\" was not injected: check your FXML file '筛选条件.fxml'.";
-        assert unreservedButton != null : "fx:id=\"unreservedButton\" was not injected: check your FXML file '筛选条件.fxml'.";
+        assert priceSortComBox != null : "fx:id=\"priceSortComBox\" was not injected: check your FXML file '筛选条件.fxml'.";
+        assert starLevelSortComBox != null : "fx:id=\"starLevelSortComBox\" was not injected: check your FXML file '筛选条件.fxml'.";
+        assert gradeSortComBox != null : "fx:id=\"gradeSortComBox\" was not injected: check your FXML file '筛选条件.fxml'.";
 
+
+        ArrayList<String> priceSortCondition = new ArrayList<String>();
+        priceSortCondition.add("价格从高到低");
+        priceSortCondition.add("价格从低到高");
+        ArrayList<String> gradeSortCondition = new ArrayList<String>();
+        gradeSortCondition.add("评分从高到低");
+        gradeSortCondition.add("评分从低到高");
+
+        ArrayList<String> starLevelSortCondition = new ArrayList<String>();
+        starLevelSortCondition.add("星级从高到低");
+        starLevelSortCondition.add("星级从低到高");
     }
 }
 

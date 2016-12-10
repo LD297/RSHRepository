@@ -81,6 +81,9 @@ public class HotelInfoUIController {
     @FXML
     private Button commentButton;
 
+    @FXML
+    private Button myOrderButton;
+
     private boolean isRoomInfo = true;
 
     @FXML
@@ -129,6 +132,12 @@ public class HotelInfoUIController {
 
     }
 
+    //跳转到我的订单界面
+    @FXML
+    void changeToMyOrder(MouseEvent event) {
+        UIJumpTool.getUiJumpTool().changeToMyOrderOfOneHotel();
+    }
+
     @FXML
     void initialize() {
         assert hotelImage != null : "fx:id=\"hotelImage\" was not injected: check your FXML file '酒店详情.fxml'.";
@@ -150,7 +159,7 @@ public class HotelInfoUIController {
         assert commentEffect != null : "fx:id=\"commentEffect\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert roonInfoButton != null : "fx:id=\"roonInfoButton\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert commentButton != null : "fx:id=\"commentButton\" was not injected: check your FXML file '酒店详情.fxml'.";
-
+        assert myOrderButton != null : "fx:id=\"myOrderButton\" was not injected: check your FXML file '酒店详情.fxml'.";
     }
 }
 

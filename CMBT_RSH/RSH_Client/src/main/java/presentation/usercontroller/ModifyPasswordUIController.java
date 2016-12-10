@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import presentation.tools.ImageFactory;
 import presentation.tools.UIJumpTool;
+import presentation.tools.UserInfoUtil;
 import presentation.tools.UserInputFormCheckTool;
 
 public class ModifyPasswordUIController {
@@ -69,8 +70,21 @@ public class ModifyPasswordUIController {
 
     @FXML
     void finishModifyButtonClicked(MouseEvent event) {
-
-        UIJumpTool.getUiJumpTool().changeModifypasswordToModifyuserinfo();
+        String newpasswordResult = UserInputFormCheckTool.getInstance().checkUserPassword(newPasswordField.getText());
+        if(!prePasswordField.getText().equals(UserInfoUtil.getInstance().getUserPassword())){
+            prepasswordLabel.setText("原密码错误");
+        }else if(!newpasswordResult.equals("success")){
+            newpasswordLabel.setText("新"+newpasswordResult);
+        }else if(!newPasswordField.equals(confirmNewPasswordField.getText())){
+            if(confirmnewpasswordLabel.getText().equals("")){
+                confirmnewpasswordLabel.setText("请确认您的密码");
+            }else{
+                confirmnewpasswordLabel.setText("两次密码不一致");
+            }
+        }else {
+            UserInfoUtil.getInstance().modifyUserPassword(newPasswordField.getText());
+            UIJumpTool.getUiJumpTool().changeModifypasswordToModifyuserinfo();
+        }
     }
 
     @FXML
