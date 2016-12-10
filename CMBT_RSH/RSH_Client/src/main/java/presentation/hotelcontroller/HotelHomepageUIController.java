@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -212,15 +213,6 @@ public class HotelHomepageUIController {
         checkOrderUIController.setAnchorPane(checkOrderUIPane);
         // 传入酒店首页根结点引用
         checkOrderUIController.setPrePane(anchorPane);
-
-        // TODO 实例化这些orders
-        ArrayList<OrderPO> hotelAllOrders = new ArrayList<OrderPO>();
-        ArrayList<OrderPO> unexecutedOrders = new ArrayList<OrderPO>();
-        ArrayList<OrderPO> executedOrders = new ArrayList<OrderPO>();
-        ArrayList<OrderPO> exceptionalOrders = new ArrayList<OrderPO>();
-        ArrayList<OrderPO> revokedOreders = new ArrayList<OrderPO>();
-
-
 
         Scene scene = null;
         if(checkOrderUIPane.getScene()==null)
