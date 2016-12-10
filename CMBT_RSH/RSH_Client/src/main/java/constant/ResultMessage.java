@@ -6,5 +6,8 @@ public enum ResultMessage {
 	emptyComment,
 	idAlreadyExist,
 	idNotExist,
-	timeOut;
+	timeOut,
+	already_exist,
+	remote_fail,
+	not_exist;
 }

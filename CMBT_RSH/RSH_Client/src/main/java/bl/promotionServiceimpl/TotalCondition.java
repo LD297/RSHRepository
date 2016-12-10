@@ -25,9 +25,12 @@ public class TotalCondition extends Condition {
 		return total;
 	}
 
-	public boolean check(int cNum){
-		if(cNum>=total)
+	@Override
+	public boolean check(int num, int price, int memberLevel, boolean isBirthday) {
+		if(num*price>=total){
 			return true;
-		else return false;
+		}
+		return false;
 	}
+
 }

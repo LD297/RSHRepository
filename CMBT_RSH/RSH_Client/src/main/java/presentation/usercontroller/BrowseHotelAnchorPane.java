@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 import bl.orderservice.OtherOrderService;
 import bl.orderserviceimpl.OtherOrderController;
-import bl.promotionServiceimpl.PromotionController;
-import bl.promotionservice.PromotionService;
-import constant.StateOfOrder;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

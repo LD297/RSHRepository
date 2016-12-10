@@ -1,12 +1,18 @@
 package bl.promotionServiceimpl;
 
-import bl.promotionservice.PromotionService;
+import bl.userserviceimpl.User;
+import constant.MemberType;
 import constant.ResultMessage;
-import po.OrderPO;
 import vo.PromotionVO;
+import vo.RoomVO;
+import vo.UserVO;
 
+import bl.promotionservice.PromotionService;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * 策略包总控
@@ -70,14 +76,15 @@ public class PromotionController implements PromotionService {
 	@Override
 	public String countPromotionOfRoom(String hotelID, String type, int num, int price,Date beginDate, Date endDate) {
 		// TODO Auto-generated method stub
-		return Count.countPromotionOfRoom(hotelID,type,num,price,beginDate,endDate);
+		User user = new User();
+		UserVO userVO = user.getInfo();
+		LocalDate birthday = userVO.getBirthday();
+		MemberType memberType = userVO.getMemberType();
+		int memberLevel = userVO.getLevel();
+		return Count.countPromotionOfRoom(hotelID,type,num,price,beginDate,endDate,
+				birthday,memberType,memberLevel);
 	}
 
-//	@Override
-	public String countPromotionOfOrder(OrderPO order) {
-		// TODO Auto-generated method stub
-		return Count.countPromotionOfOrder(order);
-	}
 
 
 

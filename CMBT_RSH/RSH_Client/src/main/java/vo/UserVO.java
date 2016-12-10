@@ -4,7 +4,6 @@ import constant.MemberType;
 import constant.Sexuality;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class UserVO {
 	public String id;

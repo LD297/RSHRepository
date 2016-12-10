@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 
+import constant.MemberType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,16 +24,12 @@ public class CountTest {
 	public void setup(){
 		
 	}
-	
-	
-	@Test
-	public void countPromotionOfOrder(){
-		assertEquals("双十一特惠#1200",Count.countPromotionOfOrder(null));
-	}
+
 	
 	@Test
 	public void countPromotionOfRoom(){
-		assertEquals("双十一特惠#120",Count.countPromotionOfRoom(hotelID, rType, 2,100, beginDate,endDate));
+		assertEquals("#200",Count.countPromotionOfRoom(hotelID, rType, 2,100, beginDate,endDate,
+				null, MemberType.commerce,3));
 
 	}
 	

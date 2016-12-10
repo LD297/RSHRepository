@@ -10,10 +10,10 @@ import constant.ConditionType;
  */
 public class MemberCondition extends Condition {
 
-	int classNum;
+	int memberLevel;
 	
-	public MemberCondition(int c){
-		classNum=c;
+	public MemberCondition(int tempMemberLevel){
+		memberLevel = tempMemberLevel;
 	}
 
 	@Override
@@ -23,12 +23,19 @@ public class MemberCondition extends Condition {
 
 	@Override
 	public int getNum() {
-		return classNum;
+		return memberLevel;
 	}
 
-	public boolean check(int cNum){
-		if(classNum==cNum)
+	@Override
+	public boolean check(int num, int price, int tempMemberLevel, boolean isBirthday) {
+		if(tempMemberLevel>=memberLevel&&memberLevel>99){
 			return true;
+		}
+		if(memberLevel<=tempMemberLevel&&tempMemberLevel<100){
+			return true;
+		}
 		return false;
 	}
+
+
 }

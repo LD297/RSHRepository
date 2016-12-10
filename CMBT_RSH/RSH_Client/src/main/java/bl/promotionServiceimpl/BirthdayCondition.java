@@ -23,11 +23,9 @@ public class BirthdayCondition extends Condition {
 		return 0;
 	}
 
-
-	public boolean check(int isBirthday){
-		if(isBirthday==1)
-			return true;
-		return false;
+	@Override
+	public boolean check(int num, int price, int memberLevel, boolean isBirthday) {
+		return isBirthday;
 	}
 
 

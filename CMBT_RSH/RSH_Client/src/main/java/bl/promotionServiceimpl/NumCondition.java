@@ -25,10 +25,13 @@ public class NumCondition extends Condition {
 		return num;
 	}
 
-	public boolean check(int cNum){
-		if(cNum>=num)
+	@Override
+	public boolean check(int tempNum, int price, int memberLevel, boolean isBirthday) {
+		if(tempNum>=num){
 			return true;
-		else
-			return false;
+		}
+		return false;
 	}
+
+
 }

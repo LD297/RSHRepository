@@ -28,6 +28,21 @@ public class PromotionVO {
     public DeductionType deductionType;
     public int deductionNum;
 
+    /**
+     *
+     * @param tempSetter
+     * @param tempPromID
+     * @param tempReasom
+     * @param tempBeginDate
+     * @param tempEndDate
+     * @param tempSType
+     * @param tempSNum
+     * @param roomType
+     * @param tempCType
+     * @param tempCNum 在会员促销策略时，若是企业会员，cNum 为会员等级*100；
+     * @param tempDType
+     * @param tempDNum
+     */
     public PromotionVO(String tempSetter,String tempPromID,String tempReasom,
                        Date tempBeginDate, Date tempEndDate,
                        ScopeType tempSType, String tempSNum,String roomType,
@@ -46,5 +61,6 @@ public class PromotionVO {
         deductionType = tempDType;
         deductionNum = tempDNum;
     }
+
 
 }

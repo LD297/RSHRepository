@@ -24,5 +24,5 @@ public abstract class Condition {
 	 * @param price
 	 * @return
 	 */
-	public abstract boolean check(int num,int price);
+	public abstract boolean check(int num,int price,int memberLevel,boolean isBirthday);
 }

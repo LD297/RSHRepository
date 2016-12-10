@@ -34,7 +34,7 @@ public class PromotionDao_Stub implements PromotionDao {
         Date beforeDate  = new Date(20161111);
         Date afterDate  = new Date(20161212);
         PromotionPO promotionPO = new PromotionPO(setterID,id,"双十一",beforeDate,afterDate,
-                ScopeType.DISTRICT,"123456",
+                ScopeType.DISTRICT,"123456","单人间",
                 ConditionType.BIRTHDAY,1,
                 DeductionType.REDUCE,10);
         return promotionPO;
