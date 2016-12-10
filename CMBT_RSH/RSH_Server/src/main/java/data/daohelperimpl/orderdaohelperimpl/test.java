@@ -1,9 +1,6 @@
 package data.daohelperimpl.orderdaohelperimpl;
 
 
-import bl.promotionServiceimpl.Promotion;
-import data.daohelper.HotelDaoHelper;
-import data.daohelper.PromotionDaoHelper;
 import data.daohelperimpl.hoteldaohelperimpl.HotelDaoHelperMySql;
 import data.daohelperimpl.logindaohelperimpl.LoginDaoHelperMySql;
 import data.daohelperimpl.promotiondaohelperimpl.PromotionDaoHelperMySql;
@@ -11,12 +8,11 @@ import data.daohelperimpl.userdaohelperimpl.CreditRecordListDaoHelperMySql;
 import data.daohelperimpl.userdaohelperimpl.UserDaoHelperMySql;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
 
 /**
  * Created by sky-PC on 2016/12/2.
  */
-
-import java.text.ParseException;
 
 public class test {
 
