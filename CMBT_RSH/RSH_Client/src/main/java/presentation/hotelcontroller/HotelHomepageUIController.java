@@ -2,6 +2,7 @@ package presentation.hotelcontroller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
@@ -9,10 +10,12 @@ import bl.hotelserviceimpl.Hotel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import po.OrderPO;
 import presentation.tools.HotelUIFactory;
 import vo.HotelVO;
 
@@ -209,6 +212,15 @@ public class HotelHomepageUIController {
         checkOrderUIController.setAnchorPane(checkOrderUIPane);
         // 传入酒店首页根结点引用
         checkOrderUIController.setPrePane(anchorPane);
+
+        // TODO 实例化这些orders
+        ArrayList<OrderPO> hotelAllOrders = new ArrayList<OrderPO>();
+        ArrayList<OrderPO> unexecutedOrders = new ArrayList<OrderPO>();
+        ArrayList<OrderPO> executedOrders = new ArrayList<OrderPO>();
+        ArrayList<OrderPO> exceptionalOrders = new ArrayList<OrderPO>();
+        ArrayList<OrderPO> revokedOreders = new ArrayList<OrderPO>();
+
+
 
         Scene scene = null;
         if(checkOrderUIPane.getScene()==null)
