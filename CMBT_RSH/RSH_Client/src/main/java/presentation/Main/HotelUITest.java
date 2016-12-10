@@ -1,18 +1,23 @@
 package presentation.Main;
 
 import bl.hotelservice.HotelService;
+import bl.orderservice.OtherOrderService;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import presentation.hotelControllerHelper.HotelServiceFactory;
+import bl.hotelserviceimpl.HotelServiceFactory;
+import bl.orderserviceimpl.OrderServiceFactory;
+import po.OrderPO;
 import presentation.hotelcontroller.HotelHomepageUIController;
 import presentation.tools.HotelUIFactory;
 import vo.HotelVO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by a297 on 16/12/5.
@@ -32,6 +37,11 @@ public class HotelUITest extends Application {
         HotelVO hotelVO = hotelService.getHotel();
         controller.setHotelVO(hotelVO);
 
+        // TODO 从订单的逻辑得到初始化数据
+        // 得到订单的逻辑服务
+        // OtherOrderService otherOrderService = OrderServiceFactory.getOtherOrderService(hotelVO.id);
+        // 从数据层得到该酒店所有订单
+        //  ArrayList<OrderPO> hotelOrders =
         // TODO 设置白色背景（目前看来似乎没什么用，我直接用的背景图片）
         primaryStage.initStyle(StageStyle.DECORATED);
 

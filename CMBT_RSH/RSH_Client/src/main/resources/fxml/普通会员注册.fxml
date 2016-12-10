@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="630.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.CommonMemberRegisterUIController">
    <children>
-      <Label prefHeight="630.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.5);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label prefHeight="630.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.5);" textFill="#ff5a5f" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="248.0" style="-fx-background-color: #f4f4f4;" AnchorPane.leftAnchor="276.0" AnchorPane.rightAnchor="276.0" AnchorPane.topAnchor="150.0">
          <children>
             <ImageView fx:id="headImage" fitHeight="114.0" fitWidth="114.0" layoutX="67.0" layoutY="25.0" pickOnBounds="true" AnchorPane.bottomAnchor="177.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="25.0">
@@ -23,7 +23,7 @@
                   <Image url="@../images/头像背景.png" />
                </image>
             </ImageView>
-            <DatePicker fx:id="birthdayPicker" focusTraversable="false" layoutX="31.0" layoutY="179.0" prefHeight="38.0" prefWidth="186.0" promptText="请选择您的生日" />
+            <DatePicker fx:id="birthdayPicker" focusTraversable="false" layoutX="31.0" layoutY="165.0" prefHeight="38.0" prefWidth="186.0" promptText="请选择您的生日" />
             <Button fx:id="finifshRegisterButton" layoutX="31.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#finishRegisterButtonClicked" prefHeight="38.0" prefWidth="186.0" style="-fx-background-color: #ff5a5f;" text="完成注册" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="14.0" />
@@ -34,6 +34,11 @@
                   <Image url="@../images/cancel.png" />
                </image>
             </ImageView>
+            <Label fx:id="birthdayMessageLabel" layoutX="31.0" layoutY="203.0" prefHeight="26.0" prefWidth="206.0">
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

@@ -6,10 +6,13 @@ import bl.orderservice.CommentService;
 import bl.orderservice.HotelInfoService;
 import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
+import constant.StateOfOrder;
+import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import vo.CreditRecordVO;
 import vo.RoomNormVO;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,33 +20,48 @@ import java.util.Date;
  * Created by sky-PC on 2016/11/27.
  */
 public class NormalOrder {
-    HotelInfoService hotelinfo;
-    OrderPO orderpo ;
-    public void setOrder(OrderPO ord){
-        orderpo = ord;
-    }//方便测试
-    CommentService com ;
-    CreditRecordList record;
-    public void setCommentImpl(CommentImpl comm){
-        com = comm;
+    HotelInfoService hotelInfoService;
+    OrderDao orderDao;
+
+    CommentService commentService ;
+    CreditRecordList creditRecordList;
+
+    public void setHotelInfoService(HotelInfoService hotelInfoService) {
+        this.hotelInfoService = hotelInfoService;
     }
-    public void setCreditRecordList(CreditRecordList recordList){
-        record = recordList;
+
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
+
+    public void setCommentService(CommentImpl commentImpl){
+        commentService = commentImpl;
+    }
+
+    public void setCreditRecordList(CreditRecordList creditRecordList){
+        creditRecordList = creditRecordList;
     }
 
     // 用户撤销未执行订单
     public void cancelMyOrder(String orderid){
-        //orderdataservice->find->orderpo
-        ArrayList<RoomNormVO> rooms =  orderpo.getRooms();
-        int[] num = orderpo.getRoomNums();
+        OrderPO orderpo;
+        try {
+            orderpo = orderDao.findByID(orderid);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return ;
+        }
+        String hotelID = orderpo.getHotelID();
+        RoomNormVO room =  orderpo.getRoom();
+        int roomNum = orderpo.getRoomNumber();
         Date checkIn = orderpo.getTime()[0];
         Date checkOut = orderpo.getTime()[1];
 
-        hotelinfo = new HotelController(orderpo.getHotelid());
-        String time = hotelinfo.getCheckInDDL(orderpo.getHotelid());
+        hotelInfoService = new HotelController(orderpo.getHotelID());
+        String time = hotelInfoService.getCheckInDDL(orderpo.getHotelID());
 
-        for(int i=0;i<rooms.size();i++)//增加客房
-            hotelinfo.changeRoomAvail(rooms.get(i).roomType, num[i],checkIn,checkOut);
+
+        hotelInfoService.changeRoomAvail(room.roomType, false,roomNum,checkIn,checkOut);
 
         int day = checkIn.getDay();
         int hour = Integer.valueOf(time.substring(0, 2));
@@ -55,10 +73,10 @@ public class NormalOrder {
         int trueminute = d.getMinutes();
 
         if((day-trueday)*24*60+(hour-truehour)*60+(minute-trueminute)<360){
-            record = new CreditRecordList(orderpo.getUserid());
+            creditRecordList = new CreditRecordList(orderpo.getUserID());
             //userid,date,orderid,creditAction,change,credit
-            CreditRecordVO creditRecord = new CreditRecordVO(orderpo.getUserid(), d, orderid, null,"",(int)orderpo.getTrueValue());
-            record.addCreditRecord(creditRecord);
+            CreditRecordVO creditRecord = new CreditRecordVO(orderpo.getUserID(), d, orderid, null,"",(int)orderpo.getTrueValue());
+            creditRecordList.addCreditRecord(creditRecord);
         }
         System.out.println("success");
         return ;
@@ -76,9 +94,9 @@ public class NormalOrder {
 
     // 用户评价订单
     public ResultMessage comment(String hotelid, String orderid, double grade, String comment){
-        com = new CommentImpl();
-        ResultMessage a = com.addComment(hotelid, orderid, comment);
-        ResultMessage b = com.updateGrade(grade);
+        commentService = new CommentImpl();
+        ResultMessage a = commentService.addComment(hotelid, orderid, comment);
+        ResultMessage b = commentService.updateGrade(grade);
 
         if(a.equals(b)&&a.equals(ResultMessage.succeed))
             return ResultMessage.succeed;
@@ -88,7 +106,13 @@ public class NormalOrder {
 
     // 实时更新异常订单状况
     public void setAbnormal(String orderid){
-        String time = hotelinfo.getCheckInDDL(orderid.substring(10, 20));
+        OrderPO orderpo = null;
+        try {
+            orderpo = orderDao.findByID(orderid);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        String time = hotelInfoService.getCheckInDDL(orderid.substring(10, 20));
         int hour = Integer.valueOf(time.substring(0, 2));
         int minute = Integer.valueOf(time.substring(3));
 
@@ -97,10 +121,10 @@ public class NormalOrder {
         int trueminute = d.getMinutes();
         if(truehour>hour||(truehour==hour&&trueminute>minute)){
             System.out.println("failed");//orderdataservice->update
-            record = new CreditRecordList(orderpo.getUserid());
+            creditRecordList = new CreditRecordList(orderpo.getUserID());
             //userid,date,orderid,creditAction,change,credit
             CreditRecordVO creditRecord = new CreditRecordVO("", d, orderid,null, "", 0);
-            record.addCreditRecord(creditRecord);
+            creditRecordList.addCreditRecord(creditRecord);
         }
         System.out.println("succeed");
         return ;
@@ -112,9 +136,12 @@ public class NormalOrder {
     }
 
     // 网站营销人员浏览未执行订单
-    public ArrayList<OrderPO> browseUnperformed(){
-        return null;
+    public ArrayList<OrderPO> browseUnexecuted(){
+        try{
+            return orderDao.findByState(StateOfOrder.unexecuted);
+        }catch (RemoteException e){
+            e.printStackTrace();
+            return null;
+        }
     }
-
 }
-

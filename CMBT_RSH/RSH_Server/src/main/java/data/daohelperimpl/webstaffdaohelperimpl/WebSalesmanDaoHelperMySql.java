@@ -20,8 +20,8 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
     public void init(){
 
         db.executeSql("USE OurData");
-        // 账号 密码
-        db.executeSql("CREATE TABLE WebStaffInfo(id char(12),password varchar(30),district varchar(20)" );
+        // 账号 密码 地区 IF NOT EXISTS
+        db.executeSql("CREATE TABLE if not exists WebStaffInfo(id char(12),password varchar(30),district varchar(20)" );
     }
 
     public void finish(){
@@ -29,37 +29,46 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         db.executeSql("DROP TABLE IF EXISTS WebStaffInfo");
     }
     // 网站营销人员添加
-    public ResultMessage insert(WebSalesmanPO webSalesmanPO) {
+    public ResultMessage insert(WebSalesmanPO po) {
         db.executeSql("USE OurData");
-
-        String addWebSalesmanSql = "INSERT INTO WebStaffInfo VALUES('"+
-               webSalesmanPO.getID()+"','"+webSalesmanPO.getPassword()+"','"+webSalesmanPO.getDistrict()+"')";
-        db.executeSql(addWebSalesmanSql);
-        return ResultMessage.succeed;
+        if(this.checkExistence(po.getID())==ResultMessage.idNotExist){
+            String addWebSalesmanSql = "INSERT INTO WebStaffInfo VALUES('"+
+               po.getID()+"','"+po.getPassword()+"','"+po.getDistrict()+"')";
+            db.executeSql(addWebSalesmanSql);
+            return ResultMessage.succeed;
+        }
+        else
+            return ResultMessage.idAlreadyExist;
     }
     // 网站营销人员更新
-    public ResultMessage update(WebSalesmanPO webSalesmanPO) {
+    public ResultMessage update(WebSalesmanPO po) {
         db.executeSql("USE OurData");
-
-        String updateWebSalesmanSql = "UPDATE WebStaffInfo " +
-                "SET password='"+webSalesmanPO.getPassword()+"',district='"+webSalesmanPO.getDistrict()+"'"+
-                " WHERE id='"+webSalesmanPO.getID()+"' LIMIT 1";
-        db.executeSql(updateWebSalesmanSql);
-        return ResultMessage.succeed;
+        if(this.checkExistence(po.getID())==ResultMessage.idAlreadyExist){
+            String updateWebSalesmanSql = "UPDATE WebStaffInfo " +
+                "SET password='"+po.getPassword()+"',district='"+po.getDistrict()+"'"+
+                " WHERE id='"+po.getID()+"' LIMIT 1";
+            db.executeSql(updateWebSalesmanSql);
+            return ResultMessage.succeed;
+        }
+        else
+            return ResultMessage.idNotExist;
     }
     // 网站营销人员注销
-    public ResultMessage delete(String webSalesmanID) {
+    public ResultMessage delete(String id) {
         db.executeSql("USE OurData");
-
-        String delWebSalesmanSql = "DELETE FROM WebStaffInfo WHERE id='"+webSalesmanID+"' LIMIT 1";
-        db.executeSql(delWebSalesmanSql);
-        return ResultMessage.succeed;
+        if(this.checkExistence(id)==ResultMessage.idAlreadyExist) {
+            String delWebSalesmanSql = "DELETE FROM WebStaffInfo WHERE id='" + id + "' LIMIT 1";
+            db.executeSql(delWebSalesmanSql);
+            return ResultMessage.succeed;
+        }
+        else
+            return ResultMessage.idNotExist;
     }
     // 网站管理人员 根据id查找 网站营销人员
-    public WebSalesmanPO findByID(String webSalesmanID) {
+    public WebSalesmanPO findByID(String id) {
         db.executeSql("USE OurData");
 
-        String getSalesmanByIDSql = "SELECT *FROM WebStaffInfo WHERE id='"+webSalesmanID+"' LIMIT 1";
+        String getSalesmanByIDSql = "SELECT *FROM WebStaffInfo WHERE id='"+id+"' LIMIT 1";
         ResultSet result = db.query(getSalesmanByIDSql);
         try{
             while (result.next()){
@@ -107,5 +116,18 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
             e.printStackTrace();
             return null;
         }
+    }
+    // 检查需要操作的账号存在
+    public ResultMessage checkExistence(String id){
+        String checkExistenceSql = "SELECT id FROM WebStaffInfo";
+        ResultSet result = db.query(checkExistenceSql);
+        try{
+            while(result.next())
+                if(result.getString(1).equals(id))
+                    return ResultMessage.idAlreadyExist;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return ResultMessage.idNotExist;
     }
 }

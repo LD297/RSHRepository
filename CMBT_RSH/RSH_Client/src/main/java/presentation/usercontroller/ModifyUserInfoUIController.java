@@ -5,17 +5,27 @@ package presentation.usercontroller;
  */
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.ResourceBundle;
 
+import constant.Sexuality;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import presentation.tools.UIJumpTool;
+import presentation.tools.UserInfoUtil;
+import presentation.tools.UserInputFormCheckTool;
+import vo.UserVO;
 
 public class ModifyUserInfoUIController {
 
@@ -28,11 +38,9 @@ public class ModifyUserInfoUIController {
     @FXML
     private TextField nicknameField;
 
-    @FXML
-    private RadioButton isBoyButton;
 
     @FXML
-    private RadioButton isgirlButton;
+    private ChoiceBox<String> sexChoiceBox;
 
     @FXML
     private DatePicker birthdayPicker;
@@ -47,9 +55,6 @@ public class ModifyUserInfoUIController {
     private TextField nameField;
 
     @FXML
-    private TextField firstnameField;
-
-    @FXML
     private TextField phonenumberField;
 
     @FXML
@@ -60,6 +65,18 @@ public class ModifyUserInfoUIController {
 
     @FXML
     private Label modifypasswordLabel;
+
+
+    @FXML
+    private Label emailMeaasgeLabel;
+
+    @FXML
+    private Label nickNameMeassgeLabel;
+
+
+    @FXML
+    private Label phoneNumMeassgeLabel;
+
 
     @FXML
     void cancelButtonClicked(MouseEvent event) {
@@ -73,24 +90,70 @@ public class ModifyUserInfoUIController {
 
     @FXML
     void confirmButtonClicked(MouseEvent event) {
-        UIJumpTool.getUiJumpTool().changeToUserInfo();
+        boolean rightInput = true;
+        //检查昵称格式
+        String nickName = nicknameField.getText().trim();
+        String nickNameResult = UserInputFormCheckTool.getInstance().checkNickName(nickName);
+        if(!nickNameResult.equals("success")){
+            rightInput = false;
+            nickNameMeassgeLabel.setText(nickNameResult);
+        }else {
+            nickNameMeassgeLabel.setText("");
+        }
+        //检查邮件地址格式
+        String email = emailaddressField.getText().trim();
+        String emailResult = UserInputFormCheckTool.getInstance().checkEmail(email);
+        if(!emailResult.equals("success")){
+            rightInput = false;
+            emailMeaasgeLabel.setText(emailResult);
+        }else {
+            emailMeaasgeLabel.setText("");
+        }
+        //检查用户账号格式
+        String phoneNum = phonenumberField.getText().trim();
+        String phonenumResult = UserInputFormCheckTool.getInstance().checkUserID(phoneNum);
+        if(!phonenumResult.equals("success")){
+            rightInput = false;
+            phoneNumMeassgeLabel.setText(phonenumResult);
+        }else {
+            rightInput = true;
+        }
+        if(rightInput){
+        	String name = nameField.getText().trim();
+        	Sexuality sexuality = Sexuality.getSexuality(sexChoiceBox.getValue());
+        	LocalDate birthday = birthdayPicker.getValue();
+            //更新用户信息
+        	UserInfoUtil.getInstance().modifyUserInfo(nickName, name, sexuality, birthday, phoneNum, email);
+            //跳转到用户信息界面
+            UIJumpTool.getUiJumpTool().changeToUserInfo();
+        }
     }
 
     @FXML
     void initialize() {
         assert nicknameField != null : "fx:id=\"nicknameField\" was not injected: check your FXML file '用户个人资料.fxml'.";
-        assert isBoyButton != null : "fx:id=\"isBoyButton\" was not injected: check your FXML file '用户个人资料.fxml'.";
-        assert isgirlButton != null : "fx:id=\"isgirlButton\" was not injected: check your FXML file '用户个人资料.fxml'.";
         assert birthdayPicker != null : "fx:id=\"birthdayPicker\" was not injected: check your FXML file '用户个人资料.fxml'.";
         assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '用户个人资料.fxml'.";
         assert cancelButton != null : "fx:id=\"cancelButton\" was not injected: check your FXML file '用户个人资料.fxml'.";
         assert nameField != null : "fx:id=\"nameField\" was not injected: check your FXML file '用户个人资料.fxml'.";
-        assert firstnameField != null : "fx:id=\"firstnameField\" was not injected: check your FXML file '用户个人资料.fxml'.";
         assert phonenumberField != null : "fx:id=\"phonenumberField\" was not injected: check your FXML file '用户个人资料.fxml'.";
         assert emailaddressField != null : "fx:id=\"emailaddressField\" was not injected: check your FXML file '用户个人资料.fxml'.";
         assert modifypasswordImage != null : "fx:id=\"modifypasswordImage\" was not injected: check your FXML file '用户个人资料.fxml'.";
         assert modifypasswordLabel != null : "fx:id=\"modifypasswordLabel\" was not injected: check your FXML file '用户个人资料.fxml'.";
-
+        assert emailMeaasgeLabel != null : "fx:id=\"emailMeaasgeLabel\" was not injected: check your FXML file '用户个人资料.fxml'.";
+        assert phoneNumMeassgeLabel != null : "fx:id=\"phoneNumMeassgeLabel\" was not injected: check your FXML file '用户个人资料.fxml'.";
+        assert nickNameMeassgeLabel != null : "fx:id=\"nickNameMeassgeLabel\" was not injected: check your FXML file '用户个人资料.fxml'.";
+        assert sexChoiceBox != null : "fx:id=\"sexChoiceBox\" was not injected: check your FXML file '用户个人资料.fxml'.";
+        
+        UserVO userVO = UserInfoUtil.getInstance().getUserVO();
+        nicknameField.setPromptText(userVO.nickName);
+        nameField.setPromptText(userVO.name);
+        phonenumberField.setPromptText(userVO.id);
+        emailaddressField.setPromptText(userVO.eMail);
+        birthdayPicker.setValue(userVO.birthday);
+		ObservableList<String> sexualities = FXCollections.observableArrayList((new ArrayList<String>(
+				Arrays.asList(new String[] { Sexuality.male.getString(), Sexuality.female.getString() }))));
+		sexChoiceBox.setItems(sexualities);
     }
 }
 

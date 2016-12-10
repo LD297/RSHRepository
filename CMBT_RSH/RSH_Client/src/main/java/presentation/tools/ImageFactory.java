@@ -28,11 +28,52 @@ public class ImageFactory {
     private Image hideImage = new Image("/images/收回箭头.png");
     private Image cancel_gray = new Image("images/cancel.png");
     private Image cancel_red = new Image("images/red_cancel.png");
+    private Image female = new Image("/images/female.png");
+    private Image male = new Image("/images/male.png");
+    private Image lastImageArrow = new Image("/images/返回左箭头 - 副本.png");
+    private Image nextImageArrow = new Image("/images/返回右箭头 - 副本.png");
+    private Image hotelImage = new Image("/images/hotel/酒店背景图111.png");
+    private Image headImage = new Image("/images/用户头像.jpg");
+    private Image headImagebackground = new Image("/images/头像背景.jpg");
+    private Image orderExecutedImage = new Image("/images/TICK.png");
+    private Image chargeForCreditImage = new Image("/images/PLUS.png");
+    private Image abmormalOrderImage = new Image("/images/question14.png");
+    private Image cancelAbnormalImage = new Image("/images/撤销.png");//撤销订单
+    private Image delayCheckinImage = new Image("/images/NOTEPAD _ OK.png");//回复异常订单
+    private Image unexecutedOrderImage = new Image("/images/exclamation.png");
 
-    private ImageFactory(){
+    public Image getHeadImage() {
+		return headImage;
+	}
+
+	public Image getHeadImagebackground() {
+		return headImagebackground;
+	}
+
+	public Image getHotelImage() {
+		return hotelImage;
+	}
+
+	public Image getLastImageArrow() {
+		return lastImageArrow;
+	}
+
+	public Image getNextImageArrow() {
+		return nextImageArrow;
+	}
+
+	private ImageFactory(){
     }
 
-    public static ImageFactory getImageFactory() {
+    public Image getFemale() {
+		return female;
+	}
+
+	public Image getMale() {
+		return male;
+	}
+
+	public static ImageFactory getImageFactory() {
         if(imageFactory==null){
             imageFactory = new ImageFactory();
         }
@@ -75,4 +116,30 @@ public class ImageFactory {
         viewRoleMap.put(webSalsmanImage,Role.websalesman);
         return viewRoleMap;
     }
+
+	public Image getOrderExecutedImage() {
+		return orderExecutedImage;
+	}
+
+	public Image getDelayCheckinImage() {
+		return delayCheckinImage;
+	}
+
+	public Image getChargeForCreditImage() {
+		return chargeForCreditImage;
+	}
+
+	public Image getAbmormalOrderImage() {
+		return abmormalOrderImage;
+	}
+
+	public Image getCancelAbnormalImage() {
+		return cancelAbnormalImage;
+	}
+
+
+	public Image getUnexecutedOrderImage() {
+		return unexecutedOrderImage;
+	}
+
 }

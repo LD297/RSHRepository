@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import presentation.tools.UIJumpTool;
+import presentation.tools.UserInfoUtil;
+import vo.HotelVO;
 
 public class HotelInfoUIController {
 
@@ -81,8 +83,14 @@ public class HotelInfoUIController {
     @FXML
     private Button commentButton;
 
-    private boolean isRoomInfo = true;
+    @FXML
+    private Button myOrderButton;
 
+    private boolean isRoomInfo = true;
+    
+    private HotelVO hotelVO = null;
+
+    //跳转到新建订单界面
     @FXML
     void changeToCreateOrder(MouseEvent event) {
         UIJumpTool.getUiJumpTool().changeToCreateOrder();
@@ -96,6 +104,7 @@ public class HotelInfoUIController {
         UIJumpTool.getUiJumpTool().changeToComment();
     }
 
+    //TODO RoomInfoUIController
     @FXML
     void changeToRoomInfo(MouseEvent event) {
         roomInfoEffect.setVisible(false);
@@ -129,6 +138,12 @@ public class HotelInfoUIController {
 
     }
 
+    //跳转到我的订单界面
+    @FXML
+    void changeToMyOrder(MouseEvent event) {
+        UIJumpTool.getUiJumpTool().changeToMyOrderOfOneHotel();
+    }
+
     @FXML
     void initialize() {
         assert hotelImage != null : "fx:id=\"hotelImage\" was not injected: check your FXML file '酒店详情.fxml'.";
@@ -150,7 +165,18 @@ public class HotelInfoUIController {
         assert commentEffect != null : "fx:id=\"commentEffect\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert roonInfoButton != null : "fx:id=\"roonInfoButton\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert commentButton != null : "fx:id=\"commentButton\" was not injected: check your FXML file '酒店详情.fxml'.";
-
+        assert myOrderButton != null : "fx:id=\"myOrderButton\" was not injected: check your FXML file '酒店详情.fxml'.";
+   
+        UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
+        hotelVO = userInfoUtil.getHotelVO();
+        hotelNameLabel.setText(hotelVO.name);
+        startLevelLabel.setText(String.valueOf(hotelVO.level));
+        gradeLabel.setText(String.valueOf(hotelVO.grade));
+        addressLabel.setText(hotelVO.addr);
+        briefLabel.setText(hotelVO.briefIntro);
+        //TODO 设置设施服务
+        //TODO 设置酒店图片
+        
     }
 }
 

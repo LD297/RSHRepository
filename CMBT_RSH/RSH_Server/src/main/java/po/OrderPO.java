@@ -1,134 +1,206 @@
 package po;
 
+import constant.StateOfOrder;
+import vo.RoomNormVO;
+
 import java.io.Serializable;
 import java.util.Date;
-import java.util.ArrayList;
-
-import vo.RoomNormVO;
-import constant.*;
 
 public class OrderPO implements Serializable{
-	private String orderid = null;
-	private String userid = null;
-	private String hotelid = null;
+	// 注：一笔订单允许一种房间类型
+	private String orderID = null;
+	private String userID = null;
+	private String userName = null;
+	private String hotelID = null;
 	private StateOfOrder state = null;
-	private ArrayList<RoomNormVO> norm = null;
-	private double[] roomPrices =null;
-	private int[] numbers = null;
-	private double originvalue = 0;
-	private double truevalue = 0;
+    // 酒店，类型，原始价格
+	private RoomNormVO room = null;
+	private int roomNumber = 0;
+    // 计算后的单间房间实际价格
+    private double roomPrice = 0;
+    private int peopleNumber = 0;
+    private boolean withChild = false;
+
+	private double originValue = 0;
+	private double trueValue = 0;
 	private String promotion =  null;
 	private String comment = null;
+	// 评分：0，1，2，3，4，5
 	private int grade = 0;
+	/**
+	 * 预计入住日期（含时间）（用户操作）
+	 * 预计离开日期（含时间）（用户操作）
+	 */
 	private Date checkIn = null;
 	private Date checkOut = null;
-	private int numOfPeople = 0;
-	private boolean adultOnly = false;
+	private Date hotelDDL = null;
+    /**
+     * 订单生成日期（界面暂时不显示时间，但可以保存以备需求变更）
+     */
+    private Date generationDate = null;
+	/**
+	 * 实际入住日期（含时间）（酒店操作）
+	 * 实际离开日期（含时间）（酒店操作）
+	 */
+	private Date actualCheckIn = null;
+	private Date actualCheckOut = null;
+    /**
+     *  记录撤销订单时间
+     *  和撤销异常时间
+     */
+	private Date cancelTime = null;
+    private Date cancelAbnormalTime = null;
 
-	public  String getOrderid(){
-		return orderid;
+
+	public  String getOrderID(){
+		return orderID;
 	}
-	public String getUserid(){
-		return userid;
+	public String getUserID(){
+		return userID;
 	}
-	public String getHotelid(){
-		return hotelid;
+	public String getHotelID(){
+		return hotelID;
+	}
+	public String getUserName(){
+        return userName;
+    }
+	public StateOfOrder getState(){
+		return state;
 	}
 
-	public ArrayList<RoomNormVO> getRooms(){
-		return norm;
+	public RoomNormVO getRoom(){
+		return room;
 	}
-	public int[] getRoomNums(){
-		return numbers;
+	public int getRoomNumber(){
+		return roomNumber;
 	}
-	public double[] getRoomPrices(){
-		return roomPrices;
+	public double getRoomPrice(){
+		return roomPrice;
 	}
-	public int[] getNumbers(){
-		return numbers;
-	}
+    public int getPeopleNumber(){
+        return peopleNumber;
+    }
+    public boolean getWithChild(){
+        return withChild;
+    }
+
 	public double getOriginvalue(){
-		return originvalue;
+		return originValue;
 	}
 	public double getTrueValue(){
-		return truevalue;
+		return trueValue;
 	}
 	public String getPromotion(){
 		return promotion;
 	}
 	public Date[] getTime(){
-		return new Date[]{checkIn,checkOut};
+		return new Date[]{checkIn,checkOut,actualCheckIn,actualCheckIn,generationDate,cancelTime,cancelAbnormalTime};}
+
+
+	public void setTrueValue(double trueValue){
+		this.trueValue = trueValue;
 	}
-	public int getNumOfPeople(){
-		return numOfPeople;
-	}
-	public boolean getAdultOnly(){
-		return adultOnly;
+	public void setState(StateOfOrder state){
+		this.state = state;
 	}
 
-	public void setTrueValue(double discounted){
-		truevalue = discounted;
+
+    /**
+     * 酒店视角
+     * @param orderID
+     * @param userID
+     * @param userName
+     * @param state
+     * @param room
+     * @param roomNumber
+     * @param peopleNumber
+     * @param withChild
+     * @param originValue
+     * @param trueValue
+     * @param checkIn
+     * @param checkOut
+     * @param generationDate
+     * @param actualCheckIn
+     * @param actualCheckOut
+     */
+	public OrderPO(String orderID, String userID, String userName, StateOfOrder state,
+                   RoomNormVO room, int roomNumber,int peopleNumber, boolean withChild,
+                   double originValue, double trueValue, Date checkIn, Date checkOut,
+                   Date generationDate, Date actualCheckIn, Date actualCheckOut){
+		this.orderID = orderID;
+		this.userID = userID;
+		this.userName = userName;
+        this.state = state;
+        this.room = room;
+        this.roomNumber = roomNumber;
+        this.peopleNumber = peopleNumber;
+        this.withChild = withChild;
+		this.originValue = originValue;
+		this.trueValue = trueValue;
+		this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.generationDate = generationDate;
+        this.actualCheckIn = actualCheckIn;
+        this.actualCheckOut = actualCheckOut;
 	}
-	public void setState(StateOfOrder condition){
-		state = condition;
+
+    /**
+     * 订单详情：返回所有信息
+     * @param orderID
+     * @param userID
+     * @param userName
+     * @param hotelID
+     * @param state
+     * @param room
+     * @param roomPrice
+     * @param roomNumber
+     * @param peopleNumber
+     * @param withChild
+     * @param originValue
+     * @param trueValue
+     * @param promotion
+     * @param comment
+     * @param grade
+     * @param checkIn
+     * @param checkOut
+     * @param generationDate
+     * @param actualCheckIn
+     * @param actualCheckOut
+     * @param cancelTime
+     * @param cancelAbnormalTime
+     */
+	public OrderPO(String orderID, String userID, String userName,String hotelID, StateOfOrder state,
+                   RoomNormVO room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
+                   double originValue, double trueValue, String promotion,
+                   String comment, int grade, Date checkIn, Date checkOut,Date hotelDDL,Date generationDate,
+                   Date actualCheckIn, Date actualCheckOut, Date cancelTime, Date cancelAbnormalTime){
+
+		this.orderID = orderID;
+		this.userID = userID;
+        this.userName = userName;
+        this.hotelID = hotelID;
+        this.state = state;
+        this.room = room;
+        this.roomPrice = roomPrice;
+        this.roomNumber = roomNumber;
+        this.peopleNumber = peopleNumber;
+        this.withChild = withChild;
+        this.originValue = originValue;
+        this.trueValue = trueValue;
+        this.promotion = promotion;
+        this.comment = comment;
+        this.grade = grade;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+		this.hotelDDL = hotelDDL;
+        this.generationDate = generationDate;
+        this.actualCheckIn = actualCheckIn;
+        this.actualCheckOut = actualCheckOut;
+        this.cancelTime = cancelTime;
+        this.cancelAbnormalTime = cancelAbnormalTime;
 	}
+	public OrderPO(){
 
-	public OrderPO(String order,String hotel,StateOfOrder s,double origin,double discounted,Date in,Date out){
-		orderid = order;
-		hotelid = hotel;
-		originvalue = origin;
-		truevalue = discounted;
-		state = s;
-		checkIn = in;
-		checkOut = out;
-	}
-	public OrderPO(String order,String user,StateOfOrder s,double origin,double discounted,Date in,Date out,boolean adultonly,int peoplenum){
-		orderid = order;
-		userid = user;
-		originvalue = origin;
-		truevalue = discounted;
-		state = s;
-		checkIn = in;
-		checkOut = out;
-		adultOnly = adultonly;
-		numOfPeople = peoplenum;
-	}
-	public OrderPO(String order,String user,String hotel,StateOfOrder s,double discounted,Date in,Date out){
-		orderid = order;
-		hotelid = hotel;
-		userid = user;
-		state = s;
-		truevalue = discounted;
-		checkIn = in;
-		checkOut = out;
-	}
-	public OrderPO(String order,String user,String hotel,StateOfOrder s,
-				   ArrayList<RoomNormVO> type,double[] roomprices,int[] nums,int people,boolean adultonly,
-				   double origin,double discounted, String pro,
-				   String com,int gra,Date in,Date out){
-
-		orderid = order;
-		userid = user;
-		hotelid = hotel;
-
-		norm = type;
-		roomPrices = new double[roomprices.length];
-		roomPrices = roomprices;
-		numbers = new int[nums.length];
-		numbers = nums;
-		numOfPeople = people;
-		adultOnly = adultonly;
-
-		originvalue = origin;
-		truevalue = discounted;
-		promotion = pro;
-
-		comment = com;
-		grade = gra;
-		checkIn = in;
-		checkOut = out;
-
-		state = s;
 	}
 
 }

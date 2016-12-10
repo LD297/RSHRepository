@@ -6,7 +6,7 @@ import po.OrderPO;
 
 import java.util.ArrayList;
 
-public interface OrderService {
+public interface OtherOrderService {
 
 	// 用户浏览订单
 	public ArrayList<OrderPO> userBrowse(String userid);
@@ -46,9 +46,9 @@ public interface OrderService {
 	public ArrayList<OrderPO> browseAbnormal();
 
 	// 网站营销人员撤销异常订单
-	public ResultMessage webCancelAbnormal(String orderid);
+	public ResultMessage webCancelAbnormal(String orderID,boolean isHalf);
 
 	// 提供给酒店
-	// 用户在酒店下最新一笔订单的状态
+	// 用户在该酒店最近一笔订单的状态
 	public StateOfOrder getOrderStateOfUser(String userid, String hotelid);
 }

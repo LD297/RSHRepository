@@ -77,6 +77,11 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
+                  <ImageView fx:id="backImage" fitHeight="20.0" fitWidth="20.0" layoutX="4.0" layoutY="7.0" onMouseClicked="#backToHotelInfo" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../images/返回箭头.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">

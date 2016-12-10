@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import presentation.tools.ImageFactory;
 import presentation.tools.UIJumpTool;
+import presentation.tools.UserInfoUtil;
 
 public class CreateOrderUIController {
 
@@ -73,15 +74,17 @@ public class CreateOrderUIController {
 
     @FXML
     private ChoiceBox<?> roomtypeChoicebox;
-
     @FXML
-    private TextField personnumField;
+    private ChoiceBox<?> numOfPersonBox;
 
     @FXML
     private ChoiceBox<?> haveChildrenOrnotbox;
 
     @FXML
     private ChoiceBox<?> roomnumChoicebox;
+    
+    private String userID = null;
+    private String hotelname = null;
 
     @FXML
     void changeCancelImageToGray(MouseEvent event) {
@@ -122,10 +125,17 @@ public class CreateOrderUIController {
         assert expectedCheckinTimepicker != null : "fx:id=\"expectedCheckinTimepicker\" was not injected: check your FXML file '生成订单.fxml'.";
         assert expectedCheckoutTimepicker != null : "fx:id=\"expectedCheckoutTimepicker\" was not injected: check your FXML file '生成订单.fxml'.";
         assert roomtypeChoicebox != null : "fx:id=\"roomtypeChoicebox\" was not injected: check your FXML file '生成订单.fxml'.";
-        assert personnumField != null : "fx:id=\"personnumField\" was not injected: check your FXML file '生成订单.fxml'.";
         assert haveChildrenOrnotbox != null : "fx:id=\"haveChildrenOrnotbox\" was not injected: check your FXML file '生成订单.fxml'.";
         assert roomnumChoicebox != null : "fx:id=\"roomnumChoicebox\" was not injected: check your FXML file '生成订单.fxml'.";
-
+        assert numOfPersonBox != null : "fx:id=\"numOfPersonBox\" was not injected: check your FXML file '生成订单.fxml'.";
+        
+        UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
+        userID = userInfoUtil.getUserID();
+        hotelname = userInfoUtil.getHotelName();
+        //TODO 界面初始化
+    
+    
+    
     }
 }
 

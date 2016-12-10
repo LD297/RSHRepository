@@ -88,7 +88,7 @@ public class HotelDao_Stub implements  HotelDao{
     }
 
     @Override
-    public ResultMessage changeRoomAvail(String id, String roomType, int num, Date checkIn, Date checkOut) {
+    public ResultMessage changeRoomAvail(String id, String roomType, boolean isPlus,int num, Date checkIn, Date checkOut) {
         if(id.equals("12345678912"))
             return ResultMessage.succeed;
         else

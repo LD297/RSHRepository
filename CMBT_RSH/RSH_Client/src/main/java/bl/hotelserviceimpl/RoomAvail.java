@@ -30,10 +30,10 @@ public class RoomAvail {
 	
 	// 供给order模块
 	// 更新系统的可用客房信息
-	public ResultMessage changeRoomAvail(String id, String roomType, int num, Date checkIn, Date checkOut) {
+	public ResultMessage changeRoomAvail(String id, String roomType,boolean isPlus,int num, Date checkIn, Date checkOut) {
 		ResultMessage resultMessage = null;
 		try {
-			resultMessage = hotelDao.changeRoomAvail(id, roomType, num, checkIn, checkOut);
+			resultMessage = hotelDao.changeRoomAvail(id, roomType,isPlus, num, checkIn, checkOut);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}

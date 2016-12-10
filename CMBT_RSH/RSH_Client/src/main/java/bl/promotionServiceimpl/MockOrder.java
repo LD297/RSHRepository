@@ -1,7 +1,7 @@
 package bl.promotionServiceimpl;
 
-import bl.orderserviceimpl.Order;
+import bl.orderserviceimpl.CheckOrder;
 
-public class MockOrder extends Order{
+public class MockOrder extends CheckOrder {
 
 }

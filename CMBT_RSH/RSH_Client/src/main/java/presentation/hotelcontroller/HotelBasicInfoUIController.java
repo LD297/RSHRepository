@@ -22,7 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import presentation.hotelControllerHelper.HotelBasicInfoUICheck;
+import presentation.tools.HotelBasicInfoUICheck;
 import presentation.tools.HotelUIFactory;
 import vo.HotelVO;
 

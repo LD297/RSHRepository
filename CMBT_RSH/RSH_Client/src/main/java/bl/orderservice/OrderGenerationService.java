@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by sky-PC on 2016/11/20.
  */
-public interface InitialOrderService {
+public interface OrderGenerationService {
     //根据酒店得到房间规模（房间类型和价格）
     public ArrayList<RoomNormVO> getHotelRoom(String hotelid);
 

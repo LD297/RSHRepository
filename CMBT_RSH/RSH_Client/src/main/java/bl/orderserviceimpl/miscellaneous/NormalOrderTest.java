@@ -1,5 +1,7 @@
-package bl.orderserviceimpl;
+package bl.orderserviceimpl.miscellaneous;
 
+import bl.orderserviceimpl.NormalOrder;
+import bl.orderserviceimpl.miscellaneous.MockComment;
 import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
 import org.junit.Test;
@@ -15,7 +17,7 @@ public class NormalOrderTest {
         MockComment mockComment = new MockComment("2153001234","123456789");
         NormalOrder normal= new NormalOrder();
 
-        normal.setCommentImpl(mockComment);
+        normal.setCommentService(mockComment);
         assertEquals(ResultMessage.fail,normal.comment("2153001234","2016-11-062153001234000000",80,""));
     }
     /*   @Test

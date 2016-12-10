@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import presentation.tools.UIJumpTool;
+import presentation.tools.UserInfoUtil;
 import presentation.tools.UserUIFXMLFactory;
 
 public class SearchHotelUIController {
@@ -36,8 +37,6 @@ public class SearchHotelUIController {
     @FXML
     private TextField areaField;
 
-    private AnchorPane guide;
-
     @FXML
     void changeToHotelBrowse(ActionEvent event) {
         myChangeToHotelBrowse();
@@ -49,25 +48,12 @@ public class SearchHotelUIController {
 
     }
 
-    private void myChangeToHotelBrowse(){
-        ResultMessage resultMessage = checkInput();
-        if(resultMessage==ResultMessage.succeed){
-            //TODO 根据地址和商圈
-            UIJumpTool.getUiJumpTool().changeSearchHotelToBrowseHotel();
-        }else{
-            //TODO 提示框
-        }
-
-    }
-
-    //TODO check input
-    private ResultMessage checkInput(){
-        return ResultMessage.succeed;
-    }
-
-
-    public void setGuide(AnchorPane guide){this.guide = guide;}
-
+	private void myChangeToHotelBrowse() {
+		String hotelAddress = addressField.getText().trim();
+		String hotelArea = addressField.getText().trim();
+		UserInfoUtil.getInstance().setHotelAreaAndAddress(hotelArea, hotelAddress);
+		UIJumpTool.getUiJumpTool().changeSearchHotelToBrowseHotel();
+	}
 
     @FXML
     void initialize() {

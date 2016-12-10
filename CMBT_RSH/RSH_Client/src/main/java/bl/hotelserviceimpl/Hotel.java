@@ -117,8 +117,8 @@ public class Hotel{
 
 	// 供给order模块
 	// 更新系统的可用客房信息
-	public ResultMessage changeRoomAvail(String roomType, int num, Date checkIn, Date checkOut) {
-		return roomAvail.changeRoomAvail(this.id, roomType, num, checkIn, checkOut);
+	public ResultMessage changeRoomAvail(String roomType,Boolean isPlus, int num, Date checkIn, Date checkOut) {
+		return roomAvail.changeRoomAvail(this.id, roomType, isPlus,num, checkIn, checkOut);
 	}
 
 	/**

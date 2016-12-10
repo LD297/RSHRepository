@@ -13,7 +13,7 @@ public class CreditRecordVO {
 	 * for example    "+200"
 	 */
 	String change;
-	int credit;
+	int credit;// 计算完成之后
 	public CreditRecordVO(String userid,Date date,String orderid,
 			CreditAction creditAction,String change,int credit) {
 		this.creditAction = creditAction;

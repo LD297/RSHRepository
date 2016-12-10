@@ -37,6 +37,7 @@ public class UIJumpTool {
     private AnchorPane isMember = null;//是会员
     private AnchorPane userCreditRecord = null;
     private AnchorPane userOrder = null;
+    private AnchorPane myOrderOfOneHotel = null;
     private AnchorPane registerCommonMember = null;
     private AnchorPane registerCommerceMember = null;
     private AnchorPane addComment = null;
@@ -63,6 +64,22 @@ public class UIJumpTool {
     }
 
     public Stage getStage(){return stage;}
+
+    //在酒店详情界面上弹出针对该酒店的我的订单界面
+    public void changeToMyOrderOfOneHotel(){
+        myOrderOfOneHotel = UserUIFXMLFactory.getUserUIFXMLFactory().getUserOrder();
+        //TODO 在initialize方法里面设置返回箭头可见
+        hotelInfo.getChildren().get(hotelInfo.getChildren().size()-1).setVisible(true);
+        hotelInfo.getChildren().add(myOrderOfOneHotel);
+        //设置我的订单的位置
+        Locator.getLocator().setLocation(modifyUserInfo,20.0,20.0,0.0,0.0);
+    }
+
+    //在酒店详情界面上关闭针对该酒店的我的订单界面
+    public void closeMyOrderOfOneHotel(){
+        hotelInfo.getChildren().remove(hotelInfo.getChildren().size()-1);
+        hotelInfo.getChildren().get(hotelInfo.getChildren().size()-1).setVisible(false);
+    }
 
     //在我的订单界面上弹出订单详情界面
     public void changeToOrderInfo(){
@@ -195,6 +212,7 @@ public class UIJumpTool {
         anchorPanes.push(searchHotel);
         browseHotel = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotel();
         gridPane.add(browseHotel,0,1);
+        browseHotelUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotelUIController();
         //设置导航栏上的箭头可点
         guideUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getGuideUIController();
         guideUIController.setBackImage(true);
@@ -248,8 +266,9 @@ public class UIJumpTool {
     }
 
     //从注册界面返回到登陆界面
-    public void changeRegisterToLogin(){
+    public LoginUIController changeRegisterToLogin(){
         stage.setScene(roleChoose.getScene());
+        return loginUIController;
     }
 
     //从登陆下拉界面跳转到注册界面
@@ -262,7 +281,7 @@ public class UIJumpTool {
             scene = new Scene(userRegister,800,720);
         }
         stage.setScene(scene);
-        UserUIFXMLFactory.getUserUIFXMLFactory().getUserRegisterUIController();
+        UserUIFXMLFactory.getUserUIFXMLFactory().getUserRegisterUIController();//TODO 判断这句话是否可以删去
     }
 
     //在身份选择界面上添加登陆界面
@@ -284,7 +303,7 @@ public class UIJumpTool {
     }
 
     //从酒店浏览界面跳转到酒店详情界面
-    public void changeBrowseHotelToHotelInfo(String hotelName){
+    public void changeBrowseHotelToHotelInfo(){
         GridPane gridPane =(GridPane) guide.getChildren().get(0);
         gridPane.getChildren().remove(1);//删除酒店浏览界面
         anchorPanes.push(browseHotel);
@@ -302,16 +321,14 @@ public class UIJumpTool {
     //从酒店浏览界面跳转到筛选条件界面
     public void changeToSelectCondition(){
         selectionCondition = UserUIFXMLFactory.getUserUIFXMLFactory().getSelectionCondition();
-        browseHotel.getChildren().add(selectionCondition);
-        Locator.getLocator().setLocation(selectionCondition,114.0,156.0,150.0,150.0);
+        guide.getChildren().add(selectionCondition);
     }
 
-    //直接关闭筛选条件界面
+    //直接关闭筛选条件界面，并重新初始化酒店浏览界面
     public void closeSelectCondition(){
-        browseHotel.getChildren().remove(browseHotel.getChildren().size()-1);
-        browseHotelUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotelUIController();
-        browseHotelUIController.setMaskLabel(false);
-
+    	browseHotelUIController.init();
+        guide.getChildren().remove(guide.getChildren().size()-1);
+        
     }
 
     //从酒店详情（展示客房信息）跳转到酒店详情（展示评价）
@@ -328,7 +345,7 @@ public class UIJumpTool {
 
     //从酒店详情（展示评价）跳转到酒店详情（客房信息）
     public void changeToRoomInfo(){
-        //在酒店详情界面中添加查看评价界面，并让查看评价界面显示在变迁下面
+        //在酒店详情界面中添加客房信息界面，并让客房信息界面显示在变迁下面
         GridPane gridPaneInHotelInfo = (GridPane)hotelInfo.getChildren().get(0);
         AnchorPane temp = (AnchorPane) gridPaneInHotelInfo.getChildren().get(2);
         gridPaneInHotelInfo.getChildren().remove(2);

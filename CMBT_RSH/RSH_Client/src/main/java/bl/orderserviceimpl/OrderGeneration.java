@@ -9,18 +9,28 @@ import bl.orderservice.HotelInfoService;
 import bl.promotionServiceimpl.Count;
 import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
+import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import vo.RoomNormVO;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class InitialOrder {
+public class OrderGeneration {
 
-    private String hotelid;
+//    private String hotelid;
     private HotelInfoService hotelinfo;
-    private Count count;
+//    private Count count;
+    private OrderDao orderDao;
 
+
+    public void setHotelInfoService(HotelInfoService hotelinfo) {
+        this.hotelinfo = hotelinfo;
+    }
+
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
 
     //根据酒店得到房间规模（房间类型和价格）
     public ArrayList<RoomNormVO> getHotelRoom(String hotelid){
@@ -115,23 +125,22 @@ public class InitialOrder {
     //（再次检查可用数量 会员信息 优惠政策是否存在）出现出入 返回信息提示
     protected ResultMessage check(OrderPO orderpo){
         //检查信用值
-        CreditRecordList credit = new CreditRecordList(orderpo.getUserid());
+        CreditRecordList credit = new CreditRecordList(orderpo.getUserID());
         if(credit.canOrder()==false)
             return ResultMessage.fail;
-        hotelinfo = new HotelController(orderpo.getHotelid());
+        hotelinfo = new HotelController(orderpo.getHotelID());
 
         //检查房间信息
-        ArrayList<RoomNormVO> rooms = orderpo.getRooms();
-        int[] nums = orderpo.getRoomNums();
+        RoomNormVO room = orderpo.getRoom();
+        int roomNum = orderpo.getRoomNumber();
         Date checkIn = orderpo.getTime()[0];
         Date checkOut = orderpo.getTime()[1];
-        for(int i=0;i<rooms.size();i++){
-            if(hotelinfo.numOfRoomAvail(rooms.get(i).roomType,checkIn,checkOut)<nums[i])
+        if(hotelinfo.numOfRoomAvail(room.roomType,checkIn,checkOut)<roomNum)
                 return ResultMessage.fail;
-        }
+
 
         //检查价格
-        InitialOrder initial = new InitialOrder();
+        OrderGeneration initial = new OrderGeneration();
         double price = Double.parseDouble(initial.getDiscount(orderpo).split("#")[1]);
         if(orderpo.getTrueValue()<price)
             return ResultMessage.fail;
@@ -141,7 +150,7 @@ public class InitialOrder {
 
     //根据界面信息 生成orderid完善orderpo
     public void add(OrderPO orderpo){
-        InitialOrder initial = new InitialOrder();
+        OrderGeneration initial = new OrderGeneration();
 
         if(initial.check(orderpo).equals(ResultMessage.succeed)){
             //dataservice;

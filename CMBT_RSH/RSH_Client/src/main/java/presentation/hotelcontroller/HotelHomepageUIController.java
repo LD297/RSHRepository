@@ -2,6 +2,7 @@ package presentation.hotelcontroller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
@@ -9,10 +10,13 @@ import bl.hotelserviceimpl.Hotel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import po.OrderPO;
 import presentation.tools.HotelUIFactory;
 import vo.HotelVO;
 

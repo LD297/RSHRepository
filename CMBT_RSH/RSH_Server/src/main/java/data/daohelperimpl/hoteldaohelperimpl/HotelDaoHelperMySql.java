@@ -36,24 +36,29 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         // 编号 密码 电话 名称
         // 地址 商圈 简介 设施
         // 星级 评分 最晚入住时间 评论人数 房间类型数量
-        db.executeSql("CREATE TABLE HotelInfo(hotelID char(10),password varchar(20),phoneNumber bigint,name varchar(15)," +
+        db.executeSql("CREATE TABLE if not exists HotelInfo(hotelID char(10),password varchar(20),phoneNumber bigint,name varchar(15)," +
                 "address varchar(30),businessArea varchar(10),briefIntro tinytext,facility varchar(20)," +
                 "level tinyint,grade double,latestCheckinTime char(8),commentNum int，roomTypeNum tinyint)");
         // 酒店 类型 总量
         // 价格 是否特色 可用数量日期列表
-        db.executeSql("CREATE TABLE RoomInfo(hotelID char(10),roomType varchar(10),amountTotal int,"
+        db.executeSql("CREATE TABLE if not exists RoomInfo(hotelID char(10),roomType varchar(10),amountTotal int,"
                 +"price double,basicOrSpecial tinyint,aList text)");
-        db.executeSql("CREATE TABLE COMMENT(hotelID char(10),userID char(26),grade tinyint,comment tinytext)");
+        // 酒店账号 用户账号 评分（0，1，2，3，4，5） 评论
+        db.executeSql("CREATE TABLE if not exists COMMENT(hotelID char(10),userID char(26),grade tinyint,comment tinytext)");
 
     }
     public void finish(){
         db.executeSql("USE OurData");
         db.executeSql("DROP TABLE IF EXISTS HotelInfo");
         db.executeSql("DROP TABLE IF EXISTS RoomInfo");
+        db.executeSql("DROP TABLE IF EXISTS COMMENT");
     }
     // 添加评论、评分
     public ResultMessage addComment(String hotelid, String userid, int grade,String comment)throws RemoteException {
         db.executeSql("USE OurData");
+
+        if(this.checkExistence(hotelid)==ResultMessage.idNotExist)
+            return ResultMessage.idNotExist;
 
         String getCommentNumSql = "SELECT commentNum from HotelInfo WHERE hotelID='"+hotelid+"' LIMIT 1";
         ResultSet result = db.query(getCommentNumSql);
@@ -82,6 +87,9 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
     public ResultMessage checkPassword(String hotelid, String password)throws RemoteException {
         db.executeSql("USE OurData");
 
+        if(this.checkExistence(hotelid)==ResultMessage.idNotExist)
+            return ResultMessage.idNotExist;
+
         String checkPasswordSql = "SELECT password FROM HotelInfo WHERE hotelID='"+hotelid+"' LIMIT 1";
         ResultSet result = db.query(checkPasswordSql);
         try{
@@ -107,13 +115,18 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
     public ResultMessage updateGrade(String hotelid,int grade)throws RemoteException {
         db.executeSql("USE OurData");
 
+        if(this.checkExistence(hotelid)==ResultMessage.idNotExist)
+            return ResultMessage.idNotExist;
+
         String findPeopleNumWithGradeSql = "SELECT grade,commentNum FROM HotelInfo WHERE hotelID='"+hotelid+"' LIMIT 1";
         ResultSet result = db.query(findPeopleNumWithGradeSql);
+        double gradeUpdated = 0;
         try{
             while(result.next()){
                 double gradeTotal = result.getDouble(1);
                 int gradeNum = result.getInt(2);
-                double gradeUpdated = ((double)(gradeNum-1)*gradeTotal+grade)/gradeNum;//add Comment first
+                if(gradeNum!=0)
+                    gradeUpdated = ((double)(gradeNum-1)*gradeTotal+grade)/gradeNum;//add Comment first
 
                 String updateGradeSql = "UPDATE HotelInfo SET grade="+gradeUpdated+" WHERE hotelID='"+hotelid+"' LIMIT 1";
                 db.executeSql(updateGradeSql);
@@ -130,6 +143,9 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         // 编号 密码 电话 名称
         // 地址 商圈 简介 设施
         // 星级 评分 最晚入住时间
+        if(this.checkExistence(vo.id)==ResultMessage.idNotExist)
+            return ResultMessage.idNotExist;
+
         String password = vo.getPassword();
         String tel = vo.tel;
         String name = vo.name;
@@ -140,6 +156,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         int level = vo.level;
         double grade = vo.grade;
         String lastestTime = vo.latestCheckinTime;
+
         String updateHotelSql = "UPDATE HotelInfo SET password='"+password+"',phoneNumber="+tel+",name='"+name+"',"+
                 "address='"+address+"',bussinessArea='"+bArea+"',briefIntro='"+briefIntro+"',facility='"+facility+","+
                 "level="+level+",grade="+grade+",lastestCheckinTime="+lastestTime
@@ -647,5 +664,17 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
             e.printStackTrace();
         }
         return -1;
+    }
+    public ResultMessage checkExistence(String hotelid){
+        String checkExistenceSql = "SELECT hotelID FROM HotelInfo";
+        ResultSet result = db.query(checkExistenceSql);
+        try{
+            while(result.next())
+                if(result.getString(1).equals(hotelid))
+                    return ResultMessage.idAlreadyExist;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return ResultMessage.idNotExist;
     }
 }

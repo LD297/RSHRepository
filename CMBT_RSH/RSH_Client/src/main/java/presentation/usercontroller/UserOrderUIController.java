@@ -222,6 +222,10 @@ public class UserOrderUIController {
     @FXML
     private AnchorPane orderlistAnchorPane;
 
+    @FXML
+    private ImageView backImage;
+
+
 
     //鼠标离开
     @FXML
@@ -331,6 +335,13 @@ public class UserOrderUIController {
         UIJumpTool.getUiJumpTool().changeToOrderInfo();
     }
 
+    //关闭在酒店详情界面上弹出的我的订单界面
+    @FXML
+    void backToHotelInfo(MouseEvent event) {
+        UIJumpTool.getUiJumpTool().closeMyOrderOfOneHotel();
+    }
+
+
     public AnchorPane getOrderlistAnchorPane(){
         return orderlistAnchorPane;
     }
@@ -401,7 +412,7 @@ public class UserOrderUIController {
         assert checkboxOfLine4 != null : "fx:id=\"checkboxOfLine4\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert checkboxOfLine3 != null : "fx:id=\"checkboxOfLine3\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert checkboxOfLine2 != null : "fx:id=\"checkboxOfLine2\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
-
+        assert backImage != null : "fx:id=\"backImage\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
     }
 }
 

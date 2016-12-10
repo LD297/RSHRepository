@@ -19,9 +19,11 @@ public class WebManagerDaoHelperMySql implements WebManagerDaoHelper{
     private DBHelper db = new DBHelper();
     public void init(){
         db.executeSql("USE OurData");
+        // 账号 密码 地区
         String initSql = "INSERT INTO WebStaffInfo VALUES('0000000000','123456','000000')";
         db.executeSql(initSql);
     }
+    // 更新管理人员信息
     public ResultMessage update (WebManagerPO po)throws RemoteException {
         db.executeSql("USE OurData");
         String updateMangerSql = "UPDATE WebStaffInfo SET password='"+po.getPassword()+
@@ -29,7 +31,7 @@ public class WebManagerDaoHelperMySql implements WebManagerDaoHelper{
         db.executeSql(updateMangerSql);
         return ResultMessage.succeed;
     }
-
+    // 得到管理人员信息
     public WebManagerPO getManagerInfo(String managerID)throws RemoteException{
         db.executeSql("USE OurData");
         String getManagerSql = "SELECT *FROM WebStaffInfo WHERE id='"+managerID+"' LIMIT 1";

@@ -17,7 +17,7 @@ public interface PromotionDaoHelper {
 
     public ResultMessage update(PromotionPO po)throws RemoteException ;
 
-    public PromotionPO find(String setter, String id)throws RemoteException ;
+    public PromotionPO findBySetterWithSort(String setter, String id)throws RemoteException ;
 
-    public ArrayList<PromotionPO> finds(String district, String hotel)throws RemoteException ;
+    public ArrayList<PromotionPO> findByDistrictWithHotel(String district, String hotel)throws RemoteException ;
 }
