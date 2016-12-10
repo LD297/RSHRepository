@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.CommentUIController">
    <children>
       <GridPane layoutX="43.0" layoutY="67.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -25,7 +25,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <GridPane layoutX="85.0" layoutY="51.0" maxHeight="203.0" maxWidth="800.0" minHeight="200.0" minWidth="800.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="gridPaneFilledWithComment" layoutX="85.0" layoutY="51.0" maxHeight="203.0" maxWidth="800.0" minHeight="200.0" minWidth="800.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="800.0" minWidth="800.0" prefWidth="800.0" />
                     </columnConstraints>
@@ -36,11 +36,11 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="22.0" layoutY="6.0" pickOnBounds="true" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="0.0">
+                              <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="22.0" layoutY="6.0" pickOnBounds="true" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="687.0" AnchorPane.topAnchor="0.0">
                                  <image>
                                     <Image url="@../images/用户头像.jpg" />
                                  </image></ImageView>
-                              <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="31.0" layoutY="6.0" pickOnBounds="true" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="0.0">
+                              <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="31.0" layoutY="6.0" pickOnBounds="true" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="687.0" AnchorPane.topAnchor="0.0">
                                  <image>
                                     <Image url="@../images/头像背景.png" />
                                  </image>
@@ -51,17 +51,17 @@
                                  </font>
                               </Label>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e82a" height="67.0" stroke="#0000003b" strokeType="INSIDE" width="561.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="6.0" />
-                              <Label layoutX="34.0" layoutY="84.0" prefHeight="15.0" prefWidth="76.0" text="         297" textFill="#0000008d" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="84.0">
+                              <Label layoutX="34.0" layoutY="84.0" prefHeight="15.0" prefWidth="76.0" text="         297" textFill="#0000008d" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="690.0" AnchorPane.topAnchor="84.0">
                                  <font>
                                     <Font name="Times New Roman" size="12.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="152.0" layoutY="84.0" prefHeight="15.0" prefWidth="109.0" text="         2016/07/13" textFill="#0000008d">
+                              <Label layoutX="179.0" layoutY="84.0" prefHeight="15.0" prefWidth="63.0" text=" 2016/07/13" textFill="#0000008d" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="558.0" AnchorPane.topAnchor="84.0">
                                  <font>
                                     <Font name="Times New Roman" size="12.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="271.0" layoutY="84.0" prefHeight="15.0" prefWidth="109.0" text="单人间" textFill="#0000008d" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="271.0" AnchorPane.topAnchor="84.0">
+                              <Label layoutX="271.0" layoutY="84.0" prefHeight="15.0" prefWidth="82.0" text="单人间" textFill="#0000008d" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="271.0" AnchorPane.rightAnchor="447.0" AnchorPane.topAnchor="84.0">
                                  <font>
                                     <Font name="Times New Roman" size="12.0" />
                                  </font>
@@ -70,12 +70,12 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
-                              <ImageView fitHeight="82.0" fitWidth="82.0" layoutY="19.0" pickOnBounds="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="0.0">
+                              <ImageView fitHeight="82.0" fitWidth="82.0" layoutY="19.0" pickOnBounds="true" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="687.0" AnchorPane.topAnchor="0.0">
                                  <image>
                                     <Image url="@../images/用户头像1.jpg" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="82.0" fitWidth="82.0" layoutY="19.0" pickOnBounds="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="0.0">
+                              <ImageView fitHeight="82.0" fitWidth="82.0" layoutY="19.0" pickOnBounds="true" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="0.0">
                                  <image>
                                     <Image url="@../images/头像背景.png" />
                                  </image>
@@ -120,17 +120,17 @@
                      </font>
                   </Label>
                   <Line endX="700.0" layoutX="70.0" layoutY="14.0" startX="70.0" stroke="#0000001b" AnchorPane.bottomAnchor="15.5" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0" />
-                  <TextField layoutX="357.0" layoutY="3.0" prefHeight="23.0" prefWidth="24.0" text="1">
+                  <TextField fx:id="pageField" layoutX="357.0" layoutY="3.0" onAction="#changeToReferedPage" prefHeight="23.0" prefWidth="24.0" text="1">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="239.0" layoutY="-1.0" prefHeight="30.0" prefWidth="63.0" text="&lt;  上一页" textFill="#26518acf" AnchorPane.bottomAnchor="1.0" AnchorPane.topAnchor="-1.0">
+                  <Label fx:id="lastPageLabel" layoutX="239.0" layoutY="-1.0" onMouseClicked="#changeToLastPage" prefHeight="30.0" prefWidth="63.0" text="&lt;  上一页" textFill="#26518acf" AnchorPane.bottomAnchor="1.0" AnchorPane.topAnchor="-1.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="401.0" layoutY="-1.0" prefHeight="30.0" prefWidth="63.0" text="下一页  &gt;" textFill="#26518acf" AnchorPane.rightAnchor="307.0">
+                  <Label fx:id="nextPageLabel" layoutX="401.0" layoutY="-1.0" onMouseClicked="#changeToNextPage" prefHeight="30.0" prefWidth="63.0" text="下一页  &gt;" textFill="#26518acf" AnchorPane.rightAnchor="307.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>

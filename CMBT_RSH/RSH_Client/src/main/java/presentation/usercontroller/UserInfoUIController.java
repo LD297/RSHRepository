@@ -56,12 +56,13 @@ public class UserInfoUIController {
     @FXML
     private ImageView sexImage;
 
-
+    //TODO 更换头像
     @FXML
     void changeHeadImage(MouseEvent event) {
 
     }
 
+    //跳转到编辑用户信息界面
     @FXML
     void changeToModifyUserInfo(MouseEvent event) {
         UIJumpTool.getUiJumpTool().changeToModifyUserInfo();

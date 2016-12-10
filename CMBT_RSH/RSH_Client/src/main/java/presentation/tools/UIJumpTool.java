@@ -212,6 +212,7 @@ public class UIJumpTool {
         anchorPanes.push(searchHotel);
         browseHotel = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotel();
         gridPane.add(browseHotel,0,1);
+        browseHotelUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotelUIController();
         //设置导航栏上的箭头可点
         guideUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getGuideUIController();
         guideUIController.setBackImage(true);
@@ -323,9 +324,11 @@ public class UIJumpTool {
         guide.getChildren().add(selectionCondition);
     }
 
-    //直接关闭筛选条件界面
+    //直接关闭筛选条件界面，并重新初始化酒店浏览界面
     public void closeSelectCondition(){
+    	browseHotelUIController.init();
         guide.getChildren().remove(guide.getChildren().size()-1);
+        
     }
 
     //从酒店详情（展示客房信息）跳转到酒店详情（展示评价）
@@ -342,7 +345,7 @@ public class UIJumpTool {
 
     //从酒店详情（展示评价）跳转到酒店详情（客房信息）
     public void changeToRoomInfo(){
-        //在酒店详情界面中添加查看评价界面，并让查看评价界面显示在变迁下面
+        //在酒店详情界面中添加客房信息界面，并让客房信息界面显示在变迁下面
         GridPane gridPaneInHotelInfo = (GridPane)hotelInfo.getChildren().get(0);
         AnchorPane temp = (AnchorPane) gridPaneInHotelInfo.getChildren().get(2);
         gridPaneInHotelInfo.getChildren().remove(2);

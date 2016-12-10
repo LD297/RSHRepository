@@ -42,11 +42,13 @@ public class CommerceMemberRegisterUIController {
         cancelImage.setImage(ImageFactory.getImageFactory().getCancel_red());
     }
 
+    //直接关闭注册企业会员界面
     @FXML
     void closeCommerceMemberRegister(MouseEvent event) {
         UIJumpTool.getUiJumpTool().changeMemberRegisterToMyMember();
     }
 
+    
     @FXML
     void finishRegisterButtonClicked(MouseEvent event) {
         UIJumpTool.getUiJumpTool().changeMemberRegisterToMember();

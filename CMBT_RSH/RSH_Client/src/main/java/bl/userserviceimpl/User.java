@@ -31,6 +31,7 @@ public class User {
 		}
 		return unpackedPO(po);
 	}
+
 	/**
 	 * 更新用户基本信息
 	 * @param vo
@@ -80,7 +81,7 @@ public class User {
 	private UserPO create(UserVO vo) {
 		UserPO po = new UserPO(vo.getId(), vo.getPassword(), vo.getNickName(),vo.getImageAddress(),vo.getBirthday(),
 				vo.getLevel(), vo.getMemberType(), vo.getCredit(),
-				vo.getName(), vo.getSexuality(), vo.geteMail() ){};
+				vo.getName(), vo.getSexuality(), vo.geteMail() ,vo.getCommerceName()){};
 		return po;
 	}
 	/**
@@ -91,7 +92,7 @@ public class User {
 	private UserVO unpackedPO(UserPO po) {
 		UserVO vo = new UserVO(po.getId(),po.getPassword(),po.getNickName(),
 				po.getImageAddress(),po.getBirthday(),po.getLevel(),po.getMemberType(),po.getName(),
-				po.getSexuality(),po.geteMail(),po.getCredit());
+				po.getSexuality(),po.geteMail(),po.getCredit(),po.getCommerceName());
 		return vo;
 	}
 	

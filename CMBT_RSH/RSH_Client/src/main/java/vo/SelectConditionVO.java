@@ -3,6 +3,7 @@ package vo;
 import java.util.Date;
 
 public class SelectConditionVO {
+	//TODO 去掉hotelName
 	public String hotelName;
 	public String roomType;
 	public double lowestPrice;

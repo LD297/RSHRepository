@@ -67,7 +67,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </TextField>
-            <ComboBox fx:id="starLevelCombobox" editable="true" layoutX="379.0" layoutY="188.0" prefHeight="26.0" prefWidth="80.0" promptText="星级" />
+            <ComboBox fx:id="starLevelCombobox" layoutX="379.0" layoutY="188.0" prefHeight="26.0" prefWidth="80.0" promptText="星级" />
             <Label layoutX="14.0" layoutY="243.0" prefHeight="30.0" prefWidth="46.0" text="排序" textFill="#484848">
                <font>
                   <Font name="Times New Roman" size="18.0" />

@@ -96,8 +96,26 @@ public class BrowseHotelUIController {
 			if(count%2==0){
 				left = true;
 			}
+			if(hotelVOsPointer==hotelVOs.size()){
+				break;
+			}
 			BrowseHotelAnchorPane browseHotelAnchorPane = new BrowseHotelAnchorPane(hotelVOs.get(hotelVOsPointer), left);
-			gridpaneFilledWithhotel.getChildren().add(browseHotelAnchorPane);
+			switch (count) {
+			case 0:
+				gridpaneFilledWithhotel.add(browseHotelAnchorPane, 0, 0);
+				break;
+			case 1:
+				gridpaneFilledWithhotel.add(browseHotelAnchorPane, 1, 0);
+				break;
+			case 2:
+				gridpaneFilledWithhotel.add(browseHotelAnchorPane, 0, 1);
+				break;
+			case 3:
+				gridpaneFilledWithhotel.add(browseHotelAnchorPane, 1, 1);
+				break;
+			default:
+				break;
+			}
 			hotelVOsPointer++;
 			count ++;
 		}
@@ -116,6 +134,17 @@ public class BrowseHotelUIController {
         UserInfoUtil.getInstance().setHotelName(hotelName);
         UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo();
     }
+    
+    public void init() {
+    	UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
+		hotelVOs = userInfoUtil.getHotelVOs();
+		if(hotelVOs.size()%4==0){
+			maxPages = hotelVOs.size()/4;
+		}else{
+			maxPages = hotelVOs.size()/4 + 1;
+		}
+		changeToSpecficPage(1);
+	}
 
 	@FXML
 	void initialize() {
@@ -127,13 +156,6 @@ public class BrowseHotelUIController {
 		assert pageField != null : "fx:id=\"pageField\" was not injected: check your FXML file '酒店浏览（用户视角）.fxml'.";
 		assert gridpaneFilledWithhotel != null : "fx:id=\"gridpaneFilledWithhotel\" was not injected: check your FXML file '酒店浏览（用户视角）.fxml'.";
 		
-		UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
-		hotelVOs = userInfoUtil.getHotelVOs();
-		if(hotelVOs.size()%4==0){
-			maxPages = hotelVOs.size()/4;
-		}else{
-			maxPages = hotelVOs.size()/4 + 1;
-		}
-		changeToSpecficPage(1);
+		init();
 	}
 }

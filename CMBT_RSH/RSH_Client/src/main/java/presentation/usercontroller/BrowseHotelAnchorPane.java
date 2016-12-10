@@ -55,9 +55,8 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		//TODO 在逻辑层添加get酒店最低价格的方法
 		priceLabel = new Label("￥2340/晚");
 		//TODO 得到的促销策略应该适用于当前日期
-		//TODO bL层单利？？？？？？？？
-		PromotionService promotionService = new PromotionController();
-		ArrayList<PromotionVO> promotionVOs = promotionService.getPromotionOfHotel(hotelVO.id);
+		//TODO bL层单利？？？？？？？
+		ArrayList<PromotionVO> promotionVOs = UserInfoUtil.getInstance().getPromotionVOs(hotelVO.id);
 		for(int i=0;i<2;i++){
 			if(promotionVOs.size()<=i){
 				break;
@@ -66,17 +65,15 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			promotionLabels.add(label);
 		}
 		//从数据层拿到该用户最近一笔订单的状态
-		OtherOrderService otherOrderService = new OtherOrderController();
-		StateOfOrder stateOfOrder = otherOrderService.getOrderStateOfUser(UserInfoUtil.getInstance().getUserID(),
-				hotelVO.id);
-		orderStateLabel = new Label(stateOfOrder.getString());
+		orderStateLabel = new Label(UserInfoUtil.getInstance().getOrderStateOfUser(hotelVO.id).toString());
+		
 		
 		//设置组件的属性
 		//图片比例
 		hotelImageView.setPreserveRatio(false);
 		//图片上蒙的label半透明
 		labelOnHotelImage.setStyle("-fx-background-color:rgba(3,3,3,0.2)");
-		//酒店名称label字体Times New Roman，大小14，颜色白色
+		//酒店名称label字体Times New Roman，大小18，颜色白色
 		hotelNameLabel.setStyle("-fx-text-fill: white");
 		hotelNameLabel.setFont(Font.font("Times New Roman", 18));
 		//新建订单按钮背景半透明，字体颜色白色,字体Times New Roman，大小14

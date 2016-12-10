@@ -33,9 +33,19 @@ public class ImageFactory {
     private Image lastImageArrow = new Image("/images/返回左箭头 - 副本.png");
     private Image nextImageArrow = new Image("/images/返回右箭头 - 副本.png");
     private Image hotelImage = new Image("/images/hotel/酒店背景图111.png");
+    private Image headImage = new Image("/images/用户头像.jpg");
+    private Image headImagebackground = new Image("/images/头像背景.jpg");
     
 
-    public Image getHotelImage() {
+    public Image getHeadImage() {
+		return headImage;
+	}
+
+	public Image getHeadImagebackground() {
+		return headImagebackground;
+	}
+
+	public Image getHotelImage() {
 		return hotelImage;
 	}
 

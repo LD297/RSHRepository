@@ -113,16 +113,15 @@ public class LoginUIController {
             }
             //如果用户名和密码都输入正确
             if(idResult=="success"&&passwordResult=="success"){
-                LoginService loginService = new LoginController();
-                ResultMessage resultMessage = loginService.checkOnline(role,id,password);
+            	ResultMessage resultMessage = UserInfoUtil.getInstance().login(id, password);
                 if(resultMessage==ResultMessage.succeed){
-                    //设置userinfoutil的userid
-                    UserInfoUtil.getInstance().setUserID(id);
                     //跳转到搜索酒店界面
                     if(loginBelowAnchorpane.isVisible()){//先判断有没有登陆下拉界面,有就删除
                         loginBelowAnchorpane.setVisible(false);
                     }
                     UIJumpTool.getUiJumpTool().changeLoginToSearchHotel();
+                }else{
+                	//TODO 该用户名不存在或者有登陆冲突
                 }
             }
         }

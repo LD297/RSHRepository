@@ -116,7 +116,7 @@ public class UserRegisterUIController {
     		Sexuality sexuality = Sexuality.male;
     		//TODO 获取头像地址
     		String imageAddress = null;
-    		UserVO userVO = new UserVO(phoneNum, password, nickName, imageAddress, birth, 0, MemberType.commom, name, sexuality, email, 0);
+    		UserVO userVO = new UserVO(phoneNum, password, nickName, imageAddress, birth, 0, MemberType.commom, name, sexuality, email, 0,null);
     		 //将该用户注册的内容存到数据库
         	LoginService loginService = new LoginController();
         	ResultMessage resultMessage = loginService.register(userVO);

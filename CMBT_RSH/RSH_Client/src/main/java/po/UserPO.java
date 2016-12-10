@@ -23,10 +23,11 @@ public class UserPO implements Serializable{
 	String eMail;
 	int credit;
 	LocalDate birthday;
+	String commerceName;
 
 	public UserPO(String id, String password, String nickName, String imageAddress,
 				  LocalDate birth,int level, MemberType memberType, int credit,
-				  String name, Sexuality sexuality, String eMail) {
+				  String name, Sexuality sexuality, String eMail,String commerceName) {
 		this.id = id;
 		this.nickName = nickName;
 		this.imageAddress = imageAddress;
@@ -38,6 +39,13 @@ public class UserPO implements Serializable{
 		this.eMail = eMail;
 		this.credit = credit;
 		this.password = password;
+		this.commerceName = commerceName;
+	}
+	public String getCommerceName() {
+		return commerceName;
+	}
+	public void setCommerceName(String commerceName) {
+		this.commerceName = commerceName;
 	}
 	public String getId() {
 		return id;

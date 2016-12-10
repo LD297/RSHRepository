@@ -40,7 +40,7 @@ public class ModifyUserInfoUIController {
 
 
     @FXML
-    private ChoiceBox<Sexuality> sexChoiceBox;
+    private ChoiceBox<String> sexChoiceBox;
 
     @FXML
     private DatePicker birthdayPicker;
@@ -120,7 +120,7 @@ public class ModifyUserInfoUIController {
         }
         if(rightInput){
         	String name = nameField.getText().trim();
-        	Sexuality sexuality = sexChoiceBox.getValue();
+        	Sexuality sexuality = Sexuality.getSexuality(sexChoiceBox.getValue());
         	LocalDate birthday = birthdayPicker.getValue();
             //更新用户信息
         	UserInfoUtil.getInstance().modifyUserInfo(nickName, name, sexuality, birthday, phoneNum, email);
@@ -151,8 +151,8 @@ public class ModifyUserInfoUIController {
         phonenumberField.setPromptText(userVO.id);
         emailaddressField.setPromptText(userVO.eMail);
         birthdayPicker.setValue(userVO.birthday);
-        ObservableList<Sexuality> sexualities = FXCollections
-				.observableArrayList((new ArrayList<Sexuality>(Arrays.asList(new Sexuality[] { Sexuality.male,Sexuality.female}))));
+		ObservableList<String> sexualities = FXCollections.observableArrayList((new ArrayList<String>(
+				Arrays.asList(new String[] { Sexuality.male.getString(), Sexuality.female.getString() }))));
 		sexChoiceBox.setItems(sexualities);
     }
 }
