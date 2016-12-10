@@ -125,10 +125,10 @@ public class OrderGeneration {
     //（再次检查可用数量 会员信息 优惠政策是否存在）出现出入 返回信息提示
     protected ResultMessage check(OrderPO orderpo){
         //检查信用值
-        CreditRecordList credit = new CreditRecordList(orderpo.getUserid());
+        CreditRecordList credit = new CreditRecordList(orderpo.getUserID());
         if(credit.canOrder()==false)
             return ResultMessage.fail;
-        hotelinfo = new HotelController(orderpo.getHotelid());
+        hotelinfo = new HotelController(orderpo.getHotelID());
 
         //检查房间信息
         RoomNormVO room = orderpo.getRoom();

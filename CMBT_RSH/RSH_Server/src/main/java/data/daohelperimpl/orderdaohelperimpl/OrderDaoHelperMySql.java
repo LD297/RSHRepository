@@ -67,6 +67,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
                 Date checkIn = result.getTimestamp("checkIn");
                 Date checkOut = result.getTimestamp("checkOut");
+                Date hotelDDL = result.getTimestamp("hotelDDL");
                 Date bornTime = result.getDate("bornDate");
                 Date actCheckIn = result.getTimestamp("actCheckIn");
                 Date actCheckOut = result.getTimestamp("actCheckOut");
@@ -88,7 +89,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                         OrderPO orderpo = new OrderPO(orderID, userID, userName, hotelID,state,
                                 roomVO, roomTruePrice, roomNum, peopleNum, withChild,
                                 originValue, trueValue, promo,
-                                comment, grade, checkIn, checkOut,
+                                comment, grade, checkIn, checkOut,hotelDDL,
                                 bornTime, actCheckIn, actCheckOut, cancelTime, cancelAbTime) ;
 
                         return orderpo;
@@ -125,7 +126,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                 Date checkIn = result.getTimestamp("checkIn");
                 Date checkOut = result.getTimestamp("checkOut");
 
-                OrderPO orderpo = new OrderPO(orderID,hotelID,stateOfOrder,originValue,trueValue,checkIn,checkOut) {};
+                OrderPO orderpo = new OrderPO() {};
                 userOrderList.add(orderpo);
             }
         } catch (SQLException e) {
@@ -204,7 +205,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                 Date checkIn = result.getTimestamp("checkIn");
                 Date checkOut = result.getTimestamp("checkOut");
 
-                OrderPO orderpo = new OrderPO(orderID,userID,hotelID,state,trueValue,checkIn,checkOut) {};
+                OrderPO orderpo = new OrderPO() {};
                 stateOrderList.add(orderpo);
             }
         } catch (SQLException e) {// TODO Auto-generated catch block
@@ -270,7 +271,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         try{
             while(result.next())
                 if(result.getInt(1)==newState.ordinal())
-                    return ResultMessage.noChangeMade;
+                    return ResultMessage.fail;/////////////////////nochangemade
         }catch (SQLException e){
             e.printStackTrace();
             return ResultMessage.fail;
@@ -316,4 +317,5 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         }
         return ResultMessage.idNotExist;
     }
+
 }

@@ -33,6 +33,7 @@ public class OrderPO implements Serializable{
 	 */
 	private Date checkIn = null;
 	private Date checkOut = null;
+	private Date hotelDDL = null;
     /**
      * 订单生成日期（界面暂时不显示时间，但可以保存以备需求变更）
      */
@@ -171,7 +172,7 @@ public class OrderPO implements Serializable{
 	public OrderPO(String orderID, String userID, String userName,String hotelID, StateOfOrder state,
                    RoomNormVO room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
                    double originValue, double trueValue, String promotion,
-                   String comment, int grade, Date checkIn, Date checkOut,Date generationDate,
+                   String comment, int grade, Date checkIn, Date checkOut,Date hotelDDL,Date generationDate,
                    Date actualCheckIn, Date actualCheckOut, Date cancelTime, Date cancelAbnormalTime){
 
 		this.orderID = orderID;
@@ -191,11 +192,15 @@ public class OrderPO implements Serializable{
         this.grade = grade;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+		this.hotelDDL = hotelDDL;
         this.generationDate = generationDate;
         this.actualCheckIn = actualCheckIn;
         this.actualCheckOut = actualCheckOut;
         this.cancelTime = cancelTime;
         this.cancelAbnormalTime = cancelAbnormalTime;
+	}
+	public OrderPO(){
+
 	}
 
 }

@@ -53,8 +53,8 @@ public class AbnormalOrder {
             e.printStackTrace();
             return ResultMessage.fail;
         }
-        String userID;
-        double orderValue;
+        String userID = null;
+        double orderValue = 0;
         OrderPO orderPO;
         try{
             orderPO = orderDao.findByID(orderID);
@@ -62,19 +62,19 @@ public class AbnormalOrder {
                 userID = orderPO.getUserID();
                 orderValue = orderPO.getTrueValue();
             }
-            else
-                return ResultMessage
         }catch(RemoteException e){
             e.printStackTrace();
             return ResultMessage.fail;
         }
         // 改变用户信用记录
-        CreditRecordVO creditRecordVO = new CreditRecordVO(userID,new Date(),orderID,
-                CreditAction.delay_checkin,"+"+String.valueOf(orderValue),0);//!!!!!!credit
+        if(userID!=null){
+            CreditRecordVO creditRecordVO = new CreditRecordVO(userID,new Date(),orderID,
+                    CreditAction.delay_checkin,"+"+String.valueOf(orderValue),0);//!!!!!!credit
 
         CreditRecordList creditRecordList = new CreditRecordList(userID);
         creditRecordList.addCreditRecord(creditRecordVO);
-        return ResultMessage.succeed;
+        return ResultMessage.succeed;}
+        return null;
     }
 
     // 网站营销人员查询异常订单
@@ -117,7 +117,7 @@ public class AbnormalOrder {
         if(!IsHalf)
             halfOrFull = 1;
 		CreditRecordVO creditRecordVO = new CreditRecordVO(orderPO.getUserID(),new Date(),orderID,
-                CreditAction.cancel_abnomal,"+"+String.valueOf(orderPO.getTrueValue()*halfOrFull),credit);//!!!!credit
+                CreditAction.cancel_abnomal,"+"+String.valueOf(orderPO.getTrueValue()*halfOrFull),0);//!!!!credit
 		CreditRecordList creditRecordList = new CreditRecordList(orderPO.getUserID());
         creditRecordList.addCreditRecord(creditRecordVO);
 

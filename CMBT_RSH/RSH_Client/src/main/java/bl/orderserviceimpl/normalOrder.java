@@ -51,14 +51,14 @@ public class NormalOrder {
             e.printStackTrace();
             return ;
         }
-        String hotelID = orderpo.getHotelid();
+        String hotelID = orderpo.getHotelID();
         RoomNormVO room =  orderpo.getRoom();
         int roomNum = orderpo.getRoomNumber();
         Date checkIn = orderpo.getTime()[0];
         Date checkOut = orderpo.getTime()[1];
 
-        hotelInfoService = new HotelController(orderpo.getHotelid());
-        String time = hotelInfoService.getCheckInDDL(orderpo.getHotelid());
+        hotelInfoService = new HotelController(orderpo.getHotelID());
+        String time = hotelInfoService.getCheckInDDL(orderpo.getHotelID());
 
 
         hotelInfoService.changeRoomAvail(room.roomType, false,roomNum,checkIn,checkOut);
@@ -73,9 +73,9 @@ public class NormalOrder {
         int trueminute = d.getMinutes();
 
         if((day-trueday)*24*60+(hour-truehour)*60+(minute-trueminute)<360){
-            creditRecordList = new CreditRecordList(orderpo.getUserid());
+            creditRecordList = new CreditRecordList(orderpo.getUserID());
             //userid,date,orderid,creditAction,change,credit
-            CreditRecordVO creditRecord = new CreditRecordVO(orderpo.getUserid(), d, orderid, null,"",(int)orderpo.getTrueValue());
+            CreditRecordVO creditRecord = new CreditRecordVO(orderpo.getUserID(), d, orderid, null,"",(int)orderpo.getTrueValue());
             creditRecordList.addCreditRecord(creditRecord);
         }
         System.out.println("success");
@@ -121,7 +121,7 @@ public class NormalOrder {
         int trueminute = d.getMinutes();
         if(truehour>hour||(truehour==hour&&trueminute>minute)){
             System.out.println("failed");//orderdataservice->update
-            creditRecordList = new CreditRecordList(orderpo.getUserid());
+            creditRecordList = new CreditRecordList(orderpo.getUserID());
             //userid,date,orderid,creditAction,change,credit
             CreditRecordVO creditRecord = new CreditRecordVO("", d, orderid,null, "", 0);
             creditRecordList.addCreditRecord(creditRecord);

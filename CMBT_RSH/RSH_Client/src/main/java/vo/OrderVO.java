@@ -35,6 +35,7 @@ public class OrderVO {
      */
     private Date checkIn = null;
     private Date checkOut = null;
+    private Date hotelDDL = null;
     /**
      * 订单生成日期（界面暂时不显示时间，但可以保存以备需求变更）
      */
@@ -81,7 +82,7 @@ public class OrderVO {
     public OrderVO(String orderID, String userID, String userName, String hotelID, StateOfOrder state,
                    RoomNormVO room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
                    double originValue, double trueValue, String promotion,
-                   String comment, int grade, Date checkIn, Date checkOut, Date generationDate,
+                   String comment, int grade, Date checkIn, Date checkOut, Date hotelDDL,Date generationDate,
                    Date actualCheckIn, Date actualCheckOut, Date cancelTime, Date cancelAbnormalTime){
 
         this.orderID = orderID;
@@ -101,11 +102,81 @@ public class OrderVO {
         this.grade = grade;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.hotelDDL = hotelDDL;
         this.generationDate = generationDate;
         this.actualCheckIn = actualCheckIn;
         this.actualCheckOut = actualCheckOut;
         this.cancelTime = cancelTime;
         this.cancelAbnormalTime = cancelAbnormalTime;
+    }
+    public String getOrderID(){
+        return orderID;
+    }
+    public String getUserID(){
+        return userID;
+    }
+    public String getUserName(){
+        return userName;
+    }
+    public String getHotelID(){
+        return hotelID;
+    }
+    public StateOfOrder getState(){
+        return state;
+    }
+    public RoomNormVO getRoom(){
+        return room;
+    }
+    public double getRoomPrice(){
+        return roomPrice;
+    }
+    public int getRoomNumber(){
+        return roomNumber;
+    }
+    public int getPeopleNumber(){
+        return peopleNumber;
+    }
+    public boolean getWithChild(){
+        return withChild;
+    }
+    public double getOriginValue(){
+        return originValue;
+    }
+    public double getTrueValue(){
+        return trueValue;
+    }
+    public String getPromotion(){
+        return promotion;
+    }
+    public String getComment(){
+        return comment;
+    }
+    public int getGrade(){
+        return grade;
+    }
+    public Date getCheckIn(){
+        return checkIn;
+    }
+    public Date getCheckOut(){
+        return checkOut;
+    }
+    public Date getHotelDDL(){
+        return hotelDDL;
+    }
+    public Date getGenerationDate(){
+        return generationDate;
+    }
+    public Date getActualCheckIn(){
+        return actualCheckIn;
+    }
+    public Date getActualCheckOut(){
+        return actualCheckOut;
+    }
+    public Date getCancelTime(){
+        return cancelTime;
+    }
+    public Date getCancelAbnormalTime(){
+        return cancelAbnormalTime;
     }
 }
 
