@@ -14,11 +14,11 @@ public interface PromotionService {
 	 */
 	public ResultMessage addPromotion(PromotionVO promotionVO);
 	
-	public ResultMessage delPromotion(String reason,String ID);
+	public ResultMessage delPromotion(String setterID,String promotionID);
 	
 	public ArrayList<PromotionVO> getPromotionOfPeriod(Date beginDate, Date EndDate);
 	
-	public ArrayList <PromotionVO> getPromotionOfRoom (String hotelID, String type);
+	public ArrayList <PromotionVO> getPromotionOfRoom (String hotelID, String roomType);
 	
 	public ArrayList<PromotionVO> getPromotionOfHotel(String hotelID);
 	
@@ -26,7 +26,7 @@ public interface PromotionService {
 	
 	public String countPromotionOfRoom(String hotelID, String type, int num, int price,Date beginDate, Date endDate);
 	
-	public String countPromotionOfOrder(OrderPO order);
+//	public String countPromotionOfOrder(OrderPO order);
 	
 	public ResultMessage setCoupon();
 }

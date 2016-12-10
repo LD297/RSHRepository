@@ -4,29 +4,33 @@ import bl.promotionServiceimpl.Promotion;
 import constant.ConditionType;
 import constant.DeductionType;
 import constant.ScopeType;
+import vo.PromotionVO;
 
 import java.util.Date;
 
 public class PromotionPO {
 
+	private static final int HOTEL_LENGTH = 10;
+	private static final int DISTRICT_LENGTH = 6;
+
 	private String setter;
-	String id;
-	String reason;
-	Date beginDate;
-	Date endDate;
+	private String id;
+	private String reason;
+	private Date beginDate;
+	private Date endDate;
 
-	ScopeType scopeType;
-	String scopeNum;
+	private ScopeType scopeType;
+	private String scopeNum;
 
-	ConditionType  conditionType;
-	int condionNum;
+	private ConditionType  conditionType;
+	private int condionNum;
 
-    DeductionType deductionType;
-	int deductionNum;
+    private DeductionType deductionType;
+	private int deductionNum;
 
 	public PromotionPO(String Setter,String ID,String Reason,
 					   Date BeginDate,Date EndDate,
-					   ScopeType sType, String sNum,
+					   ScopeType sType, String sNum,String roomType,
 					   ConditionType cType, int cNum,
 					   DeductionType dType,int dNum){
 		setter = Setter;
@@ -36,20 +40,65 @@ public class PromotionPO {
 		endDate = EndDate;
 
 		scopeType = sType;
-		scopeNum = sNum;
+		while(sNum.length()<HOTEL_LENGTH){
+			sNum +="0";
+		}
+		scopeNum = sNum+roomType;
+
 		conditionType = cType;
 		condionNum = cNum;
+
 		deductionType = dType;
 		deductionNum = dNum;
 	}
 
 	public static Promotion changeIntoPromotion(PromotionPO promotionPO){
-		Promotion promotion = new Promotion(promotionPO.setter,promotionPO.id);
+		String originScope = promotionPO.scopeNum;
+		String tempScopeNum;
+		String roomType;
+		if(originScope.length()==HOTEL_LENGTH){
+			if(originScope.substring(DISTRICT_LENGTH)=="0000"){
+				tempScopeNum = originScope.substring(DISTRICT_LENGTH);
+			}
+			else{
+				tempScopeNum = originScope;
+			}
+			roomType = null;
+		}else{
+			tempScopeNum = originScope.substring(0,HOTEL_LENGTH);
+			roomType = originScope.substring(HOTEL_LENGTH);
+		}
+		Promotion promotion = new Promotion(promotionPO.setter,promotionPO.id,promotionPO.reason);
 		promotion.setDate(promotionPO.beginDate,promotionPO.endDate);
 
-		promotion.setScope(promotionPO.scopeType,promotionPO.scopeNum);
+
+		promotion.setScope(promotionPO.scopeType,tempScopeNum,roomType);
 		promotion.setCondition(promotionPO.conditionType,promotionPO.condionNum);
 		promotion.setDeduction(promotionPO.deductionType,promotionPO.deductionNum);
 		return promotion;
+	}
+
+	public static PromotionVO changeIntoPromotionVo(PromotionPO promotionPO){
+		String originScope = promotionPO.scopeNum;
+		String tempScopeNum;
+		String roomType;
+		if(originScope.length()==HOTEL_LENGTH){
+			if(originScope.substring(DISTRICT_LENGTH)=="0000"){
+				tempScopeNum = originScope.substring(DISTRICT_LENGTH);
+			}
+			else{
+				tempScopeNum = originScope;
+			}
+			roomType = null;
+		}else{
+			tempScopeNum = originScope.substring(0,HOTEL_LENGTH);
+			roomType = originScope.substring(HOTEL_LENGTH);
+		}
+		PromotionVO promotionVO = new PromotionVO(promotionPO.setter,promotionPO.id,promotionPO.reason,
+				promotionPO.beginDate,promotionPO.endDate,
+				promotionPO.scopeType,tempScopeNum,roomType,
+				promotionPO.conditionType,promotionPO.condionNum,
+				promotionPO.deductionType,promotionPO.deductionNum);
+		return promotionVO;
 	}
 }

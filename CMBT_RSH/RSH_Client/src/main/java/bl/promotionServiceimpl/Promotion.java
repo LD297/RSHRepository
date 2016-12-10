@@ -5,22 +5,27 @@ import constant.ConditionType;
 import constant.DeductionType;
 import constant.ResultMessage;
 import data.dao.promotiondao.PromotionDao;
+import jdk.nashorn.internal.objects.annotations.Setter;
 import po.PromotionPO;
 import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * 策略类
  * @author aa
- *
+ *负责策略的增删改查
  */
 public class Promotion {
 
+	private static final int  hotelIDLength=10 ;
 	private static PromotionDao promotionDao;
-	private String setter;
-	private String id;
+	public static ArrayList<PromotionPO> existPromotionPO = new ArrayList<PromotionPO>();
+
+	private String setterID;
+	private String promotionID;
 	private String reason;
 
 	private Date beginDate;
@@ -30,39 +35,27 @@ public class Promotion {
 	Condition condition;
 	Deduction deduction;
 
-	public Promotion (String Reason, String ID){
-		RemoteHelper remoteHelper = RemoteHelper.getInstance();
-		promotionDao = remoteHelper.getPromotionDao();
-		reason=Reason;
-		setter = ID;
+	public Promotion (String tempSetter, String tempPromID,String tempReason){
+		setterID = tempSetter;
+		promotionID = tempPromID;
+		reason=tempReason;
 	}
-
-	/**
-	 * 读取数据层中数据，若无返回null
-	 * @param tempSetter
-	 * @param ID
-	 * @return
-	 */
-	public static Promotion getInstance(String tempSetter, String ID){
-		Promotion promotion = null;
-		try {
-			PromotionPO promotionPO = promotionDao.find(tempSetter,ID);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return promotion;
-	}
-
-	public void setScope(ScopeType stype, String scopeNum) {
+	public void setDate(Date tempBeginDate, Date tempEndDate) {
 		// TODO Auto-generated method stub
-		if(stype == ScopeType.DISTRICT){
+		beginDate=tempBeginDate;
+		endDate=tempEndDate;
+	}
+
+	public void setScope(ScopeType scopeType, String scopeNum,String roomType) {
+		// TODO Auto-generated method stub
+		if(scopeType == ScopeType.DISTRICT){
 			scope = new DistrictScope(scopeNum);
 		}
-		else if(stype == ScopeType.HOTEL){
+		else if(scopeType == ScopeType.HOTEL){
 			scope = new HotelScope(scopeNum);
 		}
-		else if(stype == ScopeType.ROOM){
-			scope = new RoomScope(scopeNum.substring(0,10),scopeNum.substring(10));
+		else if(scopeType == ScopeType.ROOM){
+			scope = new RoomScope(scopeNum,roomType);
 		}
 	}
 	public void setCondition(ConditionType cType,int cNum) {
@@ -89,10 +82,40 @@ public class Promotion {
 			deduction = new ReduceDeduction(dNum);
 		}
 	}
-	public void setDate(Date tempBeginDate, Date tempEndDate) {
-		// TODO Auto-generated method stub
-		beginDate=tempBeginDate;
-		endDate=tempEndDate;
+
+	public String getReason(){
+		return this.reason;
+	}
+
+
+	public static void initRemote(){
+		if(promotionDao!=null) {
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
+			promotionDao = remoteHelper.getPromotionDao();
+		}
+	}
+	/**
+	 * 读取数据层中数据，若无返回null
+	 * @param tempSetter
+	 * @param tempPromID
+	 * @return
+	 */
+	public static Promotion getInstance(String tempSetter, String tempPromID){
+		/**
+		 * what if the promotion is already exit somewhere in the bl?
+		 * will jvm delete it after use
+		 */
+		initRemote();
+		PromotionPO promotionPO = null;
+		try {
+			promotionPO = promotionDao.find(tempSetter,tempPromID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		if(promotionPO==null)
+			return null;
+		else
+			return PromotionPO.changeIntoPromotion(promotionPO);
 	}
 
 	/**
@@ -100,11 +123,13 @@ public class Promotion {
 	 * @return
 	 */
 	public ResultMessage insertPromotion(){
+		if(Promotion.getInstance(setterID,promotionID)==null)
+			return ResultMessage.already_exist;
 		PromotionPO promotionPO = this.changeIntoPO();
 		try {
 			promotionDao.insert(promotionPO);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		return ResultMessage.succeed;
 	}
@@ -112,15 +137,18 @@ public class Promotion {
 	/**
 	 * 从数据库中删除
 	 * @param tempSetter
-	 * @param ID
+	 * @param tempPromID
 	 * @return
 	 */
-	public static ResultMessage delPromotion(String tempSetter, String ID) {
+	public static ResultMessage delPromotion(String tempSetter, String tempPromID) {
 		// TODO Auto-generated method stub
+		if(getInstance(tempSetter,tempPromID)==null){
+			return ResultMessage.not_exist;
+		}
 		try {
-			promotionDao.del(tempSetter,ID);
+			promotionDao.del(tempSetter,tempPromID);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		return ResultMessage.succeed;
 	}
@@ -131,19 +159,22 @@ public class Promotion {
 	 */
 	public ResultMessage update() {
 		// TODO Auto-generated method stub
+		if(getInstance(this.setterID,this.promotionID)==null){
+			return ResultMessage.not_exist;
+		}
 		PromotionPO promotionPO = this.changeIntoPO();
 		try {
 			promotionDao.update(promotionPO);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		return ResultMessage.succeed;
 	}
 	
 	public PromotionPO changeIntoPO(){
-		PromotionPO promotionPO = new PromotionPO(setter,id,reason,
+		PromotionPO promotionPO = new PromotionPO(setterID,promotionID,reason,
 				beginDate,endDate,
-				scope.getType(),scope.getNum(),
+				scope.getType(),scope.getNum(),scope.getRoomType(),
 				condition.getType(),condition.getNum(),
 				deduction.getType(),deduction.getNum());
 		return promotionPO;

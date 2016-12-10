@@ -14,10 +14,12 @@ public abstract class Scope {
 
 	public abstract ScopeType getType();
 	public abstract String  getNum();
+	public abstract String getRoomType();
 	/**
 	 * 测试是否符合适用范围要求
 	 * @param scope
 	 * @return
 	 */
-	public abstract boolean check(String scope);
+	public abstract boolean check(String scope,String roomType);
+
 }

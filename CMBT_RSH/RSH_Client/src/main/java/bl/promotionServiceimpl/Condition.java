@@ -19,9 +19,10 @@ public abstract class Condition {
 
 
 	/**
-	 * 检测是否符合条件
-	 * @param condition
+	 *
+	 * @param num
+	 * @param price
 	 * @return
 	 */
-	public abstract boolean check(int condition);
+	public abstract boolean check(int num,int price);
 }

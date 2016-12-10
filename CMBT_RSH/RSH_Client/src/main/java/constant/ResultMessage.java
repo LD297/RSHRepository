@@ -3,5 +3,8 @@ package constant;
 public enum ResultMessage {
 	succeed,
 	fail,
-	emptyComment
+	already_exist,
+	not_exist,
+	emptyComment,
+	remote_fail;
 }

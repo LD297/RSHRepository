@@ -15,13 +15,13 @@ public interface PromotionDao extends Remote{
 
     public ResultMessage insert(PromotionPO po) throws RemoteException;
 
-    public ResultMessage del(String setter, String id)throws RemoteException;
+    public ResultMessage del(String setterID, String promotionID)throws RemoteException;
 
     public ResultMessage  update (PromotionPO po)throws RemoteException;
 
     public PromotionPO find(String setterID,String id)throws RemoteException;
 
-    public ArrayList<PromotionPO> finds(String setter) throws RemoteException;
+    public ArrayList<PromotionPO> finds(String Scope) throws RemoteException;
 
     public ArrayList<PromotionPO> finds(Date beginDate, Date endDate) throws RemoteException;
 

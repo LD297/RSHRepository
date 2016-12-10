@@ -10,6 +10,7 @@ import constant.ScopeType;
 public class DistrictScope extends Scope {
 
 	String district;
+	private static final int DISTRICT_LENGTH = 6;
 	
 	public DistrictScope(String dis){
 		district=dis;
@@ -25,8 +26,13 @@ public class DistrictScope extends Scope {
 		return district;
 	}
 
-	public boolean check(String hotelID){
-		String tempDis = hotelID.substring(0,6);
+	@Override
+	public String getRoomType() {
+		return null;
+	}
+
+	public boolean check(String hotelID,String roomType){
+		String tempDis = hotelID.substring(0,DISTRICT_LENGTH);
 		if(district==tempDis)
 			return true;
 		return false;

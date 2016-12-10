@@ -25,7 +25,12 @@ public class HotelScope extends Scope {
 		return hotelID;
 	}
 
-	public boolean check(String hotel){
+	@Override
+	public String getRoomType() {
+		return null;
+	}
+
+	public boolean check(String hotel,String roomType){
 		if (hotel==hotelID)
 			return true;
 		return false;

@@ -22,23 +22,25 @@ public class PromotionController implements PromotionService {
 	@Override
 	public ResultMessage addPromotion(PromotionVO tempPromotionVO) {
 		promotionVO=tempPromotionVO;
-		if(Promotion.getInstance(promotionVO.reason,promotionVO.setter)!=null){
-			return ResultMessage.fail;
+		if(Promotion.getInstance(promotionVO.setterID,promotionVO.promotionID)!=null){
+			return ResultMessage.already_exist;
 		}
-		promotion=new Promotion(promotionVO.reason,promotionVO.setter);
+		promotion=new Promotion(promotionVO.setterID,promotionVO.promotionID,promotionVO.reason);
 		promotion.setDate(promotionVO.beginDate,promotionVO.endDate);
-		promotion.setScope(promotionVO.scopeType,promotionVO.id+promotionVO.roomType);
-		promotion.setCondition(promotionVO.conditionType,promotionVO.requirement);
-		promotion.setDeduction(promotionVO.deductionType,promotionVO.deduction);
+
+		promotion.setScope(promotionVO.scopeType,promotionVO.scopeNum,promotionVO.roomType);
+		promotion.setCondition(promotionVO.conditionType,promotionVO.conditionNum);
+		promotion.setDeduction(promotionVO.deductionType,promotionVO.deductionNum);
+
 		promotion.insertPromotion();
 		return ResultMessage.succeed;
 	}		;
 
 
 	@Override
-	public ResultMessage delPromotion(String reason, String ID) {
+	public ResultMessage delPromotion(String tempSetterID, String tempPromID) {
 		// TODO Auto-generated method stub
-		return Promotion.delPromotion(reason,ID);
+		return Promotion.delPromotion(tempSetterID,tempSetterID);
 	}
 
 	@Override
@@ -71,7 +73,7 @@ public class PromotionController implements PromotionService {
 		return Count.countPromotionOfRoom(hotelID,type,num,price,beginDate,endDate);
 	}
 
-	@Override
+//	@Override
 	public String countPromotionOfOrder(OrderPO order) {
 		// TODO Auto-generated method stub
 		return Count.countPromotionOfOrder(order);
