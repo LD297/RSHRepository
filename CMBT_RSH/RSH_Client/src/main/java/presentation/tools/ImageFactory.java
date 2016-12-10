@@ -35,7 +35,12 @@ public class ImageFactory {
     private Image hotelImage = new Image("/images/hotel/酒店背景图111.png");
     private Image headImage = new Image("/images/用户头像.jpg");
     private Image headImagebackground = new Image("/images/头像背景.jpg");
-    
+    private Image orderExecutedImage = new Image("/images/TICK.png");
+    private Image chargeForCreditImage = new Image("/images/PLUS.png");
+    private Image abmormalOrderImage = new Image("/images/question14.png");
+    private Image cancelAbnormalImage = new Image("/images/撤销.png");//撤销订单
+    private Image delayCheckinImage = new Image("/images/NOTEPAD _ OK.png");//回复异常订单
+    private Image unexecutedOrderImage = new Image("/images/exclamation.png");
 
     public Image getHeadImage() {
 		return headImage;
@@ -111,4 +116,30 @@ public class ImageFactory {
         viewRoleMap.put(webSalsmanImage,Role.websalesman);
         return viewRoleMap;
     }
+
+	public Image getOrderExecutedImage() {
+		return orderExecutedImage;
+	}
+
+	public Image getDelayCheckinImage() {
+		return delayCheckinImage;
+	}
+
+	public Image getChargeForCreditImage() {
+		return chargeForCreditImage;
+	}
+
+	public Image getAbmormalOrderImage() {
+		return abmormalOrderImage;
+	}
+
+	public Image getCancelAbnormalImage() {
+		return cancelAbnormalImage;
+	}
+
+
+	public Image getUnexecutedOrderImage() {
+		return unexecutedOrderImage;
+	}
+
 }
