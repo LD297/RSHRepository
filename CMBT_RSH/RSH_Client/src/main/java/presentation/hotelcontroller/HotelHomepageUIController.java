@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import po.OrderPO;
+import presentation.hotelcontroller.*;
 import presentation.tools.HotelUIFactory;
 import vo.HotelVO;
 
@@ -98,11 +99,9 @@ public class HotelHomepageUIController {
     void changeToBasicInfoUI(MouseEvent event) {
         // 加载酒店基本信息维护界面
         FXMLLoader loader = HotelUIFactory.getInstance().getHotelBasicInfoUILoader();
-//        System.out.println(loader==null);
         // 加载酒店信息维护界面根结点
         if(hotelBasicInfoUIPane==null)
             try {
-//                System.out.println("made");
                 hotelBasicInfoUIPane = (AnchorPane) loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -110,8 +109,6 @@ public class HotelHomepageUIController {
         // 得到酒店信息维护界面控制器
         if(hotelBasicInfoUIController==null)
             hotelBasicInfoUIController = loader.getController();
-        // 设置酒店信息维护界面根结点
-        hotelBasicInfoUIController.setAnchorPane(hotelBasicInfoUIPane);
         // 传入酒店首页根结点引用
         hotelBasicInfoUIController.setPrePane(anchorPane);
         // 传入酒店基本信息
@@ -146,8 +143,6 @@ public class HotelHomepageUIController {
         // 得到促销策略维护界面控制器
         if(promotionUIController==null)
                 promotionUIController = loader.getController();
-        // 设置酒店促销策略维护界面根结点
-        promotionUIController.setAnchorPane(promotionUIPane);
         // 传入酒店首页根结点引用
         promotionUIController.setPrePane(anchorPane);
 
@@ -178,8 +173,6 @@ public class HotelHomepageUIController {
         // 得到关于我们界面控制器
         if(aboutUsUIController==null)
             aboutUsUIController = loader.getController();
-        // 设置关于我们界面根结点
-        aboutUsUIController.setAnchorPane(aboutUsUIPane);
         // 传入酒店首页根结点引用
         aboutUsUIController.setPrePane(anchorPane);
 
@@ -209,8 +202,6 @@ public class HotelHomepageUIController {
         // 得到订单搜索并浏览界面控制器
         if(checkOrderUIController==null)
             checkOrderUIController = loader.getController();
-        // 设置订单搜索并浏览界面根结点
-        checkOrderUIController.setAnchorPane(checkOrderUIPane);
         // 传入酒店首页根结点引用
         checkOrderUIController.setPrePane(anchorPane);
 
@@ -238,8 +229,6 @@ public class HotelHomepageUIController {
         // 得到可用客房信息维护界面控制器
         if(roomAvailUIController==null)
             roomAvailUIController = loader.getController();
-        // 设置可用客房信息维护界面根结点
-        roomAvailUIController.setAnchorPane(roomAvailUIPane);
         // 传入酒店首页根结点引用
         roomAvailUIController.setPrePane(anchorPane);
 

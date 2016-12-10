@@ -1,35 +1,52 @@
 package presentation.hotelcontroller;
 
 import constant.StateOfOrder;
-import po.OrderPO;
+import vo.OrderVO;
 import vo.RoomNormVO;
 
+import java.util.ArrayList;
 import java.util.Date;
+
 
 /**
  * Created by a297 on 16/12/10.
  */
 public class DataFactory {
+    public static OrderVO getOrderVO(){
+        String orderID = "12345123451234512345123456";
+        String userID = "13182811957";
+        String userName = "297";
+        String hotelID = "414-2";
+        StateOfOrder state = StateOfOrder.unexecuted;
+        RoomNormVO room = new RoomNormVO("414-2", "其他", 40000.00);
+        double roomPrice = 40000;
+        int roomNumber = 1;
+        int peopleNumber = 4;
+        boolean withChild = false;
+        double originValue = 40000;
+        double trueValue = 40000;
+        String promotion = null;
+        String comment = "fantastic";
+        int grade = 5;
+        Date checkIn = new Date(2016, 12, 9, 18, 30, 0);
+        Date checkOut = new Date(2016, 12, 10, 10, 30, 0);
+        Date hotelDDL = new Date(2016, 12, 9, 18, 30, 0);
+        Date generationDate = new Date(2016, 11, 9, 18, 30, 0);
+        Date actualCheckIn = new Date(2016, 12, 9, 19, 30, 0);
+        Date actualCheckOut = new Date(2016, 12, 10, 9, 30, 0);
+        Date cancelTime = null;
+        Date cancelAbnormalTime = null;
+        return new OrderVO(orderID, userID, userName, hotelID,
+                state, room, roomPrice, roomNumber, peopleNumber,withChild,
+                originValue, trueValue, promotion, comment, grade, checkIn, checkOut,
+                hotelDDL, generationDate, actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);
+    }
 
-    public static OrderPO getOrderPO(){
-//        String orderid = "12345678912345678912345678"; 
-//        String userid = "12345678912";
-//        String username = "sunshine"; 
-//        StateOfOrder state = StateOfOrder.unexecuted; 
-//        double origin  = 5000; 
-//        double discounted = 4000; 
-//        RoomNormVO type = new RoomNormVO("414-2", "other", 5000.0); 
-//        int num = 1; 
-//        Date in = new Date(2016, 10, 9); 
-//        Date out = new Date(2016, 10, 10); 
-//        Date actualIn = new Date(2016, 10, 9); 
-//        Date actualOut = new Date(2016, 10, 10); 
-//        Date generationDate = new Date(2016, 10, 9); 
-//        boolean adultonly = false; 
-//        int peoplenum = 4; 
-        return new OrderPO("12345678912345678912345678","12345678912","sunshine",
-                StateOfOrder.unexecuted,5000,4000,new RoomNormVO("414-2", "other", 5000.0),
-                1,new Date(2016, 10, 9),new Date(2016, 10, 10),new Date(2016, 10, 9),new Date(2016, 10, 10),
-                new Date(2016, 10, 9), false, 4);
+    public static ArrayList<OrderVO> getOrderVOList(int size){
+        ArrayList<OrderVO> list = new ArrayList<OrderVO>(size);
+        for(int i=0; i<size; i++){
+            list.add(DataFactory.getOrderVO());
+        }
+        return list;
     }
 }
