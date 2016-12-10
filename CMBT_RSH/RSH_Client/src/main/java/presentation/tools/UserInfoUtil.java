@@ -23,6 +23,7 @@ import constant.SortBy;
 import constant.SortMethod;
 import constant.StateOfOrder;
 import vo.HotelVO;
+import vo.OrderVO;
 import vo.PromotionVO;
 import vo.RoomVO;
 import vo.SelectConditionVO;
@@ -219,6 +220,13 @@ public class UserInfoUtil {
     		userVO.level = 1;
     	}
     	return resultMessage;
+    }
+    
+    /**
+     *  TODO 订单浏览（用户视角）界面调用，返回该用户的所有订单列表
+     */
+    public ArrayList<OrderVO> getOrderVOs(){
+		return null;
     }
     
     //TODO

@@ -58,8 +58,8 @@ public class UserDaoHelperMySql implements UserDaoHelper{
                 Sexuality sex = Sexuality.values()[result.getInt(10)];
                 String eMail = result.getString(11);
 
-                UserPO po = new UserPO(userID,passWord,nickName,image,birth,level,type,credit,name,sex,eMail){};
-                return po;
+               // UserPO po = new UserPO(userID,passWord,nickName,image,birth,level,type,credit,name,sex,eMail){};
+                return null;
             }
 
         }catch(SQLException e){
@@ -113,7 +113,8 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     }
     // 用户核实密码
     public ResultMessage checkPassword(String id, String password) throws RemoteException {
-        db.executeSql("USE OurData");
+        return ResultMessage.succeed;
+       /* db.executeSql("USE OurData");
 
         if(this.checkExistence(id)==ResultMessage.idNotExist)
             return ResultMessage.idNotExist;
@@ -129,7 +130,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
             e.printStackTrace();
             return ResultMessage.fail;
         }
-        return  ResultMessage.fail;
+        return  ResultMessage.fail;*/
 
     }
     // 用户注册普通会员
@@ -164,6 +165,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
                     return ResultMessage.idAlreadyExist;
         }catch(SQLException e){
             e.printStackTrace();
+            return null;
         }
         return ResultMessage.idNotExist;
     }

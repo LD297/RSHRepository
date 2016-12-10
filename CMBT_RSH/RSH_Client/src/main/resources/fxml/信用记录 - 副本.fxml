@@ -208,7 +208,7 @@
                                                 <Image url="@../images/NOTEPAD%20_%20OK.png" />
                                              </image>
                                           </ImageView>
-                                          <Label layoutX="102.0" layoutY="41.0" prefHeight="30.0" prefWidth="188.0" text="12345678900987654321123456" textFill="#0000008d" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="41.0">
+                                          <Label layoutX="102.0" layoutY="41.0" prefHeight="30.0" prefWidth="188.0" text="12345678900987654321123456" textFill="#0000008d" AnchorPane.leftAnchor="102.0">
                                              <font>
                                                 <Font name="Times New Roman" size="14.0" />
                                              </font>

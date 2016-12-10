@@ -17,10 +17,10 @@ public interface OrderGenerationService {
     public int[] getRoomInfo(String hotelid, Date checkIn, Date checkOut);
 
     //根据界面得到orderpo     是提供给计算价格的方法
-    public OrderPO getOrder(String userid,String hotelid,Date checkIn,Date checkOut,ArrayList<RoomNormVO> rooms,int roomNums[]);
+    public OrderPO getOrder(String userid,String hotelid,Date checkIn,Date checkOut,RoomNormVO room,int roomNum);
 
     //根据初始orderpo得到优惠后价格完善orderpo
-    public double getDiscounted(String userid, String hotelid, Date checkIn, Date checkOut, ArrayList<RoomNormVO> rooms, int roomNums[]);
+    public double getDiscounted(String userid, String hotelid, Date checkIn, Date checkOut, RoomNormVO room, int roomNum);
 
     //根据界面 生成orderid  得到orderpo
     public void add(OrderPO order);

@@ -14,6 +14,7 @@ public class OrderVO {
     private String userID = null;
     private String userName = null;
     private String hotelID = null;
+    private String hotelName = null;
     private StateOfOrder state = null;
     // 酒店，类型，原始价格
     private RoomNormVO room = null;
@@ -79,7 +80,7 @@ public class OrderVO {
      * @param cancelTime
      * @param cancelAbnormalTime
      */
-    public OrderVO(String orderID, String userID, String userName, String hotelID, StateOfOrder state,
+    public OrderVO(String orderID, String userID, String userName, String hotelID, String hotelName, StateOfOrder state,
                    RoomNormVO room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
                    double originValue, double trueValue, String promotion,
                    String comment, int grade, Date checkIn, Date checkOut, Date hotelDDL,Date generationDate,
@@ -89,6 +90,7 @@ public class OrderVO {
         this.userID = userID;
         this.userName = userName;
         this.hotelID = hotelID;
+        this.hotelName = hotelName;
         this.state = state;
         this.room = room;
         this.roomPrice = roomPrice;
@@ -120,6 +122,9 @@ public class OrderVO {
     }
     public String getHotelID(){
         return hotelID;
+    }
+    public String getHotelName(){
+        return hotelName;
     }
     public StateOfOrder getState(){
         return state;
