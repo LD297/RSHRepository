@@ -34,10 +34,10 @@ public class AbnormalOrder {
         this.orderDao = orderDao;
     }
 
-    public void setCreditRecordList(CreditRecordList re){creditRecordList = re;
+    public void setCreditRecordList(CreditRecordList creditRecordList){this.creditRecordList = creditRecordList;
     }
-    public void setOrder(OrderPO order){
-        orderPO = order;
+    public void setOrder(OrderPO orderPO){
+        this.orderPO = orderPO;
     }
 
 
@@ -55,9 +55,15 @@ public class AbnormalOrder {
         }
         String userID;
         double orderValue;
+        OrderPO orderPO;
         try{
-            userID = orderDao.findByID(orderID).getUserid();
-            orderValue = orderDao.findByID(orderID).getTrueValue();
+            orderPO = orderDao.findByID(orderID);
+            if(orderPO!=null){
+                userID = orderPO.getUserID();
+                orderValue = orderPO.getTrueValue();
+            }
+            else
+                return ResultMessage
         }catch(RemoteException e){
             e.printStackTrace();
             return ResultMessage.fail;
@@ -110,9 +116,9 @@ public class AbnormalOrder {
         double halfOrFull = 1/2;
         if(!IsHalf)
             halfOrFull = 1;
-		CreditRecordVO creditRecordVO = new CreditRecordVO(orderPO.getUserid(),new Date(),orderID,
-                CreditAction.cancel_abnomal,"+"+String.valueOf(orderPO.getTrueValue()*halfOrFull),0);//!!!!credit
-		CreditRecordList creditRecordList = new CreditRecordList(orderPO.getUserid());
+		CreditRecordVO creditRecordVO = new CreditRecordVO(orderPO.getUserID(),new Date(),orderID,
+                CreditAction.cancel_abnomal,"+"+String.valueOf(orderPO.getTrueValue()*halfOrFull),credit);//!!!!credit
+		CreditRecordList creditRecordList = new CreditRecordList(orderPO.getUserID());
         creditRecordList.addCreditRecord(creditRecordVO);
 
         // 记录撤销订单时间、改变订单状态

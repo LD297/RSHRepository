@@ -67,10 +67,17 @@ public class CheckOrder {
 		return orderList;
 	}
 
-	// 提供给酒店的
-	// 返回该用户在酒店的最近订单的状态
-	public StateOfOrder getOrderStateOfUser(String userid, String hotelid){
-		return null;
+    /**
+     * 提供给酒店的
+     * 返回该用户在酒店的最近订单的状态
+     * @param userID
+     * @param hotelID
+     * @return
+     */
+	public StateOfOrder getOrderStateOfUser(String userID, String hotelID){
+		ArrayList<OrderPO> orders = this.specificOrder(userID, hotelID);
+		int size = orders.size();
+		return orders.get(size-1).getState();
 	}
 
 }
