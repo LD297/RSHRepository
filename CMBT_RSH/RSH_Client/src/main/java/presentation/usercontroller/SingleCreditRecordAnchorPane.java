@@ -4,7 +4,9 @@ import constant.CreditAction;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import presentation.tools.ImageFactory;
+import presentation.tools.Locator;
 import presentation.tools.MyDateFormat;
 import vo.CreditRecordVO;
 
@@ -45,6 +47,33 @@ public class SingleCreditRecordAnchorPane extends AnchorPane{
 		}else{
 			orderStateImage.setImage(imageFactory.getOrderExecutedImage());
 		}
+		
+		//设置组件属性
+		weekLabel.setStyle("-fx-text-fill: rgba(0,0,0,0.55)");
+		weekLabel.setFont(Font.font("Times New Roman", 14));
+		dateLabel.setStyle("-fx-text-fill: rgba(0,0,0,0.55)");
+		dateLabel.setFont(Font.font("Times New Roman", 14));
+		orderIDLabel.setStyle("-fx-text-fill: rgba(0,0,0,0.55)");
+		orderIDLabel.setFont(Font.font("Times New Roman", 14));
+		creditActionLabel.setFont(Font.font("Times New Roman", 16));
+		totalCreditLabel.setFont(Font.font("Times New Roman", 16));
+		
+		//添加组件
+		this.getChildren().add(weekLabel);
+		this.getChildren().add(dateLabel);
+		this.getChildren().add(creditActionLabel);
+		this.getChildren().add(orderIDLabel);
+		this.getChildren().add(orderStateImage);
+		this.getChildren().add(totalCreditLabel);
+		
+		//设置组件位置
+		Locator locator = Locator.getLocator();
+		locator.setLocation(weekLabel, 20.0,50.0,14.0,419.0);
+		locator.setLocation(dateLabel, 46.0,20.0,14.0,432.0);
+		locator.setLocation(creditActionLabel, 18.0,48.0,102.0,331.0);
+		locator.setLocation(orderStateImage, 18.0,48.0,176.0,285.0);
+		locator.setLocation(orderIDLabel, 41.0,15.0,102.0,191.0);
+		locator.setLocation(totalCreditLabel, 18.0,48.0,418.0,0.0);
 	}
 
 }
