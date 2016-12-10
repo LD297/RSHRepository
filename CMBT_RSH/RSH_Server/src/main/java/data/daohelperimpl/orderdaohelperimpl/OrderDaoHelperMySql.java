@@ -55,6 +55,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                 String userID = result.getString("userID");
                 String userName = result.getString("userName");
                 String hotelID = result.getString("hotelID");
+                String hotelName = result.getString("hotelName");
 
                 StateOfOrder state = StateOfOrder.values()[result.getInt("state")];
                 int peopleNum = result.getInt("peopleNum");
@@ -86,7 +87,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                         int roomNum = resultRoom.getInt("roomNum");
                         String promo = promotion+"\n"+resultRoom.getString("promotion");
 
-                        OrderPO orderpo = new OrderPO(orderID, userID, userName, hotelID,state,
+                        OrderPO orderpo = new OrderPO(orderID, userID, userName, hotelID,hotelName,state,
                                 roomVO, roomTruePrice, roomNum, peopleNum, withChild,
                                 originValue, trueValue, promo,
                                 comment, grade, checkIn, checkOut,hotelDDL,
@@ -226,7 +227,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         RoomNormVO room = orderPO.getRoom();
         double roomPrice = orderPO.getRoomPrice();
         int roomNumber = orderPO.getRoomNumber();
-        double originValue = orderPO.getOriginvalue();
+        double originValue = orderPO.getOriginValue();
         double trueValue = orderPO.getTrueValue();
         String promotion =  orderPO.getPromotion();
 
@@ -235,8 +236,8 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         int withchild = 0;// right -> child along with
         if (withChild==false)
             withchild = 1;
-        Date checkIn = orderPO.getTime()[0];
-        Date checkOut = orderPO.getTime()[1];
+        Date checkIn = orderPO.getCheckIn();
+        Date checkOut = orderPO.getCheckOut();
         Date bornDate = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         String checkin = sdf.format(checkIn);
@@ -246,7 +247,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
 
         db.executeSql("USE Ourdata");
-        String insertRoomSql = "INSERT INTO OrderRooms VALUES('"+orderID+"','"+room.roomType+"',"
+        String insertRoomSql = "INSERT INTO OrderRooms VALUES('"+orderID+"','"+room.getRoomType()+"',"
                 +String.valueOf(originValue)+","+String.valueOf(trueValue)+","+
                 String.valueOf(roomNumber)+",'"+promotion+"')";
         db.executeSql(insertRoomSql);

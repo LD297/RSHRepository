@@ -3,7 +3,7 @@ package bl.orderserviceimpl;
 import bl.orderservice.OtherOrderService;
 import constant.ResultMessage;
 import constant.StateOfOrder;
-import po.OrderPO;
+import vo.OrderVO;
 
 import java.util.ArrayList;
 
@@ -26,8 +26,8 @@ public class OtherOrderController implements OtherOrderService {
 	}
 
 	// 浏览用户的订单
-	public ArrayList<OrderPO> userBrowse(String userid){
-		return checkOrder.userBrowse(userid);
+	public ArrayList<OrderVO> userClassify(String userID, StateOfOrder state){
+		return checkOrder.userClassify(userID,state);
 	}
 
 	// 用户取消未执行订单
@@ -37,57 +37,52 @@ public class OtherOrderController implements OtherOrderService {
 	}
 
 	// 订单详情
-	public OrderPO detail(String orderid){
-		return checkOrder.detail(orderid);
+	public OrderVO detail(String orderID){
+		return checkOrder.detail(orderID);
 	}
 
 	// 根据酒店得到订单
-	public ArrayList<OrderPO> hotelBrowse(String hotelid){
-		return checkOrder.hotelBrowse(hotelid);
+	public ArrayList<OrderVO> hotelClassify(String hotelID, StateOfOrder state){
+		return checkOrder.hotelClassify(hotelID, state);
 	}
 
 	// 酒店执行订单
-	public ResultMessage execute(String orderid){
-		normalOrder.execute(orderid);
+	public ResultMessage execute(String orderID){
+		normalOrder.execute(orderID);
 		return ResultMessage.succeed;
 	}
 
 	//评价订单
-	public ResultMessage comment(String hotelid, String orderid, double grade,String comment){
-		normalOrder.comment(hotelid,orderid,grade, comment);
+	public ResultMessage comment(String hotelID, String orderID, double grade,String comment){
+		normalOrder.comment(hotelID, orderID, grade, comment);
 		return ResultMessage.succeed;
 	}
 
 	// 酒店手动补登记 改变订单状态 信用值
-	public ResultMessage hotelCancelAbnormal(String orderid){
-		abnormalOrder.hotelCancelAbnormal(orderid);
+	public ResultMessage hotelCancelAbnormal(String orderID){
+		abnormalOrder.hotelCancelAbnormal(orderID);
 		return ResultMessage.succeed;
 	}
 
 	// 用户浏览在该酒店下的所有订单
-	public ArrayList<OrderPO> specificOrder(String userid,String hotelid){
-		return checkOrder.specificOrder(userid, hotelid);
+	public ArrayList<OrderVO> specificOrder(String userID,String hotelID){
+		return checkOrder.specificOrder(userID, hotelID);
 	}
 
 	// 用户离开酒店记录
-	public ResultMessage leaveUpdate(String orderid){
-		normalOrder.leaveUpdate(orderid);
+	public ResultMessage leaveUpdate(String orderID){
+		normalOrder.leaveUpdate(orderID);
 		return ResultMessage.succeed;
 	}
 
-	// 查看所有订单时，可以分类查看
-	// 提供给 用户userbrowse 酒店hotelbrowse
-	public ArrayList<OrderPO> classify(ArrayList<OrderPO> orders,StateOfOrder state){
-		return checkOrder.classify(orders, state);
-	}
 
 	// 网站营销人员查看未执行订单
-	public ArrayList<OrderPO> browseUnperformed(){
+	public ArrayList<OrderVO> browseUnperformed(){
 		return normalOrder.browseUnexecuted();
 	}
 
 	// 网站营销人员撤销异常订单
-	public ArrayList<OrderPO> browseAbnormal(){
+	public ArrayList<OrderVO> browseAbnormal(){
 		return abnormalOrder.browseAbnormal();
 	}
 
@@ -98,7 +93,7 @@ public class OtherOrderController implements OtherOrderService {
 	}
 	// 提供给酒店
 	// 用户在酒店下最新一笔订单的状态
-	public StateOfOrder getOrderStateOfUser(String userid, String hotelid) {
+	public StateOfOrder getOrderStateOfUser(String userID, String hotelID) {
 		return null;
 	}
 

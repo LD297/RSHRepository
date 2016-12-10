@@ -7,7 +7,7 @@ import constant.*;
 import vo.*;
 
 public interface HotelInfoService {
-	//得到某酒店房间规模
+	// 得到某酒店所有房间规模
 	public ArrayList<RoomNormVO> getRoomNorms();
 	
 	// 根据日期 得到某酒店的可用客房数

@@ -3,22 +3,32 @@ package bl.orderservice;
 import constant.ResultMessage;
 import constant.StateOfOrder;
 import po.OrderPO;
+import vo.OrderVO;
 
 import java.util.ArrayList;
 
 public interface OtherOrderService {
 
-	// 用户浏览订单
-	public ArrayList<OrderPO> userBrowse(String userid);
+	/**
+	 * 提供给用户：
+	 *     分类查看订单
+	 *
+	 * PS:查看全部订单时：
+	 *     state设为null
+	 * @param userID
+	 * @param state
+	 * @return
+	 */
+	public ArrayList<OrderVO> userClassify(String userID, StateOfOrder state);
 
 	// 用户取消未执行订单
-	public void cancelMyOrder(String orderid);
+	public void cancelMyOrder(String orderID);
 
 	// 订单详情
-	public OrderPO detail(String orderid);
+	public OrderVO detail(String orderID);
 
-	// 酒店查看订单
-	public ArrayList<OrderPO> hotelBrowse(String hotelid);
+
+	public ArrayList<OrderVO> hotelClassify(String hotelID, StateOfOrder state);
 
 	// 酒店执行订单
 	public ResultMessage execute(String orderid);
@@ -30,20 +40,16 @@ public interface OtherOrderService {
 	public ResultMessage hotelCancelAbnormal(String orderid);
 
 	// 用户浏览在该酒店下的所有订单
-	public ArrayList<OrderPO> specificOrder(String userid,String hotelid);
+	public ArrayList<OrderVO> specificOrder(String userid,String hotelid);
 
 	// 用户离开酒店记录
 	public ResultMessage leaveUpdate(String orderid);
 
-	// 查看所有订单时，可以分类查看
-	// 提供给 用户userbrowse 酒店hotelbrowse
-	public ArrayList<OrderPO> classify(ArrayList<OrderPO> list,StateOfOrder state);
-
 	// 网站营销人员查看未执行订单
-	public ArrayList<OrderPO> browseUnperformed();
+	public ArrayList<OrderVO> browseUnperformed();
 
 	// 网站营销人员撤销异常订单
-	public ArrayList<OrderPO> browseAbnormal();
+	public ArrayList<OrderVO> browseAbnormal();
 
 	// 网站营销人员撤销异常订单
 	public ResultMessage webCancelAbnormal(String orderID,boolean isHalf);

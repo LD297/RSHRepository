@@ -13,15 +13,15 @@ import java.util.Date;
  */
 public interface OrderDao {
     //根据订单编号查找订单
-    public OrderPO findByID(String orderID) throws RemoteException;
+    public OrderPO searchByID(String orderID) throws RemoteException;
     //根据用户编号查找订单
-    public ArrayList<OrderPO> findByUser(String userID) throws RemoteException;
+    public ArrayList<OrderPO> searchByUser(String userID) throws RemoteException;
     //根据用户编号、酒店编号查找订单
-    public ArrayList<OrderPO> findByHotelWithUser(String userID,String hotelID) throws RemoteException;
+    public ArrayList<OrderPO> searchByHotelWithUser(String userID,String hotelID) throws RemoteException;
     //根据酒店编号查找订单
-    public ArrayList<OrderPO> findByHotel(String hotelID) throws RemoteException;
+    public ArrayList<OrderPO> searchByHotel(String hotelID) throws RemoteException;
     //根据状态编号查找订单
-    public ArrayList<OrderPO> findByState(StateOfOrder state) throws RemoteException;
+    public ArrayList<OrderPO> searchByState(StateOfOrder state) throws RemoteException;
     //新建订单
     public ResultMessage insert(OrderPO orderPO) throws RemoteException;
     //删除订单

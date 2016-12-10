@@ -13,51 +13,51 @@ import java.util.Date;
  */
 public class OrderDao_Stub implements OrderDao {
     @Override
-    public OrderPO findByID(String orderid) throws RemoteException {
+    public OrderPO searchByID(String orderID) throws RemoteException {
         return null;
     }
 
     @Override
-    public ArrayList<OrderPO> findByUser(String userid) throws RemoteException {
+    public ArrayList<OrderPO> searchByUser(String userID) throws RemoteException {
         return null;
     }
     @Override
-    public ArrayList<OrderPO> findByHotelWithUser(String userID, String hotelID)throws RemoteException{
-        return null;
-    }
-
-    @Override
-    public ArrayList<OrderPO> findByHotel(String hotelid) throws RemoteException {
+    public ArrayList<OrderPO> searchByHotelWithUser(String userID, String hotelID)throws RemoteException{
         return null;
     }
 
     @Override
-    public ArrayList<OrderPO> findByState(StateOfOrder state) throws RemoteException {
+    public ArrayList<OrderPO> searchByHotel(String hotelID) throws RemoteException {
         return null;
     }
 
     @Override
-    public ResultMessage insert(OrderPO orderpo) throws RemoteException {
+    public ArrayList<OrderPO> searchByState(StateOfOrder state) throws RemoteException {
         return null;
     }
 
     @Override
-    public ResultMessage delete(String orderid) throws RemoteException {
+    public ResultMessage insert(OrderPO orderPO) throws RemoteException {
         return null;
     }
 
     @Override
-    public ResultMessage stateUpdate(String orderid, StateOfOrder newstate) throws RemoteException {
+    public ResultMessage delete(String orderID) throws RemoteException {
         return null;
     }
 
     @Override
-    public ResultMessage commentUpdate(String orderid, double grade, String comment) throws RemoteException {
+    public ResultMessage stateUpdate(String orderID, StateOfOrder newstate) throws RemoteException {
         return null;
     }
 
     @Override
-    public ResultMessage leaveUpdate(String orderid, Date leavetime) throws RemoteException {
+    public ResultMessage commentUpdate(String orderID, double grade, String comment) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public ResultMessage leaveUpdate(String orderID, Date actualCheckOut) throws RemoteException {
         return null;
     }
 

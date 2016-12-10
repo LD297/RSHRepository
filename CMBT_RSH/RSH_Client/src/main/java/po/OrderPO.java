@@ -12,6 +12,7 @@ public class OrderPO implements Serializable{
 	private String userID = null;
 	private String userName = null;
 	private String hotelID = null;
+    private String hotelName = null;
 	private StateOfOrder state = null;
 	// 酒店，类型，原始价格
 	private RoomNormVO room = null;
@@ -52,51 +53,6 @@ public class OrderPO implements Serializable{
 	private Date cancelAbnormalTime = null;
 
 
-	public  String getOrderID(){
-		return orderID;
-	}
-	public String getUserID(){
-		return userID;
-	}
-	public String getHotelID(){
-		return hotelID;
-	}
-	public String getUserName(){
-		return userName;
-	}
-	public StateOfOrder getState(){
-		return state;
-	}
-
-	public RoomNormVO getRoom(){
-		return room;
-	}
-	public int getRoomNumber(){
-		return roomNumber;
-	}
-	public double getRoomPrice(){
-		return roomPrice;
-	}
-	public int getPeopleNumber(){
-		return peopleNumber;
-	}
-	public boolean getWithChild(){
-		return withChild;
-	}
-
-	public double getOriginvalue(){
-		return originValue;
-	}
-	public double getTrueValue(){
-		return trueValue;
-	}
-	public String getPromotion(){
-		return promotion;
-	}
-	public Date[] getTime(){
-		return new Date[]{checkIn,checkOut,actualCheckIn,actualCheckIn,generationDate,cancelTime,cancelAbnormalTime};}
-
-
 	public void setTrueValue(double trueValue){
 		this.trueValue = trueValue;
 	}
@@ -104,7 +60,23 @@ public class OrderPO implements Serializable{
 		this.state = state;
 	}
 
-
+    /**
+     * order调用promotion方法时传递的参数
+     * @param userID
+     * @param hotelID
+     * @param room
+     * @param roomNum
+     * @param checkIn
+     * @param checkOut
+     */
+    public OrderPO(String userID,String hotelID,RoomNormVO room,int roomNum,Date checkIn,Date checkOut){
+        this.userID = userID;
+        this.hotelID = hotelID;
+        this.room = room;
+        this.roomNumber = roomNum;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+    }
 	/**
 	 * 酒店视角
 	 * @param orderID
@@ -169,7 +141,7 @@ public class OrderPO implements Serializable{
 	 * @param cancelTime
 	 * @param cancelAbnormalTime
 	 */
-	public OrderPO(String orderID, String userID, String userName,String hotelID, StateOfOrder state,
+	public OrderPO(String orderID, String userID, String userName,String hotelID, String hotelName,StateOfOrder state,
 				   RoomNormVO room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
 				   double originValue, double trueValue, String promotion,
 				   String comment, int grade, Date checkIn, Date checkOut,Date hotelDDL,Date generationDate,
@@ -179,6 +151,7 @@ public class OrderPO implements Serializable{
 		this.userID = userID;
 		this.userName = userName;
 		this.hotelID = hotelID;
+        this.hotelName = hotelName;
 		this.state = state;
 		this.room = room;
 		this.roomPrice = roomPrice;
@@ -200,4 +173,76 @@ public class OrderPO implements Serializable{
 		this.cancelAbnormalTime = cancelAbnormalTime;
 	}
 
+    public String getOrderID(){
+        return orderID;
+    }
+    public String getUserID(){
+        return userID;
+    }
+    public String getUserName(){
+        return userName;
+    }
+    public String getHotelID(){
+        return hotelID;
+    }
+    public String getHotelName(){
+        return hotelName;
+    }
+    public StateOfOrder getState(){
+        return state;
+    }
+    public RoomNormVO getRoom(){
+        return room;
+    }
+    public double getRoomPrice(){
+        return roomPrice;
+    }
+    public int getRoomNumber(){
+        return roomNumber;
+    }
+    public int getPeopleNumber(){
+        return peopleNumber;
+    }
+    public boolean getWithChild(){
+        return withChild;
+    }
+    public double getOriginValue(){
+        return originValue;
+    }
+    public double getTrueValue(){
+        return trueValue;
+    }
+    public String getPromotion(){
+        return promotion;
+    }
+    public String getComment(){
+        return comment;
+    }
+    public int getGrade(){
+        return grade;
+    }
+    public Date getCheckIn(){
+        return checkIn;
+    }
+    public Date getCheckOut(){
+        return checkOut;
+    }
+    public Date getHotelDDL(){
+        return hotelDDL;
+    }
+    public Date getGenerationDate(){
+        return generationDate;
+    }
+    public Date getActualCheckIn(){
+        return actualCheckIn;
+    }
+    public Date getActualCheckOut(){
+        return actualCheckOut;
+    }
+    public Date getCancelTime(){
+        return cancelTime;
+    }
+    public Date getCancelAbnormalTime(){
+        return cancelAbnormalTime;
+    }
 }
