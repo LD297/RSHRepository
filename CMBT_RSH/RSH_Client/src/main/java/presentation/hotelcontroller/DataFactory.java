@@ -16,7 +16,8 @@ public class DataFactory {
         String orderID = "12345123451234512345123456";
         String userID = "13182811957";
         String userName = "297";
-        String hotelID = "414-2";
+        String hotelID = "1234567891";
+        String hotelName = "414-2";
         StateOfOrder state = StateOfOrder.unexecuted;
         RoomNormVO room = new RoomNormVO("414-2", "其他", 40000.00);
         double roomPrice = 40000;
@@ -36,7 +37,7 @@ public class DataFactory {
         Date actualCheckOut = new Date(2016, 12, 10, 9, 30, 0);
         Date cancelTime = null;
         Date cancelAbnormalTime = null;
-        return new OrderVO(orderID, userID, userName, hotelID,
+        return new OrderVO(orderID, userID, userName, hotelID, hotelName,
                 state, room, roomPrice, roomNumber, peopleNumber,withChild,
                 originValue, trueValue, promotion, comment, grade, checkIn, checkOut,
                 hotelDDL, generationDate, actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);

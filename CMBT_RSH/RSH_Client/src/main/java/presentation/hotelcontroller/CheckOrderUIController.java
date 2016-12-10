@@ -648,19 +648,29 @@ public class CheckOrderUIController {
         this.currentOrderType = currentOrderType;
     }
 
+
+    // TODO 从数据库拿到各种order
     public void setUnexecutedOrder() {
-        // TODO 从数据库拿到各种order
         this.unexecutedOrder = DataFactory.getOrderVOList(5);
+    }
+    public void setExecutedOrder(){
         this.executedOrder = DataFactory.getOrderVOList(4);
+
+    }
+    public void setExceptionalOrder(){
         this.exceptionalOrder = DataFactory.getOrderVOList(3);
+
+    }
+    public void setRevokedOrder(){
         this.revokedOrder = DataFactory.getOrderVOList(2);
     }
 
     @FXML
     void unexecutedTabSelected() {
+        currentPage = 0;
         if(isUnExeSelectable ){
-            setCurrentOrderType(StateOfOrder.unexecuted);
             setUnexecutedOrder();
+            setCurrentOrderType(StateOfOrder.unexecuted);
             currentOrder = unexecutedOrder;
             setfullPageNum();
             setRemainderOrderNum();
@@ -673,6 +683,68 @@ public class CheckOrderUIController {
         isExeSelectable = true;
         isExcSelectable = true;
         isRevoSelectable = true;
+    }
+
+    @FXML
+    void executedTabSelected(){
+        currentPage = 0;
+        if(isExeSelectable){
+            setCurrentOrderType(StateOfOrder.executed);
+            setExecutedOrder();
+            currentOrder = executedOrder;
+            setfullPageNum();
+            setRemainderOrderNum();
+            showPage();
+        }
+        isUnExeSelectable = true;
+        isExeSelectable = false;
+        isExcSelectable = true;
+        isRevoSelectable = true;
+    }
+
+
+    @FXML
+    void exceptionalTabSelected(){
+        currentPage = 0;
+        if(isExcSelectable){
+            setCurrentOrderType(StateOfOrder.abnormal);
+            setExceptionalOrder();
+            currentOrder = exceptionalOrder;
+            setfullPageNum();
+            setRemainderOrderNum();
+            showPage();
+        }
+        isUnExeSelectable = true;
+        isExeSelectable = true;
+        isExcSelectable = false;
+        isRevoSelectable = true;
+    }
+
+    @FXML
+    void revokedTabSelected(){
+        currentPage = 0;
+        if(isRevoSelectable){
+            setCurrentOrderType(StateOfOrder.canceled);
+            setRevokedOrder();
+            currentOrder = revokedOrder;
+            setfullPageNum();
+            setRemainderOrderNum();
+            showPage();
+        }
+
+        isUnExeSelectable = true;
+        isExeSelectable = true;
+        isExcSelectable = true;
+        isRevoSelectable = false;
+    }
+
+
+    private void setRemainderOrderNum() {
+        remainderOrderNum = currentOrder.size()%NUM_OF_ORDERS_SHOWN;
+    }
+
+    private void setfullPageNum() {
+        fullPageNum = currentOrder.size()/NUM_OF_ORDERS_SHOWN;
     }
 
     private void showPage() {
@@ -689,8 +761,54 @@ public class CheckOrderUIController {
             currentPage--;
             return;
         }
-        setAPanesForShow(currentOrderType);
+        setAPanesForShow();
         showOrder();
+    }
+    private void setOrderOnShow(boolean isFullPage) {
+        if(isFullPage)
+            for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
+                /**
+                 * 根据当前页码获得当前页数的orders，并依次存入orderOnShow数组
+                 */
+                orderOnShow[i] = currentOrder.get(currentPage*NUM_OF_ORDERS_SHOWN+i);
+            }
+        else {
+            for(int i=0; i<remainderOrderNum; i++){
+                orderOnShow[i] = currentOrder.get(currentPage*NUM_OF_ORDERS_SHOWN+i);
+            }
+            /**
+             * 为防空指针异常，用null补齐，并在显示时判断
+             */
+            for(int i=remainderOrderNum; i<NUM_OF_ORDERS_SHOWN; i++){
+                orderOnShow[i] = null;
+            }
+        }
+    }
+
+    private void setAPanesForShow(){
+
+        if(currentOrderType.equals(StateOfOrder.unexecuted)){
+            aPanesForShow[0] = unexecutedPane0;
+            aPanesForShow[1] = unexecutedPane1;
+            aPanesForShow[2] = unexecutedPane2;
+        }
+        if(currentOrderType.equals(StateOfOrder.executed)){
+            aPanesForShow[0] = executedPane0;
+            aPanesForShow[1] = executedPane1;
+            aPanesForShow[2] = executedPane2;
+        }
+        if(currentOrderType.equals(StateOfOrder.abnormal)){
+            aPanesForShow[0] = exceptionalPane0;
+            aPanesForShow[1] = exceptionalPane1;
+            aPanesForShow[2] = exceptionalPane2;
+
+        }
+        if(currentOrderType.equals(StateOfOrder.canceled)){
+            aPanesForShow[0] = revokedPane0;
+            aPanesForShow[1] = revokedPane1;
+            aPanesForShow[2] = revokedPane2;
+
+        }
     }
 
     // 显示存放于orderOnShow[]的有限条订单
@@ -707,12 +825,12 @@ public class CheckOrderUIController {
             String userID = theOrder.getUserID();
             String userName = theOrder.getUserName();
             String orderID = theOrder.getOrderID();
-            String roomType = theOrder.getRoom().roomType;
+            String roomType = theOrder.getRoom().getRoomType();
             int roomNum = theOrder.getRoomNumber();
             double trueValue = theOrder.getTrueValue();
-            Date checkIn = new Date(2016, 12, 9, 18, 30, 0);
-            Date checkOut = new Date(2016, 12, 10, 10, 30, 0);
-            Date generationDate = new Date(2016, 11, 9, 18, 30, 0);
+            Date checkIn = theOrder.getCheckIn();
+            Date checkOut = theOrder.getCheckOut();
+            Date generationDate = theOrder.getGenerationDate();
 
             ((Label)theAnchorePane.getChildren().get(0)).setText(userID+"("+userName+")");
             ((Label)theAnchorePane.getChildren().get(1)).setText(orderID);
@@ -725,10 +843,17 @@ public class CheckOrderUIController {
             ((Label)theAnchorePane.getChildren().get(8)).setText(String.valueOf(checkOut.getTime()));
             ((Label)theAnchorePane.getChildren().get(9)).setText("10:00:00");
 
+            if(currentOrderType.equals(StateOfOrder.unexecuted.executed)||currentOrderType.equals(StateOfOrder.unexecuted.canceled)){
+                Date actualCheckIn = theOrder.getActualCheckIn();
+                Date actualCheckOut = theOrder.getActualCheckOut();
+                ((Label)theAnchorePane.getChildren().get(10)).setText(String.valueOf(actualCheckIn.getTime()));
+                ((Label)theAnchorePane.getChildren().get(11)).setText("19:20:30");
+                ((Label)theAnchorePane.getChildren().get(12)).setText(String.valueOf(actualCheckOut.getTime()));
+                ((Label)theAnchorePane.getChildren().get(13)).setText("10:22:19");
+            }
         } else {
             showBlank(theAnchorePane);
         }
-
     }
 
     private void showBlank(AnchorPane theAnchorePane) {
@@ -745,93 +870,6 @@ public class CheckOrderUIController {
         }
     }
 
-    private void setOrderOnShow(boolean isFullPage) {
-        if(isFullPage)
-            for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
-                /**
-                 * 根据当前页码获得当前页数的orders，并依次存入orderOnShow数组
-                 */
-                orderOnShow[i] = currentOrder.get(currentPage*NUM_OF_ORDERS_SHOWN+i);
-             }
-        else {
-            for(int i=0; i<remainderOrderNum; i++){
-                orderOnShow[i] = currentOrder.get(currentPage*NUM_OF_ORDERS_SHOWN+i);
-            }
-            /**
-             * 为防空指针异常，用null补齐，并在显示时判断
-             */
-            for(int i=remainderOrderNum; i<NUM_OF_ORDERS_SHOWN; i++){
-                orderOnShow[i] = null;
-            }
-        }
-
-    }
-
-    private void setAPanesForShow(StateOfOrder stateOfOrder){
-
-        if(stateOfOrder.equals(StateOfOrder.unexecuted)){
-            aPanesForShow[0] = unexecutedPane0;
-            aPanesForShow[1] = unexecutedPane1;
-            aPanesForShow[2] = unexecutedPane2;
-        }
-        if(stateOfOrder.equals(StateOfOrder.executed)){
-            aPanesForShow[0] = executedPane0;
-            aPanesForShow[1] = executedPane1;
-            aPanesForShow[2] = executedPane2;
-        }
-        if(stateOfOrder.equals(StateOfOrder.abnormal)){
-            aPanesForShow[0] = exceptionalPane0;
-            aPanesForShow[1] = exceptionalPane1;
-            aPanesForShow[2] = exceptionalPane2;
-
-        }
-        if(stateOfOrder.equals(StateOfOrder.canceled)){
-            aPanesForShow[0] = revokedPane0;
-            aPanesForShow[1] = revokedPane1;
-            aPanesForShow[2] = revokedPane2;
-
-        }
-    }
-
-    private void setRemainderOrderNum() {
-        remainderOrderNum = currentOrder.size()%NUM_OF_ORDERS_SHOWN;
-    }
-
-    private void setfullPageNum() {
-        fullPageNum = currentOrder.size()/NUM_OF_ORDERS_SHOWN;
-    }
-
-    @FXML
-    void executedTabSelected(){
-        if(isExeSelectable)
-
-        isUnExeSelectable = true;
-        isExeSelectable = false;
-        isExcSelectable = true;
-        isRevoSelectable = true;
-    }
-
-    @FXML
-    void exceptionalTabSelected(){
-        if(isExcSelectable)
-
-        isUnExeSelectable = true;
-        isExeSelectable = true;
-        isExcSelectable = false;
-        isRevoSelectable = true;
-    }
-
-    @FXML
-    void revokedTabSelected(){
-        if(isRevoSelectable)
-
-        isUnExeSelectable = true;
-        isExeSelectable = true;
-        isExcSelectable = true;
-        isRevoSelectable = false;
-
-    }
-
     @FXML
     void executeButton0Clicked(MouseEvent event) {
 
@@ -844,8 +882,10 @@ public class CheckOrderUIController {
 
     @FXML
     void nextPageLabelClicked(MouseEvent event) {
+        System.out.println(currentPage);
         currentPage++;
         showPage();
+        System.out.println(currentPage);
 
 
     }
@@ -855,6 +895,7 @@ public class CheckOrderUIController {
         initAPanesForShow();
         currentPage--;
         showPage();
+        System.out.println(currentPage);
     }
 
 
