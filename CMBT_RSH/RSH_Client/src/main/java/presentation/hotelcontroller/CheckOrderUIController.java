@@ -1,11 +1,13 @@
 package presentation.hotelcontroller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 import constant.StateOfOrder;
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -26,6 +28,12 @@ public class CheckOrderUIController {
 
     @FXML
     private URL location;
+
+    @FXML
+    private ImageView editImageView;
+
+    @FXML
+    private Button confirmButton;
 
     @FXML
     private Label oderNumberLabel01;
@@ -597,6 +605,10 @@ public class CheckOrderUIController {
     @FXML
     private TabPane tabPane;
 
+    @FXML
+    private Label pageNumberLabel;
+
+
     private AnchorPane prePane;
     /**
      * 未执行订单的tab可选吗？
@@ -624,17 +636,19 @@ public class CheckOrderUIController {
     private static final int NUM_OF_ORDERS_SHOWN = 3;
     // 指向当前类型（tab）对应的的订单数组
     private ArrayList<OrderVO> currentOrder;
-    StateOfOrder currentOrderType = null;
+    private StateOfOrder currentOrderType = null;
     // 存放当前页面显示的有限条订单
     private OrderVO[] orderOnShow = new OrderVO[NUM_OF_ORDERS_SHOWN];
     // 用于当前页面显示的有限个anchorPane
-    AnchorPane[] aPanesForShow = new AnchorPane[NUM_OF_ORDERS_SHOWN];
+    private AnchorPane[] aPanesForShow = new AnchorPane[NUM_OF_ORDERS_SHOWN];
     // 当前类型（tab）对应的订单共几页
-    int fullPageNum;
+    private int fullPageNum;
     // 最后剩下不满一页的订单有几条
-    int remainderOrderNum;
+    private int remainderOrderNum;
     // TODO 当前页数，从0开始计，但显示出来要加一
-    int currentPage=0;
+    private int currentPage=0;
+
+    private boolean isEditable = false;
 
     public void setAnchorPane(AnchorPane anchorPane) {
         this.anchorPane = anchorPane;
@@ -667,7 +681,7 @@ public class CheckOrderUIController {
 
     @FXML
     void unexecutedTabSelected() {
-        currentPage = 0;
+        initUnexecutedInterface();
         if(isUnExeSelectable ){
             setUnexecutedOrder();
             setCurrentOrderType(StateOfOrder.unexecuted);
@@ -687,7 +701,7 @@ public class CheckOrderUIController {
 
     @FXML
     void executedTabSelected(){
-        currentPage = 0;
+        initExecutedInterface();
         if(isExeSelectable){
             setCurrentOrderType(StateOfOrder.executed);
             setExecutedOrder();
@@ -705,7 +719,7 @@ public class CheckOrderUIController {
 
     @FXML
     void exceptionalTabSelected(){
-        currentPage = 0;
+        initExceptionalInterface();
         if(isExcSelectable){
             setCurrentOrderType(StateOfOrder.abnormal);
             setExceptionalOrder();
@@ -722,7 +736,7 @@ public class CheckOrderUIController {
 
     @FXML
     void revokedTabSelected(){
-        currentPage = 0;
+        initRevokedInterface();
         if(isRevoSelectable){
             setCurrentOrderType(StateOfOrder.canceled);
             setRevokedOrder();
@@ -739,6 +753,61 @@ public class CheckOrderUIController {
     }
 
 
+    private void initUnexecutedInterface(){
+        initCurrentPage();
+        editImageView.setVisible(true);
+        confirmButton.setVisible(true);
+        refreshTabPane(new AnchorPane[]{unexecutedPane0, unexecutedPane1, unexecutedPane2});
+    }
+
+    private void initExecutedInterface(){
+        initCurrentPage();
+        editImageView.setVisible(true);
+        confirmButton.setVisible(true);
+        refreshExecutedTabPane();
+    }
+
+    private void initExceptionalInterface(){
+        initCurrentPage();
+        editImageView.setVisible(true);
+        confirmButton.setVisible(true);
+        refreshTabPane(new AnchorPane[]{exceptionalPane0, exceptionalPane1, exceptionalPane2});
+    }
+
+    private void initRevokedInterface(){
+        initCurrentPage();
+        editImageView.setVisible(false);
+        confirmButton.setVisible(false);
+    }
+
+    // 每次更换tab回到开始页
+    private void initCurrentPage() {
+        currentPage = 0;
+    }
+
+    private void refreshTabPane(AnchorPane[] panesToRefresh){
+        for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
+            DatePicker actualInDate = (DatePicker)panesToRefresh[i].getChildren().get(20);
+            TextField  actualInTime = (TextField) panesToRefresh[i].getChildren().get(21);
+            DatePicker actualOutDate = (DatePicker)panesToRefresh[i].getChildren().get(23);
+            TextField actualOutTime = (TextField) panesToRefresh[i].getChildren().get(24);
+            actualInDate.setValue(null);
+            actualInTime.setText("");
+            actualOutDate.setValue(null);
+            actualOutTime.setText("");
+        }
+    }
+
+    private void refreshExecutedTabPane(){
+        AnchorPane[] panesToRefresh = new AnchorPane[]{executedPane0, executedPane1, executedPane2};
+        for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
+            Label actualOutDate = (Label) panesToRefresh[i].getChildren().get(12);
+            Label actualOutTime = (Label) panesToRefresh[i].getChildren().get(13);
+            actualOutDate.setText("");
+            actualOutTime.setText("");
+        }
+    }
+
     private void setRemainderOrderNum() {
         remainderOrderNum = currentOrder.size()%NUM_OF_ORDERS_SHOWN;
     }
@@ -748,6 +817,7 @@ public class CheckOrderUIController {
     }
 
     private void showPage() {
+        // 流程：set当前页面要显示的order-> set要显示的anchorPanes->初始化容器（组件透明度）->显示order
         if(currentPage>=0&&currentPage<fullPageNum)
             setOrderOnShow(true);
         else if((remainderOrderNum!=0)&&(currentPage==fullPageNum))
@@ -755,15 +825,29 @@ public class CheckOrderUIController {
         else if(currentPage<0){
             System.out.println("已是第一页！");
             currentPage++;
-            return;
+            // 由于在按下prePane时调用initAPanesForShow()来恢复透明度（变成0），
+            // 所以若第一页就缺省，应将缺省的anchorPane透明度再设为1－>按正常翻页重新显示
+            if(fullPageNum!=0){
+                showPageNumber();
+                return;
+            }
         } else {
             System.out.println("已是最后一页！");
             currentPage--;
+            showPageNumber();
             return;
         }
         setAPanesForShow();
+        initAPanesForShow();
         showOrder();
+        showPageNumber();
     }
+
+    private void showPageNumber() {
+        if(pageNumberLabel!=null)
+            pageNumberLabel.setText(String.valueOf(currentPage+1));
+    }
+
     private void setOrderOnShow(boolean isFullPage) {
         if(isFullPage)
             for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
@@ -863,16 +947,61 @@ public class CheckOrderUIController {
 
     // 初始化showBlankLabel透明度为零
     private void initAPanesForShow() {
-        int size = 0;
-        for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
-            size = aPanesForShow[i].getChildren().size();
-            aPanesForShow[i].getChildren().get(size-1).setOpacity(0);
+        if(aPanesForShow!=null){
+            int size = 0;
+            for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
+                size = aPanesForShow[i].getChildren().size();
+                aPanesForShow[i].getChildren().get(size-1).setOpacity(0);
+            }
+        }
+    }
+
+    @FXML
+    void changeToEditable(MouseEvent event){
+        isEditable = true;
+        // 将透明度为0的label设为不可见，组件可编辑
+        setSkinVisibility();
+    }
+
+    private void setSkinVisibility(){
+        if(aPanesForShow!=null){
+            int size = 0;
+            for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
+                size = aPanesForShow[i].getChildren().size();
+                Label skin= (Label)aPanesForShow[i].getChildren().get(size-1);
+                if(skin.getOpacity()==0)
+                    skin.setVisible(false);
+            }
+        }
+    }
+
+    private void resetSkinVisibility(){
+        if(aPanesForShow!=null){
+            int size = 0;
+            for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
+                size = aPanesForShow[i].getChildren().size();
+                Label skin = (Label)aPanesForShow[i].getChildren().get(size-1);
+                if(skin.isVisible()==false)
+                    skin.setVisible(true);
+            }
         }
     }
 
     @FXML
     void executeButton0Clicked(MouseEvent event) {
+        // update 一条订单状态
+        String orderid = oderNumberLabel0.getText();
+        LocalDate actualCheckinDate = actualCheckinDate0.getc;
+        String actualCheckinTime = actualCheckinTimeLabel0.getText();
+        LocalDate actualCheckoutDate = actualCheckoutDate0.getValue();
+        String actualCheckoutTime = actualCheckoutTimeLabel0.getText();
 
+    }
+
+    @FXML
+    void confirmButtonClicked(MouseEvent event){
+        isEditable = false;
+        resetSkinVisibility();
     }
 
     @FXML
@@ -882,25 +1011,35 @@ public class CheckOrderUIController {
 
     @FXML
     void nextPageLabelClicked(MouseEvent event) {
-        System.out.println(currentPage);
+        if(isEditable){
+            // TODO 提示确认丢失当页数据
+            refreshPage();
+            resetSkinVisibility();
+            isEditable = false;
+        }
         currentPage++;
         showPage();
-        System.out.println(currentPage);
-
-
     }
 
     @FXML
     void prePageLabelClicked(MouseEvent event) {
-        initAPanesForShow();
+        if(isEditable){
+            // TODO 提示确认丢失当页数据
+            refreshPage();
+            resetSkinVisibility();
+            isEditable = false;
+        }
         currentPage--;
         showPage();
-        System.out.println(currentPage);
     }
 
-
-
-
+    private void refreshPage(){
+        if(currentOrderType.equals(StateOfOrder.unexecuted)
+                ||currentOrderType.equals(StateOfOrder.abnormal))
+            refreshTabPane(aPanesForShow);
+        else if(currentOrderType.equals(StateOfOrder.executed))
+            refreshExecutedTabPane();
+    }
 
     @FXML
     void initialize() {
@@ -1094,5 +1233,8 @@ public class CheckOrderUIController {
         assert expectedCheckoutDateLabel21 != null : "fx:id=\"expectedCheckoutDateLabel21\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
         assert roomNumLabel21 != null : "fx:id=\"roomNumLabel21\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
         assert tabPane != null : "fx:id=\"tabPane\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
+        assert pageNumberLabel != null : "fx:id=\"pageNumberLabel\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
+        assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
+        assert editImageView != null : "fx:id=\"editImageView\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
     }
 }
