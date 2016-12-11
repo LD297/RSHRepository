@@ -1,9 +1,9 @@
 package bl.orderserviceimpl;
 
+import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.CommentImpl;
 import bl.hotelserviceimpl.HotelController;
 import bl.orderservice.CommentService;
-import bl.orderservice.HotelInfoService;
 import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
 import constant.StateOfOrder;
@@ -21,14 +21,14 @@ import java.util.Date;
  * Created by sky-PC on 2016/11/27.
  */
 public class NormalOrder {
-    HotelInfoService hotelInfoService;
+    HotelService hotelService;
     OrderDao orderDao;
 
     CommentService commentService ;
     CreditRecordList creditRecordList;
 
-    public void setHotelInfoService(HotelInfoService hotelInfoService) {
-        this.hotelInfoService = hotelInfoService;
+    public void setHotelInfoService(HotelService hotelInfoService) {
+        this.hotelService = hotelService;
     }
 
     public void setOrderDao(OrderDao orderDao) {
@@ -58,11 +58,11 @@ public class NormalOrder {
         Date checkIn = orderpo.getCheckIn();
         Date checkOut = orderpo.getCheckOut();
 
-        hotelInfoService = new HotelController(orderpo.getHotelID());
-        String time = hotelInfoService.getCheckInDDL(orderpo.getHotelID());
+        hotelService = new HotelController(orderpo.getHotelID());
+        String time = hotelService.getCheckInDDL(orderpo.getHotelID());
 
 
-        hotelInfoService.changeRoomAvail(room.getRoomType(), false,roomNum,checkIn,checkOut);
+        hotelService.minusRoomAvail(room.getRoomType(),roomNum,checkIn,checkOut);
 
         int day = checkIn.getDay();
         int hour = Integer.valueOf(time.substring(0, 2));
@@ -94,9 +94,9 @@ public class NormalOrder {
     }
 
     // 用户评价订单
-    public ResultMessage comment(String hotelID, String orderID, double grade, String comment){
+    public ResultMessage addComment(String orderID, double grade, String comment){
         commentService = new CommentImpl();
-        ResultMessage a = commentService.addComment(hotelID, orderID, comment);
+        ResultMessage a = commentService.addComment(orderID.substring(0,10), orderID, comment);
         ResultMessage b = commentService.updateGrade(grade);
 
         if(a.equals(b)&&a.equals(ResultMessage.succeed))
@@ -113,7 +113,7 @@ public class NormalOrder {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        String time = hotelInfoService.getCheckInDDL(orderID.substring(10, 20));
+        String time = hotelService.getCheckInDDL(orderID.substring(10, 20));
         int hour = Integer.valueOf(time.substring(0, 2));
         int minute = Integer.valueOf(time.substring(3));
 
@@ -142,47 +142,12 @@ public class NormalOrder {
         try{
             ArrayList<OrderPO> orders = orderDao.searchByState(StateOfOrder.unexecuted);
             for(int i=0;i<orders.size();i++)
-                selectedList.add(this.transformPOToVO(orders.get(i)));
+                selectedList.add(orders.get(i).transformPOToVO());
             return selectedList;
         }catch (RemoteException e){
             e.printStackTrace();
             return null;
         }
     }
-    // 完成从PO到VO的操作
-    private OrderVO transformPOToVO(OrderPO orderPO){
-        String orderID = orderPO.getOrderID();
-        String userID = orderPO.getUserID();
-        String userName = orderPO.getUserName();
-        String hotelID = orderPO.getHotelID();
-        String hotelName = orderPO.getHotelName();
-        StateOfOrder state = orderPO.getState();
-        RoomNormVO room = orderPO.getRoom();
-        int roomNumber = orderPO.getRoomNumber();
-        double roomPrice = orderPO.getRoomPrice();
-        int peopleNumber = orderPO.getPeopleNumber();
-        boolean withChild = orderPO.getWithChild();
 
-        double originValue = orderPO.getOriginValue();
-        double trueValue = orderPO.getTrueValue();
-        String promotion =  orderPO.getPromotion();
-        String comment = orderPO.getComment();
-        int grade = orderPO.getGrade();
-
-        Date checkIn = orderPO.getCheckIn();
-        Date checkOut = orderPO.getCheckOut();
-        Date hotelDDL = orderPO.getHotelDDL();
-        Date generationDate = orderPO.getGenerationDate();
-        Date actualCheckIn = orderPO.getActualCheckIn();
-        Date actualCheckOut = orderPO.getActualCheckOut();
-        Date cancelTime = orderPO.getCancelTime();
-        Date cancelAbnormalTime = orderPO.getCancelAbnormalTime();
-
-        OrderVO orderVO = new OrderVO(orderID, userID, userName, hotelID, hotelName, state,
-                room, roomPrice, roomNumber, peopleNumber, withChild,
-                originValue, trueValue, promotion,
-                comment, grade, checkIn, checkOut, hotelDDL, generationDate,
-                actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);
-        return orderVO;
-    }
 }
