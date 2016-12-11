@@ -36,7 +36,7 @@ public class OrderVO {
      */
     private Date checkIn = null;
     private Date checkOut = null;
-    private Date hotelDDL = null;
+    private String hotelDDL = null;
     /**
      * 订单生成日期（界面暂时不显示时间，但可以保存以备需求变更）
      */
@@ -83,7 +83,7 @@ public class OrderVO {
     public OrderVO(String orderID, String userID, String userName, String hotelID,String hotelName, StateOfOrder state,
                    RoomNormVO room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
                    double originValue, double trueValue, String promotion,
-                   String comment, int grade, Date checkIn, Date checkOut, Date hotelDDL,Date generationDate,
+                   String comment, int grade, Date checkIn, Date checkOut, String hotelDDL,Date generationDate,
                    Date actualCheckIn, Date actualCheckOut, Date cancelTime, Date cancelAbnormalTime){
 
         this.orderID = orderID;
@@ -165,7 +165,7 @@ public class OrderVO {
     public Date getCheckOut(){
         return checkOut;
     }
-    public Date getHotelDDL(){
+    public String getHotelDDL(){
         return hotelDDL;
     }
     public Date getGenerationDate(){

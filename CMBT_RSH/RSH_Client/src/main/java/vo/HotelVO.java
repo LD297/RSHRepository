@@ -35,6 +35,10 @@ public class HotelVO {
 	 */
 	public double grade;
 	/**
+	 * 标准间价格（酒店价格排序标准）
+	 */
+	public double standardRoomPrice;
+	/**
 	 * 最晚入住时间
 	 */
 	public String latestCheckinTime;
@@ -67,7 +71,7 @@ public class HotelVO {
 	}
 
 	/**
-	 * 根据po封装一个不含密码信息的po
+	 * 根据po封装一个不含密码信息的vo
 	 * @param hotelPO
 	 * @return
 	 */
@@ -81,6 +85,7 @@ public class HotelVO {
 		hotelVO.facility = hotelPO.getFacility();
 		hotelVO.level = hotelPO.getLevel();
 		hotelVO.grade = hotelPO.getGrade();
+		hotelVO.standardRoomPrice= hotelPO.getStandardRoomPrice();
 		hotelVO.latestCheckinTime = hotelPO.getLatestCheckinTime();
 		return hotelVO;
 	}

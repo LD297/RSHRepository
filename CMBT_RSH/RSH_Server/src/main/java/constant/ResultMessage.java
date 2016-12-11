@@ -6,5 +6,6 @@ public enum ResultMessage {
 	emptyComment,
 	idAlreadyExist,
 	idNotExist,
-	timeOut
+	timeOut,
+	noChangeMade;
 }

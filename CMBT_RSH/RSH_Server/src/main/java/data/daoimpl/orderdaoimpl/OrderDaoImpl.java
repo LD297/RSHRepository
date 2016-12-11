@@ -46,44 +46,55 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao{
         }
         return orderDaoImpl;
     }
-    public OrderPO find(String orderid) throws RemoteException{
-        return orderDaoHelper.find(orderid);
+    public OrderPO searchByID(String orderID) throws RemoteException{
+        return orderDaoHelper.searchByID(orderID);
     }
     //根据用户编号查找订单
-    public ArrayList<OrderPO> userFind(String userid) throws RemoteException{
-        return orderDaoHelper.userFind(userid);
+    public ArrayList<OrderPO> searchByUser(String userID) throws RemoteException{
+        return orderDaoHelper.searchByUser(userID);
     }
+    // 根据用户编号、酒店编号查找订单
+    public ArrayList<OrderPO> searchByHotelWithUser(String userID,String hotelID) throws RemoteException{
+        return orderDaoHelper.searchByHotelWithUser(userID, hotelID);
+    }
+
     //根据酒店编号查找订单
-    public ArrayList<OrderPO> hotelFind(String hotelid) throws RemoteException{
-        return orderDaoHelper.hotelFind(hotelid);
+    public ArrayList<OrderPO> searchByHotel(String hotelID) throws RemoteException{
+        return orderDaoHelper.searchByHotel(hotelID);
     }
     //根据状态编号查找订单
-    public ArrayList<OrderPO> stateFind(StateOfOrder state) throws RemoteException{
-        return orderDaoHelper.stateFind(state);
+    public ArrayList<OrderPO> searchByState(StateOfOrder state) throws RemoteException{
+        return orderDaoHelper.searchByState(state);
     }
     //新建订单
-    public ResultMessage insert(OrderPO orderpo) throws RemoteException{
-        return orderDaoHelper.insert(orderpo);
+    public ResultMessage insert(OrderPO orderPO) throws RemoteException{
+        return orderDaoHelper.insert(orderPO);
     }
-    //删除订单
-/*    public ResultMessage delete(String orderid) throws RemoteException{
-        return null;
-    };*/
+
     //订单状态更新
-    public ResultMessage stateUpdate(String orderid,StateOfOrder newstate) throws RemoteException{
-        return orderDaoHelper.stateUpdate(orderid,newstate);
+    public ResultMessage stateUpdate(String orderID,StateOfOrder newState) throws RemoteException{
+        return orderDaoHelper.stateUpdate(orderID,newState);
     }
     //评价订单
     public ResultMessage commentUpdate(String orderid, int grade, String comment) throws RemoteException{
         return orderDaoHelper.commentUpdate(orderid,grade,comment);
     }
-    //订单实际离开时间更新
-    public ResultMessage leaveUpdate(String orderid,Date leavetime) throws RemoteException{
-        return orderDaoHelper.leaveUpdate(orderid,leavetime);
+    // 订单实际入住时间更新
+    public ResultMessage actCheckInUpdate(String orderID, Date actCheckIn) throws RemoteException{
+        return orderDaoHelper.actCheckInUpdate(orderID, actCheckIn);
+    }
+    // 订单实际离开时间更新
+    public ResultMessage actCheckOutUpdate(String orderID, Date actCheckOut) throws RemoteException{
+        return orderDaoHelper.actCheckOutUpdate(orderID, actCheckOut);
+    }
+    // 订单撤销时间更新
+    public ResultMessage cancelTimeUpdate(String orderID, Date cancelTime) throws RemoteException{
+        return orderDaoHelper.cancelTimeUpdate(orderID, cancelTime);
+    }
+    // 订单撤销异常时间更新
+    public ResultMessage cancelAbTimeUpdate(String orderID, Date cancelAbTime) throws RemoteException{
+        return orderDaoHelper.cancelAbTimeUpdate(orderID, cancelAbTime);
     }
 
-    public void init() throws RemoteException{};
-
-    public void finish() throws RemoteException{};
 
 }

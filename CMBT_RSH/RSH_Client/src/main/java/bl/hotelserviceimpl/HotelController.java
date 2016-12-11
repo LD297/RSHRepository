@@ -1,7 +1,6 @@
 package bl.hotelserviceimpl;
 
 import bl.hotelservice.HotelService;
-import bl.orderservice.HotelInfoService;
 import constant.ResultMessage;
 import vo.HotelVO;
 import vo.RoomAvailVO;

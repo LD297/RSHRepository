@@ -18,7 +18,6 @@ public class CheckOrder {
 		this.orderDao = orderDao;
 	}
 
-
     /**
      * 显示订单详情
      * @param orderID
@@ -26,7 +25,7 @@ public class CheckOrder {
      */
 	public OrderVO detail(String orderID){
 		try{
-			return this.transformPOToVO(orderDao.searchByID(orderID));
+			return orderDao.searchByID(orderID).transformPOToVO();
 		}catch(RemoteException e){
 			e.printStackTrace();
 			return null;
@@ -50,8 +49,7 @@ public class CheckOrder {
         }
         ArrayList<OrderVO> selectedList = new ArrayList<OrderVO>();
         for(int i=0;i<orders.size();i++){
-            OrderVO orderVO = this.transformPOToVO(orders.get(i));
-            selectedList.add(orderVO);
+            selectedList.add(orders.get(i).transformPOToVO());
         }
 		return selectedList;
 	}
@@ -103,58 +101,20 @@ public class CheckOrder {
         }
 	}
 
-
-	// 完成从PO到VO的操作
-	private OrderVO transformPOToVO(OrderPO orderPO){
-        String orderID = orderPO.getOrderID();
-        String userID = orderPO.getUserID();
-        String userName = orderPO.getUserName();
-        String hotelID = orderPO.getHotelID();
-        String hotelName = orderPO.getHotelName();
-        StateOfOrder state = orderPO.getState();
-        RoomNormVO room = orderPO.getRoom();
-        int roomNumber = orderPO.getRoomNumber();
-        double roomPrice = orderPO.getRoomPrice();
-        int peopleNumber = orderPO.getPeopleNumber();
-        boolean withChild = orderPO.getWithChild();
-
-        double originValue = orderPO.getOriginValue();
-        double trueValue = orderPO.getTrueValue();
-        String promotion =  orderPO.getPromotion();
-        String comment = orderPO.getComment();
-        int grade = orderPO.getGrade();
-
-        Date checkIn = orderPO.getCheckIn();
-        Date checkOut = orderPO.getCheckOut();
-        Date hotelDDL = orderPO.getHotelDDL();
-        Date generationDate = orderPO.getGenerationDate();
-        Date actualCheckIn = orderPO.getActualCheckIn();
-        Date actualCheckOut = orderPO.getActualCheckOut();
-        Date cancelTime = orderPO.getCancelTime();
-        Date cancelAbnormalTime = orderPO.getCancelAbnormalTime();
-
-        OrderVO orderVO = new OrderVO(orderID, userID, userName, hotelID, hotelName, state,
-                room, roomPrice, roomNumber, peopleNumber, withChild,
-                originValue, trueValue, promotion,
-                comment, grade, checkIn, checkOut, hotelDDL, generationDate,
-                actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);
-        return orderVO;
-    }
     // 根据订单状态选择符合条件订单
     private ArrayList<OrderVO> classify(ArrayList<OrderPO> orders, StateOfOrder state){
         ArrayList<OrderVO> selectedList = new ArrayList<OrderVO>();
 
         if(state==null){
             for(int i=0;i<orders.size();i++){
-                OrderVO orderVO = this.transformPOToVO(orders.get(i));
-                selectedList.add(orderVO);
+                selectedList.add(orders.get(i).transformPOToVO());
             }
             return selectedList;
         }
         else{
             for(int i=0;i<orders.size();i++)
                 if(orders.get(i).getState()==state)
-                    selectedList.add(this.transformPOToVO(orders.get(i)));
+                    selectedList.add(orders.get(i).transformPOToVO());
             return selectedList;
         }
     }

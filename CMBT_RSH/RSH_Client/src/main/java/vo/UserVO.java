@@ -11,6 +11,7 @@ public class UserVO {
 	public String nickName;
 	public String imageAddress;
 	public LocalDate birthday;
+	// 根据信用记录变化实时更新会员等级
 	public int level;
 	public MemberType memberType;
 	public String name;

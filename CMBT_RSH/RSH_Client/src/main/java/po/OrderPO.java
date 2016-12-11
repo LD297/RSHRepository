@@ -1,12 +1,14 @@
 package po;
 
 import constant.StateOfOrder;
+import vo.OrderVO;
 import vo.RoomNormVO;
 
 import java.io.Serializable;
 import java.util.Date;
 
 public class OrderPO implements Serializable{
+	OrderPO orderPO;
 	// 注：一笔订单允许一种房间类型
 	private String orderID = null;
 	private String userID = null;
@@ -34,7 +36,7 @@ public class OrderPO implements Serializable{
 	 */
 	private Date checkIn = null;
 	private Date checkOut = null;
-	private Date hotelDDL = null;
+	private String hotelDDL = null;
 	/**
 	 * 订单生成日期（界面暂时不显示时间，但可以保存以备需求变更）
 	 */
@@ -144,7 +146,7 @@ public class OrderPO implements Serializable{
 	public OrderPO(String orderID, String userID, String userName,String hotelID, String hotelName,StateOfOrder state,
 				   RoomNormVO room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
 				   double originValue, double trueValue, String promotion,
-				   String comment, int grade, Date checkIn, Date checkOut,Date hotelDDL,Date generationDate,
+				   String comment, int grade, Date checkIn, Date checkOut,String hotelDDL,Date generationDate,
 				   Date actualCheckIn, Date actualCheckOut, Date cancelTime, Date cancelAbnormalTime){
 
 		this.orderID = orderID;
@@ -227,7 +229,7 @@ public class OrderPO implements Serializable{
     public Date getCheckOut(){
         return checkOut;
     }
-    public Date getHotelDDL(){
+    public String getHotelDDL(){
         return hotelDDL;
     }
     public Date getGenerationDate(){
@@ -245,4 +247,41 @@ public class OrderPO implements Serializable{
     public Date getCancelAbnormalTime(){
         return cancelAbnormalTime;
     }
+
+	// 完成从PO到VO的操作
+	public OrderVO transformPOToVO(){
+		String orderID = orderPO.getOrderID();
+		String userID = orderPO.getUserID();
+		String userName = orderPO.getUserName();
+		String hotelID = orderPO.getHotelID();
+		String hotelName = orderPO.getHotelName();
+		StateOfOrder state = orderPO.getState();
+		RoomNormVO room = orderPO.getRoom();
+		int roomNumber = orderPO.getRoomNumber();
+		double roomPrice = orderPO.getRoomPrice();
+		int peopleNumber = orderPO.getPeopleNumber();
+		boolean withChild = orderPO.getWithChild();
+
+		double originValue = orderPO.getOriginValue();
+		double trueValue = orderPO.getTrueValue();
+		String promotion =  orderPO.getPromotion();
+		String comment = orderPO.getComment();
+		int grade = orderPO.getGrade();
+
+		Date checkIn = orderPO.getCheckIn();
+		Date checkOut = orderPO.getCheckOut();
+		String hotelDDL = orderPO.getHotelDDL();
+		Date generationDate = orderPO.getGenerationDate();
+		Date actualCheckIn = orderPO.getActualCheckIn();
+		Date actualCheckOut = orderPO.getActualCheckOut();
+		Date cancelTime = orderPO.getCancelTime();
+		Date cancelAbnormalTime = orderPO.getCancelAbnormalTime();
+
+		OrderVO orderVO = new OrderVO(orderID, userID, userName, hotelID, hotelName, state,
+				room, roomPrice, roomNumber, peopleNumber, withChild,
+				originValue, trueValue, promotion,
+				comment, grade, checkIn, checkOut, hotelDDL, generationDate,
+				actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);
+		return orderVO;
+	}
 }

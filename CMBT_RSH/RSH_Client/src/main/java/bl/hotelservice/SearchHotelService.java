@@ -8,15 +8,41 @@ import vo.SelectConditionVO;
 import java.util.ArrayList;
 
 public interface SearchHotelService {
-	
-	// 返回符合该地址和商圈的经过综合排序的酒店列表
+
+	/**
+	 * 返回符合该地址和商圈的经过综合排序的酒店列表
+	 * 综合排序：评分从高到低
+	 * @param address
+	 * @param businessArea
+	 * @return
+	 */
 	public ArrayList<HotelVO> getHotelList(String address, String businessArea);
-	
-	// 返回排序后的酒店列表
-	public ArrayList<HotelVO> sort(SortBy sortBy,SortMethod sortM);
-	
-	// 返回筛选后的酒店列表
-	public ArrayList<HotelVO> select(SelectConditionVO vo);
+
+	/**
+	 * 返回排序后的酒店列表
+	 * 可以叠加
+	 * @param hotelList
+	 * @param sortBy
+	 * @param sortM
+	 * @return
+	 */
+	public ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelList, SortBy sortBy,SortMethod sortM);
+
+	/**
+	 * 返回筛选后的酒店列表
+	 * @param hotelList
+	 * @param vo
+	 * @return
+	 */
+	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList, SelectConditionVO vo);
+
+	/**
+	 * 返回根据酒店名称得到的酒店列表
+	 * @param hotelList
+	 * @param hotelName
+	 * @return
+	 */
+	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList, String hotelName);
 	
 	// 返回该酒店详情
 	public HotelVO getHotelInfo(String id);

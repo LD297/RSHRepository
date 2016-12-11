@@ -1,7 +1,6 @@
 package bl.orderserviceimpl;
 
 import bl.hotelserviceimpl.HotelServiceFactory;
-import bl.orderservice.HotelInfoService;
 import data.dao.orderdao.OrderDao;
 import data.dao.orderdao.OrderDao_Stub;
 

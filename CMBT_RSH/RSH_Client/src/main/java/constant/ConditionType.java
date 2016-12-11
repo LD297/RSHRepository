@@ -5,8 +5,9 @@ public enum ConditionType {
 
     DATE,
     BIRTHDAY,
-    NUM,
-    TOTAL, MEMBER;
+    ROOMNUM,
+    TOTAL,
+    COMMERCE;
 
 
 //    COUPON

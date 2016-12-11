@@ -9,5 +9,9 @@ public enum ResultMessage {
 	timeOut,
 	already_exist,
 	remote_fail,
-	not_exist;
+	not_exist,
+	noChangeMade,
+	creditLack,
+	roomNumLack,
+	promotionLoss;
 }

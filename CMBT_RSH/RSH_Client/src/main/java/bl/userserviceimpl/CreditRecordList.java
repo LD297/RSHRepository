@@ -76,6 +76,14 @@ public class CreditRecordList {
 			return false;
 		}
 	}
+
+	/**
+	 * 获取用户信用值
+	 * @return
+	 */
+	public int getCredit(){
+		return creditRecordVOArrayList.get(creditRecordVOArrayList.size()-1).getCredit();
+	}
 	/**
 	 * 生成信用记录持久化对象
 	 * @param vo
