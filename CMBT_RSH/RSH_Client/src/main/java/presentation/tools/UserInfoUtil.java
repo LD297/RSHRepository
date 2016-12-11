@@ -2,6 +2,7 @@ package presentation.tools;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import bl.hotelservice.HotelService;
 import bl.hotelservice.SearchHotelService;
@@ -22,6 +23,7 @@ import constant.Sexuality;
 import constant.SortBy;
 import constant.SortMethod;
 import constant.StateOfOrder;
+import vo.CreditRecordVO;
 import vo.HotelVO;
 import vo.OrderVO;
 import vo.PromotionVO;
@@ -54,8 +56,12 @@ public class UserInfoUtil {
     private String hotelArea = null;
     private String orderID = null;
     private UserVO userVO = null;
-    private UserService userService = new UserController();
-    private SearchHotelService searchHotelService = new SearchHotelController();
+    // use stub
+    private UserService userService = new UserStub();
+    // use stub
+    private SearchHotelService searchHotelService = new SearchStub();
+    private OtherOrderService otherOrderService = new OtherOrderController();
+   
     private ArrayList<HotelVO> hotelVOs = null;
     
     public String getUserID() {
@@ -69,7 +75,9 @@ public class UserInfoUtil {
      * @return
      */
     public ResultMessage login(String userID,String password){
-    	 LoginService loginService = new LoginController();
+//    	 LoginService loginService = new LoginController();
+    	 //use stub
+    	LoginService loginService = new LoginStub();
          ResultMessage resultMessage = loginService.checkOnline(Role.user,userID,password);
          if(resultMessage == ResultMessage.succeed){
         	 this.userID = userID;
@@ -186,7 +194,7 @@ public class UserInfoUtil {
 				hotelID = hotelVOs.get(i).id;
 			}
 		}
-		HotelService hotelService = new HotelController(hotelID);
+		HotelService hotelService = new HotelStub(hotelID);
 		ArrayList<RoomVO> roomVOs = hotelService.getRoomList();
 		return roomVOs;
 	}
@@ -195,7 +203,7 @@ public class UserInfoUtil {
      * 酒店浏览界面调用,得到某一个酒店的所有促销策略
      */
     public ArrayList<PromotionVO> getPromotionVOs(String hotelID) {
-    	PromotionService promotionService = new PromotionController();
+    	PromotionService promotionService = new PromotionStub();
 		ArrayList<PromotionVO> promotionVOs = promotionService.getPromotionOfHotel(hotelID);
 		return promotionVOs;
 	}
@@ -204,10 +212,11 @@ public class UserInfoUtil {
      * 酒店浏览界面调用，得到当前用户在该酒店的最近一笔订单状态
      */
     public StateOfOrder getOrderStateOfUser(String hotelID) {
-    	OtherOrderService otherOrderService = new OtherOrderController();
+  /*  	OtherOrderService otherOrderService = new OtherOrderStub();
 		StateOfOrder stateOfOrder = otherOrderService.getOrderStateOfUser(userID,
-				hotelID);
-		return stateOfOrder;
+				hotelID);*/
+    	
+		return StateOfOrder.abnormal;
 	}
     
     /**
@@ -222,15 +231,54 @@ public class UserInfoUtil {
     	return resultMessage;
     }
     
-    /**
-     *  TODO 订单浏览（用户视角）界面调用，返回该用户的所有订单列表
-     */
-    public ArrayList<OrderVO> getOrderVOs(){
-		return null;
-    }
-    
     //TODO
     /**
-     * 查看评价界面调用，得到该酒店的所有评价
+     * 查看评价界面调用，得到该酒店的所有有评价的订单
      */
+    public ArrayList<OrderVO> getOrderVOsWithComment(){
+    	//根据当前酒店名称得到酒店id
+    	String hotelID = null;
+    	for(int i=0;i<hotelVOs.size();i++){
+			if(hotelVOs.get(i).name.equals(hotelName)){
+				hotelID = hotelVOs.get(i).id;
+			}
+		}
+    	ArrayList<OrderVO> orderVOs = otherOrderService.hotelClassify(hotelID, StateOfOrder.executed);
+    	ArrayList<OrderVO> result = new ArrayList<>();
+    	for(int i=0;i<orderVOs.size();i++){
+    		if(orderVOs.get(i).getComment()!=null){
+    			result.add(orderVOs.get(i));
+    		}
+    	}
+		return result;
+    }
+    
+    /**
+     * 我的订单界面调用，得到该用户的所有订单
+     * @return
+     */
+    public ArrayList<OrderVO> getOrderVOs() {
+    	//根据当前酒店名称得到酒店id
+    	String hotelID = null;
+    	for(int i=0;i<hotelVOs.size();i++){
+			if(hotelVOs.get(i).name.equals(hotelName)){
+				hotelID = hotelVOs.get(i).id;
+			}
+		}
+    	ArrayList<OrderVO> orderVOs = otherOrderService.specificOrder(userID, hotelID);
+		return orderVOs;
+	}
+    
+    /**
+     * 我的信用记录界面调用，得到该用户的所有信用记录
+     */
+    public ArrayList<CreditRecordVO> getCreditRecordVOs() {
+    	Iterator<CreditRecordVO> iterator = userService.getCreditRecordList(userID);
+    	ArrayList<CreditRecordVO> creditRecordVOs = new ArrayList<>();
+    	while (iterator.hasNext()) {
+			creditRecordVOs.add(iterator.next());
+		}
+		return creditRecordVOs;
+	}
+    
 }

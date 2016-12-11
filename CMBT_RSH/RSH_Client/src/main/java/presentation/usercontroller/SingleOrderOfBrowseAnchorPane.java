@@ -1,6 +1,5 @@
 package presentation.usercontroller;
 
-import constant.CreditAction;
 import constant.StateOfOrder;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -15,7 +14,6 @@ import presentation.tools.ImageFactory;
 import presentation.tools.Locator;
 import presentation.tools.MyDateFormat;
 import presentation.tools.UIJumpTool;
-import vo.CreditRecordVO;
 import vo.OrderVO;
 
 public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
@@ -23,7 +21,14 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 	private Label dateLabel = null;
 	private Label orderIDLabel = null;
 	private Label hotelNameLabel = null;
+	/**
+	 * set进信用价值（具体的数值）
+	 */
 	private Label orderValueLabel = null;
+	/**
+	 * 信用价值（提示）
+	 */
+	private Label orderValue = null;
 	private ImageView orderStateImage = null;
 	private CheckBox checkBox = null;
 	private Label forMoreLabel = null;
@@ -36,6 +41,7 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 		orderIDLabel = new Label(orderVO.getOrderID());
 		hotelNameLabel = new Label(orderVO.getHotelID());//TODO
 		orderValueLabel = new Label(String.valueOf(orderVO.getTrueValue()));
+		orderValue = new Label("信用价值");
 		StateOfOrder stateOfOrder = orderVO.getState();
 		ImageFactory imageFactory = ImageFactory.getImageFactory();
 		//如果是异常订单
@@ -57,6 +63,8 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 		
 		
 		//设置组件属性
+		orderStateImage.setFitHeight(20.0);
+		orderStateImage.setFitWidth(20.0);
 		weekLabel.setStyle("-fx-text-fill: rgba(0,0,0,0.55)");
 		weekLabel.setFont(Font.font("Times New Roman", 14));
 		dateLabel.setStyle("-fx-text-fill: rgba(0,0,0,0.55)");
@@ -66,6 +74,7 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 		hotelNameLabel.setStyle("-fx-text-fill: rgba(0,0,0,0.55)");
 		hotelNameLabel.setFont(Font.font("Times New Roman", 16));
 		orderValueLabel.setFont(Font.font("Times New Roman", 16));
+		orderValue.setFont(Font.font("Times New Roman", 16));
 		forMoreLabel.setStyle("-fx-text-fill: #bababa");
 		forMoreLabel.setFont(Font.font("Times New Roman", 14));
 		commentButton.setStyle("-fx-background-color:#ff5a5f;-fx-text-fill: #ffffff");
@@ -78,6 +87,7 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 		this.getChildren().add(orderIDLabel);
 		this.getChildren().add(orderStateImage);
 		this.getChildren().add(orderValueLabel);
+		this.getChildren().add(orderValue);
 		this.getChildren().add(checkBox);
 		this.getChildren().add(commentButton);
 		this.getChildren().add(forMoreLabel);
@@ -90,6 +100,7 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 		locator.setLocation(orderStateImage, 46.0,20.0,102.0,379.0);
 		locator.setLocation(orderIDLabel, 41.0,15.0,133.0,180.0);
 		locator.setLocation(orderValueLabel, 18.0,48.0,414.0,21.0);
+		locator.setLocation(orderValue, 18.0, 48.0, 333.0, 90.0);
 		locator.setLocation(checkBox, 20.0,50.0,477.0,3.0);
 		locator.setLocation(commentButton, 43.0, 17.0, 415.0,23.0);
 		locator.setLocation(forMoreLabel, 46.0,20.0,333.0,120.0);

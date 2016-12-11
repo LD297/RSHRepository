@@ -34,7 +34,7 @@ public class ImageFactory {
     private Image nextImageArrow = new Image("/images/返回右箭头 - 副本.png");
     private Image hotelImage = new Image("/images/hotel/酒店背景图111.png");
     private Image headImage = new Image("/images/用户头像.jpg");
-    private Image headImagebackground = new Image("/images/头像背景.jpg");
+    private Image headImagebackground = new Image("/images/头像背景.png");
     private Image orderExecutedImage = new Image("/images/TICK.png");//执行订单
     private Image chargeForCreditImage = new Image("/images/PLUS.png");//信用充值
     private Image abmormalOrderImage = new Image("/images/question14.png");//异常订单

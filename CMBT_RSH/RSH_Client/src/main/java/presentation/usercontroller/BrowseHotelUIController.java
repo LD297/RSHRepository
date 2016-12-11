@@ -53,6 +53,22 @@ public class BrowseHotelUIController {
 	private int maxPages = 0;
 
 	@FXML
+	void changeToHotelInfo(MouseEvent event) {
+		String hotelName = searchNameField.getText().trim();
+		boolean found = false;
+		for (int i = 0; i < hotelVOs.size(); i++) {
+			if (hotelVOs.get(i).name.equals(hotelName)) {
+				UserInfoUtil.getInstance().setHotelName(hotelName);
+				UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo();
+				found = true;
+			}
+		}
+		if (!found) {
+			// TODO 未找到提示
+		}
+	}
+	
+	@FXML
 	void changeToLastPage(MouseEvent event) {
 		if(presentPage-1>=1){
 			presentPage--;
@@ -61,6 +77,8 @@ public class BrowseHotelUIController {
 		}
 	}
 
+	
+	
     @FXML
     void changeToNextPage(MouseEvent event) {
     	if(presentPage+1<=maxPages){
@@ -116,6 +134,7 @@ public class BrowseHotelUIController {
 			default:
 				break;
 			}
+			
 			hotelVOsPointer++;
 			count ++;
 		}
@@ -131,8 +150,17 @@ public class BrowseHotelUIController {
     @FXML
     void searchByName(ActionEvent event) {
         String hotelName = searchNameField.getText().trim();
-        UserInfoUtil.getInstance().setHotelName(hotelName);
-        UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo();
+        boolean found  = false;
+        for(int i=0;i<hotelVOs.size();i++){
+        	if(hotelVOs.get(i).name.equals(hotelName)){
+        		UserInfoUtil.getInstance().setHotelName(hotelName);
+                UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo();
+                found = true;
+        	}
+        }
+        if(!found){
+        	//TODO 未找到提示
+        }
     }
     
     public void init() {

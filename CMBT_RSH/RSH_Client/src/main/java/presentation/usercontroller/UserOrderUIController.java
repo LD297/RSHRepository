@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import constant.StateOfOrder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -52,21 +53,6 @@ public class UserOrderUIController {
     private AnchorPane orderlistAnchorPane;
 
     @FXML
-    private Label ordervaluelabelOfLine1;
-
-    @FXML
-    private Label ordervaluelabelOfLine5;
-
-    @FXML
-    private Label ordervaluelabelOfLine4;
-
-    @FXML
-    private Label ordervaluelabelOfLine3;
-
-    @FXML
-    private Label ordervaluelabelOfLine2;
-
-    @FXML
     private Label lastPagelabel;
 
     @FXML
@@ -94,11 +80,12 @@ public class UserOrderUIController {
     private Label weekOfToday;
     
 	private ArrayList<OrderVO> orderVOs = null;
+	private ArrayList<OrderVO> presentOrderVOs = null;
 	private int presentPage = 1;//当前页码
-	private int orderVOsPointer = -1;
+	private int pointer = -1;
 	private int maxPages = 0;
     
-  //关闭在酒店详情界面上弹出的我的订单界面  ？？？？
+  //关闭在酒店详情界面上弹出的我的订单界面
     @FXML
     void backToHotelInfo(MouseEvent event) {
     	 UIJumpTool.getUiJumpTool().closeMyOrderOfOneHotel();
@@ -125,60 +112,99 @@ public class UserOrderUIController {
 
     @FXML
     void changeToLastPage(MouseEvent event) {
-
+    	if(presentPage-1>=1){
+			presentPage--;
+			gridpaneFilledWithOrder.getChildren().clear();
+			changeToSpecficPage(presentPage);
+		}
     }
 
     @FXML
     void changeToNextPage(MouseEvent event) {
-
-    }
-
-    @FXML
-    void changeToOrderInfo(MouseEvent event) {
-
+    	if(presentPage+1<=maxPages){
+    		presentPage++;
+    		gridpaneFilledWithOrder.getChildren().clear();
+    		changeToSpecficPage(presentPage);
+    	}
     }
 
     @FXML
     void changeToSpecificPage(ActionEvent event) {
-
+    	int page = Integer.parseInt(pageField.getText().trim());
+    	if(page>=1){
+    		presentPage = page;
+    		gridpaneFilledWithOrder.getChildren().clear();
+    		changeToSpecficPage(presentPage);
+    	}else{
+    		pageField.setText(String.valueOf(presentPage));
+    	}
     }
     //输入订单编号，敲击回车键
     @FXML
     void orderIDEntered(ActionEvent event) {
     	//TODO 找寻订单
-    	 UIJumpTool.getUiJumpTool().changeToOrderInfo();
+    	boolean found = false;
+    	for(int i=0;i<orderVOs.size();i++){
+    		if(orderVOs.get(i).getOrderID().equals(orderIDField.getText().trim())){
+    			UserInfoUtil.getInstance().setOrderID(orderVOs.get(i).getOrderID());
+    			found = true;
+    			UIJumpTool.getUiJumpTool().changeToOrderInfo();
+    		}
+    	}
+    	if(!found){
+    		//TODO 找不到的提示
+    	}
     }
 
+    //显示所有不正常订单
     @FXML
     void showAllAbnormalOrder(MouseEvent event) {
     	 setPropertyOfOrderTypeLabel((Label)event.getSource());
-         //TODO 显示所有不正常订单
+    	 showAllOrderOfOneState(StateOfOrder.abnormal);
     }
 
+    //显示某一个特定状态的订单
+    private void showAllOrderOfOneState(StateOfOrder stateOfOrder){
+    	 ArrayList<OrderVO> specialOrderVOs = new ArrayList<OrderVO>();
+    	 for(int i=0;i<orderVOs.size();i++){
+    		 if(orderVOs.get(i).getState()==stateOfOrder){
+    			 specialOrderVOs.add(orderVOs.get(i));
+    		 }
+    	 }
+    	 presentOrderVOs = specialOrderVOs;
+    	 init();
+    }
+    
+  //显示所有已撤销订单
     @FXML
     void showAllCanceledOrder(MouseEvent event) {
     	 setPropertyOfOrderTypeLabel((Label)event.getSource());
-         //TODO 显示所有已撤销订单
+    	 showAllOrderOfOneState(StateOfOrder.canceled);
     }
 
+   //显示所有已执行订单
     @FXML
     void showAllExecutedOrder(MouseEvent event) {
     	 setPropertyOfOrderTypeLabel((Label)event.getSource());
-         //TODO 显示所有已执行订单
+         showAllOrderOfOneState(StateOfOrder.executed);
     }
 
+   //显示所有订单
     @FXML
     void showAllOrder(MouseEvent event) {
         setPropertyOfOrderTypeLabel((Label)event.getSource());
-        //TODO 显示所有订单
+        presentOrderVOs = orderVOs;
+        init();
     }
 
+    //显示所有未执行订单
     @FXML
     void showAllUnexecutedOrder(MouseEvent event) {
         setPropertyOfOrderTypeLabel((Label)event.getSource());
-        //TODO 显示所有未执行订单
+        showAllOrderOfOneState(StateOfOrder.unexecuted);
     }
 
+    //设置导航栏属性
     private void setPropertyOfOrderTypeLabel(Label orderTypeLabel){
         abnormalOrderLabel.setTextFill(Color.valueOf("#000000"));
         executedOrderLabel.setTextFill(Color.valueOf("#000000"));
@@ -197,13 +223,13 @@ public class UserOrderUIController {
     }
 
     public void init() {
-    	UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
-		orderVOs = userInfoUtil.getOrderVOs();
-		if(orderVOs.size()%5==0){
-			maxPages = orderVOs.size()/5;
+		if(presentOrderVOs.size()%5==0){
+			maxPages = presentOrderVOs.size()/5;
 		}else{
-			maxPages = orderVOs.size()/5 + 1;
+			maxPages = presentOrderVOs.size()/5 + 1;
 		}
+		presentPage = 1;
+		pointer = -1;
 		changeToSpecficPage(1);
 	}
     
@@ -211,21 +237,25 @@ public class UserOrderUIController {
     private void changeToSpecficPage(int page) {
     	//直接跳转到最后一页
 		if(page>=maxPages){
-			orderVOsPointer = (maxPages-1)*5;
+			pointer = (maxPages-1)*5;
 		}else{
-			orderVOsPointer = (page-1)*5;
+			pointer = (page-1)*5;
 		}
 		int count = 0;
 		while(count<5){//一个界面上有5个格子
-			if(orderVOsPointer==orderVOs.size()){
+			if(pointer==presentOrderVOs.size()){
 				break;
 			}
 			SingleOrderOfBrowseAnchorPane singleOrderOfBrowseAnchorPane = new SingleOrderOfBrowseAnchorPane(
-					orderVOs.get(orderVOsPointer));
+					presentOrderVOs.get(pointer));
 			gridpaneFilledWithOrder.add(singleOrderOfBrowseAnchorPane, 0, count);
-			orderVOsPointer++;
+			pointer++;
 			count ++;
 		}
+	}
+    
+    public void setBackImage(boolean visible) {
+		backImage.setVisible(visible);
 	}
     
     
@@ -239,11 +269,6 @@ public class UserOrderUIController {
         assert allOrderLabel != null : "fx:id=\"allOrderLabel\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert backImage != null : "fx:id=\"backImage\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert orderlistAnchorPane != null : "fx:id=\"orderlistAnchorPane\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
-        assert ordervaluelabelOfLine1 != null : "fx:id=\"ordervaluelabelOfLine1\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
-        assert ordervaluelabelOfLine5 != null : "fx:id=\"ordervaluelabelOfLine5\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
-        assert ordervaluelabelOfLine4 != null : "fx:id=\"ordervaluelabelOfLine4\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
-        assert ordervaluelabelOfLine3 != null : "fx:id=\"ordervaluelabelOfLine3\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
-        assert ordervaluelabelOfLine2 != null : "fx:id=\"ordervaluelabelOfLine2\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert lastPagelabel != null : "fx:id=\"lastPagelabel\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert pageField != null : "fx:id=\"pageField\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert nextPageLabel != null : "fx:id=\"nextPageLabel\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
@@ -253,7 +278,9 @@ public class UserOrderUIController {
         assert dayOfTodayLabel != null : "fx:id=\"dayOfTodayLabel\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert mothyearOfToday != null : "fx:id=\"mothyearOfToday\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert weekOfToday != null : "fx:id=\"weekOfToday\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
-
+        UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
+		orderVOs = userInfoUtil.getOrderVOs();
+		presentOrderVOs = orderVOs;
         init();
     }
 }

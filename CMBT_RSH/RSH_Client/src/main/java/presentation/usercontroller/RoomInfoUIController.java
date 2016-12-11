@@ -69,6 +69,10 @@ public class RoomInfoUIController {
 			
 			//设置组件属性
 			roonImageView.setPreserveRatio(false);
+			roonImageView.setFitWidth(400.0);
+			roonImageView.setFitHeight(240.0);
+			arrow.setFitWidth(60.0);
+			arrow.setFitHeight(119.0);
 			//设置房间类型、价格字体Times New Roman，大小18，颜色白色
 			roomTypeLabel.setStyle("-fx-text-fill: white");
 			roomTypeLabel.setFont(Font.font("Times New Roman", 18));

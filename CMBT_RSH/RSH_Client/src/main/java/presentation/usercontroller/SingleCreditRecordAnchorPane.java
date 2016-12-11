@@ -18,7 +18,14 @@ public class SingleCreditRecordAnchorPane extends AnchorPane{
 	 * 信用变化 ，诸如+700
 	 */
 	private Label creditActionLabel = null;
+	/**
+	 * 累计结果的值
+	 */
 	private Label totalCreditLabel = null;
+	/**
+	 * 累计结果标签
+	 */
+	private Label totalCredit = null;
 	private ImageView orderStateImage = null;
 	private CreditRecordVO creditRecordVO = null;
 	
@@ -29,6 +36,7 @@ public class SingleCreditRecordAnchorPane extends AnchorPane{
 		orderIDLabel = new Label(creditRecordVO.getOrderid());
 		creditActionLabel = new Label(creditRecordVO.getChange());
 		totalCreditLabel = new Label(String.valueOf(creditRecordVO.getCredit()));
+		totalCredit = new Label("累计结果");
 		CreditAction creditAction = creditRecordVO.getCreditAction();
 		ImageFactory imageFactory = ImageFactory.getImageFactory();
 		//如果是延迟入住或恢复异常订单
@@ -49,6 +57,8 @@ public class SingleCreditRecordAnchorPane extends AnchorPane{
 		}
 		
 		//设置组件属性
+		orderStateImage.setFitHeight(20.0);
+		orderStateImage.setFitWidth(20.0);
 		weekLabel.setStyle("-fx-text-fill: rgba(0,0,0,0.55)");
 		weekLabel.setFont(Font.font("Times New Roman", 14));
 		dateLabel.setStyle("-fx-text-fill: rgba(0,0,0,0.55)");
@@ -57,6 +67,7 @@ public class SingleCreditRecordAnchorPane extends AnchorPane{
 		orderIDLabel.setFont(Font.font("Times New Roman", 14));
 		creditActionLabel.setFont(Font.font("Times New Roman", 16));
 		totalCreditLabel.setFont(Font.font("Times New Roman", 16));
+		totalCredit.setFont(Font.font("Times New Roman", 16));
 		
 		//添加组件
 		this.getChildren().add(weekLabel);
@@ -65,6 +76,7 @@ public class SingleCreditRecordAnchorPane extends AnchorPane{
 		this.getChildren().add(orderIDLabel);
 		this.getChildren().add(orderStateImage);
 		this.getChildren().add(totalCreditLabel);
+		this.getChildren().add(totalCredit);
 		
 		//设置组件位置
 		Locator locator = Locator.getLocator();
@@ -74,6 +86,7 @@ public class SingleCreditRecordAnchorPane extends AnchorPane{
 		locator.setLocation(orderStateImage, 18.0,48.0,176.0,285.0);
 		locator.setLocation(orderIDLabel, 41.0,15.0,102.0,191.0);
 		locator.setLocation(totalCreditLabel, 18.0,48.0,418.0,0.0);
+		locator.setLocation(totalCredit, 13.0,43.0,330.0,85.0);
 	}
 
 }

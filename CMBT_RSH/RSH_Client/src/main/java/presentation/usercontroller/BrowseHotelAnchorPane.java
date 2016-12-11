@@ -39,15 +39,18 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 	public BrowseHotelAnchorPane(HotelVO hotelVO,boolean left) {
 		this.hotelVO = hotelVO;
 		this.left = left;
+		System.out.println(left);
 		init();
 	}
 	
 	private void init(){
-		hotelImageView = new ImageView(ImageFactory.getImageFactory().getHotelImage());
+		hotelImageView = new ImageView();
+		hotelImageView.setImage(ImageFactory.getImageFactory().getHotelImage());
 		labelOnHotelImage = new Label();
 		lastImageArrow = new ImageView(ImageFactory.getImageFactory().getLastImageArrow());
 		nextImageArrow = new ImageView(ImageFactory.getImageFactory().getNextImageArrow());
 		hotelNameLabel = new Label(hotelVO.name);
+		promotionLabels = new ArrayList<Label>();
 		createOrderButton = new Button("新建订单");
 		//TODO 在逻辑层添加get酒店最低价格的方法
 		priceLabel = new Label("￥2340/晚");
@@ -67,7 +70,15 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		
 		//设置组件的属性
 		//图片比例
+		hotelImageView.setFitWidth(330.0);
+		hotelImageView.setFitHeight(229.0);
+		lastImageArrow.setFitWidth(65.0);
+		lastImageArrow.setFitHeight(95.0);
+		nextImageArrow.setFitWidth(65.0);
+		nextImageArrow.setFitHeight(95.0);
 		hotelImageView.setPreserveRatio(false);
+		lastImageArrow.setPreserveRatio(false);
+		nextImageArrow.setPreserveRatio(false);
 		//图片上蒙的label半透明
 		labelOnHotelImage.setStyle("-fx-background-color:rgba(3,3,3,0.2)");
 		//酒店名称label字体Times New Roman，大小18，颜色白色
@@ -108,7 +119,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			locator.setLocation(lastImageArrow, 81.0, 123.0, 56.0, 279.0);
 			locator.setLocation(nextImageArrow, 81.0, 123.0, 321.0, 14.0);
 			locator.setLocation(hotelNameLabel, 26.0, 241.0, 67.0, 159.0);
-			locator.setLocation(createOrderButton, 197.0, 170.0, 281.0, 23.0);
+			locator.setLocation(createOrderButton, 197.0, 70.0, 281.0, 23.0);
 			locator.setLocation(priceLabel, 243.0, 30.0, 56.0, 280.0);
 			locator.setLocation(orderStateLabel, 243.0, 30.0, 338.0, 14.0);
 			begin = 56.0;
@@ -118,13 +129,13 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			locator.setLocation(lastImageArrow, 81.0, 123.0, 14.0, 321.0);
 			locator.setLocation(nextImageArrow, 81.0, 123.0, 279.0, 56.0);
 			locator.setLocation(hotelNameLabel, 26.0, 241.0, 26.0, 200.0);
-			locator.setLocation(createOrderButton, 197.0, 170.0, 240.0, 64.0);
+			locator.setLocation(createOrderButton, 197.0, 70.0, 240.0, 64.0);
 			locator.setLocation(priceLabel, 243.0, 30.0, 14.0, 321.0);
 			locator.setLocation(orderStateLabel, 243.0, 30.0, 296.0, 56.0);
 			begin = 14.0;
 		}
 		for(int i=0;i<promotionLabels.size();i++){
-			double width = 14*promotionLabels.get(i).getText().length() + 20;
+			double width = 14*promotionLabels.get(i).getText().trim().length() + 20;
 			locator.setLocation(promotionLabels.get(i), 269.0, 4.0, begin, WIDTH-begin-width);
 			begin = begin + width + 2;
 		}

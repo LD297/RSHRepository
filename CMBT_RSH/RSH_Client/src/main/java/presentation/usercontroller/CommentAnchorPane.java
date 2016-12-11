@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 import presentation.tools.ImageFactory;
 import presentation.tools.Locator;
 import presentation.tools.UserInfoUtil;
+import vo.OrderVO;
 
 public class CommentAnchorPane extends AnchorPane{
 	private ImageView headImage = null;
@@ -25,23 +26,27 @@ public class CommentAnchorPane extends AnchorPane{
 	private DateFormat dateFormat = null;
 	
 	//传入的参数后期会改为commentvo
-	public CommentAnchorPane(String comment) {
+	public CommentAnchorPane(OrderVO orderVO) {
 		//TODO 得到用户头像
 		headImage = new ImageView(ImageFactory.getImageFactory().getHeadImage());
 		backGroundHeadImage = new ImageView(ImageFactory.getImageFactory().getHeadImagebackground());
-		//TODO 从评价vo里面得到用户昵称
-		nickNameLabel = new Label("297");
-		//TODO 从commentvo得到评价的日期(我暂时set的是当前日期)
+		//TODO 从评价vo里面得到用户名称，因为没有getNickName
+		nickNameLabel = new Label(orderVO.getUserName());
+		//TODO 从commentvo得到评价的日期(我暂时set的是实际入住时间)
 		dateFormat = new SimpleDateFormat("yyyy-MM-dd");//yyyy-MM-dd hh:mm:ss
-		dateLabel.setText(dateFormat.format(new Date()));
+		dateLabel.setText(dateFormat.format(orderVO.getActualCheckIn()));
 		//TODO 从commentvo得到评价的房间类型
-		roomTypeLabel.setText("双人间");
+		roomTypeLabel.setText(orderVO.getRoom().getRoomType());
 		// TODO 从commentvo得到评价的内容
 		commentLabel.setText("         进门的一瞬间就给人满室的浪漫与温馨。直线条的造型，简约风格的搭配，房间干净、整齐。在十分充足的阳光下，顿时显得轻松、舒适、");
 
 		// 设置组件属性
 		headImage.setPreserveRatio(false);
 		backGroundHeadImage.setPreserveRatio(false);
+		headImage.setFitWidth(82.0);
+		headImage.setFitHeight(82.0);
+		backGroundHeadImage.setFitWidth(82.0);
+		backGroundHeadImage.setFitHeight(82.0);
 		nickNameLabel.setStyle("-fx-text-fill: rgba(0,0,0,0.55)");
 		nickNameLabel.setFont(Font.font("Times New Roman", 12));
 		dateLabel.setStyle("-fx-text-fill: rgba(0,0,0,0.55)");

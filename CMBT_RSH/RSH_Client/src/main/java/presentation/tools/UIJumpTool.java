@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import presentation.logincontroller.LoginUIController;
 import presentation.usercontroller.BrowseHotelUIController;
 import presentation.usercontroller.GuideUIController;
+import presentation.usercontroller.UserOrderUIController;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -69,6 +70,8 @@ public class UIJumpTool {
     public void changeToMyOrderOfOneHotel(){
         myOrderOfOneHotel = UserUIFXMLFactory.getUserUIFXMLFactory().getUserOrder();
         //TODO 在initialize方法里面设置返回箭头可见
+        UserOrderUIController userOrderUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getUserOrderUIController();
+        userOrderUIController.setBackImage(true);
         hotelInfo.getChildren().get(hotelInfo.getChildren().size()-1).setVisible(true);
         hotelInfo.getChildren().add(myOrderOfOneHotel);
         //设置我的订单的位置
@@ -78,6 +81,7 @@ public class UIJumpTool {
     //在酒店详情界面上关闭针对该酒店的我的订单界面
     public void closeMyOrderOfOneHotel(){
         hotelInfo.getChildren().remove(hotelInfo.getChildren().size()-1);
+        //将酒店详情上蒙的label设置为不可见
         hotelInfo.getChildren().get(hotelInfo.getChildren().size()-1).setVisible(false);
     }
 
