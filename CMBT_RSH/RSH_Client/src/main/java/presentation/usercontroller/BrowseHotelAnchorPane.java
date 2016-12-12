@@ -142,7 +142,8 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		labelOnHotelImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			//点击图片上蒙的label跳转到酒店详情界面
 			public void handle(MouseEvent event) {
-				UserInfoUtil.getInstance().setHotelName(hotelVO.name);
+//				UserInfoUtil.getInstance().setHotelName(hotelVO.name);
+				UserInfoUtil.getInstance().setHotelID(hotelVO.id);
 				UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo();
 			}
 		});
@@ -150,7 +151,8 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			//点击新建订单按钮跳转到新建订单界面
 			@Override
 			public void handle(MouseEvent event) {
-				UserInfoUtil.getInstance().setHotelName(hotelVO.name);
+//				UserInfoUtil.getInstance().setHotelName(hotelVO.name);
+				UserInfoUtil.getInstance().setHotelID(hotelVO.id);
 			    UIJumpTool.getUiJumpTool().changeToCreateOrder();				
 			}
 		});

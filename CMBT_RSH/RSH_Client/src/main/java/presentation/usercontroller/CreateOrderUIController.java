@@ -7,9 +7,11 @@ package presentation.usercontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -20,6 +22,7 @@ import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
 
 public class CreateOrderUIController {
+
 
     @FXML
     private ResourceBundle resources;
@@ -73,15 +76,19 @@ public class CreateOrderUIController {
     private DatePicker expectedCheckoutTimepicker;
 
     @FXML
-    private ChoiceBox<?> roomtypeChoicebox;
-    @FXML
-    private ChoiceBox<?> numOfPersonBox;
+    private Label messageLabel;
 
     @FXML
-    private ChoiceBox<?> haveChildrenOrnotbox;
+    private ComboBox<?> roomtypeCombox;
 
     @FXML
-    private ChoiceBox<?> roomnumChoicebox;
+    private ComboBox<?> peopleNumombox;
+
+    @FXML
+    private ComboBox<?> withChildrenCombox;
+
+    @FXML
+    private ComboBox<?> roomnumCombox;
     
     private String userID = null;
     private String hotelname = null;
@@ -106,7 +113,16 @@ public class CreateOrderUIController {
         //TODO 存储订单信息
         UIJumpTool.getUiJumpTool().closeCreateOrder();
     }
+    
+    @FXML
+    void toSetRoomNum(ActionEvent event) {
 
+    }
+
+    public void init() {
+		
+	}
+    
     @FXML
     void initialize() {
         assert hotelName != null : "fx:id=\"hotelName\" was not injected: check your FXML file '生成订单.fxml'.";
@@ -124,18 +140,13 @@ public class CreateOrderUIController {
         assert cancelImage != null : "fx:id=\"cancelImage\" was not injected: check your FXML file '生成订单.fxml'.";
         assert expectedCheckinTimepicker != null : "fx:id=\"expectedCheckinTimepicker\" was not injected: check your FXML file '生成订单.fxml'.";
         assert expectedCheckoutTimepicker != null : "fx:id=\"expectedCheckoutTimepicker\" was not injected: check your FXML file '生成订单.fxml'.";
-        assert roomtypeChoicebox != null : "fx:id=\"roomtypeChoicebox\" was not injected: check your FXML file '生成订单.fxml'.";
-        assert haveChildrenOrnotbox != null : "fx:id=\"haveChildrenOrnotbox\" was not injected: check your FXML file '生成订单.fxml'.";
-        assert roomnumChoicebox != null : "fx:id=\"roomnumChoicebox\" was not injected: check your FXML file '生成订单.fxml'.";
-        assert numOfPersonBox != null : "fx:id=\"numOfPersonBox\" was not injected: check your FXML file '生成订单.fxml'.";
+        assert messageLabel != null : "fx:id=\"messageLabel\" was not injected: check your FXML file '生成订单.fxml'.";
+        assert roomtypeCombox != null : "fx:id=\"roomtypeCombox\" was not injected: check your FXML file '生成订单.fxml'.";
+        assert peopleNumombox != null : "fx:id=\"peopleNumombox\" was not injected: check your FXML file '生成订单.fxml'.";
+        assert withChildrenCombox != null : "fx:id=\"withChildrenCombox\" was not injected: check your FXML file '生成订单.fxml'.";
+        assert roomnumCombox != null : "fx:id=\"roomnumCombox\" was not injected: check your FXML file '生成订单.fxml'.";
+
         
-        UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
-        userID = userInfoUtil.getUserID();
-        hotelname = userInfoUtil.getHotelName();
-        //TODO 界面初始化
-    
-    
-    
     }
 }
 
