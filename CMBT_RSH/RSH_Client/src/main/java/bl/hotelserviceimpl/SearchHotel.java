@@ -45,13 +45,6 @@ public class SearchHotel {
 		return selectHotel.select(vo);
 	}
 
-	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,SelectConditionVO vo) {
-		return selectHotel.select(hotelList,vo);
-	}
-
-	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,String hotelName) {
-		return selectHotel.select(hotelList,hotelName);
-	}
 	public HotelVO getHotelInfo(String id) {
 		HotelPO hotelPO = null;
 		try {

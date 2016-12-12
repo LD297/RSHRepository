@@ -15,16 +15,13 @@ public class SelectHotel{
 		this.hotelDao = hotelDao;
 	}
 
-	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,SelectConditionVO vo) {
+	public ArrayList<HotelVO> select(SelectConditionVO vo) {
 		ArrayList<HotelVO> hotelVOs = null;
-
-		return hotelVOs;
-	}
-
-
-	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,String hotelName) {
-		ArrayList<HotelVO> hotelVOs = null;
-
+		try {
+			hotelVOs = hotelDao.select(vo);
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
 		return hotelVOs;
 	}
 	

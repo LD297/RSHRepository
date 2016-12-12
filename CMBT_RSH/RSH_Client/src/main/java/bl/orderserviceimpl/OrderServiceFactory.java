@@ -1,7 +1,5 @@
 package bl.orderserviceimpl;
 
-import bl.hotelservice.HotelInfoService;
-import bl.hotelserviceimpl.HotelController;
 import bl.hotelserviceimpl.HotelServiceFactory;
 import data.dao.orderdao.OrderDao;
 import data.dao.orderdao.OrderDao_Stub;
@@ -24,12 +22,12 @@ public class OrderServiceFactory {
             orderDao = new OrderDao_Stub();
     }
 
-    public static OrderGenerationController getOrderGenerationService(String hotelID){
+    public static OrderGenerationController getOrderGenerationService(String hotelid){
 
         if(orderGenerationController==null){
 
             // 传入hotelid，通过酒店业务逻辑的工厂得到"订单生成"所需的酒店业务逻辑处理对象
-            HotelInfoService hotelInfoService = HotelServiceFactory.getHotelService(hotelID);
+            HotelInfoService hotelInfoService = HotelServiceFactory.getHotelService(hotelid);
             // 新建"订单生成"的领域对象
             OrderGeneration orderGeneration = new OrderGeneration();
 
@@ -62,19 +60,17 @@ public class OrderServiceFactory {
         if(otherOrderController==null){
 
             // 传入hotelid，通过酒店业务逻辑的工厂得到"订单生成"所需的酒店业务逻辑处理对象
-            HotelController hotelController = HotelServiceFactory.getHotelService(hotelid);
+            HotelInfoService hotelInfoService = HotelServiceFactory.getHotelService(hotelid);
 
             // 新建"异常订单"领域对象
             AbnormalOrder abnormalOrder = new AbnormalOrder();
             // 实例化实例化"异常订单"中"酒店业务逻辑服务"这一成员变量
-            abnormalOrder.setHotelInfoService(hotelController);
-            abnormalOrder.setHotelService(hotelController);
-
+            abnormalOrder.setHotelInfoService(hotelInfoService);
             // 实例化"异常订单"中"自身数据库"这一成员变量
             abnormalOrder.setOrderDao(orderDao);
 
             NormalOrder normalOrder = new NormalOrder();
-            normalOrder.setHotelInfoService(hotelController);
+            normalOrder.setHotelInfoService(hotelInfoService);
             normalOrder.setOrderDao(orderDao);
 
             CheckOrder checkOrder = new CheckOrder();

@@ -85,8 +85,8 @@ public class Hotel{
 		return hotelManager.updateRoomList(roomList);
 	}
 	
-	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn,Date checkOut) {
-		return roomAvail.getRoomAvailList(id, checkIn, checkOut);
+	public ArrayList<RoomAvailVO> getRoomAvailList(Date date) {
+		return roomAvail.getRoomAvailList(id, date);
 	}
 	
 	public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> roomAvailList) {
@@ -102,7 +102,7 @@ public class Hotel{
 	public ArrayList<RoomNormVO> getRoomNorms() {
 		ArrayList<RoomNormVO> arrayList = null;
 		try {
-			arrayList = hotelDao.getRoomNorm(this.id);
+			arrayList = hotelDao.getRoomNorms(this.id);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
@@ -112,7 +112,7 @@ public class Hotel{
 	// 供给order模块
 	// 返回该酒店指定日期下该房间类型的可用数量
 	public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut) {
-		return roomAvail.getRoomAvailNum(this.id, roomType, checkIn, checkOut);
+		return roomAvail.numOfRoomAvail(this.id, roomType, checkIn, checkOut);
 	}
 
 	// 供给order模块
@@ -136,20 +136,6 @@ public class Hotel{
 			e.printStackTrace();
 		}
 		return result;
-	}
-	/**
-	 * 更新数据库中酒店的评分
-	 * @param grade 用户打分（范围0~5，闭区间，加权计算后界面输出星级）
-	 * @return
-	 */
-	public ResultMessage updateGrade(int grade) {
-		ResultMessage resultMessage = null;
-		try {
-			resultMessage = hotelDao.updateGrade(grade);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return resultMessage;
 	}
 	
 }

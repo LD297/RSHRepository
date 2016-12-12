@@ -1,8 +1,5 @@
 package bl.orderserviceimpl;
 
-import bl.hotelservice.HotelInfoService;
-import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.HotelController;
 import bl.userserviceimpl.CreditRecordList;
 import constant.CreditAction;
 import constant.ResultMessage;
@@ -22,19 +19,16 @@ import java.util.Date;
 public class AbnormalOrder {
 
     HotelInfoService hotelInfoService;
-    HotelService hotelService;
     private OrderDao orderDao;
 
     CreditRecordList creditRecordList;
     OrderPO orderPO;
 
 
-    public void setHotelInfoService(HotelController hotelController) {
-        this.hotelInfoService = hotelController;
+    public void setHotelInfoService(HotelInfoService hotelInfoService) {
+        this.hotelInfoService = hotelInfoService;
     }
-    public void setHotelService(HotelController hotelController){
-        this.hotelService = hotelController;
-    }
+
     public void setOrderDao(OrderDao orderDao) {
         this.orderDao = orderDao;
     }
@@ -129,8 +123,8 @@ return null;
             return ResultMessage.timeOut;
 
         // 改变酒店的房间信息
-        hotelService.plusRoomAvail(orderPO.getRoom().getRoomType(),
-                orderPO.getRoomNumber(),orderPO.getCheckIn(),orderPO.getCheckOut());
+        hotelInfoService.changeRoomAvail(orderPO.getRoom().getRoomType(),
+                true,orderPO.getRoomNumber(),orderPO.getCheckIn(),orderPO.getCheckOut());
 
         // 增加用户信用值（全部/一半）
         double halfOrFull = 1/2;

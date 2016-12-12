@@ -3,6 +3,7 @@ package data.dao.hoteldao;
 import constant.ResultMessage;
 import constant.SortBy;
 import constant.SortMethod;
+import po.CommentPO;
 import po.HotelPO;
 import po.HotelStaffPO;
 import po.RoomPO;

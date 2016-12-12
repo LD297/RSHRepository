@@ -52,8 +52,8 @@ public class OtherOrderController {
 	}
 
 	//评价订单
-	public ResultMessage comment(String orderID, int grade,String comment){
-		normalOrder.addComment(orderID, grade, comment);
+	public ResultMessage comment(String hotelID, String orderID, double grade,String comment){
+		normalOrder.comment(hotelID, orderID, grade, comment);
 		return ResultMessage.succeed;
 	}
 

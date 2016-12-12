@@ -22,18 +22,18 @@ public class SearchHotelController implements SearchHotelService {
 	}
 
 	@Override
-	public ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelList,SortBy sortBy, SortMethod sortM) {
+	public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM) {
 		return searchHotel.sort(sortBy, sortM);
 	}
 
 	@Override
-	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,SelectConditionVO vo) {
-		return searchHotel.select(hotelList,vo);
+	public ArrayList<HotelVO> select(SelectConditionVO vo) {
+		return searchHotel.select(vo);
 	}
 
 	@Override
-	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,String hotelName) {
-		return searchHotel.select(hotelList,hotelName);
+	public HotelVO getHotelInfo(String id) {
+		return searchHotel.getHotelInfo(id);
 	}
 
 }
