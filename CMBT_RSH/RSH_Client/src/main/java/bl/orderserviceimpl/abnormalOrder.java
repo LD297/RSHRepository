@@ -1,6 +1,5 @@
 package bl.orderserviceimpl;
 
-import bl.orderservice.HotelInfoService;
 import bl.userserviceimpl.CreditRecordList;
 import constant.CreditAction;
 import constant.ResultMessage;
@@ -9,7 +8,6 @@ import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import vo.CreditRecordVO;
 import vo.OrderVO;
-import vo.RoomNormVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -46,7 +44,7 @@ public class AbnormalOrder {
      * 场景：酒店手动补登记 改变订单状态 信用值
      *      前提：在用户订单预计离开日期之前->用户交付订单实际价值
      *      后置：改变订单状态 ；
-     *            恢复用户被扣除的信用值 ；
+     *            恢复用户被扣除的信用值
      * @param orderID
      * @return
      */
@@ -89,8 +87,9 @@ return null;
 
         try{
             ArrayList<OrderPO> orders = orderDao.searchByState(StateOfOrder.abnormal);
-            for(int i=0;i<orders.size();i++)
-                selectedList.add(this.transformPOToVO(orders.get(i)));
+            for(int i=0;i<orders.size();i++){
+                selectedList.add(orders.get(i).transformPOToVO());
+            }
             return selectedList;
         }catch (RemoteException e){
             e.printStackTrace();
@@ -99,13 +98,17 @@ return null;
     }
 
 
-
-    // 网站营销人员撤销异常订单
-    // 场景：前提：用户仍在预计入住时期
-    //       动作：用户取消入住计划
-    //       后置：改变酒店的房间信息；
-    //             增加用户信用值（全部/一半）；
-    //             记录撤销订单时间、改变订单状态
+    /**
+     * 网站营销人员撤销异常订单
+     * 场景：前提：用户仍在预计入住时期
+     *       动作：用户取消入住计划
+     *       后置：改变酒店的房间信息；
+     *             增加用户信用值（全部/一半）；
+     *             记录撤销订单时间、改变订单状态
+     * @param orderID
+     * @param IsHalf
+     * @return
+     */
     public ResultMessage webCancelAbnormal(String orderID,Boolean IsHalf){//cause:申诉->change credit
         OrderPO orderPO;
         try{
@@ -142,41 +145,6 @@ return null;
         }
         return ResultMessage.succeed;
     }
-    // 完成从PO到VO的操作
-    private OrderVO transformPOToVO(OrderPO orderPO){
-        String orderID = orderPO.getOrderID();
-        String userID = orderPO.getUserID();
-        String userName = orderPO.getUserName();
-        String hotelID = orderPO.getHotelID();
-        String hotelName = orderPO.getHotelName();
-        StateOfOrder state = orderPO.getState();
-        RoomNormVO room = orderPO.getRoom();
-        int roomNumber = orderPO.getRoomNumber();
-        double roomPrice = orderPO.getRoomPrice();
-        int peopleNumber = orderPO.getPeopleNumber();
-        boolean withChild = orderPO.getWithChild();
 
-        double originValue = orderPO.getOriginValue();
-        double trueValue = orderPO.getTrueValue();
-        String promotion =  orderPO.getPromotion();
-        String comment = orderPO.getComment();
-        int grade = orderPO.getGrade();
-
-        Date checkIn = orderPO.getCheckIn();
-        Date checkOut = orderPO.getCheckOut();
-        Date hotelDDL = orderPO.getHotelDDL();
-        Date generationDate = orderPO.getGenerationDate();
-        Date actualCheckIn = orderPO.getActualCheckIn();
-        Date actualCheckOut = orderPO.getActualCheckOut();
-        Date cancelTime = orderPO.getCancelTime();
-        Date cancelAbnormalTime = orderPO.getCancelAbnormalTime();
-
-        OrderVO orderVO = new OrderVO(orderID, userID, userName, hotelID, hotelName, state,
-                room, roomPrice, roomNumber, peopleNumber, withChild,
-                originValue, trueValue, promotion,
-                comment, grade, checkIn, checkOut, hotelDDL, generationDate,
-                actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);
-        return orderVO;
-    }
 }
 

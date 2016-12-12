@@ -37,6 +37,10 @@ public class HotelPO implements Serializable{
 	 */
 	private double grade;
 	/**
+	 * 标准间价格（酒店价格排序标准）
+	 */
+	public double standardRoomPrice;
+	/**
 	 * 最晚入住时间
 	 */
 	private String latestCheckinTime;
@@ -119,6 +123,14 @@ public class HotelPO implements Serializable{
 
 	public void setGrade(double grade) {
 		this.grade = grade;
+	}
+
+	public double getStandardRoomPrice(){
+		return this.standardRoomPrice;
+	}
+
+	public void setStandardRoomPrice(double standardRoomPrice){
+		this.standardRoomPrice = standardRoomPrice;
 	}
 
 	public String getLatestCheckinTime() {

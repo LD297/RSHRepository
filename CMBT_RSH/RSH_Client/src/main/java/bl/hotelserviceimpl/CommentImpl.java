@@ -1,6 +1,5 @@
 package bl.hotelserviceimpl;
 
-import bl.orderservice.CommentService;
 import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
 import po.CommentPO;

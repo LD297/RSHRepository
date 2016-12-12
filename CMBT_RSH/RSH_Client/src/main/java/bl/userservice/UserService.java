@@ -4,6 +4,7 @@ import constant.ResultMessage;
 import vo.CreditRecordVO;
 import vo.UserVO;
 
+import java.rmi.RemoteException;
 import java.util.Iterator;
 
 /**
@@ -36,4 +37,12 @@ public interface UserService {
 	 * 注册企业会员
 	 */
 	public ResultMessage registerMember(String userid,String commerceName);
+	/**
+	 * 网站营销人员制定会员等级
+	 */
+	public ResultMessage setMemberStandard(int[][] levelWithCredit);
+	/**
+	 * credit变动后计算会员等级
+	 */
+	public int gradeWithCredit getMemberLevel(int credit);
 }

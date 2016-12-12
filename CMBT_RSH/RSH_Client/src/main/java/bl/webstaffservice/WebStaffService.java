@@ -9,20 +9,34 @@ import java.util.ArrayList;
 
 public interface WebStaffService {
 
-	public ResultMessage addWebSalesman(String ID,String password);
-	
-	public ResultMessage delWebSalesman(String ID);
-	
-	public ArrayList<WebSalesmanVO> getWebSalesman();
+	// TODO
 
-	public String getIDForNewWebSalesman();
-
-	public boolean checkPassword(String ID, String password);
-
+	/**
+	 * 网站管理人员添加网站营销人员时调用，生成id
+	 * @return
+	 */
+	public String getIDForWebsalesman();
+	/**
+	 * 网站营销人员初始化密码后，完成注册调用
+	 * @param webSalesmanVO
+	 * @return
+	 */
+	public ResultMessage addWebSalesman(WebSalesmanVO webSalesmanVO);
+	/**
+	 * 网站管理人员查询网站营销人员信息
+	 * @return
+	 */
+	public ArrayList<WebSalesmanVO> getWebSalesmanInfo();
+	/**
+	 * 网站管理人员更改网站营销人员信息（修改密码）
+	 * @param ID
+	 * @param oldPassword
+	 * @param newPassword
+	 * @return
+	 * @throws RemoteException
+	 */
 	public ResultMessage changePassword(String ID,String oldPassword, String newPassword)throws RemoteException;
-
-	public ResultMessage forceChangePassword(String ID, String password);
-
+	
 	public ResultMessage addWebManager(String ID,String password);
 	
 

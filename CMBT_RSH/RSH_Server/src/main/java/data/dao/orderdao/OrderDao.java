@@ -10,28 +10,31 @@ import constant.ResultMessage;
 import constant.StateOfOrder;
 
 public interface OrderDao extends Remote{
-	//根据订单编号查找订单
-	public OrderPO find(String orderid) throws RemoteException;
-	//根据用户编号查找订单	
-	public ArrayList<OrderPO> userFind(String userid) throws RemoteException;
-	//根据酒店编号查找订单
-	public ArrayList<OrderPO> hotelFind(String hotelid) throws RemoteException;
-	//根据状态编号查找订单
-	public ArrayList<OrderPO> stateFind(StateOfOrder state) throws RemoteException;
-	//新建订单
-	public ResultMessage insert(OrderPO orderpo) throws RemoteException;
-	//删除订单
-//	public ResultMessage delete(String orderid) throws RemoteException;
-	//订单状态更新
-	public ResultMessage stateUpdate(String orderid,StateOfOrder newstate) throws RemoteException;
-	//评价订单
-	public ResultMessage commentUpdate(String orderid,int grade, String comment) throws RemoteException;
-	//订单实际离开时间更新
-	public ResultMessage leaveUpdate(String orderid,Date leavetime) throws RemoteException;
-	
-    public void init() throws RemoteException;
-	
-    public void finish() throws RemoteException;
+	// 根据订单编号查找订单
+	public OrderPO searchByID(String orderID) throws RemoteException;
+	// 根据用户编号查找订单
+	public ArrayList<OrderPO> searchByUser(String userID) throws RemoteException;
+	// 根据用户编号、酒店编号查找订单
+	public ArrayList<OrderPO> searchByHotelWithUser(String userID,String hotelID) throws RemoteException;
+	// 根据酒店编号查找订单
+	public ArrayList<OrderPO> searchByHotel(String hotelID) throws RemoteException;
+	// 根据状态编号查找订单
+	public ArrayList<OrderPO> searchByState(StateOfOrder state) throws RemoteException;
+
+	// 新建订单
+	public ResultMessage insert(OrderPO orderPO) throws RemoteException;
+	// 订单状态更新
+	public ResultMessage stateUpdate(String orderID, StateOfOrder newState) throws RemoteException;
+	// 评价订单
+	public ResultMessage commentUpdate(String orderID, int grade, String comment) throws RemoteException;
+	// 订单实际入住时间更新
+	public ResultMessage actCheckInUpdate(String orderID, Date actCheckIn) throws RemoteException;
+	// 订单实际离开时间更新
+	public ResultMessage actCheckOutUpdate(String orderID, Date actCheckOut) throws RemoteException;
+	// 订单撤销时间更新
+	public ResultMessage cancelTimeUpdate(String orderID, Date cancelTime) throws RemoteException;
+	// 订单撤销异常时间更新
+	public ResultMessage cancelAbTimeUpdate(String orderID, Date cancelAbTime) throws RemoteException;
 
 
 }
