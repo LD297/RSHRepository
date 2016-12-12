@@ -16,14 +16,14 @@ public class WMHotel{
 		this.hotelDao = hotelDao;
 	}
 
-	public int getHotelNum(String address) {
-		int hotelNum = 0;
+	public String getHotelID(String district) {
+		String hotelID = null;
 		try {
-			hotelNum = hotelDao.getHotelNum(address);
+			hotelID = hotelDao.getHotelID(district);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
-		return hotelNum;
+		return hotelID;
 	}
 
 	public ResultMessage addHotel(String id, String password) {
@@ -38,15 +38,6 @@ public class WMHotel{
 		return resultMessage;
 	}
 
-	public ResultMessage deleteHotel(String id) {
-		ResultMessage resultMessage = null;
-		try {
-			resultMessage = hotelDao.deleteHotel(id);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return resultMessage;
-	}
 
 	public ResultMessage updateHotelStaff(HotelStaffVO hotelStaffVO) {
 		HotelStaffPO hotelStaffPO = new HotelStaffPO(hotelStaffVO.hotelID, hotelStaffVO.tel);

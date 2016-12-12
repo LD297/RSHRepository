@@ -49,25 +49,6 @@ public interface OrderForUser {
      */
     public ArrayList<OrderVO> specificOrder(String userID,String hotelID);
     /**
-     * 添加订单时调用
-     * @param hotelID 根据酒店id，得到房间规格（房间类型,原始价格）,其中，房间类型为String，如"单人间"、"标准间"等
-     * @return
-     */
-    public ArrayList<RoomNormVO> getRoomNorm(String hotelID);
-    /**
-     * 得到该酒店的最晚入住时间，时间类型为String, 格式统一为"00:00:00"
-     */
-    public String getCheckInDDL(String hotelID);
-    /**
-     * 选择roomType、checkIn与checkOut后
-     * 根据酒店id、时间得到该房间类型可用客房数量
-     * @param hotelID
-     * @param checkIn
-     * @param checkOut
-     * @return
-     */
-    public int getRoomAvailNum(String hotelID, String roomType, Date checkIn, Date checkOut);
-    /**
      * 选择房间类型、房间数量完成后
      * 根据用户id、酒店id、checkIn、checkOut、房间类型、房间数量
      * 上述参数实时更新后 需要实时去计算
@@ -102,7 +83,7 @@ public interface OrderForUser {
      * @param comment
      * @return
      */
-    public ResultMessage addComment(String orderID, double grade, String comment);
+    public ResultMessage addComment(String orderID, int grade, String comment);
 
 }
 

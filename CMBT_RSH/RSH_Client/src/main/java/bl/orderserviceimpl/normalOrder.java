@@ -1,9 +1,10 @@
 package bl.orderserviceimpl;
 
+import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.CommentImpl;
 import bl.hotelserviceimpl.HotelController;
 import bl.userserviceimpl.CreditRecordList;
+import constant.CreditAction;
 import constant.ResultMessage;
 import constant.StateOfOrder;
 import data.dao.orderdao.OrderDao;
@@ -20,22 +21,18 @@ import java.util.Date;
  * Created by sky-PC on 2016/11/27.
  */
 public class NormalOrder {
-    HotelService hotelService;
     OrderDao orderDao;
 
-    CommentService commentService ;
+    HotelInfoService hotelInfoService ;
+    HotelService hotelService;
     CreditRecordList creditRecordList;
-
-    public void setHotelInfoService(HotelService hotelInfoService) {
-        this.hotelService = hotelService;
-    }
 
     public void setOrderDao(OrderDao orderDao) {
         this.orderDao = orderDao;
     }
 
-    public void setCommentService(CommentImpl commentImpl){
-        commentService = commentImpl;
+    public void setHotelInfoService(HotelController hotelController){
+        this.hotelInfoService = hotelController;
     }
 
     public void setCreditRecordList(CreditRecordList creditRecordList){
@@ -43,65 +40,65 @@ public class NormalOrder {
     }
 
     // 用户撤销未执行订单
-    public void cancelMyOrder(String orderID){
-        OrderPO orderpo;
-        try {
-            orderpo = orderDao.searchByID(orderID);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return ;
+    public int cancelMyOrder(String orderID){
+        OrderPO orderPO = null;
+        try{
+            orderPO = orderDao.searchByID(orderID);
+        }catch (RemoteException e){
+            return -1;
         }
-        String hotelID = orderpo.getHotelID();
-        RoomNormVO room =  orderpo.getRoom();
-        int roomNum = orderpo.getRoomNumber();
-        Date checkIn = orderpo.getCheckIn();
-        Date checkOut = orderpo.getCheckOut();
 
-        hotelService = new HotelController(orderpo.getHotelID());
-        String time = hotelService.getCheckInDDL(orderpo.getHotelID());
+        String hotelID = orderPO.getHotelID();
+        RoomNormVO room =  orderPO.getRoom();
+        int roomNum = orderPO.getRoomNumber();
+        Date checkIn = orderPO.getCheckIn();
+        Date checkOut = orderPO.getCheckOut();
 
+        hotelInfoService = new HotelController();
+        String time = hotelInfoService.getCheckInDDL(orderPO.getHotelID());
 
+        hotelInfoService = new HotelController(orderPO.getHotelID());
         hotelService.minusRoomAvail(room.getRoomType(),roomNum,checkIn,checkOut);
 
-        int day = checkIn.getDay();
-        int hour = Integer.valueOf(time.substring(0, 2));
-        int minute = Integer.valueOf(time.substring(3));
 
-        Date d = new Date();
-        int trueday = d.getDay();
-        int truehour = d.getHours();
-        int trueminute = d.getMinutes();
-
-        if((day-trueday)*24*60+(hour-truehour)*60+(minute-trueminute)<360){
-            creditRecordList = new CreditRecordList(orderpo.getUserID());
-            //userid,date,orderid,creditAction,change,credit
-            CreditRecordVO creditRecord = new CreditRecordVO(orderpo.getUserID(), d, orderID, null,"",(int)orderpo.getTrueValue());
-            creditRecordList.addCreditRecord(creditRecord);
-        }
-        System.out.println("success");
-        return ;
+        return 0;
     }
 
     // 酒店执行订单
     public ResultMessage execute(String orderID){
-        //orderdataservice update
-        //orderdataservice find ->orderpo
-/*		Date d = new Date();
-		CreditRecordVO creditRecord = new CreditRecordVO(orderpo.getUserid(), d, orderid, null,"",(int)orderpo.getTrueValue());
-		record.addCreditRecord(creditRecord);*/
+        Date actCheckIn = new Date();
+        OrderPO orderPO = null;
+        try{
+            orderPO = orderDao.searchByID(orderID);
+            orderDao.actCheckInUpdate(orderID,actCheckIn);
+        }catch (RemoteException e){
+            return ResultMessage.fail;
+        }
+
+        String userID = orderPO.getUserID();
+        int change = (int)orderPO.getTrueValue();
+        CreditRecordList creditRecordList = new CreditRecordList(userID);
+        int credit = creditRecordList.getCredit();
+
+		CreditRecordVO creditRecordVO = new CreditRecordVO(userID,actCheckIn,orderID,
+                CreditAction.execute,"+"+change,change+credit);
+		creditRecordList.addCreditRecord(creditRecordVO);
+
         return ResultMessage.succeed;
     }
 
     // 用户评价订单
-    public ResultMessage addComment(String orderID, double grade, String comment){
-        commentService = new CommentImpl();
-        ResultMessage a = commentService.addComment(orderID.substring(0,10), orderID, comment);
-        ResultMessage b = commentService.updateGrade(grade);
-
-        if(a.equals(b)&&a.equals(ResultMessage.succeed))
-            return ResultMessage.succeed;
-        else
+    public ResultMessage addComment(String orderID, int grade, String comment){
+        hotelInfoService = new HotelController();
+        try {
+            if(orderDao.commentUpdate(orderID, grade, comment)==ResultMessage.succeed&&
+                    hotelInfoService.updateGrade(grade)==ResultMessage.succeed)
+                return ResultMessage.succeed;
+        }catch(RemoteException e){
+            e.printStackTrace();
             return ResultMessage.fail;
+        }
+        return ResultMessage.fail;
     }
 
     // 实时更新异常订单状况
@@ -112,7 +109,7 @@ public class NormalOrder {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        String time = hotelService.getCheckInDDL(orderID.substring(10, 20));
+        String time = hotelInfoService.getCheckInDDL(orderID.substring(10, 20));
         int hour = Integer.valueOf(time.substring(0, 2));
         int minute = Integer.valueOf(time.substring(3));
 
