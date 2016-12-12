@@ -1,9 +1,8 @@
 package bl.orderserviceimpl.miscellaneous;
 
-import bl.hotelserviceimpl.CommentImpl;
 import constant.ResultMessage;
 
-public class MockComment extends CommentImpl{
+public class MockComment extends HotelInfoImpl {
 	String hotel;
 	String order;
 	

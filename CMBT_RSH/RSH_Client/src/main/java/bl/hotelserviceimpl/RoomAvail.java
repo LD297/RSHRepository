@@ -18,7 +18,7 @@ public class RoomAvail {
 
 	// 供给order模块
 	// 返回该酒店指定日期下该房间类型的可用数量
-	public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) {
+	public int getRoomAvailNum(String id, String roomType, Date checkIn, Date checkOut) {
 		int numOfRoomAvail = 0;
 		try{
 			numOfRoomAvail = hotelDao.numOfRoomAvail(id, roomType, checkIn, checkOut);
@@ -40,10 +40,10 @@ public class RoomAvail {
 		return resultMessage;
 	}
 	
-	public ArrayList<RoomAvailVO> getRoomAvailList(String id, Date date) {
+	public ArrayList<RoomAvailVO> getRoomAvailList(String id, Date checkIn, Date checkOut) {
 		ArrayList<RoomAvailVO> availVOs = null;
 		try{
-			availVOs = hotelDao.getRoomAvailList(id, date);
+			availVOs = hotelDao.getRoomAvailList(id, checkIn,checkOut);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
