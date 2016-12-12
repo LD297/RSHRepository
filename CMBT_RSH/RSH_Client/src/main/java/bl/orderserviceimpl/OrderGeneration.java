@@ -4,7 +4,7 @@ package bl.orderserviceimpl;
  * Created by sky-PC on 2016/12/4.
  */
 
-import bl.hotelservice.HotelService;
+import bl.hotelservice.HotelInfoService;
 import bl.hotelserviceimpl.HotelController;
 import bl.promotionServiceimpl.Count;
 import bl.userserviceimpl.CreditRecordList;
@@ -20,49 +20,15 @@ import java.util.Date;
 
 public class OrderGeneration {
 
-    private HotelService hotelService;
+    private HotelInfoService hotelInfoService;
     private Count count;
     private OrderDao orderDao;
-
-    public void setHotelInfoService(HotelService hotelService) {
-        this.hotelService = hotelService;
-    }
 
     public void setOrderDao(OrderDao orderDao) {
         this.orderDao = orderDao;
     }
-
-    /**
-     * 订单生成时：
-     * 根据酒店得到房间规模（酒店编号、房间类型、原始价格）
-     * 房间类型选择中的条目
-     * @param hotelID
-     * @return
-     */
-    public ArrayList<RoomNormVO> getRoomNorm(String hotelID){
-        hotelService = new HotelController(hotelID);
-        ArrayList<RoomNormVO> rooms = hotelService.getRoomNorms();
-        return rooms;
-    }
-
-    /**
-     * 选择checkIn与checkOut后
-     * 根据酒店、时间得到所有房间类型可用客房数量
-     * 与getHotelRoom 一一对应
-     * @param hotelID
-     * @param checkIn
-     * @param checkOut
-     * @return
-     */
-    public int[] getRoomAvailNum(String hotelID, Date checkIn, Date checkOut){
-        ArrayList<RoomNormVO> rooms = this.getRoomNorm(hotelID);
-        int availNum[] = new int[rooms.size()];
-
-        hotelService = new HotelController(hotelID);
-        for(int i=0;i<rooms.size();i++){
-            availNum[i] = hotelService.numOfRoomAvail(rooms.get(i).getRoomType(), checkIn, checkOut);
-        }
-        return availNum;
+    public void setHotelInfoService(HotelInfoService hotelInfoService){
+        this.hotelInfoService = hotelInfoService;
     }
 
     /**
@@ -103,12 +69,12 @@ public class OrderGeneration {
             return ResultMessage.creditLack;
 
         // 检查房间信息
-        hotelService = new HotelController(orderVO.getHotelID());
+        hotelInfoService = new HotelController(orderVO.getHotelID());
         RoomNormVO room = orderVO.getRoom();
         int roomNum = orderVO.getRoomNumber();
         Date checkIn = orderVO.getCheckIn();
         Date checkOut = orderVO.getCheckOut();
-        if(hotelService.numOfRoomAvail(room.getRoomType(),checkIn,checkOut)<roomNum)
+        if(hotelInfoService.getRoomAvailNum(room.getRoomType(),checkIn,checkOut)<roomNum)
             return ResultMessage.roomNumLack;
 
         // 检查价格

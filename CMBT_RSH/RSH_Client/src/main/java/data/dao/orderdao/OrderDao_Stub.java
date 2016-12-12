@@ -153,17 +153,24 @@ public class OrderDao_Stub implements OrderDao {
     }
 
     @Override
-    public ResultMessage commentUpdate(String orderID, double grade, String comment) throws RemoteException {
-        return null;
+    public ResultMessage commentUpdate(String orderID, int grade, String comment) throws RemoteException {
+        return ResultMessage.succeed;
     }
 
     @Override
-    public ResultMessage leaveUpdate(String orderID, Date actualCheckOut) throws RemoteException {
-        return null;
+    public ResultMessage actCheckInUpdate(String orderID, Date actCheckIn) throws RemoteException{
+        return ResultMessage.succeed;
     }
-
+    @Override
+    public ResultMessage actCheckOutUpdate(String orderID, Date actCheckOut) throws RemoteException{
+        return ResultMessage.succeed;
+    }
     @Override
     public ResultMessage cancelTimeUpdate(String orderID, Date cancelTime) throws RemoteException{
-        return null;
+        return ResultMessage.succeed;
+    }
+    @Override
+    public ResultMessage cancelAbTimeUpdate(String orderID, Date cancelAbTime) throws RemoteException{
+        return ResultMessage.succeed;
     }
 }

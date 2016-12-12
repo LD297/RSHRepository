@@ -52,20 +52,10 @@ public class BrowseHotelUIController {
 	private int hotelVOsPointer = -1;
 	private int maxPages = 0;
 
+	//点击搜索按钮跳转到酒店详情界面
 	@FXML
 	void changeToHotelInfo(MouseEvent event) {
-		String hotelName = searchNameField.getText().trim();
-		boolean found = false;
-		for (int i = 0; i < hotelVOs.size(); i++) {
-			if (hotelVOs.get(i).name.equals(hotelName)) {
-				UserInfoUtil.getInstance().setHotelName(hotelName);
-				UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo();
-				found = true;
-			}
-		}
-		if (!found) {
-			// TODO 未找到提示
-		}
+		searchByName();
 	}
 	
 	@FXML
@@ -149,11 +139,17 @@ public class BrowseHotelUIController {
     //在搜索框内通过酒店名字搜索
     @FXML
     void searchByName(ActionEvent event) {
+    	searchByName();
+    }
+    
+    //根据酒店名称搜索酒店，并跳转到具体的酒店详情界面
+    private void searchByName(){
         String hotelName = searchNameField.getText().trim();
         boolean found  = false;
         for(int i=0;i<hotelVOs.size();i++){
         	if(hotelVOs.get(i).name.equals(hotelName)){
-        		UserInfoUtil.getInstance().setHotelName(hotelName);
+ //       		UserInfoUtil.getInstance().setHotelName(hotelName);
+        		UserInfoUtil.getInstance().setHotelID(hotelVOs.get(i).id);
                 UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo();
                 found = true;
         	}
@@ -162,6 +158,10 @@ public class BrowseHotelUIController {
         	//TODO 未找到提示
         }
     }
+    
+    public ArrayList<HotelVO> getHotelVOsOfBrowsehotel() {
+		return hotelVOs;
+	}
     
     public void init() {
     	UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();

@@ -24,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import presentation.logincontroller.LoginUIController;
 import presentation.tools.UIJumpTool;
+import presentation.tools.UserInfoUtil;
 import presentation.tools.UserInputFormCheckTool;
 import vo.UserVO;
 
@@ -118,12 +119,11 @@ public class UserRegisterUIController {
     		String imageAddress = null;
     		UserVO userVO = new UserVO(phoneNum, password, nickName, imageAddress, birth, 0, MemberType.commom, name, sexuality, email, 0,null);
     		 //将该用户注册的内容存到数据库
-        	LoginService loginService = new LoginController();
-        	ResultMessage resultMessage = loginService.register(userVO);
+        	ResultMessage resultMessage = UserInfoUtil.getInstance().register(userVO);
         	if(resultMessage!=ResultMessage.succeed){
         		//TODO 完善resultmessage中的失败类型
         		wrongMessages.add("该用户已存在");
-        	}else{
+        	}else{//如果注册成功
         		//返回到登陆界面
                 LoginUIController loginUIController = UIJumpTool.getUiJumpTool().changeRegisterToLogin();
                 //set登陆界面的用户名和密码

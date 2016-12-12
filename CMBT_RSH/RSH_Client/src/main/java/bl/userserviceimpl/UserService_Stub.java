@@ -1,48 +1,60 @@
-package presentation.tools;
+package bl.userserviceimpl;
 
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.Iterator;
 
 import bl.userservice.UserService;
-import constant.MemberType;
 import constant.ResultMessage;
-import constant.Sexuality;
 import vo.CreditRecordVO;
 import vo.UserVO;
 
-public class UserStub implements UserService{
+public class UserService_Stub implements UserService{
 
+	@Override
 	public UserVO getInfo(String userid) {
 		// TODO Auto-generated method stub
-		return new UserVO(userid, "123456", "ahh",
-				  "", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 5, MemberType.commerce, "王小二",
-				  Sexuality.male, "233@233.com", 450, "nju");
+		return null;
 	}
 
+	@Override
 	public ResultMessage update(UserVO userVO) {
 		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
+		return null;
 	}
 
+	@Override
 	public ResultMessage addCreditRecord(CreditRecordVO vo) {
 		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
+		return null;
 	}
 
+	@Override
 	public Iterator<CreditRecordVO> getCreditRecordList(String userid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public ResultMessage registerMember(String userid) {
 		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
+		return null;
 	}
 
+	@Override
 	public ResultMessage registerMember(String userid, String commerceName) {
 		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
+		return null;
+	}
+
+	@Override
+	public ResultMessage setMemberStandard(int[][] levelWithCredit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void getMemberLevel(int credit) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
