@@ -12,6 +12,12 @@ import java.util.Date;
  * Created by sky-PC on 2016/11/20.
  */
 public interface OrderGenerationService {
+<<<<<<< Updated upstream
+=======
+
+    //根据酒店得到房间规模（房间类型和价格）
+    public ArrayList<RoomNormVO> getHotelRoom(String hotelid);
+>>>>>>> Stashed changes
 
     /**
      * 订单生成时：

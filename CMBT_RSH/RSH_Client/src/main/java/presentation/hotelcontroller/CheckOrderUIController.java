@@ -991,7 +991,7 @@ public class CheckOrderUIController {
     void executeButton0Clicked(MouseEvent event) {
         // update 一条订单状态
         String orderid = oderNumberLabel0.getText();
-        LocalDate actualCheckinDate = actualCheckinDate0.getc;
+        LocalDate actualCheckinDate = actualCheckinDate0.getValue();
         String actualCheckinTime = actualCheckinTimeLabel0.getText();
         LocalDate actualCheckoutDate = actualCheckoutDate0.getValue();
         String actualCheckoutTime = actualCheckoutTimeLabel0.getText();
