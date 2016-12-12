@@ -29,4 +29,6 @@ public class RoomVO {
 		this.price = price;
 		this.basicOrSpecial = basicOrSpecial;
 	}
+
+
 }

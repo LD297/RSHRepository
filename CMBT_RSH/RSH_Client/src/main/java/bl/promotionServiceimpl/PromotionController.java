@@ -26,6 +26,11 @@ public class PromotionController implements PromotionService {
 	PromotionVO promotionVO=null;
 
 	@Override
+	public String getIDForNewPromotion(String setter) {
+		return null;
+	}
+
+	@Override
 	public ResultMessage addPromotion(PromotionVO tempPromotionVO) {
 		promotionVO=tempPromotionVO;
 		if(Promotion.getInstance(promotionVO.setterID,promotionVO.promotionID)!=null){
