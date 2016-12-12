@@ -2,6 +2,7 @@ package bl.userserviceimpl;
 
 
 import constant.ResultMessage;
+import data.dao.userdao.UserDao;
 import po.UserPO;
 import rmi.RemoteHelper;
 import vo.UserVO;
@@ -14,36 +15,54 @@ import java.rmi.RemoteException;
  *
  */
 public class User {
+
 	String id;
-	public User(){};
+	UserPO userPO = null;
+
+	private static UserDao userDao = null;
+
+	public User(){
+		initRemote();
+	};
 	public User(String id) {
+		initRemote();
 		this.id = id;
 	}
+
+	private static void initRemote(){
+		if(userDao==null)
+			return;
+		RemoteHelper remoteHelper = RemoteHelper.getInstance();
+		userDao = remoteHelper.getUserDao();
+	}
+
 	/**
 	 * 获取用户基本信息
 	 */
 	public UserVO getInfo(){
-		UserPO po = null;
+		if(userPO!=null) {
+			return changeIntoVO(userPO);
+		}
 		try{
-			po = RemoteHelper.getInstance().getUserDao().getInfo(id);
+			userPO = userDao.getInfo(id);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
-		return unpackedPO(po);
+		return changeIntoVO(userPO);
 	}
 
 	/**
 	 * 更新用户基本信息
-	 * @param vo
-	 * @return
+	 * @param vo 更新后VO
+	 * @return 执行后信息
 	 */
 	public ResultMessage update(UserVO vo) {
 		ResultMessage resultMessage = null;
-		UserPO po = create(vo);
+		UserPO po = changeIntoPO(vo);
 		try {
-			resultMessage = RemoteHelper.getInstance().getUserDao().update(po);
+			resultMessage = userDao.update(po);
 		}catch (RemoteException e){
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		return resultMessage;
 	}
@@ -54,46 +73,72 @@ public class User {
 	 * @return
 	 */
 	public ResultMessage add(UserVO vo) {
-		ResultMessage resultMessage = null;
-		UserPO po = create(vo);
 		try {
-			resultMessage = RemoteHelper.getInstance().getUserDao().add(po);
+			if(userDao.getInfo(vo.getId())!=null)
+				return ResultMessage.already_exist;
+		} catch (RemoteException e) {
+			return ResultMessage.remote_fail;
+		}
+
+		ResultMessage resultMessage = null;
+		UserPO po = changeIntoPO(vo);
+		try {
+			resultMessage = userDao.add(po);
 		}catch (RemoteException e){
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		return resultMessage;
 	}
 
-	public ResultMessage checkPassword(String id,String password) {
-		ResultMessage resultMessage = null;
-		try {
-			resultMessage = RemoteHelper.getInstance().getUserDao().checkPassword(id, password);
-		}catch (RemoteException e){
-			e.printStackTrace();
+	public ResultMessage checkPassword(String password) {
+		if(userPO==null){
+			return ResultMessage.not_exist;
 		}
-		return resultMessage;
+		if(password==userPO.getPassword())
+			return ResultMessage.succeed;
+		return ResultMessage.password_wrong;
 	}
-	/**
-	 * 生成用户基本信息持久化对象
-	 * @param vo
-	 * @return
-	 */
-	private UserPO create(UserVO vo) {
+
+	private UserPO changeIntoPO(UserVO vo) {
 		UserPO po = new UserPO(vo.getId(), vo.getPassword(), vo.getNickName(),vo.getImageAddress(),vo.getBirthday(),
 				vo.getLevel(), vo.getMemberType(), vo.getCredit(),
 				vo.getName(), vo.getSexuality(), vo.geteMail() ,vo.getCommerceName()){};
 		return po;
 	}
-	/**
-	 * 解包用户基本信息持久化对象
-	 * @param po
-	 * @return
-	 */
-	private UserVO unpackedPO(UserPO po) {
+
+	private UserVO changeIntoVO(UserPO po) {
 		UserVO vo = new UserVO(po.getId(),po.getPassword(),po.getNickName(),
 				po.getImageAddress(),po.getBirthday(),po.getLevel(),po.getMemberType(),po.getName(),
 				po.getSexuality(),po.geteMail(),po.getCredit(),po.getCommerceName());
 		return vo;
 	}
-	
+
+	public ResultMessage changePassword(String oldPassword, String newPassword) {
+		if(userPO==null){
+			return ResultMessage.not_exist;
+		}
+		if(oldPassword==userPO.getPassword()){
+			return forceChangePassword(newPassword);
+		}
+		else{
+			return ResultMessage.password_wrong;
+		}
+	}
+
+	public ResultMessage forceChangePassword(String newPassword){
+		userPO.setPassword(newPassword);
+		try {
+			userDao.update(userPO);
+		} catch (RemoteException e) {
+			return ResultMessage.remote_fail;
+		}
+		return ResultMessage.succeed;
+	}
+
+	public boolean canGenerateOrder(){
+		if(userPO.getCredit()>0)
+			return true;
+		else
+			return false;
+	}
 }

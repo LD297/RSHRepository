@@ -23,6 +23,16 @@ public class HotelStub implements HotelService {
 	}
 
 	@Override
+	public HotelVO getHotelInfo(String id) {
+		return null;
+	}
+
+	@Override
+	public HotelVO getHotelInfo() {
+		return null;
+	}
+
+	@Override
 	public ResultMessage updateHotel(HotelVO vo) {
 		// TODO Auto-generated method stub
 		return ResultMessage.succeed;
@@ -38,6 +48,21 @@ public class HotelStub implements HotelService {
 	public ResultMessage deleteSpecialRoom(RoomVO vo) {
 		// TODO Auto-generated method stub
 		return ResultMessage.succeed;
+	}
+
+	@Override
+	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn, Date checkOut) {
+		return null;
+	}
+
+	@Override
+	public ResultMessage plusRoomAvail(String roomType, int num, Date checkIn, Date checkOut) {
+		return null;
+	}
+
+	@Override
+	public ResultMessage minusRoomAvail(String roomType, int num, Date checkIn, Date checkOut) {
+		return null;
 	}
 
 	@Override

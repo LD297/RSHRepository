@@ -19,11 +19,15 @@ public interface UserDao extends Remote{
 
 	public ResultMessage add(UserPO po) throws RemoteException;
 
+	/*
 	public ResultMessage checkPassword(String id,String password) throws RemoteException;
 
 	public ResultMessage register(String id) throws RemoteException;
 
 	public ResultMessage register(String id,String commerceName) throws RemoteException;
+*/
+	public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException;
 
-	public ResultMessage setMemberLevel(int[][] gradeWithCredit) throws RemoteException;
+	public int[] getMemberLevel() throws RemoteException;
+
 }

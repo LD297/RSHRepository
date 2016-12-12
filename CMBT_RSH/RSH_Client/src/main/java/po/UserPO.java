@@ -80,4 +80,12 @@ public class UserPO implements Serializable{
 	public String getPassword() {
 		return password;
 	}
+
+    public void setLevel(int level) {
+		this.level = level;
+    }
+
+	public void setPassword(String newPassword) {
+		this.password = newPassword;
+	}
 }

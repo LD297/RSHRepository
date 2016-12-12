@@ -45,4 +45,5 @@ public interface HotelService {
 	// 线下办理入住，酒店工作人员手动减少可用客房数，实现类中需要参数String hotelID
     public ResultMessage minusRoomAvail(String roomType,int num, Date checkIn, Date checkOut);
 
+    int numOfRoomAvail(String roomType, Date checkIn, Date checkOut);
 }

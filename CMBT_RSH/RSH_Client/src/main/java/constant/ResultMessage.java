@@ -13,5 +13,5 @@ public enum ResultMessage {
 	noChangeMade,
 	creditLack,
 	roomNumLack,
-	promotionLoss;
+	promotionLoss, password_wrong;
 }

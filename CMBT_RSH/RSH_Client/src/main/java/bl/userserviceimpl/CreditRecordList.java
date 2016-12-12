@@ -13,12 +13,19 @@ import java.util.Iterator;
 public class CreditRecordList {
 	private String userid = "";
 	ArrayList<CreditRecordVO> creditRecordVOArrayList = null;
-	CreditRecordListDao creditRecordListDao;
 
-	public	void setCreditRecordListDao(CreditRecordListDao creditRecordListDao) {
-		this.creditRecordListDao = creditRecordListDao;
+	private static CreditRecordListDao creditRecordListDao = null;
+
+	private void initRemote(){
+		if(creditRecordListDao!=null)
+			return;
+
+		RemoteHelper remoteHelper = RemoteHelper.getInstance();
+		creditRecordListDao = remoteHelper.getCreditRecordListDao();
 	}
+
 	public CreditRecordList(String userid) {
+		initRemote();
 		this.userid = userid;
 		creditRecordVOArrayList = getCreditRecords();
 	}
@@ -26,31 +33,34 @@ public class CreditRecordList {
 	用以在初始化对象的时候从数据库获得信用记录列表
 	 */
 	private ArrayList<CreditRecordVO> getCreditRecords() {
-		Iterator<CreditRecordPO> creditRecordPOIterator = null;
+		ArrayList<CreditRecordPO> creditRecordPOS= new ArrayList<CreditRecordPO>();
 		try {
-			creditRecordPOIterator = RemoteHelper.getInstance().
-					getCreditRecordListDao().getCreditRecordList(userid);
+			creditRecordPOS=creditRecordListDao.getCreditRecordList(userid);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
+		Iterator<CreditRecordPO> creditRecordPOIterator= creditRecordPOS.iterator();
+
 		ArrayList<CreditRecordVO> creditRecordVOArrayList = null;
 		while(creditRecordPOIterator.hasNext()){
 			CreditRecordPO po = creditRecordPOIterator.next();
-			CreditRecordVO vo = unpackedPO(po);
+			CreditRecordVO vo = changeIntoVO(po);
 			creditRecordVOArrayList.add(vo);
 		}
+
 		return creditRecordVOArrayList;
 	}
+
 	/**
 	 * 增加用户信用变化记录
 	 */
 	public ResultMessage addCreditRecord(CreditRecordVO vo) {
 		ResultMessage resultMessage = null;
-		CreditRecordPO po = create(vo);
+		CreditRecordPO po = changeIntoPO(vo);
 		try {
-			resultMessage = RemoteHelper.getInstance().getCreditRecordListDao().addCreditRecord(po);
+			creditRecordListDao.addCreditRecord(po);
 		}catch (RemoteException e){
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		if(resultMessage==ResultMessage.succeed){
 			creditRecordVOArrayList.add(vo);
@@ -69,6 +79,7 @@ public class CreditRecordList {
 	 * 检验该用户的信用值，返回该用户是否可以下订单
 	 * @return
 	 */
+	/*
 	public boolean canOrder(){
 		if(creditRecordVOArrayList.get(creditRecordVOArrayList.size()-1).getCredit()>0){
 			return true;
@@ -76,30 +87,25 @@ public class CreditRecordList {
 			return false;
 		}
 	}
+	*/
 
 	/**
 	 * 获取用户信用值
 	 * @return
 	 */
 	public int getCredit(){
-		return creditRecordVOArrayList.get(creditRecordVOArrayList.size()-1).getCredit();
+		int pos = creditRecordVOArrayList.size()-1;
+		CreditRecordVO creditRecordVO = creditRecordVOArrayList.get(pos);
+		return creditRecordVO.getCredit();
 	}
-	/**
-	 * 生成信用记录持久化对象
-	 * @param vo
-	 * @return
-	 */
-	private CreditRecordPO create(CreditRecordVO vo) {
+
+	private CreditRecordPO changeIntoPO(CreditRecordVO vo) {
 		CreditRecordPO po = new CreditRecordPO(vo.getUserid(),vo.getDate(),
 				vo.getOrderid(),vo.getCreditAction(),vo.getChange(),vo.getCredit());
 		return po;
 	}
-	/**
-	 * 解包信用记录持久化对象
-	 * @param po
-	 * @return
-	 */
-	private CreditRecordVO unpackedPO(CreditRecordPO po) {
+
+	private CreditRecordVO changeIntoVO(CreditRecordPO po) {
 		CreditRecordVO vo = new CreditRecordVO(po.getUserid(),po.getDate(),
 				po.getOrderid(),po.getCreditAction(),po.getChange(),po.getCredit());
 		return vo;

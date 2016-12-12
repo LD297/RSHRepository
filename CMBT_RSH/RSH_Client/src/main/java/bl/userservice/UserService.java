@@ -17,6 +17,7 @@ public interface UserService {
 	 * 返回用户基本信息
 	 */
 	public UserVO getInfo(String userid);
+
 	/**
 	 * 更新用户的基本信息
 	 */
@@ -37,12 +38,19 @@ public interface UserService {
 	 * 注册企业会员
 	 */
 	public ResultMessage registerMember(String userid,String commerceName);
+
 	/**
 	 * 网站营销人员制定会员等级
+	 * 数组i位置存放i级最小值，0位置存0；
 	 */
-	public ResultMessage setMemberStandard(int[][] levelWithCredit);
+	public ResultMessage setMemberStandard(int[] boundariesForLevels);
+
+	public int[] getMemberStandard();
+
 	/**
 	 * credit变动后计算会员等级
 	 */
-	public int gradeWithCredit getMemberLevel(int credit);
+	public int getMemberLevel(int credit);
+
+	public ResultMessage changePassword(String userid, String oldPassword, String newPassword);
 }

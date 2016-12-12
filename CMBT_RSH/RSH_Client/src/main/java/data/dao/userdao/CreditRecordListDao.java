@@ -5,6 +5,7 @@ import po.CreditRecordPO;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -18,10 +19,10 @@ public interface CreditRecordListDao extends Remote{
 	 * @return ArrayList<CreditRecordPO>用户信用记录持久化对象list
 	 * @throws RemoteException
 	 */
-	public Iterator<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException;
+	public ArrayList<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException;
 	/**
 	 * 增加用户信用记录持久化对象
-	 * @param po用户信用记录持久化对象
+	 * @param  po 用户信用记录持久化对象
 	 * @return
 	 * @throws RemoteException
 	 */

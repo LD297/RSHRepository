@@ -96,8 +96,10 @@ public class OrderGeneration {
      */
     public ResultMessage confirmExecution(OrderVO orderVO){
         // 检查信用值
+
         CreditRecordList credit = new CreditRecordList(orderVO.getUserID());
-        if(credit.canOrder()==false)
+        User user = new User(orderVO.getUserID());
+        if(!user.canGenerateOrder())
             return ResultMessage.creditLack;
 
         // 检查房间信息

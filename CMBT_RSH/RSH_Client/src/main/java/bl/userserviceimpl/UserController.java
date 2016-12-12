@@ -18,46 +18,80 @@ public class UserController implements UserService{
 	 * 获取用户基本信息
 	 */
 	public UserVO getInfo(String userid) {
-		return new User(userid).getInfo();
+		User user = new User(userid);
+		return user.getInfo();
 	}
 
 	/**
 	 * 更新用户的基本信息
 	 */
-	public ResultMessage update(UserVO userVO) {
-		return new User(userVO.getId()).update(userVO);
+	public ResultMessage update(UserVO userVO)	{
+		User user = new User(userVO.getId());
+		return user.update(userVO);
 	}
 
 	/**
 	 * 增加信用变化记录（用户信用充值的时候）
 	 */
 	public ResultMessage addCreditRecord(CreditRecordVO vo) {
-		return new CreditRecordList(vo.getUserid()).addCreditRecord(vo);
+		CreditRecordList creditRecordList = new CreditRecordList(vo.getUserid());
+		return creditRecordList.addCreditRecord(vo);
 	}
 	
 	/**
 	 * 用户信用记录列表（用户查看信用记录的时候）
 	 */
 	public Iterator<CreditRecordVO> getCreditRecordList(String userid) {
-		return new CreditRecordList(userid).getCreditRecordList();
+		CreditRecordList creditRecordList = new CreditRecordList(userid);
+		return creditRecordList.getCreditRecordList();
 	}
 
 	/**
 	 * 注册普通会员
 	 */
 	public ResultMessage registerMember(String userid) {
-		return new Member(userid).registerMember();
+		Member member = new Member(userid);
+		return member.registerMember();
 	}
 
 	/**
 	 * 注册企业会员
 	 */
 	public ResultMessage registerMember(String userid, String commerceName) {
-		return new Member(userid).registerMember(commerceName);
+		Member member = new Member(userid);
+		return member.registerMember(commerceName);
+	}
+
+	@Override
+	public ResultMessage setMemberStandard(int[] boundariesForLevels) {
+		Member member = new Member();
+		return member.setMemberStandard(boundariesForLevels);
+	}
+
+	@Override
+	public int[] getMemberStandard() {
+		Member member = new Member();
+		return member.getMemberStandard();
+	}
+
+
+	@Override
+	public int getMemberLevel(int credit) {
+		if(credit<=0)
+			return 0;
+		Member member = new Member();
+		return member.getMemberLevel(credit);
+	}
+
+	@Override
+	public ResultMessage changePassword(String userid, String oldPassword, String newPassword) {
+		User user = new User(userid);
+		return	user.changePassword(oldPassword,newPassword);
 	}
 
 	public ResultMessage checkPassword(String id,String password) {
-		return new User().checkPassword(id, password);
+		User user = new User(id);
+		return user.checkPassword(password);
 	}
 
 }

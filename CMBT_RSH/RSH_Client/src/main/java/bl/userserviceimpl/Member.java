@@ -1,25 +1,66 @@
 package bl.userserviceimpl;
 
 import constant.ResultMessage;
+import data.dao.userdao.UserDao;
+import po.UserPO;
 import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
 
 public class Member {
-	String userid;
-	public Member(){}
-	public Member(String userid) {
+
+	private static UserDao userDao=null;
+	private static int[] boundaries;
+
+	private String userid;
+	private UserPO userPO = null;
+	private int level;
+	private int credit;
+	private String commerceName;
+
+	public  Member(String userid){
+		initRemote();
 		this.userid = userid;
+		try {
+			userPO = userDao.getInfo(userid);
+			level = userPO.getLevel();
+			credit = userPO.getCredit();
+			commerceName = userPO.getCommerceName();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
+
+	public Member(){
+		initRemote();
+	}
+
+
+	private static void initRemote(){
+		if(userDao == null){
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
+			userDao = remoteHelper.getUserDao();
+			try {
+				boundaries = userDao.getMemberLevel();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	/**
 	 * 注册普通会员
 	 */
 	public ResultMessage registerMember() {
+		level = getMemberLevel(credit);
+		userPO.setLevel(level);
+
 		ResultMessage resultMessage = null;
+		initRemote();
 		try{
-			resultMessage = RemoteHelper.getInstance().getUserDao().register(userid);
+			resultMessage = userDao.update(userPO);
 		}catch(RemoteException e){
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		return resultMessage;
 	}
@@ -28,26 +69,60 @@ public class Member {
 	 * 注册企业会员
 	 */
 	public ResultMessage registerMember(String commerceName) {
+
+		level = getMemberLevel(credit);
+		userPO.setLevel(level);
+
+		this.commerceName = commerceName;
+		userPO.setCommerceName(commerceName);
+
 		ResultMessage resultMessage = null;
+		initRemote();
 		try{
-			resultMessage = RemoteHelper.getInstance().getUserDao().register(userid,commerceName);
+			resultMessage = userDao.update(userPO);
 		}catch(RemoteException e){
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		return resultMessage;
 	}
 	/**
-	 * 更新所有会员的会员等级
-	 * @param gradeWithCredit
+	 * 网站营销人员更新所有会员的会员等级
+	 * @param levelWithCredit
 	 * @return
 	 */
-	public ResultMessage setMemberLevel(int[][] gradeWithCredit){
+	public ResultMessage setMemberStandard(int[] levelWithCredit){
+		if(levelWithCredit[0]!=0)
+			return ResultMessage.fail;
+		for(int i=1;i<levelWithCredit.length;i++){
+			if(levelWithCredit[i-1]>=levelWithCredit[i]){
+				return ResultMessage.fail;
+			}
+		}
+
 		ResultMessage resultMessage = null;
+		initRemote();
 		try{
-			resultMessage = RemoteHelper.getInstance().getUserDao().setMemberLevel(gradeWithCredit);
+			resultMessage = userDao.setMemberLevel(levelWithCredit);
 		}catch(RemoteException e){
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		return resultMessage;
 	}
+
+	public int[] getMemberStandard(){
+		return boundaries;
+	}
+
+
+	public int getMemberLevel(int credit) {
+		int level = 0;
+		for(;level<boundaries.length;level++){
+			if(credit<boundaries[level]){
+				level --;
+				break;
+			}
+		}
+		return level;
+	}
+
 }
