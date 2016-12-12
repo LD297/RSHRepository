@@ -40,7 +40,7 @@ public interface UserService {
 	/**
 	 * 网站营销人员制定会员等级
 	 */
-	public ResultMessage setMemberStandard(int[][] gradeWithCredit);
+	public ResultMessage setMemberStandard(int[][] levelWithCredit);
 	/**
 	 * credit变动后计算会员等级
 	 */

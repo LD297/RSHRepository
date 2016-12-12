@@ -3,54 +3,46 @@ package bl.hotelservice;
 import constant.ResultMessage;
 import vo.HotelVO;
 import vo.RoomAvailVO;
-import vo.RoomNormVO;
 import vo.RoomVO;
 
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * 功能最小化，紧扣大作业需求。
+ * 如：对客房信息的维护，需求中只有"录入可用客房（类型、数量、原始价格）"这句。
+ * 因此，先只考虑add和delete。不考虑update。
+ * 且"单人间"、"标准间"、"特色房间"都适用
+ */
 public interface HotelService {
 
-	// 返回该酒店基本信息
-	public HotelVO getHotel ();
+	// 用户查看该酒店详情
+    public HotelVO getHotelInfo(String id);
 
-	// 得到某酒店所有房间规模
-	public ArrayList<RoomNormVO> getRoomNorms();
+    // 酒店查看酒店详情 （维护基本信息时，初始化界面需要的基本信息）， 实现类中需要参数String hotelID
+    public  HotelVO getHotelInfo();
 
-	// 根据日期 得到某酒店的可用客房数
-	public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut);
+	/**
+	 * 酒店工作人员维护酒店基本信息，实现类中需要参数String hotelID
+	 */
+    public ResultMessage updateHotel (HotelVO vo);
 
-	// 得到某酒店的最晚入住时间
-	public String getCheckInDDL(String hotelID);
+    // 返回该酒店的客房信息列表
+    public ArrayList<RoomVO> getRoomList();
 
-	// 系统更新数据库中该酒店的酒店基本信息
-	public ResultMessage updateHotel (HotelVO vo);
-
-	// 增加特色客房
+	// 增加客房, 实现类中需要参数String hotelID
 	public ResultMessage addSpecialRoom(RoomVO vo);
 
-	// 删除特色客房
+	// 删除客房, 实现类中需要参数String hotelID
 	public ResultMessage deleteSpecialRoom(RoomVO vo);
-	
-	// 返回该酒店的客房信息列表
-	public ArrayList<RoomVO> getRoomList();
 
-	// 更新客房信息
-	public ResultMessage updateRoomList(ArrayList<RoomVO> roomList);
-
-	// 返回该日期段的可用客房信息列表
+	// 返回该日期段的可用客房信息列表（获得可用房间类型、数量、价格，供线下入住时查看）
 	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn,Date checkOut);
-	
-/*	 更新该日期下的可用客房信息列表
-	public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> availableRoomList);
-*/
-    // 增加可用客房数
+
+	// 线下提前离开，酒店工作人员手动增加可用客房数，实现类中需要参数String hotelID
     public ResultMessage plusRoomAvail(String roomType,int num, Date checkIn, Date checkOut);
-    // 减少可用客房数
+
+	// 线下办理入住，酒店工作人员手动减少可用客房数，实现类中需要参数String hotelID
     public ResultMessage minusRoomAvail(String roomType,int num, Date checkIn, Date checkOut);
-	// 注册酒店账号时 根据地址得到数量 得到账号
-	public String getHotelID(String district);
-	// 注册生成酒店
-	public ResultMessage addHotel(HotelVO hotelVO);
 
 }

@@ -1,23 +1,18 @@
 package presentation.Main;
 
 import bl.hotelservice.HotelService;
-import bl.orderservice.OtherOrderService;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import bl.hotelserviceimpl.HotelServiceFactory;
-import bl.orderserviceimpl.OrderServiceFactory;
-import po.OrderPO;
 import presentation.hotelcontroller.HotelHomepageUIController;
 import presentation.tools.HotelUIFactory;
 import vo.HotelVO;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Created by a297 on 16/12/5.

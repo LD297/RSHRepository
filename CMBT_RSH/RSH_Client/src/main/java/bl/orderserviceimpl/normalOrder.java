@@ -3,7 +3,6 @@ package bl.orderserviceimpl;
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.CommentImpl;
 import bl.hotelserviceimpl.HotelController;
-import bl.orderservice.CommentService;
 import bl.userserviceimpl.CreditRecordList;
 import constant.ResultMessage;
 import constant.StateOfOrder;

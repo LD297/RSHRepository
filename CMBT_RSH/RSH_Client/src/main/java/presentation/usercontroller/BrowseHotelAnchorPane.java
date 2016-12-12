@@ -2,8 +2,6 @@ package presentation.usercontroller;
 
 import java.util.ArrayList;
 
-import bl.orderservice.OtherOrderService;
-import bl.orderserviceimpl.OtherOrderController;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

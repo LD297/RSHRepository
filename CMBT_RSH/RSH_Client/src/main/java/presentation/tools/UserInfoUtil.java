@@ -6,16 +6,10 @@ import java.util.Iterator;
 
 import bl.hotelservice.HotelService;
 import bl.hotelservice.SearchHotelService;
-import bl.hotelserviceimpl.HotelController;
-import bl.hotelserviceimpl.SearchHotelController;
 import bl.loginservice.LoginService;
-import bl.loginserviceimpl.LoginController;
-import bl.orderservice.OtherOrderService;
 import bl.orderserviceimpl.OtherOrderController;
 import bl.promotionservice.PromotionService;
-import bl.promotionServiceimpl.PromotionController;
 import bl.userservice.UserService;
-import bl.userserviceimpl.UserController;
 import constant.MemberType;
 import constant.ResultMessage;
 import constant.Role;

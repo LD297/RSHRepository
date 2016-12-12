@@ -16,7 +16,7 @@ public interface LoginService {
 	 */
 	public ResultMessage register(UserVO vo);
 	/**
-	 * 为网站管理人员注册，则增加该网管的持久化对象
+	 * 为网站管理人员注册（只能注册一次），若之前无人注册，则增加该网管的持久化对象
 	 */
 	public ResultMessage register(WebManagerVO vo) ;
 	/**

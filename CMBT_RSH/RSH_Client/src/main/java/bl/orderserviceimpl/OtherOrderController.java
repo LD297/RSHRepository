@@ -1,13 +1,12 @@
 package bl.orderserviceimpl;
 
-import bl.orderservice.OtherOrderService;
 import constant.ResultMessage;
 import constant.StateOfOrder;
 import vo.OrderVO;
 
 import java.util.ArrayList;
 
-public class OtherOrderController implements OtherOrderService {
+public class OtherOrderController {
 
 	CheckOrder checkOrder;
 	NormalOrder normalOrder;
