@@ -36,7 +36,7 @@ public class PromotionStub implements PromotionService{
 
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfHotel(String hotelID) {
-		PromotionVO vo1 = new PromotionVO();
+/*		PromotionVO vo1 = new PromotionVO();
 		vo1.reason = "0001";
 		PromotionVO vo2 = new PromotionVO();
 		vo2.reason = "0002";
@@ -48,8 +48,8 @@ public class PromotionStub implements PromotionService{
 		list.add(vo1);
 		list.add(vo2);
 		list.add(vo3);
-		list.add(vo4);
-		return list;
+		list.add(vo4);*/
+		return null;
 	}
 
 	@Override
@@ -64,11 +64,6 @@ public class PromotionStub implements PromotionService{
 		return null;
 	}
 
-	@Override
-	public String countPromotionOfOrder(OrderPO order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public ResultMessage setCoupon() {

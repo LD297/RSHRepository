@@ -31,7 +31,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 	private Label hotelNameLabel = null;
 	private Button createOrderButton = null;
 	private Label priceLabel = null;
-	private ArrayList<Label> promotionLabels = null;
+//	private ArrayList<Label> promotionLabels = null;
 	private Label orderStateLabel = null;
 	private boolean left = true;
 	public BrowseHotelAnchorPane(HotelVO hotelVO,boolean left) {
@@ -48,20 +48,20 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		lastImageArrow = new ImageView(ImageFactory.getImageFactory().getLastImageArrow());
 		nextImageArrow = new ImageView(ImageFactory.getImageFactory().getNextImageArrow());
 		hotelNameLabel = new Label(hotelVO.name);
-		promotionLabels = new ArrayList<Label>();
+//		promotionLabels = new ArrayList<Label>();
 		createOrderButton = new Button("新建订单");
 		//TODO 在逻辑层添加get酒店最低价格的方法
 		priceLabel = new Label("￥2340/晚");
 		//TODO 得到的促销策略应该适用于当前日期
 		//TODO bL层单利？？？？？？？
-		ArrayList<PromotionVO> promotionVOs = UserInfoUtil.getInstance().getPromotionVOs(hotelVO.id);
+/*		ArrayList<PromotionVO> promotionVOs = UserInfoUtil.getInstance().getPromotionVOs(hotelVO.id);
 		for(int i=0;i<2;i++){
 			if(promotionVOs.size()<=i){
 				break;
 			}
 			Label label = new Label(promotionVOs.get(i).reason);
 			promotionLabels.add(label);
-		}
+		}*/
 		//从数据层拿到该用户最近一笔订单的状态
 		orderStateLabel = new Label(UserInfoUtil.getInstance().getOrderStateOfUser(hotelVO.id).toString());
 		
@@ -88,10 +88,10 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		//价格的字体Agency FB，大小14
 		priceLabel.setFont(Font.font("Agency FB", 14));
 		//promotionLabel的背景颜色为#ff5a5f，字体颜色白色,字体Times New Roman，大小14
-		for(int i=0;i<promotionLabels.size();i++){
+/*		for(int i=0;i<promotionLabels.size();i++){
 			promotionLabels.get(i).setStyle("-fx-background-color:#ff5a5f;-fx-text-fill: white");
 			promotionLabels.get(i).setFont(Font.font("Times New Roman", 14));
-		}
+		}*/
 		//最近一笔订单状态label字体颜色#00a699,字体Times New Roman，大小14
 		orderStateLabel.setStyle("-fx-text-fill: #00a699");
 		orderStateLabel.setFont(Font.font("Times New Roman", 14));
@@ -105,9 +105,9 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		this.getChildren().add(createOrderButton);
 		this.getChildren().add(priceLabel);
 		this.getChildren().add(orderStateLabel);
-		for(int i=0;i<promotionLabels.size();i++){
+/*		for(int i=0;i<promotionLabels.size();i++){
 			this.getChildren().add(promotionLabels.get(i));
-		}
+		}*/
 		double begin;
 		//设置组件的位置
 		Locator locator = Locator.getLocator();
@@ -132,11 +132,11 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			locator.setLocation(orderStateLabel, 243.0, 30.0, 296.0, 56.0);
 			begin = 14.0;
 		}
-		for(int i=0;i<promotionLabels.size();i++){
+/*		for(int i=0;i<promotionLabels.size();i++){
 			double width = 14*promotionLabels.get(i).getText().trim().length() + 20;
 			locator.setLocation(promotionLabels.get(i), 269.0, 4.0, begin, WIDTH-begin-width);
 			begin = begin + width + 2;
-		}
+		}*/
 		
 		//设置组件的监听
 		labelOnHotelImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
