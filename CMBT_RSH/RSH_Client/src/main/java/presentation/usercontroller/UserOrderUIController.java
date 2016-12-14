@@ -79,7 +79,6 @@ public class UserOrderUIController {
     @FXML
     private Label weekOfToday;
     
-	private ArrayList<OrderVO> orderVOs = null;
 	private ArrayList<OrderVO> presentOrderVOs = null;
 	private int presentPage = 1;//当前页码
 	private int pointer = -1;
@@ -142,11 +141,10 @@ public class UserOrderUIController {
     //输入订单编号，敲击回车键
     @FXML
     void orderIDEntered(ActionEvent event) {
-    	//TODO 找寻订单
     	boolean found = false;
-    	for(int i=0;i<orderVOs.size();i++){
-    		if(orderVOs.get(i).getOrderID().equals(orderIDField.getText().trim())){
-    			UserInfoUtil.getInstance().setOrderID(orderVOs.get(i).getOrderID());
+    	for(int i=0;i<presentOrderVOs.size();i++){
+    		if(presentOrderVOs.get(i).getOrderID().equals(orderIDField.getText().trim())){
+    			UserInfoUtil.getInstance().setOrderID(presentOrderVOs.get(i).getOrderID());
     			found = true;
     			UIJumpTool.getUiJumpTool().changeToOrderInfo();
     		}
@@ -165,14 +163,9 @@ public class UserOrderUIController {
 
     //显示某一个特定状态的订单
     private void showAllOrderOfOneState(StateOfOrder stateOfOrder){
-    	 ArrayList<OrderVO> specialOrderVOs = new ArrayList<OrderVO>();
-    	 for(int i=0;i<orderVOs.size();i++){
-    		 if(orderVOs.get(i).getState()==stateOfOrder){
-    			 specialOrderVOs.add(orderVOs.get(i));
-    		 }
-    	 }
+    	 ArrayList<OrderVO> specialOrderVOs = UserInfoUtil.getInstance().getOrderVOs(stateOfOrder);
     	 presentOrderVOs = specialOrderVOs;
-    	 init();
+    	 setMaxPages();
     }
     
   //显示所有已撤销订单
@@ -193,7 +186,6 @@ public class UserOrderUIController {
     @FXML
     void showAllOrder(MouseEvent event) {
         setPropertyOfOrderTypeLabel((Label)event.getSource());
-        presentOrderVOs = orderVOs;
         init();
     }
 
@@ -222,7 +214,7 @@ public class UserOrderUIController {
         orderTypeLabel.setUnderline(true);
     }
 
-    public void init() {
+    private void setMaxPages() {
 		if(presentOrderVOs.size()%5==0){
 			maxPages = presentOrderVOs.size()/5;
 		}else{
@@ -231,6 +223,12 @@ public class UserOrderUIController {
 		presentPage = 1;
 		pointer = -1;
 		changeToSpecficPage(1);
+	}
+    
+    public void init() {
+    	 UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
+    	 presentOrderVOs = userInfoUtil.getOrderVOs(null);
+    	 setMaxPages();
 	}
     
     //跳转到指定的页数
@@ -278,9 +276,6 @@ public class UserOrderUIController {
         assert dayOfTodayLabel != null : "fx:id=\"dayOfTodayLabel\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert mothyearOfToday != null : "fx:id=\"mothyearOfToday\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert weekOfToday != null : "fx:id=\"weekOfToday\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
-        UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
-		orderVOs = userInfoUtil.getOrderVOs();
-		presentOrderVOs = orderVOs;
         init();
     }
 }
