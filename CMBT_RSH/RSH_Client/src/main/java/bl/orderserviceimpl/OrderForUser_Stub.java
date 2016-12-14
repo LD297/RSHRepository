@@ -41,23 +41,6 @@ public class OrderForUser_Stub implements OrderForUser{
 		return null;
 	}
 
-	@Override
-	public ArrayList<RoomNormVO> getRoomNorm(String hotelID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getCheckInDDL(String hotelID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getRoomAvailNum(String hotelID, String roomType, Date checkIn, Date checkOut) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public String getTrueValue(String userID, String hotelID, Date checkIn, Date checkOut, RoomNormVO room,
@@ -73,7 +56,7 @@ public class OrderForUser_Stub implements OrderForUser{
 	}
 
 	@Override
-	public ResultMessage addComment(String orderID, double grade, String comment) {
+	public ResultMessage addComment(String orderID, int grade, String comment) {
 		// TODO Auto-generated method stub
 		return null;
 	}

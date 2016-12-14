@@ -1,11 +1,15 @@
 package data.daohelperimpl.orderdaohelperimpl;
 
 
+import data.dao.webstaffdao.WebManagerDao;
+import data.daohelper.WebSalesmanDaoHelper;
 import data.daohelperimpl.hoteldaohelperimpl.HotelDaoHelperMySql;
 import data.daohelperimpl.logindaohelperimpl.LoginDaoHelperMySql;
 import data.daohelperimpl.promotiondaohelperimpl.PromotionDaoHelperMySql;
 import data.daohelperimpl.userdaohelperimpl.CreditRecordListDaoHelperMySql;
 import data.daohelperimpl.userdaohelperimpl.UserDaoHelperMySql;
+import data.daohelperimpl.webstaffdaohelperimpl.WebManagerDaoHelperMySql;
+import data.daohelperimpl.webstaffdaohelperimpl.WebSalesmanDaoHelperMySql;
 
 import java.rmi.RemoteException;
 import java.text.ParseException;
@@ -47,6 +51,10 @@ public class test {
         userdao.init();
         CreditRecordListDaoHelperMySql cdao = new CreditRecordListDaoHelperMySql();
         cdao.init();
+        WebManagerDaoHelperMySql webmanagerdao = new WebManagerDaoHelperMySql();
+        webmanagerdao.init();
+        WebSalesmanDaoHelperMySql websalesmandao = new WebSalesmanDaoHelperMySql();
+        websalesmandao.init();
 
     }
 

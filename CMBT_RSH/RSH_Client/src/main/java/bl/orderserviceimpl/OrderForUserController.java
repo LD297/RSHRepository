@@ -1,5 +1,6 @@
-package bl.orderservice;
+package bl.orderserviceimpl;
 
+import bl.orderservice.OrderForUser;
 import constant.ResultMessage;
 import constant.StateOfOrder;
 import vo.OrderVO;
@@ -9,9 +10,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by a297 on 16/12/12.
+ * Created by sky-PC on 2016/12/14.
  */
-public interface OrderForUser {
+public class OrderForUserController {
+    OrderForUserImpl orderForUser;
+
+    public void setOrderForUser(OrderForUserImpl orderForUser) {
+        this.orderForUser = orderForUser;
+    }
 
     /**
      * 用户分类查看订单
@@ -19,19 +25,25 @@ public interface OrderForUser {
      * @param state
      * @return 查看全部订单时：state设为null
      */
-    public ArrayList<OrderVO> userClassify(String userID, StateOfOrder state);
+    public ArrayList<OrderVO> userClassify(String userID, StateOfOrder state){
+        return orderForUser.userClassify(userID, state);
+    }
     /**
      * 用户查看订单详情
      * @param orderID
      * @return
      */
-    public OrderVO detail(String orderID);
+    public OrderVO detail(String orderID){
+        return orderForUser.detail(orderID);
+    }
     /**
      * 用户取消未执行订单
      * @param orderID
      * @return 被扣除的信用值
      */
-    public int cancelMyOrder(String orderID);
+    public int cancelMyOrder(String orderID){
+        return orderForUser.cancelMyOrder(orderID);
+    }
     /**
      * 用户查看酒店时，界面调用（显示自己在该酒店最近一笔订单的状态）
      * 返回该用户在酒店的最近订单的状态
@@ -39,7 +51,9 @@ public interface OrderForUser {
      * @param hotelID
      * @return 返回值为null：用户未在该酒店预定过
      */
-    public StateOfOrder getOrderStateOfUser(String userID, String hotelID);
+    public StateOfOrder getOrderStateOfUser(String userID, String hotelID){
+        return orderForUser.getOrderStateOfUser(userID, hotelID);
+    }
     /**
      * 用户浏览酒店时
      * 浏览在该酒店下的所有订单
@@ -47,7 +61,9 @@ public interface OrderForUser {
      * @param hotelID
      * @return
      */
-    public ArrayList<OrderVO> specificOrder(String userID,String hotelID);
+    public ArrayList<OrderVO> specificOrder(String userID,String hotelID){
+        return orderForUser.specificOrder(userID, hotelID);
+    }
     /**
      * 选择房间类型、房间数量完成后
      * 根据用户id、酒店id、checkIn、checkOut、房间类型、房间数量
@@ -61,7 +77,10 @@ public interface OrderForUser {
      * @param roomNum
      * @return 优惠策略形式：String#double->promotion#truePrice
      */
-    public String getTrueValue(String userID, String hotelID, Date checkIn, Date checkOut, RoomNormVO room, int roomNum);
+    public String getTrueValue(String userID, String hotelID, Date checkIn, Date checkOut,
+                               RoomNormVO room, int roomNum){
+        return orderForUser.getTrueValue(userID, hotelID, checkIn, checkOut, room, roomNum);
+    }
     /**
      * 确认订单时：
      * 界面封装orderVO（userID,userName,hotelID,hotelName,RoomNormVO,roomPrice,
@@ -75,7 +94,9 @@ public interface OrderForUser {
      * @param orderVO
      * @return
      */
-    public ResultMessage confirmReservation(OrderVO orderVO);
+    public ResultMessage confirmReservation(OrderVO orderVO){
+        return orderForUser.confirmReservation(orderVO);
+    }
     /**
      * 用户评价订单
      * @param orderID
@@ -83,7 +104,7 @@ public interface OrderForUser {
      * @param comment
      * @return
      */
-    public ResultMessage addComment(String orderID, int grade, String comment);
-
+    public ResultMessage addComment(String orderID, int grade, String comment){
+        return orderForUser.addComment(orderID, grade, comment);
+    }
 }
-

@@ -3,6 +3,9 @@ package bl.orderserviceimpl;
 import bl.hotelservice.HotelInfoService;
 import bl.hotelserviceimpl.HotelController;
 import bl.hotelserviceimpl.HotelServiceFactory;
+import bl.orderservice.OrderForHotel;
+import bl.orderservice.OrderForUser;
+import bl.orderservice.OrderForWebsite;
 import data.dao.orderdao.OrderDao;
 import data.dao.orderdao.OrderDao_Stub;
 
@@ -10,12 +13,13 @@ import data.dao.orderdao.OrderDao_Stub;
  * Created by a297 on 16/12/8.
  */
 public class OrderServiceFactory {
+    private static OrderForHotelController orderForHotelController;
 
     // 处理订单生成界面的业务逻辑
-    private static OrderGenerationController orderGenerationController;
+    private static OrderForUserController orderForUserController;
 
     // 处理其他订单操作的业务逻辑
-    private static OtherOrderController otherOrderController;
+    private static OrderForWebsiteController orderForWebsiteController;
 
     private static OrderDao orderDao;
 
@@ -24,7 +28,7 @@ public class OrderServiceFactory {
             orderDao = new OrderDao_Stub();
     }
 
-    public static OrderGenerationController getOrderGenerationService(String hotelID){
+    public static OrderForHotelController getOrderForHotelService(String hotelID){
 
         if(orderGenerationController==null){
 
@@ -57,7 +61,32 @@ public class OrderServiceFactory {
      * @param hotelid
      * @return
      */
-    public static OtherOrderController getOtherOrderService(String hotelid) {
+    public static OrderForUserController getOrderForUserService(String hotelid) {
+
+        if(otherOrderController==null){
+
+            // 传入hotelid，通过酒店业务逻辑的工厂得到"订单生成"所需的酒店业务逻辑处理对象
+            HotelController hotelController = HotelServiceFactory.getHotelService(hotelid);
+
+            // 新建"异常订单"领域对象
+            AbnormalOrder abnormalOrder = new AbnormalOrder();
+            // 实例化实例化"异常订单"中"酒店业务逻辑服务"这一成员变量
+            abnormalOrder.setHotelInfoService(hotelController);
+            abnormalOrder.setHotelService(hotelController);
+
+            // 实例化"异常订单"中"自身数据库"这一成员变量
+            abnormalOrder.setOrderDao(orderDao);
+
+            NormalOrder normalOrder = new NormalOrder();
+            normalOrder.setHotelInfoService(hotelController);
+            normalOrder.setOrderDao(orderDao);
+
+            CheckOrder checkOrder = new CheckOrder();
+            checkOrder.setOrderDao(orderDao);
+        }
+        return otherOrderController;
+    }
+    public static OrderForWebsiteController getOrderForWebsiteService(String hotelid) {
 
         if(otherOrderController==null){
 

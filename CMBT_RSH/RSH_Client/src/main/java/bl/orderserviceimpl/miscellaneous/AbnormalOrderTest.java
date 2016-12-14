@@ -1,7 +1,6 @@
 package bl.orderserviceimpl.miscellaneous;
 
 import bl.orderserviceimpl.AbnormalOrder;
-import bl.orderserviceimpl.OrderGeneration;
 import constant.ResultMessage;
 import org.junit.Test;
 import po.OrderPO;

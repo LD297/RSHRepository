@@ -1,5 +1,6 @@
 package data.daohelperimpl.userdaohelperimpl;
 
+import com.mysql.jdbc.StringUtils;
 import constant.MemberType;
 import constant.ResultMessage;
 import constant.Sexuality;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 /**
  * Created by sky-PC on 2016/12/3.
@@ -51,6 +53,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
                 String nickName = result.getString(3);
                 String image = result.getString(4);
                 String birth = result.getString(5);
+                LocalDate birthday = LocalDate.now();
                 int level = result.getInt(6);
                 MemberType type = MemberType.values()[result.getInt(7)];
                 int credit = result.getInt(8);
@@ -58,8 +61,8 @@ public class UserDaoHelperMySql implements UserDaoHelper{
                 Sexuality sex = Sexuality.values()[result.getInt(10)];
                 String eMail = result.getString(11);
 
-               // UserPO po = new UserPO(userID,passWord,nickName,image,birth,level,type,credit,name,sex,eMail){};
-                return null;
+                UserPO userPO = new UserPO(userID,passWord,nickName,image,birthday,level,type,credit,name,sex,eMail,null){};
+                return userPO;
             }
 
         }catch(SQLException e){
@@ -169,6 +172,5 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         }
         return ResultMessage.idNotExist;
     }
-
 
 }
