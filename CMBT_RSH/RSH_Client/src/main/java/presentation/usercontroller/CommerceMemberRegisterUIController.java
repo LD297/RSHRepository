@@ -7,6 +7,7 @@ package presentation.usercontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import constant.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -14,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import presentation.tools.ImageFactory;
 import presentation.tools.UIJumpTool;
+import presentation.tools.UserInfoUtil;
 
 public class CommerceMemberRegisterUIController {
 
@@ -51,7 +53,10 @@ public class CommerceMemberRegisterUIController {
     
     @FXML
     void finishRegisterButtonClicked(MouseEvent event) {
-        UIJumpTool.getUiJumpTool().changeMemberRegisterToMember();
+    	String commerceName = commerceNameField.getText().trim();
+    	if(UserInfoUtil.getInstance().registerCommerceMember(commerceName)==ResultMessage.succeed){
+    		 UIJumpTool.getUiJumpTool().changeMemberRegisterToMember();
+    	}
     }
 
     @FXML

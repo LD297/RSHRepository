@@ -288,6 +288,14 @@ public String getHotelID() {
     	return resultMessage;
     }
     
+    /**
+     * 注册企业会员
+     */
+    public ResultMessage registerCommerceMember(String commerceName) {
+		ResultMessage resultMessage = userService.registerMember(userID, commerceName);
+		return resultMessage;
+	}
+    
     //TODO
     /**
      * 查看评价界面调用，得到该酒店的所有有评价的订单
@@ -302,6 +310,23 @@ public String getHotelID() {
     		}
     	}
 		return result;
+    }
+    
+    /**
+     * 添加评价界面调用，得到该用户对该订单的评价
+     */
+    
+    public OrderVO getOrderVO() {
+		OrderVO orderVO = orderForUser.detail(orderID);
+		return orderVO;
+	}
+    
+    /**
+     * 添加评价界面调用，为用户增加评价
+     */
+    public ResultMessage addComment(String comment,String grade) {
+		ResultMessage resultMessage = orderForUser.addComment(orderID,(int) Double.parseDouble(grade), comment);
+		return resultMessage;
     }
     
     /**
@@ -333,5 +358,14 @@ public String getHotelID() {
     	ResultMessage resultMessage = loginService.register(userVO);
     	return resultMessage;
 	}
-    
+    /**
+     * 退出时，删除在线人员持久化对象
+     */
+    public ResultMessage logout() {
+		ResultMessage resultMessage = loginService.logout(Role.user, userID);
+		if(resultMessage == ResultMessage.succeed){
+			userID = null;
+		}
+		return resultMessage;
+	}
 }

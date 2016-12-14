@@ -14,6 +14,7 @@ import presentation.tools.ImageFactory;
 import presentation.tools.Locator;
 import presentation.tools.MyDateFormat;
 import presentation.tools.UIJumpTool;
+import presentation.tools.UserInfoUtil;
 import vo.OrderVO;
 
 public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
@@ -131,6 +132,9 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 			//点击评价按钮，跳转到添加评价界面
 			@Override
 			public void handle(MouseEvent event) {
+				//首先设置工具类里面的当前的orderid
+				UserInfoUtil.getInstance().setOrderID(orderVO.getOrderID());
+				//跳转到添加评价界面
 				UIJumpTool.getUiJumpTool().changeUserOrderToAddComment();
 			}
 		});

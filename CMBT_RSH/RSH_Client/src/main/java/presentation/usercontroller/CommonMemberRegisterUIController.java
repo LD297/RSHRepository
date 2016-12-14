@@ -53,7 +53,7 @@ public class CommonMemberRegisterUIController {
         cancelImage.setImage(ImageFactory.getImageFactory().getCancel_red());
     }
 
-    //跳转到我的会员，不是会员界面
+    //直接关闭，跳转到我的会员，不是会员界面
     @FXML
     void closeRegisterCommonMember(MouseEvent event) {
         UIJumpTool.getUiJumpTool().changeMemberRegisterToMyMember();
@@ -62,6 +62,7 @@ public class CommonMemberRegisterUIController {
     //跳转到我的会员，是会员界面
     @FXML
     void finishRegisterButtonClicked(MouseEvent event) {
+    	//检测生日输入是否一致
     	LocalDate birth = birthdayPicker.getValue();
     	if(!birth.equals(UserInfoUtil.getInstance().getUserVO().birthday)){
     		birthdayMessageLabel.setText("您的生日与注册信息时不一致");
