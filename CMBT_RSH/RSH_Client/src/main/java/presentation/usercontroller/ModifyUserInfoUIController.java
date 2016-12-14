@@ -128,6 +128,18 @@ public class ModifyUserInfoUIController {
             UIJumpTool.getUiJumpTool().changeToUserInfo();
         }
     }
+    
+    public void init(){
+    	  UserVO userVO = UserInfoUtil.getInstance().getUserVO();
+          nicknameField.setText(userVO.nickName);
+          nameField.setText(userVO.name);
+          phonenumberField.setText(userVO.id);
+          emailaddressField.setText(userVO.eMail);
+          birthdayPicker.setValue(userVO.birthday);
+  		ObservableList<String> sexualities = FXCollections.observableArrayList((new ArrayList<String>(
+  				Arrays.asList(new String[] { Sexuality.male.getString(), Sexuality.female.getString() }))));
+  		sexChoiceBox.setItems(sexualities);
+    }
 
     @FXML
     void initialize() {
@@ -144,16 +156,8 @@ public class ModifyUserInfoUIController {
         assert phoneNumMeassgeLabel != null : "fx:id=\"phoneNumMeassgeLabel\" was not injected: check your FXML file '用户个人资料.fxml'.";
         assert nickNameMeassgeLabel != null : "fx:id=\"nickNameMeassgeLabel\" was not injected: check your FXML file '用户个人资料.fxml'.";
         assert sexChoiceBox != null : "fx:id=\"sexChoiceBox\" was not injected: check your FXML file '用户个人资料.fxml'.";
-        
-        UserVO userVO = UserInfoUtil.getInstance().getUserVO();
-        nicknameField.setPromptText(userVO.nickName);
-        nameField.setPromptText(userVO.name);
-        phonenumberField.setPromptText(userVO.id);
-        emailaddressField.setPromptText(userVO.eMail);
-        birthdayPicker.setValue(userVO.birthday);
-		ObservableList<String> sexualities = FXCollections.observableArrayList((new ArrayList<String>(
-				Arrays.asList(new String[] { Sexuality.male.getString(), Sexuality.female.getString() }))));
-		sexChoiceBox.setItems(sexualities);
+        init();
+      
     }
 }
 

@@ -143,6 +143,18 @@ public class HotelInfoUIController {
     void changeToMyOrder(MouseEvent event) {
         UIJumpTool.getUiJumpTool().changeToMyOrderOfOneHotel();
     }
+    
+    public void init() {
+    	  UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
+          hotelVO = userInfoUtil.getHotelVO();
+          hotelNameLabel.setText(hotelVO.name);
+          startLevelLabel.setText(String.valueOf(hotelVO.level));
+          gradeLabel.setText(String.valueOf(hotelVO.grade));
+          addressLabel.setText(hotelVO.addr);
+          briefLabel.setText(hotelVO.briefIntro);
+          //TODO 设置设施服务
+          //TODO 设置酒店图片
+	}
 
     @FXML
     void initialize() {
@@ -166,17 +178,7 @@ public class HotelInfoUIController {
         assert roonInfoButton != null : "fx:id=\"roonInfoButton\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert commentButton != null : "fx:id=\"commentButton\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert myOrderButton != null : "fx:id=\"myOrderButton\" was not injected: check your FXML file '酒店详情.fxml'.";
-   
-        UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
-        hotelVO = userInfoUtil.getHotelVO();
-        hotelNameLabel.setText(hotelVO.name);
-        startLevelLabel.setText(String.valueOf(hotelVO.level));
-        gradeLabel.setText(String.valueOf(hotelVO.grade));
-        addressLabel.setText(hotelVO.addr);
-        briefLabel.setText(hotelVO.briefIntro);
-        //TODO 设置设施服务
-        //TODO 设置酒店图片
-        
+        init();
     }
 }
 
