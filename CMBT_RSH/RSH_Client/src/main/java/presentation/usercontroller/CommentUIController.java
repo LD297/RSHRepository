@@ -14,6 +14,11 @@ import presentation.tools.UserInfoUtil;
 import vo.HotelVO;
 import vo.OrderVO;
 
+/**
+ * 酒店详情中的浏览评价界面
+ * @author john
+ *
+ */
 public class CommentUIController {
 
     @FXML

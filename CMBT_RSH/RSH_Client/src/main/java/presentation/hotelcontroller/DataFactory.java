@@ -31,7 +31,7 @@ public class DataFactory {
         int grade = 5;
         Date checkIn = new Date(2016, 12, 9, 18, 30, 0);
         Date checkOut = new Date(2016, 12, 10, 10, 30, 0);
-        Date hotelDDL = new Date(2016, 12, 9, 18, 30, 0);
+        String hotelDDL = "23::44::59";
         Date generationDate = new Date(2016, 11, 9, 18, 30, 0);
         Date actualCheckIn = new Date(2016, 12, 9, 19, 30, 0);
         Date actualCheckOut = new Date(2016, 12, 10, 9, 30, 0);

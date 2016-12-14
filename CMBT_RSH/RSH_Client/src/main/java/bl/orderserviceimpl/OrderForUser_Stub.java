@@ -41,7 +41,6 @@ public class OrderForUser_Stub implements OrderForUser{
 		return null;
 	}
 
-
 	@Override
 	public String getTrueValue(String userID, String hotelID, Date checkIn, Date checkOut, RoomNormVO room,
 			int roomNum) {
@@ -60,5 +59,7 @@ public class OrderForUser_Stub implements OrderForUser{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

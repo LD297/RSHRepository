@@ -18,7 +18,11 @@ import javafx.scene.layout.GridPane;
 import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
 import vo.HotelVO;
-
+/**
+ * 酒店浏览界面
+ * @author john
+ *
+ */
 public class BrowseHotelUIController {
 	@FXML
 	private ResourceBundle resources;
@@ -161,6 +165,10 @@ public class BrowseHotelUIController {
     
     public ArrayList<HotelVO> getHotelVOsOfBrowsehotel() {
 		return hotelVOs;
+	}
+    
+    public void setHotelVOsOfBrowsehotel(ArrayList<HotelVO> hotelVOs) {
+		this.hotelVOs = hotelVOs;
 	}
     
     public void init() {
