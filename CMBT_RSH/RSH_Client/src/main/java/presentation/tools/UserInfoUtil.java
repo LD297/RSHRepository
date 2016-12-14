@@ -234,7 +234,7 @@ public String getHotelID() {
     public ArrayList<OrderVO> getOrderVOsWithComment(){
     	ArrayList<OrderVO> orderVOs = orderForHotel.hotelClassify(hotelID, StateOfOrder.executed);
     	//筛选出所有有评价的界面
-    	ArrayList<OrderVO> result = new ArrayList<>();
+    	ArrayList<OrderVO> result = new ArrayList<OrderVO>();
     	for(int i=0;i<orderVOs.size();i++){
     		if(orderVOs.get(i).getComment()!=null&&!orderVOs.get(i).equals("")){
     			result.add(orderVOs.get(i));

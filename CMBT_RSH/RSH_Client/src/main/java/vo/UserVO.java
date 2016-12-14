@@ -11,14 +11,15 @@ public class UserVO {
 	public String nickName;
 	public String imageAddress;
 	public LocalDate birthday;
-	// 根据信用记录变化实时更新会员等级
-	public int level;
+
 	public MemberType memberType;
+	public int level;
+	public int credit;
+	public String commerceName;
+
 	public String name;
 	public Sexuality sexuality;
 	public String eMail;
-	public int credit;
-	public String commerceName;
 
 	public UserVO(String id, String password, String nickName,
 				  String imageAddress,LocalDate birth, int level, MemberType memberType, String name,

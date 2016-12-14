@@ -88,4 +88,8 @@ public class UserPO implements Serializable{
 	public void setPassword(String newPassword) {
 		this.password = newPassword;
 	}
+
+	public void setID(String id) {
+		this.id = id;
+	}
 }

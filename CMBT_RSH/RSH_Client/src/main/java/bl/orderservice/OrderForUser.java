@@ -65,7 +65,7 @@ public interface OrderForUser {
     /**
      * 确认订单时：
      * 界面封装orderVO（userID,userName,hotelID,hotelName,RoomNormVO,roomPrice,
-     * roomNum,originValue,trueValue,promotion,withChildren,peopleNumber,checkIn,checkOut）
+     * roomNum,originValue,trueVa1lue,promotion,withChildren,peopleNumber,checkIn,checkOut）
      * 根据（用户信用值信息）判断是否可以提交
      * 不可提交 返回信息提示
      * 再次检查可用数量 会员信息 优惠政策是否存在

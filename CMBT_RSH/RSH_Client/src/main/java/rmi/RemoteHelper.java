@@ -34,7 +34,7 @@ public class RemoteHelper {
         return remoteHelper;
     }
 
-    private RemoteHelper() {
+    RemoteHelper() {
         initDao();
     }
 
