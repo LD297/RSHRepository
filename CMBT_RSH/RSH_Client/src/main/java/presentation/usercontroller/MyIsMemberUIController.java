@@ -25,14 +25,18 @@ public class MyIsMemberUIController {
 
     @FXML
     private Label memberLevelLabel;
+    
+    public void init() {
+        UserVO userVO = UserInfoUtil.getInstance().getUserVO();
+        membertypeLabel.setText(userVO.memberType.getString());
+        memberLevelLabel.setText(String.valueOf(userVO.level));
+	}
 
     @FXML
     void initialize() {
         assert membertypeLabel != null : "fx:id=\"membertypeLabel\" was not injected: check your FXML file '我的会员（是会员）.fxml'.";
         assert memberLevelLabel != null : "fx:id=\"memberLevelLabel\" was not injected: check your FXML file '我的会员（是会员）.fxml'.";
-        UserVO userVO = UserInfoUtil.getInstance().getUserVO();
-        membertypeLabel.setText(userVO.memberType.getString());
-        memberLevelLabel.setText(String.valueOf(userVO.level));
+        init();
     }
 }
 

@@ -88,9 +88,9 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </RadioButton>
-            <ComboBox fx:id="priceSortComBox" layoutX="89.0" layoutY="243.0" prefHeight="30.0" prefWidth="155.0" promptText="价格从低到高" />
-            <ComboBox fx:id="starLevelSortComBox" layoutX="308.0" layoutY="285.0" prefHeight="30.0" prefWidth="155.0" promptText="星级从低到高" />
-            <ComboBox fx:id="gradeSortComBox" layoutX="89.0" layoutY="285.0" prefHeight="30.0" prefWidth="155.0" promptText="评分从高到低" />
+            <ComboBox fx:id="priceSortComBox" layoutX="89.0" layoutY="243.0" prefHeight="30.0" prefWidth="155.0" promptText="价格排序" />
+            <ComboBox fx:id="starLevelSortComBox" layoutX="308.0" layoutY="285.0" prefHeight="30.0" prefWidth="155.0" promptText="星级排序" />
+            <ComboBox fx:id="gradeSortComBox" layoutX="89.0" layoutY="285.0" prefHeight="30.0" prefWidth="155.0" promptText="评分排序" />
          </children>
          <effect>
             <DropShadow />

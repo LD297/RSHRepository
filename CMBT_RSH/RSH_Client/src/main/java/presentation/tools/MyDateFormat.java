@@ -101,7 +101,7 @@ public class MyDateFormat {
 	 * @param Date"MM-dd"字符串形式
 	 * @return
 	 */
-	public static String toString(Date date) {
+	public String toString(Date date) {
 		DateFormat dateFormat = new SimpleDateFormat("MM-dd");
 		
 		if(date==null){
@@ -110,4 +110,5 @@ public class MyDateFormat {
 			return dateFormat.format(date);
 		}
 	}
+	
 }

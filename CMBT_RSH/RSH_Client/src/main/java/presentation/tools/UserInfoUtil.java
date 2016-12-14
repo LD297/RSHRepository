@@ -337,7 +337,12 @@ public String getHotelID() {
     	ArrayList<OrderVO> orderVOs = orderForUser.userClassify(userID, stateOfOrder);
 		return orderVOs;
 	}
-    
+    /**
+     * 撤销订单,订单详情界面调用
+     */
+    public void cancelOrder() {
+		orderForUser.cancelMyOrder(orderID);
+	}
     
     /**
      * 我的信用记录界面调用，得到该用户的所有信用记录

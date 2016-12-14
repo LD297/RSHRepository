@@ -2,7 +2,7 @@ package constant;
 
 public enum Sexuality {
 	male("男"),
-	female("nv");
+	female("女");
 	
 	private String string;
 	private Sexuality(String string){

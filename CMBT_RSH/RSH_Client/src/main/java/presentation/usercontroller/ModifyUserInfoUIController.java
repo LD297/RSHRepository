@@ -116,6 +116,7 @@ public class ModifyUserInfoUIController {
             rightInput = false;
             phoneNumMeassgeLabel.setText(phonenumResult);
         }else {
+        	phoneNumMeassgeLabel.setText("");
             rightInput = true;
         }
         if(rightInput){

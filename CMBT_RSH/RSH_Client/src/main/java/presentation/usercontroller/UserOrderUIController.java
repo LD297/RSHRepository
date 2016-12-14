@@ -1,7 +1,10 @@
 package presentation.usercontroller;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import constant.StateOfOrder;
@@ -15,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import presentation.tools.MyDateFormat;
 import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
 import vo.HotelVO;
@@ -65,9 +69,6 @@ public class UserOrderUIController {
     private TextField orderIDField;
 
     @FXML
-    private Button cancelOrderButton;
-
-    @FXML
     private GridPane gridpaneFilledWithOrder;
 
     @FXML
@@ -83,16 +84,12 @@ public class UserOrderUIController {
 	private int presentPage = 1;//当前页码
 	private int pointer = -1;
 	private int maxPages = 0;
+	private StateOfOrder stateOfOrder = null;
     
   //关闭在酒店详情界面上弹出的我的订单界面
     @FXML
     void backToHotelInfo(MouseEvent event) {
     	 UIJumpTool.getUiJumpTool().closeMyOrderOfOneHotel();
-    }
-  // TODO 点击撤销订单按钮
-    @FXML
-    void cancelOrder(MouseEvent event) {
-
     }
 
     @FXML
@@ -158,7 +155,8 @@ public class UserOrderUIController {
     @FXML
     void showAllAbnormalOrder(MouseEvent event) {
     	 setPropertyOfOrderTypeLabel((Label)event.getSource());
-    	 showAllOrderOfOneState(StateOfOrder.abnormal);
+    	 stateOfOrder = StateOfOrder.abnormal;
+    	 showAllOrderOfOneState(stateOfOrder);
     }
 
     //显示某一个特定状态的订单
@@ -172,28 +170,32 @@ public class UserOrderUIController {
     @FXML
     void showAllCanceledOrder(MouseEvent event) {
     	 setPropertyOfOrderTypeLabel((Label)event.getSource());
-    	 showAllOrderOfOneState(StateOfOrder.canceled);
+    	 stateOfOrder = StateOfOrder.canceled;
+    	 showAllOrderOfOneState(stateOfOrder);
     }
 
    //显示所有已执行订单
     @FXML
     void showAllExecutedOrder(MouseEvent event) {
     	 setPropertyOfOrderTypeLabel((Label)event.getSource());
-         showAllOrderOfOneState(StateOfOrder.executed);
+    	 stateOfOrder = StateOfOrder.executed;
+         showAllOrderOfOneState(stateOfOrder);
     }
 
    //显示所有订单
     @FXML
     void showAllOrder(MouseEvent event) {
         setPropertyOfOrderTypeLabel((Label)event.getSource());
-        init();
+        stateOfOrder = null;
+        showAllOrderOfOneState(stateOfOrder);
     }
 
     //显示所有未执行订单
     @FXML
     void showAllUnexecutedOrder(MouseEvent event) {
         setPropertyOfOrderTypeLabel((Label)event.getSource());
-        showAllOrderOfOneState(StateOfOrder.unexecuted);
+        stateOfOrder = StateOfOrder.unexecuted;
+        showAllOrderOfOneState(stateOfOrder);
     }
 
     //设置导航栏属性
@@ -227,8 +229,17 @@ public class UserOrderUIController {
     
     public void init() {
     	 UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
-    	 presentOrderVOs = userInfoUtil.getOrderVOs(null);
+    	 stateOfOrder = null;
+    	 presentOrderVOs = userInfoUtil.getOrderVOs(stateOfOrder);
     	 setMaxPages();
+    	 //初始化日历
+    	 dayOfTodayLabel.setText(new SimpleDateFormat("dd").format(new Date()));
+    	 mothyearOfToday.setText(new SimpleDateFormat("yyyy.MM").format(new Date()));
+    	 weekOfToday.setText(MyDateFormat.getInstance().getWeek(new Date()));
+	}
+    
+    public void refresh() {
+		showAllOrderOfOneState(stateOfOrder);
 	}
     
     //跳转到指定的页数
@@ -271,7 +282,6 @@ public class UserOrderUIController {
         assert pageField != null : "fx:id=\"pageField\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert nextPageLabel != null : "fx:id=\"nextPageLabel\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert orderIDField != null : "fx:id=\"orderIDField\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
-        assert cancelOrderButton != null : "fx:id=\"cancelOrderButton\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert gridpaneFilledWithOrder != null : "fx:id=\"gridpaneFilledWithOrder\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert dayOfTodayLabel != null : "fx:id=\"dayOfTodayLabel\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";
         assert mothyearOfToday != null : "fx:id=\"mothyearOfToday\" was not injected: check your FXML file '订单浏览（用户视角）.fxml'.";

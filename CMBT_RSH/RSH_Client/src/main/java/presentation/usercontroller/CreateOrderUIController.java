@@ -174,10 +174,10 @@ public class CreateOrderUIController {
 			//如果有尚未填写的信息
 			if(expectedCheckinTimepicker.getValue()==null||
 					expectedCheckoutTimepicker.getValue()==null||
-					roomtypeCombox.getValue()==null||
-					peopleNumombox.getValue()==null||
-					roomnumCombox.getValue()==null||
-					withChildrenCombox.getValue()==null){
+					roomtypeCombox.getValue().equals("")||
+					peopleNumombox.getValue().equals("")||
+					roomnumCombox.getValue().equals("")||
+					withChildrenCombox.getValue().equals("")){
 				messageLabel.setText("您有尚未填写的信息");
 				//提交订单不可点
 				finishCreateOrder.setDisable(true);
@@ -283,7 +283,7 @@ public class CreateOrderUIController {
 		};
 		expectedCheckinTimepicker.setDayCellFactory(checkintimeCellFactory);
 		//设置预计离开时间的时间选择器只能从预计入住时间开始选起
-		expectedCheckoutTimepicker.setValue(expectedCheckinTimepicker.getValue());
+//		expectedCheckoutTimepicker.setValue(expectedCheckinTimepicker.getValue());
 		Callback<DatePicker, DateCell> checkouttimeCellFactory = dp -> new DateCell() {
 			@Override
 			public void updateItem(LocalDate item, boolean empty) {
