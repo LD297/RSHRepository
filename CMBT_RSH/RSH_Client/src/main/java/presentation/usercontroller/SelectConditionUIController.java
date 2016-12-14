@@ -30,6 +30,8 @@ import javafx.scene.input.MouseEvent;
 import presentation.tools.ImageFactory;
 import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
+import presentation.tools.UserUIFXMLFactory;
+import vo.HotelVO;
 import vo.SelectConditionVO;
 
 public class SelectConditionUIController {
@@ -137,14 +139,20 @@ public class SelectConditionUIController {
 		}else{
 			selectConditionVO.reserved = false;
 		}
-		UserInfoUtil.getInstance().selectHotel(selectConditionVO);
-		//排序
+		BrowseHotelUIController browseHotelUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotelUIController();
+		//从酒店浏览界面得到当前的hotelvolist，并对其做筛选、排序等一系列处理
+		ArrayList<HotelVO> hotelVOs = browseHotelUIController.getHotelVOsOfBrowsehotel();
+		hotelVOs = UserInfoUtil.getInstance().selectHotel(hotelVOs,selectConditionVO);
+		
+		//TODO 判断有没有选择排序方式       排序
 		SortMethod priceSortMethod = SortMethod.getSortMethod(priceSortComBox.getValue().substring(2));
-		UserInfoUtil.getInstance().sortHotel(SortBy.price, priceSortMethod);
+		hotelVOs = UserInfoUtil.getInstance().sortHotel(hotelVOs,SortBy.price, priceSortMethod);
 		SortMethod levelSortMethod = SortMethod.getSortMethod(starLevelSortComBox.getValue().substring(2));
-		UserInfoUtil.getInstance().sortHotel(SortBy.price, levelSortMethod);
+		hotelVOs = UserInfoUtil.getInstance().sortHotel(hotelVOs,SortBy.level, levelSortMethod);
 		SortMethod gradeSortMethod = SortMethod.getSortMethod(gradeSortComBox.getValue().substring(2));
-		UserInfoUtil.getInstance().sortHotel(SortBy.price, gradeSortMethod);
+		hotelVOs = UserInfoUtil.getInstance().sortHotel(hotelVOs,SortBy.grade, gradeSortMethod);
+		//刷新酒店浏览界面的hotelvolist
+		browseHotelUIController.setHotelVOsOfBrowsehotel(hotelVOs);
 		//关闭条件选择界面
         UIJumpTool.getUiJumpTool().closeSelectCondition();
     }

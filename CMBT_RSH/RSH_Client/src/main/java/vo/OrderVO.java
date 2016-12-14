@@ -2,6 +2,7 @@ package vo;
 
 import constant.StateOfOrder;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -54,7 +55,7 @@ public class OrderVO {
     private Date cancelTime = null;
     private Date cancelAbnormalTime = null;
 
-
+     public OrderVO(){}
     /**
      * 订单详情：返回所有信息
      * @param orderID

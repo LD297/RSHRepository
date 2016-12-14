@@ -5,6 +5,8 @@ import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
 import constant.ResultMessage;
+import constant.Role;
+import po.OnlinePersonPO;
 
 /**
  * 先根据服务名查找远程对象，再调用远程方法
@@ -15,7 +17,8 @@ public class ClientRunner {
 		ResultMessage resultMessage = null;
 		RemoteHelper remoteHelper = RemoteHelper.getInstance();
 		try{
-			resultMessage = remoteHelper.getUserDao().checkPassword("fdsf","sfsag");
+			OnlinePersonPO onlinePersonPO = new OnlinePersonPO(Role.user, "shgf", "bhdskfj");
+			resultMessage = remoteHelper.getLoginDao().addOnline(onlinePersonPO);
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}

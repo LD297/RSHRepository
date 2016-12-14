@@ -15,6 +15,11 @@ import presentation.tools.Locator;
 import presentation.tools.UserInfoUtil;
 import vo.OrderVO;
 
+/**
+ * 酒店详情界面中的一栏评价
+ * @author john
+ *
+ */
 public class CommentAnchorPane extends AnchorPane{
 	private ImageView headImage = null;
 	private ImageView backGroundHeadImage = null;

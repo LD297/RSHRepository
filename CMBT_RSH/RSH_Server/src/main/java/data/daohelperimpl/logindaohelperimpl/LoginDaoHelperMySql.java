@@ -20,7 +20,7 @@ public class LoginDaoHelperMySql implements LoginDaoHelper{
 
         db.executeSql("USE OurData");
         // 身份 账号 密码
-        db.executeSql("CREATE TABLE if not exists OnlineInfo(role tinyint,id char(26),password varchar(30))" );
+        db.executeSql("CREATE TABLE if not exists OnlineInfo(role tinyint,id char(11),password varchar(30))" );
     }
 
     public void finish(){

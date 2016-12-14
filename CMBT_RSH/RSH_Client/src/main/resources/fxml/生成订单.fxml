@@ -108,7 +108,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="latestCheckinTimeLabel" layoutX="259.0" layoutY="350.0" prefHeight="26.0" prefWidth="73.0" text="18：00：00" textFill="#484848" AnchorPane.topAnchor="350.0">
+            <Label fx:id="latestCheckinTimeLabel" layoutX="259.0" layoutY="350.0" prefHeight="26.0" prefWidth="73.0" textFill="#484848" AnchorPane.topAnchor="350.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -139,7 +139,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="priceOfPerRoomLabel" layoutX="123.0" layoutY="497.0" prefHeight="26.0" prefWidth="73.0" text="￥400" textFill="#484848" AnchorPane.topAnchor="475.0">
+            <Label fx:id="priceOfPerRoomLabel" layoutX="123.0" layoutY="497.0" prefHeight="26.0" prefWidth="73.0" textFill="#484848" AnchorPane.topAnchor="475.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -149,7 +149,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="totalPriceLabel" layoutX="337.0" layoutY="497.0" prefHeight="26.0" prefWidth="73.0" text="￥380" textFill="#484848" AnchorPane.topAnchor="475.0">
+            <Label fx:id="totalPriceLabel" layoutX="301.0" layoutY="475.0" prefHeight="26.0" prefWidth="53.0" textFill="#484848" AnchorPane.topAnchor="475.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -171,7 +171,7 @@
             </ImageView>
             <DatePicker fx:id="expectedCheckinTimepicker" layoutX="250.0" layoutY="282.0" prefHeight="23.0" prefWidth="163.0" AnchorPane.rightAnchor="100.0" />
             <DatePicker fx:id="expectedCheckoutTimepicker" layoutX="250.0" layoutY="317.0" prefHeight="23.0" prefWidth="163.0" AnchorPane.rightAnchor="100.0" />
-            <Label fx:id="messageLabel" layoutX="194.0" layoutY="527.0" prefHeight="30.0" prefWidth="138.0" textFill="#ff5a5f">
+            <Label fx:id="messageLabel" layoutX="50.0" layoutY="527.0" prefHeight="30.0" prefWidth="186.0" textFill="#ff5a5f">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -180,6 +180,12 @@
             <ComboBox fx:id="peopleNumombox" layoutX="123.0" layoutY="445.0" prefHeight="23.0" prefWidth="73.0" />
             <ComboBox fx:id="withChildrenCombox" layoutX="328.0" layoutY="445.0" prefHeight="23.0" prefWidth="73.0" />
             <ComboBox fx:id="roomnumCombox" layoutX="328.0" layoutY="412.0" prefHeight="23.0" prefWidth="73.0" />
+            <Label fx:id="promotionlabel" layoutX="354.0" layoutY="477.0" prefHeight="23.0" prefWidth="163.0" />
+            <Button fx:id="backToModifyButton" layoutX="247.0" layoutY="526.0" mnemonicParsing="false" onMouseClicked="#backToModifyOrderInfo" prefHeight="32.0" prefWidth="108.0" style="-fx-background-color: #ff5a5f;" text="返回修改" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

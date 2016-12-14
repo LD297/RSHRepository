@@ -2,7 +2,9 @@ package presentation.tools;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -48,6 +50,15 @@ public class MyDateFormat {
 			return null;
 		}
 		return LocalDate.parse(date,dateFormatter);
+	}
+	
+	/**
+	 * 将localdate转成date
+	 */
+	public Date changeLocalDateToDate(LocalDate localDate){
+		Instant instant = localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
+		Date date = Date.from(instant);
+		return date;
 	}
 	
 	/**

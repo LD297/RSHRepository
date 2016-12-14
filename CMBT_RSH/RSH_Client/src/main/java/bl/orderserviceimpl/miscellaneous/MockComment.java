@@ -2,7 +2,7 @@ package bl.orderserviceimpl.miscellaneous;
 
 import constant.ResultMessage;
 
-public class MockComment extends HotelInfoImpl {
+public class MockComment {
 	String hotel;
 	String order;
 	
@@ -17,9 +17,4 @@ public class MockComment extends HotelInfoImpl {
 		
 	}
 
-	@Override
-	public ResultMessage updateGrade(double grade) {
-		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
-	}
 }

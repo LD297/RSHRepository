@@ -2,10 +2,13 @@ package presentation.tools;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
+import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.hotelservice.SearchHotelService;
+import bl.hotelserviceimpl.HotelInfoService_Stub;
 import bl.hotelserviceimpl.HotelService_Stub;
 import bl.hotelserviceimpl.SearchHotelService_Stub;
 import bl.loginservice.LoginService;
@@ -31,6 +34,7 @@ import vo.CreditRecordVO;
 import vo.HotelVO;
 import vo.OrderVO;
 import vo.PromotionVO;
+import vo.RoomNormVO;
 import vo.RoomVO;
 import vo.SelectConditionVO;
 import vo.UserVO;
@@ -76,6 +80,7 @@ public String getHotelID() {
     private OrderForUser orderForUser = new OrderForUser_Stub();
     private OrderForHotel orderForHotel = new OrderForHotel_Stub();
     private PromotionService promotionService = new PromotionService_Stub();
+    private HotelInfoService hotelInfoService = new HotelInfoService_Stub();
 //    private OtherOrderService otherOrderService = new OtherOrderController();
   
 //    private ArrayList<HotelVO> hotelVOs = null;
@@ -138,6 +143,7 @@ public String getHotelID() {
      * 修改密码界面调用
      * @param password
      */
+    //TODO 直接修改密码
     public void modifyUserPassword(String password){
     	UserVO userVO = userService.getInfo(userID);
         userVO.setPassword(password);
@@ -153,7 +159,7 @@ public String getHotelID() {
      * @param userID
      * @param email
      */
-    public void modifyUserInfo(String nickName, String name, Sexuality sexuality, LocalDate birthday,String userID,String email){
+    public void modifyUserInfo(String nickName, String name, Sexuality sexuality, LocalDate birthday, String userID, String email){
     	UserVO userVO = userService.getInfo(userID);
     	userVO.birthday = birthday;
     	userVO.eMail = email;
@@ -168,22 +174,20 @@ public String getHotelID() {
     /**
      * 筛选条件界面调用
      */
-    public void selectHotel(SelectConditionVO selectConditionVO){
+    public ArrayList<HotelVO> selectHotel(ArrayList<HotelVO> hotelVOs,SelectConditionVO selectConditionVO){
     	selectConditionVO.userID = userID;
-    	//得到当前酒店浏览界面的hotelvolist
-    	ArrayList<HotelVO> hotelVOs = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotelUIController().getHotelVOsOfBrowsehotel();
     	//把得到的hotelvolist传给逻辑层筛选
     	hotelVOs = searchHotelService.select(hotelVOs,selectConditionVO);
+    	return hotelVOs;
     }
     
     /**
      * 筛选界面调用
      */
-    public void sortHotel(SortBy sortBy,SortMethod sortMethod) {
-    	//得到当前酒店浏览界面的hotelvolist
-    	ArrayList<HotelVO> hotelVOs = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotelUIController().getHotelVOsOfBrowsehotel();
+    public ArrayList<HotelVO> sortHotel(ArrayList<HotelVO> hotelVOs,SortBy sortBy,SortMethod sortMethod) {
 		//把得到的hotelvolist传给逻辑层排序
     	hotelVOs = searchHotelService.sort(hotelVOs,sortBy, sortMethod);
+    	return hotelVOs;
 	}
     
     /**
@@ -202,6 +206,63 @@ public String getHotelID() {
 		ArrayList<RoomVO> roomVOs = hotelService.getRoomList();
 		return roomVOs;
 	}
+    
+    /**
+     * 生成订单界面调用，得到符合该日期和该房间类型的房间数量
+     */
+    public int getAvailRoomNum(String roomType,Date checkIn,Date checkOut) {
+    	int avilRoomNum = hotelInfoService.getRoomAvailNum(hotelID, roomType, checkIn, checkOut);
+		return avilRoomNum;
+	}
+    
+    /**
+     * 生成订单界面调用，得到该房间类型的房间价格
+     */
+    public double getRoomPrice(String roomtype) {
+		ArrayList<RoomNormVO> roomNormVOs = hotelInfoService.getRoomNorm(hotelID);
+		for(int i=0;i<roomNormVOs.size();i++){
+			if(roomNormVOs.get(i).getRoomType().equals(roomtype)){
+				return roomNormVOs.get(i).getPrice();
+			}
+		}
+		return 0;
+	}
+    
+    /**
+     * 生成订单界面调用，得到酒店的所有房间类型
+     */
+    public ArrayList<String> getRoomTypes(){
+    	ArrayList<String> res = new ArrayList<>();
+    	ArrayList<RoomNormVO> roomNormVOs = hotelInfoService.getRoomNorm(hotelID);
+    	for(int i=0;i<roomNormVOs.size();i++){
+    		res.add(roomNormVOs.get(i).getRoomType());
+    	}
+		return res;
+    }
+    
+    /**
+     * 生成订单界面调用，得到该订单的总价值
+     */
+    public String getOrderPriceAndPromotion(Date checkIn, Date checkOut,String roomType,double roomPrice, int roomNum){
+    	RoomNormVO room = new RoomNormVO(hotelID, roomType, roomPrice);
+    	return orderForUser.getTrueValue(userID, hotelID, checkIn, checkOut, room, roomNum);
+    }
+    
+    /**
+     * 生成订单界面调用，如果可以生成订单，则在数据库中添加一条订单持久化对象；否则（信用值不足）,生成订单失败
+     */
+	public ResultMessage confirmOrder(String roomType, double roomPrice, boolean withChild, int peopleNumber,
+			int roomNumber, double totalPrice,String promotion,Date checkIn,Date checkOut,Date generationDate) {
+		UserVO userVO = getUserVO();
+		HotelVO hotelVO = getHotelVO();
+		RoomNormVO roomNormVO = new RoomNormVO(hotelID, roomType, roomPrice);
+		OrderVO orderVO = new OrderVO(orderID, userID, userVO.name, hotelID, hotelVO.name,
+    			null, roomNormVO, roomPrice, roomNumber, peopleNumber, 
+    			withChild, roomPrice*roomNumber, totalPrice, promotion, null, -1, 
+    			checkIn, checkOut, hotelVO.latestCheckinTime, generationDate, null, 
+    			null, null, null);
+    	return orderForUser.confirmReservation(orderVO);
+    }
     
     /**
      * 酒店浏览界面调用,得到某一个酒店的所有促销策略
@@ -227,6 +288,14 @@ public String getHotelID() {
     	return resultMessage;
     }
     
+    /**
+     * 注册企业会员
+     */
+    public ResultMessage registerCommerceMember(String commerceName) {
+		ResultMessage resultMessage = userService.registerMember(userID, commerceName);
+		return resultMessage;
+	}
+    
     //TODO
     /**
      * 查看评价界面调用，得到该酒店的所有有评价的订单
@@ -244,10 +313,26 @@ public String getHotelID() {
     }
     
     /**
+     * 添加评价界面调用，得到该用户对该订单的评价
+     */
+    
+    public OrderVO getOrderVO() {
+		OrderVO orderVO = orderForUser.detail(orderID);
+		return orderVO;
+	}
+    
+    /**
+     * 添加评价界面调用，为用户增加评价
+     */
+    public ResultMessage addComment(String comment,String grade) {
+		ResultMessage resultMessage = orderForUser.addComment(orderID,(int) Double.parseDouble(grade), comment);
+		return resultMessage;
+    }
+    
+    /**
      * 我的订单界面调用，得到该用户的所有订单
      * @return
      */
-    //TODO 找到是哪个界面调用的->_<-
     public ArrayList<OrderVO> getOrderVOs(StateOfOrder stateOfOrder) {
     	ArrayList<OrderVO> orderVOs = orderForUser.userClassify(userID, stateOfOrder);
 		return orderVOs;
@@ -273,5 +358,14 @@ public String getHotelID() {
     	ResultMessage resultMessage = loginService.register(userVO);
     	return resultMessage;
 	}
-    
+    /**
+     * 退出时，删除在线人员持久化对象
+     */
+    public ResultMessage logout() {
+		ResultMessage resultMessage = loginService.logout(Role.user, userID);
+		if(resultMessage == ResultMessage.succeed){
+			userID = null;
+		}
+		return resultMessage;
+	}
 }
