@@ -29,7 +29,7 @@ public class HotelUITest extends Application {
         HotelService hotelService = HotelServiceFactory.getHotelService("0123456789");
         controller.setHotelService(hotelService);
         // 从数据层得到该酒店信息
-        HotelVO hotelVO = hotelService.getHotel();
+        HotelVO hotelVO = hotelService.getHotelInfo();
         controller.setHotelVO(hotelVO);
 
         // TODO 从订单的逻辑得到初始化数据

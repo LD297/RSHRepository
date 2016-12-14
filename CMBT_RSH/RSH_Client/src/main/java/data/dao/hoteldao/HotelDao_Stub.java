@@ -8,6 +8,7 @@ import po.HotelStaffPO;
 import po.RoomPO;
 import vo.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,12 +16,6 @@ import java.util.Date;
  * Created by a297 on 16/11/20.
  */
 public class HotelDao_Stub implements  HotelDao{
-    @Override
-    public ResultMessage addComment(CommentPO commentPO) {
-        // TODO: 16/11/20
-        return ResultMessage.succeed;
-    }
-
     @Override
     public ResultMessage checkPassword(String id, String password) {
         if(id.equals("13951897687")&&password.equals("jksggkskjg"))
@@ -103,17 +98,9 @@ public class HotelDao_Stub implements  HotelDao{
     }
 
     @Override
-    public ArrayList<RoomAvailVO> getRoomAvailList(String id, Date date) {
-        if(id.equals("6666666666")){
-            RoomAvailVO roomAvail = new RoomAvailVO(id, "doubleRoom", 10, 200, "basic");
-            ArrayList<RoomAvailVO> list = new ArrayList<RoomAvailVO>();
-            list.add(roomAvail);
-            return list;
-        }
-        else
-            return null;
+    public ArrayList<RoomAvailVO> getRoomAvailList(String id, Date checkIn, Date checkOut) throws RemoteException {
+        return null;
     }
-
     @Override
     public ResultMessage updateRoomAvailList(String id, ArrayList<RoomAvailVO> roomAvailList) {
         if(id.equals("0000000000"))
@@ -123,8 +110,7 @@ public class HotelDao_Stub implements  HotelDao{
     }
 
     @Override
-    public ArrayList<RoomNormVO> getRoomNorms(String id) {
-        // TODO: 16/11/20
+    public ArrayList<RoomNormVO> getRoomNorm(String id) throws RemoteException {
         return null;
     }
 
@@ -146,12 +132,6 @@ public class HotelDao_Stub implements  HotelDao{
         return null;
     }
 
-    @Override
-    public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM) {
-        ArrayList<HotelVO> list = new ArrayList<HotelVO>();
-        list.add(new HotelVO("2333333333"));
-        return list;
-    }
 
     @Override
     public ArrayList<HotelVO> select(SelectConditionVO vo) {
@@ -161,12 +141,10 @@ public class HotelDao_Stub implements  HotelDao{
     }
 
     @Override
-    public int getHotelNum(String address) {
-        if(address.equals("南京市白下区"))
-            return 1;
-        else
-            return 0;
+    public String getHotelID(String district) throws RemoteException {
+        return null;
     }
+
 
     @Override
     public ResultMessage addHotel(HotelPO hotelPO) {

@@ -17,7 +17,7 @@ public class NumCondition extends Condition {
 
 	@Override
 	public ConditionType getType() {
-		return ConditionType.NUM;
+		return ConditionType.ROOMNUM;
 	}
 
 	@Override

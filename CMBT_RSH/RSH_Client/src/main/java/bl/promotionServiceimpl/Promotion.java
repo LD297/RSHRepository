@@ -63,10 +63,10 @@ public class Promotion {
 		if(cType == ConditionType.BIRTHDAY){
 			condition = new BirthdayCondition();
 		}
-		else if(cType == ConditionType.MEMBER){
+		else if(cType == ConditionType.COMMERCE){
 			condition = new MemberCondition(cNum);
 		}
-		else if(cType == ConditionType.NUM){
+		else if(cType == ConditionType.ROOMNUM){
 			condition = new NumCondition(cNum);
 		}
 		else if(cType == ConditionType.TOTAL){
