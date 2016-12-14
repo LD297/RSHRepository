@@ -13,15 +13,16 @@ import data.dao.orderdao.OrderDao_Stub;
  * Created by a297 on 16/12/8.
  */
 public class OrderServiceFactory {
-    private static OrderForHotelController orderForHotelController;
+    // 单件
+    private static OrderForHotelController orderForHotelController = null;
 
     // 处理订单生成界面的业务逻辑
-    private static OrderForUserController orderForUserController;
+    private static OrderForUserController orderForUserController = null;
 
     // 处理其他订单操作的业务逻辑
-    private static OrderForWebsiteController orderForWebsiteController;
+    private static OrderForWebsiteController orderForWebsiteController = null;
 
-    private static OrderDao orderDao;
+    private static OrderDao orderDao = null;
 
     static {
         if(orderDao==null)
@@ -30,25 +31,18 @@ public class OrderServiceFactory {
 
     public static OrderForHotelController getOrderForHotelService(String hotelID){
 
-        if(orderGenerationController==null){
+        if(orderForHotelController==null){
 
-            // 传入hotelid，通过酒店业务逻辑的工厂得到"订单生成"所需的酒店业务逻辑处理对象
-            HotelInfoService hotelInfoService = HotelServiceFactory.getHotelService(hotelID);
-            // 新建"订单生成"的领域对象
-            OrderGeneration orderGeneration = new OrderGeneration();
+           // 新建"订单生成"的领域对象
+            OrderForHotelImpl orderForHotel = new OrderForHotelImpl();
 
-            // 实例化"订单生成"中"酒店业务逻辑服务"这一成员变量
-            orderGeneration.setHotelInfoService(hotelInfoService);
             // 实例化"订单生成"中"自身数据库"这一成员变量
-            orderGeneration.setOrderDao(orderDao);
+            orderForHotel.setOrderDao(orderDao);
 
-            // 实例化"订单生成控制器"
-            orderGenerationController = new OrderGenerationController();
-            // 实例化"订单生成控制器"的"订单生成"这一成员变量
-            orderGenerationController.setOrderGeneration(orderGeneration);
+            orderForHotelController = new OrderForHotelController();
         }
 
-        return orderGenerationController;
+        return orderForHotelController;
     }
 
     /**
@@ -63,52 +57,40 @@ public class OrderServiceFactory {
      */
     public static OrderForUserController getOrderForUserService(String hotelid) {
 
-        if(otherOrderController==null){
+        if(orderForUserController==null){
 
             // 传入hotelid，通过酒店业务逻辑的工厂得到"订单生成"所需的酒店业务逻辑处理对象
             HotelController hotelController = HotelServiceFactory.getHotelService(hotelid);
 
             // 新建"异常订单"领域对象
-            AbnormalOrder abnormalOrder = new AbnormalOrder();
+            OrderForUserImpl orderForUser = new OrderForUserImpl();
             // 实例化实例化"异常订单"中"酒店业务逻辑服务"这一成员变量
-            abnormalOrder.setHotelInfoService(hotelController);
-            abnormalOrder.setHotelService(hotelController);
-
+            orderForUser.setHotelInfoService(hotelController);
+            orderForUser.setHotelService(hotelController);
             // 实例化"异常订单"中"自身数据库"这一成员变量
-            abnormalOrder.setOrderDao(orderDao);
+            orderForUser.setOrderDao(orderDao);
 
-            NormalOrder normalOrder = new NormalOrder();
-            normalOrder.setHotelInfoService(hotelController);
-            normalOrder.setOrderDao(orderDao);
+            orderForUserController = new OrderForUserController();
 
-            CheckOrder checkOrder = new CheckOrder();
-            checkOrder.setOrderDao(orderDao);
         }
-        return otherOrderController;
+        return orderForUserController;
     }
     public static OrderForWebsiteController getOrderForWebsiteService(String hotelid) {
 
-        if(otherOrderController==null){
+        if(orderForWebsiteController==null){
 
             // 传入hotelid，通过酒店业务逻辑的工厂得到"订单生成"所需的酒店业务逻辑处理对象
             HotelController hotelController = HotelServiceFactory.getHotelService(hotelid);
 
             // 新建"异常订单"领域对象
-            AbnormalOrder abnormalOrder = new AbnormalOrder();
+            OrderForWebsiteImpl orderForWebsite = new OrderForWebsiteImpl();
             // 实例化实例化"异常订单"中"酒店业务逻辑服务"这一成员变量
-            abnormalOrder.setHotelInfoService(hotelController);
-            abnormalOrder.setHotelService(hotelController);
-
+            orderForWebsite.setHotelService(hotelController);
             // 实例化"异常订单"中"自身数据库"这一成员变量
-            abnormalOrder.setOrderDao(orderDao);
+            orderForWebsite.setOrderDao(orderDao);
 
-            NormalOrder normalOrder = new NormalOrder();
-            normalOrder.setHotelInfoService(hotelController);
-            normalOrder.setOrderDao(orderDao);
-
-            CheckOrder checkOrder = new CheckOrder();
-            checkOrder.setOrderDao(orderDao);
+            orderForWebsiteController = new OrderForWebsiteController();
         }
-        return otherOrderController;
+        return orderForWebsiteController;
     }
 }

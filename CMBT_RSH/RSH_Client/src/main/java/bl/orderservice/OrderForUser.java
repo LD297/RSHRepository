@@ -27,9 +27,14 @@ public interface OrderForUser {
      */
     public OrderVO detail(String orderID);
     /**
-     * 用户取消未执行订单
+     * 场景：用户取消未执行订单
+     * 判断：距离最晚执行时间>=6h
+     * 后置：？用户信用值扣除
+     *       酒店可用客房数量增加
+     *       订单状态改变
      * @param orderID
-     * @return 被扣除的信用值
+     * @return 被扣除的信用值(>=0 ,-1表示出错)
+     * 注：出错（remote；订单状态不是unexecuted）
      */
     public int cancelMyOrder(String orderID);
     /**
@@ -78,6 +83,8 @@ public interface OrderForUser {
     public ResultMessage confirmReservation(OrderVO orderVO);
     /**
      * 用户评价订单
+     * 订单评分评论更新
+     * 酒店评分更新
      * @param orderID
      * @param grade
      * @param comment

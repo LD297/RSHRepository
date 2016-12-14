@@ -25,15 +25,16 @@ public class OrderDao_Stub implements OrderDao {
             Date checkOut = sim.parse("2016-02-05");
             String hotelDDL = "23:15:00";
             Date generationDate = sim.parse("2016-01-28");
-            Date actualCheckIn = sim.parse("2016-01-31-15-22-09");
-            Date actualCheckOut = sim.parse("2016-02-06-10-10-23");
+            Date actualCheckIn = sim.parse("2016-01-31 15:22:09");
+            Date actualCheckOut = sim.parse("2016-02-06 10:10:23");
             Date cancelTime = null;
             Date cancelAbnormalTime = null;
-            return new OrderPO(orderID,"15105182135", "slt","0123456789","有间旅馆",StateOfOrder.unexecuted,
+            return new OrderPO(orderID,"15935142165", "slt","0123456789","有间旅馆",StateOfOrder.unexecuted,
                     room, 100, 1, 1, false,
-                    120, 100, "任性优惠",
+                    120, 100, "任性优惠八折",
                     "睡得很香",4, checkIn,checkOut,hotelDDL,generationDate,
                     actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);
+
         }catch (ParseException e){
             return null;
         }
@@ -65,7 +66,7 @@ public class OrderDao_Stub implements OrderDao {
         }
     }
     @Override
-    public ArrayList<OrderPO> searchByHotelWithUser(String userID, String hotelID)throws RemoteException{
+    public ArrayList<OrderPO> searchByUserWithHotel(String userID, String hotelID)throws RemoteException{
         RoomNormVO room = new RoomNormVO("0123456789","singleRoom",120.0);
         ArrayList<OrderPO> list = new ArrayList<OrderPO>();
         SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");

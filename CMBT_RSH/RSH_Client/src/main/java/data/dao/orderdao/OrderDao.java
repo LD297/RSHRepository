@@ -17,7 +17,7 @@ public interface OrderDao {
     // 根据用户编号查找订单
     public ArrayList<OrderPO> searchByUser(String userID) throws RemoteException;
     // 根据用户编号、酒店编号查找订单
-    public ArrayList<OrderPO> searchByHotelWithUser(String userID,String hotelID) throws RemoteException;
+    public ArrayList<OrderPO> searchByUserWithHotel(String userID,String hotelID) throws RemoteException;
     // 根据酒店编号查找订单
     public ArrayList<OrderPO> searchByHotel(String hotelID) throws RemoteException;
     // 根据状态编号查找订单

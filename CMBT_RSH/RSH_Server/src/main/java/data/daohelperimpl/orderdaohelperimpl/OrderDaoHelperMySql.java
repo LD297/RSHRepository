@@ -45,8 +45,8 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         db.executeSql("DROP TABLE IF EXISTS OrderGeneral");
         db.executeSql("DROP TABLE IF EXISTS OrderRooms ");
     }
-    //根据订单编号查找订单(返回详情)
-    public OrderPO find(String orderID) throws RemoteException {
+    // 根据订单编号查找订单(返回详情)
+    public OrderPO searchByID(String orderID) throws RemoteException {
         db.executeSql("USE OurData");
         if (this.checkExistence(orderID) == ResultMessage.idNotExist)
             return null;
@@ -55,8 +55,10 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
         return this.transformResultSetToPOList(result).get(0);
     }
-    //根据用户编号查找订单
-    public ArrayList<OrderPO> userFind(String userID) throws RemoteException {
+    // 根据用户、酒店编号查找订单
+    public ArrayList<OrderPO> seachByUserWithHotel(String userID,String hotelID)throws RemoteException{}
+    // 根据用户编号查找订单
+    public ArrayList<OrderPO> searchByUser(String userID) throws RemoteException {
         db.executeSql("USE OurData");
 
         String generalSql = "SELECT *FROM OrderGeneral WHERE userID='" + userID + "'";
@@ -64,8 +66,8 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
         return this.transformResultSetToPOList(result);
     }
-    //根据酒店编号查找订单
-    public ArrayList<OrderPO> hotelFind(String hotelID) throws RemoteException{
+    // 根据酒店编号查找订单
+    public ArrayList<OrderPO> searchByHotel(String hotelID) throws RemoteException{
         db.executeSql("USE OurData");
 
         String generalSql = "SELECT *FROM OrderGeneral WHERE hotelID = '" + hotelID + "'";
@@ -73,8 +75,8 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
         return this.transformResultSetToPOList(result);
     }
-    //根据状态查找订单
-    public ArrayList<OrderPO> stateFind(StateOfOrder state) throws RemoteException{
+    // 根据状态查找订单
+    public ArrayList<OrderPO> searchByState(StateOfOrder state) throws RemoteException{
         db.executeSql("USE OurData");
 
         String generalSql = "SELECT *FROM OrderGeneral WHERE state=" +String.valueOf(state.ordinal());
@@ -82,7 +84,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
         return this.transformResultSetToPOList(result);
     }
-    //新建订单
+    // 插入订单
     public ResultMessage insert(OrderPO orderPO) throws RemoteException{
         String orderID = orderPO.getOrderID();
         String userID = orderPO.getUserID();
@@ -128,9 +130,8 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
         return ResultMessage.succeed;
     }
-    //删除订单  public ResultMessage delete(String orderid) throws RemoteException{};
 
-    //订单状态更新
+    // 订单状态更新
     public ResultMessage stateUpdate(String orderID,StateOfOrder newState) throws RemoteException{
         db.executeSql("USE OurData");
         if(this.checkExistence(orderID)==ResultMessage.idNotExist)
@@ -150,7 +151,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         db.executeSql(stateUpdateSql);
         return ResultMessage.succeed;
     }
-    //评价订单
+    // 评价订单
     public ResultMessage commentUpdate(String orderID, int grade, String comment) throws RemoteException{
         db.executeSql("USE OurData");
         if(this.checkExistence(orderID)==ResultMessage.idNotExist)
@@ -161,8 +162,10 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         db.executeSql(updateCommentSql);
         return ResultMessage.succeed;
     }
+    // 订单实际入住时间更新
+    public ResultMessage actCheckInUpdate(String orderID, Date actCheckIn) throws RemoteException{}
     //订单实际离开时间更新
-    public ResultMessage leaveUpdate(String orderID,Date actCheckOut) throws RemoteException{
+    public ResultMessage actCheckOutUpdate(String orderID,Date actCheckOut) throws RemoteException{
         db.executeSql("USE OurData");
         if(this.checkExistence(orderID)==ResultMessage.idNotExist)
             return ResultMessage.idNotExist;
@@ -173,8 +176,14 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         db.executeSql(leavetimeupdateSql);
         return ResultMessage.succeed;
     }
+    // 订单撤销时间更新
+    public ResultMessage cancelTimeUpdate(String orderID, Date cancelTime) throws RemoteException{}
+    // 订单撤销异常时间更新
+    public ResultMessage cancelAbTimeUpdate(String orderID, Date cancelAbTime) throws RemoteException{}
 
-    public ResultMessage checkExistence(String orderID){
+
+    // 检查账号是否存在
+    private ResultMessage checkExistence(String orderID){
         String checkExistenceSql = "SELECT orderID FROM OrderGeneral";
         ResultSet result = db.query(checkExistenceSql);
         try{
