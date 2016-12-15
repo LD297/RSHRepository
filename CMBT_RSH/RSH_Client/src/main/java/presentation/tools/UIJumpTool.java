@@ -91,9 +91,14 @@ public class UIJumpTool {
         guide.getChildren().add(orderInfo);
     }
 
-    //关闭订单详情
+    /**
+     * 关闭订单详情，并刷新订单浏览界面
+     */
     public void closeOrderInfo(){
         guide.getChildren().remove(guide.getChildren().size()-1);
+        //刷新浏览订单界面
+        UserOrderUIController userOrderUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getUserOrderUIController();
+        userOrderUIController.refresh();
     }
 
     //在酒店浏览界面上弹出订单生成界面
@@ -105,17 +110,27 @@ public class UIJumpTool {
     //关闭订单生成界面
     public void closeCreateOrder(){
         guide.getChildren().remove(guide.getChildren().size()-1);
+        //TODO 刷新酒店浏览界面
     }
 
     //从订单浏览界面跳转到添加评价界面
+    /**
+     * 从订单详情界面跳转到添加评价界面
+     */
     public void changeUserOrderToAddComment(){
         addComment = UserUIFXMLFactory.getUserUIFXMLFactory().getAddComment();
         guide.getChildren().add(addComment);
     }
 
     //从添加评价界面返回到订单浏览界面
+    /**
+     * 从添加评价界面跳转返回到订单详情界面
+     */
     public void changeAddCommentToUserOrder(){
         guide.getChildren().remove(guide.getChildren().size()-1);
+        //刷新
+        UserOrderUIController userOrderUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getUserOrderUIController();
+        userOrderUIController.refresh();
     }
 
     //从会员注册界面返回到我的会员(是会员)界面
@@ -330,7 +345,7 @@ public class UIJumpTool {
 
     //直接关闭筛选条件界面，并重新初始化酒店浏览界面
     public void closeSelectCondition(){
-    	browseHotelUIController.init();
+ //   	browseHotelUIController.init();
         guide.getChildren().remove(guide.getChildren().size()-1);
         
     }

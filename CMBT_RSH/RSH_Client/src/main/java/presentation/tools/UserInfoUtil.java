@@ -8,20 +8,21 @@ import java.util.Iterator;
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.hotelservice.SearchHotelService;
-import bl.hotelserviceimpl.hotel_stub.HotelInfoService_Stub;
-import bl.hotelserviceimpl.hotel_stub.HotelService_Stub;
-import bl.hotelserviceimpl.hotel_stub.SearchHotelService_Stub;
+import bl.hotelserviceimpl.HotelInfoService_Stub;
+import bl.hotelserviceimpl.HotelService_Stub;
+import bl.hotelserviceimpl.SearchHotelService_Stub;
 import bl.loginservice.LoginService;
+import bl.loginserviceimpl.LoginController;
 import bl.loginserviceimpl.LoginService_Stub;
 import bl.orderservice.OrderForHotel;
 import bl.orderservice.OrderForUser;
-import bl.orderserviceimpl.OtherOrderController;
-import bl.orderserviceimpl.miscellaneous.OrderForHotel_Stub;
-import bl.orderserviceimpl.miscellaneous.OrderForUser_Stub;
+import bl.orderserviceimpl.OrderForHotel_Stub;
+import bl.orderserviceimpl.OrderForUser_Stub;
 import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
 import bl.userservice.UserService;
 import bl.userserviceimpl.UserService_Stub;
+import constant.MemberType;
 import constant.ResultMessage;
 import constant.Role;
 import constant.Sexuality;
@@ -335,7 +336,12 @@ public String getHotelID() {
     	ArrayList<OrderVO> orderVOs = orderForUser.userClassify(userID, stateOfOrder);
 		return orderVOs;
 	}
-    
+    /**
+     * 撤销订单,订单详情界面调用
+     */
+    public void cancelOrder() {
+		orderForUser.cancelMyOrder(orderID);
+	}
     
     /**
      * 我的信用记录界面调用，得到该用户的所有信用记录

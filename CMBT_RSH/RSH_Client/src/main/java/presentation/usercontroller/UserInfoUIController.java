@@ -67,6 +67,20 @@ public class UserInfoUIController {
     void changeToModifyUserInfo(MouseEvent event) {
         UIJumpTool.getUiJumpTool().changeToModifyUserInfo();
     }
+    
+    public void init() {
+    	   UserVO userVO = UserInfoUtil.getInstance().getUserVO();
+           nicknameLabel.setText(userVO.nickName);
+           userNameLabel.setText(userVO.name);
+           birthdayLabel.setText(MyDateFormat.getInstance().toString(userVO.birthday));
+           phonenumberLabel.setText(userVO.id);
+           emailaddressLabel.setText(userVO.eMail);
+           if(userVO.sexuality==Sexuality.female){
+           	sexImage.setImage(ImageFactory.getImageFactory().getFemale());
+           }else {
+   			sexImage.setImage(ImageFactory.getImageFactory().getMale());
+   		}
+	}
 
     @FXML
     void initialize() {
@@ -80,18 +94,7 @@ public class UserInfoUIController {
         assert phonenumberLabel != null : "fx:id=\"phonenumberLabel\" was not injected: check your FXML file '我的信息.fxml'.";
         assert emailaddressLabel != null : "fx:id=\"emailaddressLabel\" was not injected: check your FXML file '我的信息.fxml'.";
         assert sexImage != null : "fx:id=\"sexImage\" was not injected: check your FXML file '我的信息.fxml'.";
-        
-        UserVO userVO = UserInfoUtil.getInstance().getUserVO();
-        nicknameLabel.setText(userVO.nickName);
-        userNameLabel.setText(userVO.name);
-        birthdayLabel.setText(MyDateFormat.getInstance().toString(userVO.birthday));
-        phonenumberLabel.setText(userVO.id);
-        emailaddressLabel.setText(userVO.eMail);
-        if(userVO.sexuality==Sexuality.female){
-        	sexImage.setImage(ImageFactory.getImageFactory().getFemale());
-        }else {
-			sexImage.setImage(ImageFactory.getImageFactory().getMale());
-		}
+        init();
     }
 }
 

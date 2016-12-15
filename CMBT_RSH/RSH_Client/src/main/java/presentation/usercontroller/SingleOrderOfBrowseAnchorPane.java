@@ -31,14 +31,14 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 	 */
 	private Label orderValue = null;
 	private ImageView orderStateImage = null;
-	private CheckBox checkBox = null;
+//	private CheckBox checkBox = null;
 	private Label forMoreLabel = null;
-	private Button commentButton = null;
+//	private Button commentButton = null;
 	private OrderVO orderVO = null;
 	public SingleOrderOfBrowseAnchorPane(OrderVO orderVO) {
 		this.orderVO = orderVO;
 		weekLabel = new Label(MyDateFormat.getInstance().getWeek(orderVO.getGenerationDate()));
-		dateLabel = new Label(MyDateFormat.toString(orderVO.getGenerationDate()));
+		dateLabel = new Label(MyDateFormat.getInstance().toString(orderVO.getGenerationDate()));
 		orderIDLabel = new Label(orderVO.getOrderID());
 		hotelNameLabel = new Label(orderVO.getHotelID());//TODO
 		orderValueLabel = new Label(String.valueOf(orderVO.getTrueValue()));
@@ -59,8 +59,8 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 			orderStateImage.setImage(imageFactory.getOrderExecutedImage());
 		}
 		forMoreLabel = new Label("更多>");
-		checkBox = new CheckBox();
-		commentButton = new Button("评价");
+//		checkBox = new CheckBox();
+//		commentButton = new Button("评价");
 		
 		
 		//设置组件属性
@@ -78,8 +78,8 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 		orderValue.setFont(Font.font("Times New Roman", 16));
 		forMoreLabel.setStyle("-fx-text-fill: #bababa");
 		forMoreLabel.setFont(Font.font("Times New Roman", 14));
-		commentButton.setStyle("-fx-background-color:#ff5a5f;-fx-text-fill: #ffffff");
-		commentButton.setFont(Font.font("Times New Roman", 14));
+//		commentButton.setStyle("-fx-background-color:#ff5a5f;-fx-text-fill: #ffffff");
+//		commentButton.setFont(Font.font("Times New Roman", 14));
 		
 		//添加组件
 		this.getChildren().add(weekLabel);
@@ -89,8 +89,8 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 		this.getChildren().add(orderStateImage);
 		this.getChildren().add(orderValueLabel);
 		this.getChildren().add(orderValue);
-		this.getChildren().add(checkBox);
-		this.getChildren().add(commentButton);
+//		this.getChildren().add(checkBox);
+//		this.getChildren().add(commentButton);
 		this.getChildren().add(forMoreLabel);
 		
 		//设置组件位置
@@ -102,8 +102,8 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 		locator.setLocation(orderIDLabel, 41.0,15.0,133.0,180.0);
 		locator.setLocation(orderValueLabel, 18.0,48.0,414.0,21.0);
 		locator.setLocation(orderValue, 18.0, 48.0, 333.0, 90.0);
-		locator.setLocation(checkBox, 20.0,50.0,477.0,3.0);
-		locator.setLocation(commentButton, 43.0, 17.0, 415.0,23.0);
+//		locator.setLocation(checkBox, 20.0,50.0,477.0,3.0);
+//		locator.setLocation(commentButton, 43.0, 17.0, 415.0,23.0);
 		locator.setLocation(forMoreLabel, 46.0,20.0,333.0,120.0);
 		
 		//为组件添加监听
@@ -111,7 +111,9 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 			//跳转到订单详情界面
 			@Override
 			public void handle(MouseEvent event) {
-				 UIJumpTool.getUiJumpTool().changeToOrderInfo();
+				//set当前的订单编号
+				UserInfoUtil.getInstance().setOrderID(orderVO.getOrderID());
+				UIJumpTool.getUiJumpTool().changeToOrderInfo();
 			}
 		});
 		forMoreLabel.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -128,7 +130,7 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 				forMoreLabel.setTextFill(Color.valueOf("#00a699"));
 			}
 		});
-		commentButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+/*		commentButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			//点击评价按钮，跳转到添加评价界面
 			@Override
 			public void handle(MouseEvent event) {
@@ -137,6 +139,6 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 				//跳转到添加评价界面
 				UIJumpTool.getUiJumpTool().changeUserOrderToAddComment();
 			}
-		});
+		});*/
 	}
 }

@@ -55,9 +55,9 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Button layoutX="427.0" layoutY="86.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-color: #666666;" text="重置密码" textFill="WHITE">
+                  <Button layoutX="447.0" layoutY="86.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" opacity="0.5" prefHeight="30.0" text="重置密码">
                      <font>
-                        <Font name="Times New Roman" size="18.0" />
+                        <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Button>
                   <Label layoutX="59.0" layoutY="50.0" prefHeight="23.0" prefWidth="102.0" text="手机号码：">
@@ -234,13 +234,13 @@
       </TextField>
       <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="442.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../CMBT_RSH/RSH_Client/src/main/resources/images/搜索图标.jpg" />
+            <Image url="@../images/搜索图标.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="40.0" layoutY="30.0" text="返回">
-         <font>
-            <Font name="Times New Roman" size="18.0" />
-         </font>
-      </Label>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="26.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/返回箭头.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

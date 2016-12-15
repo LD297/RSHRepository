@@ -54,8 +54,8 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao{
         return orderDaoHelper.searchByUser(userID);
     }
     // 根据用户编号、酒店编号查找订单
-    public ArrayList<OrderPO> searchByHotelWithUser(String userID,String hotelID) throws RemoteException{
-        return orderDaoHelper.searchByHotelWithUser(userID, hotelID);
+    public ArrayList<OrderPO> searchByUserWithHotel(String userID,String hotelID) throws RemoteException{
+        return orderDaoHelper.searchByUserWithHotel(userID, hotelID);
     }
 
     //根据酒店编号查找订单

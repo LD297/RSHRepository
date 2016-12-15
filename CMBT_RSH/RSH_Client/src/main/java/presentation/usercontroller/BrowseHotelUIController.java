@@ -167,8 +167,18 @@ public class BrowseHotelUIController {
 		return hotelVOs;
 	}
     
-    public void setHotelVOsOfBrowsehotel(ArrayList<HotelVO> hotelVOs) {
+    /**
+     * 筛选条件界面调用，用于刷新酒店浏览界面
+     * @param hotelVOs
+     */
+    public void refresh(ArrayList<HotelVO> hotelVOs) {
 		this.hotelVOs = hotelVOs;
+		if(hotelVOs.size()%4==0){
+			maxPages = hotelVOs.size()/4;
+		}else{
+			maxPages = hotelVOs.size()/4 + 1;
+		}
+		changeToSpecficPage(1);
 	}
     
     public void init() {

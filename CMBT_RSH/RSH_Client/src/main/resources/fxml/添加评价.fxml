@@ -43,7 +43,7 @@
             </Label>
             <Label fx:id="encourageLabel" layoutX="52.0" layoutY="216.0" prefHeight="30.0" prefWidth="321.0" text="亲，您的评价将会对我们改善服务酒店工作有很大的帮助哦" textFill="#0000008d" />
             <TextField fx:id="gradeField" layoutX="291.0" layoutY="72.0" prefHeight="30.0" prefWidth="79.0" promptText="请输入评分" />
-            <Label layoutX="32.0" layoutY="420.0" prefHeight="30.0" prefWidth="193.0" text="您还没有输入评分" textFill="#ff5a5f">
+            <Label fx:id="messageLabel" layoutX="32.0" layoutY="420.0" prefHeight="30.0" prefWidth="193.0" text="您还没有输入评分" textFill="#ff5a5f">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>

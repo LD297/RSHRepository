@@ -1,7 +1,9 @@
 package presentation.usercontroller;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
@@ -11,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import presentation.tools.MyDateFormat;
 import presentation.tools.UserInfoUtil;
 import vo.CreditRecordVO;
 
@@ -107,6 +110,10 @@ public class UserCreditRecordUIController {
 		creditRecordVOs = userInfoUtil.getCreditRecordVOs();
 		maxPages = (creditRecordVOs.size()+1)/2;
 		changeToSpecificPage(1);
+		// 初始化日历
+		dayOfTodayLabel.setText(new SimpleDateFormat("dd").format(new Date()));
+		monthdayOfTodayLabel.setText(new SimpleDateFormat("yyyy.MM").format(new Date()));
+		weekOfTodayLabel.setText(MyDateFormat.getInstance().getWeek(new Date()));
     }
 
     @FXML
@@ -119,6 +126,6 @@ public class UserCreditRecordUIController {
         assert pageField != null : "fx:id=\"pageField\" was not injected: check your FXML file '信用记录.fxml'.";
         assert nextPageLabel != null : "fx:id=\"nextPageLabel\" was not injected: check your FXML file '信用记录.fxml'.";
         assert gridPaneFilledWithCreditrecord != null : "fx:id=\"gridPaneFilledWithCreditrecord\" was not injected: check your FXML file '信用记录.fxml'.";
-
+        init();
     }
 }
