@@ -3,42 +3,45 @@ package bl.hotelserviceimpl;
 import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
 import po.HotelPO;
-import po.HotelStaffPO;
+import rmi.RemoteHelper;
 import vo.HotelStaffVO;
+import vo.HotelVO;
 
 import java.rmi.RemoteException;
 
-public class ManagerHotel{
+public class WebManagerHotel{
 
-	HotelDao hotelDao;
+	private static HotelDao hotelDao = null;
 
-	public ManagerHotel(HotelDao hotelDao) {
-		this.hotelDao = hotelDao;
+	private void initRemote(){
+		if(hotelDao==null){
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
+			hotelDao = remoteHelper.getHotelDao();
+		}		
 	}
 
-	public String getHotelID(String district) {
+	public static String getHotelID(String district) {
 		String hotelID = null;
 		try {
-			hotelID = hotelDao.getHotelID(district);
+			hotelID = hotelDao.getNewHotelID(district);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
 		return hotelID;
 	}
 
-	public ResultMessage addHotel(String id, String password) {
-		HotelPO newHotelPO = new HotelPO(id);
-		newHotelPO.setPassword(password);
-		ResultMessage resultMessage = null;
-		try {
-			resultMessage = hotelDao.addHotel(newHotelPO);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return resultMessage;
+	public static ResultMessage updateHotelStaff(HotelStaffVO hotelStaffVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-
+/**
+ * what is this for???
+ * is there any need to transfer hotelStaffPO???
+ * @param hotelStaffVO
+ * @return
+ */
+	/**
 	public ResultMessage updateHotelStaff(HotelStaffVO hotelStaffVO) {
 		HotelStaffPO hotelStaffPO = new HotelStaffPO(hotelStaffVO.hotelID, hotelStaffVO.tel);
 		ResultMessage resultMessage = null;
@@ -49,5 +52,5 @@ public class ManagerHotel{
 		}
 		return resultMessage;
 	}
-
+*/
 }

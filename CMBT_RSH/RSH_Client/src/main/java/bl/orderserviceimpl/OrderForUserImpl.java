@@ -2,7 +2,7 @@ package bl.orderserviceimpl;
 
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.HotelController;
+import bl.hotelserviceimpl.controller.HotelController;
 import bl.orderservice.OrderForHotel;
 import bl.orderservice.OrderForUser;
 import bl.promotionServiceimpl.Count;

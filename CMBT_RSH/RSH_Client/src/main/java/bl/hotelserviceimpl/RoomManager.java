@@ -13,7 +13,7 @@ public class RoomManager {
 
 	HotelDao hotelDao  = null;
 	String hotelID;
-	ArrayList<Room>
+	ArrayList<RoomVO> roomList;
 	
 	private void initRemote(){
 		if(hotelDao == null){
@@ -22,28 +22,56 @@ public class RoomManager {
 		}
 	}
 	
+	public RoomManager(String hotelID){
+		this.hotelID = hotelID;
+	}
 
 	public ArrayList<RoomVO> getRoomList() {
 		ArrayList<RoomVO> arrayList = null;
+		initRemote();
 		try {
-			arrayList = hotelDao.getRoomList(id);
+			arrayList = hotelDao.getRoomList(hotelID);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
 		return arrayList;
 	}
-	
-	public ResultMessage updateRoomList() {
-		ArrayList<RoomPO> roomPOList = new ArrayList<RoomPO>();
-		for(RoomVO roomVO:roomList){
-			roomPOList.add(RoomPO.createRoomPO(roomVO));
-		}
+	public ResultMessage addSpecialRoom(RoomVO vo) {
 		ResultMessage resultMessage = null;
-		try{
-			resultMessage = hotelDao.updateRoomList(roomPOList);
+		try {
+			resultMessage = hotelDao.addSpecialRoom(RoomPO.changeIntoPO(vo));
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
 		return resultMessage;
+	}
+	public ResultMessage deleteSpecialRoom(RoomVO vo) {
+		ResultMessage resultMessage = null;
+		try {
+			resultMessage = hotelDao.deleteSpecialRoom(RoomPO.changeIntoPO(vo));
+		}catch (RemoteException e){
+			e.printStackTrace();
+		}
+		return resultMessage;
+	}
+	
+	public ResultMessage updateRoomList() {
+		ArrayList<RoomPO> roomPOList = new ArrayList<RoomPO>();
+		for(RoomVO roomVO:roomList){
+			roomPOList.add(RoomPO.changeIntoPO(roomVO));
+		}
+		ResultMessage resultMessage = null;
+		initRemote();
+		try{
+			resultMessage = hotelDao.updateRoomList(roomPOList);
+		}catch (RemoteException e){
+			return ResultMessage.remote_fail;
+		}
+		return resultMessage;
+	}
+
+	public ResultMessage updateRoomList(ArrayList<RoomVO> roomList2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

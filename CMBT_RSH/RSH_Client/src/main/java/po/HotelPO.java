@@ -4,9 +4,11 @@ import vo.HotelVO;
 
 import java.io.Serializable;
 
+import bl.hotelserviceimpl.Hotel;
+
 public class HotelPO implements Serializable{
 	
-	private String hotekID;
+	private String hotelID;
 	private String password;
 	/**
 	 * 酒店工作人员联系方式（客服）
@@ -44,11 +46,11 @@ public class HotelPO implements Serializable{
 	private String latestCheckinTime;
 	
 	public HotelPO(String id) {
-		this.id = id;
+		this.hotelID = id;
 	}
 
 	public String getId() {
-		return id;
+		return hotelID;
 	}
 
 	public String getPassword() {
@@ -139,7 +141,7 @@ public class HotelPO implements Serializable{
 		this.latestCheckinTime = latestCheckinTime;
 	}
 
-	public static HotelPO createHotelPO(HotelVO vo){
+	public static HotelPO changeIntoPO(HotelVO vo){
 		// 根据hotelVO封装一个新的hotelPO，传给下层
 		HotelPO newHotelPO = new HotelPO(vo.id);
 		newHotelPO.setPassword(vo.getPassword());
@@ -153,5 +155,18 @@ public class HotelPO implements Serializable{
 		newHotelPO.setGrade(vo.grade);
 		newHotelPO.setLatestCheckinTime(vo.latestCheckinTime);
 		return newHotelPO;
+	}
+	
+	public static Hotel changeIntoHotel(HotelPO PO){
+		Hotel hotel = Hotel.getInstance(PO.getId());
+		return hotel;
+	}
+	
+	public static HotelVO changeIntoVO(HotelPO PO){
+		HotelVO hotelVO = new HotelVO(PO.hotelID,
+				PO.tel, PO.name, PO.addr,PO.businessArea,
+				PO.briefIntro, PO.facility,
+				PO.level, PO.grade, PO.latestCheckinTime);
+		return hotelVO;
 	}
 }

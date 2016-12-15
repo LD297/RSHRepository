@@ -1,9 +1,10 @@
-package data.dao.promotiondao;
+package data.dao_Stub.promotiondao_Stub;
 
 import constant.ConditionType;
 import constant.DeductionType;
 import constant.ResultMessage;
 import constant.ScopeType;
+import data.dao.promotiondao.PromotionDao;
 import po.PromotionPO;
 
 import java.rmi.RemoteException;

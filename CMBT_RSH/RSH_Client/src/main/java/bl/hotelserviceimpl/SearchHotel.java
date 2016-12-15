@@ -4,28 +4,35 @@ import constant.SortBy;
 import constant.SortMethod;
 import data.dao.hoteldao.HotelDao;
 import po.HotelPO;
+import rmi.RemoteHelper;
 import vo.HotelVO;
 import vo.SelectConditionVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 
-public class SearchHotel {
+import bl.hotelservice.SearchHotelService;
 
-	HotelDao hotelDao;
+/**
+ * 根据条件搜索酒店, 兼顾搜索排序
+ * @author aa
+ *
+ */
+public class SearchHotel implements SearchHotelService{
+private static HotelDao hotelDao = null;
 	
-	private SortHotel sortHotel;
-	private SelectHotel selectHotel;
-	
-	public void setSort(SortHotel sort) {
-		this.sortHotel = sort;
+	private void initRemote(){
+		if(hotelDao==null){
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
+			hotelDao = remoteHelper.getHotelDao();
+		}
 	}
-
-	public void setSelect(SelectHotel select) {
-		this.selectHotel = select;
+	public HotelVO getHotelInfo(String hotelID) {
+		Hotel hotel = Hotel.getInstance(hotelID);
+		HotelVO hotelVO = hotel.getHotelInfo();
+		return hotelVO;
 	}
-
-	public void setHotelDao(HotelDao hotelDao){this.hotelDao = hotelDao;}
 
 	public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
 		ArrayList<HotelVO> hotelVOs = null;
@@ -37,29 +44,39 @@ public class SearchHotel {
 		return hotelVOs;
 	}
 
-	public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM) {
-		return sortHotel.sort(sortBy, sortM);
-	}
-
-	public ArrayList<HotelVO> select(SelectConditionVO vo) {
-		return selectHotel.select(vo);
-	}
-
-	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,SelectConditionVO vo) {
-		return selectHotel.select(hotelList,vo);
-	}
-
-	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,String hotelName) {
-		return selectHotel.select(hotelList,hotelName);
-	}
-	public HotelVO getHotelInfo(String id) {
-		HotelPO hotelPO = null;
-		try {
-			hotelPO = hotelDao.getHotelInfo(id);
-		}catch (RemoteException e){
-			e.printStackTrace();
+	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,SelectConditionVO selectConditionVO) {
+		ArrayList<HotelVO> result = new ArrayList<>();
+		for(HotelVO hotelVO:hotelList){
+			if(match(hotelVO,selectConditionVO)){
+				result.add(hotelVO);
+			}
 		}
-		HotelVO hotelVO = HotelVO.changeIntoVO(hotelPO);
-		return hotelVO;
+		
+		return result;
 	}
+
+	private boolean match(HotelVO hotelVO, SelectConditionVO selectConditionVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,String hotelName) {
+		ArrayList<HotelVO> result = new ArrayList<>();
+		for(HotelVO hotelVO:hotelList){
+			if(hotelVO.name==hotelName){
+				result.add(hotelVO);
+			}
+		}
+		return result;
+	}
+	
+	@Override
+	public ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelList, SortBy sortBy, SortMethod sortM) {
+		// TODO Auto-generated method stub
+		ArrayList<HotelVO> result = new ArrayList<>();
+		
+		return result;
+	}
+	
+
+	
 }

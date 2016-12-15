@@ -35,5 +35,5 @@ public interface HotelInfoService {
      * @param grade 用户打分（范围0~5，闭区间，加权计算后界面输出星级）
      * @return
      */
-    public ResultMessage updateGrade(int grade);
+    public ResultMessage updateGrade(String hotelID, int grade);
 }

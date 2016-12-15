@@ -1,7 +1,8 @@
-package data.dao.orderdao;
+package data.dao_Stub.orderdao_Stub;
 
 import constant.ResultMessage;
 import constant.StateOfOrder;
+import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import vo.RoomNormVO;
 
@@ -174,4 +175,10 @@ public class OrderDao_Stub implements OrderDao {
     public ResultMessage cancelAbTimeUpdate(String orderID, Date cancelAbTime) throws RemoteException{
         return ResultMessage.succeed;
     }
+
+	@Override
+	public ResultMessage update(OrderPO orderPO) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

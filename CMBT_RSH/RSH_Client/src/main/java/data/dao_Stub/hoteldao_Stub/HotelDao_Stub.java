@@ -1,10 +1,11 @@
-package data.dao.hoteldao;
+package data.dao_Stub.hoteldao_Stub;
 
 import constant.ResultMessage;
 import constant.SortBy;
 import constant.SortMethod;
+import data.dao.hoteldao.HotelDao;
 import po.HotelPO;
-import po.HotelStaffPO;
+//import po.HotelStaffPO;
 import po.RoomPO;
 import vo.*;
 
@@ -16,7 +17,6 @@ import java.util.Date;
  * Created by a297 on 16/11/20.
  */
 public class HotelDao_Stub implements  HotelDao{
-    @Override
     public ResultMessage checkPassword(String id, String password) {
         if(id.equals("13951897687")&&password.equals("jksggkskjg"))
             return ResultMessage.succeed;
@@ -26,12 +26,11 @@ public class HotelDao_Stub implements  HotelDao{
 
     @Override
     public HotelPO getHotel(String id) {
-        return HotelPO.createHotelPO(new HotelVO("0123456789","11122233344",
+        return HotelPO.changeIntoPO(new HotelVO("0123456789","11122233344",
                 "天鸿凯莱大酒店", "南京市栖霞区", "仙林大学城", "新开张", "一应俱全",
                 4, 4.8, "23:44:59"));
     }
 
-    @Override
     public ResultMessage updateGrade(double grade) {
         // TODO: 16/11/20
         return null;
@@ -114,7 +113,6 @@ public class HotelDao_Stub implements  HotelDao{
         return null;
     }
 
-    @Override
     public String getCheckInDDL(String id) {
         // TODO: 16/11/20
         return null;
@@ -126,7 +124,6 @@ public class HotelDao_Stub implements  HotelDao{
         return null;
     }
 
-    @Override
     public HotelPO getHotelInfo(String id) {
         // TODO: 16/11/20
         return null;
@@ -140,7 +137,6 @@ public class HotelDao_Stub implements  HotelDao{
         return list;
     }
 
-    @Override
     public String getHotelID(String district) throws RemoteException {
         return null;
     }
@@ -161,7 +157,7 @@ public class HotelDao_Stub implements  HotelDao{
         else
             return ResultMessage.fail;
     }
-
+/**
     @Override
     public ResultMessage updateHotelStaff(HotelStaffPO hotelStaffPO) {
         if(hotelStaffPO.getHotelID().equals("6666666666"))
@@ -169,4 +165,10 @@ public class HotelDao_Stub implements  HotelDao{
         else
             return ResultMessage.fail;
     }
+*/
+	@Override
+	public String getNewHotelID(String district) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

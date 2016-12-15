@@ -90,5 +90,10 @@ public class HotelVO {
 		return hotelVO;
 	}
 
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

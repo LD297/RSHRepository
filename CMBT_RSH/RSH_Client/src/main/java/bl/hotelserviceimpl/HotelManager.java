@@ -4,58 +4,56 @@ import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
 import po.HotelPO;
 import po.RoomPO;
+import rmi.RemoteHelper;
 import vo.HotelVO;
 import vo.RoomVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author aa
+ *
+ */
 public class HotelManager {
 
+	String hotelID;
 	RoomManager roomManager;
-	HotelDao hotelDao;
+	HotelDao hotelDao = null;
 	
-	public HotelManager(RoomManager roomManager, HotelDao hotelDao){
-		this.roomManager = roomManager;
-		this.hotelDao = hotelDao;
+	private void initRemote(){
+		if(hotelDao == null){
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
+			hotelDao = remoteHelper.getHotelDao();
+		}
 	}
 	
+	private HotelManager(String hotelID) {
+		// TODO Auto-generated constructor stub
+		this.hotelID = hotelID;
+		roomManager = new RoomManager(hotelID);
+	}
+	
+	public RoomManager getRoomManager(){
+		return roomManager;
+	}
 	public ResultMessage updateHotel(HotelVO vo) {
 		ResultMessage resultMessage = null;
+		initRemote();
 		try {
-			resultMessage = hotelDao.updateHotel(HotelPO.createHotelPO(vo));
+			resultMessage = hotelDao.updateHotel(HotelPO.changeIntoPO(vo));
 		}catch (RemoteException e){
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		return resultMessage;
 	}
-	
-	public ResultMessage addSpecialRoom(RoomVO vo) {
-		ResultMessage resultMessage = null;
-		try {
-			resultMessage = hotelDao.addSpecialRoom(RoomPO.createRoomPO(vo));
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return resultMessage;
+
+	public static HotelManager getInstance(String hotelID) {
+		// TODO Auto-generated method stub
+		return new HotelManager(hotelID);
 	}
 	
-	public ResultMessage deleteSpecialRoom(RoomVO vo) {
-		ResultMessage resultMessage = null;
-		try {
-			resultMessage = hotelDao.deleteSpecialRoom(RoomPO.createRoomPO(vo));
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return resultMessage;
-	}
 	
-	public ArrayList<RoomVO> getRoomList(String id) {
-		return roomManager.getRoomList(id);
-	}
-	
-	public ResultMessage updateRoomList(ArrayList<RoomVO> roomList) {
-		return roomManager.updateRoomList(roomList);
-	}
 	
 }

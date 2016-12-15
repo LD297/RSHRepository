@@ -1,5 +1,6 @@
 package bl.orderserviceimpl;
 
+import bl.orderservice.OrderForHotel;
 import bl.userserviceimpl.CreditRecordList;
 import constant.CreditAction;
 import constant.ResultMessage;
@@ -19,7 +20,7 @@ import java.util.Date;
 /**
  * Created by sky-PC on 2016/12/14.
  */
-public class OrderForHotelImpl{
+public class OrderForHotelImpl implements OrderForHotel{
     private OrderDao orderDao;
     public void setOrderDao(OrderDao orderDao){
         this.orderDao = orderDao;

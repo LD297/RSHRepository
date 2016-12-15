@@ -1,6 +1,6 @@
 package bl.loginserviceimpl;
 
-import bl.hotelserviceimpl.HotelController;
+import bl.hotelserviceimpl.controller.HotelController;
 import bl.userserviceimpl.UserController;
 import bl.webstaffserviceimpl.WebStaffController;
 import constant.ResultMessage;

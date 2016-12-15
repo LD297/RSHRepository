@@ -66,7 +66,7 @@ public class RoomPO implements Serializable{
 		this.basicOrSpecial = basicOrSpecial;
 	}
 
-	public static RoomPO createRoomPO(RoomVO vo){
+	public static RoomPO changeIntoPO(RoomVO vo){
 		RoomPO newRoomPO  = new RoomPO();
 		newRoomPO.setId(vo.id);
 		newRoomPO.setType(vo.type);
