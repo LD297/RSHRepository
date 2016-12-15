@@ -37,7 +37,7 @@ public interface HotelService {
 	public ResultMessage deleteSpecialRoom(RoomVO vo);
 
 	// 返回该日期段的可用客房信息列表（获得可用房间类型、数量、价格，供线下入住时查看）
-	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn,Date checkOut);
+	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn);
 
 	// 线下提前离开，酒店工作人员手动增加可用客房数，实现类中需要参数String hotelID
     public ResultMessage plusRoomAvail(String roomType,int num, Date checkIn, Date checkOut);

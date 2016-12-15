@@ -1,4 +1,4 @@
-package bl.promotionServiceimpl;
+package bl.promotionServiceimpl.scope;
 
 import constant.ScopeType;
 

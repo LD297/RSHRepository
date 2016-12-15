@@ -21,7 +21,7 @@ public class PromotionDao_Stub implements PromotionDao {
     }
 
     @Override
-    public ResultMessage del(String setter, String id) throws RemoteException {
+    public ResultMessage delete(String setter, String id) throws RemoteException {
         return ResultMessage.succeed;
     }
 

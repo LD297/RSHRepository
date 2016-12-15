@@ -8,6 +8,8 @@ import constant.MemberType;
 import org.junit.Before;
 import org.junit.Test;
 
+import bl.orderserviceimpl.miscellaneous.MockOrder;
+
 /**
  * 测试Count类
  * @author aa

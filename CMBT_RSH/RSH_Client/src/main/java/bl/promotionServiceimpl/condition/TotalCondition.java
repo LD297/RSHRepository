@@ -1,4 +1,4 @@
-package bl.promotionServiceimpl;
+package bl.promotionServiceimpl.condition;
 
 import constant.ConditionType;
 

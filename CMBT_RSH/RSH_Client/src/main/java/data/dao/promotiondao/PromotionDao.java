@@ -15,7 +15,7 @@ public interface PromotionDao extends Remote{
 
     public ResultMessage insert(PromotionPO po) throws RemoteException;
 
-    public ResultMessage del(String setterID, String promotionID)throws RemoteException;
+    public ResultMessage delete(String setterID, String promotionID)throws RemoteException;
 
     public ResultMessage  update (PromotionPO po)throws RemoteException;
 

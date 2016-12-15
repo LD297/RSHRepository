@@ -13,6 +13,19 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import bl.promotionServiceimpl.condition.BirthdayCondition;
+import bl.promotionServiceimpl.condition.Condition;
+import bl.promotionServiceimpl.condition.MemberCondition;
+import bl.promotionServiceimpl.condition.NumCondition;
+import bl.promotionServiceimpl.condition.TotalCondition;
+import bl.promotionServiceimpl.deduction.Deduction;
+import bl.promotionServiceimpl.deduction.DiscountDeduction;
+import bl.promotionServiceimpl.deduction.ReduceDeduction;
+import bl.promotionServiceimpl.scope.DistrictScope;
+import bl.promotionServiceimpl.scope.HotelScope;
+import bl.promotionServiceimpl.scope.RoomScope;
+import bl.promotionServiceimpl.scope.Scope;
+
 /**
  * 策略类
  * @author aa
@@ -146,7 +159,7 @@ public class Promotion {
 			return ResultMessage.not_exist;
 		}
 		try {
-			promotionDao.del(tempSetter,tempPromID);
+			promotionDao.delete(tempSetter,tempPromID);
 		} catch (RemoteException e) {
 			return ResultMessage.remote_fail;
 		}
