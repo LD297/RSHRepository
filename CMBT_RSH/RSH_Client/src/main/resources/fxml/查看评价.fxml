@@ -65,5 +65,6 @@
             </AnchorPane>
          </children>
       </GridPane>
+      <Label prefHeight="210.0" prefWidth="800.0" />
    </children>
 </AnchorPane>

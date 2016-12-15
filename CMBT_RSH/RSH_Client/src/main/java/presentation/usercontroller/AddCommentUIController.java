@@ -60,6 +60,11 @@ public class AddCommentUIController {
     
     @FXML
     private Label messageLabel;
+    @FXML
+    private Label encourageLabel1;
+
+    @FXML
+    private Label maskLabel;
     
 //用户点击添加评价
     @FXML
@@ -68,14 +73,16 @@ public class AddCommentUIController {
 		addCommentButton.setVisible(false);
 		noCommentLabel.setVisible(false);
 		encourageLabel.setVisible(false);
-		saveButton.setVisible(false);
+		saveButton.setVisible(true);
 		gradeField.setVisible(true);
 		commentTextarea.setVisible(true);
 		gradeField.setPromptText("请输入评分");
-		commentTextarea.setPromptText("请输入评价");
+//		commentTextarea.setPromptText("请输入评价");
 		commentTextarea.setWrapText(true);
-		gradeField.setDisable(false);
-		commentTextarea.setDisable(false);
+		maskLabel.setVisible(true);
+//		gradeField.setDisable(false);
+	//	commentTextarea.setDisable(false);
+		encourageLabel1.setVisible(true);
     }
 
     @FXML
@@ -98,7 +105,7 @@ public class AddCommentUIController {
     void saveButtonClicked(MouseEvent event) {
     	String comment = commentTextarea.getText();
     	String grade = gradeField.getText().trim();
-    	if(grade==""||grade=="请输入评分"||grade==null){
+    	if(grade.equals("")||grade==null){
     		messageLabel.setVisible(true);
     	}else {
     		if(UserInfoUtil.getInstance().addComment(comment, grade)==ResultMessage.succeed){
@@ -117,8 +124,10 @@ public class AddCommentUIController {
     		encourageLabel.setVisible(true);
     		gradeField.setVisible(false);
     		commentTextarea.setVisible(false);
+    		encourageLabel1.setVisible(false);
     		saveButton.setVisible(false);
     		messageLabel.setVisible(false);
+    		maskLabel.setVisible(false);
     	}else{
     		//查看评价界面
     		addCommentImage.setVisible(false);
@@ -132,8 +141,10 @@ public class AddCommentUIController {
     		gradeField.setText(String.valueOf(orderVO.getGrade()));
     		commentTextarea.setText(orderVO.getComment());
     		commentTextarea.setWrapText(true);
-    		gradeField.setDisable(true);
-    		commentTextarea.setDisable(true);
+    		maskLabel.setVisible(true);
+ //   		gradeField.setDisable(true);
+   // 		commentTextarea.setDisable(true);
+    		encourageLabel1.setVisible(false);
     	}
     }
 
@@ -148,6 +159,8 @@ public class AddCommentUIController {
         assert encourageLabel != null : "fx:id=\"encourageLabel\" was not injected: check your FXML file '添加评价.fxml'.";
         assert gradeField != null : "fx:id=\"gradeField\" was not injected: check your FXML file '添加评价.fxml'.";
         assert messageLabel != null : "fx:id=\"messageLabel\" was not injected: check your FXML file '添加评价.fxml'.";
+        assert encourageLabel1 != null : "fx:id=\"encourageLabel1\" was not injected: check your FXML file '添加评价.fxml'.";
+        assert maskLabel != null : "fx:id=\"maskLabel\" was not injected: check your FXML file '添加评价.fxml'.";
         init();
     }
 }

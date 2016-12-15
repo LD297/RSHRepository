@@ -40,7 +40,7 @@ public class CommentUIController {
     private Label nextPageLabel;
     
 
-	private ArrayList<OrderVO> orderVOs = null;
+	private ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 	private int presentPage = 1;//当前页码
 	private int orderVOsPointer = -1;
 	private int maxPages = 0;
@@ -67,7 +67,11 @@ public class CommentUIController {
     void changeToReferedPage(ActionEvent event) {
     	int page = Integer.parseInt(pageField.getText().trim());
     	if(page>=1){
-    		presentPage = page;
+    		if(page>maxPages){
+    			presentPage = maxPages;
+    		}else {
+    			presentPage = page;
+			}
     		gridPaneFilledWithComment.getChildren().clear();
     		changeToSpecificPage(presentPage);
     	}else{//page小于0,不予反应
@@ -83,26 +87,21 @@ public class CommentUIController {
     }
     
     //跳转到指定的页数
-    private void changeToSpecificPage(int page) {
-    	//直接跳转到最后一页
-		if(page>=maxPages){
-			orderVOsPointer = (maxPages-1)*2;
-		}else{
-			orderVOsPointer = (page-1)*2;
-		}
+	private void changeToSpecificPage(int page) {
+		orderVOsPointer = (page - 1) * 2;
+		pageField.setText(String.valueOf(page));
 		int count = 0;
-		while(count<2){//一个界面上有2个格子
-			if(orderVOsPointer==orderVOs.size()){
+		while (count < 2) {// 一个界面上有2个格子
+			if (orderVOsPointer == orderVOs.size()) {
 				break;
 			}
 			CommentAnchorPane commentAnchorPane = new CommentAnchorPane(orderVOs.get(orderVOsPointer));
 			gridPaneFilledWithComment.add(commentAnchorPane, 0, count);
 			orderVOsPointer++;
-			count ++;
+			count++;
 		}
 	}
-    
-    
+
     @FXML
     void initialize() {
         assert gridPaneFilledWithComment != null : "fx:id=\"gridPaneFilledWithComment\" was not injected: check your FXML file '查看评价.fxml'.";

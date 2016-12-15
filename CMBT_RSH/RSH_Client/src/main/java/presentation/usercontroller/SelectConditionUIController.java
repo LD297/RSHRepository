@@ -151,9 +151,10 @@ public class SelectConditionUIController {
 			double highestGrade = Double.parseDouble(highestGradeField.getText().trim());
 			selectConditionVO.highestGrade = highestGrade;
 		}
-		if(!(starLevelCombobox.getValue().equals("")||starLevelCombobox.getValue()==null)){
-			int starLevel = Integer.parseInt(starLevelCombobox.getValue());
-			selectConditionVO.level = starLevel;
+		String starLevel = starLevelCombobox.getValue();
+		if(starLevel!=null){
+			int star = Integer.parseInt(starLevelCombobox.getValue());
+			selectConditionVO.level = star;
 		}
 		
 		//如果用户选择了预定过，就是true,否则就是false
@@ -168,15 +169,15 @@ public class SelectConditionUIController {
 		hotelVOs = UserInfoUtil.getInstance().selectHotel(hotelVOs,selectConditionVO);
 		
 		//TODO 判断有没有选择排序方式       排序
-		if(!(priceSortComBox.getValue().equals("")||priceSortComBox.getValue()==null)){
+		if(priceSortComBox.getValue()!=null){
 			SortMethod priceSortMethod = SortMethod.getSortMethod(priceSortComBox.getValue().substring(2));
 			hotelVOs = UserInfoUtil.getInstance().sortHotel(hotelVOs,SortBy.price, priceSortMethod);
 		}
-		if(!(starLevelSortComBox.getValue().equals("")||starLevelSortComBox.getValue()==null)){
+		if(starLevelSortComBox.getValue()!=null){
 			SortMethod levelSortMethod = SortMethod.getSortMethod(starLevelSortComBox.getValue().substring(2));
 			hotelVOs = UserInfoUtil.getInstance().sortHotel(hotelVOs,SortBy.level, levelSortMethod);
 		}
-		if(!(gradeSortComBox.getValue().equals("")||gradeSortComBox.getValue()==null)){
+		if(gradeSortComBox.getValue()!=null){
 			SortMethod gradeSortMethod = SortMethod.getSortMethod(gradeSortComBox.getValue().substring(2));
 			hotelVOs = UserInfoUtil.getInstance().sortHotel(hotelVOs,SortBy.grade, gradeSortMethod);
 		}

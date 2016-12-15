@@ -59,7 +59,7 @@ public class RoomInfoUIController {
     		//TODO get房间图片
 			roonImageView = new ImageView(ImageFactory.getImageFactory().getHotelImage());
 			roomTypeLabel = new Label(roomVO.type);
-			priceLabel = new Label("￥"+String.valueOf("￥"+roomVO.price)+"/晚");
+			priceLabel = new Label("￥"+String.valueOf(roomVO.price)+"/晚");
 			reserveButton = new Button("预定");
 			if(left){
 				arrow = new ImageView(ImageFactory.getImageFactory().getLastImageArrow());
@@ -73,6 +73,7 @@ public class RoomInfoUIController {
 			roonImageView.setFitHeight(240.0);
 			arrow.setFitWidth(60.0);
 			arrow.setFitHeight(119.0);
+			arrow.setPreserveRatio(false);
 			//设置房间类型、价格字体Times New Roman，大小18，颜色白色
 			roomTypeLabel.setStyle("-fx-text-fill: white");
 			roomTypeLabel.setFont(Font.font("Times New Roman", 18));

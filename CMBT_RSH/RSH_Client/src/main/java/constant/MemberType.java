@@ -8,6 +8,10 @@ public enum MemberType {
 	private MemberType(String s){
 		this.s = s;
 	}
+	/**
+	 * 返回该membertype的string用以显示
+	 * @return
+	 */
 	public String getString(){
 		return s;
 	}

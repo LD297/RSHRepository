@@ -78,7 +78,7 @@ public class UserInputFormCheckTool {
                 rightInput = false;
             }
         }
-        for(int i=0;i<end.length();i++){
+        for(int i=0;i<end.length()-4;i++){
             if(!((end.charAt(i)<='9'&&end.charAt(i)>='0')||
                     (end.charAt(i)<='z'&&end.charAt(i)>='a')||
                     (end.charAt(i)<='Z'&&end.charAt(i)>='A'))){

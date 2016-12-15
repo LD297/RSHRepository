@@ -11,25 +11,25 @@ public class LoginService_Stub implements LoginService{
 	@Override
 	public ResultMessage register(UserVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.succeed;
 	}
 
 	@Override
 	public ResultMessage register(WebManagerVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.succeed;
 	}
 
 	@Override
 	public ResultMessage checkOnline(Role role, String id, String password) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.succeed;
 	}
 
 	@Override
 	public ResultMessage logout(Role role, String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.succeed;
 	}
 
 }

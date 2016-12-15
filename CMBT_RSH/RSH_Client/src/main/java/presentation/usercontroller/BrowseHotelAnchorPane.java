@@ -63,7 +63,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			promotionLabels.add(label);
 		}*/
 		//从数据层拿到该用户最近一笔订单的状态
-		orderStateLabel = new Label(UserInfoUtil.getInstance().getOrderStateOfUser(hotelVO.id).toString());
+		orderStateLabel = new Label(UserInfoUtil.getInstance().getOrderStateOfUser(hotelVO.id).getString());
 		
 		
 		//设置组件的属性
