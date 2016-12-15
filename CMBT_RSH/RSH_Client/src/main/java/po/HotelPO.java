@@ -5,10 +5,8 @@ import vo.HotelVO;
 import java.io.Serializable;
 
 public class HotelPO implements Serializable{
-	/**
-	 * 酒店账号
-	 */
-	private String id;
+	
+	private String hotekID;
 	private String password;
 	/**
 	 * 酒店工作人员联系方式（客服）

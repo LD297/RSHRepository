@@ -4,6 +4,7 @@ package bl.userserviceimpl;
 import constant.ResultMessage;
 import data.dao.userdao.UserDao;
 import po.UserPO;
+import rmi.Mock_RemoteHelper;
 import rmi.RemoteHelper;
 import vo.UserVO;
 
@@ -32,7 +33,7 @@ public class User {
 	private static void initRemote(){
 		if(userDao==null)
 			return;
-		RemoteHelper remoteHelper = RemoteHelper.getInstance();
+		RemoteHelper remoteHelper = Mock_RemoteHelper.getInstance();
 		userDao = remoteHelper.getUserDao();
 	}
 

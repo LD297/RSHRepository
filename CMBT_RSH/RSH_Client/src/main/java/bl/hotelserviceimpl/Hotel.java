@@ -62,7 +62,7 @@ public class Hotel{
 	
 	// 酒店自身dao建立后，随即初始化该酒店po，用来生成vo，供展示层用
 	public HotelVO getHotel() {
-		return HotelVO.createHotelVO(hotelPO);
+		return HotelVO.changeIntoVO(hotelPO);
 	}
 
 	public ResultMessage updateHotel(HotelVO vo) {

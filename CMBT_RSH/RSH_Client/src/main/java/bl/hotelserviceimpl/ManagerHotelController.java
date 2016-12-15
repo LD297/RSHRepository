@@ -1,15 +1,15 @@
 package bl.hotelserviceimpl;
 
-import bl.hotelservice.WMHotelService;
+import bl.hotelservice.ManagerHotelService;
 import constant.ResultMessage;
 import vo.HotelStaffVO;
 import vo.HotelVO;
 
-public class WMHotelController implements WMHotelService{
+public class ManagerHotelController implements ManagerHotelService{
 
-	WMHotel webManageHotel;
+	ManagerHotel webManageHotel;
 
-	public WMHotelController(WMHotel webManageHotel) {
+	public ManagerHotelController(ManagerHotel webManageHotel) {
 		this.webManageHotel = webManageHotel;
 	}
 

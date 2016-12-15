@@ -45,16 +45,30 @@ public class UserService_Stub implements UserService{
 		return null;
 	}
 
+	
+	
 	@Override
-	public ResultMessage setMemberStandard(int[][] levelWithCredit) {
+	public ResultMessage setMemberStandard(int[] boundariesForLevels) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void getMemberLevel(int credit) {
+	public int[] getMemberStandard() {
 		// TODO Auto-generated method stub
-		
+		return null;
+	}
+
+	@Override
+	public int getMemberLevel(int credit) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ResultMessage changePassword(String userid, String oldPassword, String newPassword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -284,4 +284,8 @@ public class OrderPO implements Serializable{
 				actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);
 		return orderVO;
 	}
+	public OrderVO changeIntoVO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

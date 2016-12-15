@@ -37,6 +37,8 @@ public interface WebStaffService {
 	 */
 	public ResultMessage changePassword(String ID,String oldPassword, String newPassword)throws RemoteException;
 	
+	public ResultMessage forceChangePassword(String ID, String password);
+	
 	public ResultMessage addWebManager(String ID,String password);
 	
 

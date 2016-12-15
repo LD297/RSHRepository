@@ -11,6 +11,8 @@ import java.util.ArrayList;
 public class SortHotel {
 	HotelDao hotelDao;
 
+	
+	
 	public SortHotel(HotelDao hotelDao) {
 		this.hotelDao = hotelDao;
 	}

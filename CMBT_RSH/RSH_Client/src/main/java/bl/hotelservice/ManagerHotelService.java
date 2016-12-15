@@ -4,7 +4,7 @@ import constant.ResultMessage;
 import vo.HotelStaffVO;
 import vo.HotelVO;
 
-public interface WMHotelService {
+public interface ManagerHotelService {
 
 	// 网站管理人员注册酒店账号时，根据地址（得到数量－>） 得到账号
 	public String getHotelID(String district);

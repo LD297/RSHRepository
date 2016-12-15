@@ -1,7 +1,5 @@
 package bl.hotelserviceimpl;
 
-import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.*;
 import data.dao.hoteldao.HotelDao;
 import data.dao.hoteldao.HotelDao_Stub;
 
@@ -11,10 +9,6 @@ import data.dao.hoteldao.HotelDao_Stub;
  */
 public class HotelServiceFactory {
 
-    // 当处理一些不依托具体酒店对象的业务逻辑（如：验证密码）时，得到此默认hotelController
-    public static HotelController getDefaultHotelService(){
-        return new HotelController();
-    }
 
     // 得到具体酒店的逻辑实现
     public static HotelController getHotelService(String id){

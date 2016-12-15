@@ -1,11 +1,13 @@
 package bl.orderserviceimpl;
 
+import bl.orderservice.OrderForHotel;
 import bl.userserviceimpl.CreditRecordList;
 import constant.CreditAction;
 import constant.ResultMessage;
 import constant.StateOfOrder;
 import data.dao.orderdao.OrderDao;
 import po.OrderPO;
+import rmi.RemoteHelper;
 import vo.CreditRecordVO;
 import vo.OrderVO;
 
@@ -16,10 +18,14 @@ import java.util.Date;
 /**
  * Created by sky-PC on 2016/12/14.
  */
-public class OrderForHotelImpl{
-    private OrderDao orderDao;
-    public void setOrderDao(OrderDao orderDao){
-        this.orderDao = orderDao;
+public class OrderForHotelImpl implements OrderForHotel{
+    private OrderDao orderDao=null;
+    
+    private void initRemote(){
+    	if(orderDao==null){
+    		RemoteHelper remoteHelper = RemoteHelper.getInstance();
+    		orderDao = remoteHelper.getOrderDao();
+    	}
     }
     /**
      * 酒店分类查看订单
@@ -44,25 +50,7 @@ public class OrderForHotelImpl{
      * @return
      */
     public ResultMessage execute(String orderID){
-        Date actCheckIn = new Date();
-        OrderPO orderPO = null;
-        try{
-            orderPO = orderDao.searchByID(orderID);
-            orderDao.actCheckInUpdate(orderID,actCheckIn);
-        }catch (RemoteException e){
-            return ResultMessage.fail;
-        }
-
-        String userID = orderPO.getUserID();
-        int change = (int)orderPO.getTrueValue();
-        CreditRecordList creditRecordList = new CreditRecordList(userID);
-        int credit = creditRecordList.getCredit();
-
-        CreditRecordVO creditRecordVO = new CreditRecordVO(userID,actCheckIn,orderID,
-                CreditAction.execute,"+"+change,change+credit);
-        creditRecordList.addCreditRecord(creditRecordVO);
-
-        return ResultMessage.succeed;
+       
     }
     /**
      * 用户离开酒店时调用

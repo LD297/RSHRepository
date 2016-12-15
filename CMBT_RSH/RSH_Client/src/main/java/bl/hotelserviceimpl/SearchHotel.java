@@ -59,7 +59,7 @@ public class SearchHotel {
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
-		HotelVO hotelVO = HotelVO.createHotelVO(hotelPO);
+		HotelVO hotelVO = HotelVO.changeIntoVO(hotelPO);
 		return hotelVO;
 	}
 }

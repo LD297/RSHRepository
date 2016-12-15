@@ -8,11 +8,11 @@ import vo.HotelStaffVO;
 
 import java.rmi.RemoteException;
 
-public class WMHotel{
+public class ManagerHotel{
 
 	HotelDao hotelDao;
 
-	public WMHotel(HotelDao hotelDao) {
+	public ManagerHotel(HotelDao hotelDao) {
 		this.hotelDao = hotelDao;
 	}
 
