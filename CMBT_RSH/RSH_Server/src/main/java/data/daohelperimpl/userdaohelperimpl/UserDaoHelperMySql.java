@@ -114,46 +114,10 @@ public class UserDaoHelperMySql implements UserDaoHelper{
 
         return ResultMessage.succeed;
     }
-    // 用户核实密码
-    public ResultMessage checkPassword(String id, String password) throws RemoteException {
-        return ResultMessage.succeed;
-       /* db.executeSql("USE OurData");
 
-        if(this.checkExistence(id)==ResultMessage.idNotExist)
-            return ResultMessage.idNotExist;
 
-        String checkPasswordSql = "SELECT password FROM UserInfo WHERE userID='"+id+"' LIMIT 1";
-        ResultSet result = db.query(checkPasswordSql);
-        try{
-            while(result.next()) {
-                if (password.equals(result.getString(1)))
-                    return ResultMessage.succeed;
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-            return ResultMessage.fail;
-        }
-        return  ResultMessage.fail;*/
-
-    }
-    // 用户注册普通会员
-    public ResultMessage register(String userID) throws RemoteException {
-        db.executeSql("USE OurData");
-
-        String registerSql = "UPDATE UserInfo SET memberType=1 WHERE userID='"+userID+"' LIMIT 1";
-        db.executeSql(registerSql);
-        return ResultMessage.succeed;
-    }
-    // 用户注册企业会员
-    public ResultMessage register(String userID, String commerceName) throws RemoteException {
-        db.executeSql("USE OurData");
-
-        String registerSql = "UPDATE UserInfo SET memberType=2 WHERE userID='"+userID+"' LIMIT 1";
-        db.executeSql(registerSql);
-        return ResultMessage.succeed;
-    }
     // 网站营销人员 制定会员等级制度
-    public ResultMessage setMemberLevel(int[][] gradeWithCredit) throws RemoteException {
+    public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException {
         // TODO Auto-generated method stub
         return null;
     }

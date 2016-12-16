@@ -24,10 +24,10 @@ public class WebManagerDaoHelperMySql implements WebManagerDaoHelper{
         db.executeSql(initSql);
     }
     // 更新管理人员信息
-    public ResultMessage update (WebManagerPO po)throws RemoteException {
+    public ResultMessage update (String managerID,String password)throws RemoteException {
         db.executeSql("USE OurData");
-        String updateMangerSql = "UPDATE WebStaffInfo SET password='"+po.getPassword()+
-                "' WHERE id='"+po.getID()+"' LIMIT 1";
+        String updateMangerSql = "UPDATE WebStaffInfo SET password='"+password+
+                "' WHERE id='"+managerID+"' LIMIT 1";
         db.executeSql(updateMangerSql);
         return ResultMessage.succeed;
     }

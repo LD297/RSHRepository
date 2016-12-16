@@ -36,11 +36,11 @@ public class WebManagerDaoImpl extends UnicastRemoteObject implements WebManager
     }
 
 
-    public ResultMessage update(WebManagerPO po) throws RemoteException {
-        return webManagerDaoHelper.update(po);
+    public ResultMessage updateManager(String managerID,String password) throws RemoteException {
+        return webManagerDaoHelper.update(managerID,password);
     }
 
-    public WebManagerPO getManagerInfo(String webmanagerid)throws RemoteException{
-        return webManagerDaoHelper.getManagerInfo(webmanagerid);
+    public WebManagerPO getManagerInstance(String managerID)throws RemoteException{
+        return webManagerDaoHelper.getManagerInfo(managerID);
     }
 }

@@ -14,12 +14,12 @@ import java.util.ArrayList;
 public class test {
     WebSalesmanDaoHelperMySql salesDao = new WebSalesmanDaoHelperMySql() ;
     public void testinsert()throws RemoteException{
-        WebSalesmanPO webSalesmanPO = new WebSalesmanPO("","123456","215300");
+        WebSalesmanPO webSalesmanPO = new WebSalesmanPO("","123456","李峰","215300");
         ResultMessage result = salesDao.insert(webSalesmanPO);
     }
 
     public void testsalseupdate()throws RemoteException{
-        WebSalesmanPO webSalesmanPO = new WebSalesmanPO("","765442","215300");
+        WebSalesmanPO webSalesmanPO = new WebSalesmanPO("","765442","周延","215300");
         ResultMessage result = salesDao.update(webSalesmanPO) ;
     }
 
@@ -43,8 +43,7 @@ public class test {
     }
     WebManagerDaoHelperMySql managerDao = new WebManagerDaoHelperMySql();
     public void testupdate ()throws RemoteException{
-        WebManagerPO webManagerPO = new WebManagerPO("","123456");
-        ResultMessage result = managerDao.update(webManagerPO);
+        ResultMessage result = managerDao.update("","123456");
     }
 
     public void testgetManagerInfo()throws RemoteException{

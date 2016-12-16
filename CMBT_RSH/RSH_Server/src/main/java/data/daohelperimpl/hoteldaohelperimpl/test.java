@@ -1,11 +1,10 @@
 package data.daohelperimpl.hoteldaohelperimpl;
 
 import constant.ResultMessage;
+import po.HotelPO;
 import po.HotelStaffPO;
-import vo.HotelVO;
-import vo.RoomAvailVO;
-import vo.RoomVO;
-import vo.SelectConditionVO;
+import po.RoomAvailPO;
+import po.RoomPO;
 
 import java.rmi.RemoteException;
 import java.text.ParseException;
@@ -23,28 +22,28 @@ public class test {
         int grade = 4;
         ResultMessage result = hotelDao.updateGrade(hotelid,grade);
     }
-    public void testupdateHotel (HotelVO vo) throws RemoteException{
-        HotelVO hotelVO = new HotelVO("", "15998976532", "金陵酒店", "地址", "夫子庙",
+    public void testupdateHotel (HotelPO vo) throws RemoteException{
+        HotelPO hotelPO = new HotelPO("", "15998976532", "金陵酒店", "地址", "夫子庙",
                 "建于1997，历史悠久，古韵悠长", "含wifi", 3, 4.0, "23:10:00");
 
-        ResultMessage result = hotelDao.updateHotel(hotelVO);
+        ResultMessage result = hotelDao.updateHotel(hotelPO);
     }
 
     public void testaddSpecialRoom() throws RemoteException{
-        RoomVO roomVO = new RoomVO("","singleRoom",40,200,true);
-        ResultMessage result = hotelDao.addSpecialRoom(roomVO);
+        RoomPO roomPO = new RoomPO("","singleRoom",40,200,true);
+        ResultMessage result = hotelDao.addSpecialRoom(roomPO);
     }
-    public void testdeleteSpecialRoom(RoomVO vo) throws RemoteException{
-        RoomVO roomVO = new RoomVO("","singleRoom",40,200,true);
-        ResultMessage result = hotelDao.deleteSpecialRoom(roomVO);
+    public void testdeleteSpecialRoom() throws RemoteException{
+        RoomPO roomPO = new RoomPO("","singleRoom",40,200,true);
+        ResultMessage result = hotelDao.deleteSpecialRoom(roomPO);
     }
     public void  testgetRoomList() throws RemoteException{
         String hotelid = "";
-        ArrayList<RoomVO> list = hotelDao.getRoomList(hotelid);
+        ArrayList<RoomPO> list = hotelDao.getRoomList(hotelid);
     }
-    public void testupdateRoom(RoomVO vo) throws RemoteException{
-        RoomVO roomVO = new RoomVO("","singleRoom",30,200,true);
-        ResultMessage result = hotelDao.updateRoom(roomVO);
+    public void testupdateRoom() throws RemoteException{
+        RoomPO roomPO = new RoomPO("","singleRoom",30,200,true);
+        ResultMessage result = hotelDao.updateRoom(roomPO);
     }
 
     public void testnumOfRoomAvail() throws RemoteException,ParseException{
@@ -60,22 +59,21 @@ public class test {
         String hotelid = "";
         SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
         Date indate = sim.parse("2016-01-28");
-        Date outdate = sim.parse("2016-01-30");
-        ArrayList<RoomAvailVO> list = hotelDao.getRoomAvailList(hotelid,indate,outdate);
+        ArrayList<RoomAvailPO> list = hotelDao.getRoomAvailList(hotelid,indate);
     }
     public void  testupdateRoomAvail() throws RemoteException{
-        RoomAvailVO vo = new RoomAvailVO("","singleRoom");
-        ResultMessage result = hotelDao.updateRoomAvail(vo);
+        RoomAvailPO roomAvailPO = new RoomAvailPO("","singleRoom",12,120.0,false);
+        ResultMessage result = hotelDao.updateRoomAvail(roomAvailPO);
     }
 
     public void  testgetHotelList() throws RemoteException{
         String address = "";
         String businessArea = "";
-        ArrayList<HotelVO> list = hotelDao.getHotelList(address,businessArea);
+        ArrayList<HotelPO> list = hotelDao.getHotelList(address,businessArea);
     }
     public void testgetHotelInfo() throws RemoteException{
         String id = "";
-        HotelVO hotelVO = hotelDao.getHotelInfo(id);
+        HotelPO hotelPO = hotelDao.getHotelInfo(id);
     }
     //  public ArrayList<HotelVO> sort(SortBy sortBy,SortMethod sortM) throws RemoteException;
     // public ArrayList<HotelVO> selectByName(String hotelName)throws RemoteException;
@@ -87,11 +85,8 @@ public class test {
     public void testaddHotel() throws RemoteException{
         String id="";
         String password="";
-        ResultMessage result = hotelDao.addHotel(id,password);
-    }
-    public void testdeleteHotel() throws RemoteException{
-        String id = "";
-        ResultMessage result = hotelDao.deleteHotel(id);
+        HotelPO hotelPO = new HotelPO("13648606135","LaRud","龙泉街","123456");
+        ResultMessage result = hotelDao.addHotel(hotelPO);
     }
     public void  testupdateHotelStaff() throws RemoteException{
         HotelStaffPO po = new HotelStaffPO("","15708478080");

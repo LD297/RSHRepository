@@ -1,22 +1,26 @@
 package po;
 
-public class WebSalesmanPO {
+import java.io.Serializable;
 
-	String ID;
-	String Password;
-	String District;
-	public WebSalesmanPO(String id,String password,String district){
-		this.ID = id;
-		this.Password = password;
-		this.District = district;
+public class WebSalesmanPO implements Serializable{
+
+	String webSalesmanID;
+	String password;
+	String name;
+	String district;
+	public WebSalesmanPO(String webSalesmanID,String password,String name,String district){
+		this.webSalesmanID = webSalesmanID;
+		this.password = password;
+		this.name = name;
+		this.district = district;
 	}
 	public String getID(){
-		return this.ID;
+		return this.webSalesmanID;
 	}
 	public String getPassword(){
-		return this.Password;
+		return this.password;
 	}
 	public String getDistrict(){
-		return this.District;
+		return this.district;
 	}
 }

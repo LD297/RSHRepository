@@ -2,16 +2,9 @@ package data.daohelperimpl.hoteldaohelperimpl;
 
 import data.daohelper.HotelDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
-import po.HotelPO;
-import po.HotelStaffPO;
-import vo.HotelVO;
-import vo.RoomAvailVO;
-import vo.RoomVO;
-import vo.SelectConditionVO;
+import po.*;
 
 import constant.ResultMessage;
-import constant.SortBy;
-import constant.SortMethod;
 
 import java.rmi.RemoteException;
 import java.sql.Connection;
@@ -54,13 +47,13 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         db.executeSql("DROP TABLE IF EXISTS COMMENT");
     }
     // 添加评论、评分
-    public ResultMessage addComment(String hotelid, String userid, int grade,String comment)throws RemoteException {
+    public ResultMessage addComment(String hotelID, String userID, int grade,String comment)throws RemoteException {
         db.executeSql("USE OurData");
 
-        if(this.checkExistence(hotelid)==ResultMessage.idNotExist)
+        if(this.checkExistence(hotelID)==ResultMessage.idNotExist)
             return ResultMessage.idNotExist;
 
-        String getCommentNumSql = "SELECT commentNum from HotelInfo WHERE hotelID='"+hotelid+"' LIMIT 1";
+        String getCommentNumSql = "SELECT commentNum from HotelInfo WHERE hotelID='"+hotelID+"' LIMIT 1";
         ResultSet result = db.query(getCommentNumSql);
         int commentNum = -1;
         try{
@@ -73,35 +66,17 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
 
         if(commentNum>=0){
             String updateCommentNumSql = "UPDATE HotelInfo SET commentNum="+String.valueOf(commentNum+1)+
-                    " WHERE hotelID='"+hotelid+"' LIMIT 1";
+                    " WHERE hotelID='"+hotelID+"' LIMIT 1";
             db.executeSql(updateCommentNumSql);
 
-            String addCommentSql = "INSERT INTO COMMENT VALUES('"+hotelid+"','"+userID+"',"+grade+",'"+comment+"')";
+            String addCommentSql = "INSERT INTO COMMENT VALUES('"+hotelID+"','"+userID+"',"+grade+",'"+comment+"')";
             db.executeSql(addCommentSql);
             return ResultMessage.succeed;
         }
         else
             return ResultMessage.fail;
     }
-    // 匹配密码
-    public ResultMessage checkPassword(String hotelid, String password)throws RemoteException {
-        db.executeSql("USE OurData");
 
-        if(this.checkExistence(hotelid)==ResultMessage.idNotExist)
-            return ResultMessage.idNotExist;
-
-        String checkPasswordSql = "SELECT password FROM HotelInfo WHERE hotelID='"+hotelid+"' LIMIT 1";
-        ResultSet result = db.query(checkPasswordSql);
-        try{
-            while(result.next())
-                if(password.equals(result.getString(1)))
-                    return ResultMessage.succeed;
-        }catch(SQLException e){
-            e.printStackTrace();
-            return ResultMessage.fail;
-        }
-        return ResultMessage.fail;
-    }
     // 根据账号得到酒店信息
     public HotelPO getHotel(String hotelid)throws RemoteException {
         db.executeSql("USE OurData");
@@ -138,42 +113,42 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         return ResultMessage.succeed;
     }
     // 酒店信息更新
-    public ResultMessage updateHotel(HotelVO vo)throws RemoteException {
+    public ResultMessage updateHotel(HotelPO hotelPO)throws RemoteException {
         db.executeSql("USE OurData");
         // 编号 密码 电话 名称
         // 地址 商圈 简介 设施
         // 星级 评分 最晚入住时间
-        if(this.checkExistence(vo.id)==ResultMessage.idNotExist)
+        if(this.checkExistence(hotelPO.getId())==ResultMessage.idNotExist)
             return ResultMessage.idNotExist;
 
-        String password = vo.getPassword();
-        String tel = vo.tel;
-        String name = vo.name;
-        String address = vo.addr;
-        String bArea = vo.businessArea;
-        String briefIntro = vo.briefIntro;
-        String facility = vo.facility;
-        int level = vo.level;
-        double grade = vo.grade;
-        String lastestTime = vo.latestCheckinTime;
+        String password = hotelPO.getPassword();
+        String tel = hotelPO.getTel();
+        String name = hotelPO.getName();
+        String address = hotelPO.getAddr();
+        String bArea = hotelPO.getBusinessArea();
+        String briefIntro = hotelPO.getBriefIntro();
+        String facility = hotelPO.getFacility();
+        int level = hotelPO.getLevel();
+        double grade = hotelPO.getGrade();
+        String lastestTime = hotelPO.getLatestCheckinTime();
 
         String updateHotelSql = "UPDATE HotelInfo SET password='"+password+"',phoneNumber="+tel+",name='"+name+"',"+
                 "address='"+address+"',bussinessArea='"+bArea+"',briefIntro='"+briefIntro+"',facility='"+facility+","+
                 "level="+level+",grade="+grade+",lastestCheckinTime="+lastestTime
-                +" WHERE hotelID='"+vo.id+"' LIMIT 1";
+                +" WHERE hotelID='"+hotelPO.getId()+"' LIMIT 1";
         db.executeSql(updateHotelSql);
         return ResultMessage.succeed;
     }
     // 添加特色客房
-    public ResultMessage addSpecialRoom(RoomVO vo)throws RemoteException {
+    public ResultMessage addSpecialRoom(RoomPO roomPO)throws RemoteException {
         db.executeSql("USE OurData");
         // 酒店 类型 总量
         // 价格 是否特色 可用数量日期列表
-        String hotelID = vo.getID();
-        String roomType = vo.getType();
-        int amount = vo.getAmountTotal();
-        double price = vo.getPrice();
-        boolean isSpecial = vo.getBasicOrSpecial();
+        String hotelID = roomPO.getID();
+        String roomType = roomPO.getType();
+        int amount = roomPO.getAmountTotal();
+        double price = roomPO.getPrice();
+        boolean isSpecial = roomPO.getBasicOrSpecial();
         int special = 0;
         if(isSpecial)
             special = 1;
@@ -190,11 +165,11 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         return ResultMessage.succeed;
     }
     // 删除特色客房
-    public ResultMessage deleteSpecialRoom(RoomVO vo)throws RemoteException {
+    public ResultMessage deleteSpecialRoom(RoomPO roomPO)throws RemoteException {
         db.executeSql("USE OurData");
 
-        String hotelID = vo.getID();
-        String roomType = vo.getType();
+        String hotelID = roomPO.getID();
+        String roomType = roomPO.getType();
         String deleteSpecialRoomSql = "DELETE FROM RoomInfo WHERE hotelID='"+hotelID+"' and roomType='"+roomType+"' LIMIT 1";
         db.executeSql(deleteSpecialRoomSql);
 
@@ -204,16 +179,16 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
     // 价格 是否特色
     // ！不包括可用数量日期列表
     // 根据账号 得到酒店房间信息
-    public ArrayList<RoomVO> getRoomList(String hotelid)throws RemoteException {
+    public ArrayList<RoomPO> getRoomList(String hotelID)throws RemoteException {
         db.executeSql("USE OurData");
 
-        String findRoomTypeNumSql = "SELECT roomTypeNum FROM RoomInfo WHERE hotelID='"+hotelid+"' LIMIT 1";
+        String findRoomTypeNumSql = "SELECT roomTypeNum FROM RoomInfo WHERE hotelID='"+hotelID+"' LIMIT 1";
         ResultSet result = db.query(findRoomTypeNumSql);
-        ArrayList<RoomVO> roomList = new ArrayList<RoomVO>();
+        ArrayList<RoomPO> roomList = new ArrayList<RoomPO>();
         try{
             while(result.next()){
                 int typeNum = result.getInt(1);
-                String getRoomListSql = "SELECT *FROM RoomInfo WHERE hotelID='"+hotelid+"' LIMIT "+String.valueOf(typeNum);
+                String getRoomListSql = "SELECT *FROM RoomInfo WHERE hotelID='"+hotelID+"' LIMIT "+String.valueOf(typeNum);
                 ResultSet roomResult = db.query(getRoomListSql);
                 try{
                     while(roomResult.next()){
@@ -221,7 +196,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
                         int amountTotal = roomResult.getInt(3);
                         double price = roomResult.getDouble(4);
                         boolean isSpecial = roomResult.getBoolean(5);
-                        roomList.add(new RoomVO(hotelid,type,amountTotal,price,isSpecial){});
+                        roomList.add(new RoomPO(hotelID,type,amountTotal,price,isSpecial){});
                     }
                     return roomList;
                 }catch (SQLException e){
@@ -236,14 +211,14 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         return null;
     }
     // 改变 酒店某一房间数量和价格
-    public ResultMessage updateRoom(RoomVO vo)throws RemoteException {
+    public ResultMessage updateRoom(RoomPO roomPO)throws RemoteException {
         db.executeSql("USE OurData");
 
-        String roomType = vo.getType();
-        int num = vo.getAmountTotal();
-        double price = vo.getPrice();
+        String roomType = roomPO.getType();
+        int num = roomPO.getAmountTotal();
+        double price = roomPO.getPrice();
         String checkIsRoomNumChangedSql = "SELECT amountTotal FROM RoomInfo"
-                +" Where hotelID='"+vo.getID()+"' and roomType='"+roomType+"' LIMIT 1";
+                +" Where hotelID='"+roomPO.getID()+"' and roomType='"+roomType+"' LIMIT 1";
         ResultSet result = db.query(checkIsRoomNumChangedSql);
         // 查看是否更改酒店房间数量
         int changedNum = 0;
@@ -259,7 +234,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
 
         if(changedNum!=0){
             String getRoomAvailNumSql = "SELECT aList FROM RoomInfo"
-                    +" Where hotelID='"+vo.getID()+"' and roomType='"+roomType+"' LIMIT 1";
+                    +" Where hotelID='"+roomPO.getID()+"' and roomType='"+roomType+"' LIMIT 1";
             ResultSet getAList = db.query(getRoomAvailNumSql);
             try{
                 while(getAList.next()){
@@ -272,7 +247,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
                     for(int i=1;i<180;i++)
                         aListUpdated = aListUpdated+","+String.valueOf(aList[i]);
                     String updateAListSql = "UPDATE RoomInfo SET aList='"+aListUpdated+"'"
-                            +" Where hotelID='"+vo.getID()+"' and roomType='"+roomType+"' LIMIT 1";
+                            +" Where hotelID='"+roomPO.getID()+"' and roomType='"+roomType+"' LIMIT 1";
                     db.executeSql(updateAListSql);
                 }
             }catch(SQLException e){
@@ -282,12 +257,12 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         }
 
         String updateRoomInfoSql = "UPDATE RoomInfo SET amountTotal="+String.valueOf(num)+",price="+String.valueOf(price)
-                +" Where hotelID='"+vo.getID()+"' and roomType='"+roomType+"' LIMIT 1";
+                +" Where hotelID='"+roomPO.getID()+"' and roomType='"+roomType+"' LIMIT 1";
         db.executeSql(updateRoomInfoSql);
         return ResultMessage.succeed;
     }
     // 根据新增订单/撤销订单 改变可用房间信息
-    public ResultMessage changeRoomAvail(String hotelid,String roomType,Boolean isPlus, int num, Date checkIn, Date checkOut)throws RemoteException {
+    public ResultMessage changeRoomAvail(String hotelid,String roomType,boolean isPlus, int num, Date checkIn, Date checkOut)throws RemoteException {
         db.executeSql("USE OurData");
 
         int tip=1;
@@ -355,7 +330,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         return -1;
     }
     // 酒店工作人员 根据日期查看可用客房信息
-    public ArrayList<RoomAvailVO> getRoomAvailList(String hotelid, Date date)throws RemoteException {
+    public ArrayList<RoomAvailPO> getRoomAvailList(String hotelid, Date date)throws RemoteException {
         db.executeSql("USE OurData");
 
         String getRoomTypeNumSql = "SELECT roomTypeNum FROM HotelInfo"+
@@ -375,13 +350,13 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
             try{// type isSpecial num price
                 // 酒店 类型 总量
                 // 价格 是否特色 可用数量日期列表
-                ArrayList<RoomAvailVO> roomAvailList = new ArrayList<RoomAvailVO>();
+                ArrayList<RoomAvailPO> roomAvailList = new ArrayList<RoomAvailPO>();
                 while(roomAvailResult.next()){
-                    RoomAvailVO vo = new RoomAvailVO(hotelid,roomAvailResult.getString(2));
-                    vo.setBasicOrSpecial(roomAvailResult.getBoolean(5));
                     int num = Integer.valueOf(roomAvailResult.getString(6).split(",")[this.getDayGap(date)]);
-                    vo.setAmountAvail(num);
-                    roomAvailList.add(vo);
+
+                    RoomAvailPO roomAvailPO = new RoomAvailPO(hotelid,roomAvailResult.getString(2),num,
+                            roomAvailResult.getDouble(4),roomAvailResult.getBoolean(5));
+                    roomAvailList.add(roomAvailPO);
                 }
                 return  roomAvailList;
             }catch (SQLException e){
@@ -391,6 +366,87 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         }
         return null;
     }
+    // 生成订单时得到酒店 所有房间的规格信息？？
+    public ArrayList<RoomNormPO> getRoomNorm(String id) throws RemoteException{
+        return null;
+    }
+    // 续房？先保留
+    public ResultMessage updateRoomAvail(RoomAvailPO availableRoom)throws RemoteException {
+        return null;
+    }
+    // 初始  根据地址商圈得到 酒店列表
+    public ArrayList<HotelPO> getHotelList(String address, String businessArea)throws RemoteException {
+        db.executeSql("USE OurData");
+
+        String getHotelListSql = "SELECT *FROM HotelInfo WHERE address='"+address+"' and businessArea='"+businessArea+"'";
+        ResultSet result = db.query(getHotelListSql);
+        return this.resultsetToHotelPO(result);
+    }
+    //  网站管理人员 根据id 得到酒店信息
+    public HotelPO getHotelInfo(String hotelID)throws RemoteException {
+        db.executeSql("USE OurData");
+        // 编号 密码 电话 名称
+        // 地址 商圈 简介 设施
+        // 星级 评分 最晚入住时间
+        String searchHotelSql = "SELECT *FROM HotelInfo WHERE hotelID='"+hotelID+"' LIMIT 1";
+        ResultSet result = db.query(searchHotelSql);
+
+        return this.resultsetToHotelPO(result).get(0);
+    }
+    // 根据酒店传入地区 初始化酒店账号
+    public String getNewHotelID(String district) throws RemoteException{
+        int num = this.getHotelNum(district);
+        String leftSort = String.format("%4d", num).replace(" ", "0");
+        return leftSort;
+    }
+    // 网站管理人员 得到数据库中符合该地址的酒店数量 来生成酒店id
+    public int getHotelNum(String district)throws RemoteException {
+        db.executeSql("USE OurData");
+
+        String getHotelNumSql = "SELECT count(*) FROM HotelInfo WHERE address='"+district+"'";
+        ResultSet result = db.query(getHotelNumSql);
+        try {
+            while (result.next())
+                return result.getInt(1);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    // 添加酒店
+    // 编号 密码 电话 名称
+    // 地址 商圈 简介 设施
+    // 星级 评分 最晚入住时间 评论人数 房间类型数量
+    public ResultMessage addHotel(HotelPO hotelPO)throws RemoteException {
+        db.executeSql("USE OurData");
+        String hotelID = hotelPO.getId();
+        String addHotelSql = "INSERT INTO HotelInfo VALUES('"+hotelPO.getId()+"','"+
+                hotelPO.getPassword()+"',"+hotelPO.getTel()+",null,'" +
+                hotelPO.getAddr()+"',null,null,null,"+
+                "null,0,0,0,2";
+        db.executeSql(addHotelSql);
+        // 酒店 类型 总量
+        // 价格 是否特色 可用数量日期列表
+        String addSingleRoomSql = "INSERT INTO RoomInfo VALUES('"+hotelID+"','singleRoom',0," +
+                                                                   "9999,0,null)";
+        String addDoubleRoomSql = "INSERT INTO RoomInfo VALUES('"+hotelID+"','doubleRoom',0,"+
+                                                                   "9999,0,null)";
+        db.executeSql(addSingleRoomSql);
+        db.executeSql(addDoubleRoomSql);
+        return ResultMessage.succeed;
+    }
+    // 更新酒店工作人员信息
+    public ResultMessage updateHotelStaff(HotelStaffPO po)throws RemoteException {
+        db.executeSql("USE OurData");
+
+        String updateHotelStaffSql = "UPDATE HotelInfo SET phoneNumber='"+po.getTel()+"'' WHERE hotelID='"+po.getHotelID()+"' LIMIT 1";
+        db.executeSql(updateHotelStaffSql);
+
+        return ResultMessage.succeed;
+    }
+
+
+
     // 一天过去 修改可用客房日期列表 每天12:00
     /*public void updateRoomAListWithDayChangedExecute(){
         Timer timer = new Timer();
@@ -433,180 +489,13 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
             e.printStackTrace();
         }
     }
-    // 续房？先保留
-    public ResultMessage updateRoomAvail(RoomAvailVO availableRoom)throws RemoteException {
-        return null;
-    }
-    // 初始  根据地址商圈得到 酒店列表
-    public ArrayList<HotelVO> getHotelList(String address, String businessArea)throws RemoteException {
-        db.executeSql("USE OurData");
 
-        String getHotelListSql = "SELECT *FROM HotelInfo WHERE address='"+address+"' and businessArea='"+businessArea+"'";
-        ResultSet result = db.query(getHotelListSql);
-        return this.resultsetToHotelVO(result);
-    }
-    //  网站管理人员 根据id 得到酒店信息
-    public HotelVO getHotelInfo(String id)throws RemoteException {
-        db.executeSql("USE OurData");
-        // 编号 密码 电话 名称
-        // 地址 商圈 简介 设施
-        // 星级 评分 最晚入住时间
-        String searchHotelSql = "SELECT *FROM HotelInfo WHERE hotelID='"+id+"' LIMIT 1";
-        ResultSet result = db.query(searchHotelSql);
-
-        return this.resultsetToHotelVO(result).get(0);
-    }
-
-    public ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelList,SortBy sortBy, SortMethod sortM)throws RemoteException {
-       /* if(sortBy==SortBy.grade){
-
-        }
-        else if(sortBy==SortBy.level){
-
-        }
-        else(sortBy==SortBy.price){
-
-        }*/
-        return null;
-    }
-
-    public ArrayList<HotelVO> selectByName(String hotelName)throws RemoteException{
-        db.executeSql("USE OurData");
-
-        String selectByNameSql = "SELECT *FROM RoomInfo" +" WHERE name LIKE \"%"+hotelName+"%\"";
-        ResultSet resultByName = db.query(selectByNameSql);
-        return this.resultsetToHotelVO(resultByName);
-    }
-    public String roomType;
-    public double lowestPrice ;
-    public double highestPrice;
-    public int roomNum;
-    public Date begin;
-    public Date end;
-    public int level;
-    public double lowestGrade;
-    public double highestGrade;
-    public String userID;
-    public Boolean reserved;
-    public ArrayList<HotelVO> selectByCondition(SelectConditionVO vo)throws RemoteException {
-        String getAllSql = "SELECT *FROM RoomInfo";
-        ResultSet result = db.query(getAllSql);
-        ArrayList<String> hotelidList = new ArrayList<String>();
-        try{// 酒店 类型 总量
-            // 价格 是否特色 可用数量日期列表
-            while(result.next()){
-                if(vo.roomType!=null){
-                    if(!result.getString(2).equals(vo.roomType))
-                        continue;
-                }
-                if(vo.lowestPrice>=0){
-                    if(result.getDouble(4)<vo.lowestPrice)
-                        continue;
-                }
-                if(vo.highestPrice>=0){
-                    if(result.getDouble(4)>vo.highestPrice)
-                        continue;
-                }
-                if(vo.roomNum>0){
-
-                }
-                hotelidList.add(result.getString(1));
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    // 网站管理人员 得到数据库中符合该地址的酒店数量 来生成酒店id
-    public int getHotelNum(String address)throws RemoteException {
-        db.executeSql("USE OurData");
-
-        String getHotelNumSql = "SELECT count(*) FROM HotelInfo WHERE address='"+address+"'";
-        ResultSet result = db.query(getHotelNumSql);
-        try {
-            while (result.next())
-                return result.getInt(1);
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        return 0;
-    }
-    // 添加酒店
-    // 编号 密码 电话 名称
-    // 地址 商圈 简介 设施
-    // 星级 评分 最晚入住时间 评论人数 房间类型数量
-    public ResultMessage addHotel(String id, String password)throws RemoteException {
-        db.executeSql("USE OurData");
-
-        String addHotelSql = "INSERT INTO HotelInfo VALUES('"+id+"','"+password+"',null,null," +
-                "null,null,null,null,"+
-                "null,0,0,0,2";
-        db.executeSql(addHotelSql);
-        // 酒店 类型 总量
-        // 价格 是否特色 可用数量日期列表
-        String addSingleRoomSql = "INSERT INTO RoomInfo VALUES('"+id+"','singleRoom',0," +
-                                                                   "9999,0,null)";
-        String addDoubleRoomSql = "INSERT INTO RoomInfo VALUES('"+id+"','doubleRoom',0,"+
-                                                                   "9999,0,null)";
-        db.executeSql(addSingleRoomSql);
-        db.executeSql(addDoubleRoomSql);
-        return ResultMessage.succeed;
-    }
-    // 酒店注销
-    public ResultMessage deleteHotel(String id)throws RemoteException {
-        db.executeSql("USE OurData");
-
-        String deleteHotelSql = "DELETE FROM HotelInfo WHERE hotelID='"+id+"' LIMIT 1";
-        db.executeSql(deleteHotelSql);
-
-        return ResultMessage.succeed;
-    }
-    // 更新酒店工作人员信息
-    public ResultMessage updateHotelStaff(HotelStaffPO po)throws RemoteException {
-        db.executeSql("USE OurData");
-
-        String updateHotelStaffSql = "UPDATE HotelInfo SET phoneNumber='"+po.getTel()+"'' WHERE hotelID='"+po.getHotelID()+"' LIMIT 1";
-        db.executeSql(updateHotelStaffSql);
-
-        return ResultMessage.succeed;
-    }
     // 根据SQL结果得到酒店PO
-    public ArrayList<HotelPO> resultsetToHotelPO(ResultSet result) {
+    public ArrayList<HotelPO> resultsetToHotelPO(ResultSet result){
         ArrayList<HotelPO> hotelList = new ArrayList<HotelPO>();
-        try {
-            while (result.next()) {
-                // 编号 密码 电话 名称
-                // 地址 商圈 简介 设施
-                // 星级 评分 最晚入住时间
-                String idname = result.getString(1);
-                String password = result.getString(2);
-                String tel = result.getString(3);
-                String name = result.getString(4);
-                String address = result.getString(5);
-                String bArea = result.getString(6);
-                String briefintro = result.getString(7);
-                String facility = result.getString(8);
-                int level = result.getInt(9);
-                int grade = result.getInt(10);
-                String time = result.getString(11);
-
-                HotelPO hotelPO = HotelPO.createHotelPO(new HotelVO(idname, tel, name, address, bArea, briefintro, facility, level, grade, time));
-                hotelList.add(hotelPO);
-            }
-            return hotelList;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    // 根据SQL结果得到酒店VO
-    public ArrayList<HotelVO> resultsetToHotelVO(ResultSet result){
-        ArrayList<HotelVO> hotelList = new ArrayList<HotelVO>();
         try{
             while(result.next()){
-                HotelVO hotel = new HotelVO(result.getString(1),result.getString(3),
+                HotelPO hotel = new HotelPO(result.getString(1),result.getString(3),
                         result.getString(4),result.getString(5),result.getString(6),
                         result.getString(7),result.getString(8),result.getInt(9),
                         result.getDouble(10),result.getString(11));

@@ -12,8 +12,9 @@ import data.daohelperimpl.userdaohelperimpl.CreditRecordListDaoHelperMySql;
 import data.daohelperimpl.userdaohelperimpl.UserDaoHelperMySql;
 import data.daohelperimpl.webstaffdaohelperimpl.WebManagerDaoHelperMySql;
 import data.daohelperimpl.webstaffdaohelperimpl.WebSalesmanDaoHelperMySql;
+import org.junit.Test;
 import po.OrderPO;
-import vo.RoomNormVO;
+import po.RoomNormPO;
 
 import java.rmi.RemoteException;
 import java.text.ParseException;
@@ -29,31 +30,9 @@ public class test {
 // success
     OrderDaoHelperMySql orderDao = new OrderDaoHelperMySql();
 
-    public static void mian(String[] args) throws RemoteException {
-
-        OrderDaoHelperMySql orderdao = new OrderDaoHelperMySql();
-        orderdao.init();
-        HotelDaoHelperMySql hoteldao = new HotelDaoHelperMySql();
-        hoteldao.init();
-        LoginDaoHelperMySql logindao = new LoginDaoHelperMySql();
-        logindao.init();
-        PromotionDaoHelperMySql promotiondao = new PromotionDaoHelperMySql();
-        promotiondao.init();
-        UserDaoHelperMySql userdao = new UserDaoHelperMySql();
-        userdao.init();
-        CreditRecordListDaoHelperMySql cdao = new CreditRecordListDaoHelperMySql();
-        cdao.init();
-        WebSalesmanDaoHelperMySql websalesmandao = new WebSalesmanDaoHelperMySql();
-        websalesmandao.init();
-        WebManagerDaoHelperMySql webmanagerdao = new WebManagerDaoHelperMySql();
-        webmanagerdao.init();
-        /*orderdao.finish(); hoteldao.finish(); logindao.finish(); promotiondao.finish();
-        userdao.finish(); cdao.finish(); websalesmandao.finish();*/
-
-
-    }
 
     // 根据订单编号查找订单
+    @Test
     public void testsearchByID() throws RemoteException{
         String orderID = "";
         orderDao = new OrderDaoHelperMySql();
@@ -61,31 +40,36 @@ public class test {
 
     }
     // 根据用户编号查找订单
+    @Test
     public void  testsearchByUser() throws RemoteException{
         String userID = "";
         ArrayList<OrderPO> list = orderDao.searchByUser(userID);
     }
     // 根据用户编号、酒店编号查找订单
+    @Test
     public void searchByUserWithHotel() throws RemoteException{
         String userID = "";
         String hotelID = "";
         ArrayList<OrderPO> list = orderDao.searchByUserWithHotel(userID,hotelID);
     }
     // 根据酒店编号查找订单
+    @Test
     public void searchByHotel() throws RemoteException{
         String hotelID = "";
         ArrayList<OrderPO> list = orderDao.searchByHotel(hotelID);
     }
     // 根据状态编号查找订单
+    @Test
     public void searchByState() throws RemoteException{
         StateOfOrder state = StateOfOrder.unexecuted;
         ArrayList<OrderPO> list = orderDao.searchByState(state);
     }
 
     // 新建订单
+    @Test
     public void testinsert() throws RemoteException,ParseException{
         String orderID = "";
-        RoomNormVO room = new RoomNormVO("0123456789","singleRoom",120.0);
+        RoomNormPO room = new RoomNormPO("0123456789","singleRoom",120.0);
         SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
         Date checkIn = sim.parse("2016-01-31");
@@ -105,12 +89,14 @@ public class test {
 
     }
     // 订单状态更新
+    @Test
     public void stateUpdate() throws RemoteException{
         String orderID = "";
         StateOfOrder newState = StateOfOrder.abnormal;
         ResultMessage result = orderDao.stateUpdate(orderID,newState);
     }
     // 评价订单
+    @Test
     public void commentUpdate() throws RemoteException{
         String orderID="";
         int grade=4;
@@ -118,28 +104,58 @@ public class test {
         ResultMessage result = orderDao.commentUpdate(orderID,grade,comment);
     }
     // 订单实际入住时间更新
+    @Test
     public void actCheckInUpdate() throws RemoteException{
         String orderID="";
         Date actCheckIn=new Date();
         ResultMessage result = orderDao.actCheckInUpdate(orderID,actCheckIn);
     }
     // 订单实际离开时间更新
+    @Test
     public void actCheckOutUpdate() throws RemoteException{
         String orderID="";
         Date actCheckOut=new Date();
         ResultMessage result = orderDao.actCheckOutUpdate(orderID,actCheckOut);
     }
     // 订单撤销时间更新
+    @Test
     public void cancelTimeUpdate() throws RemoteException{
         String orderID="";
         Date cancelTime = new Date();
         ResultMessage result = orderDao.cancelTimeUpdate(orderID,cancelTime);
     }
     // 订单撤销异常时间更新
+    @Test
     public void cancelAbTimeUpdate() throws RemoteException{
         String orderID="";
         Date cancelAbTime = new Date();
         ResultMessage result = orderDao.cancelTimeUpdate(orderID,cancelAbTime);
     }
 
+
+
+    /*
+    public static void main(String[] args) throws RemoteException {
+
+        OrderDaoHelperMySql orderdao = new OrderDaoHelperMySql();
+        orderdao.init();
+        HotelDaoHelperMySql hoteldao = new HotelDaoHelperMySql();
+        hoteldao.init();
+        LoginDaoHelperMySql logindao = new LoginDaoHelperMySql();
+        logindao.init();
+        PromotionDaoHelperMySql promotiondao = new PromotionDaoHelperMySql();
+        promotiondao.init();
+        UserDaoHelperMySql userdao = new UserDaoHelperMySql();
+        userdao.init();
+        CreditRecordListDaoHelperMySql cdao = new CreditRecordListDaoHelperMySql();
+        cdao.init();
+        WebSalesmanDaoHelperMySql websalesmandao = new WebSalesmanDaoHelperMySql();
+        websalesmandao.init();
+        WebManagerDaoHelperMySql webmanagerdao = new WebManagerDaoHelperMySql();
+        webmanagerdao.init();
+        orderdao.finish(); hoteldao.finish(); logindao.finish(); promotiondao.finish();
+        userdao.finish(); cdao.finish(); websalesmandao.finish();
+
+
+    }*/
 }

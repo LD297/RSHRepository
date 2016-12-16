@@ -5,7 +5,7 @@ import constant.StateOfOrder;
 import data.daohelper.OrderDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.OrderPO;
-import vo.RoomNormVO;
+import po.RoomNormPO;
 
 import java.rmi.RemoteException;
 import java.sql.Time;
@@ -140,7 +140,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         String hotelID = orderPO.getHotelID();
         String hotelName= orderPO.getHotelName();
 
-        RoomNormVO room = orderPO.getRoom();
+        RoomNormPO room = orderPO.getRoom();
         double roomPrice = orderPO.getRoomPrice();
         int roomNumber = orderPO.getRoomNumber();
         double originValue = orderPO.getOriginValue();
@@ -303,14 +303,14 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                 Date cancelTime = result.getTimestamp("cancelTime");
                 Date cancelAbTime = result.getTimestamp("cancelAbTime");
 
-                RoomNormVO roomVO = null;
+                RoomNormPO roomPO = null;
                 String getRoomSql = "SELECT *FROM OrderRooms WHERE orderID='" + orderID + "' LIMIT 1" ;
                 ResultSet resultRoom = db.query(getRoomSql);
                 int roomTruePrice = 0;
                 int roomNum = 0;
                 try{
                     while (resultRoom.next()) {
-                        roomVO = new RoomNormVO(resultRoom.getString("orderID").substring(0, 10),
+                        roomPO = new RoomNormPO(resultRoom.getString("orderID").substring(0, 10),
                                 resultRoom.getString("roomType"), resultRoom.getDouble("originPrice"));
                         roomTruePrice = resultRoom.getInt("truePrice");
                         roomNum = resultRoom.getInt("roomNum");
@@ -320,9 +320,9 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                     e.printStackTrace();
                     return null;
                 }
-                if(roomVO!=null) {
+                if(roomPO!=null) {
                     OrderPO orderpo = new OrderPO(orderID, userID, userName, hotelID, hotelName, state,
-                            roomVO, roomTruePrice, roomNum, peopleNum, withChild,
+                            roomPO, roomTruePrice, roomNum, peopleNum, withChild,
                             originValue, trueValue, promotion,
                             comment, grade, checkIn, checkOut, hotelDDL,
                             bornTime, actCheckIn, actCheckOut, cancelTime, cancelAbTime);

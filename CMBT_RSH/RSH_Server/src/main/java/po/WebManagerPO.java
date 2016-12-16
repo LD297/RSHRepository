@@ -2,7 +2,9 @@ package po;
 
 //import bl.webstaffserviceimpl;
 
-public class WebManagerPO {
+import java.io.Serializable;
+
+public class WebManagerPO implements Serializable {
 
 	String id;
 	String password;

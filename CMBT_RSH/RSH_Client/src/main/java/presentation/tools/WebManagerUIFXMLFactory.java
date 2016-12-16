@@ -13,8 +13,19 @@ public class WebManagerUIFXMLFactory {
 		return webManagerUIFXMLFactory;
 	}
 
+	public AnchorPane getManageHomepage() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管首页 .fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return anchorPane;
+	}
+	
 	public AnchorPane getManageUser() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网站管理人员 。用户.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_管理用户.fxml"));
 		AnchorPane anchorPane = null;
 		try {
 			anchorPane = loader.load();
@@ -25,7 +36,7 @@ public class WebManagerUIFXMLFactory {
 	}
 	
 	public AnchorPane getManageHotel() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网站管理人员 。酒店.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_管理酒店.fxml"));
 		AnchorPane anchorPane = null;
 		try {
 			anchorPane = loader.load();
@@ -36,7 +47,17 @@ public class WebManagerUIFXMLFactory {
 	}
 	
 	public AnchorPane getManageWebSalesman() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网站管理人员 。营销人员.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_管理营销人员.fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return anchorPane;
+	}
+	public AnchorPane getModifyOwnPassword() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_修改自己的密码.fxml"));
 		AnchorPane anchorPane = null;
 		try {
 			anchorPane = loader.load();
@@ -46,8 +67,9 @@ public class WebManagerUIFXMLFactory {
 		return anchorPane;
 	}
 	
-	public AnchorPane getEnsureAddHotel() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网站管理人员。确认添加酒店.fxml"));
+	
+	public AnchorPane getSuccessAdd() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_添加成功.fxml"));
 		AnchorPane anchorPane = null;
 		try {
 			anchorPane = loader.load();
@@ -58,7 +80,7 @@ public class WebManagerUIFXMLFactory {
 	}
 	
 	public AnchorPane getAddHotel() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网站管理人员。添加酒店.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_添加酒店.fxml"));
 		AnchorPane anchorPane = null;
 		try {
 			anchorPane = loader.load();
@@ -69,7 +91,7 @@ public class WebManagerUIFXMLFactory {
 	}
 	
 	public AnchorPane getAddWebSalesman() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网站管理人员。添加营销人员.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_添加营销人员.fxml"));
 		AnchorPane anchorPane = null;
 		try {
 			anchorPane = loader.load();
@@ -78,4 +100,40 @@ public class WebManagerUIFXMLFactory {
 		}
 		return anchorPane;
 	}
+	
+	public AnchorPane getModifyHotel() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_修改酒店信息.fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return anchorPane;
+	}
+	
+	public AnchorPane getModifyWebSalesman() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_修改营销人员信息.fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return anchorPane;
+	}
+	
+	public AnchorPane getSuccessResetPassword() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_重置密码成功.fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return anchorPane;
+	}
+	
+	
+	
 }
