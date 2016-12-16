@@ -13,7 +13,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.AddCommentUIController">
    <children>
       <Label layoutX="109.0" layoutY="138.0" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.5);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="400.0" style="-fx-background-color: #f4f4f4;" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="120.0">
+      <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="400.0" style="-fx-background-color: #f4f4f4;" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="120.0">
          <children>
             <ImageView fx:id="addCommentImage" fitHeight="30.0" fitWidth="30.0" layoutX="32.0" layoutY="72.0" onMouseClicked="#addComment" pickOnBounds="true">
                <image>
@@ -25,7 +25,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Button>
-            <TextArea fx:id="commentTextarea" editable="false" layoutX="32.0" layoutY="163.0" prefHeight="220.0" prefWidth="341.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="163.0" />
+            <TextArea fx:id="commentTextarea" layoutX="32.0" layoutY="163.0" prefHeight="220.0" prefWidth="341.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="163.0" />
             <ImageView fx:id="cancelImage" fitHeight="30.0" fitWidth="30.0" layoutX="370.0" layoutY="-1.0" onMouseClicked="#closeAddComment" onMouseEntered="#changeCancelImageToRed" onMouseExited="#changeCancleImageToGray" pickOnBounds="true">
                <image>
                   <Image url="@../images/cancel.png" />
@@ -43,11 +43,13 @@
             </Label>
             <Label fx:id="encourageLabel" layoutX="52.0" layoutY="216.0" prefHeight="30.0" prefWidth="321.0" text="亲，您的评价将会对我们改善服务酒店工作有很大的帮助哦" textFill="#0000008d" />
             <TextField fx:id="gradeField" layoutX="291.0" layoutY="72.0" prefHeight="30.0" prefWidth="79.0" promptText="请输入评分" />
+            <Label fx:id="encourageLabel1" layoutX="32.0" layoutY="133.0" prefHeight="30.0" prefWidth="341.0" text="亲，想说什么都可以在下面的框框输入告诉我们哦" textFill="#0000008d" />
             <Label fx:id="messageLabel" layoutX="32.0" layoutY="420.0" prefHeight="30.0" prefWidth="193.0" text="您还没有输入评分" textFill="#ff5a5f">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
+            <Label fx:id="maskLabel" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="400.0" visible="false" />
          </children>
          <effect>
             <DropShadow />

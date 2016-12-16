@@ -9,7 +9,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.RoomAvailUIController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.RoomInfoUIController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="800.0">
          <image>
@@ -95,11 +95,16 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="delete0" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete0Clicked" opacity="0.5" text="删除">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Button>
+                        <ImageView fx:id="plus0" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/PLUS.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="minus0" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/Minus.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="showPane01" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
@@ -124,11 +129,16 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="delete01" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete1Clicked" opacity="0.5" text="删除">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Button>
+                        <ImageView fx:id="plus01" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/PLUS.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="minus01" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/Minus.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="showPane02" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
@@ -153,11 +163,16 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="delete02" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete2Clicked" opacity="0.5" text="删除">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Button>
+                        <ImageView fx:id="plus02" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/PLUS.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="minus02" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/Minus.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="showPane03" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="7">
@@ -182,11 +197,16 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="delete03" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete3Clicked" opacity="0.5" text="删除">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Button>
+                        <ImageView fx:id="plus03" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/PLUS.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="minus03" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/Minus.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="showPane04" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="9">
@@ -211,11 +231,16 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="delete04" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete4Clicked" opacity="0.5" text="删除">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Button>
+                        <ImageView fx:id="plus04" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/PLUS.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="minus04" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/Minus.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="showPane05" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="11">
@@ -240,11 +265,16 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="delete05" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete5Clicked" opacity="0.5" text="删除">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Button>
+                        <ImageView fx:id="plus05" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/PLUS.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="minus05" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                           <image>
+                              <Image url="@../images/Minus.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </children>
@@ -256,7 +286,7 @@
             <Image url="@../images/LOGO.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="660.0" layoutY="616.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回">
+      <Button fx:id="backButton" layoutX="644.0" layoutY="623.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回" AnchorPane.bottomAnchor="71.0" AnchorPane.rightAnchor="108.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
@@ -277,14 +307,10 @@
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="plus" fitHeight="15.0" fitWidth="15.0" layoutX="676.0" layoutY="560.0" onMouseClicked="#addRoom" AnchorPane.bottomAnchor="145.0" AnchorPane.topAnchor="560.0">
-         <image>
-            <Image url="@../images/PLUS.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="364.0" layoutY="79.0" text="客房管理" textFill="#ff5a5f">
+      <DatePicker fx:id="datePicker" layoutX="109.0" layoutY="78.0" opacity="0.8" prefHeight="27.0" prefWidth="158.0" promptText="请选择日期" />
+      <Label fx:id="gotoImageView" layoutX="284.0" layoutY="80.0" onMouseClicked="#gotoDate" opacity="0.5" text="&gt;">
          <font>
-            <Font name="Times New Roman" size="18.0" />
+            <Font size="18.0" />
          </font>
       </Label>
    </children>

@@ -75,8 +75,8 @@ public class ModifyPasswordUIController {
             prepasswordLabel.setText("原密码错误");
         }else if(!newpasswordResult.equals("success")){
             newpasswordLabel.setText("新"+newpasswordResult);
-        }else if(!newPasswordField.equals(confirmNewPasswordField.getText())){
-            if(confirmnewpasswordLabel.getText().equals("")){
+        }else if(!newPasswordField.getText().equals(confirmNewPasswordField.getText())){
+            if(confirmNewPasswordField.getText().equals("")){
                 confirmnewpasswordLabel.setText("请确认您的密码");
             }else{
                 confirmnewpasswordLabel.setText("两次密码不一致");

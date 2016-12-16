@@ -1,4 +1,4 @@
-package bl.orderserviceimpl.miscellaneous;
+package bl.orderserviceimpl;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,7 +58,7 @@ public class OrderForUser_Stub implements OrderForUser{
 	public OrderVO detail(String orderID) {
 		// TODO Auto-generated method stub
 		return new OrderVO(orderID, "123456", "Xiaoer Wang", "000001", "BIG Hotel", StateOfOrder.executed,
-				new RoomNormVO("000001", "单人间", 200.0), 200, 2, 3, true, 200, 300, "No Promotion", "ghdjd", 3,
+				new RoomNormVO("000001", "单人间", 200.0), 200, 2, 3, true, 200, 300, "No Promotion", "", 3,
 				new Date(), new Date(), "03:30:00", new Date(), new Date(), new Date(), new Date(), new Date());
 	}
 
@@ -129,7 +129,7 @@ public class OrderForUser_Stub implements OrderForUser{
 	public String getTrueValue(String userID, String hotelID, Date checkIn, Date checkOut, RoomNormVO room,
 			int roomNum) {
 		// TODO Auto-generated method stub
-		return "双十一特惠#1230";
+		return "1230";
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import po.HotelPO;
 import po.RoomAvailPO;
 import po.RoomNormPO;
 //import po.HotelStaffPO;
+import po.RoomAvailPO;
 import po.RoomPO;
 import vo.*;
 
@@ -39,7 +40,7 @@ public interface HotelDao extends Remote{
     
     public ResultMessage updateRoomList(RoomPO roomPO) throws RemoteException;
     
-    public ArrayList<RoomAvailPO> getRoomAvailList(String id, Date checkIn) throws RemoteException;   
+    public ArrayList<RoomAvailPO> getRoomAvailList(String id, Date checkIn) throws RemoteException;
     
     public ResultMessage changeRoomAvail(String id, String roomType,boolean isPlus, int num, Date checkIn, Date checkOut) throws RemoteException;
     

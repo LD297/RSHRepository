@@ -37,10 +37,12 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 	private OrderVO orderVO = null;
 	public SingleOrderOfBrowseAnchorPane(OrderVO orderVO) {
 		this.orderVO = orderVO;
+		orderStateImage = new ImageView();
 		weekLabel = new Label(MyDateFormat.getInstance().getWeek(orderVO.getGenerationDate()));
 		dateLabel = new Label(MyDateFormat.getInstance().toString(orderVO.getGenerationDate()));
 		orderIDLabel = new Label(orderVO.getOrderID());
-		hotelNameLabel = new Label(orderVO.getHotelID());//TODO
+//		hotelNameLabel = new Label(orderVO.getHotelID())
+		hotelNameLabel = new Label(orderVO.getHotelName());
 		orderValueLabel = new Label(String.valueOf(orderVO.getTrueValue()));
 		orderValue = new Label("信用价值");
 		StateOfOrder stateOfOrder = orderVO.getState();
@@ -117,17 +119,17 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 			}
 		});
 		forMoreLabel.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			//鼠标进入”更多“，颜色变为灰色
+			//鼠标进入”更多“，颜色变为绿色
 			@Override
 			public void handle(MouseEvent event) {
-				forMoreLabel.setTextFill(Color.valueOf("#bcbcbc"));
+				forMoreLabel.setTextFill(Color.valueOf("#00a699"));
 			}
 		});
 		forMoreLabel.setOnMouseExited(new EventHandler<MouseEvent>() {
 			//鼠标离开”更多“，颜色变为灰色
 			@Override
 			public void handle(MouseEvent event) {
-				forMoreLabel.setTextFill(Color.valueOf("#00a699"));
+				forMoreLabel.setTextFill(Color.valueOf("#bcbcbc"));
 			}
 		});
 /*		commentButton.setOnMouseClicked(new EventHandler<MouseEvent>() {

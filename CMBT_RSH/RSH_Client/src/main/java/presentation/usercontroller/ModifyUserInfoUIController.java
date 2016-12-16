@@ -90,6 +90,7 @@ public class ModifyUserInfoUIController {
 
     @FXML
     void confirmButtonClicked(MouseEvent event) {
+    	System.out.println("ok");
         boolean rightInput = true;
         //检查昵称格式
         String nickName = nicknameField.getText().trim();
@@ -104,6 +105,7 @@ public class ModifyUserInfoUIController {
         String email = emailaddressField.getText().trim();
         String emailResult = UserInputFormCheckTool.getInstance().checkEmail(email);
         if(!emailResult.equals("success")){
+        	System.out.println("jhfkf");
             rightInput = false;
             emailMeaasgeLabel.setText(emailResult);
         }else {
@@ -117,7 +119,6 @@ public class ModifyUserInfoUIController {
             phoneNumMeassgeLabel.setText(phonenumResult);
         }else {
         	phoneNumMeassgeLabel.setText("");
-            rightInput = true;
         }
         if(rightInput){
         	String name = nameField.getText().trim();
@@ -140,6 +141,7 @@ public class ModifyUserInfoUIController {
   		ObservableList<String> sexualities = FXCollections.observableArrayList((new ArrayList<String>(
   				Arrays.asList(new String[] { Sexuality.male.getString(), Sexuality.female.getString() }))));
   		sexChoiceBox.setItems(sexualities);
+  		sexChoiceBox.setValue(userVO.sexuality.getString());
     }
 
     @FXML

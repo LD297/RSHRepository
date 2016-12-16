@@ -151,6 +151,9 @@ public class OrderInfoUIController {
 		}else if(orderVO.getState()==StateOfOrder.unexecuted){
 			cancelOrderButton.setVisible(true);
 			commentButton.setVisible(false);
+		}else{
+			cancelOrderButton.setVisible(false);
+			commentButton.setVisible(false);
 		}
 		
     }

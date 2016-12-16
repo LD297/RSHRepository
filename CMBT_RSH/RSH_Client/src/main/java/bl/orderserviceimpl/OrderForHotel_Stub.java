@@ -1,4 +1,4 @@
-package bl.orderserviceimpl.miscellaneous;
+package bl.orderserviceimpl;
 
 import java.util.ArrayList;
 import java.util.Date;

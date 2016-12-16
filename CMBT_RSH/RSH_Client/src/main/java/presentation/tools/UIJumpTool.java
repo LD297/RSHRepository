@@ -75,7 +75,7 @@ public class UIJumpTool {
         hotelInfo.getChildren().get(hotelInfo.getChildren().size()-1).setVisible(true);
         hotelInfo.getChildren().add(myOrderOfOneHotel);
         //设置我的订单的位置
-        Locator.getLocator().setLocation(modifyUserInfo,20.0,20.0,0.0,0.0);
+        Locator.getLocator().setLocation(myOrderOfOneHotel,20.0,20.0,0.0,0.0);
     }
 
     //在酒店详情界面上关闭针对该酒店的我的订单界面

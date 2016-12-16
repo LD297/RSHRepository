@@ -51,7 +51,7 @@ public class BrowseHotelUIController {
 	@FXML
 	private GridPane gridpaneFilledWithhotel;
 
-	private ArrayList<HotelVO> hotelVOs = null;
+	private ArrayList<HotelVO> hotelVOs = new ArrayList<HotelVO>();
 	private int presentPage = 1;//当前页码
 	private int hotelVOsPointer = -1;
 	private int maxPages = 0;
@@ -86,7 +86,11 @@ public class BrowseHotelUIController {
     void changeToReferedPage(ActionEvent event) {
     	int page = Integer.parseInt(pageField.getText().trim());
     	if(page>=1){
-    		presentPage = page;
+    		if(page>maxPages){
+    			presentPage = maxPages;
+    		}else {
+				presentPage = page;
+			}
     		gridpaneFilledWithhotel.getChildren().clear();
     		changeToSpecficPage(presentPage);
     	}else{
@@ -95,17 +99,13 @@ public class BrowseHotelUIController {
     }
     
     //跳转到指定的页数
-    private void changeToSpecficPage(int page) {
-    	//直接跳转到最后一页
-		if(page>=maxPages){
-			hotelVOsPointer = (maxPages-1)*4;
-		}else{
-			hotelVOsPointer = (page-1)*4;
-		}
+	private void changeToSpecficPage(int page) {
+		hotelVOsPointer = (page - 1) * 4;
+		pageField.setText(String.valueOf(page));
 		int count = 0;
-		while(count<4){//一个界面上有四个格子
+		while (count < 4) {// 一个界面上有四个格子
 			boolean left = false;
-			if(count%2==0){
+			if (count % 2 == 0) {
 				left = true;
 			}
 			if(hotelVOsPointer==hotelVOs.size()){

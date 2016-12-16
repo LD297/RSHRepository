@@ -1,4 +1,4 @@
-package bl.hotelserviceimpl.hotel_stub;
+package bl.hotelserviceimpl;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,15 +42,15 @@ public class HotelInfoService_Stub implements HotelInfoService{
 	@Override
 	public int getRoomAvailNum(String hotelID, String roomType, Date checkIn, Date checkOut) {
 		// TODO Auto-generated method stub
-		System.out.println(10);
 		return 10;
 	}
 
 	@Override
 	public ResultMessage updateGrade(String hotelID, int grade) {
 		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
+		return null;
 	}
 
-	
+
+
 }

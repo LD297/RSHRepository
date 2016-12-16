@@ -111,6 +111,9 @@ public class CreateOrderUIController {
     
     @FXML
     private Button backToModifyButton;
+    
+    @FXML
+    private Label maskLabel;
 
     
     private Date expectedCheckinDate = null;
@@ -141,12 +144,13 @@ public class CreateOrderUIController {
     //点击返回修改，还原编辑场景
     @FXML
     void backToModifyOrderInfo(MouseEvent event) {
-    	expectedCheckinTimepicker.setDisable(false);
-    	expectedCheckoutTimepicker.setDisable(false);
-    	roomtypeCombox.setDisable(false);
-    	peopleNumombox.setDisable(false);
-    	roomnumCombox.setDisable(false);
-    	withChildrenCombox.setDisable(false);
+//    	expectedCheckinTimepicker.setDisable(false);
+  //  	expectedCheckoutTimepicker.setDisable(false);
+    //	roomtypeCombox.setDisable(false);
+//    	peopleNumombox.setDisable(false);
+  //  	roomnumCombox.setDisable(false);
+    //	withChildrenCombox.setDisable(false);
+    	maskLabel.setVisible(false);
     	finishCreateOrder.setText("提交订单");
     	finishCreateOrder.setDisable(false);
     	backToModifyButton.setVisible(false);
@@ -163,21 +167,29 @@ public class CreateOrderUIController {
 		if (finishCreateOrder.getText().equals("提交订单")) {
 			//将组件还原
 			//设置组件不可编辑
-			expectedCheckinTimepicker.setDisable(true);
-	    	expectedCheckoutTimepicker.setDisable(true);
-	    	roomtypeCombox.setDisable(true);
-	    	peopleNumombox.setDisable(true);
-	    	roomnumCombox.setDisable(true);
-	    	withChildrenCombox.setDisable(true);
+//			expectedCheckinTimepicker.setDisable(true);
+	//    	expectedCheckoutTimepicker.setDisable(true);
+	  //  	roomtypeCombox.setDisable(true);
+	    //	peopleNumombox.setDisable(true);
+	    	//roomnumCombox.setDisable(true);
+	//    	withChildrenCombox.setDisable(true);
+			maskLabel.setVisible(true);
 	    	//返回修改按钮可见
 			backToModifyButton.setVisible(true);
 			//如果有尚未填写的信息
-			if(expectedCheckinTimepicker.getValue()==null||
+			getInfoFromUI();
+			if(expectedCheckinDate==null||expectedCheckoutDate==null||roomtype==null||peopleNum==-1||roomNum==-1||
+					withChildrenCombox.getValue()==null){
+/*			if(expectedCheckinTimepicker.getValue()==null||
 					expectedCheckoutTimepicker.getValue()==null||
-					roomtypeCombox.getValue().equals("")||
-					peopleNumombox.getValue().equals("")||
-					roomnumCombox.getValue().equals("")||
-					withChildrenCombox.getValue().equals("")){
+					roomtypeCombox.getValue()==null||
+					peopleNumombox.getValue()==null||
+					roomnumCombox.getValue()==null||
+					withChildrenCombox.getValue()==null){*/
+//					roomtypeCombox.getValue().equals("")||
+	//				peopleNumombox.getValue().equals("")||
+		//			roomnumCombox.getValue().equals("")||
+//					withChildrenCombox.getValue().equals("")){
 				messageLabel.setText("您有尚未填写的信息");
 				//提交订单不可点
 				finishCreateOrder.setDisable(true);
@@ -211,18 +223,37 @@ public class CreateOrderUIController {
 	}
 	
 	private void getInfoFromUI(){
+		expectedCheckinDate = null;
+		expectedCheckoutDate = null;
+		roomtype = null;
+		roomNum = -1;
+		peopleNum = -1;
+		withChildren = false;
 		LocalDate expectedCheckinLocalDate = expectedCheckinTimepicker.getValue();
-    	expectedCheckinDate = MyDateFormat.getInstance().changeLocalDateToDate(expectedCheckinLocalDate);
+		if(expectedCheckinLocalDate!=null){
+			expectedCheckinDate = MyDateFormat.getInstance().changeLocalDateToDate(expectedCheckinLocalDate);
+		}
     	LocalDate expectedCheckoutLocalDate = expectedCheckoutTimepicker.getValue();
-    	expectedCheckoutDate = MyDateFormat.getInstance().changeLocalDateToDate(expectedCheckoutLocalDate);
-    	roomtype = roomtypeCombox.getValue().trim();
-    	roomNum = roomnumCombox.getValue();
-    	peopleNum = peopleNumombox.getValue();
-    	if(withChildrenCombox.getValue().equals("有")){
-    		withChildren = true;
-    	}else{
-    		withChildren = false;
+    	if(expectedCheckoutLocalDate!=null){
+    	   	expectedCheckoutDate = MyDateFormat.getInstance().changeLocalDateToDate(expectedCheckoutLocalDate);
     	}
+    	if(roomtypeCombox.getValue()!=null){
+    		roomtype = roomtypeCombox.getValue().trim();
+    	}
+    	if(roomnumCombox.getValue()!=null){
+    		roomNum = roomnumCombox.getValue();
+    	}
+    	if(peopleNumombox.getValue()!=null){
+    		peopleNum = peopleNumombox.getValue();
+    	}
+    	if(withChildrenCombox.getValue()!=null){
+    		if(withChildrenCombox.getValue().equals("有")){
+        		withChildren = true;
+        	}else{
+        		withChildren = false;
+        	}
+    	}
+    	
 	}
 
     //用户选择完房间类型，就在roomnumCombox里面set该房间的房间数目，并在priceOfPerRoom里面set进单间价格
@@ -231,6 +262,7 @@ public class CreateOrderUIController {
     	getInfoFromUI();
     	//在roomnumCombox里面set该房间的房间数目
     	int availRoomNum = UserInfoUtil.getInstance().getAvailRoomNum(roomtype, expectedCheckinDate, expectedCheckoutDate);
+    	System.out.println(availRoomNum);
     	ArrayList<Integer> roomNums = new ArrayList<>();
     	for(int i=1;i<=availRoomNum;i++){
     		roomNums.add(i);
@@ -255,11 +287,15 @@ public class CreateOrderUIController {
 		memberLevelLabel.setText(Integer.toString(userVO.level));
 		userCreditLabel.setText(Integer.toString(userVO.credit));
 		//初始化订单中的纯订单信息
+		maskLabel.setVisible(false);
 		String dateOfOrderCreate = MyDateFormat.getInstance().toString(LocalDate.now());
 		dateOfOrderCreatedLabel.setText(dateOfOrderCreate);
 		latestCheckinTimeLabel.setText(hotelVO.latestCheckinTime);
 		ObservableList<String> withChildren = FXCollections.observableArrayList(Arrays.asList(new String[]{"有","无"}));
 		withChildrenCombox.setItems(withChildren);
+		ArrayList<String> roomTypes = UserInfoUtil.getInstance().getRoomTypes();
+		ObservableList<String> roomTypeItems = FXCollections.observableArrayList(roomTypes);
+		roomtypeCombox.setItems(roomTypeItems);
 		//设置入住人数下拉框为1-18
 		ArrayList<Integer> peopleNums = new ArrayList<>();
 		for(int i=1;i<=18;i++){

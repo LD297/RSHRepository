@@ -50,7 +50,7 @@ public class UserCreditRecordUIController {
     private GridPane gridPaneFilledWithCreditrecord;
     
 
-	private ArrayList<CreditRecordVO> creditRecordVOs= null;
+	private ArrayList<CreditRecordVO> creditRecordVOs= new ArrayList<CreditRecordVO>();
 	private int presentPage = 1;//当前页码
 	private int creditRecordVOsPointer = -1;
 	private int maxPages = 0;
@@ -77,7 +77,11 @@ public class UserCreditRecordUIController {
     void changeToSpecficPage(ActionEvent event) {
     	int page = Integer.parseInt(pageField.getText().trim());
     	if(page>=1){
-    		presentPage = page;
+    		if(page>maxPages){
+    			presentPage = maxPages;
+    		}else {
+				presentPage = page;
+			}
     		gridPaneFilledWithCreditrecord.getChildren().clear();
     		changeToSpecificPage(presentPage);
     	}else{//page小于0,不予反应
@@ -86,29 +90,26 @@ public class UserCreditRecordUIController {
     }
     
     //跳转到指定的页数
-    private void changeToSpecificPage(int page) {
-    	//直接跳转到最后一页
-		if(page>=maxPages){
-			creditRecordVOsPointer = (maxPages-1)*2;
-		}else{
-			creditRecordVOsPointer = (page-1)*2;
-		}
+	private void changeToSpecificPage(int page) {
+		pageField.setText(String.valueOf(page));
+		creditRecordVOsPointer = (page - 1) * 5;
 		int count = 0;
-		while(count<2){//一个界面上有2个格子
-			if(creditRecordVOsPointer==creditRecordVOs.size()){
+		while (count < 5) {// 一个界面上有2个格子
+			if (creditRecordVOsPointer == creditRecordVOs.size()) {
 				break;
 			}
-			SingleCreditRecordAnchorPane singleCreditRecordAnchorPane = new SingleCreditRecordAnchorPane(creditRecordVOs.get(creditRecordVOsPointer));
+			SingleCreditRecordAnchorPane singleCreditRecordAnchorPane = new SingleCreditRecordAnchorPane(
+					creditRecordVOs.get(creditRecordVOsPointer));
 			gridPaneFilledWithCreditrecord.add(singleCreditRecordAnchorPane, 0, count);
 			creditRecordVOsPointer++;
-			count ++;
+			count++;
 		}
 	}
     
     public void init(){
     	UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
 		creditRecordVOs = userInfoUtil.getCreditRecordVOs();
-		maxPages = (creditRecordVOs.size()+1)/2;
+		maxPages = (creditRecordVOs.size()+1)/5;
 		changeToSpecificPage(1);
 		// 初始化日历
 		dayOfTodayLabel.setText(new SimpleDateFormat("dd").format(new Date()));

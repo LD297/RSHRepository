@@ -8,21 +8,19 @@ import java.util.Iterator;
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.hotelservice.SearchHotelService;
-import bl.hotelserviceimpl.hotel_stub.HotelInfoService_Stub;
-import bl.hotelserviceimpl.hotel_stub.HotelService_Stub;
-import bl.hotelserviceimpl.hotel_stub.SearchHotelService_Stub;
+import bl.hotelserviceimpl.HotelInfoService_Stub;
+import bl.hotelserviceimpl.HotelService_Stub;
+import bl.hotelserviceimpl.SearchHotelService_Stub;
 import bl.loginservice.LoginService;
-import bl.loginserviceimpl.LoginController;
 import bl.loginserviceimpl.LoginService_Stub;
 import bl.orderservice.OrderForHotel;
 import bl.orderservice.OrderForUser;
-import bl.orderserviceimpl.miscellaneous.OrderForHotel_Stub;
-import bl.orderserviceimpl.miscellaneous.OrderForUser_Stub;
+import bl.orderserviceimpl.OrderForHotel_Stub;
+import bl.orderserviceimpl.OrderForUser_Stub;
 import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
 import bl.userservice.UserService;
 import bl.userserviceimpl.UserService_Stub;
-import constant.MemberType;
 import constant.ResultMessage;
 import constant.Role;
 import constant.Sexuality;
@@ -75,7 +73,7 @@ public String getHotelID() {
     private LoginService loginService = new LoginService_Stub();
     // use stub
     private SearchHotelService searchHotelService = new SearchHotelService_Stub();
-    private HotelService hotelService = new HotelService_Stub();
+    private HotelService hotelService = null;;
     private OrderForUser orderForUser = new OrderForUser_Stub();
     private OrderForHotel orderForHotel = new OrderForHotel_Stub();
     private PromotionService promotionService = new PromotionService_Stub();
@@ -193,6 +191,7 @@ public String getHotelID() {
      * 酒店详情界面调用,根据酒店id得到酒店vo
      */
     public HotelVO getHotelVO() {
+    	hotelService = new HotelService_Stub();
     	HotelVO hotelVO = hotelService.getHotelInfo(hotelID);
 		return hotelVO;
 	}
@@ -202,6 +201,7 @@ public String getHotelID() {
      * @return
      */
     public ArrayList<RoomVO> getRoomVos() {
+    	hotelService = new HotelService_Stub();
 		ArrayList<RoomVO> roomVOs = hotelService.getRoomList();
 		return roomVOs;
 	}
@@ -316,6 +316,7 @@ public String getHotelID() {
      */
     
     public OrderVO getOrderVO() {
+    	System.out.println("hbkjfhgdhsjbhb");
 		OrderVO orderVO = orderForUser.detail(orderID);
 		return orderVO;
 	}
@@ -334,6 +335,14 @@ public String getHotelID() {
      */
     public ArrayList<OrderVO> getOrderVOs(StateOfOrder stateOfOrder) {
     	ArrayList<OrderVO> orderVOs = orderForUser.userClassify(userID, stateOfOrder);
+		return orderVOs;
+	}
+    
+    /**
+     * 我的订单界面调用，得到用户在某个酒店的订单
+     */
+    public ArrayList<OrderVO> getOrderVOsOfOneHotel() {
+		ArrayList<OrderVO> orderVOs = orderForUser.specificOrder(userID, hotelID);
 		return orderVOs;
 	}
     /**

@@ -19,7 +19,6 @@ public class WebManagerUIFXMLFactory {
 		try {
 			anchorPane = loader.load();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return anchorPane;
@@ -31,7 +30,6 @@ public class WebManagerUIFXMLFactory {
 		try {
 			anchorPane = loader.load();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return anchorPane;
@@ -43,12 +41,41 @@ public class WebManagerUIFXMLFactory {
 		try {
 			anchorPane = loader.load();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return anchorPane;
 	}
 	
-
+	public AnchorPane getEnsureAddHotel() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网站管理人员。确认添加酒店.fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return anchorPane;
+	}
 	
+	public AnchorPane getAddHotel() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网站管理人员。添加酒店.fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return anchorPane;
+	}
+	
+	public AnchorPane getAddWebSalesman() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网站管理人员。添加营销人员.fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return anchorPane;
+	}
 }

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import bl.promotionservice.PromotionService;
+import constant.ConditionType;
+import constant.DeductionType;
 import constant.ResultMessage;
+import constant.ScopeType;
 import vo.PromotionVO;
 
 public class PromotionService_Stub implements PromotionService{
@@ -12,18 +15,18 @@ public class PromotionService_Stub implements PromotionService{
 	@Override
 	public ResultMessage addPromotion(PromotionVO promotionVO) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.succeed;
 	}
 
 	@Override
 	public ResultMessage delPromotion(String setterID, String promotionID) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.succeed;
 	}
 
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfPeriod(Date beginDate, Date EndDate) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -35,8 +38,23 @@ public class PromotionService_Stub implements PromotionService{
 
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfHotel(String hotelID) {
-		// TODO Auto-generated method stub
-		return null;
+		PromotionVO vo1 = new PromotionVO("", "", "Promotion One", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				null, 0, null, 0);
+		PromotionVO vo2 = new PromotionVO("", "", "Promotion Two", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				null, 0, null, 0);
+		PromotionVO vo3 = new PromotionVO("", "", "Promotion Three", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				null, 0, null, 0);
+		PromotionVO vo4 = new PromotionVO("", "", "Promotion Four", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				null, 0, null, 0);
+		PromotionVO vo5 = new PromotionVO("", "", "Promotion Five", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				null, 0, null, 0);
+		ArrayList<PromotionVO> list = new ArrayList<>();
+		list.add(vo1);
+		list.add(vo2);
+		list.add(vo3);
+		list.add(vo4);
+		list.add(vo5);
+		return list;
 	}
 
 	@Override
