@@ -3,12 +3,7 @@ package data.daohelper;
 import constant.ResultMessage;
 import constant.SortBy;
 import constant.SortMethod;
-import po.HotelPO;
-import po.HotelStaffPO;
-import vo.HotelVO;
-import vo.RoomAvailVO;
-import vo.RoomVO;
-import vo.SelectConditionVO;
+import po.*;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -18,47 +13,32 @@ import java.util.Date;
  * Created by aa on 2016/12/3.
  */
 public interface HotelDaoHelper {
-    public ResultMessage addComment(String hotelID, String userID,  int grade,String comment)throws RemoteException ;
+    // 根据酒店ID 得到酒店对象
+    public HotelPO getHotel(String hotelID) throws RemoteException;
+    // 根据酒店传入地区 初始化酒店账号
+    public String getNewHotelID(String district) throws RemoteException;
+    // 添加酒店（注销酒店 暂不考虑）
+    public ResultMessage addHotel(HotelPO hotelPO) throws RemoteException;
+    // 更新酒店基本信息
+    public ResultMessage updateHotel (HotelPO hotelPO) throws RemoteException;
+    // 根据roompo里的酒店账号 添加酒店的客房信息 并将该房间类型可用客房数量置为总数
+    public ResultMessage addSpecialRoom(RoomPO roomPO) throws RemoteException;
+    // 根据roompo里的酒店账号 删除酒店的客房信息
+    public ResultMessage deleteSpecialRoom(RoomPO roomPO) throws RemoteException;
+    // 根据酒店ID 得到酒店的所有房间的信息
+    public ArrayList<RoomPO> getRoomList(String hotelID) throws RemoteException;
+    // 根据roompo里的酒店账号 更新该房间类型的信息
+    public ResultMessage updateRoom(RoomPO roomPO) throws RemoteException;
+    // 根据酒店ID、日期 得到酒店在该日期下的所有客房的可用信息
+    public ArrayList<RoomAvailPO> getRoomAvailList(String hotelID, Date checkIn) throws RemoteException;
+    // 更改酒店 房间类型 房间可用数量的信息
+    // 当酒店手动修改（checkin==checkout）
+    public ResultMessage changeRoomAvail(String id, String roomType,boolean isPlus, int num, Date checkIn, Date checkOut) throws RemoteException;
+    // 得到酒店 房间类型 一段日期 可用数量
+    public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) throws RemoteException;
+    // 生成订单时得到酒店 所有房间的规格信息？？
+    public ArrayList<RoomNormPO> getRoomNorm(String id) throws RemoteException;
+    // 根据地址和商圈的到酒店列表
+    public ArrayList<HotelPO> getHotelList(String address,String businessArea) throws RemoteException;
 
-    public ResultMessage checkPassword(String hotelID, String password)throws RemoteException ;
-
-    public HotelPO getHotel(String hotelID)throws RemoteException ;
-
-    public ResultMessage updateGrade(String hotelID,int grade)throws RemoteException ;
-
-    public ResultMessage updateHotel(HotelVO vo)throws RemoteException ;
-
-    public ResultMessage addSpecialRoom(RoomVO vo)throws RemoteException ;
-
-    public ResultMessage deleteSpecialRoom(RoomVO vo)throws RemoteException ;
-
-    public ArrayList<RoomVO> getRoomList(String hotelID)throws RemoteException ;
-
-    public ResultMessage updateRoom(RoomVO vo)throws RemoteException ;
-
-    public ResultMessage changeRoomAvail(String hotelid,String roomType,Boolean isPlus, int num, Date checkIn, Date checkOut)throws RemoteException ;
-
-    public int numOfRoomAvail(String hotelid,String roomType, Date checkIn, Date checkOut)throws RemoteException ;
-
-    public ArrayList<RoomAvailVO> getRoomAvailList( String hotelID,Date checkIn, Date checkOut)throws RemoteException ;
-
-    public ResultMessage updateRoomAvail(RoomAvailVO vo)throws RemoteException ;
-
-    public ArrayList<HotelVO> getHotelList(String address, String businessArea)throws RemoteException ;
-
-    public HotelVO getHotelInfo(String id)throws RemoteException ;
-
-//  public ArrayList<HotelVO> sort(SortBy sortBy, SortMethod sortM)throws RemoteException ;
-
-    public ArrayList<HotelVO> selectByName(String hotelName)throws RemoteException;
-
-    public ArrayList<HotelVO> selectByCondition(SelectConditionVO vo)throws RemoteException ;
-
-    public int getHotelNum(String address)throws RemoteException ;
-
-    public ResultMessage addHotel(String id, String password)throws RemoteException ;
-
-    public ResultMessage deleteHotel(String id)throws RemoteException ;
-
-    public ResultMessage updateHotelStaff(HotelStaffPO po)throws RemoteException ;
 }

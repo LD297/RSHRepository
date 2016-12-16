@@ -21,7 +21,7 @@ public class Launcher extends Application{
             Scene scene = new Scene(roleChoose,800,720);
             stage.setTitle("RSH");
             stage.setScene(scene);
-            UIJumpTool.getUiJumpTool().setStage(stage);
+//            UIJumpTool.getUiJumpTool().setStage(stage);
             stage.show();
         }catch (Exception e){
             e.printStackTrace();

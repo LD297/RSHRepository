@@ -5,6 +5,8 @@ import constant.SortBy;
 import constant.SortMethod;
 import data.dao.hoteldao.HotelDao;
 import po.HotelPO;
+import po.RoomAvailPO;
+import po.RoomNormPO;
 //import po.HotelStaffPO;
 import po.RoomPO;
 import vo.*;
@@ -26,9 +28,10 @@ public class HotelDao_Stub implements  HotelDao{
 
     @Override
     public HotelPO getHotel(String id) {
-        return HotelPO.changeIntoPO(new HotelVO("0123456789","11122233344",
-                "天鸿凯莱大酒店", "南京市栖霞区", "仙林大学城", "新开张", "一应俱全",
-                4, 4.8, "23:44:59"));
+    	HotelPO hotelPO = new HotelPO("0123456789","11122233344", "12345667781",  "天鸿凯莱大酒店", "南京市栖霞区", "123456",  
+                "新开张", "一应俱全", 4, 4.8, 123);
+    			
+        return hotelPO;
     }
 
     public ResultMessage updateGrade(double grade) {
@@ -61,18 +64,17 @@ public class HotelDao_Stub implements  HotelDao{
     }
 
     @Override
-    public ArrayList<RoomVO> getRoomList(String id) {
+    public ArrayList<RoomPO> getRoomList(String id) {
         if(id.equals("~~~")){
             RoomVO roomVO = new RoomVO("12345678912", "doubleRoom", 20, 300, "basic");
-            ArrayList<RoomVO> rooms = new ArrayList<RoomVO>();
-            rooms.add(roomVO);
+            ArrayList<RoomPO> rooms = new ArrayList<RoomPO>();
+            rooms.add(roomVO.changeIntoPO());
             return rooms;
         }
         else
             return null;
     }
 
-    @Override
     public ResultMessage updateRoomList(ArrayList<RoomPO> roomPOList) {
         if(roomPOList.get(0).getType().equals("singleRoom"))
             return ResultMessage.succeed;
@@ -96,11 +98,9 @@ public class HotelDao_Stub implements  HotelDao{
             return 0;
     }
 
-    @Override
     public ArrayList<RoomAvailVO> getRoomAvailList(String id, Date checkIn, Date checkOut) throws RemoteException {
         return null;
     }
-    @Override
     public ResultMessage updateRoomAvailList(String id, ArrayList<RoomAvailVO> roomAvailList) {
         if(id.equals("0000000000"))
             return ResultMessage.succeed;
@@ -109,7 +109,7 @@ public class HotelDao_Stub implements  HotelDao{
     }
 
     @Override
-    public ArrayList<RoomNormVO> getRoomNorm(String id) throws RemoteException {
+    public ArrayList<RoomNormPO> getRoomNorm(String id) throws RemoteException {
         return null;
     }
 
@@ -119,7 +119,7 @@ public class HotelDao_Stub implements  HotelDao{
     }
 
     @Override
-    public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
+    public ArrayList<HotelPO> getHotelList(String address, String businessArea) {
         // TODO: 16/11/20
         return null;
     }
@@ -130,12 +130,6 @@ public class HotelDao_Stub implements  HotelDao{
     }
 
 
-    @Override
-    public ArrayList<HotelVO> select(SelectConditionVO vo) {
-        ArrayList<HotelVO> list = new ArrayList<HotelVO>();
-        list.add(new HotelVO("2333333333"));
-        return list;
-    }
 
     public String getHotelID(String district) throws RemoteException {
         return null;
@@ -169,6 +163,20 @@ public class HotelDao_Stub implements  HotelDao{
 	@Override
 	public String getNewHotelID(String district) throws RemoteException {
 		// TODO Auto-generated method stub
+		
 		return null;
+	}
+
+	@Override
+     public ResultMessage updateRoomList(RoomPO roomPO) throws RemoteException {
+	// TODO Auto-generated method stub
+	return null;
+
+	}
+
+	@Override
+	public ArrayList<RoomAvailPO> getRoomAvailList(String id, Date checkIn) throws RemoteException {
+			// TODO Auto-generated method stub
+	return null;
 	}
 }

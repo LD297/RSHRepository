@@ -10,29 +10,32 @@ public class CreditRecordPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -163720997980736608L;
-	String userid;
+	String userID;
 	Date date;
-	String orderid;
+	String orderID;
 	CreditAction creditAction;
 	/**
-	 * for example    "+200"
+	 * for example"+200"
 	 */
 	String change;
+	/**
+	 * 变化后的信用值
+	 */
 	int credit;
-	public CreditRecordPO(String userid,Date date,String orderid,
+	public CreditRecordPO(String userID,Date date,String orderID,
 			CreditAction creditAction,String change,int credit) {
 		this.creditAction = creditAction;
 		this.date = date;
 		this.change = change;
 		this.credit = credit;
-		this.orderid = orderid;
-		this.userid = userid;
+		this.orderID = orderID;
+		this.userID = userID;
 	}
 	public String getUserid() {
-		return userid;
+		return userID;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserid(String userID) {
+		this.userID = userID;
 	}
 	public Date getDate() {
 		return date;
@@ -40,11 +43,11 @@ public class CreditRecordPO implements Serializable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getOrderid() {
-		return orderid;
+	public String getOrderID() {
+		return orderID;
 	}
-	public void setOrderid(String orderid) {
-		this.orderid = orderid;
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
 	}
 	public CreditAction getCreditAction() {
 		return creditAction;

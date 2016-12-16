@@ -13,18 +13,10 @@ import po.OnlinePersonPO;
  *
  */
 public interface LoginDao extends Remote{
-	/**
-	 * 增加在线人员持久化对象
-	 * @param po
-	 * @return
-	 */
+
+    // 增加在线人员持久化对象
 	public ResultMessage addOnline(OnlinePersonPO po) throws RemoteException;
-	/**
-	 * 删除在线人员持久化对象
-	 * @param role
-	 * @param id
-	 * @return
-	 */
+	// 删除在线人员持久化对象
 	public ResultMessage deleteOnline(Role role,String id) throws RemoteException;
 }
 

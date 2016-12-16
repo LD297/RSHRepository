@@ -5,18 +5,12 @@ import vo.RoomVO;
 import java.io.Serializable;
 
 public class RoomPO implements Serializable{
-	/**
-	 * 酒店名称
-	 */
-	private String id;
-	/**
-	 * 房间类型（单人间／标准间）
-	 */
-	private String type;
-	/**
-	 * 该类型房间总量
-	 */
-	private int amountTotal;
+	
+	private String hotelID;
+	
+	private String roomType;
+	
+	private int numOfRoom;
 	/**
 	 * 该类型房间的单价（元／晚（12:00～次日11:59））
 	 */
@@ -26,28 +20,35 @@ public class RoomPO implements Serializable{
 	 */
 	private String basicOrSpecial;
 
+	public RoomPO(String hotelID,String roomType,int numOfRoom,double price, String basicOrSpecial){
+		this.hotelID = hotelID;
+		this.roomType = roomType;
+		this.numOfRoom = numOfRoom;
+		this.price = price;
+		this.basicOrSpecial = basicOrSpecial;
+	}
 	public String getId() {
-		return id;
+		return hotelID;
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		this.hotelID = id;
 	}
 
 	public String getType() {
-		return type;
+		return roomType;
 	}
 
 	public void setType(String type) {
-		this.type = type;
+		this.roomType = type;
 	}
 
 	public int getAmountTotal() {
-		return amountTotal;
+		return numOfRoom;
 	}
 
 	public void setAmountTotal(int amountTotal) {
-		this.amountTotal = amountTotal;
+		this.numOfRoom = amountTotal;
 	}
 
 	public double getPrice() {
@@ -66,13 +67,8 @@ public class RoomPO implements Serializable{
 		this.basicOrSpecial = basicOrSpecial;
 	}
 
-	public static RoomPO changeIntoPO(RoomVO vo){
-		RoomPO newRoomPO  = new RoomPO();
-		newRoomPO.setId(vo.id);
-		newRoomPO.setType(vo.type);
-		newRoomPO.setAmountTotal(vo.amountTotal);
-		newRoomPO.setPrice(vo.price);
-		newRoomPO.setBasicOrSpecial(vo.basicOrSpecial);
-		return newRoomPO;
+	public RoomVO changeIntoVO(){
+		RoomVO roomVO = new RoomVO(hotelID, roomType, numOfRoom, price, basicOrSpecial);
+		return roomVO;
 	}
 }

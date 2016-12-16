@@ -4,9 +4,10 @@ import constant.ConditionType;
 import constant.DeductionType;
 import constant.ScopeType;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PromotionPO {
+public class PromotionPO implements Serializable {
 
 	String setter;
 	String id;

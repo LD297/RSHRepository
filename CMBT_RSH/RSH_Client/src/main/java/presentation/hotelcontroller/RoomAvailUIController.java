@@ -193,9 +193,9 @@ public class RoomAvailUIController {
     private void showRoomAvailItems(AnchorPane theAnchorPane, RoomAvailVO theRoomAvail){
         if(theRoomAvail!=null){
 
-            String type = theRoomAvail.type;
-            String baOrSpe = theRoomAvail.basicOrSpecial;
-            String price = String.valueOf(theRoomAvail.price);
+            String type = theRoomAvail.getRoomType();
+            String baOrSpe = theRoomAvail.getBasicOrSpecial();
+            String price = String.valueOf(theRoomAvail.getPrice());
             String availNum = String.valueOf(theRoomAvail.getAmountAvail());
 
             Label roomType = (Label)theAnchorPane.getChildren().get(0);
