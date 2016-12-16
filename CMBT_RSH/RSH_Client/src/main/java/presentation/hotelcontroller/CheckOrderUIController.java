@@ -141,9 +141,9 @@ public class CheckOrderUIController {
     // 用于当前页面显示的gridPane中有限个anchorPane
     private AnchorPane[] aPanesForShow = new AnchorPane[NUM_OF_ORDERS_SHOWN];
     // 当前类型（tab）对应的订单共几页
-    private int fullPageNum;
+    private int fullPageNum = 0;
     // 最后剩下不满一页的订单有几条
-    private int remainderOrderNum;
+    private int remainderOrderNum = 0;
     // 当前页数，从0开始计，显示出来要加一
     private int currentPage=0;
 
@@ -183,7 +183,7 @@ public class CheckOrderUIController {
         currentGridPane = (GridPane) currentTabAnchorPane.getChildren().get(0);
     }
 
-    private void setfullPageNum() {
+    private void setFullPageNum() {
         fullPageNum = currentOrder.size()/NUM_OF_ORDERS_SHOWN;
     }
 
@@ -193,22 +193,19 @@ public class CheckOrderUIController {
 
     private void setOrderOnShow(boolean isFullPage) {
         if(isFullPage)
-            for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
-                /**
-                 * 根据当前页码获得当前页数的orders，并依次存入orderOnShow数组
-                 */
+            for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++)
+            /**
+             * 根据当前页码获得当前页数的orders，并依次存入orderOnShow数组
+             */
                 orderOnShow[i] = currentOrder.get(currentPage*NUM_OF_ORDERS_SHOWN+i);
-            }
         else {
-            for(int i=0; i<remainderOrderNum; i++){
+            for(int i=0; i<remainderOrderNum; i++)
                 orderOnShow[i] = currentOrder.get(currentPage*NUM_OF_ORDERS_SHOWN+i);
-            }
             /**
              * 为防止前一页遗留，重置order on show时，缺省项用null补齐，并在显示时判断
              */
-            for(int i=remainderOrderNum; i<NUM_OF_ORDERS_SHOWN; i++){
+            for(int i=remainderOrderNum; i<NUM_OF_ORDERS_SHOWN; i++)
                 orderOnShow[i] = null;
-            }
         }
     }
 
@@ -285,7 +282,7 @@ public class CheckOrderUIController {
             showBlank(theAnchorePane);
         }
     }
-    // 设置anchorPanes所有子女不可见
+    // 设置该条目anchorPane所有子女不可见
     private void showBlank(AnchorPane theAnchorePane) {
         int size = theAnchorePane.getChildren().size();
         for(int i=0; i<size; i++){
@@ -301,15 +298,10 @@ public class CheckOrderUIController {
         else if(currentPage<0){
             System.out.println("已是第一页！");
             currentPage++;
-
-            if(fullPageNum!=0){
-                showPageNumber();
-                return;
-            }
+            return;
         } else {
             System.out.println("已是最后一页！");
             currentPage--;
-            showPageNumber();
             return;
         }
         setAPanesForShow();
@@ -340,7 +332,7 @@ public class CheckOrderUIController {
             setCurrentGridPane();
 
             // 设置满页数目
-            setfullPageNum();
+            setFullPageNum();
             // 设置不满页的订单数目
             setRemainderOrderNum();
             // 显示当前页
@@ -371,7 +363,7 @@ public class CheckOrderUIController {
             setCurrentGridPane();
 
             // 设置满页数目
-            setfullPageNum();
+            setFullPageNum();
             // 设置不满页的订单数目
             setRemainderOrderNum();
             // 显示当前页
@@ -402,7 +394,7 @@ public class CheckOrderUIController {
             setCurrentGridPane();
 
             // 设置满页数目
-            setfullPageNum();
+            setFullPageNum();
             // 设置不满页的订单数目
             setRemainderOrderNum();
             // 显示当前页
@@ -432,7 +424,7 @@ public class CheckOrderUIController {
             setCurrentGridPane();
 
             // 设置满页数目
-            setfullPageNum();
+            setFullPageNum();
             // 设置不满页的订单数目
             setRemainderOrderNum();
             // 显示当前页
