@@ -27,8 +27,6 @@ public class HotelUIFactory {
 
     private FXMLLoader roomInfoUILoader;
 
-    private FXMLLoader addRoomUILoader;
-
     public static HotelUIFactory getInstance(){
         if(hotelUIFactory==null)
             hotelUIFactory = new HotelUIFactory();
@@ -75,11 +73,5 @@ public class HotelUIFactory {
         if(roomInfoUILoader==null)
             roomInfoUILoader = new FXMLLoader(getClass().getResource("/fxml/客房信息维护.fxml"));
         return roomInfoUILoader;
-    }
-
-    public FXMLLoader getAddRoomUILoader() {
-        if(addRoomUILoader==null)
-            addRoomUILoader = new FXMLLoader(getClass().getResource("/fxml/添加客房界面.fxml"));
-        return addRoomUILoader;
     }
 }

@@ -5,6 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
+
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.AddRoomUIController">
    <children>
       <Label layoutX="82.0" layoutY="114.0" opacity="0.8" text="房间类型: ">
@@ -12,12 +13,12 @@
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Label>
-      <CheckBox fx:id="basicCheckBox" layoutX="407.0" layoutY="114.0" mnemonicParsing="false" onAction="#basicCheckBoxListener" opacity="0.8" text="基本" AnchorPane.topAnchor="114.0">
+      <CheckBox fx:id="basicCheckBox" layoutX="407.0" layoutY="114.0" mnemonicParsing="false" opacity="0.8" text="基本" AnchorPane.topAnchor="114.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="specialCheckBox" layoutX="407.0" layoutY="154.0" mnemonicParsing="false" onAction="#specialCheckBoxListener" opacity="0.8" text="特色" AnchorPane.topAnchor="154.0">
+      <CheckBox fx:id="specialCheckBox" layoutX="407.0" layoutY="154.0" mnemonicParsing="false" opacity="0.8" text="特色" AnchorPane.topAnchor="154.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
@@ -38,7 +39,7 @@
          </font>
       </Label>
       <TextField fx:id="roomTypeTextField" layoutX="146.0" layoutY="109.0" prefHeight="27.0" prefWidth="105.0" />
-      <TextField fx:id="roomPriceTextField" layoutX="146.0" layoutY="251.0" prefHeight="27.0" prefWidth="105.0" promptText="¥" />
+      <TextField fx:id="roomPriceTextField" layoutX="146.0" layoutY="251.0" prefHeight="27.0" prefWidth="105.0" text="¥: " />
       <TextField fx:id="roomNumTextField" layoutX="146.0" layoutY="182.0" prefHeight="27.0" prefWidth="105.0" />
       <Label layoutX="322.0" layoutY="115.0" opacity="0.8" text="基本 / 特色: ">
          <font>

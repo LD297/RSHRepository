@@ -28,7 +28,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="382.0" layoutY="14.0" text="可用数量" textFill="#00a699" AnchorPane.rightAnchor="148.0" AnchorPane.topAnchor="14.0">
+            <Label layoutX="394.0" layoutY="14.0" text="数量" textFill="#00a699" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>

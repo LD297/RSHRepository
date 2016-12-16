@@ -283,10 +283,10 @@ public class CheckOrderUIController {
         }
     }
     // 设置该条目anchorPane所有子女不可见
-    private void showBlank(AnchorPane theAnchorPane) {
-        int size = theAnchorPane.getChildren().size();
+    private void showBlank(AnchorPane theAnchorePane) {
+        int size = theAnchorePane.getChildren().size();
         for(int i=0; i<size; i++){
-            theAnchorPane.getChildren().get(i).setVisible(false);
+            theAnchorePane.getChildren().get(i).setVisible(false);
         }
     }
     private void showPage() {
