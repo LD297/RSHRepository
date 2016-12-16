@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.webmanagercontroller.CheckUserInfoUIController">
+   <children>
+      <Label layoutX="40.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.3);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane layoutX="137.0" layoutY="90.0" maxHeight="400.0" maxWidth="500.0" minHeight="400.0" minWidth="500.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="160.0">
+         <children>
+            <Label layoutX="175.0" layoutY="59.0" prefHeight="36.0" prefWidth="151.0" text="查看用户信息" textFill="#ff5a5f">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="cancelImage" fitHeight="30.0" fitWidth="30.0" layoutX="471.0" layoutY="-1.0" onMouseClicked="#closeCheckUserInfo" onMouseEntered="#changeCancelImageToRed" onMouseExited="#changeCancelImageToGray" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cancel.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="97.0" layoutY="200.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/电话图标.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="97.0" layoutY="116.0" prefHeight="30.0" prefWidth="78.0" text="用户名：">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel" layoutX="188.0" layoutY="116.0" prefHeight="30.0" prefWidth="56.0" text="张根硕">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="sexImage" fitHeight="20.0" fitWidth="20.0" layoutX="391.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/male.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="97.0" layoutY="152.0" prefHeight="30.0" prefWidth="78.0" text="昵称：">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="userNicknameLabel" layoutX="188.0" layoutY="152.0" prefHeight="30.0" prefWidth="56.0" text="297">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="userPhonelabel" layoutX="188.0" layoutY="197.0" prefHeight="30.0" prefWidth="101.0" text="29711118790">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="97.0" layoutY="250.0" prefHeight="30.0" prefWidth="78.0" text="信用值：">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="memberTypeLabel" layoutX="296.0" layoutY="250.0" prefHeight="30.0" prefWidth="101.0" text="普通会员：">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="userCreditLabel" layoutX="188.0" layoutY="250.0" prefHeight="30.0" prefWidth="56.0" text="100000">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="memberLevelLabel" layoutX="397.0" layoutY="250.0" prefHeight="30.0" prefWidth="56.0" text="3">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="99.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pen_grey.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="resetPasswordButton" layoutX="137.0" layoutY="299.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#changeToSuccessResetPassword" prefHeight="30.0" style="-fx-background-color: #ff5a5f;" text="重置密码" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>
