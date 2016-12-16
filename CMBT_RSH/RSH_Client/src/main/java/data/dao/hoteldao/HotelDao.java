@@ -6,6 +6,7 @@ import constant.SortMethod;
 import po.HotelPO;
 //import po.HotelStaffPO;
 import po.RoomAvailPO;
+import po.RoomNormPO;
 import po.RoomPO;
 import vo.*;
 
