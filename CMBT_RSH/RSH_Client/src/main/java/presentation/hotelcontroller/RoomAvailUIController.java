@@ -4,15 +4,19 @@ package presentation.hotelcontroller;
  * Created by a297 on 16/12/5.
  */
 import java.net.URL;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
+import constant.ResultMessage;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
@@ -28,6 +32,9 @@ public class RoomAvailUIController {
 
     @FXML
     private URL location;
+
+    @FXML
+    private DatePicker datePicker;
 
     @FXML
     private AnchorPane showPane02;
@@ -63,9 +70,6 @@ public class RoomAvailUIController {
     private ImageView minus04;
 
     @FXML
-    private Button confirmButton;
-
-    @FXML
     private AnchorPane anchorPane;
 
     @FXML
@@ -95,8 +99,6 @@ public class RoomAvailUIController {
     @FXML
     private Label gotoImageView;
 
-    @FXML
-    private ImageView editImageView;
 
     @FXML
     private AnchorPane showPane0;
@@ -107,10 +109,11 @@ public class RoomAvailUIController {
     @FXML
     private Label pageLabel;
 
+    // 当前入住日期
+    private Date currentDate = Date.from(Instant.now());
+
     // TODO 记得设置
     private HotelService hotelService;
-
-    private boolean isEditable = false;
 
     private static AnchorPane prePane;
     public void setAnchorPane(AnchorPane anchorPane) {
@@ -122,7 +125,7 @@ public class RoomAvailUIController {
 
     private static final int NUM_OF_PANES_FOR_SHOW = 6;
 
-    // TODO 根据日期从数据库得到当天各种类型的可用数量
+    // 根据日期从数据库得到当天各种类型的可用数量
     private ArrayList<RoomAvailVO> currentRoomAvailList;
     // 存放当前页面显示的有限条房间信息
     private RoomAvailVO[] roomAvailOnShow = new RoomAvailVO[NUM_OF_PANES_FOR_SHOW];
@@ -136,12 +139,16 @@ public class RoomAvailUIController {
     // 当前页数，从0开始计，显示出来要加一
     private int currentPage=0;
 
+    private void setCurrentRoomAvailList(Date checkIn){
+        currentRoomAvailList = hotelService.getRoomAvailList(checkIn);
+    }
+
     private void refreshPage() {
+        setCurrentRoomAvailList(currentDate);
         initCurrentPage();
         setFullPageNum();
         setRemainderRoomAvailNum();
         showPage();
-        isEditable = false;
     }
 
     private void initCurrentPage() {
@@ -235,9 +242,6 @@ public class RoomAvailUIController {
         showPageNum();
     }
 
-    private void initcurrentPage() {
-        currentPage = 0;
-    }
     private void showPageNum(){
         if(pageLabel!=null)
             pageLabel.setText(String.valueOf(currentPage+1));
@@ -247,62 +251,54 @@ public class RoomAvailUIController {
         Label roomAvailNum = (Label)thePane.getChildren().get(3);
         int availNum = Integer.valueOf(roomAvailNum.getText());
         availNum+=change;
-        // TODO 检查房间数量大于零
-        roomAvailNum.setText(String.valueOf(availNum));
+        // 房间数量非负
+        if(availNum>=0){
+            roomAvailNum.setText(String.valueOf(availNum));
+            Label roomType = (Label)thePane.getChildren().get(0);
+            currentDate = (Date)datePicker.getUserData();
+            if(currentDate==null)
+                currentDate = Date.from(Instant.now());
+            // TODO 告诉逻辑实现，最后两个日期，任一为null；默认设为系统当前时间
+            if(change==1)
+                hotelService.plusRoomAvail(roomType.getText(), availNum, currentDate, currentDate);
+            else if(change==-1)
+                hotelService.minusRoomAvail(roomType.getText(), availNum, currentDate, currentDate);
+        }
     }
 
     // 所有加号一个监听，响应时判断父节点
     @FXML
     void plus0Clicked(MouseEvent event){
-        if(isEditable) {
-            AnchorPane actorPane = (AnchorPane)((ImageView)event.getSource()).getParent();
-            changeNum(actorPane, 1);
-        }
+        AnchorPane actorPane = (AnchorPane)((ImageView)event.getSource()).getParent();
+        changeNum(actorPane, 1);
     }
 
     @FXML
     void minus0Clicked(MouseEvent event) {
-        if(isEditable){
-            AnchorPane actorPane = (AnchorPane)((ImageView)event.getSource()).getParent();
-            changeNum(actorPane, -1);
-        }
+        AnchorPane actorPane = (AnchorPane)((ImageView)event.getSource()).getParent();
+        changeNum(actorPane, -1);
     }
 
 
     @FXML
     void prePageClicked(MouseEvent event) {
         // 只有确认当前页操作才能翻页
-        if(!isEditable){
-            currentPage--;
-            showPage();
-        }
+        currentPage--;
+        showPage();
     }
 
     @FXML
     void nextPageClicked(MouseEvent event) {
         // 只有确认当前页操作才能翻页
-        if(!isEditable){
-            currentPage++;
-            showPage();
-        }
+        currentPage++;
+        showPage();
     }
 
     @FXML
     void gotoDate(MouseEvent event) {
-
-    }
-
-    @FXML
-    void editClicked(MouseEvent event) {
-        isEditable = true;
-    }
-
-    @FXML
-    void confirmButtonClicked(MouseEvent event) {
-        // 判断当前页哪些信息有变，然后传到逻辑层
-        ArrayList<RoomAvailVO> roomAvailNumChanged = checkChange();
-//        hotelService.minusRoomAvail();
-        isEditable = false;
+        currentDate = (Date)datePicker.getUserData();
+        currentRoomAvailList = hotelService.getRoomAvailList(currentDate);
+        refreshPage();
     }
 
     @FXML
@@ -323,7 +319,6 @@ public class RoomAvailUIController {
         assert showPane05 != null : "fx:id=\"showPane05\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
         assert minus05 != null : "fx:id=\"minus05\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
         assert minus04 != null : "fx:id=\"minus04\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
         assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
         assert prePageLabel != null : "fx:id=\"prePageLabel\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
         assert plus05 != null : "fx:id=\"plus05\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
@@ -334,10 +329,11 @@ public class RoomAvailUIController {
         assert plus02 != null : "fx:id=\"plus02\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
         assert plus01 != null : "fx:id=\"plus01\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
         assert gotoImageView != null : "fx:id=\"gotoImageView\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert editImageView != null : "fx:id=\"editImageView\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
         assert showPane0 != null : "fx:id=\"showPane0\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
         assert minus0 != null : "fx:id=\"minus0\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
+        assert datePicker != null : "fx:id=\"datePicker\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
+
         refreshPage();
     }
 }
