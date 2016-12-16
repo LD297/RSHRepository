@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.webmanagercontroller.ManafeWebsalesmanUIController">
    <children>
       <GridPane layoutX="163.0" layoutY="113.0" AnchorPane.leftAnchor="100.0">
          <columnConstraints>
@@ -239,12 +239,12 @@
             <Font name="Times New Roman" size="12.0" />
          </font>
       </TextField>
-      <TextField layoutX="157.0" layoutY="80.0" promptText="输入营销人员账号">
+      <TextField fx:id="websalesmanIDField" layoutX="157.0" layoutY="80.0" onAction="#changeToModifyWebsalesman" promptText="输入营销人员账号">
          <font>
             <Font name="Times New Roman" size="15.0" />
          </font>
       </TextField>
-      <Button contentDisplay="CENTER" layoutX="596.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-color: #00a699;" text="添加营销人员" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="addWebSalesmanButton" contentDisplay="CENTER" layoutX="596.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#changeToAddWebSalesman" style="-fx-background-color: #00a699;" text="添加营销人员" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
@@ -254,7 +254,7 @@
             <Image url="@../images/搜索图标.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="backImage" fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true">
+      <ImageView fx:id="backImage" fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="14.0" onMouseClicked="#backToHomePage" pickOnBounds="true">
          <image>
             <Image url="@../images/返回箭头.png" />
          </image>

@@ -41,8 +41,18 @@ public class ImageFactory {
     private Image cancelAbnormalImage = new Image("/images/撤销.png");//撤销订单
     private Image delayCheckinImage = new Image("/images/NOTEPAD _ OK.png");//回复异常订单
     private Image unexecutedOrderImage = new Image("/images/exclamation.png");//未执行订单
+    private Image phoneImage = new Image("/images/电话图标.png");
+    private Image penImage = new Image("/images/pen.png");
 
-    public Image getHeadImage() {
+    public Image getPenImage() {
+		return penImage;
+	}
+
+	public Image getPhoneImage() {
+		return phoneImage;
+	}
+
+	public Image getHeadImage() {
 		return headImage;
 	}
 

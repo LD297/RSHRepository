@@ -2,6 +2,7 @@ package presentation.tools;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import presentation.webmanagercontroller.ManagerHomepageUIController;
 
 public class WebManagerUIFXMLFactory {
 	private static WebManagerUIFXMLFactory webManagerUIFXMLFactory = null;
@@ -12,6 +13,13 @@ public class WebManagerUIFXMLFactory {
 		}
 		return webManagerUIFXMLFactory;
 	}
+	
+	private ManagerHomepageUIController managerHomepageUIController = null;
+	
+	private AnchorPane manageUserAnchorPane = null;
+	private AnchorPane manageHotelAnchorPane = null;
+	private AnchorPane manageWebsalesmanAnchorPane = null;
+	private AnchorPane aboutUsAnchorPane = null;
 
 	public AnchorPane getManageHomepage() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管首页 .fxml"));
@@ -21,52 +29,60 @@ public class WebManagerUIFXMLFactory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		managerHomepageUIController = loader.getController();
 		return anchorPane;
 	}
 	
+	public ManagerHomepageUIController getManagerHomepageUIController() {
+		return managerHomepageUIController;
+	}
 	public AnchorPane getAboutUs() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_关于我们 .fxml"));
-		AnchorPane anchorPane = null;
-		try {
-			anchorPane = loader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_关于我们.fxml"));
+		if(aboutUsAnchorPane==null){
+			try {
+				aboutUsAnchorPane = loader.load();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		return anchorPane;
+		return aboutUsAnchorPane;
 	}
 	
 	
 	public AnchorPane getManageUser() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_管理用户.fxml"));
-		AnchorPane anchorPane = null;
-		try {
-			anchorPane = loader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(manageUserAnchorPane==null){
+			try {
+				manageUserAnchorPane = loader.load();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		return anchorPane;
+		return manageUserAnchorPane;
 	}
 	
 	public AnchorPane getManageHotel() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_管理酒店.fxml"));
-		AnchorPane anchorPane = null;
-		try {
-			anchorPane = loader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(manageHotelAnchorPane==null){
+			try {
+				manageHotelAnchorPane = loader.load();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		return anchorPane;
+		return manageHotelAnchorPane;
 	}
 	
 	public AnchorPane getManageWebSalesman() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_管理营销人员.fxml"));
-		AnchorPane anchorPane = null;
-		try {
-			anchorPane = loader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(manageWebsalesmanAnchorPane==null){
+			try {
+				manageWebsalesmanAnchorPane = loader.load();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		return anchorPane;
+		return manageWebsalesmanAnchorPane;
 	}
 	public AnchorPane getModifyOwnPassword() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_修改自己的密码.fxml"));
@@ -126,6 +142,17 @@ public class WebManagerUIFXMLFactory {
 	
 	public AnchorPane getModifyWebSalesman() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_修改营销人员信息.fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return anchorPane;
+	}
+	
+	public AnchorPane getCheckUserInfo(){
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_查看用户信息.fxml"));
 		AnchorPane anchorPane = null;
 		try {
 			anchorPane = loader.load();

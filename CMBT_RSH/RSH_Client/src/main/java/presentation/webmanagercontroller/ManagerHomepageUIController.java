@@ -40,7 +40,14 @@ public class ManagerHomepageUIController {
 
     @FXML
     private ImageView logoutImage;
+    
+    @FXML
+    private AnchorPane anchorPane;
 
+    public AnchorPane getHomepageAnchorPane() {
+		return anchorPane;
+	}
+    
     @FXML
     void changeToAboutUs(MouseEvent event) {
     	Stage stage = (Stage)logoutImage.getScene().getWindow();
@@ -95,15 +102,8 @@ public class ManagerHomepageUIController {
 
     @FXML
     void changeToModifyPassword(MouseEvent event) {
-    	Stage stage = (Stage)logoutImage.getScene().getWindow();
     	AnchorPane modifyOwnPassword = WebManagerUIFXMLFactory.getInstance().getModifyOwnPassword();
-    	Scene scene = null;
-    	if(modifyOwnPassword.getScene()!=null){
-    		scene = modifyOwnPassword.getScene();
-    	}else {
-			scene = new Scene(modifyOwnPassword,800,720);
-		}
-    	stage.setScene(scene);
+    	anchorPane.getChildren().add(modifyOwnPassword);
     }
 
     @FXML
@@ -113,12 +113,12 @@ public class ManagerHomepageUIController {
 
     @FXML
     void initialize() {
-        assert manageHotelImage != null : "fx:id=\"manageHotelImage\" was not injected: check your FXML file '网管首页 .fxml'.";
+        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '网管首页 .fxml'.";
+    	assert manageHotelImage != null : "fx:id=\"manageHotelImage\" was not injected: check your FXML file '网管首页 .fxml'.";
         assert manageUserImage != null : "fx:id=\"manageUserImage\" was not injected: check your FXML file '网管首页 .fxml'.";
         assert aboutUsImage != null : "fx:id=\"aboutUsImage\" was not injected: check your FXML file '网管首页 .fxml'.";
         assert modifyPasswordImage != null : "fx:id=\"modifyPasswordImage\" was not injected: check your FXML file '网管首页 .fxml'.";
         assert manageWebsalesmanImage != null : "fx:id=\"manageWebsalesmanImage\" was not injected: check your FXML file '网管首页 .fxml'.";
         assert logoutImage != null : "fx:id=\"logoutImage\" was not injected: check your FXML file '网管首页 .fxml'.";
-
     }
 }
