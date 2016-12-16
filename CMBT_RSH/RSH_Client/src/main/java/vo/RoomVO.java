@@ -1,18 +1,20 @@
 package vo;
 
+import po.RoomPO;
+
 public class RoomVO {
 	/**
 	 * 酒店名称
 	 */
-	public String id;
+	public String hotelID;
 	/**
 	 * 房间类型（单人间／标准间）
 	 */
-	public String type;
+	public String roomType;
 	/**
 	 * 该类型房间总量
 	 */
-	public int amountTotal;
+	public int numOfRoom;
 	/**
 	 * 该类型房间的单价（元／晚（12:00～次日11:59））
 	 */
@@ -22,12 +24,18 @@ public class RoomVO {
 	 */
 	public String basicOrSpecial;
 
-	public RoomVO(String id, String type, int amountTotal, double price, String basicOrSpecial) {
-		this.id = id;
-		this.type = type;
-		this.amountTotal = amountTotal;
+	public RoomVO(String hotelID, String roomType, int numOfRoom, double price, String basicOrSpecial) {
+		this.hotelID = hotelID;
+		this.roomType = roomType;
+		this.numOfRoom = numOfRoom;
 		this.price = price;
 		this.basicOrSpecial = basicOrSpecial;
+	}
+
+	public RoomPO changeIntoPO() {
+		// TODO Auto-generated method stub
+		RoomPO roomPO = new RoomPO(hotelID, roomType, numOfRoom, price, basicOrSpecial);
+		return roomPO;
 	}
 
 

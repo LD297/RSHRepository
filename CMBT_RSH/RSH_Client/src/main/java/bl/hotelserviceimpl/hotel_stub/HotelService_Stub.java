@@ -48,7 +48,7 @@ public class HotelService_Stub implements HotelService{
 	}
 
 	@Override
-	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn, Date checkOut) {
+	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -70,7 +70,5 @@ public class HotelService_Stub implements HotelService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	
 
 }

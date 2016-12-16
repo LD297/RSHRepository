@@ -42,7 +42,7 @@ public class HotelManager {
 		ResultMessage resultMessage = null;
 		initRemote();
 		try {
-			resultMessage = hotelDao.updateHotel(HotelPO.changeIntoPO(vo));
+			resultMessage = hotelDao.updateHotel(vo.changeIntoPO());
 		}catch (RemoteException e){
 			return ResultMessage.remote_fail;
 		}

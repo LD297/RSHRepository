@@ -4,6 +4,7 @@ import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
 import data.dao_Stub.hoteldao_Stub.HotelDao_Stub;
 import po.HotelPO;
+import po.RoomNormPO;
 import rmi.RemoteHelper;
 import vo.HotelVO;
 import vo.RoomAvailVO;
@@ -46,7 +47,7 @@ public class Hotel{
 
 
 	public static ResultMessage addHotel(HotelVO hotelVO) {
-		HotelPO newHotelPO = HotelPO.changeIntoPO(hotelVO);
+		HotelPO newHotelPO = hotelVO.changeIntoPO();
 		ResultMessage resultMessage = null;
 		try {
 			resultMessage = hotelDao.addHotel(newHotelPO);
@@ -68,7 +69,7 @@ public class Hotel{
 	
 	// 酒店自身dao建立后，随即初始化该酒店po，用来生成vo，供展示层用
 	public HotelVO getHotelInfo() {
-		return HotelVO.changeIntoVO(hotelPO);
+		return hotelPO.changeIntoVO();
 	}
 
 	public ResultMessage updateHotel(HotelVO vo) {
@@ -96,12 +97,9 @@ public class Hotel{
 	}
 	
 	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn,Date checkOut) {
-		return roomAvail.getRoomAvailList(checkIn, checkOut);
+		return roomAvail.getRoomAvailList(checkIn);
 	}
 	
-	public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> roomAvailList) {
-		return roomAvail.updateRoomAvailList(roomAvailList);
-	}
 	
 	/**
 	 * 供给order模块
@@ -110,13 +108,17 @@ public class Hotel{
 	 * @return
 	 */
 	public ArrayList<RoomNormVO> getRoomNorms() {
-		ArrayList<RoomNormVO> arrayList = null;
+		ArrayList<RoomNormPO> roomNormPOs = null;
 		try {
-			arrayList = hotelDao.getRoomNorm(this.hotelID);
+			roomNormPOs = hotelDao.getRoomNorm(this.hotelID);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
-		return arrayList;
+		ArrayList<RoomNormVO> roomNormVOs  = new ArrayList<>();
+		for(RoomNormPO roomNormPO:roomNormPOs){
+			roomNormVOs.add(roomNormPO.changeIntoVO());
+		}
+		return roomNormVOs;
 	}
 
 	// 供给order模块
@@ -143,6 +145,7 @@ public class Hotel{
 	}
 	/**
 	 * 更新数据库中酒店的评分
+	 * update grade  where  to do it???
 	 * @param grade 用户打分（范围0~5，闭区间，加权计算后界面输出星级）
 	 * @return
 	 */

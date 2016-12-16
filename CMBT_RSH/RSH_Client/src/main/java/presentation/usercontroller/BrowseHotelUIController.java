@@ -153,7 +153,7 @@ public class BrowseHotelUIController {
         for(int i=0;i<hotelVOs.size();i++){
         	if(hotelVOs.get(i).name.equals(hotelName)){
  //       		UserInfoUtil.getInstance().setHotelName(hotelName);
-        		UserInfoUtil.getInstance().setHotelID(hotelVOs.get(i).id);
+        		UserInfoUtil.getInstance().setHotelID(hotelVOs.get(i).hotelID);
                 UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo();
                 found = true;
         	}

@@ -35,11 +35,15 @@ private static HotelDao hotelDao = null;
 	}
 
 	public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
-		ArrayList<HotelVO> hotelVOs = null;
+		ArrayList<HotelPO> hotelPOs = null;
 		try {
-			hotelVOs = hotelDao.getHotelList(address, businessArea);
+			hotelPOs = hotelDao.getHotelList(address, businessArea);
 		}catch (RemoteException e){
 			e.printStackTrace();
+		}
+		ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+		for(HotelPO hotelPO: hotelPOs){
+			hotelVOs.add(hotelPO.changeIntoVO());
 		}
 		return hotelVOs;
 	}

@@ -63,7 +63,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			promotionLabels.add(label);
 		}*/
 		//从数据层拿到该用户最近一笔订单的状态
-		orderStateLabel = new Label(UserInfoUtil.getInstance().getOrderStateOfUser(hotelVO.id).toString());
+		orderStateLabel = new Label(UserInfoUtil.getInstance().getOrderStateOfUser(hotelVO.hotelID).toString());
 		
 		
 		//设置组件的属性
@@ -143,7 +143,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			//点击图片上蒙的label跳转到酒店详情界面
 			public void handle(MouseEvent event) {
 //				UserInfoUtil.getInstance().setHotelName(hotelVO.name);
-				UserInfoUtil.getInstance().setHotelID(hotelVO.id);
+				UserInfoUtil.getInstance().setHotelID(hotelVO.hotelID);
 				UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo();
 			}
 		});
@@ -152,7 +152,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			@Override
 			public void handle(MouseEvent event) {
 //				UserInfoUtil.getInstance().setHotelName(hotelVO.name);
-				UserInfoUtil.getInstance().setHotelID(hotelVO.id);
+				UserInfoUtil.getInstance().setHotelID(hotelVO.hotelID);
 			    UIJumpTool.getUiJumpTool().changeToCreateOrder();				
 			}
 		});

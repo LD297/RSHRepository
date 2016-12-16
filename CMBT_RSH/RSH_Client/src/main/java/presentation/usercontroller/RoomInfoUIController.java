@@ -58,7 +58,7 @@ public class RoomInfoUIController {
     	private void init() {
     		//TODO get房间图片
 			roonImageView = new ImageView(ImageFactory.getImageFactory().getHotelImage());
-			roomTypeLabel = new Label(roomVO.type);
+			roomTypeLabel = new Label(roomVO.roomType);
 			priceLabel = new Label("￥"+String.valueOf("￥"+roomVO.price)+"/晚");
 			reserveButton = new Button("预定");
 			if(left){
