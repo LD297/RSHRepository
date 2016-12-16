@@ -86,8 +86,8 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
         return hotelDaoHelper.numOfRoomAvail(hotelid,roomType,checkOut,checkOut);
     }
 
-    public ArrayList<RoomAvailVO> getRoomAvailList(String hotelid,Date date)throws RemoteException {
-        return hotelDaoHelper.getRoomAvailList(hotelid,date);
+    public ArrayList<RoomAvailVO> getRoomAvailList(String hotelID, Date checkIn, Date checkOut)throws RemoteException {
+        return hotelDaoHelper.getRoomAvailList(hotelID,checkIn,checkOut);
     }
 
     public ResultMessage updateRoomAvail(RoomAvailVO vo)throws RemoteException {

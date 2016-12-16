@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
@@ -14,74 +16,276 @@
             <Image url="@../images/白色背景.png" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="258.0" layoutY="168.0" prefHeight="428.0" prefWidth="610.0" AnchorPane.bottomAnchor="162.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="130.0">
-         <content>
-            <AnchorPane prefHeight="429.0" prefWidth="583.0">
+      <AnchorPane layoutX="109.0" layoutY="131.0" prefHeight="429.0" prefWidth="583.0">
+         <children>
+            <Label layoutX="156.0" layoutY="14.0" text="基本/特色" textFill="#00a699" AnchorPane.rightAnchor="367.0" AnchorPane.topAnchor="14.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="278.0" layoutY="14.0" text="价格" textFill="#00a699" AnchorPane.leftAnchor="278.0" AnchorPane.topAnchor="14.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="394.0" layoutY="14.0" text="数量" textFill="#00a699" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="14.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="59.0" layoutY="14.0" text="类型" textFill="#00a699" AnchorPane.leftAnchor="59.0" AnchorPane.topAnchor="14.0">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+            <GridPane layoutX="-1.0" layoutY="37.0" prefHeight="392.0" prefWidth="588.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="37.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="21.0" minHeight="10.0" prefHeight="21.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <ListView layoutY="43.0" prefHeight="388.0" prefWidth="578.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
-                  <Label layoutX="126.0" layoutY="18.0" text="基本/特色" textFill="#00a699" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="10.0">
+                  <Separator prefWidth="200.0" />
+                  <Separator prefWidth="200.0" GridPane.rowIndex="2" />
+                  <Separator prefWidth="200.0" GridPane.rowIndex="4" />
+                  <Separator prefWidth="200.0" GridPane.rowIndex="6" />
+                  <Separator prefWidth="200.0" GridPane.rowIndex="8" />
+                  <Separator prefWidth="200.0" GridPane.rowIndex="10" />
+                  <Separator prefWidth="200.0" GridPane.rowIndex="12" />
+                  <Label GridPane.rowIndex="1">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
+                     <padding>
+                        <Insets left="56.0" />
+                     </padding>
                   </Label>
-                  <Label layoutX="506.0" layoutY="10.0" text="价格" textFill="#00a699" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="10.0">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="226.0" layoutY="26.0" text="数量" textFill="#00a699" AnchorPane.leftAnchor="355.0" AnchorPane.topAnchor="10.0">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="44.0" layoutY="12.0" text="类型" textFill="#00a699" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="10.0">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </Label>
+                  <AnchorPane fx:id="showPane0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label layoutX="51.0" layoutY="12.0" text="单人间" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="170.0" layoutY="12.0" text="基本" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="278.0" layoutY="12.0" text="¥ 957" AnchorPane.leftAnchor="278.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="390.0" layoutY="12.0" text="10000" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="delete0" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete0Clicked" opacity="0.5" text="删除">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="showPane01" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                     <children>
+                        <Label layoutX="51.0" layoutY="12.0" text="单人间" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="170.0" layoutY="12.0" text="基本" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="278.0" layoutY="12.0" text="¥ 957" AnchorPane.leftAnchor="278.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="390.0" layoutY="12.0" text="10000" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="delete01" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete1Clicked" opacity="0.5" text="删除">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="showPane02" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
+                     <children>
+                        <Label layoutX="51.0" layoutY="12.0" text="单人间" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="170.0" layoutY="12.0" text="基本" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="278.0" layoutY="12.0" text="¥ 957" AnchorPane.leftAnchor="278.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="390.0" layoutY="12.0" text="10000" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="delete02" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete2Clicked" opacity="0.5" text="删除">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="showPane03" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="7">
+                     <children>
+                        <Label layoutX="51.0" layoutY="12.0" text="单人间" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="170.0" layoutY="12.0" text="基本" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="278.0" layoutY="12.0" text="¥ 957" AnchorPane.leftAnchor="278.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="390.0" layoutY="12.0" text="10000" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="delete03" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete3Clicked" opacity="0.5" text="删除">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="showPane04" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="9">
+                     <children>
+                        <Label layoutX="51.0" layoutY="12.0" text="单人间" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="170.0" layoutY="12.0" text="基本" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="278.0" layoutY="12.0" text="¥ 957" AnchorPane.leftAnchor="278.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="390.0" layoutY="12.0" text="10000" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="delete04" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete4Clicked" opacity="0.5" text="删除">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="showPane05" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="11">
+                     <children>
+                        <Label layoutX="51.0" layoutY="12.0" text="单人间" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="170.0" layoutY="12.0" text="基本" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="278.0" layoutY="12.0" text="¥ 957" AnchorPane.leftAnchor="278.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="390.0" layoutY="12.0" text="10000" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="delete05" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete5Clicked" opacity="0.5" text="删除">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
                </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
-      <Button fx:id="confirmButton" layoutX="650.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClicked" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="615.0">
-         <font>
-            <Font name="Times New Roman" size="14.0" />
-         </font>
-      </Button>
-      <AnchorPane layoutX="670.0" layoutY="68.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="68.0" />
-      <AnchorPane layoutX="618.0" layoutY="577.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="560.0">
-         <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="2.0" layoutY="4.0" AnchorPane.bottomAnchor="1.5" AnchorPane.leftAnchor="1.5" AnchorPane.rightAnchor="1.5" AnchorPane.topAnchor="1.5">
-               <image>
-                  <Image url="@../images/加号.png" />
-               </image>
-            </ImageView>
+            </GridPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="625.0" layoutY="578.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="560.0">
-         <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="59.0" layoutY="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="1.0">
-               <image>
-                  <Image url="@../images/减号.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="672.0" layoutY="71.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="70.0">
-         <image>
-            <Image url="@../images/pen_grey.png" />
-         </image>
-      </ImageView>
-      <DatePicker layoutX="107.0" layoutY="71.0" prefHeight="27.0" prefWidth="155.0" promptText="请选择日期" AnchorPane.leftAnchor="102.0" />
       <ImageView fitHeight="42.0" fitWidth="45.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../images/LOGO.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="601.0" layoutY="615.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回">
+      <Button fx:id="backButton" layoutX="660.0" layoutY="616.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
+      <Label fx:id="prePageLabel" layoutX="335.0" layoutY="591.0" onMouseClicked="#prePageClicked" text="&lt;&lt;&lt;   第 " AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="336.0">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="nextPageLabel" layoutX="411.0" layoutY="591.0" onMouseClicked="#nextPageClicked" text=" 页   &gt;&gt;&gt;" AnchorPane.bottomAnchor="120.0" AnchorPane.rightAnchor="336.0">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="335.0" layoutY="582.0" />
+      <Label fx:id="pageLabel" layoutX="397.0" layoutY="591.0" text="1" AnchorPane.bottomAnchor="120.0">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="plus" fitHeight="15.0" fitWidth="15.0" layoutX="676.0" layoutY="560.0" onMouseClicked="#addRoom" AnchorPane.bottomAnchor="145.0" AnchorPane.topAnchor="560.0">
+         <image>
+            <Image url="@../images/PLUS.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="364.0" layoutY="79.0" text="客房管理" textFill="#ff5a5f">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

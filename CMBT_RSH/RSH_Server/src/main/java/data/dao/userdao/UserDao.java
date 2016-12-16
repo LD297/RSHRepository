@@ -25,5 +25,5 @@ public interface UserDao extends Remote{
 
 	public ResultMessage register(String id,String commerceName) throws RemoteException;
 
-	public ResultMessage setMemberLevel(int[][] gradeWithCredit) throws RemoteException;
+	public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException;
 }

@@ -21,7 +21,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
 
         db.executeSql("USE OurData");
         // 账号 密码 地区 IF NOT EXISTS
-        db.executeSql("CREATE TABLE if not exists WebStaffInfo(id char(12),password varchar(30),district varchar(20)" );
+        db.executeSql("CREATE TABLE if not exists WebStaffInfo(id char(12),password varchar(30),district varchar(20))" );
     }
 
     public void finish(){
