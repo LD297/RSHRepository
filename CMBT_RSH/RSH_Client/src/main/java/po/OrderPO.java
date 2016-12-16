@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class OrderPO implements Serializable{
-	OrderPO orderPO;
 	// 注：一笔订单允许一种房间类型
 	private String orderID = null;
 	private String userID = null;
@@ -16,8 +15,7 @@ public class OrderPO implements Serializable{
 	private String hotelID = null;
     private String hotelName = null;
 	private StateOfOrder state = null;
-	// 酒店，类型，原始价格
-	private RoomNormVO room = null;
+	String roomType = null;
 	private int roomNumber = 0;
 	// 计算后的单间房间实际价格
 	private double roomPrice = 0;
@@ -74,7 +72,8 @@ public class OrderPO implements Serializable{
     public OrderPO(String userID,String hotelID,RoomNormVO room,int roomNum,Date checkIn,Date checkOut){
         this.userID = userID;
         this.hotelID = hotelID;
-        this.room = room;
+        this.roomType = room.getRoomType();
+        this.roomPrice = room.getPrice();
         this.roomNumber = roomNum;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -98,14 +97,14 @@ public class OrderPO implements Serializable{
 	 * @param actualCheckOut
 	 */
 	public OrderPO(String orderID, String userID, String userName, StateOfOrder state,
-				   RoomNormVO room, int roomNumber,int peopleNumber, boolean withChild,
+				   String roomType, int roomNumber,int peopleNumber, boolean withChild,
 				   double originValue, double trueValue, Date checkIn, Date checkOut,
 				   Date generationDate, Date actualCheckIn, Date actualCheckOut){
 		this.orderID = orderID;
 		this.userID = userID;
 		this.userName = userName;
 		this.state = state;
-		this.room = room;
+		this.roomType = roomType;
 		this.roomNumber = roomNumber;
 		this.peopleNumber = peopleNumber;
 		this.withChild = withChild;
@@ -144,7 +143,7 @@ public class OrderPO implements Serializable{
 	 * @param cancelAbnormalTime
 	 */
 	public OrderPO(String orderID, String userID, String userName,String hotelID, String hotelName,StateOfOrder state,
-				   RoomNormVO room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
+				   RoomNormVO  room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
 				   double originValue, double trueValue, String promotion,
 				   String comment, int grade, Date checkIn, Date checkOut,String hotelDDL,Date generationDate,
 				   Date actualCheckIn, Date actualCheckOut, Date cancelTime, Date cancelAbnormalTime){
@@ -155,7 +154,7 @@ public class OrderPO implements Serializable{
 		this.hotelID = hotelID;
         this.hotelName = hotelName;
 		this.state = state;
-		this.room = room;
+		this.roomType  = room.getRoomType();
 		this.roomPrice = roomPrice;
 		this.roomNumber = roomNumber;
 		this.peopleNumber = peopleNumber;
@@ -194,7 +193,7 @@ public class OrderPO implements Serializable{
         return state;
     }
     public RoomNormVO getRoom(){
-        return room;
+        return new RoomNormVO(hotelID, roomType, roomPrice);
     }
     public double getRoomPrice(){
         return roomPrice;
@@ -249,43 +248,13 @@ public class OrderPO implements Serializable{
     }
 
 	// 完成从PO到VO的操作
-	public OrderVO transformPOToVO(){
-		String orderID = orderPO.getOrderID();
-		String userID = orderPO.getUserID();
-		String userName = orderPO.getUserName();
-		String hotelID = orderPO.getHotelID();
-		String hotelName = orderPO.getHotelName();
-		StateOfOrder state = orderPO.getState();
-		RoomNormVO room = orderPO.getRoom();
-		int roomNumber = orderPO.getRoomNumber();
-		double roomPrice = orderPO.getRoomPrice();
-		int peopleNumber = orderPO.getPeopleNumber();
-		boolean withChild = orderPO.getWithChild();
-
-		double originValue = orderPO.getOriginValue();
-		double trueValue = orderPO.getTrueValue();
-		String promotion =  orderPO.getPromotion();
-		String comment = orderPO.getComment();
-		int grade = orderPO.getGrade();
-
-		Date checkIn = orderPO.getCheckIn();
-		Date checkOut = orderPO.getCheckOut();
-		String hotelDDL = orderPO.getHotelDDL();
-		Date generationDate = orderPO.getGenerationDate();
-		Date actualCheckIn = orderPO.getActualCheckIn();
-		Date actualCheckOut = orderPO.getActualCheckOut();
-		Date cancelTime = orderPO.getCancelTime();
-		Date cancelAbnormalTime = orderPO.getCancelAbnormalTime();
+	public OrderVO changeIntoVO(){
 
 		OrderVO orderVO = new OrderVO(orderID, userID, userName, hotelID, hotelName, state,
-				room, roomPrice, roomNumber, peopleNumber, withChild,
+				new RoomNormVO(hotelID, roomType, roomPrice), roomPrice, roomNumber, peopleNumber, withChild,
 				originValue, trueValue, promotion,
 				comment, grade, checkIn, checkOut, hotelDDL, generationDate,
 				actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);
 		return orderVO;
-	}
-	public OrderVO changeIntoVO() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

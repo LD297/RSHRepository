@@ -179,4 +179,10 @@ public class HotelDao_Stub implements  HotelDao{
 			// TODO Auto-generated method stub
 	return null;
 	}
+
+	@Override
+	public ResultMessage updateGrade(String hotelID, int grade) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
