@@ -2,8 +2,9 @@ package bl.hotelserviceimpl;
 
 import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
-import data.dao.hoteldao.HotelDao_Stub;
+import data.dao_Stub.hoteldao_Stub.HotelDao_Stub;
 import po.HotelPO;
+import rmi.RemoteHelper;
 import vo.HotelVO;
 import vo.RoomAvailVO;
 import vo.RoomNormVO;
@@ -15,82 +16,91 @@ import java.util.Date;
 
 public class Hotel{
 
-	String id;
-	/**
-	 * 该酒店信息，由构造方法初始化
-	 */
-	HotelPO hotelPO;
-	HotelManager hotelManager;
+	String hotelID;
+	HotelPO hotelPO;   //持有持久化对象以保存具体数据
+	private HotelManager hotelManager;
 	RoomAvail roomAvail;
-	HotelDao hotelDao;
+	static HotelDao hotelDao= null;
 	
-	public Hotel(String id){
-		this.id = id;
+	private void initRemote(){
+		RemoteHelper remoteHelper = RemoteHelper.getInstance();
+		hotelDao  = remoteHelper.getHotelDao();
 	}
-
-	public void setHotelManager(HotelManager hotelManager) {
-		this.hotelManager = hotelManager;
-	}
-
-	public void setRoomAvail(RoomAvail roomavail) {
-		this.roomAvail = roomavail;
-	}
-
-	public void setHotelDao(HotelDao hotelDao){
-		this.hotelDao = hotelDao;
-		initHotelPO();
-	}
-
-	private void initHotelPO() {
+	
+	private Hotel(String hotelID){
+		initRemote();
+		this.hotelID = hotelID;
+		hotelManager = HotelManager.getInstance(hotelID);
+		roomAvail = RoomAvail.getInstance(hotelID);
 		try {
-			hotelPO = hotelDao.getHotel(id);
+			hotelPO = hotelDao.getHotel(hotelID);
 		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	// 调用自身数据库
-	public ResultMessage checkPassword(String id, String password) {
+	public static Hotel getInstance(String hotelID){
+		return new Hotel(hotelID);
+	}
+
+
+	public static ResultMessage addHotel(HotelVO hotelVO) {
+		HotelPO newHotelPO = HotelPO.changeIntoPO(hotelVO);
 		ResultMessage resultMessage = null;
 		try {
-			resultMessage = hotelDao.checkPassword(id, password);
+			resultMessage = hotelDao.addHotel(newHotelPO);
 		}catch (RemoteException e){
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		return resultMessage;
 	}
+
+	// 调用自身数据库
+	public ResultMessage checkPassword(String password) {
+		if(this.hotelPO.getPassword()==password){
+			return ResultMessage.succeed;
+		}
+		else{
+			return ResultMessage.fail;
+		}
+	}
 	
 	// 酒店自身dao建立后，随即初始化该酒店po，用来生成vo，供展示层用
-	public HotelVO getHotel() {
-		return HotelVO.createHotelVO(hotelPO);
+	public HotelVO getHotelInfo() {
+		return HotelVO.changeIntoVO(hotelPO);
 	}
 
 	public ResultMessage updateHotel(HotelVO vo) {
-		return hotelManager.updateHotel(vo);
+		return getHotelManager().updateHotel(vo);
 	}
 	
 	public ResultMessage addSpecialRoom(RoomVO vo) {
-		return hotelManager.addSpecialRoom(vo);
+		RoomManager roomManager = getHotelManager().getRoomManager();
+		return roomManager.addSpecialRoom(vo);
 	}
 	
 	public ResultMessage deleteSpecialRoom(RoomVO vo) {
-		return hotelManager.deleteSpecialRoom(vo);
+		RoomManager roomManager = getHotelManager().getRoomManager();
+		return roomManager.deleteSpecialRoom(vo);
 	}
 	
 	public ArrayList<RoomVO> getRoomList() {
-		return hotelManager.getRoomList(this.id);
+		RoomManager roomManager = getHotelManager().getRoomManager();
+		return roomManager.getRoomList();
 	}
 	
 	public ResultMessage updateRoomList(ArrayList<RoomVO> roomList) {
-		return hotelManager.updateRoomList(roomList);
+		RoomManager roomManager = getHotelManager().getRoomManager();
+		return roomManager.updateRoomList(roomList);
 	}
 	
 	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn,Date checkOut) {
-		return roomAvail.getRoomAvailList(id, checkIn, checkOut);
+		return roomAvail.getRoomAvailList(checkIn, checkOut);
 	}
 	
 	public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> roomAvailList) {
-		return roomAvail.updateRoomAvailList(id, roomAvailList);
+		return roomAvail.updateRoomAvailList(roomAvailList);
 	}
 	
 	/**
@@ -102,7 +112,7 @@ public class Hotel{
 	public ArrayList<RoomNormVO> getRoomNorms() {
 		ArrayList<RoomNormVO> arrayList = null;
 		try {
-			arrayList = hotelDao.getRoomNorm(this.id);
+			arrayList = hotelDao.getRoomNorm(this.hotelID);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
@@ -112,13 +122,13 @@ public class Hotel{
 	// 供给order模块
 	// 返回该酒店指定日期下该房间类型的可用数量
 	public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut) {
-		return roomAvail.getRoomAvailNum(this.id, roomType, checkIn, checkOut);
+		return roomAvail.getRoomAvailNum( roomType, checkIn, checkOut);
 	}
 
 	// 供给order模块
 	// 更新系统的可用客房信息
 	public ResultMessage changeRoomAvail(String roomType,Boolean isPlus, int num, Date checkIn, Date checkOut) {
-		return roomAvail.changeRoomAvail(this.id, roomType, isPlus,num, checkIn, checkOut);
+		return roomAvail.changeRoomAvail( roomType, isPlus,num, checkIn, checkOut);
 	}
 
 	/**
@@ -128,14 +138,8 @@ public class Hotel{
 	 * @param id
 	 * @return
 	 */
-	public String getCheckInDDL(String id) {
-		String result = null;
-		try {
-			result = hotelDao.getCheckInDDL(id);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return result;
+	public String getCheckInDDL() {
+		return hotelPO.getLatestCheckinTime();
 	}
 	/**
 	 * 更新数据库中酒店的评分
@@ -144,12 +148,18 @@ public class Hotel{
 	 */
 	public ResultMessage updateGrade(int grade) {
 		ResultMessage resultMessage = null;
+		hotelPO.setGrade(grade);
 		try {
-			resultMessage = hotelDao.updateGrade(grade);
+			resultMessage = hotelDao.updateHotel(hotelPO);
 		}catch (RemoteException e){
-			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 		return resultMessage;
 	}
+
+	public HotelManager getHotelManager() {
+		return hotelManager;
+	}
+
 	
 }

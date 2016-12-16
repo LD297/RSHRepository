@@ -79,8 +79,8 @@ public class AddCommentUIController {
 		gradeField.setPromptText("请输入评分");
 //		commentTextarea.setPromptText("请输入评价");
 		commentTextarea.setWrapText(true);
-		maskLabel.setVisible(true);
-//		gradeField.setDisable(false);
+//		maskLabel.setVisible(true);
+		gradeField.setDisable(false);
 	//	commentTextarea.setDisable(false);
 		encourageLabel1.setVisible(true);
     }
@@ -116,7 +116,7 @@ public class AddCommentUIController {
     
     public void init(){
     	OrderVO orderVO = UserInfoUtil.getInstance().getOrderVO();
-    	if(orderVO.getComment()==null||orderVO.getComment()==""){
+    	if(orderVO.getComment()==null||orderVO.getComment().equals("")){
     		//暂无评价界面
     		addCommentImage.setVisible(true);
     		addCommentButton.setVisible(true);

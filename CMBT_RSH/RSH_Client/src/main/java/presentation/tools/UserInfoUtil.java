@@ -12,7 +12,6 @@ import bl.hotelserviceimpl.HotelInfoService_Stub;
 import bl.hotelserviceimpl.HotelService_Stub;
 import bl.hotelserviceimpl.SearchHotelService_Stub;
 import bl.loginservice.LoginService;
-import bl.loginserviceimpl.LoginController;
 import bl.loginserviceimpl.LoginService_Stub;
 import bl.orderservice.OrderForHotel;
 import bl.orderservice.OrderForUser;
@@ -22,7 +21,6 @@ import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
 import bl.userservice.UserService;
 import bl.userserviceimpl.UserService_Stub;
-import constant.MemberType;
 import constant.ResultMessage;
 import constant.Role;
 import constant.Sexuality;
@@ -193,7 +191,7 @@ public String getHotelID() {
      * 酒店详情界面调用,根据酒店id得到酒店vo
      */
     public HotelVO getHotelVO() {
-    	hotelService = new HotelService_Stub(hotelID);
+    	hotelService = new HotelService_Stub();
     	HotelVO hotelVO = hotelService.getHotelInfo(hotelID);
 		return hotelVO;
 	}
@@ -203,7 +201,7 @@ public String getHotelID() {
      * @return
      */
     public ArrayList<RoomVO> getRoomVos() {
-    	hotelService = new HotelService_Stub(hotelID);
+    	hotelService = new HotelService_Stub();
 		ArrayList<RoomVO> roomVOs = hotelService.getRoomList();
 		return roomVOs;
 	}
@@ -318,6 +316,7 @@ public String getHotelID() {
      */
     
     public OrderVO getOrderVO() {
+    	System.out.println("hbkjfhgdhsjbhb");
 		OrderVO orderVO = orderForUser.detail(orderID);
 		return orderVO;
 	}

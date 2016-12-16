@@ -1,10 +1,8 @@
 package bl.loginserviceimpl;
 
-import bl.hotelserviceimpl.HotelController;
+import bl.hotelserviceimpl.controller.HotelController;
 import bl.userserviceimpl.UserController;
-import bl.webstaffserviceimpl.MockWebSalesman;
-import bl.webstaffserviceimpl.MockWebManager;
-import bl.webstaffserviceimpl.MockWebSalesman;
+import bl.webstaffserviceimpl.WebStaffController;
 import constant.ResultMessage;
 import constant.Role;
 import data.dao.logindao.LoginDao;
@@ -42,14 +40,11 @@ public class Login {
 			resultMessage = userController.checkPassword(id, password);
 			break;
 		case hotel:
-			HotelController hotelController = new HotelController();
-			resultMessage = hotelController.checkPassword(id, password);
+			resultMessage = HotelController.checkPassword(id, password);
 			break;
 		case webmanager:
-			resultMessage = MockWebManager.checkPassword(id, password);
-			break;
 		case websalesman:
-			resultMessage = MockWebSalesman.checkPassword(id, password);
+			resultMessage = WebStaffController.checkPassword(id, password);
 			break;
 		}
 		//检验是否有登陆冲突

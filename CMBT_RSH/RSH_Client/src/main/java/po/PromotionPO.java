@@ -14,7 +14,7 @@ public class PromotionPO {
 	private static final int DISTRICT_LENGTH = 6;
 
 	private String setter;
-	private String id;
+	private String id;//san wei
 	private String reason;
 	private Date beginDate;
 	private Date endDate;

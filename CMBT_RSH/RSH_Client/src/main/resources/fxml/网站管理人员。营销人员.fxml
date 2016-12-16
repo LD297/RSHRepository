@@ -45,9 +45,9 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Button layoutX="427.0" layoutY="86.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-color: #666666;" text="重置密码" textFill="WHITE">
+                  <Button layoutX="434.0" layoutY="86.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="96.0" style="-fx-background-color: #ff5a5f;" text="重置密码" textFill="WHITE">
                      <font>
-                        <Font name="Times New Roman" size="18.0" />
+                        <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Button>
                   <Label layoutX="59.0" layoutY="50.0" prefHeight="23.0" text="负责商圈：">
@@ -109,11 +109,6 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Button layoutX="427.0" layoutY="86.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-color: #666666;" text="重置密码" textFill="WHITE">
-                     <font>
-                        <Font name="Times New Roman" size="18.0" />
-                     </font>
-                  </Button>
                   <Label layoutX="59.0" layoutY="50.0" prefHeight="23.0" text="负责商圈：">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
@@ -129,6 +124,11 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
+                  <Button layoutX="438.0" layoutY="83.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="96.0" text="重置密码">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="123.0" prefWidth="600.0" GridPane.rowIndex="5">
@@ -148,11 +148,6 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Button layoutX="427.0" layoutY="86.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-color: #666666;" text="重置密码" textFill="WHITE">
-                     <font>
-                        <Font name="Times New Roman" size="18.0" />
-                     </font>
-                  </Button>
                   <Label layoutX="59.0" layoutY="50.0" prefHeight="23.0" text="负责商圈：">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
@@ -168,6 +163,11 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
+                  <Button layoutX="439.0" layoutY="86.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="96.0" text="重置密码">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
@@ -197,24 +197,24 @@
             <Font name="Times New Roman" size="12.0" />
          </font>
       </TextField>
-      <TextField layoutX="192.0" layoutY="48.0" promptText="输入搜索信息">
+      <TextField layoutX="100.0" layoutY="79.0" promptText="输入搜索信息">
          <font>
             <Font name="Times New Roman" size="15.0" />
          </font>
       </TextField>
-      <Button contentDisplay="CENTER" layoutX="571.0" layoutY="47.0" mnemonicParsing="false" style="-fx-background-color: #666666;" text="添加营销人员" textAlignment="CENTER" textFill="WHITE">
+      <Button contentDisplay="CENTER" layoutX="596.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-color: #ff5a5f;" text="添加营销人员" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Times New Roman" size="18.0" />
+            <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <Label layoutX="40.0" layoutY="30.0" text="返回">
-         <font>
-            <Font name="Times New Roman" size="18.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="383.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="288.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../CMBT_RSH/RSH_Client/src/main/resources/images/搜索图标.jpg" />
+            <Image url="@../images/搜索图标.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="backImage" fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/返回箭头.png" />
          </image>
       </ImageView>
    </children>

@@ -75,7 +75,7 @@ public class HotelVO {
 	 * @param hotelPO
 	 * @return
 	 */
-	public static HotelVO createHotelVO(HotelPO hotelPO){
+	public static HotelVO changeIntoVO(HotelPO hotelPO){
 		HotelVO hotelVO = new HotelVO(hotelPO.getId());
 		hotelVO.tel = hotelPO.getTel();
 		hotelVO.name = hotelPO.getName();
@@ -88,6 +88,11 @@ public class HotelVO {
 		hotelVO.standardRoomPrice= hotelPO.getStandardRoomPrice();
 		hotelVO.latestCheckinTime = hotelPO.getLatestCheckinTime();
 		return hotelVO;
+	}
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

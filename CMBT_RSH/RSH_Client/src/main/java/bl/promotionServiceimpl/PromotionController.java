@@ -25,7 +25,6 @@ public class PromotionController implements PromotionService {
 	Promotion promotion;
 	PromotionVO promotionVO=null;
 
-	@Override
 	public String getIDForNewPromotion(String setter) {
 		return null;
 	}

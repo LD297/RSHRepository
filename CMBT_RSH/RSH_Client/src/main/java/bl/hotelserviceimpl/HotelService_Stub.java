@@ -11,11 +11,6 @@ import vo.RoomVO;
 
 public class HotelService_Stub implements HotelService{
 
-	String hotelID = null;
-	public HotelService_Stub(String hotelID) {
-		this.hotelID = hotelID;
-	}
-	
 	@Override
 	public HotelVO getHotelInfo(String id) {
 		// TODO Auto-generated method stub
@@ -64,7 +59,7 @@ public class HotelService_Stub implements HotelService{
 	}
 
 	@Override
-	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn, Date checkOut) {
+	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn) {
 		RoomAvailVO vo1 = new RoomAvailVO("001", "单人间", 20, 200, "basic");
 		RoomAvailVO vo2 = new RoomAvailVO("002", "双人间", 10, 300, "basic");
 		RoomAvailVO vo3 = new RoomAvailVO("003", "三人间", 30, 400, "basic");
@@ -96,7 +91,6 @@ public class HotelService_Stub implements HotelService{
 		// TODO Auto-generated method stub
 		return 20;
 	}
-
 
 
 }

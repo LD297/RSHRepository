@@ -23,8 +23,11 @@ public interface OrderDao {
     // 根据状态编号查找订单
     public ArrayList<OrderPO> searchByState(StateOfOrder state) throws RemoteException;
 
-    // 新建订单
     public ResultMessage insert(OrderPO orderPO) throws RemoteException;
+    
+    public ResultMessage update(OrderPO orderPO) throws RemoteException;
+    
+   
     // 订单状态更新
     public ResultMessage stateUpdate(String orderID, StateOfOrder newState) throws RemoteException;
     // 评价订单

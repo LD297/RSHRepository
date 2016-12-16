@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import bl.orderservice.OrderForHotel;
-import bl.orderserviceimpl.OrderForHotel_Stub;
 import bl.orderserviceimpl.OrderServiceFactory;
+import bl.orderserviceimpl.miscellaneous.OrderForHotel_Stub;
 import constant.StateOfOrder;
 import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;

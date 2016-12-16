@@ -2,7 +2,7 @@ package bl.orderserviceimpl;
 
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.HotelController;
+import bl.hotelserviceimpl.controller.HotelController;
 import bl.orderservice.OrderForHotel;
 import bl.orderservice.OrderForUser;
 import bl.promotionServiceimpl.Count;
@@ -293,13 +293,13 @@ public class OrderForUserImpl implements OrderForUser{
     private static boolean isOvertime(Date checkOut,String deadline,Date cancelTime){
         long seconds;
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        String actDate = sdf.format(checkOut);
+        String checkOutDate = sdf.format(checkOut);
         try{   //hh->12hour  HH->24hour
-            Date d1 = df.parse(actDate+" "+deadline);
-            long diff = d1.getTime() - cancelTime.getTime();
+            Date checkOutTime = df.parse(checkOutDate+" "+deadline);
+            long diff = checkOutTime.getTime() - cancelTime.getTime();
             seconds = diff/1000;
         }catch (Exception e){
             return false;

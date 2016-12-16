@@ -13,7 +13,7 @@ import data.dao_Stub.userdao_Stub.UserDao_Stub;
  * Created by aa on 2016/12/13.
  */
 public class Mock_RemoteHelper extends RemoteHelper{
-    private Mock_RemoteHelper mock_remoteHelper = null;
+    private static Mock_RemoteHelper mock_remoteHelper = null;
     private UserDao userDao;
     private LoginDao loginDao;
     private HotelDao hotelDao;
@@ -22,9 +22,15 @@ public class Mock_RemoteHelper extends RemoteHelper{
 
     private Mock_RemoteHelper(){
         super();
-        mock_remoteHelper = new Mock_RemoteHelper();
         userDao = UserDao_Stub.getInstance();
         loginDao = LoginDao_Stub.getInstance();
+    }
+
+    public static Mock_RemoteHelper getInstance(){
+        if(mock_remoteHelper==null){
+            mock_remoteHelper = new Mock_RemoteHelper();
+        }
+        return mock_remoteHelper;
     }
 
     public UserDao getUserDao(){

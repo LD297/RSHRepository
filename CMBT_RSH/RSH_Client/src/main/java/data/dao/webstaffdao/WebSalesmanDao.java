@@ -16,7 +16,7 @@ public interface WebSalesmanDao extends Remote {
 
     public ResultMessage updateWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
 
-    public ResultMessage delWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
+//    public ResultMessage delWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
 
     public WebSalesmanPO getSalesmanInstance(String SalesmanID)throws RemoteException;
 

@@ -55,7 +55,7 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Button layoutX="447.0" layoutY="86.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" opacity="0.5" prefHeight="30.0" text="重置密码" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="443.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="86.0">
+                  <Button layoutX="447.0" layoutY="86.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-color: #ff5a5f;" text="重置密码" textFill="WHITE" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="443.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="86.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -227,12 +227,12 @@
             <Font name="Times New Roman" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="idField" layoutX="512.0" layoutY="78.0" promptText="输入用户手机号码">
+      <TextField fx:id="idField" layoutX="100.0" layoutY="79.0" promptText="输入用户手机号码">
          <font>
             <Font name="Times New Roman" size="15.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="492.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="288.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/搜索图标.jpg" />
          </image>

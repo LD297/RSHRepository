@@ -113,7 +113,7 @@ public class SelectConditionUIController {
 	@FXML
     void finishSelect(MouseEvent event) {
     	//筛选
-		SelectConditionVO selectConditionVO = new SelectConditionVO(null, null, 0, Double.MAX_VALUE, 0, null, null, 0, 0, 0, null,
+		SelectConditionVO selectConditionVO = new SelectConditionVO( null, 0, Double.MAX_VALUE, 0, null, null, 0, 0, 0, null,
 				null);
 		String roomType = roomtypeCombobox.getValue();
 		if (!(roomType == null || roomType.equals(""))) {

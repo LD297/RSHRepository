@@ -4,7 +4,7 @@ import constant.ResultMessage;
 import constant.SortBy;
 import constant.SortMethod;
 import po.HotelPO;
-import po.HotelStaffPO;
+//import po.HotelStaffPO;
 import po.RoomPO;
 import vo.*;
 
@@ -19,32 +19,37 @@ import java.util.Date;
  */
 public interface HotelDao extends Remote{
 
-    public ResultMessage checkPassword(String id, String password) throws RemoteException;
     public HotelPO getHotel(String id) throws RemoteException;
-    /**
-     * 更新数据库中该酒店的评分
-     * @param grade
-     * @return
-     */
-    public ResultMessage updateGrade(double grade) throws RemoteException;
-    public ResultMessage updateHotel (HotelPO hotelPO) throws RemoteException;
-    public ResultMessage addSpecialRoom(RoomPO roomPO) throws RemoteException;
-    public ResultMessage deleteSpecialRoom(RoomPO po) throws RemoteException;
-    public ArrayList<RoomVO> getRoomList(String id) throws RemoteException;
-    public ResultMessage updateRoomList(ArrayList<RoomPO> roomPOList) throws RemoteException;
-    public ResultMessage changeRoomAvail(String id, String roomType,boolean isPlus, int num, Date checkIn, Date checkOut) throws RemoteException;
-    public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) throws RemoteException;
-    public ArrayList<RoomAvailVO> getRoomAvailList(String id, Date checkIn, Date checkOut) throws RemoteException;
-    public ResultMessage updateRoomAvailList(String id, ArrayList<RoomAvailVO> roomAvailList) throws RemoteException;
-    public ArrayList<RoomNormVO> getRoomNorm(String id) throws RemoteException;
-    public String getCheckInDDL(String id) throws RemoteException;
-    public ArrayList<HotelVO> getHotelList(String address,String businessArea) throws RemoteException;
-    public HotelPO getHotelInfo(String id) throws RemoteException;
-    public ArrayList<HotelVO> select(SelectConditionVO vo) throws RemoteException;
-    public String getHotelID(String district) throws RemoteException;
+    
+    public String getNewHotelID(String district) throws RemoteException;
+    
     public ResultMessage addHotel(HotelPO hotelPO) throws RemoteException;
+    
     public ResultMessage deleteHotel(String id) throws RemoteException;
-    public ResultMessage updateHotelStaff(HotelStaffPO hotelStaffPO) throws RemoteException;
-
+    
+    public ResultMessage updateHotel (HotelPO hotelPO) throws RemoteException;
+    
+    public ResultMessage addSpecialRoom(RoomPO roomPO) throws RemoteException;
+    
+    public ResultMessage deleteSpecialRoom(RoomPO po) throws RemoteException;
+    
+    public ArrayList<RoomPO> getRoomList(String id) throws RemoteException;
+    
+    public ResultMessage updateRoomList(RoomPO roomPO) throws RemoteException;
+    
+    public ArrayList<RoomAvailPO> getRoomAvailList(String id, Date checkIn) throws RemoteException;   
+    
+    public ResultMessage changeRoomAvail(String id, String roomType,boolean isPlus, int num, Date checkIn, Date checkOut) throws RemoteException;
+    
+    public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) throws RemoteException;
+    
+    public ArrayList<RoomNormPO> getRoomNorm(String id) throws RemoteException;
+    
+    public ArrayList<HotelPO> getHotelList(String address,String businessArea) throws RemoteException;
+     
+   
+   
+    
+  
 }
 

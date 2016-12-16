@@ -3,6 +3,7 @@ package rmi;
 import bl.promotionServiceimpl.Promotion;
 import data.dao.hoteldao.HotelDao;
 import data.dao.logindao.LoginDao;
+import data.dao.orderdao.OrderDao;
 import data.dao.promotiondao.PromotionDao;
 import data.dao.userdao.CreditRecordListDao;
 import data.dao.userdao.UserDao;
@@ -27,6 +28,7 @@ public class RemoteHelper {
     private WebManagerDao webManagerDao = null;
     private WebSalesmanDao webSalesmanDao = null;
     private PromotionDao promotionDao = null;
+    private OrderDao orderDao = null;
     public static RemoteHelper getInstance(){
         if(remoteHelper ==null){
             remoteHelper = new RemoteHelper();
@@ -47,6 +49,7 @@ public class RemoteHelper {
             webManagerDao = (WebManagerDao)Naming.lookup("rmi://localhost:8888/WebManagerDaoImpl");
             webSalesmanDao = (WebSalesmanDao)Naming.lookup("rmi://localhost:8888/WebSalesmanDaoImpl");
             promotionDao = (PromotionDao)Naming.lookup("rmi://localhost:8888/PromotionDaoImpl");
+            orderDao = (OrderDao)Naming.lookup("rmi://localhost:8888/OrderDaoImpl");
         } catch (NotBoundException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -83,5 +86,10 @@ public class RemoteHelper {
     public PromotionDao getPromotionDao(){
         return promotionDao;
     }
+
+	public OrderDao getOrderDao() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 

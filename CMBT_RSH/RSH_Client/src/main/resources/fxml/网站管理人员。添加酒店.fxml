@@ -81,7 +81,7 @@
             </AnchorPane>
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="800.0" GridPane.rowIndex="4">
                <children>
-                  <Label layoutX="128.0" layoutY="14.0" text="酒店工作人员信息添加">
+                  <Label layoutX="659.0" layoutY="14.0" text="酒店工作人员信息添加">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>

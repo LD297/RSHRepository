@@ -14,37 +14,33 @@ import java.util.ArrayList;
 public class WebStaffController implements WebStaffService{
 
 	
-	@Override
 	public ResultMessage addWebSalesman(String ID, String password) {
 		// TODO Auto-generated method stub
 		WebSalesman webSalesman= new WebSalesman(ID,password);
 		return null;
 	}
 
-	@Override
 	public ResultMessage delWebSalesman(String ID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ArrayList<WebSalesmanVO> getWebSalesman() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public String getIDForNewWebSalesman() {
 		return null;
 	}
 
-	@Override
-	public boolean checkPassword(String ID, String password) {
-		return false;
+	
+	public static ResultMessage checkPassword(String ID, String password) {
+		return null;
 	}
 
 
-	@Override
+
 	public ResultMessage forceChangePassword(String ID, String password) {
 		return null;
 	}
@@ -65,6 +61,24 @@ public class WebStaffController implements WebStaffService{
 
 	@Override
 	public ResultMessage addWebManager(String ID, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getIDForWebsalesman() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage addWebSalesman(WebSalesmanVO webSalesmanVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<WebSalesmanVO> getWebSalesmanInfo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
