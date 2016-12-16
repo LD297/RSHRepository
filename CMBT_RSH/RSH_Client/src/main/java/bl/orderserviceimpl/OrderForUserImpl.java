@@ -3,6 +3,7 @@ package bl.orderserviceimpl;
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.controller.HotelController;
+import bl.hotelserviceimpl.controller.HotelInfoController;
 import bl.orderservice.OrderForHotel;
 import bl.orderservice.OrderForUser;
 import bl.promotionServiceimpl.Count;
@@ -33,8 +34,8 @@ public class OrderForUserImpl implements OrderForUser{
         this.orderDao = orderDao;
     }
     private HotelInfoService hotelInfoService;
-    public void setHotelInfoService(HotelController hotelController) {
-        this.hotelInfoService = hotelController;
+    public void setHotelInfoService(HotelInfoController hotelInfoController) {
+        this.hotelInfoService = hotelInfoController;
     }
     private HotelService hotelService;
     public void setHotelService(HotelController hotelController) {
