@@ -33,9 +33,8 @@ public interface WebStaffService {
 	 * @param oldPassword
 	 * @param newPassword
 	 * @return
-	 * @throws RemoteException
 	 */
-	public ResultMessage changePassword(String ID,String oldPassword, String newPassword)throws RemoteException;
+	public ResultMessage changePassword(String ID,String oldPassword, String newPassword);
 	
 	public ResultMessage forceChangePassword(String ID, String password);
 	
