@@ -24,6 +24,18 @@ public class WebManagerUIFXMLFactory {
 		return anchorPane;
 	}
 	
+	public AnchorPane getAboutUs() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_关于我们 .fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return anchorPane;
+	}
+	
+	
 	public AnchorPane getManageUser() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_管理用户.fxml"));
 		AnchorPane anchorPane = null;
