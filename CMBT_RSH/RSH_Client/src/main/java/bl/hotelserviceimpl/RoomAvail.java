@@ -2,6 +2,7 @@ package bl.hotelserviceimpl;
 
 import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
+import po.RoomAvailPO;
 import rmi.RemoteHelper;
 import vo.RoomAvailVO;
 
@@ -56,25 +57,34 @@ public class RoomAvail {
 		return resultMessage;
 	}
 	
-	public ArrayList<RoomAvailVO> getRoomAvailList( Date checkIn, Date checkOut) {
-		ArrayList<RoomAvailVO> availVOs = null;
+	public ArrayList<RoomAvailVO> getRoomAvailList( Date checkIn) {
+		ArrayList<RoomAvailPO> availPOs = null;
 		initRemote();
 		try{
-			availVOs = hotelDao.getRoomAvailList(hotelID, checkIn,checkOut);
+			availPOs = hotelDao.getRoomAvailList(hotelID, checkIn);
 		}catch (RemoteException e){
 			e.printStackTrace();
+		}
+		ArrayList<RoomAvailVO> availVOs = new ArrayList<>();
+		for(RoomAvailPO roomAvailPO:availPOs){
+			availVOs.add(roomAvailPO.changeIntoVO());
 		}
 		return availVOs;
 	}
 	
+	/**
 	public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> roomAvailList) {
 		ResultMessage resultMessage = null;
 		initRemote();
 		try {
+			for(RoomAvailVO roomAvailVO:roomAvailList){
+				hotelDao.updateRoomList(roomAvailVO.changeIntoPO());
+			}
+			hotelDao.changeRoomAvail(id, roomType, isPlus, num, checkIn, checkOut)
 			resultMessage = hotelDao.updateRoomAvailList(hotelID, roomAvailList);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
 		return resultMessage;
-	}
+	}**/
 }

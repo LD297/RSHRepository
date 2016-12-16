@@ -7,6 +7,7 @@ import constant.ResultMessage;
 import constant.StateOfOrder;
 import data.dao.orderdao.OrderDao;
 import po.OrderPO;
+import rmi.RemoteHelper;
 import vo.CreditRecordVO;
 import vo.OrderVO;
 
@@ -21,9 +22,13 @@ import java.util.Date;
  * Created by sky-PC on 2016/12/14.
  */
 public class OrderForHotelImpl implements OrderForHotel{
-    private OrderDao orderDao;
-    public void setOrderDao(OrderDao orderDao){
-        this.orderDao = orderDao;
+    private static OrderDao orderDao = null;
+    
+    private static void initRemote(){
+    	if(orderDao==null){
+        	RemoteHelper remoteHelper = RemoteHelper.getInstance();
+        	orderDao = remoteHelper.getOrderDao();    		
+    	}
     }
     /**
      * 酒店分类查看订单
@@ -36,9 +41,9 @@ public class OrderForHotelImpl implements OrderForHotel{
         if(state==null)
             return list;
         else{
-            for(int i=0;i<list.size();i++)
-                if(list.get(i).getState()!=state)
-                    list.remove(i);
+            for(int i=list.size();i>0;i--)
+                if(list.get(i-1).getState()!=state)
+                    list.remove(i-1);
         }
         return list;
     }

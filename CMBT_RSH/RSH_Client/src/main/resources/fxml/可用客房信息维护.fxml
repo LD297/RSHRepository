@@ -286,7 +286,7 @@
             <Image url="@../images/LOGO.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="584.0" layoutY="616.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="168.0">
+      <Button fx:id="backButton" layoutX="644.0" layoutY="623.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回" AnchorPane.bottomAnchor="71.0" AnchorPane.rightAnchor="108.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
@@ -307,21 +307,11 @@
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Label>
-      <DatePicker layoutX="109.0" layoutY="78.0" opacity="0.8" prefHeight="27.0" prefWidth="158.0" promptText="请选择日期" />
+      <DatePicker fx:id="datePicker" layoutX="109.0" layoutY="78.0" opacity="0.8" prefHeight="27.0" prefWidth="158.0" promptText="请选择日期" />
       <Label fx:id="gotoImageView" layoutX="284.0" layoutY="80.0" onMouseClicked="#gotoDate" opacity="0.5" text="&gt;">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fx:id="editImageView" fitHeight="30.0" fitWidth="30.0" layoutX="669.0" layoutY="77.0" onMouseClicked="#editClicked">
-         <image>
-            <Image url="@../images/pen_grey.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="confirmButton" layoutX="708.0" layoutY="603.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClicked" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="92.0">
-         <font>
-            <Font name="Times New Roman" size="14.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

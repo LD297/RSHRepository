@@ -12,6 +12,7 @@ import vo.RoomNormVO;
 import vo.RoomVO;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -28,6 +29,10 @@ public class HotelController implements HotelService {
 	RoomManager roomManager;
 	RoomAvail roomAvail;
 
+	/**
+	 * use
+	 * @param id
+	 */
 	public HotelController(String id) {
 		// TODO Auto-generated constructor stub
 		hotelID = id;
@@ -35,10 +40,6 @@ public class HotelController implements HotelService {
 		hotelManager = hotel.getHotelManager();
 		roomManager = hotelManager.getRoomManager();
 		roomAvail = RoomAvail.getInstance(hotelID);
-	}
-
-	public HotelController() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -79,10 +80,10 @@ public class HotelController implements HotelService {
 		return roomManager.deleteSpecialRoom(vo);
 	}
 
-	@Override
-	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn, Date checkOut) {
+	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn) {
 		// TODO Auto-generated method stub
-		return roomAvail.getRoomAvailList(checkIn, checkOut);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+		return roomAvail.getRoomAvailList(checkIn);
 	}
 
 	@Override

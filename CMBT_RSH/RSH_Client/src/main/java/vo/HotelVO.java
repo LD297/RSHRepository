@@ -6,7 +6,7 @@ public class HotelVO {
 	/**
 	 * 酒店账号
 	 */
-	public String id;
+	public String hotelID;
 	private String password;
 	/**
 	 * 酒店工作人员联系方式（客服）
@@ -20,7 +20,7 @@ public class HotelVO {
 	 * 酒店地址
 	 */
 	public String addr;
-	public String businessArea;
+	public String district;
 	public String briefIntro;
 	/**
 	 * 酒店（基础）设施（WiFi available？……）
@@ -44,17 +44,17 @@ public class HotelVO {
 	public String latestCheckinTime;
 	
 	public HotelVO(String id) {
-		this.id = id;
+		this.hotelID = id;
 	}
 
 	//构造方法重载 (不含密码信息)
-	public HotelVO(String id, String tel, String name, String addr, String businessArea,
+	public HotelVO(String id, String tel, String name, String addr, String district,
 					String briefIntro, String facility, int level,double grade, String latestCheckinTime){
-		this.id =  id;
+		this.hotelID =  id;
 		this.tel = tel;
 		this.name = name;
 		this.addr = addr;
-		this.businessArea = businessArea;
+		this.district = district;
 		this.briefIntro = briefIntro;
 		this.facility = facility;
 		this.level = level;
@@ -69,31 +69,15 @@ public class HotelVO {
 	public String getPassword() {
 		return password;
 	}
-
-	/**
-	 * 根据po封装一个不含密码信息的vo
-	 * @param hotelPO
-	 * @return
-	 */
-	public static HotelVO changeIntoVO(HotelPO hotelPO){
-		HotelVO hotelVO = new HotelVO(hotelPO.getId());
-		hotelVO.tel = hotelPO.getTel();
-		hotelVO.name = hotelPO.getName();
-		hotelVO.addr = hotelPO.getAddr();
-		hotelVO.businessArea = hotelPO.getBusinessArea();
-		hotelVO.briefIntro = hotelPO.getBriefIntro();
-		hotelVO.facility = hotelPO.getFacility();
-		hotelVO.level = hotelPO.getLevel();
-		hotelVO.grade = hotelPO.getGrade();
-		hotelVO.standardRoomPrice= hotelPO.getStandardRoomPrice();
-		hotelVO.latestCheckinTime = hotelPO.getLatestCheckinTime();
-		return hotelVO;
-	}
-
+	
 	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
+	public HotelPO changeIntoPO(){
+		HotelPO hotelPO = new HotelPO(hotelID, password, tel, name, addr, district, briefIntro, facility, level, grade, standardRoomPrice);
+		return hotelPO;
+	}
 }

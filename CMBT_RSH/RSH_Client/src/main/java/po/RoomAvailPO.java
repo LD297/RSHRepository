@@ -4,36 +4,40 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+import vo.RoomAvailVO;
+
 public class RoomAvailPO implements Serializable{
 
-	/**
-	 * 酒店名称
-	 */
-	public String id;
-	/**
-	 * 房间类型（单人间／标准间）
-	 */
-	public String type;
+	public String hotelID;
+	public String roomType;
 	
-	/**
-	 * 对该类型房间信息查询的时间段(只包含起止日期，起于fromTo[0]的12:00，止于fromTo[1]的11：59)
-	 */
-	public ArrayList<Date> fromTo;
-	
+	Date beginDate;
+	Date endDate;
+
+	private int numOfAvailRoom;
 	public RoomAvailPO(String id, String type, ArrayList<Date> fromTo) {
-		this.id = id;
-		this.type = type;
-		this.fromTo = fromTo;
+		this.hotelID = id;
+		this.roomType = type;
+		this.beginDate = fromTo.get(0);
+		this.endDate  = fromTo.get(1);
 	}
-	/**
-	 * 该时间段内的可用房间数量（算法处理后的结果）
-	 */
-	private int amountAvail;
 	
+	public RoomAvailPO(String hotelID,String roomType, Date beginDate, Date endDate, int numOfAvailRoom){
+		this.hotelID = hotelID;
+		this.roomType = roomType;
+		this.beginDate = beginDate;
+		this.endDate = endDate;
+		this.numOfAvailRoom = numOfAvailRoom;
+	}
 	public int getAmountAvail() {
-		return amountAvail;
+		return numOfAvailRoom;
 	}
 	public void setAmountAvail(int amountAvail) {
-		this.amountAvail = amountAvail;
+		this.numOfAvailRoom = amountAvail;
+	}
+	public RoomAvailVO changeIntoVO() {
+		// TODO Auto-generated method stub
+		RoomAvailVO roomAvailVO = new RoomAvailVO(hotelID, roomType, beginDate, endDate, numOfAvailRoom);
+		return roomAvailVO;
 	}
 }

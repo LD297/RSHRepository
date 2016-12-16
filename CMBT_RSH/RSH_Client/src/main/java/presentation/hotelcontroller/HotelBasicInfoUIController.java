@@ -292,13 +292,13 @@ public class HotelBasicInfoUIController {
 
     public void init(){
         nameTextField.setText(hotelVO.name);
-        idLabel.setText(hotelVO.id);
+        idLabel.setText(hotelVO.hotelID);
         telTextField.setText(hotelVO.tel);
         checkInDDLTextField.setText(hotelVO.latestCheckinTime);
         levelTextField.setText(String.valueOf(hotelVO.level));
         gradeLabel.setText(String.valueOf(hotelVO.grade));
         addressTextField.setText(hotelVO.addr);
-        businessAreaTextField.setText(hotelVO.businessArea);
+        businessAreaTextField.setText(hotelVO.district);
         introductionTextArea.setText(hotelVO.briefIntro);
         facilityTextArea.setText(hotelVO.facility);
     }

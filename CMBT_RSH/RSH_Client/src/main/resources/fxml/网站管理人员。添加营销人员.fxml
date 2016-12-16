@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="78.0" layoutY="99.0" prefHeight="23.0" text="账号：">
+      <Label layoutX="78.0" layoutY="115.0" prefHeight="23.0" text="账号：">
          <font>
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="78.0" layoutY="229.0" prefHeight="23.0" text="密码：">
+      <Label layoutX="78.0" layoutY="218.0" prefHeight="23.0" text="密码：">
          <font>
             <Font name="Times New Roman" size="18.0" />
          </font>
@@ -25,12 +25,12 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="167.0" layoutY="96.0" prefHeight="30.0" prefWidth="263.0" promptText="2016000001">
+      <TextField layoutX="167.0" layoutY="111.0" prefHeight="30.0" prefWidth="263.0" promptText="2016000001">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </TextField>
-      <Button layoutX="350.0" layoutY="299.0" mnemonicParsing="false" style="-fx-background-color: #ff5a5f;" text="确认添加" textFill="WHITE">
+      <Button layoutX="350.0" layoutY="298.0" mnemonicParsing="false" style="-fx-background-color: #ff5a5f;" text="确认添加" textFill="WHITE">
          <font>
             <Font name="Times New Roman" size="15.0" />
          </font>
@@ -40,12 +40,12 @@
             <Image url="@../images/cancel.png" />
          </image>
       </ImageView>
-      <Label layoutX="167.0" layoutY="29.0" prefHeight="36.0" prefWidth="193.0" text="添加网站营销人员" textFill="#ff5a5f">
+      <Label layoutX="167.0" layoutY="49.0" prefHeight="36.0" prefWidth="193.0" text="添加网站营销人员" textFill="#ff5a5f">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
       </Label>
-      <TextField layoutX="167.0" layoutY="226.0" prefHeight="30.0" prefWidth="263.0" promptText="请输入初始化密码">
+      <TextField layoutX="167.0" layoutY="214.0" prefHeight="30.0" prefWidth="263.0" promptText="请输入初始化密码">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
