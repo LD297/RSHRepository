@@ -38,7 +38,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         // 星级 评分 最晚入住时间 评论人数 房间类型数量
         db.executeSql("CREATE TABLE if not exists HotelInfo(hotelID char(10),password varchar(20),phoneNumber bigint,name varchar(15)," +
                 "address varchar(30),businessArea varchar(10),briefIntro tinytext,facility varchar(20)," +
-                "level tinyint,grade double,latestCheckinTime char(8),commentNum int，roomTypeNum tinyint)");
+                "level tinyint,grade double,latestCheckinTime char(8),commentNum int,roomTypeNum tinyint)");
         // 酒店 类型 总量
         // 价格 是否特色 可用数量日期列表
         db.executeSql("CREATE TABLE if not exists RoomInfo(hotelID char(10),roomType varchar(10),amountTotal int,"

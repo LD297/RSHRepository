@@ -40,7 +40,7 @@ public interface HotelDaoHelper {
 
     public int numOfRoomAvail(String hotelid,String roomType, Date checkIn, Date checkOut)throws RemoteException ;
 
-    public ArrayList<RoomAvailVO> getRoomAvailList(String hotelid,Date date)throws RemoteException ;
+    public ArrayList<RoomAvailVO> getRoomAvailList( String hotelID,Date checkIn, Date checkOut)throws RemoteException ;
 
     public ResultMessage updateRoomAvail(RoomAvailVO vo)throws RemoteException ;
 

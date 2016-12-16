@@ -29,7 +29,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         // 账号 密码 昵称 头像url
         // 生日 会员等级 会员类型 信用值
         // 真实姓名 性别 邮箱 信用记录条数
-        db.executeSql("CREATE TABLE UserInfo(userID char(11),password varchar(30),nickName varchar(10),image varchar(30)," +
+        db.executeSql("CREATE TABLE if not exists UserInfo(userID char(11),password varchar(30),nickName varchar(10),image varchar(30)," +
                 "birthday char(10),grade tinyint,memberType tinyint,credit int," +
                 "trueName varchar(10),sex tinyint,eMail varchar(30),creditRecordNum int)" );
     }

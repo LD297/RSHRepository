@@ -9,6 +9,8 @@ import vo.RoomNormVO;
 
 import java.rmi.RemoteException;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -37,7 +39,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         db.executeSql("CREATE TABLE if not exists OrderGeneral(orderID char(26),userID char(11)," +
                 "userName char(10), hotelID char(10), hotelName char(10), state tinyint," +
                 "peopleNum tinyint,withChild tinyint,originValue double,trueValue double,promotion varchar(20)," +
-                "comment varchar(30),grade tinyint,checkIn datetime,checkOut datetime,hotelDDL time" +
+                "comment varchar(30),grade tinyint,checkIn datetime,checkOut datetime,hotelDDL char(8)," +
                 "bornDate date,actCheckIn datetime,actCheckOut datetime,cancelTime datetime,cancelAbTime datetime)");
     }
     public void finish(){
@@ -45,22 +47,68 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         db.executeSql("DROP TABLE IF EXISTS OrderGeneral");
         db.executeSql("DROP TABLE IF EXISTS OrderRooms ");
     }
+    // 遍历得到所有订单
+    public void getAll(){
+        db.executeSql("USE OurData");
+
+        String generalSql = "SELECT *FROM OrderGeneral";
+        ResultSet result = db.query(generalSql);
+        ArrayList<OrderPO> originList =  this.transformResultSetToPOList(result);
+        Date instance = new Date();
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        for(int i=0;i<originList.size();i++){
+            if(originList.get(i).getState()==StateOfOrder.unexecuted){
+                String orderID = originList.get(i).getOrderID();
+                String DDLtime = originList.get(i).getHotelDDL();
+                Date DDLdate = originList.get(i).getCheckIn();
+                String ddldate = sdf.format(DDLdate);
+                try{
+                    Date ddlTime = df.parse(ddldate+DDLtime);
+                    if(ddlTime.getTime()>instance.getTime())
+                        this.stateUpdate(orderID,StateOfOrder.abnormal);
+                }catch (ParseException e){
+                    e.printStackTrace();
+                    return ;
+                }catch(RemoteException e){
+                    e.printStackTrace();
+                    return;
+                }
+            }
+         }
+    }
+
+
+
     // 根据订单编号查找订单(返回详情)
     public OrderPO searchByID(String orderID) throws RemoteException {
         db.executeSql("USE OurData");
         if (this.checkExistence(orderID) == ResultMessage.idNotExist)
             return null;
+
+        this.getAll();
         String getDetailSql = "SELECT *FROM OrderGeneral WHERE orderID='" + orderID + "' LIMIT 1";
         ResultSet result = db.query(getDetailSql);
 
         return this.transformResultSetToPOList(result).get(0);
     }
     // 根据用户、酒店编号查找订单
-    public ArrayList<OrderPO> seachByUserWithHotel(String userID,String hotelID)throws RemoteException{}
+    public ArrayList<OrderPO> searchByUserWithHotel(String userID,String hotelID)throws RemoteException{
+        db.executeSql("USE OurData");
+
+        this.getAll();
+        String generalSql = "SELECT *FROM OrderGeneral WHERE userID='" + userID + "' and hotelID='"+hotelID+"'";
+        ResultSet result = db.query(generalSql);
+
+        return this.transformResultSetToPOList(result);
+    }
     // 根据用户编号查找订单
     public ArrayList<OrderPO> searchByUser(String userID) throws RemoteException {
         db.executeSql("USE OurData");
 
+        this.getAll();
         String generalSql = "SELECT *FROM OrderGeneral WHERE userID='" + userID + "'";
         ResultSet result = db.query(generalSql);
 
@@ -163,7 +211,17 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         return ResultMessage.succeed;
     }
     // 订单实际入住时间更新
-    public ResultMessage actCheckInUpdate(String orderID, Date actCheckIn) throws RemoteException{}
+    public ResultMessage actCheckInUpdate(String orderID, Date actCheckIn) throws RemoteException{
+        db.executeSql("USE OurData");
+        if(this.checkExistence(orderID)==ResultMessage.idNotExist)
+            return ResultMessage.idNotExist;
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String actcheckin = sdf.format(actCheckIn);
+        String cometimeupdateSql = "UPDATE OrderGeneral SET actCheckIn='"+actcheckin+"' WHERE orderID='"+orderID+"' LIMIT 1";
+        db.executeSql(cometimeupdateSql);
+        return ResultMessage.succeed;
+    }
     //订单实际离开时间更新
     public ResultMessage actCheckOutUpdate(String orderID,Date actCheckOut) throws RemoteException{
         db.executeSql("USE OurData");
@@ -177,9 +235,29 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         return ResultMessage.succeed;
     }
     // 订单撤销时间更新
-    public ResultMessage cancelTimeUpdate(String orderID, Date cancelTime) throws RemoteException{}
+    public ResultMessage cancelTimeUpdate(String orderID, Date cancelTime) throws RemoteException{
+        db.executeSql("USE OurData");
+        if(this.checkExistence(orderID)==ResultMessage.idNotExist)
+            return ResultMessage.idNotExist;
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String canceltime = sdf.format(cancelTime);
+        String canceltimeupdateSql = "UPDATE OrderGeneral SET cancelTime='"+canceltime+"' WHERE orderID='"+orderID+"' LIMIT 1";
+        db.executeSql(canceltimeupdateSql);
+        return ResultMessage.succeed;
+    }
     // 订单撤销异常时间更新
-    public ResultMessage cancelAbTimeUpdate(String orderID, Date cancelAbTime) throws RemoteException{}
+    public ResultMessage cancelAbTimeUpdate(String orderID, Date cancelAbTime) throws RemoteException{
+        db.executeSql("USE OurData");
+        if(this.checkExistence(orderID)==ResultMessage.idNotExist)
+            return ResultMessage.idNotExist;
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String cancelabtime = sdf.format(cancelAbTime);
+        String cancelabtimeupdateSql = "UPDATE OrderGeneral SET cancelAbtime='"+cancelabtime+"' WHERE orderID='"+orderID+"' LIMIT 1";
+        db.executeSql(cancelabtimeupdateSql);
+        return ResultMessage.succeed;
+    }
 
 
     // 检查账号是否存在

@@ -61,7 +61,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 		return userDaoHelper.register(userid,commerceName);
 	}
 
-	public ResultMessage setMemberLevel(int[][] gradeWithCredit) throws RemoteException {
+	public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
