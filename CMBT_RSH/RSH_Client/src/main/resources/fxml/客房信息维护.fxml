@@ -11,6 +11,7 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.RoomAvailUIController">
    <children>
+      <Label fx:id="greyLabel" opacity="0.5" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: cccccc;" visible="false" />
       <ImageView fitHeight="720.0" fitWidth="800.0">
          <image>
             <Image url="@../images/白色背景.png" />
@@ -124,7 +125,7 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="delete01" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete0Clicked" opacity="0.5" text="删除">
+                        <Button fx:id="delete01" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete01Clicked" opacity="0.5" text="删除">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -153,7 +154,7 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="delete02" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete0Clicked" opacity="0.5" text="删除">
+                        <Button fx:id="delete02" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete02Clicked" opacity="0.5" text="删除">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -182,7 +183,7 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="delete03" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete0Clicked" opacity="0.5" text="删除">
+                        <Button fx:id="delete03" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete03Clicked" opacity="0.5" text="删除">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -211,7 +212,7 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="delete04" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete0Clicked" opacity="0.5" text="删除">
+                        <Button fx:id="delete04" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete04Clicked" opacity="0.5" text="删除">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -240,7 +241,7 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="delete05" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete0Clicked" opacity="0.5" text="删除">
+                        <Button fx:id="delete05" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#delete05Clicked" opacity="0.5" text="删除">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -287,6 +288,5 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="greyLabel" opacity="0.5" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: cccccc;" visible="false" />
    </children>
 </AnchorPane>

@@ -129,10 +129,16 @@ public class LoginUIController {
             }
         }else if (role==Role.webmanager) {
 			if(WebManagerInfoUtil.getInstance().checkOnLine(id, password)==ResultMessage.succeed){
+				passwordFormLabel.setText("");
 				Stage stage = (Stage)idField.getScene().getWindow();
 				Scene scene = null;
-				
-				passwordFormLabel.setText("");
+				AnchorPane webmanagerHomepage = WebManagerUIFXMLFactory.getInstance().getManageHomepage();
+				if(webmanagerHomepage.getScene()!=null){
+					scene = webmanagerHomepage.getScene();
+				}else {
+					scene = new Scene(webmanagerHomepage,800,720);
+				}
+				stage.setScene(scene);
 			}else{
 				passwordFormLabel.setText("用户名或密码错误");
 			}

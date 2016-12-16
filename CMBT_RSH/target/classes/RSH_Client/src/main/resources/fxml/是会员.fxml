@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="630.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="14.0" layoutY="21.0" prefHeight="46.0" prefWidth="154.0" text="普通会员" textFill="#484848">
+         <font>
+            <Font name="Times New Roman" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="73.0" prefHeight="27.0" prefWidth="81.0" text="注册时间:" textFill="#484848">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="73.0" prefHeight="27.0" prefWidth="106.0" text="2016年12月" textFill="#484848">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="109.0" prefHeight="34.0" prefWidth="81.0" text="我的订单 &gt;" textFill="#00a699">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
