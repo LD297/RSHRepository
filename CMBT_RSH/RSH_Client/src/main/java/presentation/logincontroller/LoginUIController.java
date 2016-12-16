@@ -12,6 +12,7 @@ import constant.ResultMessage;
 import constant.Role;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -20,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import presentation.tools.*;
 
 //TODO 记住密码
@@ -97,6 +99,7 @@ public class LoginUIController {
         String password = passwordField.getText();
         //如果用户的身份是用户
         if(role == Role.user){
+        	UIJumpTool.getUiJumpTool().setStage((Stage)idField.getScene().getWindow());
         	//检查用户名
             String idResult = UserInputFormCheckTool.getInstance().checkUserID(id);
             if(idResult!="success"){
@@ -124,7 +127,16 @@ public class LoginUIController {
                 	//TODO 该用户名不存在或者有登陆冲突
                 }
             }
-        }
+        }else if (role==Role.webmanager) {
+			if(WebManagerInfoUtil.getInstance().checkOnLine(id, password)==ResultMessage.succeed){
+				Stage stage = (Stage)idField.getScene().getWindow();
+				Scene scene = null;
+				
+				passwordFormLabel.setText("");
+			}else{
+				passwordFormLabel.setText("用户名或密码错误");
+			}
+		}
 /*        if(resultMessage==resultMessage.succeed){
             if(role == Role.user){
 
