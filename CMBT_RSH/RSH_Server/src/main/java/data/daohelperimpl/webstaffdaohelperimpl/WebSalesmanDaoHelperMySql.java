@@ -72,7 +72,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         ResultSet result = db.query(getSalesmanByIDSql);
         try{
             while (result.next()){
-                WebSalesmanPO po = new WebSalesmanPO(result.getString(1),result.getString(2),result.getString(3));
+                WebSalesmanPO po = new WebSalesmanPO(result.getString(1),result.getString(2),result.getString(3),result.getString(4));
                 return po;
             }
         }catch (SQLException e){
@@ -90,7 +90,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         ArrayList<WebSalesmanPO> webSalesmanlist = new ArrayList<WebSalesmanPO>();
         try{
             while(result.next()){
-                WebSalesmanPO po = new WebSalesmanPO(result.getString(1),result.getString(2),result.getString(3));
+                WebSalesmanPO po = new WebSalesmanPO(result.getString(1),result.getString(2),result.getString(3),result.getString(4));
                 webSalesmanlist.add(po);
             }
             return webSalesmanlist;
@@ -108,7 +108,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         ArrayList<WebSalesmanPO> webSalesmanlist = new ArrayList<WebSalesmanPO>();
         try{
             while(result.next()){
-                WebSalesmanPO po = new WebSalesmanPO(result.getString(1),result.getString(2),result.getString(3));
+                WebSalesmanPO po = new WebSalesmanPO(result.getString(1),result.getString(2),result.getString(3),result.getString(4));
                 webSalesmanlist.add(po);
             }
             return webSalesmanlist;

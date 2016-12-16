@@ -1,8 +1,6 @@
 package po;
 
 import constant.StateOfOrder;
-import vo.RoomNormVO;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,7 +13,7 @@ public class OrderPO implements Serializable{
     private String hotelName = null;
 	private StateOfOrder state = null;
     // 酒店，类型，原始价格
-	private RoomNormVO room = null;
+	private RoomNormPO room = null;
 	private int roomNumber = 0;
     // 计算后的单间房间实际价格
     private double roomPrice = 0;
@@ -70,7 +68,7 @@ public class OrderPO implements Serializable{
      * @param checkIn
      * @param checkOut
      */
-    public OrderPO(String userID,String hotelID,RoomNormVO room,int roomNum,Date checkIn,Date checkOut){
+    public OrderPO(String userID,String hotelID,RoomNormPO room,int roomNum,Date checkIn,Date checkOut){
         this.userID = userID;
         this.hotelID = hotelID;
         this.room = room;
@@ -98,7 +96,7 @@ public class OrderPO implements Serializable{
      * @param actualCheckOut
      */
 	public OrderPO(String orderID, String userID, String userName, StateOfOrder state,
-                   RoomNormVO room, int roomNumber,int peopleNumber, boolean withChild,
+                   RoomNormPO room, int roomNumber,int peopleNumber, boolean withChild,
                    double originValue, double trueValue, Date checkIn, Date checkOut,
                    Date generationDate, Date actualCheckIn, Date actualCheckOut){
 		this.orderID = orderID;
@@ -144,7 +142,7 @@ public class OrderPO implements Serializable{
      * @param cancelAbnormalTime
      */
 	public OrderPO(String orderID, String userID, String userName,String hotelID, String hotelName, StateOfOrder state,
-                   RoomNormVO room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
+                   RoomNormPO room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
                    double originValue, double trueValue, String promotion,
                    String comment, int grade, Date checkIn, Date checkOut,String hotelDDL,Date generationDate,
                    Date actualCheckIn, Date actualCheckOut, Date cancelTime, Date cancelAbnormalTime){
@@ -195,7 +193,7 @@ public class OrderPO implements Serializable{
     public StateOfOrder getState(){
         return state;
     }
-    public RoomNormVO getRoom(){
+    public RoomNormPO getRoom(){
         return room;
     }
     public double getRoomPrice(){

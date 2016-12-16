@@ -16,11 +16,5 @@ public interface UserDaoHelper {
 
     public ResultMessage insert(UserPO po) throws RemoteException ;
 
-    public ResultMessage checkPassword(String id, String password) throws RemoteException ;
-
-    public ResultMessage register(String id) throws RemoteException ;
-
-    public ResultMessage register(String id, String commerceName) throws RemoteException ;
-
     public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException ;
 }

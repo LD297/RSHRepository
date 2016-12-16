@@ -88,12 +88,12 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         String dateStr=sdf.format(date);
 
-        String orderid = po.getOrderid();
+        String orderID = po.getOrderID();
         int action = this.creditActionToInt(po.getCreditAction());
         String change = po.getChange();
         int credit = po.getCredit();
         //creditAction tinyint,isPlus tinyint,changeValue int,credit int
-        String addCreditRecordSql = "INSERT INTO CreditRecordInfo VALUES('"+userid+"','"+dateStr+"','"+orderid+"',"
+        String addCreditRecordSql = "INSERT INTO CreditRecordInfo VALUES('"+userid+"','"+dateStr+"','"+orderID+"',"
                 +String.valueOf(action)+",'"+change.charAt(0)+"',"+Integer.valueOf(change.substring(1))+","+String.valueOf(credit)+")";
         db.executeSql(addCreditRecordSql);
         return ResultMessage.succeed;

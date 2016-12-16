@@ -12,18 +12,13 @@ import po.UserPO;
  *
  */
 public interface UserDao extends Remote{
-
-	public UserPO getInfo(String id) throws RemoteException;
-
-	public ResultMessage update(UserPO po) throws RemoteException;
-
-	public ResultMessage insert(UserPO po) throws RemoteException;
-
-	public ResultMessage checkPassword(String id,String password) throws RemoteException;
-
-	public ResultMessage register(String id) throws RemoteException;
-
-	public ResultMessage register(String id,String commerceName) throws RemoteException;
-
+    // 根据用户编号 得到用户信息
+	public UserPO getInfo(String userID) throws RemoteException;
+    // 根据用户编号 更新用户信息
+	public ResultMessage update(UserPO userPO) throws RemoteException;
+    // 新增用户信息
+	// if userID with conflict ,return idAlreadyExist
+	public ResultMessage insert(UserPO userPO) throws RemoteException;
+    // 制定会员等级策略
 	public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException;
 }

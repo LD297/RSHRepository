@@ -50,23 +50,6 @@ public class test {
         ResultMessage result = userDao.insert(po);
     }
 
-    public void testcheckPassword() throws RemoteException{
-        String id="";
-        String password = "";
-        ResultMessage result = userDao.checkPassword(id, password);
-    }
-
-    public void testregister() throws RemoteException{
-        String id = "";
-        ResultMessage result = userDao.register(id);
-    }
-
-    public void testcommerceregister() throws RemoteException{
-        String id = "";
-        String commerceName = "盛大集团";
-        ResultMessage result = userDao.register(id,commerceName);
-    }
-
     public  void testsetMemberLevel() throws RemoteException{
         int[] gradeWithCredit = {};
         ResultMessage result = userDao.setMemberLevel(gradeWithCredit);

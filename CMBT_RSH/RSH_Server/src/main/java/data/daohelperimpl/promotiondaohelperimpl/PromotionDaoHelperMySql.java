@@ -109,7 +109,7 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         ResultSet result = db.query(findSql);
         return this.resultToPO(result).get(0);
     }
-    // 根据制定者得到策略列表
+    // 得到酒店能享有的策略列表
     public ArrayList<PromotionPO> findByDistrictWithHotel(String district,String hotel)throws RemoteException {
         db.executeSql("USE OurData");
         String findsSql = "SELECT *From PromotionInfo";
