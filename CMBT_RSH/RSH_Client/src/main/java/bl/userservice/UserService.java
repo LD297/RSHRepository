@@ -19,6 +19,12 @@ public interface UserService {
 	 */
 	public UserVO getInfo(String userid);
 	
+	/**
+	 * 网站管理人员为用户重置密码
+	 * @return
+	 */
+	public String resetpassword(String userid);
+	
 	public ArrayList<UserVO> getUserVOS();
 
 	/**

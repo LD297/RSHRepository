@@ -101,4 +101,10 @@ public class UserController implements UserService{
 		return null;
 	}
 
+	@Override
+	public String resetpassword(String userid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

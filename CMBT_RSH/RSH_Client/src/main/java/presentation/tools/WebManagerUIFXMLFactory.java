@@ -2,7 +2,9 @@ package presentation.tools;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import presentation.webmanagercontroller.CheckUserInfoUIController;
 import presentation.webmanagercontroller.ManagerHomepageUIController;
+import presentation.webmanagercontroller.SuccessResetPasswordUIController;
 
 public class WebManagerUIFXMLFactory {
 	private static WebManagerUIFXMLFactory webManagerUIFXMLFactory = null;
@@ -15,6 +17,8 @@ public class WebManagerUIFXMLFactory {
 	}
 	
 	private ManagerHomepageUIController managerHomepageUIController = null;
+	private CheckUserInfoUIController checkUserInfoUIController = null;
+	private SuccessResetPasswordUIController successResetPasswordUIController = null;
 	
 	private AnchorPane manageUserAnchorPane = null;
 	private AnchorPane manageHotelAnchorPane = null;
@@ -170,6 +174,7 @@ public class WebManagerUIFXMLFactory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		checkUserInfoUIController = loader.getController();
 		return anchorPane;
 	}
 	
@@ -181,7 +186,14 @@ public class WebManagerUIFXMLFactory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		successResetPasswordUIController = loader.getController();
 		return anchorPane;
+	}
+	public CheckUserInfoUIController getCheckUserInfoUIController() {
+		return checkUserInfoUIController;
+	}
+	public SuccessResetPasswordUIController getSuccessResetPasswordUIController() {
+		return successResetPasswordUIController;
 	}
 	
 	

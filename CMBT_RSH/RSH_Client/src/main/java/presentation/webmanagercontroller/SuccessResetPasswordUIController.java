@@ -35,6 +35,10 @@ public class SuccessResetPasswordUIController {
     	manageUser.getChildren().remove(manageUser.getChildren().size()-1);
     }
     
+    public void init(String password) {
+		newPasswordLabel.setText(password);
+	}
+    
     @FXML
     void initialize() {
         assert iknowButton != null : "fx:id=\"iknowButton\" was not injected: check your FXML file '网管_重置密码成功.fxml'.";

@@ -150,4 +150,9 @@ public class UserService_Stub implements UserService{
 		userVOs.add(userVO1);
 		return userVOs;
 	}
+
+	@Override
+	public String resetpassword(String userid) {
+		return "hdgfjf_2565472";
+	}
 }

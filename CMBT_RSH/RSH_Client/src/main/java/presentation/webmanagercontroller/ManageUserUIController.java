@@ -74,8 +74,22 @@ public class ManageUserUIController {
     //在输入用户手机号之后按enter键定位到具体一个用户，查看该用户信息
     @FXML
     void changeToCheckUserInfo(ActionEvent event) {
-    	AnchorPane checkUserInfo = WebManagerUIFXMLFactory.getInstance().getCheckUserInfo();
-    	anchorPane.getChildren().add(checkUserInfo);
+    	String userid = idField.getText().trim();
+    	boolean found = false;
+    	for(int i=0;i<userVOs.size();i++){
+    		if(userVOs.get(i).id.equals(userid)){
+				AnchorPane checkUserInfo = WebManagerUIFXMLFactory.getInstance().getCheckUserInfo();
+				CheckUserInfoUIController checkUserInfoUIController = WebManagerUIFXMLFactory.getInstance()
+						.getCheckUserInfoUIController();
+				checkUserInfoUIController.init(userVOs.get(i));
+				anchorPane.getChildren().add(checkUserInfo);
+    	    	found = true;
+    			break;
+    		}
+    	}
+    	if(!found){
+    		//TODO 提示信息
+    	}
     }
     
     @FXML

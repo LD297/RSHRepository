@@ -22,6 +22,7 @@ public class WebManagerInfoUtil {
 	private UserService userService = new UserService_Stub();
 	private SearchHotelService searchHotelService = new SearchHotelService_Stub();
 	private WebStaffService webStaffService = new WebStaffService_Stub();
+	
 	private WebManagerInfoUtil(){}
 	public static WebManagerInfoUtil getInstance() {
 		if(webManagerInfoUtil==null){
@@ -48,12 +49,18 @@ public class WebManagerInfoUtil {
 	 * 管理酒店界面调用，得到所有酒店的list
 	 */
 	public ArrayList<HotelVO> getHotelVOs() {
-		return searchHotelService.getHotelList(null, null);
+		return searchHotelService.getHotelList();
 	}
 	/**
 	 * 管理网站营销人员界面调用
 	 */
 	public ArrayList<WebSalesmanVO> getWebSalesmanVOs() {
 		return webStaffService.getWebSalesmanInfo();
+	}
+	/**
+	 * 查看用户信息界面、管理用户信息界面调用
+	 */
+	public String resetPassword(String userid) {
+		return userService.resetpassword(userid);
 	}
 }

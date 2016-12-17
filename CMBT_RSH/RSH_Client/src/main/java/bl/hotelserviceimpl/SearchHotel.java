@@ -80,6 +80,11 @@ private static HotelDao hotelDao = null;
 		
 		return result;
 	}
+	@Override
+	public ArrayList<HotelVO> getHotelList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 	

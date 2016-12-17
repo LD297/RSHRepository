@@ -152,4 +152,10 @@ public class SearchHotelService_Stub implements SearchHotelService{
 		return list;
 	}
 
+	@Override
+	public ArrayList<HotelVO> getHotelList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
