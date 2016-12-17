@@ -56,26 +56,8 @@ public class OrderForHotelImpl implements OrderForHotel{
      * @return
      */
     public ResultMessage execute(String orderID){
-        Date actCheckIn = new Date();
-        OrderPO orderPO ;
-        try{
-            orderPO = orderDao.searchByID(orderID);
-            orderDao.stateUpdate(orderID,StateOfOrder.executed);
-            orderDao.actCheckInUpdate(orderID,actCheckIn);
-        }catch (RemoteException e){
-            return ResultMessage.fail;
-        }
-        // 订单执行->增加信用值
-        String userID = orderPO.getUserID();
-        int change = (int)orderPO.getTrueValue();
-        CreditRecordList creditRecordList = new CreditRecordList(userID);
-        int credit = creditRecordList.getCredit();
-
-        CreditRecordVO creditRecordVO = new CreditRecordVO(userID,actCheckIn,orderID,
-                CreditAction.execute,"+"+String.valueOf(change),change+credit);
-        creditRecordList.addCreditRecord(creditRecordVO);
-
-        return ResultMessage.succeed;
+    	Order order = Order.getInstance(orderID);
+        return order.execute();
     }
 
     /**
@@ -86,13 +68,8 @@ public class OrderForHotelImpl implements OrderForHotel{
      * @return
      */
     public ResultMessage leaveUpdate(String orderID){
-        Date actCheckOut = new Date();
-        try{
-            return orderDao.actCheckOutUpdate(orderID,actCheckOut);
-        }catch(RemoteException e){
-            e.printStackTrace();
-            return ResultMessage.fail;
-        }
+        Order order = Order.getInstance(orderID);
+        return order.leaveUpdate();
     }
 
     /**
@@ -108,75 +85,26 @@ public class OrderForHotelImpl implements OrderForHotel{
      *      抛异常 返回fail
      */
     public ResultMessage hotelCancelAbnormal(String orderID){
-        OrderPO orderPO ;
-        try{
-            orderPO = orderDao.searchByID(orderID);
-        }catch(RemoteException e){
-            e.printStackTrace();
-            return ResultMessage.fail;
-        }
-
-        Date actCheckIn = new Date();
-        Date checkOut = orderPO.getCheckOut();
-        Date checkOutTime;
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-        try{
-            checkOutTime = df.parse(sdf.format(checkOut)+" 12:00:00");
-        }catch(ParseException e){
-            e.printStackTrace();
-            return ResultMessage.fail;
-        }
-
-        // 判断：补登记时间是否超过预计离开时间
-        if(checkOutTime.getTime()-actCheckIn.getTime()<0)
-            return ResultMessage.timeOut;
-
-        // 改变订单状态:异常->已执行
-        try{
-            orderDao.stateUpdate(orderID,StateOfOrder.executed);
-            orderDao.actCheckInUpdate(orderID,actCheckIn);
-        }catch(RemoteException e){
-            e.printStackTrace();
-            return ResultMessage.fail;
-        }
-
-        // 信用值二次更新
-        String userID = orderPO.getUserID();
-        double orderValue = orderPO.getTrueValue();
-
-        CreditRecordList creditRecordList = new CreditRecordList(userID);
-        int credit = creditRecordList.getCredit();
-        CreditRecordVO creditRecordVO ;
-        credit += (int)orderValue;
-        // 恢复用户被扣除的信用值
-        creditRecordVO = new CreditRecordVO(userID,actCheckIn,orderID,
-                CreditAction.delay_checkin,"+"+String.valueOf(orderValue),credit);
-        creditRecordList.addCreditRecord(creditRecordVO);
-        credit += (int)orderValue;
-        // 订单执行 信用值增加
-        creditRecordVO = new CreditRecordVO(userID,actCheckIn,orderID,
-                CreditAction.execute,"+"+String.valueOf(orderValue),credit);
-        creditRecordList.addCreditRecord(creditRecordVO);
-
-        return ResultMessage.succeed;
+    	//此处需判断是否已超过预计离开时间
+        Order order = Order.getInstance(orderID);
+        order.cancelAbnormal(false);
+        return order.execute();           
     }
 
     // 得到该酒店的所有订单
     private ArrayList<OrderVO> getOrderOfHotel(String hotelID){
-        ArrayList<OrderPO> list;
+        ArrayList<OrderPO> orderPOs;
+        initRemote();
         try{
-            list = orderDao.searchByHotel(hotelID);
+            orderPOs = orderDao.searchByHotel(hotelID);
         }catch(RemoteException e){
             e.printStackTrace();
             return null;
         }
-        ArrayList<OrderVO> listTrans = new ArrayList<OrderVO>();
-        if(list!=null){
-            for(int i=0;i<list.size();i++){
-                listTrans.add(list.get(i).transformPOToVO());
-            }
+        ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
+        for(OrderPO orderPO:orderPOs){
+        	orderVOs.add(orderPO.changeIntoVO());
         }
-        return listTrans;
+        return orderVOs;
     }
 }

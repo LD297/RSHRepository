@@ -47,11 +47,23 @@ public class WebStaffController implements WebStaffService{
 
 
 	@Override
-	public ResultMessage changePassword(String ID, String oldPassword,String newPassword)throws RemoteException {
+	public ResultMessage changePassword(String ID, String oldPassword,String newPassword) {
 		// TODO Auto-generated method stub
 		if(ID=="0000000000"){
-			WebManager manager = WebManager.getInstance();
-			return manager.changePassword(oldPassword,newPassword);
+			WebManager manager = null;
+			try {
+				manager = WebManager.getInstance();
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				return manager.changePassword(oldPassword,newPassword);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return ResultMessage.remote_fail;
+			}
 		}
 		else{
 

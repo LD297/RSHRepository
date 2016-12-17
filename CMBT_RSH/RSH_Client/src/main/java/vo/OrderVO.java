@@ -1,6 +1,7 @@
 package vo;
 
 import constant.StateOfOrder;
+import po.OrderPO;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -184,5 +185,18 @@ public class OrderVO {
     public Date getCancelAbnormalTime(){
         return cancelAbnormalTime;
     }
+	public OrderPO changeIntoPO() {
+		// TODO Auto-generated method stub
+		OrderVO orderVO = new OrderVO(orderID, userID, userName, hotelID, hotelName, state,
+				room, roomPrice, roomNumber, 
+				peopleNumber, withChild, originValue,
+				trueValue, promotion, comment, grade, 
+				checkIn, checkOut, 
+				hotelDDL, generationDate, actualCheckIn, 
+				actualCheckOut, cancelTime, cancelAbnormalTime);
+		return null;
+	}
+    
+    
 }
 

@@ -7,14 +7,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.AddPromotionUIController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="800.0">
          <image>
-            <Image url="@白色背景.png" />
+            <Image url="@../images/白色背景.png" />
          </image>
       </ImageView>
-      <Button layoutX="650.0" layoutY="624.0" mnemonicParsing="false" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="615.0">
+      <Button fx:id="confirmButton" layoutX="650.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClicked" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="615.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
@@ -62,7 +62,7 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <ChoiceBox layoutX="208.0" layoutY="11.0" opacity="0.8" prefWidth="150.0" AnchorPane.leftAnchor="110.0" />
+                  <ChoiceBox fx:id="deductionTypeChoiceBox" layoutX="208.0" layoutY="11.0" opacity="0.8" prefWidth="150.0" AnchorPane.leftAnchor="110.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -103,57 +103,53 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <ChoiceBox layoutX="204.0" layoutY="11.0" opacity="0.8" prefHeight="27.0" prefWidth="116.0" AnchorPane.leftAnchor="204.0" />
-                  <CheckBox layoutX="174.0" layoutY="50.0" mnemonicParsing="false" opacity="0.8" text="企业会员" AnchorPane.leftAnchor="204.0" AnchorPane.topAnchor="52.0">
+                  <ChoiceBox fx:id="scopeChoiceBox" layoutX="204.0" layoutY="11.0" opacity="0.8" prefHeight="27.0" prefWidth="116.0" AnchorPane.leftAnchor="204.0" />
+                  <CheckBox fx:id="commerceCheckBox" layoutX="174.0" layoutY="50.0" mnemonicParsing="false" opacity="0.8" text="企业会员" AnchorPane.leftAnchor="204.0" AnchorPane.topAnchor="52.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox layoutX="309.0" layoutY="52.0" mnemonicParsing="false" opacity="0.8" text="所有用户" AnchorPane.topAnchor="52.0">
+                  <CheckBox fx:id="memberCheckBox" layoutX="309.0" layoutY="52.0" mnemonicParsing="false" opacity="0.8" text="所有用户" AnchorPane.topAnchor="52.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox layoutX="235.0" layoutY="85.0" mnemonicParsing="false" opacity="0.8" text="是" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="204.0" />
-                  <CheckBox layoutX="310.0" layoutY="92.0" mnemonicParsing="false" opacity="0.8" text="否" AnchorPane.bottomAnchor="91.0" />
-                  <TextField layoutX="208.0" layoutY="120.0" prefHeight="27.0" prefWidth="108.0" promptText="2" AnchorPane.leftAnchor="204.0">
+                  <CheckBox fx:id="birthdayCheckBox" layoutX="235.0" layoutY="85.0" mnemonicParsing="false" opacity="0.8" text="是" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="204.0" />
+                  <CheckBox fx:id="notBirthdayCheckBox" layoutX="310.0" layoutY="92.0" mnemonicParsing="false" opacity="0.8" text="否" AnchorPane.bottomAnchor="91.0" />
+                  <TextField fx:id="roomNumTextField" layoutX="208.0" layoutY="120.0" prefHeight="27.0" prefWidth="108.0" promptText="2" AnchorPane.leftAnchor="204.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="445.0" layoutY="120.0" prefHeight="27.0" prefWidth="108.0" promptText="888" AnchorPane.leftAnchor="440.0" />
-                  <CheckBox layoutX="173.0" layoutY="161.0" mnemonicParsing="false" opacity="0.8" text="全年" AnchorPane.leftAnchor="204.0" AnchorPane.topAnchor="161.0">
-                     <font>
-                        <Font name="Times New Roman" size="14.0" />
-                     </font>
-                  </CheckBox>
-                  <DatePicker layoutX="297.0" layoutY="158.0" opacity="0.8" prefHeight="27.0" prefWidth="100.0" promptText="开始日期" AnchorPane.leftAnchor="295.0" AnchorPane.topAnchor="160.0" />
-                  <Label layoutX="421.0" layoutY="160.0" text="~" AnchorPane.leftAnchor="412.0">
+                  <TextField fx:id="totalTextField" layoutX="445.0" layoutY="120.0" prefHeight="27.0" prefWidth="108.0" promptText="888" AnchorPane.leftAnchor="440.0" />
+                  <DatePicker fx:id="beginDate" layoutX="204.0" layoutY="160.0" opacity="0.8" prefHeight="27.0" prefWidth="100.0" promptText="开始日期" AnchorPane.leftAnchor="204.0" AnchorPane.topAnchor="160.0" />
+                  <Label layoutX="315.0" layoutY="164.0" text="~" AnchorPane.leftAnchor="315.0">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <DatePicker layoutX="432.0" layoutY="151.0" opacity="0.8" prefHeight="27.0" prefWidth="100.0" promptText="结束日期" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="160.0" />
+                  <DatePicker fx:id="endDate" layoutX="330.0" layoutY="161.0" opacity="0.8" prefHeight="27.0" prefWidth="100.0" promptText="结束日期" AnchorPane.leftAnchor="330.0" AnchorPane.topAnchor="161.0" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
+            <AnchorPane prefHeight="90.0" prefWidth="610.0" GridPane.rowIndex="6">
                <children>
                   <Label layoutX="69.0" layoutY="7.0" opacity="0.8" text="折扣额度: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="16.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="122.0" layoutY="16.0" opacity="0.8" text="买" AnchorPane.leftAnchor="110.0">
+                  <Label layoutX="177.0" layoutY="17.0" opacity="0.8" text="折" AnchorPane.leftAnchor="177.0" AnchorPane.topAnchor="16.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="186.0" layoutY="15.0" opacity="0.8" text="间" AnchorPane.leftAnchor="220.0">
+                  <TextField fx:id="discountTextField" layoutX="105.0" layoutY="12.0" prefHeight="27.0" prefWidth="64.0" />
+                  <TextField fx:id="reduceTextField" layoutX="259.0" layoutY="12.0" prefHeight="27.0" prefWidth="64.0" />
+                  <Label layoutX="237.0" layoutY="16.0" opacity="0.8" text="减" AnchorPane.leftAnchor="237.0" AnchorPane.topAnchor="16.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <ChoiceBox layoutX="138.0" layoutY="10.0" opacity="0.8" prefHeight="27.0" prefWidth="72.0" />
                </children>
             </AnchorPane>
             <Separator prefWidth="200.0" GridPane.rowIndex="1" />
@@ -163,7 +159,7 @@
       </GridPane>
       <ImageView layoutX="26.0" layoutY="31.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
-            <Image url="@LOGO.jpg" />
+            <Image url="@../images/LOGO.jpg" />
          </image>
       </ImageView>
       <Label layoutX="340.0" layoutY="72.0" text="添加促销策略" textFill="#ff5a5f">

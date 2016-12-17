@@ -192,8 +192,8 @@ public class RoomInfoUIController {
             }
 
             //  存放每条roomItem相应的展示信息
-            String[] items = new String[]{theRoom.type, theRoom.basicOrSpecial,
-                    String.valueOf(theRoom.price),String.valueOf(theRoom.amountTotal)};
+            String[] items = new String[]{theRoom.roomType, theRoom.basicOrSpecial,
+                    String.valueOf(theRoom.price),String.valueOf(theRoom.numOfRoom)};
 
             // 将每条信息的string放进相应的label
             for(int i=0; i<NUM_OF_ITEMS; i++){
