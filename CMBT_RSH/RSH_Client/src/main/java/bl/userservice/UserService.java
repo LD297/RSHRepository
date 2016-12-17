@@ -5,6 +5,7 @@ import vo.CreditRecordVO;
 import vo.UserVO;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -17,6 +18,8 @@ public interface UserService {
 	 * 返回用户基本信息
 	 */
 	public UserVO getInfo(String userid);
+	
+	public ArrayList<UserVO> getUserVOS();
 
 	/**
 	 * 更新用户的基本信息
