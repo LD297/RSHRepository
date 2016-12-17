@@ -59,7 +59,7 @@ public class SingleUserAnchorPane extends AnchorPane{
 		setFont(nickNameLabel);
 		setFont(nickNameInfoLabel);
 		resetPasswordButton.setFont(Font.font("Times New Roman", 14));
-		resetPasswordButton.setStyle("-fx-background-color #ff5a5f;-fx-text-fill: #ffffff");
+		resetPasswordButton.setStyle("-fx-background-color: #ff5a5f;-fx-text-fill: #ffffff");
 		phoneImage.setFitHeight(23);
 		phoneImage.setFitWidth(23);
 		penImage.setFitHeight(30);

@@ -2,15 +2,26 @@ package presentation.tools;
 
 import java.util.ArrayList;
 
+import bl.hotelservice.SearchHotelService;
+import bl.hotelserviceimpl.SearchHotelService_Stub;
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginService_Stub;
+import bl.userservice.UserService;
+import bl.userserviceimpl.UserService_Stub;
+import bl.webstaffservice.WebStaffService;
+import bl.webstaffserviceimpl.WebStaffService_Stub;
 import constant.ResultMessage;
 import constant.Role;
+import vo.HotelVO;
 import vo.UserVO;
+import vo.WebSalesmanVO;
 
 public class WebManagerInfoUtil {
 	private static WebManagerInfoUtil webManagerInfoUtil = null;
 	private LoginService loginService = new LoginService_Stub();
+	private UserService userService = new UserService_Stub();
+	private SearchHotelService searchHotelService = new SearchHotelService_Stub();
+	private WebStaffService webStaffService = new WebStaffService_Stub();
 	private WebManagerInfoUtil(){}
 	public static WebManagerInfoUtil getInstance() {
 		if(webManagerInfoUtil==null){
@@ -31,6 +42,18 @@ public class WebManagerInfoUtil {
 	 * 管理用户界面调用，得到所有用户的list
 	 */
 	public ArrayList<UserVO> getUserVOs() {
-		return null;
+		return userService.getUserVOS();
+	}
+	/**
+	 * 管理酒店界面调用，得到所有酒店的list
+	 */
+	public ArrayList<HotelVO> getHotelVOs() {
+		return searchHotelService.getHotelList(null, null);
+	}
+	/**
+	 * 管理网站营销人员界面调用
+	 */
+	public ArrayList<WebSalesmanVO> getWebSalesmanVOs() {
+		return webStaffService.getWebSalesmanInfo();
 	}
 }

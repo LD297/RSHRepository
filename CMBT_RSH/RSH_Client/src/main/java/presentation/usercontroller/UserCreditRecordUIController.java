@@ -109,7 +109,7 @@ public class UserCreditRecordUIController {
     public void init(){
     	UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
 		creditRecordVOs = userInfoUtil.getCreditRecordVOs();
-		maxPages = (creditRecordVOs.size()+1)/5;
+		maxPages = (creditRecordVOs.size()+4)/5;
 		changeToSpecificPage(1);
 		// 初始化日历
 		dayOfTodayLabel.setText(new SimpleDateFormat("dd").format(new Date()));

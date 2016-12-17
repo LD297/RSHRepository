@@ -12,23 +12,23 @@ public class SearchHotelService_Stub implements SearchHotelService{
 
 	@Override
 	public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
-		HotelVO vo1 = new HotelVO("000001", "1234567890", "1号酒店", address, businessArea,
+		HotelVO vo1 = new HotelVO("000001", "1234567890", "1号酒店", address, "江苏省 南京市 仙林中心",
 				"no more info", "懒得写", 3, 99.9, "1day");
-		HotelVO vo2 = new HotelVO("000002", "1234567890", "2号酒店", address, businessArea,
+		HotelVO vo2 = new HotelVO("000002", "1234567890", "2号酒店", address, "江苏省 南京市 仙林中心",
 				"no more info", "懒得写", 3, 99.9, "1day");
-		HotelVO vo3 = new HotelVO("000003", "1234567890", "3号酒店", address, businessArea,
+		HotelVO vo3 = new HotelVO("000003", "1234567890", "3号酒店", address, "江苏省 南京市 仙林中心",
 				"no more info", "懒得写", 3, 99.9, "1day");
-		HotelVO vo4 = new HotelVO("000004", "1234567890", "4号酒店", address, businessArea,
+		HotelVO vo4 = new HotelVO("000004", "1234567890", "4号酒店", address, "江苏省 南京市 仙林中心",
 				"no more info", "懒得写", 3, 99.9, "1day");
-		HotelVO vo5 = new HotelVO("000005", "1234567890", "5号酒店", address, businessArea,
+		HotelVO vo5 = new HotelVO("000005", "1234567890", "5号酒店", address,  "江苏省 南京市 仙林中心",
 				"no more info", "懒得写", 3, 99.9, "1day");
-		HotelVO vo6 = new HotelVO("000006", "1234567890", "6号酒店", address, businessArea,
+		HotelVO vo6 = new HotelVO("000006", "1234567890", "6号酒店", address,  "江苏省 南京市 仙林中心",
 				"no more info", "懒得写", 3, 99.9, "1day");
-		HotelVO vo7 = new HotelVO("000007", "1234567890", "7号酒店", address, businessArea,
+		HotelVO vo7 = new HotelVO("000007", "1234567890", "7号酒店", address,  "江苏省 南京市 仙林中心",
 				"no more info", "懒得写", 3, 99.9, "1day");
-		HotelVO vo8 = new HotelVO("000008", "1234567890", "8号酒店", address, businessArea,
+		HotelVO vo8 = new HotelVO("000008", "1234567890", "8号酒店", address,  "江苏省 南京市 仙林中心",
 				"no more info", "懒得写", 3, 99.9, "1day");
-		HotelVO vo9 = new HotelVO("000009", "1234567890", "9号酒店", address, businessArea,
+		HotelVO vo9 = new HotelVO("000009", "1234567890", "9号酒店", address,  "江苏省 南京市 仙林中心",
 				"no more info", "懒得写", 3, 99.9, "1day");
 		
 		ArrayList<HotelVO> list = new ArrayList<>();
