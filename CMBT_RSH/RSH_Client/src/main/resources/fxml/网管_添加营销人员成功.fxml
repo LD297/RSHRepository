@@ -6,27 +6,37 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.webmanagercontroller.SuccessResetPasswordUIController">
+<AnchorPane prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.webmanagercontroller.SuccessAddWebSalesmanUIController">
    <children>
       <Label layoutX="50.0" layoutY="86.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.3);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="160.0">
          <children>
-            <Button fx:id="iknowButton" layoutX="319.0" layoutY="264.0" mnemonicParsing="false" onMouseClicked="#closeSuccessResetPassword" style="-fx-background-color: #ff5a5f;" text="我知道了" textFill="WHITE">
+            <Button fx:id="iknowButton" layoutX="342.0" layoutY="264.0" mnemonicParsing="false" onMouseClicked="#closeSuccessAdd" style="-fx-background-color: #ff5a5f;" text="我知道了" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Button>
-            <Label fx:id="newPasswordLabel" layoutX="60.0" layoutY="200.0" prefHeight="20.0" prefWidth="90.0" text="jgksjg_2532" textFill="#00a699">
+            <Label fx:id="idLabel" layoutX="60.0" layoutY="200.0" prefHeight="20.0" prefWidth="90.0" text="1111111111" textFill="#00a699">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="60.0" layoutY="148.0" prefHeight="52.0" prefWidth="362.0" text="           您申请重置密码的操作成功。新密码信息如下，请您妥善保管，以防丢失。新密码为" wrapText="true">
+            <Label layoutX="150.0" layoutY="200.0" text="，初始密码为">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="168.0" layoutY="81.0" prefHeight="36.0" prefWidth="151.0" text="重置密码成功" textFill="#ff5a5f">
+            <Label fx:id="passwordLabel" layoutX="258.0" layoutY="200.0" prefHeight="20.0" prefWidth="90.0" text="1111111111" textFill="#00a699">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="148.0" prefHeight="52.0" prefWidth="378.0" text="        您申请添加营销人员的操作成功。账号和密码信息如下，请您妥善保管，以防丢失。账号为" wrapText="true">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="195.0" layoutY="81.0" prefHeight="36.0" prefWidth="108.0" text="添加成功" textFill="#ff5a5f">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>

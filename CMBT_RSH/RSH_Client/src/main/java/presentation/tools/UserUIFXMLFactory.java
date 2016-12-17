@@ -19,6 +19,8 @@ public class UserUIFXMLFactory {
     private LoginUIController loginUIController = null;
     private UserRegisterUIController userRegisterUIController = null;
     private UserOrderUIController userOrderUIController = null;
+    
+    private AnchorPane roleChoose = null;
 
     private UserUIFXMLFactory(){}
 
@@ -278,11 +280,12 @@ public class UserUIFXMLFactory {
 
     public AnchorPane getRoleChoose() {
         FXMLLoader roleChooseLoader = new FXMLLoader(getClass().getResource("/fxml/身份选择.fxml"));
-        AnchorPane roleChoose = null;
-        try {
-            roleChoose = roleChooseLoader.load();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(roleChoose==null){
+        	try {
+                roleChoose = roleChooseLoader.load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return roleChoose;
     }
