@@ -5,16 +5,13 @@ import constant.StateOfOrder;
 import data.daohelper.OrderDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.OrderPO;
-import po.RoomNormPO;
 
 import java.rmi.RemoteException;
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
@@ -25,30 +22,24 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     private DBHelper db = new DBHelper();
 
     public void init(){
-        // 订单编号
-        // 房间类型 房间原价 房间现价
-        // 房间数量
-        db.executeSql("CREATE TABLE if not exists OrderRooms(orderID char(26)," +
-                "roomType varchar(10),originPrice double,truePrice double," +
-                "roomNum tinyint)");
+
         // 订单编号 用户编号
-        // 用户姓名 酒店编号 酒店名称 订单状态
+        // 用户姓名 酒店编号 酒店名称 订单状态 房间类型 房间价格 房间数量
         // 入住人数 是否有儿童 原价 折后 促销策略
         // 评价 评分 预计入住、退房时间 酒店最晚时间
         // 实际入住、退房时间 订单生成时间 撤销订单时间 撤销异常时间
         db.executeSql("CREATE TABLE if not exists OrderGeneral(orderID char(26),userID char(11)," +
-                "userName char(10), hotelID char(10), hotelName char(10), state tinyint," +
+                "userName char(10), hotelID char(10), hotelName char(10), state tinyint,roomType char(10),roomPrice double,roomNum tinyint," +
                 "peopleNum tinyint,withChild tinyint,originValue double,trueValue double,promotion varchar(20)," +
-                "comment varchar(30),grade tinyint,checkIn datetime,checkOut datetime,hotelDDL char(8)," +
+                "comment tinytext,grade tinyint,checkIn date,checkOut date,hotelDDL char(8)," +
                 "bornDate date,actCheckIn datetime,actCheckOut datetime,cancelTime datetime,cancelAbTime datetime)");
     }
     public void finish(){
         db.executeSql("USE OurData");
         db.executeSql("DROP TABLE IF EXISTS OrderGeneral");
-        db.executeSql("DROP TABLE IF EXISTS OrderRooms ");
     }
-    // 遍历得到所有订单
-    public void getAll(){
+    // 遍历得到更新订单（自动置为异常）
+    private void updateAll(){
         db.executeSql("USE OurData");
 
         String generalSql = "SELECT *FROM OrderGeneral";
@@ -88,7 +79,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         if (this.checkExistence(orderID) == ResultMessage.idNotExist)
             return null;
 
-        this.getAll();
+        this.updateAll();
         String getDetailSql = "SELECT *FROM OrderGeneral WHERE orderID='" + orderID + "' LIMIT 1";
         ResultSet result = db.query(getDetailSql);
 
@@ -98,7 +89,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     public ArrayList<OrderPO> searchByUserWithHotel(String userID,String hotelID)throws RemoteException{
         db.executeSql("USE OurData");
 
-        this.getAll();
+        this.updateAll();
         String generalSql = "SELECT *FROM OrderGeneral WHERE userID='" + userID + "' and hotelID='"+hotelID+"'";
         ResultSet result = db.query(generalSql);
 
@@ -108,7 +99,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     public ArrayList<OrderPO> searchByUser(String userID) throws RemoteException {
         db.executeSql("USE OurData");
 
-        this.getAll();
+        this.updateAll();
         String generalSql = "SELECT *FROM OrderGeneral WHERE userID='" + userID + "'";
         ResultSet result = db.query(generalSql);
 
@@ -117,7 +108,8 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     // 根据酒店编号查找订单
     public ArrayList<OrderPO> searchByHotel(String hotelID) throws RemoteException{
         db.executeSql("USE OurData");
-
+        
+        this.updateAll();
         String generalSql = "SELECT *FROM OrderGeneral WHERE hotelID = '" + hotelID + "'";
         ResultSet result = db.query(generalSql);
 
@@ -127,6 +119,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     public ArrayList<OrderPO> searchByState(StateOfOrder state) throws RemoteException{
         db.executeSql("USE OurData");
 
+        this.updateAll();
         String generalSql = "SELECT *FROM OrderGeneral WHERE state=" +String.valueOf(state.ordinal());
         ResultSet result = db.query(generalSql);
 
@@ -134,13 +127,12 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     }
     // 插入订单
     public ResultMessage insert(OrderPO orderPO) throws RemoteException{
-        String orderID = orderPO.getOrderID();
         String userID = orderPO.getUserID();
         String userName = orderPO.getUserName();
         String hotelID = orderPO.getHotelID();
         String hotelName= orderPO.getHotelName();
 
-        RoomNormPO room = orderPO.getRoom();
+        String roomType = orderPO.getRoom();
         double roomPrice = orderPO.getRoomPrice();
         int roomNumber = orderPO.getRoomNumber();
         double originValue = orderPO.getOriginValue();
@@ -157,23 +149,19 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         Date bornDate = new Date();
         String hotelDDL = orderPO.getHotelDDL();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String checkin = sdf.format(checkIn);
         String checkout = sdf.format(checkOut);
-        SimpleDateFormat sdff = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdff = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String borndate = sdff.format(bornDate);
 
+        String orderID = this.calculateOrderID(borndate,hotelID);
 
         db.executeSql("USE Ourdata");
-        String insertRoomSql = "INSERT INTO OrderRooms VALUES('"+orderID+"','"+room.getRoomType()+"',"
-                +String.valueOf(room.getPrice())+","+String.valueOf(roomPrice)+","+
-                String.valueOf(roomNumber)+")";
-        db.executeSql(insertRoomSql);
-
         String insertOrderSql = "INSERT INTO OrderGeneral VALUES('"+orderID+"','"+userID+"','"+
-                userName+"','"+hotelID+"','"+hotelName+"',0," +String.valueOf(peopleNum)+ ","+String.valueOf(withchild)+
+                userName+"','"+hotelID+"','"+hotelName+"',0,'"+roomType+"',"+String.valueOf(roomPrice)+","+String.valueOf(roomNumber) +","+String.valueOf(peopleNum)+ ","+String.valueOf(withchild)+
                 ","+String.valueOf(originValue)+","+String.valueOf(trueValue)+",'"+promotion+"'," +
-                "null,null,"+checkin+","+checkout+","+borndate+",'"+hotelDDL+"',null,null,null,null)";
+                "null,null,'"+checkin+"','"+checkout+"','"+borndate+"','"+hotelDDL+"',null,null,null,null)";
         db.executeSql(insertOrderSql);
 
         return ResultMessage.succeed;
@@ -184,12 +172,14 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         db.executeSql("USE OurData");
         if(this.checkExistence(orderID)==ResultMessage.idNotExist)
             return ResultMessage.idNotExist;
+        
+        this.updateAll();
         String isStateChangedSql = "SELECT state FROM OrderGeneral WHERE orderID='"+orderID+"' LIMIT 1";
         ResultSet result = db.query(isStateChangedSql);
         try{
             while(result.next())
                 if(result.getInt(1)==newState.ordinal())
-                    return ResultMessage.fail;/////////////////////nochangemade
+                    return ResultMessage.noChangeMade;
         }catch (SQLException e){
             e.printStackTrace();
             return ResultMessage.fail;
@@ -215,7 +205,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         db.executeSql("USE OurData");
         if(this.checkExistence(orderID)==ResultMessage.idNotExist)
             return ResultMessage.idNotExist;
-
+        
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         String actcheckin = sdf.format(actCheckIn);
         String cometimeupdateSql = "UPDATE OrderGeneral SET actCheckIn='"+actcheckin+"' WHERE orderID='"+orderID+"' LIMIT 1";
@@ -259,7 +249,27 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         return ResultMessage.succeed;
     }
 
-
+    // 生成订单编号
+    private String calculateOrderID(String bornDate,String hotelID){
+    	String orderID = bornDate.substring(0,10)+hotelID;
+    	
+    	db.executeSql("USE OurData");
+    	String getSelectedNumSql = "SELECT orderID FROM OrderGeneral";
+    	ResultSet result = db.query(getSelectedNumSql);
+    	int num = 0;
+    	try{
+    		while(result.next()){
+    			if(result.getString(1).substring(0, 20).equals(orderID))
+    				num++;
+    		}
+    	}catch(SQLException e){
+    		e.printStackTrace();
+    		return null;
+    	}
+    	String sort = String.format("%6d", num).replace(" ", "0");
+    	
+    	return orderID+sort;
+    }
     // 检查账号是否存在
     private ResultMessage checkExistence(String orderID){
         String checkExistenceSql = "SELECT orderID FROM OrderGeneral";
@@ -286,6 +296,9 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                 String hotelName = result.getString("hotelName");
 
                 StateOfOrder state = StateOfOrder.values()[result.getInt("state")];
+                String roomType = result.getString("roomType");
+                double roomPrice = result.getDouble("roomPrice");
+                int roomNum = result.getInt("roomNum");
                 int peopleNum = result.getInt("peopleNum");
                 boolean withChild = result.getBoolean("withChild");
                 double originValue = result.getDouble("originValue");
@@ -294,47 +307,28 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                 String comment = result.getString("comment");
                 int grade = result.getInt("grade");
 
-                Date checkIn = result.getTimestamp("checkIn");
-                Date checkOut = result.getTimestamp("checkOut");
+                Date checkIn = result.getDate("checkIn");
+                Date checkOut = result.getDate("checkOut");
                 String hotelDDL = result.getString("hotelDDL");
-                Date bornTime = result.getDate("bornDate");
+                Date bornTime = result.getTimestamp("bornDate");
                 Date actCheckIn = result.getTimestamp("actCheckIn");
                 Date actCheckOut = result.getTimestamp("actCheckOut");
                 Date cancelTime = result.getTimestamp("cancelTime");
                 Date cancelAbTime = result.getTimestamp("cancelAbTime");
 
-                RoomNormPO roomPO = null;
-                String getRoomSql = "SELECT *FROM OrderRooms WHERE orderID='" + orderID + "' LIMIT 1" ;
-                ResultSet resultRoom = db.query(getRoomSql);
-                int roomTruePrice = 0;
-                int roomNum = 0;
-                try{
-                    while (resultRoom.next()) {
-                        roomPO = new RoomNormPO(resultRoom.getString("orderID").substring(0, 10),
-                                resultRoom.getString("roomType"), resultRoom.getDouble("originPrice"));
-                        roomTruePrice = resultRoom.getInt("truePrice");
-                        roomNum = resultRoom.getInt("roomNum");
-                        String promo = promotion + "\n" + resultRoom.getString("promotion");
-                    }
-                }catch (SQLException e){
-                    e.printStackTrace();
-                    return null;
-                }
-                if(roomPO!=null) {
-                    OrderPO orderpo = new OrderPO(orderID, userID, userName, hotelID, hotelName, state,
-                            roomPO, roomTruePrice, roomNum, peopleNum, withChild,
-                            originValue, trueValue, promotion,
-                            comment, grade, checkIn, checkOut, hotelDDL,
-                            bornTime, actCheckIn, actCheckOut, cancelTime, cancelAbTime);
 
-                    selectedList.add(orderpo);
-                }
+                OrderPO orderpo = new OrderPO(orderID, userID, userName, hotelID, hotelName, state,
+                        roomType, roomPrice, roomNum, peopleNum, withChild,
+                        originValue, trueValue, promotion,
+                        comment, grade, checkIn, checkOut, hotelDDL,
+                        bornTime, actCheckIn, actCheckOut, cancelTime, cancelAbTime);
+
+                selectedList.add(orderpo);
             }
-            return selectedList;
-        } catch (SQLException e) {
+        }catch(SQLException e){
             e.printStackTrace();
             return null;
         }
+        return selectedList;
     }
-
 }

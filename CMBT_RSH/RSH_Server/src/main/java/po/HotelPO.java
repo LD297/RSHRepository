@@ -6,7 +6,7 @@ public class HotelPO implements Serializable{
 	/**
 	 * 酒店账号
 	 */
-	private String id;
+	private String hotelID;
 	private String password;
 	/**
 	 * 酒店工作人员联系方式（客服）
@@ -34,17 +34,18 @@ public class HotelPO implements Serializable{
 	 * 酒店评分（根据每次用户评分加权计算后取整）
 	 */
 	private double grade;
+	private double standardPrice;
 	/**
 	 * 最晚入住时间
 	 */
-	private String latestCheckinTime;
+	private String latestCheckInTime;
 	
-	public HotelPO(String id) {
-		this.id = id;
+	public HotelPO(String hotelID) {
+		this.hotelID = hotelID;
 	}
 
-	public String getId() {
-		return id;
+	public String getID() {
+		return hotelID;
 	}
 
 	public String getPassword() {
@@ -119,25 +120,26 @@ public class HotelPO implements Serializable{
 		this.grade = grade;
 	}
 
-	public String getLatestCheckinTime() {
-		return latestCheckinTime;
+	public String getLatestCheckInTime() {
+		return latestCheckInTime;
 	}
 
-	public void setLatestCheckinTime(String latestCheckinTime) {
-		this.latestCheckinTime = latestCheckinTime;
+	public void setLatestCheckInTime(String latestCheckInTime) {
+		this.latestCheckInTime = latestCheckInTime;
 	}
-	public HotelPO(String id, String tel, String name, String addr, String businessArea,
-				   String briefIntro, String facility, int level,double grade, String latestCheckinTime){
-		this.id =  id;
+	public HotelPO(String hotelID, String tel, String name, String addr, String businessArea,
+				   double standardPrice,String briefIntro,String facility, int level,double grade, String latestCheckInTime){
+		this.hotelID =  hotelID;
 		this.tel = tel;
 		this.name = name;
 		this.addr = addr;
 		this.businessArea = businessArea;
+		this.standardPrice = standardPrice;
 		this.briefIntro = briefIntro;
 		this.facility = facility;
 		this.level = level;
 		this.grade = grade;
-		this.latestCheckinTime  = latestCheckinTime;
+		this.latestCheckInTime  = latestCheckInTime;
 	}
 	public HotelPO(String tel,String name,String addr,String password){
 		this.tel = tel;

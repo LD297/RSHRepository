@@ -21,6 +21,8 @@ public interface HotelDao extends Remote{
     public String getNewHotelID(String district) throws RemoteException;
     // 添加酒店（注销酒店 暂不考虑）
     public ResultMessage addHotel(HotelPO hotelPO) throws RemoteException;
+    // 更新酒店评分
+    public ResultMessage updateGrade(String hotelID,int grade) throws RemoteException;
     // 更新酒店基本信息
     public ResultMessage updateHotel (HotelPO hotelPO) throws RemoteException;
     // 根据roompo里的酒店账号 添加酒店的客房信息 并将该房间类型可用客房数量置为总数
@@ -38,8 +40,6 @@ public interface HotelDao extends Remote{
     public ResultMessage changeRoomAvail(String id, String roomType,boolean isPlus, int num, Date checkIn, Date checkOut) throws RemoteException;
     // 得到酒店 房间类型 一段日期 可用数量
     public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) throws RemoteException;
-    // 生成订单时得到酒店 所有房间的规格信息？？
-    public ArrayList<RoomNormPO> getRoomNorm(String id) throws RemoteException;
     // 根据地址和商圈的到酒店列表
     public ArrayList<HotelPO> getHotelList(String address,String businessArea) throws RemoteException;
 
