@@ -23,7 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.tools.HotelBasicInfoUICheck;
-import presentation.tools.HotelUIFactory;
+import presentation.tools.HotelAndWebSalesmanUIFactory;
 import vo.HotelVO;
 
 public class HotelBasicInfoUIController {
@@ -172,14 +172,14 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void changeImageButtonClicked(MouseEvent event) {
-
+        // TODO
     }
 
 
     @FXML
     void changeToRoomInfoUI(MouseEvent event) {
         // 加载客房信息维护界面
-        FXMLLoader loader = HotelUIFactory.getInstance().getRoomInfoUILoader();
+        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getRoomInfoUILoader();
         // 加载客房信息维护界面根结点
         if(roomInfoUIPane==null)
             try {
@@ -197,7 +197,7 @@ public class HotelBasicInfoUIController {
 
         Scene scene = null;
         if(roomInfoUIPane.getScene()==null)
-            scene = new Scene(roomInfoUIPane, HotelUIFactory.UI_WIDTH, HotelUIFactory.UI_HEIGHT);
+            scene = new Scene(roomInfoUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
         else
             scene = roomInfoUIPane.getScene();
 

@@ -1,15 +1,24 @@
 package po;
 
 import bl.webstaffserviceimpl.WebSalesman;
+import vo.WebSalesmanVO;
 
 public class WebSalesmanPO {
 
-	String id;
-	String password;
-	String district;
+	private String name;
+	private String webSalesmanID;
+	private String password;
+	private String district;
 
+	public WebSalesmanPO(String webSalesmanID, String district, String password,String name){
+		this.webSalesmanID = webSalesmanID;
+		this.district = district;
+		this.password = password;
+		this.name = name;
+	}
+	
 	public String getID(){
-		return id;
+		return webSalesmanID;
 	}
 
 	public String getPassword(){
@@ -20,12 +29,12 @@ public class WebSalesmanPO {
 		return district;
 	}
 
-	public static WebSalesman getInstance (String tempid){
-		return null;
+	public String getName(){
+		return name;
 	}
-
-	public static WebSalesmanPO changeIntoPo(WebSalesman tempWebSalesman){
-		return null;
+	public WebSalesmanVO changeIntoVO(){
+		WebSalesmanVO webSalesmanVO = new WebSalesmanVO(webSalesmanID, district, password, name);
+		return webSalesmanVO;
 	}
 
 }

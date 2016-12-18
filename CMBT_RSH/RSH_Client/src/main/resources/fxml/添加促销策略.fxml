@@ -7,27 +7,21 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.AddPromotionUIController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="700.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.AddPromotionUIController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="800.0">
-         <image>
-            <Image url="@../images/白色背景.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="confirmButton" layoutX="650.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClicked" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="615.0">
+      <Button fx:id="confirmButton" layoutX="625.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClicked" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="541.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <AnchorPane layoutX="670.0" layoutY="68.0" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="68.0" />
-      <Button fx:id="backButton" layoutX="601.0" layoutY="615.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回">
+      <Button fx:id="backButton" layoutX="555.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <GridPane AnchorPane.bottomAnchor="162.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="130.0">
+      <GridPane layoutX="80.0" layoutY="106.0" prefHeight="408.0" prefWidth="542.0" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="106.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="700.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -39,7 +33,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="0.0" prefWidth="0.0">
                <children>
                   <Label layoutX="8.0" layoutY="17.0" opacity="0.8" text="编号: " AnchorPane.bottomAnchor="16.5" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="16.5">
                      <font>
@@ -157,12 +151,7 @@
             <Separator prefWidth="200.0" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <ImageView layoutX="26.0" layoutY="31.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-         <image>
-            <Image url="@../images/LOGO.jpg" />
-         </image>
-      </ImageView>
-      <Label layoutX="340.0" layoutY="72.0" text="添加促销策略" textFill="#ff5a5f">
+      <Label layoutX="290.0" layoutY="72.0" text="添加促销策略" textFill="#ff5a5f">
          <font>
             <Font name="Times New Roman" size="20.0" />
          </font>

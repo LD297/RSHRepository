@@ -50,13 +50,18 @@ public class PromotionVO {
                        DeductionType tempDType, int tempDNum){
         setterID = tempSetter;
         promotionID = tempPromID;
-        reason = tempPromID;
+        reason = tempReasom;
 
         beginDate = tempBeginDate;
         endDate = tempEndDate;
 
         scopeType = tempSType;
         scopeNum = tempSNum;
+
+        this.roomType = roomType;
+
+        conditionType = tempCType;
+        conditionNum = tempCNum;
 
         deductionType = tempDType;
         deductionNum = tempDNum;

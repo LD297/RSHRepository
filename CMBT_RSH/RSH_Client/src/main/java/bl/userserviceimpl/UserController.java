@@ -1,5 +1,6 @@
 package bl.userserviceimpl;
 
+import bl.BLHelper;
 import bl.userservice.UserService;
 import constant.ResultMessage;
 import vo.CreditRecordVO;
@@ -102,9 +103,9 @@ public class UserController implements UserService{
 	}
 
 	@Override
-	public String resetpassword(String userid) {
+	public String resetPassword(String userid) {
 		// TODO Auto-generated method stub
-		return null;
+		return BLHelper.getRandom(20);
 	}
 
 }

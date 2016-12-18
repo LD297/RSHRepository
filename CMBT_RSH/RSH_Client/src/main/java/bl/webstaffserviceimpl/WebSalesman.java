@@ -1,36 +1,113 @@
 package bl.webstaffserviceimpl;
 
+import java.rmi.RemoteException;
+
 import constant.ResultMessage;
 import data.dao.webstaffdao.WebSalesmanDao;
+import po.WebSalesmanPO;
 import rmi.RemoteHelper;
+import vo.WebSalesmanVO;
 
 public class WebSalesman {
 
-	String ID;
+	private static WebSalesmanDao webSalesmanDao = null;
+	String name;
+	String webSalesmanID;
 	String password;
 	String district;
 
-	private WebSalesmanDao webSalesmanDao = RemoteHelper.getInstance().getWebSalesmanDao();
-
-	public WebSalesman(String id, String tempPassword) {
+	private static void initRemote(){
+		if(webSalesmanDao == null){
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
+			webSalesmanDao = remoteHelper.getWebSalesmanDao();
+		}
+	}
+	
+	
+	protected WebSalesman(String webSalesmanID, String district, String password,String name) {
 		// TODO Auto-generated constructor stub
-		ID=id;
-		password=tempPassword;
+		this.webSalesmanID = webSalesmanID;
+		this.district = district;
+		this.password = password;
+		this.name = name;
 	}
 
 	public static WebSalesman getInstance(String id){
-		
-		return null;
+		initRemote();
+		WebSalesmanPO webSalesmanPO = null;
+		try {
+			webSalesmanPO = webSalesmanDao.getSalesmanInstance(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		if(webSalesmanPO==null){
+			return null;
+		}
+		WebSalesman webSalesman = new WebSalesman(webSalesmanPO.getID(), 
+				webSalesmanPO.getDistrict(),webSalesmanPO.getPassword(),webSalesmanPO.getName());
+		return webSalesman;
 	}
 
 	public ResultMessage insert(){
-
-		return null;
+		initRemote();
+		try {
+			return webSalesmanDao.addWebSalesman(this.changeIntoPO());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.remote_fail;
+		}
 	}
 
 	public ResultMessage update(){
-		
-		return null;
+		initRemote();
+		try {
+			return webSalesmanDao.updateWebSalesman(this.changeIntoPO());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.remote_fail;
+		}
 	}
 
+	public WebSalesmanPO changeIntoPO(){
+		WebSalesmanPO webSalesmanPO = new WebSalesmanPO(webSalesmanID, district, password, name);
+		return webSalesmanPO;
+	}
+	
+	public WebSalesmanVO changeIntoVO(){
+		WebSalesmanVO webSalesmanVO = new WebSalesmanVO(webSalesmanID, district, password, name);
+		return webSalesmanVO;
+	}
+
+
+	public ResultMessage changePassword(String oldPassword, String newPassword) {
+		// TODO Auto-generated method stub
+		if(password == oldPassword){
+			password = newPassword;
+			return update();
+		}
+		return ResultMessage.password_wrong;
+	}
+
+
+	public ResultMessage forceChangePassword(String newPassword) {
+		// TODO Auto-generated method stub
+		password = newPassword ;
+		return update();
+	}
+
+
+	public ResultMessage checkPassword(String password) {
+		// TODO Auto-generated method stub
+		if(this.password == password){
+			return ResultMessage.succeed;
+		}
+		else{
+			return ResultMessage.password_wrong;
+		}
+	}
+	
 }

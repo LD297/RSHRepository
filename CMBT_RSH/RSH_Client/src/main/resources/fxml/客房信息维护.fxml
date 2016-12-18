@@ -9,9 +9,8 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.RoomAvailUIController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.RoomInfoUIController">
    <children>
-      <Label fx:id="greyLabel" opacity="0.5" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: cccccc;" visible="false" />
       <ImageView fitHeight="720.0" fitWidth="800.0">
          <image>
             <Image url="@../images/白色背景.png" />
@@ -288,5 +287,6 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
+      <Label fx:id="greyLabel" opacity="0.5" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: a1a1a1;" visible="false" />
    </children>
 </AnchorPane>

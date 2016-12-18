@@ -66,4 +66,10 @@ public class UserDao_Stub implements UserDao {
     public int[] getMemberLevel() throws RemoteException {
         return memberLevelBoundaries;
     }
+
+	@Override
+	public ArrayList<UserPO> getAll() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

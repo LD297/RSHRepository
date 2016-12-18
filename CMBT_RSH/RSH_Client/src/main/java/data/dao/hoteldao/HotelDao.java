@@ -47,13 +47,13 @@ public interface HotelDao extends Remote{
     
     public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) throws RemoteException;
     
-    public ArrayList<RoomNormPO> getRoomNorm(String id) throws RemoteException;
-    
     public ArrayList<HotelPO> getHotelList(String address,String businessArea) throws RemoteException;
      
    
    
     public ResultMessage updateGrade(String hotelID,int grade) throws RemoteException;
+    
+    public ArrayList<HotelPO> getAll() throws RemoteException;
   
 }
 

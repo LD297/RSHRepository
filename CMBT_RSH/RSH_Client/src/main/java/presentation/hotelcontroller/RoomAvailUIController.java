@@ -11,6 +11,7 @@ import java.util.Observable;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
+import bl.hotelserviceimpl.HotelService_Stub;
 import constant.ResultMessage;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import vo.RoomAvailVO;
 
@@ -113,16 +115,14 @@ public class RoomAvailUIController {
     private Date currentDate = Date.from(Instant.now());
 
     // TODO 记得设置
-    private HotelService hotelService;
+    private HotelService hotelService  = new HotelService_Stub();
 
     private static AnchorPane prePane;
-    public void setAnchorPane(AnchorPane anchorPane) {
-        this.anchorPane = anchorPane;
-    }
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
 
+    private static final int NUM_OF_ITEMS = 4;
     private static final int NUM_OF_PANES_FOR_SHOW = 6;
 
     // 根据日期从数据库得到当天各种类型的可用数量
@@ -130,8 +130,17 @@ public class RoomAvailUIController {
     // 存放当前页面显示的有限条房间信息
     private RoomAvailVO[] roomAvailOnShow = new RoomAvailVO[NUM_OF_PANES_FOR_SHOW];
     // 存放当前页用于展示的anchorPanes
-    private AnchorPane[] showPanes = new AnchorPane[]{showPane0, showPane01, showPane02,
-            showPane03,showPane04,showPane05};
+    private AnchorPane[] showPanes = new AnchorPane[NUM_OF_PANES_FOR_SHOW];
+
+    private void setShowPanes(){
+        showPanes[0] = showPane0;
+        showPanes[1] = showPane01;
+        showPanes[2] = showPane02;
+        showPanes[3] = showPane03;
+        showPanes[4] = showPane04;
+        showPanes[5] = showPane05;
+    }
+
     // （当前日期对应的）房间共几页
     private int fullPageNum = 0;
     // 最后剩下不满一页的房间有几条
@@ -168,7 +177,7 @@ public class RoomAvailUIController {
             for(int i=0; i<NUM_OF_PANES_FOR_SHOW; i++)
                 roomAvailOnShow[i] = currentRoomAvailList.get(currentPage*NUM_OF_PANES_FOR_SHOW+i);
         } else {
-            for(int i=0; i<=remainderRoomAvailNum; i++)
+            for(int i=0; i<remainderRoomAvailNum; i++)
                 roomAvailOnShow[i] = currentRoomAvailList.get(currentPage*NUM_OF_PANES_FOR_SHOW+i);
             for(int i=remainderRoomAvailNum; i<NUM_OF_PANES_FOR_SHOW; i++)
                 roomAvailOnShow[i] = null;
@@ -179,7 +188,7 @@ public class RoomAvailUIController {
         if(showPanes!=null){
             int size =0;
             for(int i=0; i<showPanes.length; i++){
-                size = showPanes[i].getChildren().size();
+                size = (showPanes[i].getChildren()).size();
                 for(int j=0; j<size; j++)
                     showPanes[i].getChildren().get(j).setVisible(true);
             }
@@ -193,22 +202,22 @@ public class RoomAvailUIController {
     private void showRoomAvailItems(AnchorPane theAnchorPane, RoomAvailVO theRoomAvail){
         if(theRoomAvail!=null){
 
+            ArrayList<Label> labels = new ArrayList<>(NUM_OF_ITEMS);
+            for(int  i=0; i<NUM_OF_ITEMS; i++){
+                labels.add((Label)theAnchorPane.getChildren().get(i));
+            }
+
             String type = theRoomAvail.getRoomType();
             String baOrSpe = theRoomAvail.getBasicOrSpecial();
             String price = String.valueOf(theRoomAvail.getPrice());
             String availNum = String.valueOf(theRoomAvail.getAmountAvail());
 
-            Label roomType = (Label)theAnchorPane.getChildren().get(0);
-            Label basicOrSpecial = (Label)theAnchorPane.getChildren().get(1);;
-            Label roomPrice = (Label)theAnchorPane.getChildren().get(2);;
-            Label roomAvailNum = (Label)theAnchorPane.getChildren().get(3);;
+            String[] items = new String[]{type, baOrSpe, price, availNum};
 
-
-            roomType.setText(type);
-            basicOrSpecial.setText(baOrSpe);
-            roomPrice.setText(price);
-            roomAvailNum.setText(availNum);
-
+            for(int i=0; i<NUM_OF_ITEMS; i++){
+                labels.get(i).setTextAlignment(TextAlignment.CENTER);
+                labels.get(i).setText(items[i]);
+            }
         } else {
             showBlank(theAnchorPane);
         }
@@ -269,16 +278,65 @@ public class RoomAvailUIController {
     // 所有加号一个监听，响应时判断父节点
     @FXML
     void plus0Clicked(MouseEvent event){
-        AnchorPane actorPane = (AnchorPane)((ImageView)event.getSource()).getParent();
+        AnchorPane actorPane = showPane0;
+        changeNum(actorPane, 1);
+    }
+    @FXML
+    void plus1Clicked(MouseEvent event){
+        AnchorPane actorPane = showPane01;
+        changeNum(actorPane, 1);
+    }
+    @FXML
+    void plus2Clicked(MouseEvent event){
+        AnchorPane actorPane = showPane02;
+        changeNum(actorPane, 1);
+    }
+    @FXML
+    void plus3Clicked(MouseEvent event){
+        AnchorPane actorPane = showPane03;
+        changeNum(actorPane, 1);
+    }
+    @FXML
+    void plus4Clicked(MouseEvent event){
+        AnchorPane actorPane = showPane04;
+        changeNum(actorPane, 1);
+    }
+    @FXML
+    void plus5Clicked(MouseEvent event){
+        AnchorPane actorPane = showPane05;
         changeNum(actorPane, 1);
     }
 
     @FXML
     void minus0Clicked(MouseEvent event) {
-        AnchorPane actorPane = (AnchorPane)((ImageView)event.getSource()).getParent();
+        AnchorPane actorPane = showPane0;
         changeNum(actorPane, -1);
     }
-
+    @FXML
+    void minus1Clicked(MouseEvent event) {
+        AnchorPane actorPane = showPane01;
+        changeNum(actorPane, -1);
+    }
+    @FXML
+    void minus2Clicked(MouseEvent event) {
+        AnchorPane actorPane = showPane02;
+        changeNum(actorPane, -1);
+    }
+    @FXML
+    void minus3Clicked(MouseEvent event) {
+        AnchorPane actorPane = showPane03;
+        changeNum(actorPane, -1);
+    }
+    @FXML
+    void minus4Clicked(MouseEvent event) {
+        AnchorPane actorPane = showPane04;
+        changeNum(actorPane, -1);
+    }
+    @FXML
+    void minus5Clicked(MouseEvent event) {
+        AnchorPane actorPane = showPane05;
+        changeNum(actorPane, -1);
+    }
 
     @FXML
     void prePageClicked(MouseEvent event) {
@@ -334,6 +392,7 @@ public class RoomAvailUIController {
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
         assert datePicker != null : "fx:id=\"datePicker\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
 
+        setShowPanes();
         refreshPage();
     }
 }

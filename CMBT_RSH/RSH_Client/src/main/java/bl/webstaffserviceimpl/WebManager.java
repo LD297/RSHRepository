@@ -19,50 +19,41 @@ public class WebManager {
 
 //	private static final int  MAXNUM= 1;// 网站管理人员的最大数量
 	private static WebManager webManager = null;
-	private static String ID="0000000000";
+	private String webManagerID;
 	private String password=null;
-
-	private static WebManagerDao webManagerDao=RemoteHelper.getInstance().getWebManagerDao();
+	private static WebManagerDao webManagerDao = null;
 	
-	private WebManager(String tempPassword){
-		password = tempPassword;
+	private static void initRemote(){
+		if(webManagerDao == null){
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
+			webManagerDao = remoteHelper.getWebManagerDao();
+		}
+	}
+	
+	private WebManager(String password){
+		webManagerID = "0000000000";
+		this.password = password;
 	}
 
-	/**
-	 *
-	 * @param tempPass
-	 * @return
-	 */
-	public static ResultMessage register(String id,String tempPass)throws RemoteException{
-		if(webManager==null){
-			webManager=WebManager.getInstance();
-			if(webManager!=null)
-				return ResultMessage.fail;
-			webManager=new WebManager(tempPass);
-			webManager.update();
-			return ResultMessage.fail;
-		}
-		else {
-			return ResultMessage.fail;
-		}
-	}
 
 	/**
 	 * 需要数据层中提取数据，判断是否已经初始化
 	 * @return
 	 */
-	public static WebManager getInstance()throws RemoteException{;
-		if(webManager==null){
-			WebManagerPO  webManagerPO = webManagerDao.getManagerInstance(ID);
-			String tempPassword = webManagerPO.getPassword();
-			if(tempPassword==null)
+	public static WebManager getInstance(){;
+		if(webManager == null){
+			initRemote();
+			WebManagerPO webManagerPO = null;
+			try {
+				webManagerPO = webManagerDao.getManagerInstance("0000000000");
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 				return null;
-			else
-				return new WebManager(tempPassword);
+			}
+			webManager = new WebManager(webManagerPO.getPassword());
 		}
-		else{
-			return webManager;
-		}
+		return webManager;
 	}
 
 	/**
@@ -71,28 +62,47 @@ public class WebManager {
 	 * @param newPassword
 	 * @return 是否成功
 	 */
-	public ResultMessage changePassword(String oldPassword, String newPassword)throws RemoteException{
+	public ResultMessage changePassword(String oldPassword, String newPassword){
 		if(webManager==null){
 			webManager = WebManager.getInstance();
 			if(webManager==null)
-				return ResultMessage.fail;
+				return ResultMessage.remote_fail;
 		}
 		if (oldPassword==password){
 			password=newPassword;
 			return this.update();
 		}
 		else{
-			return ResultMessage.fail;
+			return ResultMessage.password_wrong;
 		}
 	}
 	
 	/**
-	 * 在数据层增加
+	 * 在数据层更新
 	 * @return
 	 */
-	private ResultMessage update() throws RemoteException{
+	private ResultMessage update() {
 		if(webManager==null)
-			return ResultMessage.fail;
-		return	webManagerDao.updateManager(ID,password);
+			webManager = getInstance();
+		try {
+			return	webManagerDao.updateManager(webManagerID,password);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.remote_fail;
+		}
+	}
+
+	public ResultMessage checkPassword(String password) {
+		// TODO Auto-generated method stub
+		if(webManager==null){
+			webManager = getInstance();
+		}
+		if(this.password == password){
+			return ResultMessage.succeed;
+		}
+		else{
+			return ResultMessage.password_wrong;
+		}
 	}
 }

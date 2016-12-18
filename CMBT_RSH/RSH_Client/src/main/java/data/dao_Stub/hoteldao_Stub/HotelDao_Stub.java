@@ -108,10 +108,6 @@ public class HotelDao_Stub implements  HotelDao{
             return ResultMessage.fail;
     }
 
-    @Override
-    public ArrayList<RoomNormPO> getRoomNorm(String id) throws RemoteException {
-        return null;
-    }
 
     public String getCheckInDDL(String id) {
         // TODO: 16/11/20
@@ -182,6 +178,12 @@ public class HotelDao_Stub implements  HotelDao{
 
 	@Override
 	public ResultMessage updateGrade(String hotelID, int grade) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<HotelPO> getAll() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,7 +20,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import presentation.tools.ImageFactory;
+import presentation.tools.WebManagerInfoUtil;
 import presentation.tools.WebManagerUIFXMLFactory;
+import vo.HotelVO;
 
 /**
  * 网站管理人员添加酒店界面
@@ -37,13 +41,13 @@ public class AddHotelUIController {
     private TextField hotelNameField;
 
     @FXML
-    private ComboBox<?> provinceCombox;
+    private ComboBox<String> provinceCombox;
 
     @FXML
-    private ComboBox<?> districtCombox;
+    private ComboBox<String> districtCombox;
 
     @FXML
-    private ComboBox<?> cityCombox;
+    private ComboBox<String> cityCombox;
 
     @FXML
     private TextField addressField;
@@ -68,7 +72,11 @@ public class AddHotelUIController {
 
     @FXML
     void ToSetDistrictCombox(ActionEvent event) {
-
+    	String province = provinceCombox.getValue();
+    	String city = cityCombox.getValue();
+    	ArrayList<String> districts = WebManagerInfoUtil.getInstance().getDistricts(province, city);
+    	ObservableList<String> districtItems = FXCollections.observableArrayList(districts);
+    	districtCombox.setItems(districtItems);
     }
 
     @FXML
@@ -107,9 +115,18 @@ public class AddHotelUIController {
     	if(phone.equals("")){
     		rightInput = false;
     	}
+    	String province = provinceCombox.getValue();
+    	String city = cityCombox.getValue();
+    	String district = districtCombox.getValue();
+    	if(province==null||city==null||district==null){
+    		rightInput = false;
+    	}
     	if(!rightInput){
     		messageLabel.setText("您有尚未填写的信息");
-    	}
+    	}else {
+		//	HotelVO hotelVO = new HotelVO(id, tel, name, addr, district, briefIntro, facility, level, grade, latestCheckinTime)
+		}
+    	
     	AnchorPane manageHotel = WebManagerUIFXMLFactory.getInstance().getManageHotel();
     	manageHotel.getChildren().remove(manageHotel.getChildren().size()-1);
     	AnchorPane successAddHotel = WebManagerUIFXMLFactory.getInstance().getSuccessAddHotel();
@@ -118,9 +135,18 @@ public class AddHotelUIController {
 
     @FXML
     void toSetCityCombox(ActionEvent event) {
-
+    	String province = provinceCombox.getValue();
+    	ArrayList<String> citys = WebManagerInfoUtil.getInstance().getCitys(province);
+    	ObservableList<String> cityItems = FXCollections.observableArrayList(citys);
+    	cityCombox.setItems(cityItems);
     }
 
+    public void init() {
+    	ArrayList<String> provinces = WebManagerInfoUtil.getInstance().getProvinces();
+		ObservableList<String> provinceItems = FXCollections.observableArrayList(provinces);
+		provinceCombox.setItems(provinceItems);
+	}
+    
     @FXML
     void initialize() {
         assert hotelNameField != null : "fx:id=\"hotelNameField\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
@@ -134,15 +160,7 @@ public class AddHotelUIController {
         assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
         assert messageLabel != null : "fx:id=\"messageLabel\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
 
-		ArrayList<String> cityInJiangsu = new ArrayList<>(
-				Arrays.asList(new String[] { "南京", "苏州"}));
-		ArrayList<String> cityInChejiang = new ArrayList<>(Arrays.asList(new String[] { "杭州",
-				"宁波", }));
-	
-		ArrayList<String> disInNanjing = new ArrayList<>(Arrays.asList(new String[] { "栖霞区",
-				"玄武区", "秦淮区", "鼓楼区", "江宁区", "六合区" }));
-		ArrayList<String> disInSuzhou = new ArrayList<>(Arrays.asList(new String[] { "栖霞区",
-				"玄武区", "秦淮区", "鼓楼区", "江宁区", "六合区" }));
+        
 	
     }
 }

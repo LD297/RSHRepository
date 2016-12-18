@@ -276,12 +276,12 @@ public class UIJumpTool {
     public void changeLoginToHotelHomePage(){
         Parent root = null;
         try {
-            root = HotelUIFactory.getInstance().getHomepageUILoader().load();
+            root = HotelAndWebSalesmanUIFactory.getInstance().getHomepageUILoader().load();
         } catch (IOException e) {
             e.printStackTrace();
         }
         stage.setTitle("hotel");
-        stage.setScene(new Scene(root, HotelUIFactory.UI_WIDTH, HotelUIFactory.UI_HEIGHT));
+        stage.setScene(new Scene(root, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT));
     }
 
     //从注册界面返回到登陆界面
