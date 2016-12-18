@@ -2,7 +2,9 @@ package presentation.tools;
 
 import java.util.ArrayList;
 
+import bl.hotelservice.ManagerHotelService;
 import bl.hotelservice.SearchHotelService;
+import bl.hotelserviceimpl.ManageHotelService_Stub;
 import bl.hotelserviceimpl.SearchHotelService_Stub;
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginService_Stub;
@@ -12,6 +14,7 @@ import bl.webstaffservice.WebStaffService;
 import bl.webstaffserviceimpl.WebStaffService_Stub;
 import constant.ResultMessage;
 import constant.Role;
+import vo.DistrictHelper;
 import vo.HotelVO;
 import vo.UserVO;
 import vo.WebSalesmanVO;
@@ -22,6 +25,7 @@ public class WebManagerInfoUtil {
 	private UserService userService = new UserService_Stub();
 	private SearchHotelService searchHotelService = new SearchHotelService_Stub();
 	private WebStaffService webStaffService = new WebStaffService_Stub();
+	private ManagerHotelService managerHotelService = new ManageHotelService_Stub();
 	
 	private WebManagerInfoUtil(){}
 	public static WebManagerInfoUtil getInstance() {
@@ -66,4 +70,26 @@ public class WebManagerInfoUtil {
 	/**
 	 * 添加酒店界面调用，的到所有的省
 	 */
+	public ArrayList<String> getProvinces(){
+		return DistrictHelper.getProvinces();
+	}
+	/**
+	 * 添加酒店界面调用，根据省得到所有的市
+	 */
+	public ArrayList<String> getCitys(String province) {
+		return DistrictHelper.getCities(province);
+	}
+	/**
+	 * 添加酒店界面调用，根据省市得到所有的区
+	 */
+	public ArrayList<String> getDistricts(String province,String city) {
+		return DistrictHelper.getAreas(province, city);
+	}
+	
+	/**
+	 * 添加酒店界面调用，添加酒店
+	 */
+	public ResultMessage addHotel(HotelVO hotelVO) {
+		return managerHotelService.addHotel(hotelVO);
+	}
 }
