@@ -1,5 +1,6 @@
 package bl.userserviceimpl;
 
+import constant.CreditAction;
 import constant.ResultMessage;
 import data.dao.userdao.CreditRecordListDao;
 import po.CreditRecordPO;
@@ -8,10 +9,12 @@ import vo.CreditRecordVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 public class CreditRecordList {
 	private String userid = "";
+	int credit;
 	ArrayList<CreditRecordVO> creditRecordVOArrayList = null;
 
 	private static CreditRecordListDao creditRecordListDao = null;
@@ -27,6 +30,7 @@ public class CreditRecordList {
 	public CreditRecordList(String userid) {
 		initRemote();
 		this.userid = userid;
+		credit = getCredit();
 		creditRecordVOArrayList = getCreditRecords();
 	}
 	/*
@@ -51,6 +55,15 @@ public class CreditRecordList {
 		return creditRecordVOArrayList;
 	}
 
+	public ResultMessage add(int value){
+		credit +=value;
+		CreditRecordVO creditRecordVO = new CreditRecordVO
+				(userid, new Date(), null , CreditAction.bymoney,"+"+value, credit);
+		return addCreditRecord(creditRecordVO);
+	}
+	
+	
+	
 	/**
 	 * 增加用户信用变化记录
 	 */
