@@ -5,6 +5,7 @@ import data.dao.hoteldao.HotelDao;
 import data.dao_Stub.hoteldao_Stub.HotelDao_Stub;
 import po.HotelPO;
 import po.RoomNormPO;
+import po.RoomPO;
 import rmi.RemoteHelper;
 import vo.HotelVO;
 import vo.RoomAvailVO;
@@ -18,7 +19,7 @@ import java.util.Date;
 public class Hotel{
 
 	String hotelID;
-	HotelPO hotelPO;   //持有持久化对象以保存具体数据
+	HotelPO hotelPO;   //持有持久化对象引用以保存具体数据
 	private HotelManager hotelManager;
 	RoomAvail roomAvail;
 	static HotelDao hotelDao= null;
@@ -108,15 +109,15 @@ public class Hotel{
 	 * @return
 	 */
 	public ArrayList<RoomNormVO> getRoomNorms() {
-		ArrayList<RoomNormPO> roomNormPOs = null;
+		ArrayList<RoomPO> roomPOs = null;
 		try {
-			roomNormPOs = hotelDao.getRoomNorm(this.hotelID);
+			roomPOs = hotelDao.getRoomList(hotelID);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
 		ArrayList<RoomNormVO> roomNormVOs  = new ArrayList<>();
-		for(RoomNormPO roomNormPO:roomNormPOs){
-			roomNormVOs.add(roomNormPO.changeIntoVO());
+		for(RoomPO roomPO:roomPOs){
+			roomNormVOs.add(new RoomNormVO(hotelID, roomPO.getType(), roomPO.getPrice()));
 		}
 		return roomNormVOs;
 	}
@@ -150,14 +151,14 @@ public class Hotel{
 	 * @return
 	 */
 	public ResultMessage updateGrade(int grade) {
-		ResultMessage resultMessage = null;
-		hotelPO.setGrade(grade);
+		initRemote();
 		try {
-			resultMessage = hotelDao.updateHotel(hotelPO);
-		}catch (RemoteException e){
+			return hotelDao.updateGrade(hotelID, grade);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
-		return resultMessage;
 	}
 
 	public HotelManager getHotelManager() {

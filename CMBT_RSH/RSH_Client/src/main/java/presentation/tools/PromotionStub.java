@@ -22,17 +22,8 @@ public class PromotionStub implements PromotionService{
 		return ResultMessage.succeed;
 	}
 
-	@Override
-	public ArrayList<PromotionVO> getPromotionOfPeriod(Date beginDate, Date EndDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-	@Override
-	public ArrayList<PromotionVO> getPromotionOfRoom(String hotelID, String type) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfHotel(String hotelID) {
@@ -58,17 +49,7 @@ public class PromotionStub implements PromotionService{
 		return null;
 	}
 
-	@Override
-	public String countPromotionOfRoom(String hotelID, String type, int num, int price, Date beginDate, Date endDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-
-	@Override
-	public ResultMessage setCoupon() {
-		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
-	}
 
 }

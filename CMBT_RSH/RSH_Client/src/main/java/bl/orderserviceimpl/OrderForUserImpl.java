@@ -7,6 +7,7 @@ import bl.hotelserviceimpl.controller.HotelInfoController;
 import bl.orderservice.OrderForHotel;
 import bl.orderservice.OrderForUser;
 import bl.promotionServiceimpl.Count;
+import bl.promotionServiceimpl.condition.OrderInfo;
 import bl.userserviceimpl.CreditRecordList;
 import bl.userserviceimpl.User;
 import constant.CreditAction;
@@ -184,11 +185,8 @@ public class OrderForUserImpl implements OrderForUser{
      */
     public String getTrueValue(String userID, String hotelID, Date checkIn, Date checkOut,
                                RoomNormVO room, int roomNum){
-        User user = new User(userID);
-        UserVO userVO = user.getInfo();
-        double originValue = room.getPrice()*roomNum;
-        return Count.countPromotionOfRoom(hotelID,room.getRoomType(),roomNum,(int)originValue,////////
-                checkIn,checkOut,userVO.birthday,userVO.getMemberType(),userVO.getLevel());
+    	
+        return Count.countPromotionOfRoom(new OrderInfo(hotelID, room.getRoomType(), roomNum,room.getPrice(), userID));
     }
     /**
      * 确认订单时：

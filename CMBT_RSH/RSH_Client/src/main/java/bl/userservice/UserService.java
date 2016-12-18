@@ -34,7 +34,7 @@ public interface UserService {
 	/**
 	 * 增加信用变化记录（用户信用充值的时候）
 	 */
-	public ResultMessage addCreditRecord(CreditRecordVO vo);
+	public ResultMessage addCredit(int value, String userID);
 	/**
 	 * 返回用户信用记录列表（用户查看信用记录的时候）
 	 */

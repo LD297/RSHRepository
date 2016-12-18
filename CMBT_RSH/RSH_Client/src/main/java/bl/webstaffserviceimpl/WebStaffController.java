@@ -113,6 +113,11 @@ public class WebStaffController implements WebStaffService{
 			return webSalesman.checkPassword(password);
 		}
 	}
+	@Override
+	public ResultMessage updateWebSalesman(WebSalesmanVO webSalesmanVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 

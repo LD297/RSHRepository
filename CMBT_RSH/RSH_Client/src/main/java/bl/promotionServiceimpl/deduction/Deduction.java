@@ -10,9 +10,9 @@ import constant.DeductionType;
 public abstract class Deduction {
 
 	DeductionType deductionType;
-	int deductionNum;
+	double deductionNum;
 
 	public abstract DeductionType getType();
-	public abstract int getNum();
-	public abstract int getDeduction(int total);
+	public abstract double getNum();
+	public abstract double getDeduction(double total);
 }

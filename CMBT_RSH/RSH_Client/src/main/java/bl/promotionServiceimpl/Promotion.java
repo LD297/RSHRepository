@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import bl.promotionServiceimpl.condition.BirthdayCondition;
+import bl.promotionServiceimpl.condition.CommerceCondtion;
 import bl.promotionServiceimpl.condition.Condition;
 import bl.promotionServiceimpl.condition.MemberCondition;
 import bl.promotionServiceimpl.condition.NumCondition;
@@ -48,17 +49,35 @@ public class Promotion {
 	Condition condition;
 	Deduction deduction;
 
-	public Promotion (String tempSetter, String tempPromID,String tempReason){
-		setterID = tempSetter;
-		promotionID = tempPromID;
-		reason=tempReason;
+	/**
+	 * 
+	 * @param setterID
+	 * @param promotionID
+	 * @param reason
+	 */
+	public Promotion (String setterID, String promotionID,String reason){
+		this.setterID = setterID;
+		this.promotionID = promotionID;
+		this.reason=reason;
 	}
-	public void setDate(Date tempBeginDate, Date tempEndDate) {
+	
+	/**
+	 * 
+	 * @param beginDate
+	 * @param endDate
+	 */
+	public void setDate(Date beginDate, Date endDate) {
 		// TODO Auto-generated method stub
-		beginDate=tempBeginDate;
-		endDate=tempEndDate;
+		this.beginDate=beginDate;
+		this.endDate=endDate;
 	}
 
+	/**
+	 * 
+	 * @param scopeType
+	 * @param scopeNum
+	 * @param roomType
+	 */
 	public void setScope(ScopeType scopeType, String scopeNum,String roomType) {
 		// TODO Auto-generated method stub
 		if(scopeType == ScopeType.DISTRICT){
@@ -71,28 +90,43 @@ public class Promotion {
 			scope = new RoomScope(scopeNum,roomType);
 		}
 	}
-	public void setCondition(ConditionType cType,int cNum) {
+	
+	/**
+	 * 
+	 * @param conditionType
+	 * @param conditionNum
+	 */
+	public void setCondition(ConditionType conditionType,double conditionNum) {
 		// TODO Auto-generated method stub
-		if(cType == ConditionType.BIRTHDAY){
+		if(conditionType == ConditionType.BIRTHDAY){
 			condition = new BirthdayCondition();
 		}
-		else if(cType == ConditionType.COMMERCE){
-			condition = new MemberCondition(cNum);
+		else if(conditionType == ConditionType.MEMBER){
+			condition = new MemberCondition((int)conditionNum);
 		}
-		else if(cType == ConditionType.ROOMNUM){
-			condition = new NumCondition(cNum);
+		else if(conditionType == ConditionType.COMMERCE){
+			condition = new CommerceCondtion((int)conditionNum);
 		}
-		else if(cType == ConditionType.TOTAL){
-			condition = new TotalCondition(cNum);
+		else if(conditionType == ConditionType.ROOMNUM){
+			condition = new NumCondition((int)conditionNum);
+		}
+		else if(conditionType == ConditionType.TOTAL){
+			condition = new TotalCondition(conditionNum);
 		}
 	}
-	public void setDeduction(DeductionType dType, int dNum) {
+	
+	/**
+	 * 
+	 * @param deductionType
+	 * @param deductionNum
+	 */
+	public void setDeduction(DeductionType deductionType, double deductionNum) {
 		// TODO Auto-generated method stub
-		if(dType == DeductionType.DISCOUNT){
-			deduction = new DiscountDeduction(dNum);
+		if(deductionType == DeductionType.DISCOUNT){
+			deduction = new DiscountDeduction(deductionNum);
 		}
-		else if(dType == DeductionType.REDUCE){
-			deduction = new ReduceDeduction(dNum);
+		else if(deductionType == DeductionType.REDUCE){
+			deduction = new ReduceDeduction(deductionNum);
 		}
 	}
 
@@ -109,26 +143,22 @@ public class Promotion {
 	}
 	/**
 	 * 读取数据层中数据，若无返回null
-	 * @param tempSetter
-	 * @param tempPromID
+	 * @param setterID
+	 * @param promotionID
 	 * @return
 	 */
-	public static Promotion getInstance(String tempSetter, String tempPromID){
-		/**
-		 * what if the promotion is already exit somewhere in the bl?
-		 * will jvm delete it after use
-		 */
+	public static Promotion getInstance(String setterID, String promotionID){
 		initRemote();
 		PromotionPO promotionPO = null;
 		try {
-			promotionPO = promotionDao.find(tempSetter,tempPromID);
+			promotionPO = promotionDao.find(setterID,promotionID);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		if(promotionPO==null)
 			return null;
 		else
-			return PromotionPO.changeIntoPromotion(promotionPO);
+			return promotionPO.changeIntoPromotion();
 	}
 
 	/**
@@ -147,24 +177,7 @@ public class Promotion {
 		return ResultMessage.succeed;
 	}
 
-	/**
-	 * 从数据库中删除
-	 * @param tempSetter
-	 * @param tempPromID
-	 * @return
-	 */
-	public static ResultMessage delPromotion(String tempSetter, String tempPromID) {
-		// TODO Auto-generated method stub
-		if(getInstance(tempSetter,tempPromID)==null){
-			return ResultMessage.not_exist;
-		}
-		try {
-			promotionDao.delete(tempSetter,tempPromID);
-		} catch (RemoteException e) {
-			return ResultMessage.remote_fail;
-		}
-		return ResultMessage.succeed;
-	}
+	
 
 	/**
 	 * 在数据层中更新
