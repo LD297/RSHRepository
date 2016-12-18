@@ -3,14 +3,7 @@ package presentation.tools;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import presentation.webmanagercontroller.CheckUserInfoUIController;
-import presentation.webmanagercontroller.ManafeWebsalesmanUIController;
-import presentation.webmanagercontroller.ManageHotelUIController;
-import presentation.webmanagercontroller.ManageUserUIController;
 import presentation.webmanagercontroller.ManagerHomepageUIController;
-import presentation.webmanagercontroller.ModifyHotelUIController;
-import presentation.webmanagercontroller.ModifyWebSalesmanUIController;
-import presentation.webmanagercontroller.SuccessAddHotelUIController;
-import presentation.webmanagercontroller.SuccessAddWebSalesmanUIController;
 import presentation.webmanagercontroller.SuccessResetPasswordUIController;
 
 public class WebManagerUIFXMLFactory {
@@ -24,15 +17,8 @@ public class WebManagerUIFXMLFactory {
 	}
 	
 	private ManagerHomepageUIController managerHomepageUIController = null;
-	private ManageHotelUIController manageHotelUIController = null;
-	private ManageUserUIController manageUserUIController = null;
-	private ManafeWebsalesmanUIController manafeWebsalesmanUIController = null;
 	private CheckUserInfoUIController checkUserInfoUIController = null;
 	private SuccessResetPasswordUIController successResetPasswordUIController = null;
-	private SuccessAddHotelUIController successAddHotelUIController = null;
-	private SuccessAddWebSalesmanUIController successAddWebSalesmanUIController = null;
-	private ModifyHotelUIController modifyHotelUIController = null;
-	private ModifyWebSalesmanUIController modifyWebSalesmanUIController = null;
 	
 	private AnchorPane manageUserAnchorPane = null;
 	private AnchorPane manageHotelAnchorPane = null;
@@ -75,7 +61,6 @@ public class WebManagerUIFXMLFactory {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			manageUserUIController = loader.getController();
 		}
 		return manageUserAnchorPane;
 	}
@@ -88,7 +73,6 @@ public class WebManagerUIFXMLFactory {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			manageHotelUIController = loader.getController();
 		}
 		return manageHotelAnchorPane;
 	}
@@ -101,7 +85,6 @@ public class WebManagerUIFXMLFactory {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			manafeWebsalesmanUIController = loader.getController();
 		}
 		return manageWebsalesmanAnchorPane;
 	}
@@ -125,7 +108,6 @@ public class WebManagerUIFXMLFactory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		successAddHotelUIController = loader.getController();
 		return anchorPane;
 	}
 	
@@ -137,7 +119,6 @@ public class WebManagerUIFXMLFactory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		successAddWebSalesmanUIController = loader.getController();
 		return anchorPane;
 	}
 	
@@ -171,7 +152,6 @@ public class WebManagerUIFXMLFactory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		modifyHotelUIController = loader.getController();
 		return anchorPane;
 	}
 	
@@ -183,7 +163,6 @@ public class WebManagerUIFXMLFactory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		modifyWebSalesmanUIController = loader.getController();
 		return anchorPane;
 	}
 	
@@ -216,28 +195,6 @@ public class WebManagerUIFXMLFactory {
 	public SuccessResetPasswordUIController getSuccessResetPasswordUIController() {
 		return successResetPasswordUIController;
 	}
-	public SuccessAddHotelUIController getSuccessAddHotelUIController() {
-		return successAddHotelUIController;
-	}
-	public SuccessAddWebSalesmanUIController getSuccessAddWebSalesmanUIController() {
-		return successAddWebSalesmanUIController;
-	}
-	public ManageHotelUIController getManageHotelUIController() {
-		return manageHotelUIController;
-	}
-	public ModifyHotelUIController getModifyHotelUIController() {
-		return modifyHotelUIController;
-	}
-	public ManageUserUIController getManageUserUIController() {
-		return manageUserUIController;
-	}
-	public ManafeWebsalesmanUIController getManafeWebsalesmanUIController() {
-		return manafeWebsalesmanUIController;
-	}
-	public ModifyWebSalesmanUIController getModifyWebSalesmanUIController() {
-		return modifyWebSalesmanUIController;
-	}
-	
 	
 	
 	

@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import bl.orderserviceimpl.miscellaneous.MockOrder;
-import bl.promotionServiceimpl.condition.OrderInfo;
 
 /**
  * 测试Count类
@@ -31,8 +30,8 @@ public class CountTest {
 	
 	@Test
 	public void countPromotionOfRoom(){
-		assertEquals("#200",Count.countPromotionOfRoom(
-				new OrderInfo(hotelID, rType, 2, 100.0, "12345678901")));
+		assertEquals("#200",Count.countPromotionOfRoom(hotelID, rType, 2,100, beginDate,endDate,
+				null, MemberType.commerce,3));
 
 	}
 	

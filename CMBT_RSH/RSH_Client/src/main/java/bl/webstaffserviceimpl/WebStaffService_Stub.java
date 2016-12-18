@@ -11,13 +11,13 @@ public class WebStaffService_Stub implements WebStaffService{
 	@Override
 	public String getIDForWebsalesman() {
 		// TODO Auto-generated method stub
-		return "1534111111";
+		return null;
 	}
 
 	@Override
 	public ResultMessage addWebSalesman(WebSalesmanVO webSalesmanVO) {
 		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
+		return null;
 	}
 
 	@Override
@@ -78,12 +78,6 @@ public class WebStaffService_Stub implements WebStaffService{
 	public ResultMessage addWebManager(String ID, String password) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public ResultMessage updateWebSalesman(WebSalesmanVO webSalesmanVO) {
-		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
 	}
 
 }

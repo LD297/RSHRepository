@@ -12,9 +12,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.tools.ImageFactory;
-import presentation.tools.UserInfoUtil;
-import presentation.tools.UserInputFormCheckTool;
-import presentation.tools.WebManagerInfoUtil;
 import presentation.tools.WebManagerUIFXMLFactory;
 
 /**
@@ -76,24 +73,7 @@ public class ModifyOwnPasswordUIController {
 
     @FXML
     void finishModifyButtonClicked(MouseEvent event) {
-    	 String newpasswordResult = UserInputFormCheckTool.getInstance().checkUserPassword(newPasswordField.getText());
-         if(!prePasswordField.getText().equals(WebManagerInfoUtil.getInstance().getPassword())){
-             prepasswordLabel.setText("原密码错误");
-         }else if(!newpasswordResult.equals("success")){
-             newpasswordLabel.setText("新"+newpasswordResult);
-         }else if(!newPasswordField.getText().equals(confirmNewPasswordField.getText())){
-             if(confirmNewPasswordField.getText().equals("")){
-                 confirmnewpasswordLabel.setText("请确认您的密码");
-             }else{
-                 confirmnewpasswordLabel.setText("两次密码不一致");
-             }
-         }else {
-			WebManagerInfoUtil.getInstance().changePassword(newPasswordField.getText().trim());
-			ManagerHomepageUIController managerHomepageUIController = WebManagerUIFXMLFactory.getInstance()
-					.getManagerHomepageUIController();
-			AnchorPane homepageAnchorPane = managerHomepageUIController.getHomepageAnchorPane();
-			homepageAnchorPane.getChildren().remove(homepageAnchorPane.getChildren().size() - 1);
-         }
+
     }
 
     @FXML

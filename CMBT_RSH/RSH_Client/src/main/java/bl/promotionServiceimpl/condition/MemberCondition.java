@@ -1,7 +1,6 @@
 package bl.promotionServiceimpl.condition;
 
 import constant.ConditionType;
-import constant.MemberType;
 
 /**
  * 对会员等级的要求
@@ -11,30 +10,30 @@ import constant.MemberType;
  */
 public class MemberCondition extends Condition {
 
-	MemberType memberType;
 	int memberLevel;
 	
-	public MemberCondition(double memberLevel){
-		this.memberLevel = (int)memberLevel;
+	public MemberCondition(int tempMemberLevel){
+		memberLevel = tempMemberLevel;
 	}
 
 	@Override
 	public ConditionType getType() {
-		if(memberLevel>100)
-			return ConditionType.COMMERCE;
 		return ConditionType.MEMBER;
 	}
 
 	@Override
-	public double getNum() {
+	public int getNum() {
 		return memberLevel;
 	}
 
-	
-
 	@Override
-	public boolean check(OrderInfo orderInfo) {
-		// TODO Auto-generated method stub
+	public boolean check(int num, int price, int tempMemberLevel, boolean isBirthday) {
+		if(tempMemberLevel>=memberLevel&&memberLevel>99){
+			return true;
+		}
+		if(memberLevel<=tempMemberLevel&&tempMemberLevel<100){
+			return true;
+		}
 		return false;
 	}
 

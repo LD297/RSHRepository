@@ -30,20 +30,13 @@ public class SuccessAddHotelUIController {
     void closeSuccessAdd(MouseEvent event) {
     	AnchorPane manageHotel = WebManagerUIFXMLFactory.getInstance().getManageHotel();
     	manageHotel.getChildren().remove(manageHotel.getChildren().size()-1);
-    	ManageHotelUIController manageHotelUIController = WebManagerUIFXMLFactory.getInstance().getManageHotelUIController();
-    	manageHotelUIController.init();
     }
-    
-    public void init(String hotelID,String password) {
-		idLabel.setText(hotelID);
-		passwordLabel.setText(password);
-	}
 
     @FXML
     void initialize() {
         assert iknowButton != null : "fx:id=\"iknowButton\" was not injected: check your FXML file '网管_添加成功.fxml'.";
         assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file '网管_添加成功.fxml'.";
         assert passwordLabel != null : "fx:id=\"passwordLabel\" was not injected: check your FXML file '网管_添加成功.fxml'.";
-       
+
     }
 }

@@ -2,10 +2,8 @@ package presentation.tools;
 
 import java.util.ArrayList;
 
-import bl.hotelservice.HotelService;
 import bl.hotelservice.ManagerHotelService;
 import bl.hotelservice.SearchHotelService;
-import bl.hotelserviceimpl.HotelService_Stub;
 import bl.hotelserviceimpl.ManageHotelService_Stub;
 import bl.hotelserviceimpl.SearchHotelService_Stub;
 import bl.loginservice.LoginService;
@@ -28,9 +26,6 @@ public class WebManagerInfoUtil {
 	private SearchHotelService searchHotelService = new SearchHotelService_Stub();
 	private WebStaffService webStaffService = new WebStaffService_Stub();
 	private ManagerHotelService managerHotelService = new ManageHotelService_Stub();
-	private HotelService hotelService = new HotelService_Stub();
-	private String managerid = null;
-	private String password = null;
 	
 	private WebManagerInfoUtil(){}
 	public static WebManagerInfoUtil getInstance() {
@@ -47,25 +42,7 @@ public class WebManagerInfoUtil {
 		ResultMessage resultMessage = loginService.checkOnline(Role.webmanager, id, password);
 		return resultMessage;
 	}
-	/**
-	 * setid
-	 */
-	public void setID(String id) {
-		this.managerid = id;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	
-	public String getManagerid() {
-		return managerid;
-	}
-	public void setManagerid(String managerid) {
-		this.managerid = managerid;
-	}
-	public String getPassword() {
-		return password;
-	}
 	/**
 	 * 管理用户界面调用，得到所有用户的list
 	 */
@@ -114,62 +91,5 @@ public class WebManagerInfoUtil {
 	 */
 	public ResultMessage addHotel(HotelVO hotelVO) {
 		return managerHotelService.addHotel(hotelVO);
-	}
-	/**
-	 * 添加酒店界面调用，得到酒店的Id
-	 */
-	public String getHotelID(String province,String city,String district) {
-		String districtID = DistrictHelper.getAreaID(province, city, district);
-		return managerHotelService.getHotelID(districtID);
-	}
-	/**
-	 * 添加酒店界面调用，返回省市区
-	 */
-	public ArrayList<String> getPCD(String district) {
-		DistrictHelper districtHelper = new DistrictHelper(district);
-		ArrayList<String> pcd = new ArrayList<>();
-		pcd.add(districtHelper.getProvince());
-		pcd.add(districtHelper.getCity());
-		pcd.add(districtHelper.getArea());
-		return pcd;
-	}
-	
-	/**
-	 * 添加酒店和修改酒店界面调用，根据省市区得到6位编码
-	 */
-	public String getDistrictID(String province,String city,String district) {
-		String districtID = "010009";
-		return districtID;
-	}
-	
-	/**
-	 * 修改酒店信息
-	 */
-	public ResultMessage modifyHotel(HotelVO hotelVO) {
-		return hotelService.updateHotel(hotelVO);
-	}
-	/**
-	 * 修改网站营销人员信息
-	 */
-	public ResultMessage modifyWebSalesman(WebSalesmanVO webSalesmanVO) {
-		return webStaffService.updateWebSalesman(webSalesmanVO);
-	}
-	/**
-	 * 添加网站营销人员界面调用，得到网站营销人员的账号
-	 */
-	public String getWebSalesmanID() {
-		return webStaffService.getIDForWebsalesman();
-	}
-	/**
-	 * 添加网站营销人员界面调用，添加网站营销人员
-	 */
-	public ResultMessage addWebSalesman(WebSalesmanVO webSalesmanVO) {
-		return webStaffService.addWebSalesman(webSalesmanVO);
-	}
-	/**
-	 * 网站管理人员修改自己的密码
-	 */
-	public ResultMessage changePassword(String newPassword) {
-		return webStaffService.changePassword(managerid, password, newPassword);
 	}
 }
