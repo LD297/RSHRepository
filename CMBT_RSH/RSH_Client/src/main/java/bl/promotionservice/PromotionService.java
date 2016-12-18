@@ -26,6 +26,11 @@ public interface PromotionService {
 
     public ArrayList<PromotionVO> getPromotionOfHotel(String hotelID);
 
+    /**
+     * 限于网站营销人员制定的地区促销策略
+     * @param district
+     * @return
+     */
     public ArrayList <PromotionVO> getPromotionOfDistrict (String district);
 
     public String countPromotionOfRoom(String hotelID, String type, int num, int price,Date beginDate, Date endDate);
