@@ -112,8 +112,4 @@ public class HotelPO implements Serializable{
 		return hotelVO;
 	}
 
-	public void setGrade(int grade2) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public interface PromotionDao extends Remote{
 	
-	public ResultMessage getNewID(String setterID) throws RemoteException;
+	public String getNewID(String setterID) throws RemoteException;
 	
     public ResultMessage insert(PromotionPO po) throws RemoteException;
 
@@ -23,6 +23,7 @@ public interface PromotionDao extends Remote{
 
     public PromotionPO find(String setterID,String promtionID)throws RemoteException;
 
+    // 6 for district or 10 for hotel
     public ArrayList<PromotionPO> finds(String Scope) throws RemoteException;
 
 

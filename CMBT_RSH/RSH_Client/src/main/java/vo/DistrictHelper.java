@@ -1,14 +1,17 @@
 package vo;
 
+import java.util.ArrayList;
+
 public class DistrictHelper {
 
-	String district;
-	String province;
-	String city;
-	String businessArea;
+	private String district;
+	private String province;
+	private String city;
+	private String area;
 	
-	static String  provinces[] = {
-			"上海市","江苏省"/**,"浙江省","安徽省","福建省","江西省","山东省",
+	private static final String  provinces[] = {
+			"上海市","江苏省"
+			/**,"浙江省","安徽省","福建省","江西省","山东省",
 			"北京市","天津市","河北省","山西省","内蒙古自治区",
 			"辽宁省","吉林省","黑龙江省",
 			
@@ -18,7 +21,7 @@ public class DistrictHelper {
 			"台湾省","香港特别行政区","澳门特别行政区"*/
 	};
 	
-	static String cities[][] = {
+	private static final String cities[][] = {
 			{"市辖区","县"
 			},//上海
 			{"南京市","无锡市","徐州市","常州市","苏州市","南通市","连云港市","淮阴市","盐城市",
@@ -61,7 +64,7 @@ public class DistrictHelper {
 			{},**/
 	};
 
-	static String areas[][][] = {
+	private static final String areas[][][] = {
 		{
 			{
 				"黄浦区","南市区","卢湾区","徐汇区","长宁区","静安区","普陀区","闸北区",
@@ -127,27 +130,42 @@ public class DistrictHelper {
 		
 	};
 
-	public static String getAddress(String district){
-		String result = new String();
+	public DistrictHelper(String district){
 		int iProvince = Integer.valueOf(district.substring(0,2));
 		int iCity = Integer.valueOf(district.substring(2,4));
 		int iArea = Integer.valueOf(district.substring(4,6));
 		if(iProvince>=provinces.length){
-			return null;
+			return ;
 		}
-		String province = provinces[iProvince];
+		province = provinces[iProvince];
 		if(iCity>=cities[iProvince].length){
-			return null;
+			return ;
 		}
-		String city = cities[iProvince][iCity];
+		city = cities[iProvince][iCity];
 		if(iArea>=areas[iProvince][iCity].length){
-			return null;
+			return ;
 		}
-		String area = areas[iProvince][iCity][iArea];
-		result = province+city+area;
+		area = areas[iProvince][iCity][iArea];
+	}
+	
+	public static String getAddress(String district){
+		DistrictHelper districtHelper = new DistrictHelper(district);
+		String result = districtHelper.province+districtHelper.city+districtHelper.area;
 		return result;
 	}
 	
+	public String getProvince(){
+		return province;
+	}
+	
+	public String getCity(){
+		
+		return city;
+	}
+	
+	public String getArea(){
+		return area;
+	}
 	public static String getDistrict(String address){
 		String result = null;
 		
@@ -157,23 +175,111 @@ public class DistrictHelper {
 	public static void main(String args[]){
 	
 		DistrictHelper districtHelper  ;
-		System.out.println(getAddress("101010"));
+		System.out.println(getAreaID("江苏省","南京市", "栖霞区"));
 		System.out.println(getAddress("010009"));
 		System.out.println(DistrictHelper.areas[1][0][9]);
 	}
 
-	public static String getProvince(String district2) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * for presentation
+	 * @return
+	 */
+	public static ArrayList<String> getProvinces(){
+		ArrayList<String> result = new ArrayList<>();
+		for(int i=0;i<provinces.length;i++){
+			result.add(provinces[i]);
+		}
+		return result;
 	}
 
-	public static String getCity(String district2) {
+	/**
+	 * for presentation
+	 * @param province
+	 * @return
+	 */
+	public static ArrayList<String> getCities(String province){
+		ArrayList<String> result = new ArrayList<>();
+		int provinceID = Integer.valueOf(getProvinceID(province));
+		for(int i=0;i<cities[provinceID].length;i++){
+			result.add(cities[provinceID][i]);
+		}
+		return result;
+	}
+	
+	/**
+	 * for presentation
+	 * @param province
+	 * @param city
+	 * @return
+	 */
+	public static ArrayList<String> getAreas(String province,String city){
+		ArrayList<String > result = new ArrayList<>();
+		int provinceID = Integer.valueOf(getProvinceID(province));
+		int cityID = Integer.valueOf(getCityID(province, city));
+		for(int i=0;i<areas[provinceID][cityID].length;i++){
+			result.add(areas[provinceID][cityID][i]);
+		}
+		return result;
+	}
+	
+
+	public static String getProvinceID(String province) {
 		// TODO Auto-generated method stub
-		return null;
+		int i=0;
+		for(;i<provinces.length;i++){
+			if(province.equals(provinces[i]))
+				break;
+		}
+		if(i==provinces.length)
+			return null;
+		char a='0',b='0';
+		if(i>10){
+			a+=i/10;
+			i=i%10;
+		}
+		b+=i;
+		String res = String.valueOf(a)+String.valueOf(b);
+		return res;
 	}
 
-	public static String getArea(String district2) {
+	public static String getCityID(String province,String city ) {
 		// TODO Auto-generated method stub
-		return null;
+		int provinceID = Integer.valueOf(getProvinceID(province));
+		int i=0;
+		for(i=0;i<cities[provinceID].length;i++){
+			if(city.equals(cities[provinceID][i]))
+				break;
+		}
+		if(i==cities[provinceID].length)
+			return null;
+		char a='0',b='0';
+		if(i>10){
+			a+=i/10;
+			i=i%10;
+		}
+		b+=i;
+		String res = String.valueOf(a)+String.valueOf(b);
+		return res;
+	}
+
+	public static String getAreaID(String province,String city,String area) {
+		// TODO Auto-generated method stub
+		int provinceID = Integer.valueOf(getProvinceID(province));
+		int cityID = Integer.valueOf(getCityID(province, city));
+		int i=0;
+		for(;i<areas[provinceID][cityID].length;i++){
+			if(area.equals(areas[provinceID][cityID][i]))
+				break;
+		}
+		if(i==areas[provinceID][cityID].length)
+			return null;
+		char a='0',b='0';
+		if(i>10){
+			a+=i/10;
+			i=i%10;
+		}
+		b+=i;
+		String res = String.valueOf(a)+String.valueOf(b);
+		return res;
 	}
 }

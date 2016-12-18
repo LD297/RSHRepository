@@ -23,9 +23,10 @@ public class WebSalesmanVO {
 		this.id = webSalesmanID;
 		this.password = password;
 		this.name = name;
-		province = DistrictHelper.getProvince(district);
-		city = DistrictHelper.getCity(district);
-		area = DistrictHelper.getArea(district);
+		DistrictHelper districtHelper = new DistrictHelper(district);
+		province = districtHelper.getProvince();
+		city = districtHelper.getCity();
+		area = districtHelper.getArea();
 	}
 	public String getId() {
 		return id;

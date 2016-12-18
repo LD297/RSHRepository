@@ -46,8 +46,9 @@ public class PromotionDao_Stub implements PromotionDao {
         return null;
     }
 
-    @Override
-    public ArrayList<PromotionPO> finds(Date beginDate, Date endDate) throws RemoteException {
-        return null;
-    }
+	@Override
+	public String getNewID(String setterID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
