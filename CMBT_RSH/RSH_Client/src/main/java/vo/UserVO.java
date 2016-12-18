@@ -16,7 +16,6 @@ public class UserVO {
 	public int level;
 	public int credit;
 	public String commerceName;
-
 	public String name;
 	public Sexuality sexuality;
 	public String eMail;

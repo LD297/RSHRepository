@@ -21,15 +21,14 @@ public class NumCondition extends Condition {
 	}
 
 	@Override
-	public int getNum() {
+	public double getNum() {
 		return num;
 	}
 
+
 	@Override
-	public boolean check(int tempNum, int price, int memberLevel, boolean isBirthday) {
-		if(tempNum>=num){
-			return true;
-		}
+	public boolean check(OrderInfo orderInfo) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

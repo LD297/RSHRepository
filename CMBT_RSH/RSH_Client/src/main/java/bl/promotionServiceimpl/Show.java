@@ -29,66 +29,8 @@ public class Show {
 		}
 		return show;
 	}
-	/**
-	 * 一段时间内的策略
-	 * @param beginDate
-	 * @param endDate
-	 * @return
-	 */
-	public static ArrayList<PromotionVO> getPromotionOfPeriod(Date beginDate, Date endDate) {
-		// TODO Auto-generated method stub
-		ArrayList<PromotionVO> result= new ArrayList<PromotionVO>();
-		Iterator<PromotionPO> tempRes = null;
-		try {
-			tempRes = promotionDao.finds(beginDate,endDate).iterator();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		while(tempRes.hasNext()){
-			result.add(PromotionPO.changeIntoPromotionVo(tempRes.next()));
-		}
-		return result;
-	}
-
-	/**
-	 * 符合某酒店特定房间的优惠策略
-	 * @param hotelID
-	 * @param roomType
-	 * @return
-	 */
-	public static ArrayList<PromotionVO> getPrmotionOfRoom(String hotelID, String roomType) {
-		// TODO Auto-generated method stub
-		ArrayList<PromotionVO> result= new ArrayList<PromotionVO>();
-		Iterator<PromotionPO> tempRes = null;
-		try {
-			tempRes = promotionDao.finds(hotelID+roomType).iterator();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		while(tempRes.hasNext()){
-			result.add(PromotionPO.changeIntoPromotionVo(tempRes.next()));
-		}
-		return result;
-	}
-
-	/**
-	 * 符合特定酒店的优惠策略
-	 * @param hotelID
-	 * @return
-	 */
-	public static ArrayList<PromotionVO> getPromotionOfHotel(String hotelID) {
-		// TODO Auto-generated method stub
-		return getPrmotionOfRoom(hotelID,null);
-	}
-
-	/**
-	 * 符合特定地区的优惠策略
-	 * @param district
-	 * @return
-	 */
-	public static ArrayList<PromotionVO> getPromotionOfDistrict(String district) {
-		// TODO Auto-generated method stub
-		return getPrmotionOfRoom(district,null);
-	}
+	
+	
+	
 
 }
