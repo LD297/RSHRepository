@@ -91,8 +91,22 @@ public class ManafeWebsalesmanUIController {
 
     @FXML
     void changeToModifyWebsalesman(ActionEvent event) {
-    	AnchorPane modifyWebSalesman = WebManagerUIFXMLFactory.getInstance().getModifyWebSalesman();
-    	anchorPane.getChildren().add(modifyWebSalesman);
+    	boolean found = false;
+    	String id = websalesmanIDField.getText().trim();
+    	for (int i = 0; i < webSalesmanVOs.size(); i++) {
+			if(webSalesmanVOs.get(i).getId().equals(id)){
+				AnchorPane modifyWebSalesman = WebManagerUIFXMLFactory.getInstance().getModifyWebSalesman();
+				ModifyWebSalesmanUIController modifyWebSalesmanUIController = WebManagerUIFXMLFactory.getInstance().getModifyWebSalesmanUIController();
+				modifyWebSalesmanUIController.init(webSalesmanVOs.get(i));
+		    	anchorPane.getChildren().add(modifyWebSalesman);
+		    	found = true;
+		    	break;
+			}
+		}
+    	if(!found){
+    		//TODO 没有找到该酒店的提示
+    	}
+    
     }
 
     @FXML
@@ -137,9 +151,13 @@ public class ManafeWebsalesmanUIController {
     }
     
     public void init() {
+    	websalesmanIDField.setText("");
+    	presentPage = 1;
+    	pageField.setText(String.valueOf(presentPage));
 		webSalesmanVOs = WebManagerInfoUtil.getInstance().getWebSalesmanVOs();
 		maxPages = (webSalesmanVOs.size()+4)/5;
-		changeToReferedPage(1);
+		gridpaneFilledWithWebSalesman.getChildren().clear();
+		changeToReferedPage(presentPage);
 	}
     
     @FXML
