@@ -148,6 +148,14 @@ public class DistrictHelper {
 		area = areas[iProvince][iCity][iArea];
 	}
 	
+	public DistrictHelper(String province, String city, String area){
+		this.province = province;
+		this.city = city;
+		this.area = area;
+		district = getProvinceID(province)+getCityID(province, city)
+		+getAreaID(province, city, area);
+	}
+	
 	public static String getAddress(String district){
 		DistrictHelper districtHelper = new DistrictHelper(district);
 		String result = districtHelper.province+districtHelper.city+districtHelper.area;
@@ -166,6 +174,13 @@ public class DistrictHelper {
 	public String getArea(){
 		return area;
 	}
+	
+	public static String getDistrict(String province,String city, String area){
+		DistrictHelper districtHelper = new DistrictHelper(province, city, area);
+		return districtHelper.district;
+	}
+	
+	
 	public static String getDistrict(String address){
 		String result = null;
 		
@@ -199,7 +214,7 @@ public class DistrictHelper {
 	 */
 	public static ArrayList<String> getCities(String province){
 		ArrayList<String> result = new ArrayList<>();
-		int provinceID = Integer.valueOf(getProvinceID(province));
+		int provinceID = Integer.parseInt(getProvinceID(province));
 		for(int i=0;i<cities[provinceID].length;i++){
 			result.add(cities[provinceID][i]);
 		}
@@ -214,8 +229,8 @@ public class DistrictHelper {
 	 */
 	public static ArrayList<String> getAreas(String province,String city){
 		ArrayList<String > result = new ArrayList<>();
-		int provinceID = Integer.valueOf(getProvinceID(province));
-		int cityID = Integer.valueOf(getCityID(province, city));
+		int provinceID = Integer.parseInt(getProvinceID(province));
+		int cityID = Integer.parseInt(getCityID(province, city));
 		for(int i=0;i<areas[provinceID][cityID].length;i++){
 			result.add(areas[provinceID][cityID][i]);
 		}

@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import bl.promotionServiceimpl.condition.OrderInfo;
 import constant.MemberType;
 import data.dao.promotiondao.PromotionDao;
 import po.OrderPO;
 import po.PromotionPO;
 import rmi.RemoteHelper;
+import vo.PromotionVO;
 
 /**
  * 计算并返回最优策略方案及价格
@@ -19,67 +21,74 @@ import rmi.RemoteHelper;
  */
 public class Count {
 
-	private static Count count = null;
-	private static PromotionDao promotionDao;
-	private Count(){
-		RemoteHelper remoteHelper = RemoteHelper.getInstance();
-		promotionDao = remoteHelper.getPromotionDao();
-	}
-	public static Count getInstance(){
-		if(count == null){
-			count = new Count();
+	private static final int DISTRICT_LENGTH = 6;
+	
+	private static PromotionDao promotionDao = null;
+	private static void initRemote(){
+		if(promotionDao == null){
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
+			promotionDao = remoteHelper.getPromotionDao();
 		}
-		return count;
 	}
+	
 	/**
-	 * 计算房间特价
+	 * 
 	 * @param hotelID
-	 * @param type
+<<<<<<< HEAD
+//	 * @param type
+=======
+	 * @param roomType
+>>>>>>> origin/master
 	 * @param num
+	 * @param price
 	 * @param beginDate
 	 * @param endDate
-	 * @return 优惠原因#优惠后价格，优惠原因可为空
+	 * @param birthday
+	 * @param memberType
+	 * @param memberLevel
+	 * @return
 	 */
-	public static String countPromotionOfRoom(String hotelID, String roomType, int num,int price,
-											  Date beginDate, Date endDate,
-											  LocalDate birthday, MemberType memberType, int memberLevel) {
-		// TODO Auto-generated method stub
-		Iterator<PromotionPO> promotionPOIterator = null;
+	public static String countPromotionOfRoom(OrderInfo orderInfo) {
+		initRemote();
+		ArrayList<PromotionPO> promotionPOsForHotel = new ArrayList<>();
+		ArrayList<PromotionPO> promotionPOsForDistrict = new ArrayList<>();
+		String hotelID = orderInfo.getHotelID();
 		try {
-			promotionPOIterator= promotionDao.finds(beginDate,endDate).iterator();
+<<<<<<< HEAD
+			promotionPOIterator= promotionDao.finds("").iterator();
+=======
+			promotionPOsForHotel = promotionDao.finds(hotelID);
+			promotionPOsForDistrict = promotionDao.finds(hotelID.substring(0,DISTRICT_LENGTH));
+>>>>>>> origin/master
 		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return "remote_fail";
 		}
-		int total=num*price;
-		Promotion promotion = null;
-		while (promotionPOIterator.hasNext()){
-			int tempTotal;
-			Promotion tempPromotion;
-			tempPromotion = PromotionPO.changeIntoPromotion(promotionPOIterator.next());
-			if(memberType == MemberType.commerce){
-				memberLevel = memberLevel*100;
-			}
-			tempTotal = count(tempPromotion,hotelID,roomType,num,price,birthday,memberLevel);
-			if(total>tempTotal){
-				promotion = tempPromotion;
-				total = tempTotal;
-			}
-		}
+		double tempValue;
+		double minValue = orderInfo.getPrice()*orderInfo.getNum();
 		String reason = null;
-		if(promotion!=null){
-			reason = promotion.getReason();
+		for(PromotionPO promotionPO:promotionPOsForDistrict){
+			tempValue = count(promotionPO.changeIntoPromotion(),orderInfo);
+			if(tempValue<minValue){
+				minValue = tempValue;
+				reason = promotionPO.getReason();
+			}
 		}
-		return reason+"#"+total;
+		for(PromotionPO promotionPO:promotionPOsForHotel){
+			tempValue = count(promotionPO.changeIntoPromotion(), orderInfo);
+			if(tempValue<minValue){
+				minValue = tempValue;
+				reason = promotionPO.getReason();
+			}
+		}
+		return reason+"#"+minValue;
 	}
 
-	private static int count(Promotion promotion, String hotelID, String roomType, int num, int price, LocalDate birthday, int memberLevel){
-		int result = num*price;
-		Boolean isBirthday = false;
-		if(LocalDate.now()==birthday){
-			isBirthday = true;
-		}
-		if(promotion.scope.check(hotelID,roomType)&&
-		promotion.condition.check(num,price,memberLevel,isBirthday)){
+	private static double count(Promotion promotion, OrderInfo orderInfo){
+		double result = orderInfo.getPrice()*orderInfo.getNum();
+		if(promotion.scope.check(orderInfo.getHotelID(),orderInfo.getRoomType())&&
+		promotion.condition.check(orderInfo)){
 			result = promotion.deduction.getDeduction(result);
 		}
 		return result;

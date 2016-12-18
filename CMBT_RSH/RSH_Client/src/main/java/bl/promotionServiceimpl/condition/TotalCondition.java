@@ -9,9 +9,9 @@ import constant.ConditionType;
  */
 public class TotalCondition extends Condition {
 
-	int total;
+	double total;
 	
-	public TotalCondition(int t){
+	public TotalCondition(double t){
 		total=t;
 	}
 
@@ -21,15 +21,20 @@ public class TotalCondition extends Condition {
 	}
 
 	@Override
-	public int getNum() {
+	public double getNum() {
 		return total;
 	}
 
-	@Override
-	public boolean check(int num, int price, int memberLevel, boolean isBirthday) {
+	public boolean check(int num, double price, int memberLevel, boolean isBirthday) {
 		if(num*price>=total){
 			return true;
 		}
+		return false;
+	}
+
+	@Override
+	public boolean check(OrderInfo orderInfo) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

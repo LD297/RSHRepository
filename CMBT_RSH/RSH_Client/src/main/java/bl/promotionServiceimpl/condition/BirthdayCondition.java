@@ -19,13 +19,14 @@ public class BirthdayCondition extends Condition {
 	}
 
 	@Override
-	public int getNum() {
+	public double getNum() {
 		return 0;
 	}
 
 	@Override
-	public boolean check(int num, int price, int memberLevel, boolean isBirthday) {
-		return isBirthday;
+	public boolean check(OrderInfo orderInfo) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

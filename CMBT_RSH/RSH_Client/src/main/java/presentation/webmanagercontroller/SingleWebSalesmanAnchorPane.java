@@ -20,7 +20,7 @@ public class SingleWebSalesmanAnchorPane extends AnchorPane{
 	
 	public SingleWebSalesmanAnchorPane(WebSalesmanVO webSalesmanVO) {
 		idInfoLabel.setText(webSalesmanVO.getId());
-		areaInfoLabel.setText(webSalesmanVO.getProvince()+" "+webSalesmanVO.getCity()+" "+webSalesmanVO.getDistrict());;
+		areaInfoLabel.setText(webSalesmanVO.getProvince()+" "+webSalesmanVO.getCity()+" "+webSalesmanVO.getArea());;
 		
 		//设置组件属性
 		setFont(areaInfoLabel);
@@ -52,6 +52,8 @@ public class SingleWebSalesmanAnchorPane extends AnchorPane{
 			public void handle(MouseEvent event) {
 				AnchorPane modifyWebSalesman = WebManagerUIFXMLFactory.getInstance().getModifyWebSalesman();
 				AnchorPane manageWebSalesman = WebManagerUIFXMLFactory.getInstance().getManageWebSalesman();
+				ModifyWebSalesmanUIController modifyWebSalesmanUIController = WebManagerUIFXMLFactory.getInstance().getModifyWebSalesmanUIController();
+				modifyWebSalesmanUIController.init(webSalesmanVO);
 		    	manageWebSalesman.getChildren().add(modifyWebSalesman);
 			}
 			

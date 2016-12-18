@@ -72,6 +72,8 @@ public class SingleHotelAnchorPane extends AnchorPane{
 			@Override
 			public void handle(MouseEvent event) {
 				AnchorPane modifyHotel = WebManagerUIFXMLFactory.getInstance().getModifyHotel();
+				ModifyHotelUIController modifyHotelUIController = WebManagerUIFXMLFactory.getInstance().getModifyHotelUIController();
+				modifyHotelUIController.init(hotelVO);
 				AnchorPane manageHotel = WebManagerUIFXMLFactory.getInstance().getManageHotel();
 		    	manageHotel.getChildren().add(modifyHotel);
 			}

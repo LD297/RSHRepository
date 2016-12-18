@@ -36,6 +36,8 @@ public class HotelAndWebSalesmanUIFactory {
 
     private FXMLLoader topUpCreditUILoader;
 
+    private FXMLLoader makeMemberStandardUILoader;
+
     public static HotelAndWebSalesmanUIFactory getInstance(){
         if(hotelUIFactory==null)
             hotelUIFactory = new HotelAndWebSalesmanUIFactory();
@@ -113,4 +115,11 @@ public class HotelAndWebSalesmanUIFactory {
             webSalesmanHomepageUILoader = new FXMLLoader(getClass().getResource("/fxml/网站营销人员首页.fxml"));
         return webSalesmanHomepageUILoader;
     }
+
+    public FXMLLoader getMakeMemberStandardUILoader(){
+        if(makeMemberStandardUILoader==null)
+            makeMemberStandardUILoader = new FXMLLoader(getClass().getResource("/fxml/制定会员等级界面.fxml"));
+        return makeMemberStandardUILoader;
+    }
+
 }

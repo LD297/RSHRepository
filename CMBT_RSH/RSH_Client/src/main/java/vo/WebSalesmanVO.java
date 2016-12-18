@@ -8,7 +8,7 @@ public class WebSalesmanVO {
 	String city;
 	String area;
 	String district;
-	String password;
+	String password = "sadghgfhj";
 	String name;
 	
 	public WebSalesmanVO(String webSalesmnaID,String province,String city,String area,String name){
@@ -50,6 +50,39 @@ public class WebSalesmanVO {
 		return password;
 	}
 	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public WebSalesmanPO changeIntoPO(){
 		WebSalesmanPO webSalesmanPO = new WebSalesmanPO(id, district, password, name);
 		return webSalesmanPO;

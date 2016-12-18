@@ -142,9 +142,12 @@ public class ManageUserUIController {
     }
 
     public void init() {
+    	idField.setText("");
+    	presentPage = 1;
 		userVOs = WebManagerInfoUtil.getInstance().getUserVOs();
 		maxPages = (userVOs.size()+3)/4;
-		changeToReferedPage(1);
+		gridpaneFilledWithUser.getChildren().clear();
+		changeToReferedPage(presentPage);
 	}
     
     

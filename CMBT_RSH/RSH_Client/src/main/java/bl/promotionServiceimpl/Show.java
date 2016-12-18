@@ -29,26 +29,27 @@ public class Show {
 		}
 		return show;
 	}
+<<<<<<< HEAD
 	/**
 	 * 一段时间内的策略
 	 * @param beginDate
 	 * @param endDate
 	 * @return
 	 */
-	public static ArrayList<PromotionVO> getPromotionOfPeriod(Date beginDate, Date endDate) {
-		// TODO Auto-generated method stub
-		ArrayList<PromotionVO> result= new ArrayList<PromotionVO>();
-		Iterator<PromotionPO> tempRes = null;
-		try {
-			tempRes = promotionDao.finds(beginDate,endDate).iterator();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		while(tempRes.hasNext()){
-			result.add(PromotionPO.changeIntoPromotionVo(tempRes.next()));
-		}
-		return result;
-	}
+//	public static ArrayList<PromotionVO> getPromotionOfPeriod(Date beginDate, Date endDate) {
+//		// TODO Auto-generated method stub
+//		ArrayList<PromotionVO> result= new ArrayList<PromotionVO>();
+//		Iterator<PromotionPO> tempRes = null;
+//		try {
+////			tempRes = promotionDao.finds(beginDate,endDate).iterator();
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//		while(tempRes.hasNext()){
+//			result.add(PromotionPO.changeIntoPromotionVo(tempRes.next()));
+//		}
+//		return result;
+//	}
 
 	/**
 	 * 符合某酒店特定房间的优惠策略
@@ -90,5 +91,10 @@ public class Show {
 		// TODO Auto-generated method stub
 		return getPrmotionOfRoom(district,null);
 	}
+=======
+	
+	
+	
+>>>>>>> origin/master
 
 }

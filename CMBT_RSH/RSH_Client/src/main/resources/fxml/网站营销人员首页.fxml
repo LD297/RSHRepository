@@ -26,11 +26,6 @@
             <Image url="@../images/酒店首页c2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="aboutUs" fitHeight="99.0" fitWidth="100.0" layoutX="291.0" layoutY="500.0" onMouseClicked="#changeToAboutUsUI">
-         <image>
-            <Image url="@../images/酒店首页c3.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="exceptionalOrder" fitHeight="99.0" fitWidth="100.0" layoutX="522.0" layoutY="221.0" onMouseClicked="#changeToExceptionalOrderUI">
          <image>
             <Image url="@../images/异常订单.png" />
@@ -39,6 +34,11 @@
       <ImageView fx:id="topUpCredit" fitHeight="99.0" fitWidth="100.0" layoutX="462.0" layoutY="408.0" onMouseClicked="#changeToTopUpCreditUI">
          <image>
             <Image url="@../images/信用充值.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="makeMememberStandard" fitHeight="99.0" fitWidth="100.0" layoutX="290.0" layoutY="500.0" onMouseClicked="#changeToMakeMemberStandardUI">
+         <image>
+            <Image url="@../images/会员等级.png" />
          </image>
       </ImageView>
    </children>

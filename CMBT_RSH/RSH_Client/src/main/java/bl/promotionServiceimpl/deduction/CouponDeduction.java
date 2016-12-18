@@ -24,13 +24,16 @@ public class CouponDeduction extends Deduction {
 		return null;
 	}
 
+
 	@Override
-	public int getNum() {
+	public double getDeduction(double total) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getDeduction(int total) {
+	public double getNum() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
