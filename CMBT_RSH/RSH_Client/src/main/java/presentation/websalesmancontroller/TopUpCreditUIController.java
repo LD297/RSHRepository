@@ -36,28 +36,20 @@ public class TopUpCreditUIController {
     private Button backButton;
 
     @FXML
-    private TextField topUpNumTextField;
+    private TextField topNumTextField;
 
     @FXML
     private Button confirmButton;
 
-
     @FXML
     void confirmButtonClicked(MouseEvent event) {
         // TODO
-
-        String userId = userIdTextField.getText();
-        String top = topUpNumTextField.getText();
-
         backButtonClicked(null);
     }
 
     @FXML
     void backButtonClicked(MouseEvent event) {
-        Stage stage = (Stage)anchorPane.getScene().getWindow();
-        stage.setX(320);
-        stage.setY(46);
-        stage.setScene(prePane.getScene());
+        ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
 
     }
 
@@ -66,7 +58,7 @@ public class TopUpCreditUIController {
         assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '信用充值界面.fxml'.";
         assert userIdTextField != null : "fx:id=\"userIdTextField\" was not injected: check your FXML file '信用充值界面.fxml'.";
         assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '信用充值界面.fxml'.";
-        assert topUpNumTextField != null : "fx:id=\"topNumTextField\" was not injected: check your FXML file '信用充值界面.fxml'.";
+        assert topNumTextField != null : "fx:id=\"topNumTextField\" was not injected: check your FXML file '信用充值界面.fxml'.";
         assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '信用充值界面.fxml'.";
 
     }

@@ -36,14 +36,6 @@ public interface WebStaffService {
 	 */
 	public ResultMessage changePassword(String ID,String oldPassword, String newPassword);
 	
-	/**
-	 * 更新网站营销人员信息
-	 * @param ID
-	 * @param password
-	 * @return
-	 */
-	public ResultMessage updateWebSalesman(WebSalesmanVO webSalesmanVO);
-	
 	public ResultMessage forceChangePassword(String ID, String password);
 	
 	public ResultMessage addWebManager(String ID,String password);

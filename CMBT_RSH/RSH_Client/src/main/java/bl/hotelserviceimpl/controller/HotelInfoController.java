@@ -18,8 +18,7 @@ public class HotelInfoController implements HotelInfoService{
 	public ArrayList<RoomNormVO> getRoomNorm(String hotelID) {
 		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);
-//		return hotel.getRoomNorms();
-		return null;
+		return hotel.getRoomNorms();
 	}
 
 	@Override

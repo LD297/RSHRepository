@@ -26,7 +26,7 @@
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="passwordLabel" layoutX="258.0" layoutY="200.0" prefHeight="20.0" prefWidth="179.0" text="1111111111" textFill="#00a699">
+            <Label fx:id="passwordLabel" layoutX="258.0" layoutY="200.0" prefHeight="20.0" prefWidth="90.0" text="1111111111" textFill="#00a699">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>

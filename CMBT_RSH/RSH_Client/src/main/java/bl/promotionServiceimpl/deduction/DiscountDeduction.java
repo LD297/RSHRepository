@@ -9,10 +9,10 @@ import constant.DeductionType;
  */
 public class DiscountDeduction extends Deduction {
 
-	double discount;
+	int discount;
 	
-	public DiscountDeduction(double discount){
-		this.discount=discount;
+	public DiscountDeduction(int disc){
+		discount=disc;
 	}
 
 	@Override
@@ -21,11 +21,11 @@ public class DiscountDeduction extends Deduction {
 	}
 
 	@Override
-	public double getNum() {
+	public int getNum() {
 		return discount;
 	}
 
-	public double getDeduction(double total){
+	public int getDeduction(int total){
 		return total*discount;
 	}
 }

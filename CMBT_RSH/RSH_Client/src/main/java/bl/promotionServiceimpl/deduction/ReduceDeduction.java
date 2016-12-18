@@ -9,9 +9,9 @@ import constant.DeductionType;
  */
 public class ReduceDeduction extends Deduction {
 
-	double reduceNum;
-	public ReduceDeduction(double reduceNum){
-		this.reduceNum = reduceNum;
+	int reduceNum;
+	public ReduceDeduction(int dNum){
+		reduceNum = dNum;
 	}
 
 	@Override
@@ -20,11 +20,11 @@ public class ReduceDeduction extends Deduction {
 	}
 
 	@Override
-	public double getNum() {
+	public int getNum() {
 		return reduceNum;
 	}
 
-	public double getDeduction(double total){
+	public int getDeduction(int total){
 		
 		return total-reduceNum;
 	}

@@ -6,7 +6,6 @@ import vo.CreditRecordVO;
 import vo.UserVO;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -106,13 +105,6 @@ public class UserController implements UserService{
 	public String resetpassword(String userid) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public ResultMessage addCredit(int value, String userID) {
-		// TODO Auto-generated method stub
-		CreditRecordList creditRecordList = new CreditRecordList(userID);
-		return creditRecordList.add(value);
 	}
 
 }

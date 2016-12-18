@@ -3,17 +3,12 @@ package bl.promotionServiceimpl;
 import bl.userserviceimpl.User;
 import constant.MemberType;
 import constant.ResultMessage;
-import data.dao.promotiondao.PromotionDao;
-import po.PromotionPO;
-import rmi.RemoteHelper;
 import vo.PromotionVO;
 import vo.RoomVO;
 import vo.UserVO;
-import bl.promotionServiceimpl.condition.OrderInfo;
+
 import bl.promotionservice.PromotionService;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,102 +21,82 @@ import java.util.Locale;
  */
 public class PromotionController implements PromotionService {
 
-	private static PromotionDao promotionDao = null;
+	
 	Promotion promotion;
 	PromotionVO promotionVO=null;
 
-	private static void initRemote(){
-		if(promotionDao==null){
-			RemoteHelper remoteHelper = RemoteHelper.getInstance();
-			promotionDao = remoteHelper.getPromotionDao();
-		}
-	}
-	
-	public String getIDForNewPromotion(String setterID) {
-		initRemote();
-		String newID;
-		try {
-			newID = promotionDao.getNewID(setterID);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "remote_fail";
-		}
-		return newID;
+	public String getIDForNewPromotion(String setter) {
+		return null;
 	}
 
 	@Override
-	public ResultMessage addPromotion(PromotionVO promotionVO) {
-		initRemote();
-		try {
-			return promotionDao.insert(promotionVO.changeIntoPO());
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return ResultMessage.remote_fail;
+	public ResultMessage addPromotion(PromotionVO tempPromotionVO) {
+		promotionVO=tempPromotionVO;
+		if(Promotion.getInstance(promotionVO.setterID,promotionVO.promotionID)!=null){
+			return ResultMessage.already_exist;
 		}
+		promotion=new Promotion(promotionVO.setterID,promotionVO.promotionID,promotionVO.reason);
+		promotion.setDate(promotionVO.beginDate,promotionVO.endDate);
+
+		promotion.setScope(promotionVO.scopeType,promotionVO.scopeNum,promotionVO.roomType);
+		promotion.setCondition(promotionVO.conditionType,promotionVO.conditionNum);
+		promotion.setDeduction(promotionVO.deductionType,promotionVO.deductionNum);
+
+		promotion.insertPromotion();
+		return ResultMessage.succeed;
 	}		;
 
 
 	@Override
-	public ResultMessage delPromotion(String setterID, String promotionID) {
+	public ResultMessage delPromotion(String tempSetterID, String tempPromID) {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-//		return Show.getPromotionOfPeriod(beginDate,endDate);
-		return null;
+		return Promotion.delPromotion(tempSetterID,tempSetterID);
+	}
+
+	@Override
+	public ArrayList<PromotionVO> getPromotionOfPeriod(Date beginDate, Date endDate) {
+		// TODO Auto-generated method stub
+		return Show.getPromotionOfPeriod(beginDate,endDate);
 	}
 
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfRoom(String hotelID, String type) {
 		// TODO Auto-generated method stub
 		return Show.getPrmotionOfRoom(hotelID,type);
-=======
-		try {
-			return promotionDao.delete(setterID, promotionID);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return ResultMessage.remote_fail;
-		}
->>>>>>> origin/master
 	}
 
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfHotel(String hotelID) {
 		// TODO Auto-generated method stub
-		ArrayList<PromotionPO> promotionPOs = new ArrayList<>();
-		ArrayList<PromotionVO> promotionVOs = new ArrayList<>();
-		initRemote();
-		try {
-			promotionPOs = promotionDao.finds(hotelID);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return promotionVOs;
-		}
-		for(PromotionPO promotionPO:promotionPOs){
-			promotionVOs.add(promotionPO.changeIntoVO());
-		}
-		return promotionVOs;
+		return Show.getPromotionOfHotel(hotelID);
 	}
 
-	/**
-	 * promotionDao 中可直接使用 hotelID 或 district 作为参数
-	 */
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfDistrict(String district) {
 		// TODO Auto-generated method stub
-		return getPromotionOfHotel(district);
+		return Show.getPromotionOfDistrict(district);
 	}
 
-
-	public String countPromotionOfRoom(OrderInfo orderInfo) {
+	@Override
+	public String countPromotionOfRoom(String hotelID, String type, int num, int price,Date beginDate, Date endDate) {
 		// TODO Auto-generated method stub
-		return Count.countPromotionOfRoom(orderInfo);
+		User user = new User();
+		UserVO userVO = user.getInfo();
+		LocalDate birthday = userVO.getBirthday();
+		MemberType memberType = userVO.getMemberType();
+		int memberLevel = userVO.getLevel();
+		return Count.countPromotionOfRoom(hotelID,type,num,price,beginDate,endDate,
+				birthday,memberType,memberLevel);
 	}
 
 
 
+
+	@Override
+	public ResultMessage setCoupon() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 
