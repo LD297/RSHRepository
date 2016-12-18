@@ -27,7 +27,7 @@ public class WebSalesmanHomepageUIController {
     private URL location;
 
     @FXML
-    private ImageView makeMememberStandard;
+    private ImageView makeMemberStandard;
 
     @FXML
     private ImageView promotin;
@@ -162,7 +162,7 @@ public class WebSalesmanHomepageUIController {
 
     @FXML
     void initialize() {
-        assert makeMemberStandardPane != null : "fx:id=\"makeMemberStandardPane\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
+        assert makeMemberStandard != null : "fx:id=\"makeMemberStandard\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
         assert promotin != null : "fx:id=\"promotin\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
         assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
         assert logo != null : "fx:id=\"logo\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
