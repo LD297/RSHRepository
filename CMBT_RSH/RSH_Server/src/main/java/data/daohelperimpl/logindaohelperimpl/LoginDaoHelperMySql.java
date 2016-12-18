@@ -9,42 +9,38 @@ import po.OnlinePersonPO;
 import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  * Created by sky-PC on 2016/12/3.
  */
 public class LoginDaoHelperMySql implements LoginDaoHelper{
-    private DBHelper db = new DBHelper();
-
+	
+    private ArrayList<OnlinePersonPO> onlineInfo;
     public void init(){
-
-        db.executeSql("USE OurData");
-        // 身份 账号 密码
-        db.executeSql("CREATE TABLE if not exists OnlineInfo(role tinyint,id char(11),password varchar(30))" );
+    	onlineInfo = new ArrayList<OnlinePersonPO>();
     }
 
     public void finish(){
-        db.executeSql("USE OurData");
-        db.executeSql("DROP TABLE IF EXISTS OnlineInfo");
+        onlineInfo = null;
     }
     // 添加在线人员
     public ResultMessage addOnline(OnlinePersonPO po) throws RemoteException {
-        db.executeSql("USE OurData");
-
-        String addOnlineSql = "INSERT INTO OnlineInfo VALUES("+
-                String.valueOf(po.getRole().ordinal())+",'"+po.getId()+"','"+po.getPassword()+"')";
-        db.executeSql(addOnlineSql);
+        for(int i=0;i<onlineInfo.size();i++)
+        	if(onlineInfo.get(i).getId().equals(po.getId()))
+        		return ResultMessage.idAlreadyExist;
+        
+        onlineInfo.add(po);
         return ResultMessage.succeed;
     }
     // 去除在线人员
     public ResultMessage deleteOnline(Role role, String id) throws RemoteException {
-        db.executeSql("USE OurData");
-
-        String deleteOnlineSql = "DELECT FROM OnlineInfo WHERE role="+
-                String.valueOf(role.ordinal())+" and id='"+id+"' LIMIT 1";
-        db.executeSql(deleteOnlineSql);
-        return ResultMessage.succeed;
+    	for(int i=0;i<onlineInfo.size();i++)
+        	if(onlineInfo.get(i).getId().equals(id)){
+        		onlineInfo.remove(i);
+        		return ResultMessage.succeed;
+        	}
+       
+        return ResultMessage.idNotExist;
     }
-
-
 }

@@ -47,6 +47,10 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
     public ResultMessage addHotel(HotelPO hotelPO) throws RemoteException{
         return hotelDaoHelper.addHotel(hotelPO);
     }
+    // 更新酒店评分
+    public ResultMessage updateGrade(String hotelID,int grade) throws RemoteException{
+        return hotelDaoHelper.updateGrade(hotelID, grade);
+    }
     // 更新酒店基本信息
     public ResultMessage updateHotel (HotelPO hotelPO) throws RemoteException{
         return hotelDaoHelper.updateHotel(hotelPO);
@@ -79,10 +83,6 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
     // 得到酒店 房间类型 一段日期 可用数量
     public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) throws RemoteException{
         return hotelDaoHelper.numOfRoomAvail(id, roomType, checkIn, checkOut);
-    }
-    // 生成订单时得到酒店 所有房间的规格信息？？
-    public ArrayList<RoomNormPO> getRoomNorm(String hotelID) throws RemoteException{
-        return hotelDaoHelper.getRoomNorm(hotelID);
     }
     // 根据地址和商圈的到酒店列表
     public ArrayList<HotelPO> getHotelList(String address,String businessArea) throws RemoteException{

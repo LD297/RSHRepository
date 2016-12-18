@@ -5,6 +5,7 @@ import constant.ResultMessage;
 import vo.CreditRecordVO;
 import vo.UserVO;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -92,6 +93,18 @@ public class UserController implements UserService{
 	public ResultMessage checkPassword(String id,String password) {
 		User user = new User(id);
 		return user.checkPassword(password);
+	}
+
+	@Override
+	public ArrayList<UserVO> getUserVOS() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String resetpassword(String userid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

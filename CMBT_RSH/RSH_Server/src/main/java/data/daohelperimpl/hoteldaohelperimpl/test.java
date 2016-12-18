@@ -23,7 +23,7 @@ public class test {
         ResultMessage result = hotelDao.updateGrade(hotelid,grade);
     }
     public void testupdateHotel (HotelPO vo) throws RemoteException{
-        HotelPO hotelPO = new HotelPO("", "15998976532", "金陵酒店", "地址", "夫子庙",
+        HotelPO hotelPO = new HotelPO("", "15998976532", "金陵酒店", "地址", "夫子庙",200.0,
                 "建于1997，历史悠久，古韵悠长", "含wifi", 3, 4.0, "23:10:00");
 
         ResultMessage result = hotelDao.updateHotel(hotelPO);
@@ -61,20 +61,13 @@ public class test {
         Date indate = sim.parse("2016-01-28");
         ArrayList<RoomAvailPO> list = hotelDao.getRoomAvailList(hotelid,indate);
     }
-    public void  testupdateRoomAvail() throws RemoteException{
-        RoomAvailPO roomAvailPO = new RoomAvailPO("","singleRoom",12,120.0,false);
-        ResultMessage result = hotelDao.updateRoomAvail(roomAvailPO);
-    }
 
     public void  testgetHotelList() throws RemoteException{
         String address = "";
         String businessArea = "";
         ArrayList<HotelPO> list = hotelDao.getHotelList(address,businessArea);
     }
-    public void testgetHotelInfo() throws RemoteException{
-        String id = "";
-        HotelPO hotelPO = hotelDao.getHotelInfo(id);
-    }
+  
     //  public ArrayList<HotelVO> sort(SortBy sortBy,SortMethod sortM) throws RemoteException;
     // public ArrayList<HotelVO> selectByName(String hotelName)throws RemoteException;
     // public void testselectByCondition(SelectConditionVO vo) throws RemoteException;
@@ -88,8 +81,5 @@ public class test {
         HotelPO hotelPO = new HotelPO("13648606135","LaRud","龙泉街","123456");
         ResultMessage result = hotelDao.addHotel(hotelPO);
     }
-    public void  testupdateHotelStaff() throws RemoteException{
-        HotelStaffPO po = new HotelStaffPO("","15708478080");
-        ResultMessage result = hotelDao.updateHotelStaff(po);
-    }
+
 }

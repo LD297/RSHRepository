@@ -105,6 +105,54 @@ public class UserService_Stub implements UserService{
 		return ResultMessage.succeed;
 	}
 
+	@Override
+	public ArrayList<UserVO> getUserVOS() {
+		UserVO userVO1 = new UserVO("12321678909", "123", "bob",
+				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
+				  Sexuality.female, "xiaoer@ahh.com",100,"bilibili");
+		UserVO userVO2 = new UserVO("12124235346", "123", "assd",
+				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
+				  Sexuality.male, "xiaoer@ahh.com",100,"bilibili");
+		UserVO userVO3 = new UserVO("12678789800", "123", "bob",
+				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
+				  Sexuality.female, "xiaoer@ahh.com",100,"bilibili");
+		UserVO userVO4 = new UserVO("13547658769", "123", "rrey",
+				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
+				  Sexuality.male, "xiaoer@ahh.com",100,"bilibili");
+		UserVO userVO5 = new UserVO("54634667899", "123", "bob",
+				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
+				  Sexuality.female, "xiaoer@ahh.com",100,"bilibili");
+		UserVO userVO6 = new UserVO("126878909", "123", "214",
+				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
+				  Sexuality.male, "xiaoer@ahh.com",100,"bilibili");
+		UserVO userVO7 = new UserVO("12379685619", "123", "bob",
+				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
+				  Sexuality.female, "xiaoer@ahh.com",100,"bilibili");
+		UserVO userVO8 = new UserVO("12345678909", "123", "air",
+				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
+				  Sexuality.male, "xiaoer@ahh.com",100,"bilibili");
+		UserVO userVO9 = new UserVO("12345678909", "123", "bob",
+				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
+				  Sexuality.female, "xiaoer@ahh.com",100,"bilibili");
+		UserVO userVO0 = new UserVO("12308656434", "123", "bob",
+				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
+				  Sexuality.male, "xiaoer@ahh.com",100,"bilibili");
+		ArrayList<UserVO> userVOs = new ArrayList<>();
+		userVOs.add(userVO0);
+		userVOs.add(userVO9);
+		userVOs.add(userVO8);
+		userVOs.add(userVO7);
+		userVOs.add(userVO6);
+		userVOs.add(userVO5);
+		userVOs.add(userVO4);
+		userVOs.add(userVO3);
+		userVOs.add(userVO2);
+		userVOs.add(userVO1);
+		return userVOs;
+	}
 
-
+	@Override
+	public String resetpassword(String userid) {
+		return "hdgfjf_2565472";
+	}
 }

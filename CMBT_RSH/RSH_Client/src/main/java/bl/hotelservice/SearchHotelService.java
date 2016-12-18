@@ -17,6 +17,11 @@ public interface SearchHotelService {
 	 * @return
 	 */
 	public ArrayList<HotelVO> getHotelList(String address, String businessArea);
+	
+	/**
+	 * 网站管理人员界面调用，返回所有的酒店
+	 */
+	public ArrayList<HotelVO> getHotelList();
 
 	/**
 	 * 返回排序后的酒店列表

@@ -1,6 +1,7 @@
 package presentation.webmanagercontroller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +13,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import presentation.tools.WebManagerInfoUtil;
 import presentation.tools.WebManagerUIFXMLFactory;
+import presentation.usercontroller.SingleCreditRecordAnchorPane;
+import vo.UserVO;
 
 /**
  * 网站管理人员管理用户信息
@@ -48,6 +52,11 @@ public class ManageUserUIController {
     @FXML
     private AnchorPane anchorPane;
 
+    private ArrayList<UserVO> userVOs = new ArrayList<>();
+	private int presentPage = 1;//当前页码
+	private int userVOsPointer = -1;
+	private int maxPages = 0;
+
     
     @FXML
     void backToHomepage(MouseEvent event) {
@@ -65,28 +74,79 @@ public class ManageUserUIController {
     //在输入用户手机号之后按enter键定位到具体一个用户，查看该用户信息
     @FXML
     void changeToCheckUserInfo(ActionEvent event) {
-    	AnchorPane checkUserInfo = WebManagerUIFXMLFactory.getInstance().getCheckUserInfo();
-    	anchorPane.getChildren().add(checkUserInfo);
+    	String userid = idField.getText().trim();
+    	boolean found = false;
+    	for(int i=0;i<userVOs.size();i++){
+    		if(userVOs.get(i).id.equals(userid)){
+				AnchorPane checkUserInfo = WebManagerUIFXMLFactory.getInstance().getCheckUserInfo();
+				CheckUserInfoUIController checkUserInfoUIController = WebManagerUIFXMLFactory.getInstance()
+						.getCheckUserInfoUIController();
+				checkUserInfoUIController.init(userVOs.get(i));
+				anchorPane.getChildren().add(checkUserInfo);
+    	    	found = true;
+    			break;
+    		}
+    	}
+    	if(!found){
+    		//TODO 提示信息
+    	}
     }
     
     @FXML
     void changeToLastPage(MouseEvent event) {
-
+    	if(presentPage-1>=1){
+			presentPage--;
+			gridpaneFilledWithUser.getChildren().clear();
+			changeToReferedPage(presentPage);
+		}
     }
 
     @FXML
     void changeToNextPage(MouseEvent event) {
-
+    	if(presentPage+1<=maxPages){
+    		presentPage++;
+    		gridpaneFilledWithUser.getChildren().clear();
+    		changeToReferedPage(presentPage);
+    	}
     }
 
     @FXML
     void changeToSpecificPage(ActionEvent event) {
-
+    	int page = Integer.parseInt(pageField.getText().trim());
+    	if(page>=1){
+    		if(page>maxPages){
+    			presentPage = maxPages;
+    		}else {
+				presentPage = page;
+			}
+    		gridpaneFilledWithUser.getChildren().clear();
+    		changeToReferedPage(presentPage);
+    	}else{//page小于0,不予反应
+    		pageField.setText(String.valueOf(presentPage));
+    	}
+    }
+    
+    private void changeToReferedPage(int page){
+    	pageField.setText(String.valueOf(page));
+		userVOsPointer = (page - 1) * 4;
+		int count = 0;
+		while (count < 4) {// 一个界面上有4个格子
+			if (userVOsPointer == userVOs.size()) {
+				break;
+			}
+			SingleUserAnchorPane singleUserAnchorPane = new SingleUserAnchorPane(userVOs.get(userVOsPointer));
+			gridpaneFilledWithUser.add(singleUserAnchorPane, 0, count*2+1);
+			userVOsPointer++;
+			count++;
+		}
     }
 
     public void init() {
-		
+		userVOs = WebManagerInfoUtil.getInstance().getUserVOs();
+		maxPages = (userVOs.size()+3)/4;
+		changeToReferedPage(1);
 	}
+    
     
     @FXML
     void initialize() {

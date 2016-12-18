@@ -10,17 +10,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.webmanagercontroller.ModifyWebSalesmanUIController">
    <children>
       <Label layoutX="50.0" layoutY="86.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.3);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="160.0">
          <children>
-            <Button layoutX="360.0" layoutY="341.0" mnemonicParsing="false" style="-fx-background-color: #ff5a5f;" text="确认修改" textFill="WHITE">
+            <Button fx:id="finishModifyButton" layoutX="360.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#finishModify" style="-fx-background-color: #ff5a5f;" text="确认修改" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="15.0" />
                </font>
             </Button>
-            <ImageView fx:id="cancelImage" fitHeight="30.0" fitWidth="30.0" layoutX="471.0" layoutY="-1.0" onMouseClicked="#closeSelectContion" onMouseEntered="#changeCancelImageToRed" onMouseExited="#changeCancelImageToGray" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="cancelImage" fitHeight="30.0" fitWidth="30.0" layoutX="471.0" layoutY="-1.0" onMouseClicked="#closeModifyWebSalesman" onMouseEntered="#changeCancelImageToRed" onMouseExited="#changeCancelImageToGray" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/cancel.png" />
                </image>
@@ -35,10 +35,10 @@
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <ComboBox layoutX="61.0" layoutY="200.0" prefHeight="30.0" prefWidth="110.0" promptText="所在省" />
-            <ComboBox layoutX="196.0" layoutY="200.0" prefHeight="30.0" prefWidth="110.0" promptText="所在市" />
-            <ComboBox layoutX="331.0" layoutY="200.0" prefHeight="30.0" prefWidth="110.0" promptText="所在区" />
-            <TextField layoutX="61.0" layoutY="296.0" prefHeight="30.0" prefWidth="380.0" />
+            <ComboBox fx:id="provinceCombox" layoutX="61.0" layoutY="200.0" onAction="#toSetCityCombox" prefHeight="30.0" prefWidth="110.0" promptText="所在省" />
+            <ComboBox fx:id="cityCombox" layoutX="196.0" layoutY="200.0" onAction="#toSetDistrict" prefHeight="30.0" prefWidth="110.0" promptText="所在市" />
+            <ComboBox fx:id="districtCombox" layoutX="331.0" layoutY="200.0" prefHeight="30.0" prefWidth="110.0" promptText="所在区" />
+            <TextField fx:id="passwordField" layoutX="61.0" layoutY="296.0" prefHeight="30.0" prefWidth="380.0" />
             <Label layoutX="61.0" layoutY="256.0" prefHeight="23.0" text="您可以在下面输入新密码：">
                <font>
                   <Font name="Times New Roman" size="18.0" />

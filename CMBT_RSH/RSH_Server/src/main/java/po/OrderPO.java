@@ -13,7 +13,7 @@ public class OrderPO implements Serializable{
     private String hotelName = null;
 	private StateOfOrder state = null;
     // 酒店，类型，原始价格
-	private RoomNormPO room = null;
+	private String roomType = null;
 	private int roomNumber = 0;
     // 计算后的单间房间实际价格
     private double roomPrice = 0;
@@ -63,15 +63,15 @@ public class OrderPO implements Serializable{
      * order调用promotion方法时传递的参数
      * @param userID
      * @param hotelID
-     * @param room
+     * @param roomType
      * @param roomNum
      * @param checkIn
      * @param checkOut
      */
-    public OrderPO(String userID,String hotelID,RoomNormPO room,int roomNum,Date checkIn,Date checkOut){
+    public OrderPO(String userID,String hotelID,String roomType,int roomNum,Date checkIn,Date checkOut){
         this.userID = userID;
         this.hotelID = hotelID;
-        this.room = room;
+        this.roomType = roomType;
         this.roomNumber = roomNum;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -83,7 +83,7 @@ public class OrderPO implements Serializable{
      * @param userID
      * @param userName
      * @param state
-     * @param room
+     * @param roomType
      * @param roomNumber
      * @param peopleNumber
      * @param withChild
@@ -96,14 +96,14 @@ public class OrderPO implements Serializable{
      * @param actualCheckOut
      */
 	public OrderPO(String orderID, String userID, String userName, StateOfOrder state,
-                   RoomNormPO room, int roomNumber,int peopleNumber, boolean withChild,
+                   String roomType, int roomNumber,int peopleNumber, boolean withChild,
                    double originValue, double trueValue, Date checkIn, Date checkOut,
                    Date generationDate, Date actualCheckIn, Date actualCheckOut){
 		this.orderID = orderID;
 		this.userID = userID;
 		this.userName = userName;
         this.state = state;
-        this.room = room;
+        this.roomType = roomType;
         this.roomNumber = roomNumber;
         this.peopleNumber = peopleNumber;
         this.withChild = withChild;
@@ -123,7 +123,7 @@ public class OrderPO implements Serializable{
      * @param userName
      * @param hotelID
      * @param state
-     * @param room
+     * @param roomType
      * @param roomPrice
      * @param roomNumber
      * @param peopleNumber
@@ -142,7 +142,7 @@ public class OrderPO implements Serializable{
      * @param cancelAbnormalTime
      */
 	public OrderPO(String orderID, String userID, String userName,String hotelID, String hotelName, StateOfOrder state,
-                   RoomNormPO room, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
+                   String roomType, double roomPrice, int roomNumber, int peopleNumber, boolean withChild,
                    double originValue, double trueValue, String promotion,
                    String comment, int grade, Date checkIn, Date checkOut,String hotelDDL,Date generationDate,
                    Date actualCheckIn, Date actualCheckOut, Date cancelTime, Date cancelAbnormalTime){
@@ -153,7 +153,7 @@ public class OrderPO implements Serializable{
         this.hotelID = hotelID;
         this.hotelName = hotelName;
         this.state = state;
-        this.room = room;
+        this.roomType = roomType;
         this.roomPrice = roomPrice;
         this.roomNumber = roomNumber;
         this.peopleNumber = peopleNumber;
@@ -193,8 +193,8 @@ public class OrderPO implements Serializable{
     public StateOfOrder getState(){
         return state;
     }
-    public RoomNormPO getRoom(){
-        return room;
+    public String getRoom(){
+        return roomType;
     }
     public double getRoomPrice(){
         return roomPrice;

@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import presentation.tools.ImageFactory;
 import presentation.tools.Locator;
+import presentation.tools.WebManagerInfoUtil;
 import presentation.tools.WebManagerUIFXMLFactory;
 import vo.UserVO;
 
@@ -59,7 +60,7 @@ public class SingleUserAnchorPane extends AnchorPane{
 		setFont(nickNameLabel);
 		setFont(nickNameInfoLabel);
 		resetPasswordButton.setFont(Font.font("Times New Roman", 14));
-		resetPasswordButton.setStyle("-fx-background-color #ff5a5f;-fx-text-fill: #ffffff");
+		resetPasswordButton.setStyle("-fx-background-color: #ff5a5f;-fx-text-fill: #ffffff");
 		phoneImage.setFitHeight(23);
 		phoneImage.setFitWidth(23);
 		penImage.setFitHeight(30);
@@ -103,9 +104,13 @@ public class SingleUserAnchorPane extends AnchorPane{
 
 			@Override
 			public void handle(MouseEvent event) {
-				//TODO 逻辑处理
+				//重置密码
+		    	String password = WebManagerInfoUtil.getInstance().resetPassword(userVO.id);
 				AnchorPane manageUser = WebManagerUIFXMLFactory.getInstance().getManageUser();
 				AnchorPane successResetPassword = WebManagerUIFXMLFactory.getInstance().getSuccessResetPassword();
+				SuccessResetPasswordUIController successResetPasswordUIController = WebManagerUIFXMLFactory.getInstance()
+						.getSuccessResetPasswordUIController();
+				successResetPasswordUIController.init(password);//提示重置密码成功，并显示新密码
 				manageUser.getChildren().add(successResetPassword);
 			}
 		});

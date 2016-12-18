@@ -29,7 +29,7 @@ import java.util.Date;
 public class test {
 // success
     OrderDaoHelperMySql orderDao = new OrderDaoHelperMySql();
-
+/*
 
     // 根据订单编号查找订单
     @Test
@@ -134,7 +134,7 @@ public class test {
 
 
 
-    /*
+    */
     public static void main(String[] args) throws RemoteException {
 
         OrderDaoHelperMySql orderdao = new OrderDaoHelperMySql();
@@ -155,7 +155,5 @@ public class test {
         webmanagerdao.init();
         orderdao.finish(); hoteldao.finish(); logindao.finish(); promotiondao.finish();
         userdao.finish(); cdao.finish(); websalesmandao.finish();
-
-
-    }*/
+    }
 }

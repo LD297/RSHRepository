@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.tools.UserUIFXMLFactory;
 import presentation.tools.WebManagerUIFXMLFactory;
 
 /**
@@ -108,7 +109,15 @@ public class ManagerHomepageUIController {
 
     @FXML
     void logout(MouseEvent event) {
-
+    	Stage stage  = (Stage)logoutImage.getScene().getWindow();
+    	Scene scene = null;
+    	AnchorPane roleChoose = UserUIFXMLFactory.getUserUIFXMLFactory().getRoleChoose();
+    	if(roleChoose.getScene()!=null){
+    		scene = roleChoose.getScene();
+    	}else {
+			scene = new Scene(roleChoose,800,720);
+		}
+    	stage.setScene(scene);
     }
 
     @FXML
