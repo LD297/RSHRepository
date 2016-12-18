@@ -32,7 +32,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="88.0" layoutY="16.0" text="地址:" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="16.0">
+                  <Label layoutX="88.0" layoutY="16.0" opacity="0.8" text="地址:" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="16.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -41,7 +41,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Label layoutX="83.0" layoutY="16.0" text="商圈: " AnchorPane.leftAnchor="18.0">
+                  <Label layoutX="83.0" layoutY="16.0" opacity="0.8" text="商圈: " AnchorPane.leftAnchor="18.0">
                      <font>
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
@@ -50,7 +50,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <Label layoutX="84.0" layoutY="61.0" text="简介: " AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="16.0">
+                  <Label layoutX="84.0" layoutY="61.0" opacity="0.8" text="简介: " AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="16.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -59,7 +59,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                <children>
-                  <Label layoutX="73.0" layoutY="16.0" text="设施服务:" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="16.0">
+                  <Label layoutX="73.0" layoutY="16.0" opacity="0.8" text="设施服务:" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="16.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -109,22 +109,22 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <Label layoutX="37.0" layoutY="13.0" text="名称: " AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="15.0">
+                  <Label layoutX="37.0" layoutY="13.0" opacity="0.8" text="名称: " AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="15.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="47.0" layoutY="53.0" text="ID: " AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="53.0">
+                  <Label layoutX="47.0" layoutY="53.0" opacity="0.8" text="ID: " AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="40.0" layoutY="68.0" text="联系方式: " AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="84.0">
+                  <Label layoutX="40.0" layoutY="68.0" opacity="0.8" text="联系方式: " AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="84.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="260.0" layoutY="16.0" text="评分: " AnchorPane.bottomAnchor="122.0" AnchorPane.leftAnchor="262.0" AnchorPane.topAnchor="16.0">
+                  <Label layoutX="260.0" layoutY="16.0" opacity="0.8" text="评分: " AnchorPane.bottomAnchor="122.0" AnchorPane.leftAnchor="262.0" AnchorPane.topAnchor="16.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -140,12 +140,12 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="editButton" layoutX="352.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#editButtonClicked" style="-fx-background-color: e5e5e5;" text="编辑" AnchorPane.topAnchor="11.0">
+                  <Button fx:id="editButton" layoutX="352.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#editButtonClicked" opacity="0.5" style="-fx-background-color: e5e5e5;" text="编辑" AnchorPane.topAnchor="11.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Button>
-                  <Label layoutX="40.0" layoutY="108.0" text="最晚入住时间:" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="40.0">
+                  <Label layoutX="40.0" layoutY="108.0" opacity="0.8" text="最晚入住时间:" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="40.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -155,7 +155,7 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="265.0" layoutY="53.0" text="星级:" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="262.0">
+                  <Label layoutX="265.0" layoutY="53.0" opacity="0.8" text="星级:" AnchorPane.leftAnchor="262.0" AnchorPane.topAnchor="50.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -175,12 +175,12 @@
             </ImageView>
          </children>
       </GridPane>
-      <Button fx:id="changeImageButton" layoutX="144.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#changeImageButtonClicked" style="-fx-background-color: e5e5e5;" text="更换图片" AnchorPane.leftAnchor="144.0">
+      <Button fx:id="changeImageButton" layoutX="144.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#changeImageButtonClicked" opacity="0.5" style="-fx-background-color: e5e5e5;" text="更换图片" AnchorPane.leftAnchor="144.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="roomInfoButton" layoutX="144.0" layoutY="663.0" mnemonicParsing="false" onMouseClicked="#changeToRoomInfoUI" style="-fx-background-color: e5e5e5;" text="客房信息" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="580.0">
+      <Button fx:id="roomInfoButton" layoutX="144.0" layoutY="663.0" mnemonicParsing="false" onMouseClicked="#changeToRoomInfoUI" opacity="0.5" style="-fx-background-color: e5e5e5;" text="客房信息" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="580.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
@@ -190,7 +190,7 @@
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutX="569.0" layoutY="663.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回" AnchorPane.leftAnchor="569.0" AnchorPane.rightAnchor="183.0">
+      <Button fx:id="backButton" layoutX="569.0" layoutY="663.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="569.0" AnchorPane.rightAnchor="183.0">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>

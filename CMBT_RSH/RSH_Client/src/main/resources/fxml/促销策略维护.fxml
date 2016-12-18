@@ -80,6 +80,11 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
+                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
                         <Label layoutX="228.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="单次预定  &gt;=  三间" AnchorPane.leftAnchor="228.0" AnchorPane.topAnchor="12.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
@@ -95,16 +100,16 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="showPane01" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
                         <Label layoutX="32.0" layoutY="12.0" text="000" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -124,16 +129,16 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="showPane02" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
                      <children>
                         <Label layoutX="32.0" layoutY="12.0" text="000" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -153,16 +158,16 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="showPane03" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="7">
                      <children>
                         <Label layoutX="32.0" layoutY="12.0" text="000" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -182,16 +187,16 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="showPane04" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="9">
                      <children>
                         <Label layoutX="32.0" layoutY="12.0" text="000" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -211,16 +216,16 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="showPane05" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="11">
                      <children>
                         <Label layoutX="32.0" layoutY="12.0" text="000" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -240,11 +245,6 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="80.0" layoutY="12.0" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0">
-                           <font>
-                              <Font name="Times New Roman" size="14.0" />
-                           </font>
-                        </Label>
                      </children>
                   </AnchorPane>
                </children>
@@ -287,6 +287,6 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="greyLabel" opacity="0.5" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: cccccc;" visible="false" />
+      <Label fx:id="greyLabel" opacity="0.5" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: a1a1a1;" visible="false" />
    </children>
 </AnchorPane>

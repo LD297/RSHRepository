@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
+import bl.hotelserviceimpl.HotelService_Stub;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import presentation.tools.HotelUIFactory;
+import presentation.tools.HotelAndWebSalesmanUIFactory;
 import vo.RoomVO;
 
 public class RoomInfoUIController {
@@ -95,7 +95,7 @@ public class RoomInfoUIController {
     private AnchorPane prePane;
     // TODO
     private String hotelid;
-    private HotelService hotelService;
+    private HotelService hotelService = new HotelService_Stub();
     // 当前的room
     private ArrayList<RoomVO> currentRoom;
     private static final int NUM_OF_ITEMS = 4;
@@ -157,7 +157,7 @@ public class RoomInfoUIController {
             currentPage++;
             return;
         }  else {
-            System.out.println("已是第一页！");
+            System.out.println("已是最后一页！");
              currentPage--;
             return;
         }
@@ -188,7 +188,7 @@ public class RoomInfoUIController {
             // 存放每条roomItem展示信息的label
             ArrayList<Label> labels = new ArrayList<>(NUM_OF_ITEMS);
             for(int i=0; i<NUM_OF_ITEMS; i++){
-                labels.set(i, (Label) theAnchorPane.getChildren().get(i));
+                labels.add((Label) theAnchorPane.getChildren().get(i));
             }
 
             //  存放每条roomItem相应的展示信息
@@ -197,6 +197,7 @@ public class RoomInfoUIController {
 
             // 将每条信息的string放进相应的label
             for(int i=0; i<NUM_OF_ITEMS; i++){
+                labels.get(i).setTextAlignment(TextAlignment.CENTER);
                 labels.get(i).setText(items[i]);
             }
         } else {
@@ -280,28 +281,23 @@ public class RoomInfoUIController {
 
     @FXML
     void addRoom(MouseEvent event) {
-        FXMLLoader loader = HotelUIFactory.getInstance().getAddRoomUILoader();
+        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getAddRoomUILoader();
         if(addRoomAnchorPane==null)
             try {
                 addRoomAnchorPane = (AnchorPane) loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        if(addRoomUIController==null){
+        if(addRoomUIController==null)
             addRoomUIController = loader.getController();
-        }
+
         addRoomUIController.setPrePane(anchorPane);
 
-        Scene scene = null;
-        if(addRoomAnchorPane.getScene()==null)
-            scene = new Scene(addRoomAnchorPane, 600, 400);
-        else
-            scene = addRoomAnchorPane.getScene();
-        Stage stage = new Stage();
+        greyLabel.setVisible(true);
 
-        anchorPane.getChildren().get(0).setVisible(true);
-
-        stage.setScene(scene);
+        AnchorPane.setTopAnchor(addRoomAnchorPane,140.0);
+        AnchorPane.setLeftAnchor(addRoomAnchorPane,100.0);
+        anchorPane.getChildren().add(addRoomAnchorPane);
     }
     @FXML
     void backButtonClicked(MouseEvent event) {
@@ -330,6 +326,7 @@ public class RoomInfoUIController {
         assert showPane0 != null : "fx:id=\"showPane0\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
 
+        setShowPanes();
         refreshPage();
     }
 }

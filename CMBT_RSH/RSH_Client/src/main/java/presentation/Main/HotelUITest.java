@@ -1,15 +1,15 @@
 package presentation.Main;
 
 import bl.hotelservice.HotelService;
+import bl.hotelserviceimpl.HotelService_Stub;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import bl.hotelserviceimpl.HotelServiceFactory;
 import presentation.hotelcontroller.HotelHomepageUIController;
-import presentation.tools.HotelUIFactory;
+import presentation.tools.HotelAndWebSalesmanUIFactory;
 import vo.HotelVO;
 
 import java.io.IOException;
@@ -21,15 +21,15 @@ public class HotelUITest extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = HotelUIFactory.getInstance().getHomepageUILoader();
+        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getHomepageUILoader();
         Parent root = loader.load();
         HotelHomepageUIController controller = loader.getController();
 
         // 得到该酒店的逻辑服务
-        HotelService hotelService = HotelServiceFactory.getHotelService("0123456789");
+        HotelService hotelService = new HotelService_Stub();
         controller.setHotelService(hotelService);
         // 从数据层得到该酒店信息
-        HotelVO hotelVO = hotelService.getHotelInfo();
+        HotelVO hotelVO = hotelService.getHotelInfo("012345678912");
         controller.setHotelVO(hotelVO);
 
         // TODO 从订单的逻辑得到初始化数据
@@ -41,7 +41,7 @@ public class HotelUITest extends Application {
         primaryStage.initStyle(StageStyle.DECORATED);
 
         primaryStage.setTitle("hotel");
-        primaryStage.setScene(new Scene(root, HotelUIFactory.UI_WIDTH, HotelUIFactory.UI_HEIGHT));
+        primaryStage.setScene(new Scene(root, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT));
         primaryStage.show();
 
     }
