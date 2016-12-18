@@ -12,6 +12,8 @@ import java.util.ArrayList;
  */
 public interface WebSalesmanDao extends Remote {
 
+	public String getIDForNewWebSalesman(String year) throws RemoteException;
+	
     public ResultMessage addWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;
 
     public ResultMessage updateWebSalesman(WebSalesmanPO webSalesmanPO)throws RemoteException;

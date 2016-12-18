@@ -40,6 +40,10 @@ public class WebSalesman {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
+		}
+		if(webSalesmanPO==null){
+			return null;
 		}
 		WebSalesman webSalesman = new WebSalesman(webSalesmanPO.getID(), 
 				webSalesmanPO.getDistrict(),webSalesmanPO.getPassword(),webSalesmanPO.getName());
@@ -76,6 +80,34 @@ public class WebSalesman {
 	public WebSalesmanVO changeIntoVO(){
 		WebSalesmanVO webSalesmanVO = new WebSalesmanVO(webSalesmanID, district, password, name);
 		return webSalesmanVO;
+	}
+
+
+	public ResultMessage changePassword(String oldPassword, String newPassword) {
+		// TODO Auto-generated method stub
+		if(password == oldPassword){
+			password = newPassword;
+			return update();
+		}
+		return ResultMessage.password_wrong;
+	}
+
+
+	public ResultMessage forceChangePassword(String newPassword) {
+		// TODO Auto-generated method stub
+		password = newPassword ;
+		return update();
+	}
+
+
+	public ResultMessage checkPassword(String password) {
+		// TODO Auto-generated method stub
+		if(this.password == password){
+			return ResultMessage.succeed;
+		}
+		else{
+			return ResultMessage.password_wrong;
+		}
 	}
 	
 }

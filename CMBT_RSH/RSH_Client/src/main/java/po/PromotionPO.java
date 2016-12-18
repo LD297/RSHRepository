@@ -28,18 +28,18 @@ public class PromotionPO {
     private DeductionType deductionType;
 	private int deductionNum;
 
-	public PromotionPO(String Setter,String ID,String Reason,
+	public PromotionPO(String setterID,String promotionID,String Reason,
 					   Date BeginDate,Date EndDate,
-					   ScopeType sType, String sNum,String roomType,
+					   ScopeType scopeType, String sNum,String roomType,
 					   ConditionType cType, int cNum,
 					   DeductionType dType,int dNum){
-		setter = Setter;
-		id = ID;
+		setter = setterID;
+		id = promotionID;
 		reason = Reason;
 		beginDate = BeginDate;
 		endDate = EndDate;
 
-		scopeType = sType;
+		this.scopeType = scopeType;
 		while(sNum.length()<HOTEL_LENGTH){
 			sNum +="0";
 		}
