@@ -84,10 +84,24 @@ public class ManageHotelUIController {
 		}
     }
 
+    //在搜索框输入酒店id直接定位到一个具体的酒店，跳转到修改酒店信息界面
     @FXML
     void changeToModifyHotelInfo(ActionEvent event) {
-    	AnchorPane modifyHotel = WebManagerUIFXMLFactory.getInstance().getModifyHotel();
-    	anchorPane.getChildren().add(modifyHotel);
+    	boolean found = false;
+    	String id = hotelIDField.getText().trim();
+    	for (int i = 0; i < hotelVOs.size(); i++) {
+			if(hotelVOs.get(i).hotelID.equals(id)){
+				AnchorPane modifyHotel = WebManagerUIFXMLFactory.getInstance().getModifyHotel();
+				ModifyHotelUIController modifyHotelUIController = WebManagerUIFXMLFactory.getInstance().getModifyHotelUIController();
+				modifyHotelUIController.init(hotelVOs.get(i));
+		    	anchorPane.getChildren().add(modifyHotel);
+		    	found = true;
+		    	break;
+			}
+		}
+    	if(!found){
+    		//TODO 没有找到该酒店的提示
+    	}
     }
 
     @FXML
@@ -130,9 +144,13 @@ public class ManageHotelUIController {
     }
     
     public void init() {
+    	hotelIDField.setText("");
+    	presentPage = 1;
+    	pageField.setText(String.valueOf(presentPage));
     	hotelVOs = WebManagerInfoUtil.getInstance().getHotelVOs();
 		maxPages = (hotelVOs.size()+3)/4;
-		changeToReferedPage(1);
+		gridpaneFilledWithHotel.getChildren().clear();
+		changeToReferedPage(presentPage);
 	}
 
     @FXML

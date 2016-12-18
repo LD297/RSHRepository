@@ -129,6 +129,8 @@ public class LoginUIController {
             }
         }else if (role==Role.webmanager) {
 			if(WebManagerInfoUtil.getInstance().checkOnLine(id, password)==ResultMessage.succeed){
+				WebManagerInfoUtil.getInstance().setID(id);
+				WebManagerInfoUtil.getInstance().setPassword(password);
 				passwordFormLabel.setText("");
 				Stage stage = (Stage)idField.getScene().getWindow();
 				Scene scene = null;
