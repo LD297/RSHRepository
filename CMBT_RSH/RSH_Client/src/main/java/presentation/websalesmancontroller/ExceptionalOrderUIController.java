@@ -291,8 +291,6 @@ public class ExceptionalOrderUIController {
         assert tabPane != null : "fx:id=\"tabPane\" was not injected: check your FXML file '网站营销人员浏览异常订单.fxml'.";
         assert isHalfCheckBox != null : "fx:id=\"isHalfCheckBox\" was not injected: check your FXML file '网站营销人员浏览异常订单.fxml'.";
 
-
-
         setAPanesForShow();
         refreshPage();
 
