@@ -41,6 +41,7 @@ public interface HotelDao extends Remote{
     // 得到酒店 房间类型 一段日期 可用数量
     public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) throws RemoteException;
     // 根据地址和商圈的到酒店列表
-    public ArrayList<HotelPO> getHotelList(String address,String businessArea) throws RemoteException;
-
+    public ArrayList<HotelPO> getHotelList(String district) throws RemoteException;
+    // 网站管理人员 得到酒店信息
+    public ArrayList<HotelPO> getAll() throws RemoteException;
 }

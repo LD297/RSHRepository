@@ -57,7 +57,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                 Date DDLdate = originList.get(i).getCheckIn();
                 String ddldate = sdf.format(DDLdate);
                 try{
-                    Date ddlTime = df.parse(ddldate+DDLtime);
+                    Date ddlTime = df.parse(ddldate+" "+DDLtime);
                     if(ddlTime.getTime()>instance.getTime())
                         this.stateUpdate(orderID,StateOfOrder.abnormal);
                 }catch (ParseException e){
@@ -146,7 +146,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
             withchild = 1;
         Date checkIn = orderPO.getCheckIn();
         Date checkOut = orderPO.getCheckOut();
-        Date bornDate = new Date();
+        Date bornDate = orderPO.getGenerationDate();
         String hotelDDL = orderPO.getHotelDDL();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -161,7 +161,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         String insertOrderSql = "INSERT INTO OrderGeneral VALUES('"+orderID+"','"+userID+"','"+
                 userName+"','"+hotelID+"','"+hotelName+"',0,'"+roomType+"',"+String.valueOf(roomPrice)+","+String.valueOf(roomNumber) +","+String.valueOf(peopleNum)+ ","+String.valueOf(withchild)+
                 ","+String.valueOf(originValue)+","+String.valueOf(trueValue)+",'"+promotion+"'," +
-                "null,null,'"+checkin+"','"+checkout+"','"+borndate+"','"+hotelDDL+"',null,null,null,null)";
+                "null,null,'"+checkin+"','"+checkout+"','"+hotelDDL+"','"+borndate+"',null,null,null,null)";
         db.executeSql(insertOrderSql);
 
         return ResultMessage.succeed;
@@ -256,7 +256,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     	db.executeSql("USE OurData");
     	String getSelectedNumSql = "SELECT orderID FROM OrderGeneral";
     	ResultSet result = db.query(getSelectedNumSql);
-    	int num = 0;
+    	int num = 1;
     	try{
     		while(result.next()){
     			if(result.getString(1).substring(0, 20).equals(orderID))

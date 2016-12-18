@@ -19,8 +19,8 @@ public class HotelPO implements Serializable{
 	/**
 	 * 酒店地址
 	 */
-	private String addr;
-	private String businessArea;
+	private String address;//6位编码
+	private String addressDetail;
 	private String briefIntro;
 	/**
 	 * 酒店（基础）设施（WiFi available？……）
@@ -72,20 +72,20 @@ public class HotelPO implements Serializable{
 		this.name = name;
 	}
 
-	public String getAddr() {
-		return addr;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getBusinessArea() {
-		return businessArea;
+	public String getAddressDetail() {
+		return addressDetail;
 	}
 
-	public void setBusinessArea(String businessArea) {
-		this.businessArea = businessArea;
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
 	}
 
 	public String getBriefIntro() {
@@ -127,13 +127,13 @@ public class HotelPO implements Serializable{
 	public void setLatestCheckInTime(String latestCheckInTime) {
 		this.latestCheckInTime = latestCheckInTime;
 	}
-	public HotelPO(String hotelID, String tel, String name, String addr, String businessArea,
+	public HotelPO(String hotelID, String tel, String name, String address, String addressDetail,
 				   double standardPrice,String briefIntro,String facility, int level,double grade, String latestCheckInTime){
 		this.hotelID =  hotelID;
 		this.tel = tel;
 		this.name = name;
-		this.addr = addr;
-		this.businessArea = businessArea;
+		this.address = address;
+		this.addressDetail = addressDetail;
 		this.standardPrice = standardPrice;
 		this.briefIntro = briefIntro;
 		this.facility = facility;
@@ -141,10 +141,13 @@ public class HotelPO implements Serializable{
 		this.grade = grade;
 		this.latestCheckInTime  = latestCheckInTime;
 	}
-	public HotelPO(String tel,String name,String addr,String password){
+	// 酒店生成时
+	public HotelPO(String hotelID,String tel,String name,String address,String addressDetail,String password){
+		this.hotelID = hotelID;
 		this.tel = tel;
 		this.name = name;
-		this.addr = addr;
+		this.address = address;
+		this.addressDetail = addressDetail;
 		this.password = password;
 	}
 }

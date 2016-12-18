@@ -2,6 +2,7 @@ package data.dao.userdao;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import constant.ResultMessage;
 import po.UserPO;
@@ -21,4 +22,6 @@ public interface UserDao extends Remote{
 	public ResultMessage insert(UserPO userPO) throws RemoteException;
     // 制定会员等级策略
 	public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException;
+	// 网站管理人员 得到用户信息
+	public ArrayList<UserPO> getAll()throws RemoteException;
 }

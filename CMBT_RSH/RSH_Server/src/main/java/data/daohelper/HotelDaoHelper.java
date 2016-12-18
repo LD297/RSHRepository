@@ -35,10 +35,11 @@ public interface HotelDaoHelper {
     public ArrayList<RoomAvailPO> getRoomAvailList(String hotelID, Date checkIn) throws RemoteException;
     // 更改酒店 房间类型 房间可用数量的信息
     // 当酒店手动修改（checkin==checkout）
-    public ResultMessage changeRoomAvail(String id, String roomType,boolean isPlus, int num, Date checkIn, Date checkOut) throws RemoteException;
+    public ResultMessage changeRoomAvail(String hotelID, String roomType,boolean isPlus, int num, Date checkIn, Date checkOut) throws RemoteException;
     // 得到酒店 房间类型 一段日期 可用数量
-    public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) throws RemoteException;
-     // 根据地址和商圈的到酒店列表
-    public ArrayList<HotelPO> getHotelList(String address,String businessArea) throws RemoteException;
-
+    public int numOfRoomAvail(String hotelID, String roomType, Date checkIn, Date checkOut) throws RemoteException;
+    // 根据地址和商圈的到酒店列表
+    public ArrayList<HotelPO> getHotelList(String district) throws RemoteException;
+    // 网站管理人员 得到酒店信息
+    public ArrayList<HotelPO> getAll() throws RemoteException;
 }
