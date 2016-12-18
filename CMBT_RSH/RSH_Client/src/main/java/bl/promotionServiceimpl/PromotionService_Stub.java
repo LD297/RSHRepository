@@ -28,16 +28,16 @@ public class PromotionService_Stub implements PromotionService{
 
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfHotel(String hotelID) {
-		PromotionVO vo1 = new PromotionVO("", "", "Promotion One", new Date(), new Date(), ScopeType.DISTRICT, "", "",
-				null, 0, null, 0);
-		PromotionVO vo2 = new PromotionVO("", "", "Promotion Two", new Date(), new Date(), ScopeType.DISTRICT, "", "",
-				null, 0, null, 0);
-		PromotionVO vo3 = new PromotionVO("", "", "Promotion Three", new Date(), new Date(), ScopeType.DISTRICT, "", "",
-				null, 0, null, 0);
-		PromotionVO vo4 = new PromotionVO("", "", "Promotion Four", new Date(), new Date(), ScopeType.DISTRICT, "", "",
-				null, 0, null, 0);
-		PromotionVO vo5 = new PromotionVO("", "", "Promotion Five", new Date(), new Date(), ScopeType.DISTRICT, "", "",
-				null, 0, null, 0);
+		PromotionVO vo1 = new PromotionVO("", "001", "Promotion One", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				ConditionType.BIRTHDAY, 0, DeductionType.DISCOUNT, 9);
+		PromotionVO vo2 = new PromotionVO("", "002", "Promotion Two", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				ConditionType.MEMBER, 0, DeductionType.DISCOUNT, 9);
+		PromotionVO vo3 = new PromotionVO("", "003", "Promotion Three", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				ConditionType.COMMERCE, 0, DeductionType.REDUCE, 8);
+		PromotionVO vo4 = new PromotionVO("", "004", "Promotion Four", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				ConditionType.ROOMNUM, 3, DeductionType.DISCOUNT, 8);
+		PromotionVO vo5 = new PromotionVO("", "005", "Promotion Five", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				ConditionType.TOTAL, 4000, DeductionType.REDUCE, 8);
 		ArrayList<PromotionVO> list = new ArrayList<>();
 		list.add(vo1);
 		list.add(vo2);
@@ -49,8 +49,23 @@ public class PromotionService_Stub implements PromotionService{
 
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfDistrict(String district) {
-		// TODO Auto-generated method stub
-		return null;
+		PromotionVO vo1 = new PromotionVO("", "001", "Promotion One", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				ConditionType.BIRTHDAY, 0, DeductionType.DISCOUNT, 9);
+		PromotionVO vo2 = new PromotionVO("", "002", "Promotion Two", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				ConditionType.MEMBER, 0, DeductionType.DISCOUNT, 9);
+		PromotionVO vo3 = new PromotionVO("", "003", "Promotion Three", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				ConditionType.COMMERCE, 0, DeductionType.REDUCE, 8);
+		PromotionVO vo4 = new PromotionVO("", "004", "Promotion Four", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				ConditionType.ROOMNUM, 3, DeductionType.DISCOUNT, 8);
+		PromotionVO vo5 = new PromotionVO("", "005", "Promotion Five", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+				ConditionType.TOTAL, 4000, DeductionType.REDUCE, 8);
+		ArrayList<PromotionVO> list = new ArrayList<>();
+		list.add(vo1);
+		list.add(vo2);
+		list.add(vo3);
+		list.add(vo4);
+		list.add(vo5);
+		return list;
 	}
 
 	

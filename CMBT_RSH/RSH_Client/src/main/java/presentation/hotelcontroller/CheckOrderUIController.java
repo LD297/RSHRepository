@@ -383,7 +383,7 @@ public class CheckOrderUIController {
             // 从数据库获得异常订单
             setExceptionalOrder();
             // 设置当前订单（指向异常订单）
-            currentOrder = executedOrder;
+            currentOrder = exceptionalOrder;
             // 初始化页数
             initCurrentPage();
             // 设置当前tab对应的订单类型
@@ -496,19 +496,19 @@ public class CheckOrderUIController {
     @FXML
     void revoke0(MouseEvent event) {
         revokeOrder(0);
-        revokedTabSelected();
+        exceptionalTabSelected();
     }
 
     @FXML
     void revoke01(MouseEvent event) {
         revokeOrder(1);
-        revokedTabSelected();
+        exceptionalTabSelected();
     }
 
     @FXML
     void revoke02(MouseEvent event) {
         revokeOrder(2);
-        revokedTabSelected();
+        exceptionalTabSelected();
     }
 
     @FXML

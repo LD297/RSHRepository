@@ -2,23 +2,17 @@ package presentation.hotelcontroller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.Hotel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import po.OrderPO;
-import presentation.hotelcontroller.*;
-import presentation.tools.HotelUIFactory;
+import presentation.tools.HotelAndWebSalesmanUIFactory;
 import vo.HotelVO;
 
 public class HotelHomepageUIController {
@@ -98,7 +92,7 @@ public class HotelHomepageUIController {
     @FXML
     void changeToBasicInfoUI(MouseEvent event) {
         // 加载酒店基本信息维护界面
-        FXMLLoader loader = HotelUIFactory.getInstance().getHotelBasicInfoUILoader();
+        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getHotelBasicInfoUILoader();
         // 加载酒店信息维护界面根结点
         if(hotelBasicInfoUIPane==null)
             try {
@@ -119,7 +113,7 @@ public class HotelHomepageUIController {
 
         Scene scene = null;
         if(hotelBasicInfoUIPane.getScene()==null)
-            scene = new Scene(hotelBasicInfoUIPane, HotelUIFactory.UI_WIDTH, HotelUIFactory.UI_HEIGHT);
+            scene = new Scene(hotelBasicInfoUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
         else
             scene = hotelBasicInfoUIPane.getScene();
 
@@ -131,7 +125,7 @@ public class HotelHomepageUIController {
     @FXML
     void changeToPromotionUI(MouseEvent event) {
         // 加载促销策略维护界面
-        FXMLLoader loader = HotelUIFactory.getInstance().getPromotionUILoader();
+        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getPromotionUILoader();
         // 加载促销策略维护界面根结点
         if(promotionUIPane==null)
             try {
@@ -148,21 +142,18 @@ public class HotelHomepageUIController {
 
         Scene scene = null;
         if(promotionUIPane.getScene()==null)
-            scene = new Scene(promotionUIPane, HotelUIFactory.UI_WIDTH, HotelUIFactory.UI_HEIGHT);
+            scene = new Scene(promotionUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
         else
             scene = promotionUIPane.getScene();
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
         stage.setScene(scene);
-
-
-
     }
 
     @FXML
     void changeToAboutUsUI(MouseEvent event) {
         // 加载关于我们界面
-        FXMLLoader loader = HotelUIFactory.getInstance().getAboutUsUILoader();
+        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getAboutUsUILoader();
         // 加载关于我们界面根结点
         if(aboutUsUIPane==null)
             try {
@@ -178,7 +169,7 @@ public class HotelHomepageUIController {
 
         Scene scene = null;
         if(aboutUsUIPane.getScene()==null)
-            scene = new Scene(aboutUsUIPane, HotelUIFactory.UI_WIDTH, HotelUIFactory.UI_HEIGHT);
+            scene = new Scene(aboutUsUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
         else
             scene = aboutUsUIPane.getScene();
 
@@ -190,7 +181,7 @@ public class HotelHomepageUIController {
     @FXML
     void changeToCheckOrderUI(MouseEvent event) {
         // 加载订单搜索并浏览界面
-        FXMLLoader loader = HotelUIFactory.getInstance().getCheckOrderUILoader();
+        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getCheckOrderUILoader();
 
         // 加载订单搜索并浏览界面根结点
         if(checkOrderUIPane==null)
@@ -207,7 +198,7 @@ public class HotelHomepageUIController {
 
         Scene scene = null;
         if(checkOrderUIPane.getScene()==null)
-            scene = new Scene(checkOrderUIPane, HotelUIFactory.UI_WIDTH, HotelUIFactory.UI_HEIGHT);
+            scene = new Scene(checkOrderUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
         else
             scene = checkOrderUIPane.getScene();
 
@@ -218,7 +209,7 @@ public class HotelHomepageUIController {
     @FXML
     void changeToRoomAvailUI(MouseEvent event) {
         // 加载可用客房信息维护界面
-        FXMLLoader loader = HotelUIFactory.getInstance().getRoomAvailUILoader();
+        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getRoomAvailUILoader();
         // 加载可用客房信息维护界面根结点
         if(roomAvailUIPane==null)
             try {
@@ -234,7 +225,7 @@ public class HotelHomepageUIController {
 
         Scene scene = null;
         if(roomAvailUIPane.getScene()==null)
-            scene = new Scene(roomAvailUIPane, HotelUIFactory.UI_WIDTH, HotelUIFactory.UI_HEIGHT);
+            scene = new Scene(roomAvailUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
         else
             scene = roomAvailUIPane.getScene();
 

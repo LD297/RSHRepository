@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
+import bl.hotelserviceimpl.HotelService_Stub;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -57,7 +58,7 @@ public class AddRoomUIController {
 
     private boolean isSpecial = false;
 
-    private HotelService hotelService;
+    private HotelService hotelService = new HotelService_Stub();
 
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
@@ -96,10 +97,9 @@ public class AddRoomUIController {
     }
     @FXML
     void backButtonClicked(MouseEvent event) {
-        // 这是什么方法？能用吗姐姐？
-        ((Stage)anchorPane.getScene().getWindow()).close();
-        prePane.getChildren().get(0).setVisible(false);
-        ((Stage) prePane.getScene().getWindow()).setScene(prePane.getScene());
+        int size = prePane.getChildren().size();
+        prePane.getChildren().get(size-2).setVisible(false);
+        prePane.getChildren().remove(size-1);
     }
 
 
@@ -109,8 +109,8 @@ public class AddRoomUIController {
         String roomNum = roomNumTextField.getText();
         String roomPrice = roomPriceTextField.getText();
 
-        int num = Integer.parseInt(roomNum);
-        double price = Double.parseDouble(roomPrice);
+        int num = Integer.valueOf(roomNum);
+        double price = Double.valueOf(roomPrice);
         String property = "";
 
         if((type!=null&&num>0&&price>=0)&&(isBasic&&!isSpecial)||(!isBasic&&isSpecial)){
@@ -120,7 +120,9 @@ public class AddRoomUIController {
                 property = "特色";
             RoomVO newRoom = new RoomVO("", type, num, price, property);
             hotelService.addSpecialRoom(newRoom);
-            backButtonClicked(null);
+            int size = prePane.getChildren().size();
+            prePane.getChildren().get(size-2).setVisible(false);
+            prePane.getChildren().remove(size-1);
         }
     }
 
