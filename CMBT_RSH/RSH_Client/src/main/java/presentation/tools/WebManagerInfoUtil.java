@@ -63,4 +63,7 @@ public class WebManagerInfoUtil {
 	public String resetPassword(String userid) {
 		return userService.resetpassword(userid);
 	}
+	/**
+	 * 添加酒店界面调用，的到所有的省
+	 */
 }

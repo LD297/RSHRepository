@@ -134,15 +134,7 @@ public class AddHotelUIController {
         assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
         assert messageLabel != null : "fx:id=\"messageLabel\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
 
-		ArrayList<String> cityInJiangsu = new ArrayList<>(
-				Arrays.asList(new String[] { "南京", "苏州"}));
-		ArrayList<String> cityInChejiang = new ArrayList<>(Arrays.asList(new String[] { "杭州",
-				"宁波", }));
-	
-		ArrayList<String> disInNanjing = new ArrayList<>(Arrays.asList(new String[] { "栖霞区",
-				"玄武区", "秦淮区", "鼓楼区", "江宁区", "六合区" }));
-		ArrayList<String> disInSuzhou = new ArrayList<>(Arrays.asList(new String[] { "栖霞区",
-				"玄武区", "秦淮区", "鼓楼区", "江宁区", "六合区" }));
+        
 	
     }
 }
