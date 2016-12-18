@@ -24,7 +24,7 @@ public class WebSalesman {
 	}
 	
 	
-	private WebSalesman(String webSalesmanID, String district, String password,String name) {
+	protected WebSalesman(String webSalesmanID, String district, String password,String name) {
 		// TODO Auto-generated constructor stub
 		this.webSalesmanID = webSalesmanID;
 		this.district = district;
@@ -46,14 +46,36 @@ public class WebSalesman {
 		return webSalesman;
 	}
 
-	public ResultMessage insert(WebSalesmanVO webSalesmanVO){
-		WebSalesmanPO webSalesmanPO = webSalesmanVO.changeIntoPO();
-		return webSalesmanPO;
+	public ResultMessage insert(){
+		initRemote();
+		try {
+			return webSalesmanDao.addWebSalesman(this.changeIntoPO());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.remote_fail;
+		}
 	}
 
 	public ResultMessage update(){
-		
-		return null;
+		initRemote();
+		try {
+			return webSalesmanDao.updateWebSalesman(this.changeIntoPO());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.remote_fail;
+		}
 	}
 
+	public WebSalesmanPO changeIntoPO(){
+		WebSalesmanPO webSalesmanPO = new WebSalesmanPO(webSalesmanID, district, password, name);
+		return webSalesmanPO;
+	}
+	
+	public WebSalesmanVO changeIntoVO(){
+		WebSalesmanVO webSalesmanVO = new WebSalesmanVO(webSalesmanID, district, password, name);
+		return webSalesmanVO;
+	}
+	
 }

@@ -1,46 +1,56 @@
 package vo;
 
+import po.WebSalesmanPO;
+
 public class WebSalesmanVO {
 	String id;
 	String province;
 	String city;
+	String area;
 	String district;
 	String password;
-	public WebSalesmanVO(String id,String province,String city,String district,String password) {
-		this.id = id;
+	String name;
+	
+	public WebSalesmanVO(String webSalesmnaID,String province,String city,String area,String name){
+		this.id  = webSalesmnaID;
 		this.province = province;
 		this.city = city;
-		this.district = district;
+		this.area = area;
+		this.name = name;
+	}
+	
+	public WebSalesmanVO(String webSalesmanID,String district,String password,String name) {
+		this.id = webSalesmanID;
 		this.password = password;
+		this.name = name;
+		province = DistrictHelper.getProvince(district);
+		city = DistrictHelper.getCity(district);
+		area = DistrictHelper.getArea(district);
 	}
 	public String getId() {
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getProvince() {
 		return province;
-	}
-	public void setProvince(String province) {
-		this.province = province;
 	}
 	public String getCity() {
 		return city;
 	}
-	public void setCity(String city) {
-		this.city = city;
+
+	public String getArea(){
+		return area;
 	}
+	
 	public String getDistrict() {
 		return district;
 	}
-	public void setDistrict(String district) {
-		this.district = district;
-	}
+	
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	
+	public WebSalesmanPO changeIntoPO(){
+		WebSalesmanPO webSalesmanPO = new WebSalesmanPO(id, district, password, name);
+		return webSalesmanPO;
 	}
 }

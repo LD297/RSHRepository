@@ -33,7 +33,7 @@ public class WebSalesmanPO {
 		return name;
 	}
 	public WebSalesmanVO changeIntoVO(){
-		WebSalesmanVO webSalesmanVO = new WebSalesmanVO();
+		WebSalesmanVO webSalesmanVO = new WebSalesmanVO(webSalesmanID, district, password, name);
 		return webSalesmanVO;
 	}
 

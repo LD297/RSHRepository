@@ -161,4 +161,19 @@ public class DistrictHelper {
 		System.out.println(getAddress("010009"));
 		System.out.println(DistrictHelper.areas[1][0][9]);
 	}
+
+	public static String getProvince(String district2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static String getCity(String district2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static String getArea(String district2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

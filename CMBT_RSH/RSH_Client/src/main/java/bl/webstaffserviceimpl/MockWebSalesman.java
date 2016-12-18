@@ -4,7 +4,7 @@ import constant.ResultMessage;
 
 public class MockWebSalesman extends WebSalesman{
 	public MockWebSalesman(String id, String passw) {
-		super(id, passw);
+		super(id,"",passw,"");
 		// TODO Auto-generated constructor stub
 	}
 
