@@ -88,7 +88,7 @@ public class WebManagerInfoUtil {
 	 * 查看用户信息界面、管理用户信息界面调用
 	 */
 	public String resetPassword(String userid) {
-		return userService.resetpassword(userid);
+		return userService.resetPassword(userid);
 	}
 	/**
 	 * 添加酒店界面调用，的到所有的省

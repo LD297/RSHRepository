@@ -23,7 +23,7 @@ public interface UserService {
 	 * 网站管理人员为用户重置密码
 	 * @return
 	 */
-	public String resetpassword(String userid);
+	public String resetPassword(String userid);
 	
 	public ArrayList<UserVO> getUserVOS();
 

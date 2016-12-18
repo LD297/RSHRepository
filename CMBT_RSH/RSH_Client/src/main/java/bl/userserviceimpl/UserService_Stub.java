@@ -29,7 +29,6 @@ public class UserService_Stub implements UserService{
 		return ResultMessage.succeed;
 	}
 
-	@Override
 	public ResultMessage addCreditRecord(CreditRecordVO vo) {
 		// TODO Auto-generated method stub
 		return ResultMessage.succeed;
@@ -152,7 +151,13 @@ public class UserService_Stub implements UserService{
 	}
 
 	@Override
-	public String resetpassword(String userid) {
+	public String resetPassword(String userid) {
 		return "hdgfjf_2565472";
+	}
+
+	@Override
+	public ResultMessage addCredit(int value, String userID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

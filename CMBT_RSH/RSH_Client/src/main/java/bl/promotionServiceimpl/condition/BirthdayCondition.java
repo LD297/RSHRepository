@@ -1,5 +1,7 @@
 package bl.promotionServiceimpl.condition;
 
+import bl.userservice.UserService;
+import bl.userserviceimpl.UserController;
 import constant.ConditionType;
 
 /**
@@ -22,10 +24,13 @@ public class BirthdayCondition extends Condition {
 	public double getNum() {
 		return 0;
 	}
-
+	
 	@Override
 	public boolean check(OrderInfo orderInfo) {
 		// TODO Auto-generated method stub
+		String userID = orderInfo.userID;
+		UserService userService = new UserController();
+		
 		return false;
 	}
 
