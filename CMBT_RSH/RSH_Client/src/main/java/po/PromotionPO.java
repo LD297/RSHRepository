@@ -13,8 +13,8 @@ public class PromotionPO {
 	private static final int HOTEL_LENGTH = 10;
 	private static final int DISTRICT_LENGTH = 6;
 
-	private String setterID;
-	private String promotionID;//san wei
+	private String setter;
+	private String id;//san wei
 	private String reason;
 	private Date beginDate;
 	private Date endDate;
@@ -23,57 +23,41 @@ public class PromotionPO {
 	private String scopeNum;
 
 	private ConditionType  conditionType;
-	private double conditionNum;
+	private int condionNum;
 
     private DeductionType deductionType;
-	private double deductionNum;
+	private int deductionNum;
 
-	
-	/**
-	 * 
-	 * @param setterID
-	 * @param promotionID
-	 * @param reason
-	 * @param beginDate
-	 * @param endDate
-	 * @param scopeType
-	 * @param scopeNum
-	 * @param roomType
-	 * @param conditionType
-	 * @param condiyionNum
-	 * @param deductionType
-	 * @param deductionNum
-	 */
-	public PromotionPO(String setterID,String promotionID,String reason,
-					   Date beginDate,Date endDate,
-					   ScopeType scopeType, String scopeNum,String roomType,
-					   ConditionType conditionType, double conditionNum,
-					   DeductionType deductionType,double deductionNum){
-		this.setterID = setterID;
-		this.promotionID = promotionID;
-		this.reason = reason;
-		this.beginDate = beginDate;
-		this.endDate = endDate;
+	public PromotionPO(String setterID,String promotionID,String Reason,
+					   Date BeginDate,Date EndDate,
+					   ScopeType scopeType, String sNum,String roomType,
+					   ConditionType cType, int cNum,
+					   DeductionType dType,int dNum){
+		setter = setterID;
+		id = promotionID;
+		reason = Reason;
+		beginDate = BeginDate;
+		endDate = EndDate;
 
 		this.scopeType = scopeType;
-		while(scopeNum.length()<HOTEL_LENGTH){
-			scopeNum +="0";
+		while(sNum.length()<HOTEL_LENGTH){
+			sNum +="0";
 		}
-		this.scopeNum = scopeNum+roomType;
+		scopeNum = sNum+roomType;
 
-		this.conditionType = conditionType;
-		this.conditionNum = conditionNum;
+		conditionType = cType;
+		condionNum = cNum;
 
-		this.deductionType = deductionType;
-		this.deductionNum = deductionNum;
+		deductionType = dType;
+		deductionNum = dNum;
 	}
 
-	public Promotion changeIntoPromotion(){
-		String originScope = scopeNum;
+	public static Promotion changeIntoPromotion(PromotionPO promotionPO){
+		String originScope = promotionPO.scopeNum;
 		String tempScopeNum;
 		String roomType;
 		if(originScope.length()==HOTEL_LENGTH){
-			if(originScope.substring(DISTRICT_LENGTH).equals("0000")){
+			if(originScope.substring(DISTRICT_LENGTH)=="0000"){
 				tempScopeNum = originScope.substring(DISTRICT_LENGTH);
 			}
 			else{
@@ -84,31 +68,14 @@ public class PromotionPO {
 			tempScopeNum = originScope.substring(0,HOTEL_LENGTH);
 			roomType = originScope.substring(HOTEL_LENGTH);
 		}
-		Promotion promotion = new Promotion(setterID,promotionID,reason);
-		promotion.setDate(beginDate,endDate);
-		promotion.setScope(scopeType,tempScopeNum,roomType);
-		promotion.setCondition(conditionType,conditionNum);
-		promotion.setDeduction(deductionType,deductionNum);
-		return promotion;
-	}
+		Promotion promotion = new Promotion(promotionPO.setter,promotionPO.id,promotionPO.reason);
+		promotion.setDate(promotionPO.beginDate,promotionPO.endDate);
 
-	public PromotionVO changeIntoVO(){
-		String tempScopeNum = null;
-		String roomType = null;
-		if(scopeNum.length()==HOTEL_LENGTH){
-			if(scopeNum.substring(DISTRICT_LENGTH).equals("0000")){
-				tempScopeNum = scopeNum.substring(DISTRICT_LENGTH);
-			}
-			else{
-				tempScopeNum = scopeNum;
-			}
-			roomType = null;
-		}else{
-			tempScopeNum = scopeNum.substring(0,HOTEL_LENGTH);
-			roomType = scopeNum.substring(HOTEL_LENGTH);
-		}
-		PromotionVO promotionVO = new PromotionVO(setterID, promotionID, reason, beginDate, endDate, scopeType, tempScopeNum, roomType, conditionType, conditionNum, deductionType, deductionNum);
-		return promotionVO;
+
+		promotion.setScope(promotionPO.scopeType,tempScopeNum,roomType);
+		promotion.setCondition(promotionPO.conditionType,promotionPO.condionNum);
+		promotion.setDeduction(promotionPO.deductionType,promotionPO.deductionNum);
+		return promotion;
 	}
 
 	public static PromotionVO changeIntoPromotionVo(PromotionPO promotionPO){
@@ -127,16 +94,11 @@ public class PromotionPO {
 			tempScopeNum = originScope.substring(0,HOTEL_LENGTH);
 			roomType = originScope.substring(HOTEL_LENGTH);
 		}
-		PromotionVO promotionVO = new PromotionVO(promotionPO.setterID,promotionPO.promotionID,promotionPO.reason,
+		PromotionVO promotionVO = new PromotionVO(promotionPO.setter,promotionPO.id,promotionPO.reason,
 				promotionPO.beginDate,promotionPO.endDate,
 				promotionPO.scopeType,tempScopeNum,roomType,
-				promotionPO.conditionType,promotionPO.conditionNum,
+				promotionPO.conditionType,promotionPO.condionNum,
 				promotionPO.deductionType,promotionPO.deductionNum);
 		return promotionVO;
-	}
-
-	public String getReason() {
-		// TODO Auto-generated method stub
-		return reason;
 	}
 }

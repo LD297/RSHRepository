@@ -169,8 +169,8 @@
                   <Image url="@../images/cancel.png" />
                </image>
             </ImageView>
-            <DatePicker fx:id="expectedCheckinTimepicker" editable="false" layoutX="250.0" layoutY="282.0" prefHeight="23.0" prefWidth="163.0" AnchorPane.rightAnchor="100.0" />
-            <DatePicker fx:id="expectedCheckoutTimepicker" editable="false" layoutX="250.0" layoutY="317.0" prefHeight="23.0" prefWidth="163.0" AnchorPane.rightAnchor="100.0" />
+            <DatePicker fx:id="expectedCheckinTimepicker" layoutX="250.0" layoutY="282.0" prefHeight="23.0" prefWidth="163.0" AnchorPane.rightAnchor="100.0" />
+            <DatePicker fx:id="expectedCheckoutTimepicker" layoutX="250.0" layoutY="317.0" prefHeight="23.0" prefWidth="163.0" AnchorPane.rightAnchor="100.0" />
             <Label fx:id="messageLabel" layoutX="50.0" layoutY="527.0" prefHeight="30.0" prefWidth="186.0" textFill="#ff5a5f">
                <font>
                   <Font name="Times New Roman" size="14.0" />

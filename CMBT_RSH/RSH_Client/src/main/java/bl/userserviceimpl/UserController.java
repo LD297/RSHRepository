@@ -7,7 +7,6 @@ import vo.CreditRecordVO;
 import vo.UserVO;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -107,13 +106,6 @@ public class UserController implements UserService{
 	public String resetPassword(String userid) {
 		// TODO Auto-generated method stub
 		return BLHelper.getRandom(20);
-	}
-
-	@Override
-	public ResultMessage addCredit(int value, String userID) {
-		// TODO Auto-generated method stub
-		CreditRecordList creditRecordList = new CreditRecordList(userID);
-		return creditRecordList.add(value);
 	}
 
 }

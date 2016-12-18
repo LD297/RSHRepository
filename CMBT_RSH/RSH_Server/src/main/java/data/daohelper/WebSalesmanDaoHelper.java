@@ -15,9 +15,7 @@ public interface WebSalesmanDaoHelper {
 
     public ResultMessage update(WebSalesmanPO po)throws RemoteException  ;
 
-    public ResultMessage delete(String websalesmanid)throws RemoteException  ;
-
-    public WebSalesmanPO findByID(String websalesmanid)throws RemoteException  ;
+    public WebSalesmanPO findByID(String websalesmanID)throws RemoteException  ;
 
     public ArrayList<WebSalesmanPO> findByDistrict(String district)throws RemoteException  ;
 

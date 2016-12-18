@@ -1,8 +1,6 @@
 package bl.promotionServiceimpl.condition;
 
-import bl.orderserviceimpl.Order;
 import constant.ConditionType;
-import vo.UserVO;
 
 /**
  * 优惠的条件种类
@@ -11,13 +9,13 @@ import vo.UserVO;
  */
 public abstract class Condition {
 
-	double num;
+	int num;
 	ConditionType conditionType;
 
 	public abstract ConditionType getType();
 
 
-	public abstract double getNum();
+	public abstract int getNum();
 
 
 	/**
@@ -26,5 +24,5 @@ public abstract class Condition {
 	 * @param price
 	 * @return
 	 */
-	public abstract boolean check(OrderInfo orderInfo);
+	public abstract boolean check(int num,int price,int memberLevel,boolean isBirthday);
 }

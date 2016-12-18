@@ -3,11 +3,8 @@ package vo;
 import constant.ConditionType;
 import constant.DeductionType;
 import constant.ScopeType;
-import po.PromotionPO;
 
 import java.util.Date;
-
-import bl.promotionServiceimpl.Promotion;
 
 public class PromotionVO {
 
@@ -25,61 +22,50 @@ public class PromotionVO {
 
 //    促销策略的适用条件
     public ConditionType conditionType;
-    public double conditionNum;
+    public int conditionNum;
 
 //    促销策略的促销方式及力度
     public DeductionType deductionType;
-    public double deductionNum;
+    public int deductionNum;
 
     /**
      *
-     * @param setterID
-     * @param promotionID
-     * @param reason
-     * @param beginDate
-     * @param endDate
-     * @param scopeType
-     * @param scopeNum
+     * @param tempSetter
+     * @param tempPromID
+     * @param tempReasom
+     * @param tempBeginDate
+     * @param tempEndDate
+     * @param tempSType
+     * @param tempSNum
      * @param roomType
-     * @param conditionType
-     * @param conditionNum 在会员促销策略时，若是企业会员，cNum 为会员等级*100；
-     * @param deductionType
-     * @param deductionNum
+     * @param tempCType
+     * @param tempCNum 在会员促销策略时，若是企业会员，cNum 为会员等级*100；
+     * @param tempDType
+     * @param tempDNum
      */
-    public PromotionVO(String setterID,String promotionID,String reason,
-                       Date beginDate, Date endDate,
-                       ScopeType scopeType, String scopeNum,String roomType,
-                       ConditionType conditionType, double conditionNum,
-                       DeductionType deductionType, double deductionNum){
-        this.setterID = setterID;
-        this.promotionID = promotionID;
-        this.reason = promotionID;
+    public PromotionVO(String tempSetter,String tempPromID,String tempReasom,
+                       Date tempBeginDate, Date tempEndDate,
+                       ScopeType tempSType, String tempSNum,String roomType,
+                       ConditionType tempCType, int tempCNum,
+                       DeductionType tempDType, int tempDNum){
+        setterID = tempSetter;
+        promotionID = tempPromID;
+        reason = tempReasom;
 
-       this.beginDate = beginDate;
-       this.endDate = endDate;
+        beginDate = tempBeginDate;
+        endDate = tempEndDate;
 
-        this.scopeType = scopeType;
-        this.scopeNum = scopeNum;
+        scopeType = tempSType;
+        scopeNum = tempSNum;
+
         this.roomType = roomType;
 
-        this.deductionType = deductionType;
-        this.deductionNum = deductionNum;
+        conditionType = tempCType;
+        conditionNum = tempCNum;
+
+        deductionType = tempDType;
+        deductionNum = tempDNum;
     }
 
-    public PromotionPO changeIntoPO(){
-    	PromotionPO promotionPO = new PromotionPO(setterID, promotionID, reason, 
-    			beginDate, endDate, 
-    			scopeType, scopeNum, roomType, 
-    			conditionType, conditionNum, 
-    			deductionType, deductionNum);
-    	return promotionPO;	
-    }
 
-    public Promotion changeIntoPromotion(){
-    	Promotion promotion = new Promotion(setterID, promotionID, reason);
-    	promotion.setScope(scopeType, scopeNum, roomType);
-    	promotion.setCondition(conditionType, conditionNum);
-    	promotion.setDeduction(deductionType, deductionNum);
-    	return promotion;
-    }
 }

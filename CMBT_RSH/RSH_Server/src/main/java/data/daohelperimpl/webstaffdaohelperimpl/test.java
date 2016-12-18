@@ -23,11 +23,6 @@ public class test {
         ResultMessage result = salesDao.update(webSalesmanPO) ;
     }
 
-    public void testdelete()throws RemoteException{
-        String id = "";
-        ResultMessage result = salesDao.delete(id);
-    }
-
     public void testfindByID()throws RemoteException{
         String id = "";
         WebSalesmanPO po = salesDao.findByID(id);

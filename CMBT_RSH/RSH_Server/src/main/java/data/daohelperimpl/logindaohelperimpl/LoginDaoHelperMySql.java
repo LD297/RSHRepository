@@ -24,6 +24,9 @@ public class LoginDaoHelperMySql implements LoginDaoHelper{
     public void finish(){
         onlineInfo = null;
     }
+    public ArrayList<OnlinePersonPO> get(){
+    	return onlineInfo;
+    }
     // 添加在线人员
     public ResultMessage addOnline(OnlinePersonPO po) throws RemoteException {
         for(int i=0;i<onlineInfo.size();i++)
@@ -35,12 +38,13 @@ public class LoginDaoHelperMySql implements LoginDaoHelper{
     }
     // 去除在线人员
     public ResultMessage deleteOnline(Role role, String id) throws RemoteException {
-    	for(int i=0;i<onlineInfo.size();i++)
-        	if(onlineInfo.get(i).getId().equals(id)){
+    	for(int i=0;i<onlineInfo.size();i++){
+    		OnlinePersonPO po = onlineInfo.get(i);
+        	if(po.getId().equals(id)&&po.getRole()==role){
         		onlineInfo.remove(i);
         		return ResultMessage.succeed;
         	}
-       
+    	}
         return ResultMessage.idNotExist;
     }
 }

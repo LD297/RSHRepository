@@ -24,15 +24,15 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
 
     private DBHelper db = new DBHelper();
 
-    public void init(){
+    public void init(){                         
 
         db.executeSql("USE OurData");
         // 制定者 序号 策略名称
-        // 生效日期 失效日期 针对类型（地区，酒店，房间类型） 具体条件（地区id，酒店id，房间类型Str）
+        // 生效日期 失效日期(2010-01-01默认0点) 针对类型（地区，酒店，房间类型） 具体条件（酒店id10位(前6位地区id)，房间类型Str）
         // 适用条件（房间数量、价值、会员等级（企业会员）、用户生日）
-        // 折扣方式（打折，降价）
-        db.executeSql("CREATE TABLE if not exists PromotionInfo(setter char(10),id char(3),name varchar(15)," +
-                "beginDate date,endDate date,scopeType tinyint,scopeNum varchar(20)," +
+        // 折扣方式（打折，降价） 数字均为正数  满200减20(200,20) 满2间打8折(2,80) 满10级减10(10,10) 用户生日：85折(0,85)
+        db.executeSql("CREATE TABLE if not exists PromotionInfo(setter char(10),id char(3),name char(20)," +
+                "beginDate date,endDate date,scopeType tinyint,scopeNum char(20)," +
                 "conditionType tinyint,conditionNum int,deductionType tinyint,deductionNum int)" );
     }
 
@@ -40,6 +40,23 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         db.executeSql("USE OurData");
         db.executeSql("DROP TABLE IF EXISTS PromotionInfo");
     }
+    
+    // 得到新的促销策略的编号
+ 	public String getNewID(String setterID)throws RemoteException{
+ 		db.executeSql("USE OurData");
+ 		String selectNumSql = "SELECT count(*) FROM PromotionInfo WHERE setter='"+setterID+"'";
+ 		ResultSet result = db.query(selectNumSql);
+ 		try{
+ 			while(result.next()){
+ 				int num = result.getInt(1);
+ 				String sort = String.format("%3d", num).replace(" ", "0");
+ 		    	return sort;
+ 			}
+ 		}catch(SQLException e){
+ 			e.printStackTrace();
+ 		}
+ 		return null;
+ 	}
     // 添加促销策略
     public ResultMessage insert(PromotionPO po)throws RemoteException {
         db.executeSql("USE OurData");
@@ -58,7 +75,7 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         int deductionType = po.getDeductionType().ordinal();
         int deductionNum = po.getDeductionNum();
         String insertSql = "INSERT INTO PromotionInfo VALUES('" +setter+"','"+id+"','"+name+"','"+
-                begin+"','"+end+"',"+String.valueOf(scopeType)+","+String.valueOf(scopeNum)+"," +
+                begin+"','"+end+"',"+String.valueOf(scopeType)+",'"+String.valueOf(scopeNum)+"'," +
                 String.valueOf(conditionType)+","+String.valueOf(conditionNum)+","+
                 String.valueOf(deductionType)+","+String.valueOf(deductionNum)+")";
         db.executeSql(insertSql);
@@ -67,6 +84,11 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
     // 删除促销策略
     public ResultMessage delete(String setter, String id)throws RemoteException {
         db.executeSql("USE OurData");
+        String checkSql = "SELECT *FROM PromotionInfo WHERE setter='"+setter+"' and id='"+id+"' LIMIT 1";
+        ResultSet result = db.query(checkSql);
+        if(result==null)
+        	return ResultMessage.idNotExist;
+        
         String deleteSql = "DELETE FROM PromotionInfo WHERE setter='"+setter+"' and id='"+id+"' LIMIT 1";
         db.executeSql(deleteSql);
         return ResultMessage.succeed;
@@ -78,7 +100,12 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         String setter = po.getSetter();
         String id = po.getId();
         String name = po.getName();
-
+        
+        String checkSql = "SELECT *FROM PromotionInfo WHERE setter='"+setter+"' and id='"+id+"' LIMIT 1";
+        ResultSet result = db.query(checkSql);
+        if(result==null)
+        	return ResultMessage.idNotExist;
+        
         Date beginDate = po.getBeginDate();
         Date endDate = po.getEndDate();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -92,7 +119,7 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         int deductionType = po.getDeductionType().ordinal();
         int deductionNum = po.getDeductionNum();
         String updateSql = "UPDATE PromotionInfo SET name='"+name+"',beginDate='"+begin+"',endDate='"+end+"',"+
-                "scopeType="+String.valueOf(scopeType)+",scopeNum="+scopeNum+",conditionType="+String.valueOf(conditionType)+
+                "scopeType="+String.valueOf(scopeType)+",scopeNum='"+scopeNum+"',conditionType="+String.valueOf(conditionType)+
                 ",conditionNum="+String.valueOf(conditionNum)+",deductionType="+String.valueOf(deductionType)+
                 ",deductionNum="+String.valueOf(deductionNum)+
                 " WHERE setter='"+setter+"' and id='"+id+"' LIMIT 1";
@@ -100,66 +127,100 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         db.executeSql(updateSql);
         return ResultMessage.succeed;
     }
-    // 根据制定者和序号数得到策略
-    // 情景：制定者查看自己制定的策略详情
-    public PromotionPO findBySetterWithSort(String setter, String id)throws RemoteException {
-        db.executeSql("USE OurData");
+    // 制定者、策略编号 -> 查找
+  	public PromotionPO find(String setter, String promotionID) throws RemoteException{
+  		 db.executeSql("USE OurData");
+         String checkSql = "SELECT *FROM PromotionInfo WHERE setter='"+setter+"' and id='"+promotionID+"' LIMIT 1";
+         ResultSet result = db.query(checkSql);
+         if(result==null)
+        	 return null;
+         return this.resultToPO(result).get(0);
+  	}
+  	
+  	// 6位->district 10->hotel
+  	public ArrayList<PromotionPO> finds(String scope) throws RemoteException{
+  		ArrayList<PromotionPO> list = new ArrayList<PromotionPO>();
+  		String selectSql;
+  		ResultSet result;
+  		if(scope.length()==6){
+  			selectSql = "SELECT *FROM PromotionInfo";
+  			result = db.query(selectSql);
+  			try{
+  				while(result.next()){
+  					if(result.getString("scopeNum").substring(0, 10).equals(scope+"0000")){
+  						String setter = result.getString("setter");
+  		                String id = result.getString("id");
+  		                String name = result.getString("name");
+  		                Date beginDate = result.getDate("beginDate");
+  		                Date endDate = result.getDate("endDate");
+  		                ScopeType sType = ScopeType.values()[result.getInt("scopeType")];
+  		                String sNum = result.getString("scopeNum");
+  		                ConditionType cType = ConditionType.values()[result.getInt("conditionType")];
+  		                int cNum = result.getInt("conditionNum");
+  		                DeductionType dType = DeductionType.values()[result.getInt("deductionType")];
+  		                int dNum = result.getInt("deductionNum");
 
-        String findSql = "SELECT *FROM PromotionInfo  WHERE setter='"+setter+"' and id='"+id+"' LIMIT 1";
-        ResultSet result = db.query(findSql);
-        return this.resultToPO(result).get(0);
-    }
-    // 得到酒店能享有的策略列表
-    public ArrayList<PromotionPO> findByDistrictWithHotel(String district,String hotel)throws RemoteException {
-        db.executeSql("USE OurData");
-        String findsSql = "SELECT *From PromotionInfo";
-        ResultSet result = db.query(findsSql);
-        ArrayList<PromotionPO> list = new ArrayList<PromotionPO>();
+  		                PromotionPO po = new PromotionPO(setter,id,name,beginDate,endDate,sType,sNum,cType,cNum,dType,dNum);
+  		                list.add(po);
+  					}
+  				}
+  			}catch(SQLException e){
+  				e.printStackTrace();
+  				return null;
+  			}
+  			return list;
+  		}
+  		else{
+  			selectSql = "SELECT *FROM PromotionInfo";
+  			result = db.query(selectSql);
+  			try{
+  				while(result.next()){
+  					if(result.getString("scopeNum").substring(0, 10).equals(scope)){
+  						String setter = result.getString("setter");
+  		                String id = result.getString("id");
+  		                String name = result.getString("name");
+  		                Date beginDate = result.getDate("beginDate");
+  		                Date endDate = result.getDate("endDate");
+  		                ScopeType sType = ScopeType.values()[result.getInt("scopeType")];
+  		                String sNum = result.getString("scopeNum");
+  		                ConditionType cType = ConditionType.values()[result.getInt("conditionType")];
+  		                int cNum = result.getInt("conditionNum");
+  		                DeductionType dType = DeductionType.values()[result.getInt("deductionType")];
+  		                int dNum = result.getInt("deductionNum");
 
-        try{
-            while(result.next()){// 本地区&本酒店策略
-                if(result.getString(7).substring(0,10).equals(district+"0000")||result.getString(7).substring(0,10)==hotel){
-                    String setter = result.getString(1);
-                    String id = result.getString(2);
-                    String name = result.getString(3);
-                    Date beginDate = result.getDate(4);
-                    Date endDate = result.getDate(5);
-                    ScopeType sType = ScopeType.values()[result.getInt(6)];
-                    String sNum = result.getString(7);
-                    ConditionType cType = ConditionType.values()[result.getShort(8)];
-                    int cNum = result.getInt(9);
-                    DeductionType dType = DeductionType.values()[result.getInt(10)];
-                    int dNum = result.getInt(11);
-
-                    PromotionPO po = new PromotionPO(setter,id,name,beginDate,endDate,sType,sNum,cType,cNum,dType,dNum);
-                    list.add(po);
-                }
-            }
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        return list;
-    }
+  		                PromotionPO po = new PromotionPO(setter,id,name,beginDate,endDate,sType,sNum,cType,cNum,dType,dNum);
+  		                list.add(po);
+  					}
+  				}
+  			}catch(SQLException e){
+  				e.printStackTrace();
+  				return null;
+  			}
+  			return list;
+  		}
+  			
+  	}
     // 从结果集到po
     public ArrayList<PromotionPO> resultToPO(ResultSet result){
         ArrayList<PromotionPO> list = new ArrayList<PromotionPO>();
         try{
             while(result.next()){
-                String setter = result.getString(1);
-                String id = result.getString(2);
-                String name = result.getString(3);
-                Date beginDate = result.getDate(4);
-                Date endDate = result.getDate(5);
-                ScopeType sType = ScopeType.values()[result.getInt(6)];
-                String sNum = result.getString(7);
-                ConditionType cType = ConditionType.values()[result.getShort(8)];
-                int cNum = result.getInt(9);
-                DeductionType dType = DeductionType.values()[result.getInt(10)];
-                int dNum = result.getInt(11);
+                String setter = result.getString("setter");
+                String id = result.getString("id");
+                String name = result.getString("name");
+                Date beginDate = result.getDate("beginDate");
+                Date endDate = result.getDate("endDate");
+                ScopeType sType = ScopeType.values()[result.getInt("scopeType")];
+                String sNum = result.getString("scopeNum");
+                ConditionType cType = ConditionType.values()[result.getInt("conditionType")];
+                int cNum = result.getInt("conditionNum");
+                DeductionType dType = DeductionType.values()[result.getInt("deductionType")];
+                int dNum = result.getInt("deductionNum");
 
                 PromotionPO po = new PromotionPO(setter,id,name,beginDate,endDate,sType,sNum,cType,cNum,dType,dNum);
                 list.add(po);
             }
+            return list;
         }catch (SQLException e){
             e.printStackTrace();
         }

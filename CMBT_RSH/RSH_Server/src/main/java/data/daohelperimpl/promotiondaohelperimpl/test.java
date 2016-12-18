@@ -54,16 +54,15 @@ public class test {
         ResultMessage result = promotionDao.update(po);
     }
 
-    public void findBySetterWithSort()throws RemoteException{
+    public void find()throws RemoteException{
         String setter = "";
         String id = "";
-        PromotionPO po = promotionDao.findBySetterWithSort(setter,id);
+        PromotionPO po = promotionDao.find(setter,id);
     }
 
     public void findByDistrictWithHotel() throws RemoteException{
-        String district="";
-        String hotel = "";
-        ArrayList<PromotionPO> list = promotionDao.findByDistrictWithHotel(district, hotel);
+        String scope="";
+        ArrayList<PromotionPO> list = promotionDao.finds(scope);
     }
 
 }

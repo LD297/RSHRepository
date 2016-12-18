@@ -17,10 +17,15 @@ public interface PromotionService {
      */
     public ResultMessage addPromotion(PromotionVO promotionVO);
 
+    // 以下七个方法请开发人员从接口类中移除。bl同层调用，不要写在这种专门向上提供的接口类中。可以在bl实现包中另写接口，也可以直接调实现类。
     public ResultMessage delPromotion(String setterID,String promotionID);
 
+    public ArrayList<PromotionVO> getPromotionOfPeriod(Date beginDate, Date EndDate);
+
+    public ArrayList <PromotionVO> getPromotionOfRoom (String hotelID, String roomType);
+
     public ArrayList<PromotionVO> getPromotionOfHotel(String hotelID);
-    
+
     /**
      * 限于网站营销人员制定的地区促销策略
      * @param district
@@ -28,5 +33,7 @@ public interface PromotionService {
      */
     public ArrayList <PromotionVO> getPromotionOfDistrict (String district);
 
-   
+    public String countPromotionOfRoom(String hotelID, String type, int num, int price,Date beginDate, Date endDate);
+
+    public ResultMessage setCoupon();
 }

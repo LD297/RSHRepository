@@ -2,6 +2,7 @@ package data.daoimpl.userdaoimpl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 import constant.ResultMessage;
 import data.dao.userdao.UserDao;
@@ -49,6 +50,9 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 	public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public ArrayList<UserPO> getAll()throws RemoteException{
+		return userDaoHelper.getAll();
 	}
 
 }
