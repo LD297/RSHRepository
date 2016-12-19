@@ -84,6 +84,7 @@ public class UserOrderUIController {
 	private StateOfOrder stateOfOrder = null;
 
 	 public void init() {
+		 orderIDField.setText("");
     	 UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
     	 stateOfOrder = null;
     	 if(backImage.isVisible()){

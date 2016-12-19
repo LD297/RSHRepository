@@ -19,17 +19,13 @@ public class UserService_Stub implements UserService{
 	public UserVO getInfo(String userid) {
 		// TODO Auto-generated method stub
 		return new UserVO(userid, "123", "bob",
-				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
-				  Sexuality.female, "xiaoer@ahh.com",100,"bilibili");
+				"http://p1.bpimg.com/567571/246972e244c7580b.png",
+				LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang", Sexuality.female, "xiaoer@ahh.com", 100,
+				"bilibili");
 	}
 
 	@Override
 	public ResultMessage update(UserVO userVO) {
-		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
-	}
-
-	public ResultMessage addCreditRecord(CreditRecordVO vo) {
 		// TODO Auto-generated method stub
 		return ResultMessage.succeed;
 	}

@@ -25,14 +25,14 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="headImage" fitHeight="194.0" fitWidth="200.0" layoutX="25.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="headImage" fitHeight="170.0" fitWidth="200.0" layoutX="40.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/用户头像.jpg" />
                      </image>
                   </ImageView>
                   <Line endX="249.5" endY="630.0" layoutX="149.0" startX="249.5" stroke="#bcbcbc" strokeWidth="0.5" AnchorPane.rightAnchor="0.5" />
                   <Label focusTraversable="false" prefHeight="630.0" prefWidth="250.0" style="-fx-background-color: rgba(3,3,3,0.3);" visible="false" />
-                  <Button fx:id="changeHeadimageButton" layoutX="25.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#changeHeadImage" prefHeight="30.0" prefWidth="194.0" style="-fx-background-color: #ff5a5f;" text="更换头像" textFill="WHITE">
+                  <Button fx:id="changeHeadimageButton" layoutX="40.0" layoutY="218.0" mnemonicParsing="false" onMouseClicked="#changeHeadImage" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: #ff5a5f;" text="更换头像" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="16.0" />
                      </font>

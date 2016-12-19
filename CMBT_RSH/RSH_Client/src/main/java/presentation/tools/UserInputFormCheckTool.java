@@ -93,6 +93,9 @@ public class UserInputFormCheckTool {
 
     //检查昵称格式
     public String checkNickName(String nickName){
+    	if(nickName.equals("")){
+    		return "昵称不能为空";
+    	}
         for(int i=0;i<nickName.length();i++){
             if(!((nickName.charAt(i)<='9'&&nickName.charAt(i)>='0')||
                     (nickName.charAt(i)<='z'&&nickName.charAt(i)>='a')||
