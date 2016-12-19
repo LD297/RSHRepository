@@ -52,12 +52,8 @@ public class WebSalesmanDaoImpl extends UnicastRemoteObject implements WebSalesm
         return webSalesmanDaoHelper.update(po);
     }
 
-    public ResultMessage delete(String websalesmanid)throws RemoteException  {
-        return webSalesmanDaoHelper.delete(websalesmanid);
-    }
-
-    public WebSalesmanPO findByID(String websalesmanid)throws RemoteException  {
-        return webSalesmanDaoHelper.findByID(websalesmanid);
+    public WebSalesmanPO findByID(String websalesmanID)throws RemoteException  {
+        return webSalesmanDaoHelper.findByID(websalesmanID);
     }
 
     public ArrayList<WebSalesmanPO> findByDistrict(String district)throws RemoteException  {

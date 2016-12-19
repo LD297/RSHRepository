@@ -85,8 +85,12 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
         return hotelDaoHelper.numOfRoomAvail(id, roomType, checkIn, checkOut);
     }
     // 根据地址和商圈的到酒店列表
-    public ArrayList<HotelPO> getHotelList(String address,String businessArea) throws RemoteException{
-        return hotelDaoHelper.getHotelList(address, businessArea);
+    public ArrayList<HotelPO> getHotelList(String district) throws RemoteException{
+        return hotelDaoHelper.getHotelList(district);
+    }
+    // 网站管理人员 得到酒店信息
+    public ArrayList<HotelPO> getAll() throws RemoteException{
+    	return hotelDaoHelper.getAll();
     }
 
 }

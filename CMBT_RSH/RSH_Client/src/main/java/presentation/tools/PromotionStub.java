@@ -22,8 +22,9 @@ public class PromotionStub implements PromotionService{
 		return ResultMessage.succeed;
 	}
 
-
 	
+
+
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfHotel(String hotelID) {
 /*		PromotionVO vo1 = new PromotionVO();
@@ -49,7 +50,6 @@ public class PromotionStub implements PromotionService{
 	}
 
 	
-
 
 
 }

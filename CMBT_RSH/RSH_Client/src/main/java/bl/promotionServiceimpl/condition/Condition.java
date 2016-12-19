@@ -23,6 +23,7 @@ public abstract class Condition {
 	/**
 	 *
 	 * @param num
+	 * 
 	 * @param price
 	 * @return
 	 */

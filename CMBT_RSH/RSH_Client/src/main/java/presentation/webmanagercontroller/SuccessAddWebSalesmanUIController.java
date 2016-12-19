@@ -30,15 +30,8 @@ public class SuccessAddWebSalesmanUIController {
     void closeSuccessAdd(MouseEvent event) {
     	AnchorPane manageWebSalesman = WebManagerUIFXMLFactory.getInstance().getManageWebSalesman();
     	manageWebSalesman.getChildren().remove(manageWebSalesman.getChildren().size()-1);
-    	ManageHotelUIController manageHotelUIController = WebManagerUIFXMLFactory.getInstance().getManageHotelUIController();
-    	manageHotelUIController.init();
     }
 
-    public void init(String id,String password) {
-		idLabel.setText(id);
-		passwordLabel.setText(password);
-	}
-    
     @FXML
     void initialize() {
         assert iknowButton != null : "fx:id=\"iknowButton\" was not injected: check your FXML file '网管_添加营销人员成功.fxml'.";

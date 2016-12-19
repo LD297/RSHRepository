@@ -1,6 +1,7 @@
 package data.daohelperimpl.userdaohelperimpl;
 
 import com.mysql.jdbc.StringUtils;
+
 import constant.MemberType;
 import constant.ResultMessage;
 import constant.Sexuality;
@@ -15,6 +16,7 @@ import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Created by sky-PC on 2016/12/3.
@@ -46,32 +48,10 @@ public class UserDaoHelperMySql implements UserDaoHelper{
             return null;
         String getInfoSql = "SELECT *FROM UserInfo WHERE userID='"+userID+"' LIMIT 1";
         ResultSet result = db.query(getInfoSql);
-
-        try{
-            while(result.next()){
-                String passWord = result.getString("password");
-                String nickName = result.getString("nickName");
-                String image = result.getString("image");
-                String birth = result.getString("birthday");
-                int level = result.getInt("level");
-                LocalDate birthday = LocalDate.now();//////////
-                MemberType type = MemberType.values()[result.getInt("memberType")];
-                int credit = result.getInt("credit");
-                String name = result.getString("trueName");
-                Sexuality sex = Sexuality.values()[result.getInt("sex")];
-                String eMail = result.getString("eMail");
-                String commerceName = result.getString("commerceName");
-
-                UserPO userPO = new UserPO(userID,passWord,nickName,image,
-                		birthday,level,type,credit,name,sex,eMail,commerceName);
-                return userPO;
-            }
-
-        }catch(SQLException e){
-            e.printStackTrace();
-            return null;
-        }
-        return null;
+        
+        if(result==null)
+        	return null;
+        return this.resultSetToUserPO(result).get(0);
     }
     // 修改用户基本信息
     public ResultMessage update(UserPO userPO) throws RemoteException {
@@ -129,20 +109,55 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         // TODO Auto-generated method stub
         return null;
     }
+ // 网站管理人员 得到用户信息
+ 	public ArrayList<UserPO> getAll()throws RemoteException{
+ 		db.executeSql("USE UserInfo");
+ 		ResultSet result = db.query("SELECT *FROM UserInfo");
+ 		return this.resultSetToUserPO(result);
+ 	}
 
     // 检查需要操作的账号存在
-    public ResultMessage checkExistence(String id){
-        String checkExistenceSql = "SELECT id FROM UserInfo";
+    public ResultMessage checkExistence(String userID){
+        String checkExistenceSql = "SELECT userID FROM UserInfo";
         ResultSet result = db.query(checkExistenceSql);
         try{
             while(result.next())
-                if(result.getString(1).equals(id))
+                if(result.getString(1).equals(userID))
                     return ResultMessage.idAlreadyExist;
         }catch(SQLException e){
             e.printStackTrace();
             return null;
         }
         return ResultMessage.idNotExist;
+    }
+    
+    private ArrayList<UserPO> resultSetToUserPO(ResultSet result){
+    	ArrayList<UserPO> list = new ArrayList<UserPO>();
+    	 try{
+             while(result.next()){
+            	 String userID = result.getString("userID");
+                 String password = result.getString("password");
+                 String nickName = result.getString("nickName");
+                 String image = result.getString("image");
+                 String birth = result.getString("birthday");
+                 int level = result.getInt("level");
+                 LocalDate birthday = LocalDate.now();//////////
+                 MemberType type = MemberType.values()[result.getInt("memberType")];
+                 int credit = result.getInt("credit");
+                 String name = result.getString("trueName");
+                 Sexuality sex = Sexuality.values()[result.getInt("sex")];
+                 String eMail = result.getString("eMail");
+                 String commerceName = result.getString("commerceName");
+
+                 UserPO userPO = new UserPO(userID,password,nickName,image,
+                 		birthday,level,type,credit,name,sex,eMail,commerceName);
+                 list.add(userPO);
+             }
+             return list;
+         }catch(SQLException e){
+             e.printStackTrace();
+             return null;
+         }
     }
 
 }

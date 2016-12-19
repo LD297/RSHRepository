@@ -72,8 +72,6 @@ public class ManagerHomepageUIController {
     	}else {
 			scene = new Scene(manageHotel,800,720);
 		}
-    	ManageHotelUIController manageHotelUIController = WebManagerUIFXMLFactory.getInstance().getManageHotelUIController();
-    	manageHotelUIController.init();
     	stage.setScene(scene);
     }
 
@@ -81,8 +79,6 @@ public class ManagerHomepageUIController {
     void changeToManageUser(MouseEvent event) {
     	Stage stage = (Stage)logoutImage.getScene().getWindow();
     	AnchorPane manageUser = WebManagerUIFXMLFactory.getInstance().getManageUser();
-    	ManageUserUIController manageUserUIController = WebManagerUIFXMLFactory.getInstance().getManageUserUIController();
-    	manageUserUIController.init();
     	Scene scene = null;
     	if(manageUser.getScene()!=null){
     		scene = manageUser.getScene();
@@ -96,8 +92,6 @@ public class ManagerHomepageUIController {
     void changeToManageWebsalesman(MouseEvent event) {
     	Stage stage = (Stage)logoutImage.getScene().getWindow();
     	AnchorPane manageWebsalesman = WebManagerUIFXMLFactory.getInstance().getManageWebSalesman();
-    	ManafeWebsalesmanUIController manafeWebsalesmanUIController = WebManagerUIFXMLFactory.getInstance().getManafeWebsalesmanUIController();
-    	manafeWebsalesmanUIController.init();
     	Scene scene = null;
     	if(manageWebsalesman.getScene()!=null){
     		scene = manageWebsalesman.getScene();

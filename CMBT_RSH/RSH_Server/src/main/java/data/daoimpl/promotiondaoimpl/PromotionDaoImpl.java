@@ -38,7 +38,12 @@ public class PromotionDaoImpl extends UnicastRemoteObject implements PromotionDa
         }
         return promotionDaoImpl;
     }
-
+    
+    // 得到新的促销策略的编号
+ 	public String getNewID(String setterID)throws RemoteException{
+ 		return promotionDaoHelper.getNewID(setterID);
+ 	}
+     
     // 添加策略
     public ResultMessage insert(PromotionPO po) throws RemoteException{
         return promotionDaoHelper.insert(po);
@@ -52,14 +57,16 @@ public class PromotionDaoImpl extends UnicastRemoteObject implements PromotionDa
         return promotionDaoHelper.update(po);
     }
 
-    // 某地区、某酒店、某房间类型 -> 查找
-    public PromotionPO findBySetterWithSort(String setter, String id) throws RemoteException{
-        return promotionDaoHelper.findBySetterWithSort(setter,id);
-    }
-    // 开始日期、结束日期  -> 查找
-    public ArrayList<PromotionPO> findByDistrictWithHotel(String district,String hotel) throws RemoteException{
-        return promotionDaoHelper.findByDistrictWithHotel(district,hotel);
-    }
+    // 制定者、策略编号 -> 查找
+ 	public PromotionPO find(String setter, String promotionID) throws RemoteException{
+ 		return promotionDaoHelper.find(setter, promotionID);
+ 	}
+ 	
+ 	// 6位->district 10->hotel
+ 	public ArrayList<PromotionPO> finds(String scope) throws RemoteException{
+ 		return promotionDaoHelper.finds(scope);
+ 	}
+
 
 
 }
