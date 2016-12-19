@@ -167,6 +167,14 @@ public String getHotelID() {
     	userVO.name = name;
     	userService.update(userVO);
     }
+    /**
+     * 我的信息界面调用，更换头像
+     */
+    public void modifyHeadImage(String url) {
+		UserVO userVO = userService.getInfo(userID);
+		userVO.imageAddress = url;
+		userService.update(userVO);
+	}
     
     /**
      * 筛选条件界面调用

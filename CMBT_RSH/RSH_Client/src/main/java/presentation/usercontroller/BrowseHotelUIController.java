@@ -138,6 +138,7 @@ public class BrowseHotelUIController {
     @FXML
     void changeToSelectCondition(MouseEvent event) {
         UIJumpTool.getUiJumpTool().changeToSelectCondition();
+        
     }
 
     //在搜索框内通过酒店名字搜索
@@ -173,12 +174,14 @@ public class BrowseHotelUIController {
      */
     public void refresh(ArrayList<HotelVO> hotelVOs) {
 		this.hotelVOs = hotelVOs;
+		gridpaneFilledWithhotel.getChildren().clear();
+		presentPage = 1;
 		if(hotelVOs.size()%4==0){
 			maxPages = hotelVOs.size()/4;
 		}else{
 			maxPages = hotelVOs.size()/4 + 1;
 		}
-		changeToSpecficPage(1);
+		changeToSpecficPage(presentPage);
 	}
     
     public void init() {
