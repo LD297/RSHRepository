@@ -8,15 +8,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import constant.Sexuality;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import presentation.tools.ImageFactory;
 import presentation.tools.MyDateFormat;
 import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
+import presentation.tools.UserUIFXMLFactory;
 import vo.UserVO;
 
 public class UserInfoUIController {
@@ -55,11 +59,27 @@ public class UserInfoUIController {
     private Label emailaddressLabel;
     @FXML
     private ImageView sexImage;
+    @FXML
+    private TextField urlField;
 
-    //TODO 更换头像
     @FXML
     void changeHeadImage(MouseEvent event) {
-
+    	urlField.setVisible(true);
+    }
+    
+    //输入图片地址之后敲击回车建更换头像
+    @FXML
+    void ensureChangeHeadImage(ActionEvent event) {
+    	String url = urlField.getText().trim();
+    	//更换数据库头像地址
+    	UserInfoUtil.getInstance().modifyHeadImage(url);
+    	Image image = new Image(url, 250, 250, false, true);
+    	headImage.setImage(image);
+    	//更换导航栏上的头像
+    	GuideUIController guideUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getGuideUIController();
+    	guideUIController.setHeadImage(url);
+    	urlField.setText("");
+    	urlField.setVisible(false);
     }
 
     //跳转到编辑用户信息界面
@@ -68,18 +88,20 @@ public class UserInfoUIController {
         UIJumpTool.getUiJumpTool().changeToModifyUserInfo();
     }
     
-    public void init() {
-    	   UserVO userVO = UserInfoUtil.getInstance().getUserVO();
-           nicknameLabel.setText(userVO.nickName);
-           userNameLabel.setText(userVO.name);
-           birthdayLabel.setText(MyDateFormat.getInstance().toString(userVO.birthday));
-           phonenumberLabel.setText(userVO.id);
-           emailaddressLabel.setText(userVO.eMail);
-           if(userVO.sexuality==Sexuality.female){
-           	sexImage.setImage(ImageFactory.getImageFactory().getFemale());
-           }else {
-   			sexImage.setImage(ImageFactory.getImageFactory().getMale());
-   		}
+	public void init() {
+		UserVO userVO = UserInfoUtil.getInstance().getUserVO();
+		nicknameLabel.setText(userVO.nickName);
+		userNameLabel.setText(userVO.name);
+		birthdayLabel.setText(MyDateFormat.getInstance().toString(userVO.birthday));
+		phonenumberLabel.setText(userVO.id);
+		emailaddressLabel.setText(userVO.eMail);
+		if (userVO.sexuality == Sexuality.female) {
+			sexImage.setImage(ImageFactory.getImageFactory().getFemale());
+		} else {
+			sexImage.setImage(ImageFactory.getImageFactory().getMale());
+		}
+		Image image = new Image(userVO.imageAddress, 250, 250, false, true);
+		headImage.setImage(image);
 	}
 
     @FXML
@@ -94,6 +116,7 @@ public class UserInfoUIController {
         assert phonenumberLabel != null : "fx:id=\"phonenumberLabel\" was not injected: check your FXML file '我的信息.fxml'.";
         assert emailaddressLabel != null : "fx:id=\"emailaddressLabel\" was not injected: check your FXML file '我的信息.fxml'.";
         assert sexImage != null : "fx:id=\"sexImage\" was not injected: check your FXML file '我的信息.fxml'.";
+        assert urlField != null : "fx:id=\"urlField\" was not injected: check your FXML file '我的信息.fxml'.";
         init();
     }
 }

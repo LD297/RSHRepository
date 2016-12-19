@@ -19,7 +19,7 @@ public class UserService_Stub implements UserService{
 	public UserVO getInfo(String userid) {
 		// TODO Auto-generated method stub
 		return new UserVO(userid, "123", "bob",
-				"http://p1.bpimg.com/567571/246972e244c7580b.png",
+				"http://cdn.duitang.com/uploads/item/201410/05/20141005160337_RZX8W.thumb.224_0.jpeg",
 				LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang", Sexuality.female, "xiaoer@ahh.com", 100,
 				"bilibili");
 	}

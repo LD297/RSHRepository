@@ -142,6 +142,7 @@ public class ModifyUserInfoUIController {
   				Arrays.asList(new String[] { Sexuality.male.getString(), Sexuality.female.getString() }))));
   		sexChoiceBox.setItems(sexualities);
   		sexChoiceBox.setValue(userVO.sexuality.getString());
+  		phonenumberField.setEditable(false);
     }
 
     @FXML
