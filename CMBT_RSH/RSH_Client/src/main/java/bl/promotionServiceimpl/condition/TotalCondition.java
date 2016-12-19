@@ -1,6 +1,7 @@
 package bl.promotionServiceimpl.condition;
 
 import constant.ConditionType;
+import vo.OrderVO;
 
 /**
  * 总额要求
@@ -33,9 +34,13 @@ public class TotalCondition extends Condition {
 	}
 
 	@Override
-	public boolean check(OrderInfo orderInfo) {
+	public boolean check(OrderVO orderVO) {
 		// TODO Auto-generated method stub
-		return false;
+		double valueInOrder = orderVO.getOriginValue();
+		if(valueInOrder<total)
+			return false;
+		else
+			return true;
 	}
 
 }

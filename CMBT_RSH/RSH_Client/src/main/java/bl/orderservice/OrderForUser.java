@@ -66,7 +66,17 @@ public interface OrderForUser {
      * @param roomNum
      * @return 优惠策略形式：String#double->promotion#truePrice
      */
-    public String getTrueValue(String userID, String hotelID, Date checkIn, Date checkOut, RoomNormVO room, int roomNum);
+//    public String getTrueValue(String userID, String hotelID, Date checkIn, Date checkOut, RoomNormVO room, int roomNum);
+    
+    /**
+     * 由于判断条件的缺失，原方法无法完成最优策略的计算
+     * 将方法传递的参数改为OrderVO
+     * @param orderVO
+     * @return String#double ->promotionReason#truePrice
+     */
+    public String getTrueValue(OrderVO orderVO);
+    
+    
     /**
      * 确认订单时：
      * 界面封装orderVO（userID,userName,hotelID,hotelName,RoomNormVO,roomPrice,

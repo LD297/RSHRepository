@@ -41,13 +41,15 @@ private static HotelDao hotelDao = null;
 	}
 
 	public ArrayList<HotelVO> getHotelList(String province, String city, String area) {
-		ArrayList<HotelPO> hotelPOs = null;
+		ArrayList<HotelPO> hotelPOs = new ArrayList<>();
+		ArrayList<HotelVO> hotelVOs = new ArrayList<>();
 		try {
 			hotelPOs = hotelDao.getHotelList(province);
 		}catch (RemoteException e){
 			e.printStackTrace();
+			return hotelVOs;
 		}
-		ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+		hotelVOs = new ArrayList<>();
 		for(HotelPO hotelPO: hotelPOs){
 			hotelVOs.add(hotelPO.changeIntoVO());
 		}
@@ -111,28 +113,59 @@ private static HotelDao hotelDao = null;
 	}
 	
 	@Override
-	public ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelList, SortBy sortBy, SortMethod sortM) {
+	public ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelVOs, SortBy sortBy, SortMethod sortM) {
 		// TODO Auto-generated method stub
-		
-		return hotelList;
+		ArrayList<HotelVO> newHotelVOs = new ArrayList<>();
+		for(HotelVO hotelVO1:hotelVOs){
+			boolean hasBeenSet = false;
+			for(HotelVO hotelVO2:newHotelVOs){
+				if(compare(hotelVO1,hotelVO2,sortBy,sortM)){
+					newHotelVOs.add(newHotelVOs.indexOf(hotelVO2), hotelVO1);
+					hasBeenSet = true;
+				}			
+			}
+			if(!hasBeenSet){
+				newHotelVOs.add(hotelVO1);
+			}	
+		}
+		return newHotelVOs;
 	}
 	
-	private ArrayList<HotelVO> sortByPrice(ArrayList<HotelVO> hotelList) {
+	/**
+	 * if return true,
+	 * hotelVO1 will be added just before hotelVO2
+	 * @param hotelVO1
+	 * @param hotelVO2
+	 * @param sortBy
+	 * @param sortM
+	 * @return
+	 */
+	private boolean compare(HotelVO hotelVO1, HotelVO hotelVO2, SortBy sortBy, SortMethod sortM) {
 		// TODO Auto-generated method stub
-		Map<Double, HotelVO>  map = null ;
-		return null;
+		double difference = 0;
+		switch (sortBy) {
+		case price:
+			difference = hotelVO2.standardRoomPrice-hotelVO1.standardRoomPrice;
+			break;	
+		case level:
+			difference = hotelVO2.level-hotelVO1.level;
+			break;
+		case grade:
+			difference= hotelVO2.grade-hotelVO1.grade;
+			break;
+		default:
+			break;
+		}
+		if(sortM==SortMethod.dscend){
+			difference=difference*-1;
+		}
+		if(difference>0)
+			return true;
+		else
+			return false;
 	}
-	private ArrayList<HotelVO> sortByLevel(ArrayList<HotelVO> hotelList) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	private ArrayList<HotelVO> sortByGrade(ArrayList<HotelVO> hotelList) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public ArrayList<HotelVO> sortHelper(){
-		return null;
-	}
+	
+	
 	
 	@Override
 	public ArrayList<HotelVO> getHotelList() {

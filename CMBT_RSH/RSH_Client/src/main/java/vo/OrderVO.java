@@ -196,6 +196,10 @@ public class OrderVO {
 				actualCheckOut, cancelTime, cancelAbnormalTime);
 		return null;
 	}
+	public String getRoomType() {
+		// TODO Auto-generated method stub
+		return room.getRoomType();
+	}
     
     
 }

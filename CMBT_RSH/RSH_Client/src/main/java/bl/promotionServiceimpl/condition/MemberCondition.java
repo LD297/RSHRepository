@@ -1,7 +1,10 @@
 package bl.promotionServiceimpl.condition;
 
+import bl.userserviceimpl.UserController;
 import constant.ConditionType;
 import constant.MemberType;
+import vo.OrderVO;
+import vo.UserVO;
 
 /**
  * 对会员等级的要求
@@ -33,9 +36,18 @@ public class MemberCondition extends Condition {
 	
 
 	@Override
-	public boolean check(OrderInfo orderInfo) {
+	public boolean check(OrderVO orderVO) {
 		// TODO Auto-generated method stub
-		return false;
+		String userID = orderVO.getUserID();
+		UserController userController = new UserController();
+		UserVO userVO = userController.getInfo(userID);
+		if(userVO.getMemberType()!=memberType.commom){
+			return false;
+		}
+		if(userVO.level<memberLevel){
+			return false;
+		}
+		return true;
 	}
 
 

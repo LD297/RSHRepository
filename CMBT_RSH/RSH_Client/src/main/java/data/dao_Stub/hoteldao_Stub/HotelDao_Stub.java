@@ -115,7 +115,7 @@ public class HotelDao_Stub implements  HotelDao{
     }
 
     @Override
-    public ArrayList<HotelPO> getHotelList(String address, String businessArea) {
+    public ArrayList<HotelPO> getHotelList(String district) {
         // TODO: 16/11/20
         return null;
     }

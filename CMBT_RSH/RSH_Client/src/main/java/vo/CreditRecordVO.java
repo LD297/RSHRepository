@@ -3,60 +3,50 @@ package vo;
 import java.util.Date;
 
 import constant.CreditAction;
+import po.CreditRecordPO;
 
 public class CreditRecordVO {
-	String userid;
+	String userID;
 	Date date;
-	String orderid;
+	String orderID;
 	CreditAction creditAction;
 	/**
 	 * for example    "+200"
 	 */
 	String change;
-	int credit;// 计算完成之后
-	public CreditRecordVO(String userid,Date date,String orderid,
+	int credit;// 计算完成之后 的信用值
+	
+	public CreditRecordVO(String userID,Date date,String orderID,
 			CreditAction creditAction,String change,int credit) {
 		this.creditAction = creditAction;
 		this.date = date;
 		this.change = change;
 		this.credit = credit;
-		this.orderid = orderid;
-		this.userid = userid;
+		this.orderID = orderID;
+		this.userID = userID;
 	}
 	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+		return userID;
 	}
 	public Date getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
 	public String getOrderid() {
-		return orderid;
-	}
-	public void setOrderid(String orderid) {
-		this.orderid = orderid;
+		return orderID;
 	}
 	public CreditAction getCreditAction() {
 		return creditAction;
 	}
-	public void setCreditAction(CreditAction creditAction) {
-		this.creditAction = creditAction;
-	}
 	public String getChange() {
 		return change;
-	}
-	public void setChange(String change) {
-		this.change = change;
 	}
 	public int getCredit() {
 		return credit;
 	}
-	public void setCredit(int credit) {
-		this.credit = credit;
+	
+	public CreditRecordPO changeIntoPO(){
+		CreditRecordPO creditRecordPO = new CreditRecordPO(userID, date, orderID, creditAction, change, credit);
+		return creditRecordPO;
+		
 	}
 }

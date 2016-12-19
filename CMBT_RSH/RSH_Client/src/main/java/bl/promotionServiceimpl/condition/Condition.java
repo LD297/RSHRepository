@@ -2,6 +2,7 @@ package bl.promotionServiceimpl.condition;
 
 import bl.orderserviceimpl.Order;
 import constant.ConditionType;
+import vo.OrderVO;
 import vo.UserVO;
 
 /**
@@ -27,5 +28,5 @@ public abstract class Condition {
 	 * @param price
 	 * @return
 	 */
-	public abstract boolean check(OrderInfo orderInfo);
+	public abstract boolean check(OrderVO orderVO);
 }

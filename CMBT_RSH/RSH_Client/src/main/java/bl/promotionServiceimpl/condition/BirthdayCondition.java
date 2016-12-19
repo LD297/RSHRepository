@@ -1,8 +1,14 @@
 package bl.promotionServiceimpl.condition;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+
 import bl.userservice.UserService;
 import bl.userserviceimpl.UserController;
 import constant.ConditionType;
+import vo.OrderVO;
+import vo.UserVO;
 
 /**
  * 生日要求
@@ -26,13 +32,26 @@ public class BirthdayCondition extends Condition {
 	}
 	
 	@Override
-	public boolean check(OrderInfo orderInfo) {
+	public boolean check(OrderVO orderVO) {
 		// TODO Auto-generated method stub
-		String userID = orderInfo.userID;
+		String userID = orderVO.getUserID();
 		UserService userService = new UserController();
-		
-		return false;
+		UserVO userVO = userService.getInfo(userID);
+		LocalDate birthday = userVO.birthday;
+		Date beginDate = orderVO.getCheckIn();
+		Date endDate = orderVO.getCheckIn();
+		SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMdd");
+		String sBirthday = sDateFormat.format(birthday);
+		String sBeginDate = sDateFormat.format(beginDate);
+		String sEndDate = sDateFormat.format(endDate);
+		int iBirthday = Integer.parseInt(sBirthday);
+		int iBeginDate = Integer.parseInt(sBeginDate);
+		int iEndDate = Integer.parseInt(sEndDate);
+		if(iBirthday>=iBeginDate&&iBirthday<iEndDate)
+			return true;
+		else
+			return false;
 	}
-
-
+	
 }
+

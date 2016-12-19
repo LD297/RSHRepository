@@ -5,6 +5,7 @@ import bl.userserviceimpl.User;
 import bl.userserviceimpl.UserController;
 import constant.ConditionType;
 import constant.MemberType;
+import vo.OrderVO;
 import vo.UserVO;
 
 public class CommerceCondtion extends Condition {
@@ -28,9 +29,9 @@ public class CommerceCondtion extends Condition {
 	}
 
 	@Override
-	public boolean check(OrderInfo orderInfo) {
+	public boolean check(OrderVO orderVO) {
 		// TODO Auto-generated method stub
-		String userID = orderInfo.userID;
+		String userID = orderVO.getUserID();
 		UserService userService = new UserController();
 		UserVO userVO = userService.getInfo(userID);
 		MemberType memberType= userVO.getMemberType();

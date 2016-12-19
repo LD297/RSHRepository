@@ -1,6 +1,7 @@
 package bl.promotionServiceimpl.condition;
 
 import constant.ConditionType;
+import vo.OrderVO;
 
 /**
  * 对数量的要求
@@ -27,9 +28,13 @@ public class NumCondition extends Condition {
 
 
 	@Override
-	public boolean check(OrderInfo orderInfo) {
+	public boolean check(OrderVO orderVO) {
 		// TODO Auto-generated method stub
-		return false;
+		int numInOrder = orderVO.getRoomNumber();
+		if(numInOrder<num){
+			return false;
+		}
+		return true;
 	}
 
 

@@ -183,10 +183,9 @@ public class OrderForUserImpl implements OrderForUser{
      * @param roomNum
      * @return 优惠策略形式：String#double->promotion#truePrice
      */
-    public String getTrueValue(String userID, String hotelID, Date checkIn, Date checkOut,
-                               RoomNormVO room, int roomNum){
+    public String getTrueValue(OrderVO orderVO){
     	
-        return Count.countPromotionOfRoom(new OrderInfo(hotelID, room.getRoomType(), roomNum,room.getPrice(), userID));
+        return Count.countPromotionOfRoom(orderVO);
     }
     /**
      * 确认订单时：
@@ -221,8 +220,7 @@ public class OrderForUserImpl implements OrderForUser{
             return ResultMessage.roomNumLack;
 
         // 检查价格
-        double price = Double.parseDouble(this.getTrueValue(userID,hotelID,
-                checkIn,checkOut,room,roomNum).split("#")[1]);
+        double price = Double.parseDouble(this.getTrueValue(orderVO).split("#")[1]);
         if(orderVO.getTrueValue()<price)
             return ResultMessage.promotionLoss;
 
