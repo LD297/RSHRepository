@@ -64,8 +64,9 @@ public String getHotelID() {
 		this.hotelID = hotelID;
 	}
 	//	private String hotelName = null;
-    private String hotelAddress = null;
-    private String hotelArea = null;
+    private String province = null;
+    private String city = null;
+    private String area = null;
     private String orderID = null;
 //    private UserVO userVO = null;
     // use stub
@@ -107,14 +108,15 @@ public String getHotelID() {
      * @param hotelArea
      * @param hotelAddress
      */
-    public void setHotelAreaAndAddress(String hotelArea,String hotelAddress) {
-        this.hotelArea = hotelArea;
-        this.hotelAddress = hotelAddress;
+    public void setHotelAreaAndAddress(String province,String city,String area) {
+       this.province = province;
+       this.city = city;
+       this.area = area;
  //       hotelVOs = searchHotelService.getHotelList(hotelAddress, hotelArea);
     }
     
     public ArrayList<HotelVO> getHotelVOs(){
-    	ArrayList<HotelVO> hotelVOs = searchHotelService.getHotelList(hotelAddress, hotelArea);
+    	ArrayList<HotelVO> hotelVOs = searchHotelService.getHotelList(province,city,area);
     	return hotelVOs;
     }
 

@@ -87,7 +87,13 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         ResultSet result = db.query(findAllWebSalesmanSql);
         if(result==null)
         	return null;
-        return this.resultSetTOPO(result);
+        ArrayList<WebSalesmanPO> list = this.resultSetTOPO(result);
+        for(int i=0;i<list.size();i++)
+        	if(list.get(i).getID().equals("0000000000")){
+        		list.remove(i);
+        		break;
+        	}
+        return list; 
     }
     
     // 完成resultSet->po的转换
@@ -107,7 +113,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
     }
     
     // 得到新的网站营销人员编号
-    private String getNewID(){
+    public String getNewID(){
     	Calendar instance = Calendar.getInstance();
     	String year = String.valueOf(instance.get(Calendar.YEAR));
     	String checkNumSql = "SELECT id FROM WebStaffInfo";

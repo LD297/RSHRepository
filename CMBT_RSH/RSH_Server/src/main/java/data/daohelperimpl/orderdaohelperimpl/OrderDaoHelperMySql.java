@@ -272,6 +272,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     }
     // 检查账号是否存在
     private ResultMessage checkExistence(String orderID){
+    	db.executeSql("USE OurData");
         String checkExistenceSql = "SELECT orderID FROM OrderGeneral";
         ResultSet result = db.query(checkExistenceSql);
         try{

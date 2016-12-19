@@ -36,7 +36,11 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
     
     public Iterator<CreditRecordPO> getCreditRecordList(String userID) throws RemoteException {
         db.executeSql("USE OurData");
-
+        
+        ArrayList<CreditRecordPO> CreditRecordList = new ArrayList<CreditRecordPO>();
+        if(this.checkExistence(userID)==ResultMessage.idNotExist)
+        	return CreditRecordList.iterator();
+        
         String getCreditRecordNumSql = "SELECT creditRecordNum FROM UserInfo WHERE userID='"+userID+"' LIMIT 1";
         ResultSet recordNumResult = db.query(getCreditRecordNumSql);
         int recordNum = 0;
@@ -48,7 +52,6 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
             e.printStackTrace();
             return null;
         }
-        ArrayList<CreditRecordPO> CreditRecordList = new ArrayList<CreditRecordPO>();
         if(recordNum >0){
             String getCreditRecordListSql = "SELECT *FROM CreditRecordInfo WHERE userID='"+ userID+"' LIMIT "+String.valueOf(recordNum);
             ResultSet result = db.query(getCreditRecordListSql);
@@ -79,9 +82,11 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
         db.executeSql("USE OurData");
 
         String userID = po.getUserid();
-        
+        if(this.checkExistence(userID)==ResultMessage.idNotExist)
+        	return ResultMessage.idNotExist;
         String getCreditRecordSql = "SELECT creditRecordNum FROM UserInfo WHERE userID='"+userID+"' LIMIT 1";
         ResultSet recordResult = db.query(getCreditRecordSql);
+        
         int creditNum = -1;
         try{
         	while(recordResult.next()){
@@ -111,4 +116,18 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
         return ResultMessage.succeed;
     }
   
+    // 检查需要操作的账号存在
+    public ResultMessage checkExistence(String userID){
+        String checkExistenceSql = "SELECT userID FROM UserInfo";
+        ResultSet result = db.query(checkExistenceSql);
+        try{
+            while(result.next())
+                if(result.getString(1).equals(userID))
+                    return ResultMessage.idAlreadyExist;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+        return ResultMessage.idNotExist;
+    }
 }

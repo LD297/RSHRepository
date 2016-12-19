@@ -29,11 +29,12 @@ public class UserDaoHelperMySql implements UserDaoHelper{
 
         db.executeSql("USE OurData");
         // 账号 密码 昵称 头像url
-        // 生日 会员等级 会员类型 信用值
+        // 生日 会员等级 会员类型 企业名称 信用值
         // 真实姓名 性别 邮箱 信用记录条数
-        db.executeSql("CREATE TABLE if not exists UserInfo(userID char(11),password char(20),nickName char(10),image varchar(30)," +
-                "birthday char(10),level tinyint,memberType tinyint,commerceName char(12),credit int," +
-                "trueName varchar(10),sex tinyint,eMail char(30),creditRecordNum int)" );
+        db.executeSql("CREATE TABLE if not exists UserInfo(userID char(11),password char(20),"
+        		+ "nickName char(10),image varchar(30),birthday char(10),level tinyint,"
+        		+ "memberType tinyint,commerceName char(12),credit int," +
+                "trueName char(10),sex tinyint,eMail char(30),creditRecordNum int)" );
     }
 
     public void finish(){
@@ -65,7 +66,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         String nickName = userPO.getNickName();
         String image = userPO.getImageAddress();
         int level = userPO.getLevel();
-        MemberType type = userPO.getMemberType();
+        int type = userPO.getMemberType().ordinal();
         int credit = userPO.getCredit();
         
         int sex = userPO.getSexuality().ordinal();
@@ -88,16 +89,18 @@ public class UserDaoHelperMySql implements UserDaoHelper{
 
         if(this.checkExistence(userPO.getId())==ResultMessage.idAlreadyExist)
             return ResultMessage.idAlreadyExist;
-
+       
         String userID = userPO.getId();
         String password = userPO.getPassword();
         String nickName = userPO.getNickName();
         String image = userPO.getImageAddress();
+        String birthday = userPO.getBirthday().toString();
         String name = userPO.getName();
         int sex = userPO.getSexuality().ordinal();
         String eMail = userPO.geteMail();
-        String insertSql = "INSERT INTO UserInfo VALUES('"+userID+"','"+password+"','"+nickName+"','"+image+
-                "',0,null,0,'"+ name+"',"+String.valueOf(sex)+",'"+eMail+"',0";
+        String insertSql = "INSERT INTO UserInfo VALUES('"+userID+"','"+password+
+        		"','"+nickName+"','"+image+"','"+birthday+"',0,null,null,0,'"
+        		+ name+"',"+String.valueOf(sex)+",'"+eMail+"',0)";
         db.executeSql(insertSql);
 
         return ResultMessage.succeed;
