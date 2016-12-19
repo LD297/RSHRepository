@@ -20,6 +20,7 @@ import presentation.tools.ImageFactory;
 import presentation.tools.MyDateFormat;
 import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
+import presentation.tools.UserUIFXMLFactory;
 import vo.UserVO;
 
 public class UserInfoUIController {
@@ -69,7 +70,16 @@ public class UserInfoUIController {
     //输入图片地址之后敲击回车建更换头像
     @FXML
     void ensureChangeHeadImage(ActionEvent event) {
-
+    	String url = urlField.getText().trim();
+    	UserVO userVO = UserInfoUtil.getInstance().getUserVO();
+    	userVO.imageAddress = url;
+    	Image image = new Image(url, 250, 250, false, true);
+    	headImage.setImage(image);
+    	//更换导航栏上的头像
+    	GuideUIController guideUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getGuideUIController();
+    	guideUIController.setHeadImage(url);
+    	urlField.setText("");
+    	urlField.setVisible(false);
     }
 
     //跳转到编辑用户信息界面

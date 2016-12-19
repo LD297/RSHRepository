@@ -82,8 +82,11 @@ public class GuideUIController {
 
     public void setBackImage(boolean visible){backImage.setVisible(visible);}
 
+    public void setHeadImage(String url) {
+    	Image image = new Image(url,100,100,false,true);
+		headImage.setImage(image);
+	}
 	public void init() {
-    	//TODO 得到用户头像
 		UserVO userVO = UserInfoUtil.getInstance().getUserVO();
 		Image image = new Image(userVO.imageAddress,100,100,false,true);
 		headImage.setImage(image);

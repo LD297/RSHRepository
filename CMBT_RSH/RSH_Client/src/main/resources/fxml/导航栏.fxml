@@ -50,7 +50,7 @@
                   </Label>
                   <ImageView fx:id="headImage" fitHeight="33.0" fitWidth="33.0" layoutX="745.0" layoutY="10.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../images/用户头像.jpg" />
+                        <Image url="@../images/登录头像.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="headMaskImage" fitHeight="33.0" fitWidth="33.0" layoutX="745.0" layoutY="10.0" onMouseClicked="#changeToUserInfo" pickOnBounds="true">
