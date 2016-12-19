@@ -1,4 +1,4 @@
-package bl.hotelserviceimpl;
+package bl.hotelserviceimpl.hotel_stub;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,6 +90,18 @@ public class HotelService_Stub implements HotelService{
 	public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut) {
 		// TODO Auto-generated method stub
 		return 20;
+	}
+
+	@Override
+	public ArrayList<String> getImageAddresses(String hotelID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getImageAddress(String hotelID, String roomType) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

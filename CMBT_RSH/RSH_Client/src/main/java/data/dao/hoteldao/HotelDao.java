@@ -54,6 +54,8 @@ public interface HotelDao extends Remote{
     public ResultMessage updateGrade(String hotelID,int grade) throws RemoteException;
     
     public ArrayList<HotelPO> getAll() throws RemoteException;
+    
+    public ArrayList<String> getImageAddresses(String hotelID) throws RemoteException;
   
 }
 

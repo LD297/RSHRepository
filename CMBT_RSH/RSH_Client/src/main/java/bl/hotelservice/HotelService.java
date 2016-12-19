@@ -8,6 +8,8 @@ import vo.RoomVO;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.junit.validator.PublicClassValidator;
+
 /**
  * 功能最小化，紧扣大作业需求。
  * 如：对客房信息的维护，需求中只有"录入可用客房（类型、数量、原始价格）"这句。
@@ -46,4 +48,10 @@ public interface HotelService {
     public ResultMessage minusRoomAvail(String roomType,int num, Date checkIn, Date checkOut);
 
     int numOfRoomAvail(String roomType, Date checkIn, Date checkOut);
+    
+    public ArrayList< String > getImageAddresses(String hotelID);
+    
+    public String getImageAddress(String hotelID, String roomType);
+    
+    
 }

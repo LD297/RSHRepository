@@ -116,4 +116,9 @@ public class UserController implements UserService{
 		return creditRecordList.add(value);
 	}
 
+	public boolean hasReserved(String userID, String hotelID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

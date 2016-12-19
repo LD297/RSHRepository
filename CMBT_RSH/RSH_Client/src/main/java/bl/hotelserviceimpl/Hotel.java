@@ -165,5 +165,10 @@ public class Hotel{
 		return hotelManager;
 	}
 
+	public boolean hasEnoughRoom(String roomType, int roomNum, Date begin, Date end) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 }

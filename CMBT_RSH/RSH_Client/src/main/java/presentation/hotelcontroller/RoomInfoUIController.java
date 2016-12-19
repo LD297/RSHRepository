@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.HotelService_Stub;
+import bl.hotelserviceimpl.hotel_stub.HotelService_Stub;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;

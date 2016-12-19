@@ -110,5 +110,17 @@ public class HotelController implements HotelService {
 		return hotel.checkPassword(password);
 	}
 
+	@Override
+	public ArrayList<String> getImageAddresses(String hotelID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getImageAddress(String hotelID, String roomType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

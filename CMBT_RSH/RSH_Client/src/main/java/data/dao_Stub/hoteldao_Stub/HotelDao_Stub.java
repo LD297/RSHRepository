@@ -187,4 +187,10 @@ public class HotelDao_Stub implements  HotelDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<String> getImageAddresses(String hotelID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
