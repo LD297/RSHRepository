@@ -11,6 +11,7 @@ import constant.Sexuality;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import presentation.tools.ImageFactory;
@@ -68,18 +69,20 @@ public class UserInfoUIController {
         UIJumpTool.getUiJumpTool().changeToModifyUserInfo();
     }
     
-    public void init() {
-    	   UserVO userVO = UserInfoUtil.getInstance().getUserVO();
-           nicknameLabel.setText(userVO.nickName);
-           userNameLabel.setText(userVO.name);
-           birthdayLabel.setText(MyDateFormat.getInstance().toString(userVO.birthday));
-           phonenumberLabel.setText(userVO.id);
-           emailaddressLabel.setText(userVO.eMail);
-           if(userVO.sexuality==Sexuality.female){
-           	sexImage.setImage(ImageFactory.getImageFactory().getFemale());
-           }else {
-   			sexImage.setImage(ImageFactory.getImageFactory().getMale());
-   		}
+	public void init() {
+		UserVO userVO = UserInfoUtil.getInstance().getUserVO();
+		nicknameLabel.setText(userVO.nickName);
+		userNameLabel.setText(userVO.name);
+		birthdayLabel.setText(MyDateFormat.getInstance().toString(userVO.birthday));
+		phonenumberLabel.setText(userVO.id);
+		emailaddressLabel.setText(userVO.eMail);
+		if (userVO.sexuality == Sexuality.female) {
+			sexImage.setImage(ImageFactory.getImageFactory().getFemale());
+		} else {
+			sexImage.setImage(ImageFactory.getImageFactory().getMale());
+		}
+		Image image = new Image(userVO.imageAddress, 250, 250, false, true);
+		headImage.setImage(image);
 	}
 
     @FXML

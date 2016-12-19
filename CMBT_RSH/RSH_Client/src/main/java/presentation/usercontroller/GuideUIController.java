@@ -13,11 +13,13 @@ import constant.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import presentation.tools.ImageFactory;
 import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
+import vo.UserVO;
 
 public class GuideUIController {
 
@@ -82,7 +84,9 @@ public class GuideUIController {
 
 	public void init() {
     	//TODO 得到用户头像
-		headImage.setImage(ImageFactory.getImageFactory().getHeadImage());
+		UserVO userVO = UserInfoUtil.getInstance().getUserVO();
+		Image image = new Image(userVO.imageAddress,100,100,false,true);
+		headImage.setImage(image);
 	}
     @FXML
     void initialize() {
