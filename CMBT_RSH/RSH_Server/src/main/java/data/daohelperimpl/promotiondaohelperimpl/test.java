@@ -1,5 +1,6 @@
 package data.daohelperimpl.promotiondaohelperimpl;
 
+import static org.junit.Assert.*;
 import constant.ConditionType;
 import constant.DeductionType;
 import constant.ResultMessage;
@@ -12,33 +13,38 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.junit.Test;
+
 /**
  * Created by sky-PC on 2016/12/12.
  */
 public class test {
-    PromotionDaoHelperMySql promotionDao = new PromotionDaoHelperMySql();
-
+    static PromotionDaoHelperMySql promotionDao = new PromotionDaoHelperMySql();
+    @Test 
     public void insert() throws RemoteException,ParseException{
-        SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date tempBeginDate = sim.parse("2016-11-11 12:00:00");
-        Date tempEndDate = sim.parse("2016-11-13 12:00:00");
+        SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
+        Date tempBeginDate = sim.parse("2016-11-11");
+        Date tempEndDate = sim.parse("2016-11-13");
         ScopeType tempSType = ScopeType.HOTEL;
         ConditionType tempCType = ConditionType.BIRTHDAY;
         DeductionType tempDType = DeductionType.DISCOUNT;
-        PromotionPO po = new PromotionPO("setter","id","任性优惠",
+        String id = promotionDao.getNewID("2016000001");
+        PromotionPO po = new PromotionPO("2016000001",id,"任性优惠",
                 tempBeginDate,tempEndDate,
                 tempSType,"num",
                 tempCType,80,
                 tempDType, 80);
         ResultMessage result = promotionDao.insert(po);
+        assertEquals(result,ResultMessage.idAlreadyExist);
     }
-
+    @Test 
     public void delete()throws RemoteException{
-        String setter = "";
-        String id = "";
+        String setter = "2016000001";
+        String id = "001";
         ResultMessage result = promotionDao.delete(setter,id);
+        assertEquals(result,ResultMessage.succeed);
     }
-
+    @Test 
     public void  update ()throws RemoteException,ParseException{
         SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date tempBeginDate = sim.parse("2016-11-11 12:00:00");
@@ -46,23 +52,27 @@ public class test {
         ScopeType tempSType = ScopeType.HOTEL;
         ConditionType tempCType = ConditionType.BIRTHDAY;
         DeductionType tempDType = DeductionType.DISCOUNT;
-        PromotionPO po = new PromotionPO("setter","id","任性优惠",
+        PromotionPO po = new PromotionPO("2016000001","001","任性优惠",
                 tempBeginDate,tempEndDate,
-                tempSType,"num",
-                tempCType,80,
+                tempSType,"2153000000",
+                tempCType,400,
                 tempDType, 80);
         ResultMessage result = promotionDao.update(po);
+        assertEquals(result,ResultMessage.succeed);
     }
-
+    @Test 
     public void find()throws RemoteException{
-        String setter = "";
-        String id = "";
+        String setter = "2016000001";
+        String id = "002";
         PromotionPO po = promotionDao.find(setter,id);
+        assertEquals(po.getName(),"任性优惠");
     }
-
-    public void findByDistrictWithHotel() throws RemoteException{
-        String scope="";
+    @Test 
+    public void finds() throws RemoteException{
+        String scope="000001";
         ArrayList<PromotionPO> list = promotionDao.finds(scope);
+        assertEquals(list.get(1).getName(),"老总生日优惠");
     }
+   
 
 }

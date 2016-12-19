@@ -105,7 +105,7 @@ public class test {
         String orderID = "2016-01-282153000001000001";
         StateOfOrder newState = StateOfOrder.executed;
         ResultMessage result = orderDao.stateUpdate(orderID,newState);
-        assertEquals(result,ResultMessage.succeed);
+        assertEquals(result,ResultMessage.noChangeMade);
     }
     
     
