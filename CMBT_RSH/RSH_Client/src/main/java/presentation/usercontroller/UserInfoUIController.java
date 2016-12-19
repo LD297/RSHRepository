@@ -8,9 +8,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import constant.Sexuality;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -56,10 +58,17 @@ public class UserInfoUIController {
     private Label emailaddressLabel;
     @FXML
     private ImageView sexImage;
+    @FXML
+    private TextField urlField;
 
-    //TODO 更换头像
     @FXML
     void changeHeadImage(MouseEvent event) {
+    	urlField.setVisible(true);
+    }
+    
+    //输入图片地址之后敲击回车建更换头像
+    @FXML
+    void ensureChangeHeadImage(ActionEvent event) {
 
     }
 
@@ -97,6 +106,7 @@ public class UserInfoUIController {
         assert phonenumberLabel != null : "fx:id=\"phonenumberLabel\" was not injected: check your FXML file '我的信息.fxml'.";
         assert emailaddressLabel != null : "fx:id=\"emailaddressLabel\" was not injected: check your FXML file '我的信息.fxml'.";
         assert sexImage != null : "fx:id=\"sexImage\" was not injected: check your FXML file '我的信息.fxml'.";
+        assert urlField != null : "fx:id=\"urlField\" was not injected: check your FXML file '我的信息.fxml'.";
         init();
     }
 }
