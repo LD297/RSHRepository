@@ -40,10 +40,10 @@ private static HotelDao hotelDao = null;
 		return hotelVO;
 	}
 
-	public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
+	public ArrayList<HotelVO> getHotelList(String province, String city, String area) {
 		ArrayList<HotelPO> hotelPOs = null;
 		try {
-			hotelPOs = hotelDao.getHotelList(address, businessArea);
+			hotelPOs = hotelDao.getHotelList(province);
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
@@ -113,16 +113,7 @@ private static HotelDao hotelDao = null;
 	@Override
 	public ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelList, SortBy sortBy, SortMethod sortM) {
 		// TODO Auto-generated method stub
-		switch (sortBy) {
-		case grade:
-			return sortByGrade(hotelList);
-		case level:
-			return sortByLevel(hotelList);
-		case price:
-			return sortByPrice(hotelList);
-		default:
-			break;
-		}
+		
 		return hotelList;
 	}
 	
