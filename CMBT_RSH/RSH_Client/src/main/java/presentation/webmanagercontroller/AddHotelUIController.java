@@ -71,11 +71,15 @@ public class AddHotelUIController {
 
     @FXML
     void ToSetDistrictCombox(ActionEvent event) {
+    	districtCombox.getItems().clear();
     	String province = provinceCombox.getValue();
     	String city = cityCombox.getValue();
-    	ArrayList<String> districts = WebManagerInfoUtil.getInstance().getDistricts(province, city);
-    	ObservableList<String> districtItems = FXCollections.observableArrayList(districts);
-    	districtCombox.setItems(districtItems);
+    	if(province!=null&&city!=null){
+    		ArrayList<String> districts = WebManagerInfoUtil.getInstance().getDistricts(province, city);
+        	ObservableList<String> districtItems = FXCollections.observableArrayList(districts);
+        	districtCombox.setItems(districtItems);
+    	}
+    	
     }
 
     @FXML
@@ -121,21 +125,7 @@ public class AddHotelUIController {
     	if(province==null||city==null||district==null){
     		rightInput = false;
     	}
-    	if(province!=null){
-    		if(province.equals("所在省")){
-    			rightInput = false;
-    		}
-    	}
-    	if(city!=null){
-    		if(city.equals("所在市")){
-    			rightInput = false;
-    		}
-    	}
-    	if(district!=null){
-    		if(district.equals("所在区")){
-    			rightInput = false;
-    		}
-    	}
+    	
     	if(!rightInput){
     		messageLabel.setText("您有尚未填写的信息");
     	}else {
@@ -155,6 +145,8 @@ public class AddHotelUIController {
 
     @FXML
     void toSetCityCombox(ActionEvent event) {
+    	cityCombox.getItems().clear();
+    	districtCombox.getItems().clear();
     	String province = provinceCombox.getValue();
     	ArrayList<String> citys = WebManagerInfoUtil.getInstance().getCitys(province);
     	ObservableList<String> cityItems = FXCollections.observableArrayList(citys);

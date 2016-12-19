@@ -11,7 +11,7 @@ import vo.SelectConditionVO;
 public class SearchHotelService_Stub implements SearchHotelService{
 
 	@Override
-	public ArrayList<HotelVO> getHotelList(String address, String businessArea) {
+	public ArrayList<HotelVO> getHotelList(String province,String city, String businessArea) {
 		HotelVO vo1 = new HotelVO("000001", "1234567890", "1号酒店", "江苏省 南京市 仙林中心","010009",
 				"no more info", "懒得写", 3, 99.9, "1day");
 		vo1.setPassword("weiywigirui");

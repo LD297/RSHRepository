@@ -131,9 +131,9 @@ public class DistrictHelper {
 	};
 
 	public DistrictHelper(String district){
-		int iProvince = Integer.valueOf(district.substring(0,2));
-		int iCity = Integer.valueOf(district.substring(2,4));
-		int iArea = Integer.valueOf(district.substring(4,6));
+		int iProvince = Integer.parseInt(district.substring(0,2));
+		int iCity = Integer.parseInt(district.substring(2,4));
+		int iArea = Integer.parseInt(district.substring(4,6));
 		if(iProvince>=provinces.length){
 			return ;
 		}
@@ -259,7 +259,7 @@ public class DistrictHelper {
 
 	public static String getCityID(String province,String city ) {
 		// TODO Auto-generated method stub
-		int provinceID = Integer.valueOf(getProvinceID(province));
+		int provinceID = Integer.parseInt(getProvinceID(province));
 		int i=0;
 		for(i=0;i<cities[provinceID].length;i++){
 			if(city.equals(cities[provinceID][i]))
@@ -279,8 +279,8 @@ public class DistrictHelper {
 
 	public static String getAreaID(String province,String city,String area) {
 		// TODO Auto-generated method stub
-		int provinceID = Integer.valueOf(getProvinceID(province));
-		int cityID = Integer.valueOf(getCityID(province, city));
+		int provinceID = Integer.parseInt(getProvinceID(province));
+		int cityID = Integer.parseInt(getCityID(province, city));
 		int i=0;
 		for(;i<areas[provinceID][cityID].length;i++){
 			if(area.equals(areas[provinceID][cityID][i]))
