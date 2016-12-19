@@ -7,14 +7,14 @@ package presentation.usercontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.omg.CORBA.Context;
+
 import constant.ResultMessage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import presentation.tools.ImageFactory;
 import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
@@ -44,8 +44,7 @@ public class GuideUIController {
 
     @FXML
     private ImageView headMaskImage;
-
-
+  
     //TODO 点击help label跳出help提示框
     @FXML
     void changeToHeplInfo(MouseEvent event) {
@@ -81,7 +80,7 @@ public class GuideUIController {
 
     public void setBackImage(boolean visible){backImage.setVisible(visible);}
 
-    public void init() {
+	public void init() {
     	//TODO 得到用户头像
 		headImage.setImage(ImageFactory.getImageFactory().getHeadImage());
 	}

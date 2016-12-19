@@ -19,18 +19,13 @@ public class UserService_Stub implements UserService{
 	public UserVO getInfo(String userid) {
 		// TODO Auto-generated method stub
 		return new UserVO(userid, "123", "bob",
-				  "233", LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang",
-				  Sexuality.female, "xiaoer@ahh.com",100,"bilibili");
+				"http://lain.bgm.tv/pic/eden/icon/l/000/00/00/3.jpg",
+				LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang", Sexuality.female, "xiaoer@ahh.com", 100,
+				"bilibili");
 	}
 
 	@Override
 	public ResultMessage update(UserVO userVO) {
-		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
-	}
-
-	@Override
-	public ResultMessage addCreditRecord(CreditRecordVO vo) {
 		// TODO Auto-generated method stub
 		return ResultMessage.succeed;
 	}
@@ -154,5 +149,11 @@ public class UserService_Stub implements UserService{
 	@Override
 	public String resetpassword(String userid) {
 		return "hdgfjf_2565472";
+	}
+
+	@Override
+	public ResultMessage addCredit(int value, String userID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -89,6 +89,7 @@ public class LoginUIController {
         show = true;
         showMoreImage.setImage(ImageFactory.getImageFactory().getShowImage());
         //跳转
+        UIJumpTool.getUiJumpTool().setStage((Stage)idField.getScene().getWindow());
         UIJumpTool.getUiJumpTool().changeLoginToRegister();
     }
 

@@ -138,7 +138,7 @@ public class WebManagerInfoUtil {
 	 * 添加酒店和修改酒店界面调用，根据省市区得到6位编码
 	 */
 	public String getDistrictID(String province,String city,String district) {
-		String districtID = "010009";
+		String districtID = DistrictHelper.getDistrict(province, city, district);
 		return districtID;
 	}
 	
