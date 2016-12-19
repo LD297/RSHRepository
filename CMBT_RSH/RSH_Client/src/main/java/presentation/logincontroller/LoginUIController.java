@@ -24,7 +24,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.tools.*;
 
-//TODO 记住密码
+/**
+ * 登陆界面，其中如果是用户，可以选择注册
+ * @author john
+ *
+ */
 public class LoginUIController {
 
     @FXML
@@ -50,9 +54,6 @@ public class LoginUIController {
 
     @FXML
     private AnchorPane loginBelowAnchorpane;
-
-    @FXML
-    private RadioButton rememberPasswordButton;
 
     @FXML
     private Label registerLabel;
@@ -214,7 +215,6 @@ public class LoginUIController {
         assert showMoreImage != null : "fx:id=\"showMoreImage\" was not injected: check your FXML file '登陆.fxml'.";
         assert cancelImage != null : "fx:id=\"cancelImage\" was not injected: check your FXML file '登陆.fxml'.";
         assert loginBelowAnchorpane != null : "fx:id=\"loginBelowAnchorpane\" was not injected: check your FXML file '登陆.fxml'.";
-        assert rememberPasswordButton != null : "fx:id=\"rememberPasswordButton\" was not injected: check your FXML file '登陆.fxml'.";
         assert registerLabel != null : "fx:id=\"registerLabel\" was not injected: check your FXML file '登陆.fxml'.";
         assert idFormLabel != null : "fx:id=\"idFormLabel\" was not injected: check your FXML file '登陆.fxml'.";
         assert passwordFormLabel != null : "fx:id=\"passwordFormLabel\" was not injected: check your FXML file '登陆.fxml'.";

@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
+import constant.ResultMessage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,8 +68,6 @@ public class AddHotelUIController {
     @FXML
     private Label messageLabel;
 
-    private Map<String ,ArrayList<String>> proToCityMap = new TreeMap<>();
-    private Map<String, ArrayList<String>> cityToDistrictMap = new TreeMap<>();
 
     @FXML
     void ToSetDistrictCombox(ActionEvent event) {
@@ -95,9 +94,9 @@ public class AddHotelUIController {
     	manageHotel.getChildren().remove(manageHotel.getChildren().size()-1);
     }
 
+    //完成添加，检查是否有未输入的信息
     @FXML
     void finifshAddHotel(MouseEvent event) {
-    	//TODO 添加酒店信息，reset 管理酒店界面
     	boolean rightInput = true;
     	String hotelName = hotelNameField.getText().trim();
     	if(hotelName.equals("")){
@@ -115,22 +114,43 @@ public class AddHotelUIController {
     	if(phone.equals("")){
     		rightInput = false;
     	}
+    	
     	String province = provinceCombox.getValue();
     	String city = cityCombox.getValue();
     	String district = districtCombox.getValue();
     	if(province==null||city==null||district==null){
     		rightInput = false;
     	}
+    	if(province!=null){
+    		if(province.equals("所在省")){
+    			rightInput = false;
+    		}
+    	}
+    	if(city!=null){
+    		if(city.equals("所在市")){
+    			rightInput = false;
+    		}
+    	}
+    	if(district!=null){
+    		if(district.equals("所在区")){
+    			rightInput = false;
+    		}
+    	}
     	if(!rightInput){
     		messageLabel.setText("您有尚未填写的信息");
     	}else {
-		//	HotelVO hotelVO = new HotelVO(id, tel, name, addr, district, briefIntro, facility, level, grade, latestCheckinTime)
+    		String hotelID = WebManagerInfoUtil.getInstance().getHotelID(province, city, district);
+			HotelVO hotelVO = new HotelVO(hotelID, null, hotelName, hotelAddress, district,null, null, 0, 0, null);
+			ResultMessage resultMessage = WebManagerInfoUtil.getInstance().addHotel(hotelVO);
+			if(resultMessage==ResultMessage.succeed){//添加成功，弹出提示界面
+				AnchorPane manageHotel = WebManagerUIFXMLFactory.getInstance().getManageHotel();
+		    	manageHotel.getChildren().remove(manageHotel.getChildren().size()-1);
+		    	AnchorPane successAddHotel = WebManagerUIFXMLFactory.getInstance().getSuccessAddHotel();
+		    	SuccessAddHotelUIController successAddHotelUIController = WebManagerUIFXMLFactory.getInstance().getSuccessAddHotelUIController();
+		    	successAddHotelUIController.init(hotelID, password);
+		    	manageHotel.getChildren().add(successAddHotel);
+			}
 		}
-    	
-    	AnchorPane manageHotel = WebManagerUIFXMLFactory.getInstance().getManageHotel();
-    	manageHotel.getChildren().remove(manageHotel.getChildren().size()-1);
-    	AnchorPane successAddHotel = WebManagerUIFXMLFactory.getInstance().getSuccessAddHotel();
-    	manageHotel.getChildren().add(successAddHotel);
     }
 
     @FXML
@@ -159,8 +179,6 @@ public class AddHotelUIController {
         assert finishAddHotel != null : "fx:id=\"finishAddHotel\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
         assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
         assert messageLabel != null : "fx:id=\"messageLabel\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
-
-        
-	
+        init();
     }
 }

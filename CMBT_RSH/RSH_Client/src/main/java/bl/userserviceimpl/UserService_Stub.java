@@ -19,7 +19,7 @@ public class UserService_Stub implements UserService{
 	public UserVO getInfo(String userid) {
 		// TODO Auto-generated method stub
 		return new UserVO(userid, "123", "bob",
-				"http://lain.bgm.tv/pic/eden/icon/l/000/00/00/3.jpg",
+				"http://p1.bpimg.com/567571/246972e244c7580b.png",
 				LocalDate.now(), 5, MemberType.commerce, "Xiaoer Wang", Sexuality.female, "xiaoer@ahh.com", 100,
 				"bilibili");
 	}
@@ -147,7 +147,7 @@ public class UserService_Stub implements UserService{
 	}
 
 	@Override
-	public String resetpassword(String userid) {
+	public String resetPassword(String userid) {
 		return "hdgfjf_2565472";
 	}
 
