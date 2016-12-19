@@ -1,6 +1,7 @@
 package bl.promotionServiceimpl.condition;
 
 import constant.ConditionType;
+import vo.OrderInfo;
 import vo.OrderVO;
 
 /**
@@ -34,9 +35,9 @@ public class TotalCondition extends Condition {
 	}
 
 	@Override
-	public boolean check(OrderVO orderVO) {
+	public boolean check(OrderInfo orderVO) {
 		// TODO Auto-generated method stub
-		double valueInOrder = orderVO.getOriginValue();
+		double valueInOrder = orderVO.getOriginalValue();
 		if(valueInOrder<total)
 			return false;
 		else

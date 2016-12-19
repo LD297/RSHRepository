@@ -7,12 +7,12 @@ import java.util.Date;
 import java.util.Iterator;
 
 import bl.orderserviceimpl.Order;
-import bl.promotionServiceimpl.condition.OrderInfo;
 import constant.MemberType;
 import data.dao.promotiondao.PromotionDao;
 import po.OrderPO;
 import po.PromotionPO;
 import rmi.RemoteHelper;
+import vo.OrderInfo;
 import vo.OrderVO;
 import vo.PromotionVO;
 import vo.RoomNormVO;
@@ -47,7 +47,7 @@ public class Count {
 	 * @param memberLevel
 	 * @return
 	 */
-	public static String countPromotionOfRoom(OrderVO orderInfo) {
+	public static String countPromotionOfRoom(OrderInfo orderInfo) {
 		initRemote();
 		ArrayList<PromotionPO> promotionPOsForHotel = new ArrayList<>();
 		ArrayList<PromotionPO> promotionPOsForDistrict = new ArrayList<>();
@@ -61,7 +61,7 @@ public class Count {
 			return "remote_fail";
 		}
 		double tempValue;
-		double minValue = orderInfo.getOriginValue();
+		double minValue = 0;
 		String reason = null;
 		for(PromotionPO promotionPO:promotionPOsForDistrict){
 			tempValue = count(promotionPO.changeIntoPromotion(),orderInfo);
@@ -80,8 +80,8 @@ public class Count {
 		return reason+"#"+minValue;
 	}
 
-	private static double count(Promotion promotion, OrderVO orderInfo){
-		double result = orderInfo.getOriginValue();
+	private static double count(Promotion promotion, OrderInfo orderInfo){
+		double result = orderInfo.getOriginalValue();
 		if(promotion.scope.check(orderInfo.getHotelID(),orderInfo.getRoomType())&&
 		promotion.condition.check(orderInfo)){
 			result = promotion.deduction.getDeduction(result);

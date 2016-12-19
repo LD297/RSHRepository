@@ -6,6 +6,7 @@ import java.util.Date;
 import bl.orderservice.OrderForUser;
 import constant.ResultMessage;
 import constant.StateOfOrder;
+import vo.OrderInfo;
 import vo.OrderVO;
 import vo.RoomNormVO;
 
@@ -126,7 +127,7 @@ public class OrderForUser_Stub implements OrderForUser{
 	}
 
 	@Override
-	public String getTrueValue(OrderVO orderVO) {
+	public String getTrueValue(OrderInfo orderVO) {
 		// TODO Auto-generated method stub
 		return "1230";
 	}

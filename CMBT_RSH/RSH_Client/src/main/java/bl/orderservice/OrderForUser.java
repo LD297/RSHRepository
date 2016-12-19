@@ -2,11 +2,13 @@ package bl.orderservice;
 
 import constant.ResultMessage;
 import constant.StateOfOrder;
+import vo.OrderInfo;
 import vo.OrderVO;
 import vo.RoomNormVO;
 
 import java.util.ArrayList;
 import java.util.Date;
+
 
 /**
  * Created by a297 on 16/12/12.
@@ -74,7 +76,7 @@ public interface OrderForUser {
      * @param orderVO
      * @return String#double ->promotionReason#truePrice
      */
-    public String getTrueValue(OrderVO orderVO);
+    public String getTrueValue(OrderInfo orderInfo);
     
     
     /**

@@ -7,6 +7,7 @@ import java.util.Date;
 import bl.userservice.UserService;
 import bl.userserviceimpl.UserController;
 import constant.ConditionType;
+import vo.OrderInfo;
 import vo.OrderVO;
 import vo.UserVO;
 
@@ -32,14 +33,14 @@ public class BirthdayCondition extends Condition {
 	}
 	
 	@Override
-	public boolean check(OrderVO orderVO) {
+	public boolean check(OrderInfo orderVO) {
 		// TODO Auto-generated method stub
 		String userID = orderVO.getUserID();
 		UserService userService = new UserController();
 		UserVO userVO = userService.getInfo(userID);
 		LocalDate birthday = userVO.birthday;
-		Date beginDate = orderVO.getCheckIn();
-		Date endDate = orderVO.getCheckIn();
+		Date beginDate = orderVO.getCheckInDate();
+		Date endDate = orderVO.getCheckInDate();
 		SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String sBirthday = sDateFormat.format(birthday);
 		String sBeginDate = sDateFormat.format(beginDate);

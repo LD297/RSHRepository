@@ -33,6 +33,7 @@ import presentation.tools.MyDateFormat;
 import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
 import vo.HotelVO;
+import vo.OrderInfo;
 import vo.OrderVO;
 import vo.RoomNormVO;
 import vo.UserVO;
@@ -196,8 +197,13 @@ public class CreateOrderUIController {
 				backToModifyButton.setVisible(true);
 			}else{//如果没有尚未填写的信息，得到总价和促销策略
 				getInfoFromUI();
-				String temp = UserInfoUtil.getInstance().getOrderPriceAndPromotion(expectedCheckinDate, expectedCheckoutDate,
-						roomtype, roomPrice, roomNum);
+				
+				
+				/**
+				 * must get hotelId and userID to calculate;
+				 */
+				OrderInfo orderInfo = new OrderInfo(null, roomtype, roomNum, expectedCheckinDate, expectedCheckoutDate, null);
+				String temp = UserInfoUtil.getInstance().getOrderPriceAndPromotion(orderInfo);
 				totalPrice = temp.split("#")[1];
 				promotion = temp.split("#")[0];
 				totalPriceLabel.setText(totalPrice);//显示总价格

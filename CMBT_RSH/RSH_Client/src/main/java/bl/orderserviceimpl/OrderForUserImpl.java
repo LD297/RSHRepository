@@ -7,7 +7,6 @@ import bl.hotelserviceimpl.controller.HotelInfoController;
 import bl.orderservice.OrderForHotel;
 import bl.orderservice.OrderForUser;
 import bl.promotionServiceimpl.Count;
-import bl.promotionServiceimpl.condition.OrderInfo;
 import bl.userserviceimpl.CreditRecordList;
 import bl.userserviceimpl.User;
 import constant.CreditAction;
@@ -17,6 +16,7 @@ import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import rmi.RemoteHelper;
 import vo.CreditRecordVO;
+import vo.OrderInfo;
 import vo.OrderVO;
 import vo.RoomNormVO;
 import vo.UserVO;
@@ -183,9 +183,8 @@ public class OrderForUserImpl implements OrderForUser{
      * @param roomNum
      * @return 优惠策略形式：String#double->promotion#truePrice
      */
-    public String getTrueValue(OrderVO orderVO){
-    	
-        return Count.countPromotionOfRoom(orderVO);
+    public String getTrueValue(OrderInfo orderInfo){
+    	return Count.countPromotionOfRoom(orderInfo);
     }
     /**
      * 确认订单时：
@@ -220,7 +219,7 @@ public class OrderForUserImpl implements OrderForUser{
             return ResultMessage.roomNumLack;
 
         // 检查价格
-        double price = Double.parseDouble(this.getTrueValue(orderVO).split("#")[1]);
+        double price = Double.parseDouble(this.getTrueValue(new OrderInfo(hotelID, room.getRoomType(), roomNum, checkIn, checkOut, userID)).split("#")[1]);
         if(orderVO.getTrueValue()<price)
             return ResultMessage.promotionLoss;
 

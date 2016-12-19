@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import bl.orderserviceimpl.miscellaneous.MockOrder;
-import bl.promotionServiceimpl.condition.OrderInfo;
 
 /**
  * 测试Count类

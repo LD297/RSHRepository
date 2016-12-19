@@ -3,6 +3,7 @@ package bl.promotionServiceimpl.condition;
 import bl.userserviceimpl.UserController;
 import constant.ConditionType;
 import constant.MemberType;
+import vo.OrderInfo;
 import vo.OrderVO;
 import vo.UserVO;
 
@@ -36,7 +37,7 @@ public class MemberCondition extends Condition {
 	
 
 	@Override
-	public boolean check(OrderVO orderVO) {
+	public boolean check(OrderInfo orderVO) {
 		// TODO Auto-generated method stub
 		String userID = orderVO.getUserID();
 		UserController userController = new UserController();

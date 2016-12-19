@@ -8,8 +8,8 @@ import java.util.Iterator;
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.hotelservice.SearchHotelService;
-import bl.hotelserviceimpl.HotelInfoService_Stub;
 import bl.hotelserviceimpl.SearchHotelService_Stub;
+import bl.hotelserviceimpl.controller.HotelInfoService_Stub;
 import bl.hotelserviceimpl.hotel_stub.HotelService_Stub;
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginService_Stub;
@@ -29,6 +29,7 @@ import constant.SortMethod;
 import constant.StateOfOrder;
 import vo.CreditRecordVO;
 import vo.HotelVO;
+import vo.OrderInfo;
 import vo.OrderVO;
 import vo.PromotionVO;
 import vo.RoomNormVO;
@@ -252,9 +253,8 @@ public String getHotelID() {
     /**
      * 生成订单界面调用，得到该订单的总价值
      */
-    public String getOrderPriceAndPromotion(Date checkIn, Date checkOut,String roomType,double roomPrice, int roomNum){
-    	RoomNormVO room = new RoomNormVO(hotelID, roomType, roomPrice);
-    	return orderForUser.getTrueValue(userID, hotelID, checkIn, checkOut, room, roomNum);
+    public String getOrderPriceAndPromotion(OrderInfo orderInfo){
+    	return orderForUser.getTrueValue(orderInfo);
     }
     
     /**

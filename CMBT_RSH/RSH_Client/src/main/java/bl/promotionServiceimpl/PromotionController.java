@@ -6,10 +6,11 @@ import constant.ResultMessage;
 import data.dao.promotiondao.PromotionDao;
 import po.PromotionPO;
 import rmi.RemoteHelper;
+import vo.OrderInfo;
+import vo.OrderVO;
 import vo.PromotionVO;
 import vo.RoomVO;
 import vo.UserVO;
-import bl.promotionServiceimpl.condition.OrderInfo;
 import bl.promotionservice.PromotionService;
 
 import java.rmi.Remote;
@@ -104,9 +105,9 @@ public class PromotionController implements PromotionService {
 	}
 
 
-	public String countPromotionOfRoom(OrderInfo orderInfo) {
+	public String countPromotionOfRoom(OrderInfo orderVO) {
 		// TODO Auto-generated method stub
-		return Count.countPromotionOfRoom(orderInfo);
+		return Count.countPromotionOfRoom(orderVO);
 	}
 
 

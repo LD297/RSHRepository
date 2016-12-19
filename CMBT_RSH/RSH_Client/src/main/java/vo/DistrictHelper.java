@@ -2,6 +2,8 @@ package vo;
 
 import java.util.ArrayList;
 
+import javax.print.attribute.standard.RequestingUserName;
+
 public class DistrictHelper {
 
 	private String district;
@@ -296,5 +298,10 @@ public class DistrictHelper {
 		b+=i;
 		String res = String.valueOf(a)+String.valueOf(b);
 		return res;
+	}
+
+	public String getDistrict() {
+		// TODO Auto-generated method stub
+		return district;
 	}
 }
