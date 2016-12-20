@@ -53,14 +53,11 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="loadingAnchorPane" prefHeight="670.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <ImageView fitHeight="276.0" fitWidth="308.0" layoutX="222.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/loading.gif" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
+      <AnchorPane fx:id="loadingAnchorPane" prefHeight="670.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView fx:id="loadingImage" fitHeight="211.0" fitWidth="448.0" layoutX="506.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/loading.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

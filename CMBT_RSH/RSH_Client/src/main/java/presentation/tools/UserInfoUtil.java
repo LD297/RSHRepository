@@ -294,9 +294,22 @@ public String getHotelID() {
      * 浏览酒店界面调用，得到该酒店的所有图片
      */
     public ArrayList<Image> getHotelImages(String hotelID) {
-		ArrayList<String> urls = hotelService.getImageAddresses(hotelID);
-		ArrayList<Image> images = ImageFactory.getImageFactory().getHotelImages(hotelID,urls);
+		ArrayList<Image> images = ImageFactory.getImageFactory().getHotelImages(hotelID);
 		return images;
+	}
+    
+    /**
+     * 图片工厂调用，得到一个酒店的所有图片地址
+     */
+    public ArrayList<String> getImageUrls(String hotelID) {
+    	ArrayList<String> urls = hotelService.getImageAddresses(hotelID);
+    	return urls;
+	}
+    /**
+     * 图片工厂调用，得到一个酒店的某个房间类型的地址,这个时候hotelid已经被设置过了
+     */
+    public String getImageUrl(String roomType) {
+		return hotelService.getImageAddress(hotelID, roomType);
 	}
     
     /**

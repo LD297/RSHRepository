@@ -3,6 +3,7 @@ package presentation.tools;
 import constant.Role;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import vo.HotelVO;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -45,7 +46,9 @@ public class ImageFactory {
     private Image unexecutedOrderImage = new Image("/images/exclamation.png");//未执行订单
     private Image phoneImage = new Image("/images/电话图标.png");
     private Image penImage = new Image("/images/pen.png");
-    private Map<String, ArrayList<Image>> hotelImageMap = new TreeMap<>();
+    private Map<String, ArrayList<Image>> hotelImageMap = new TreeMap<>();//酒店id，对应该酒店的所有图片
+  //图片地址，对应图片，用来存储加载过的图片，这样就不用再次加载； 
+    private Map<String, Image> getImageByUrl = new TreeMap<>();
    
 
     public Image getPenImage() {
@@ -161,19 +164,44 @@ public class ImageFactory {
 	 * @param urls
 	 * @return
 	 */
-	public ArrayList<Image> getHotelImages(String hotelID,ArrayList<String> urls) {
-		ArrayList<Image> images = new ArrayList<Image>();
-		for(int i=0;i<urls.size();i++){
-			Image image = new Image(urls.get(i),330,229,false,true);
-			images.add(image);
-		}
-		if(!hotelImageMap.containsKey(hotelID)){
-			hotelImageMap.put(hotelID, images);
-		}
+	public ArrayList<Image> getHotelImages(String hotelID) {
+		ArrayList<Image> images = hotelImageMap.get(hotelID);
 		return images;
 	}
+	
+	/**
+	 * 在输入地址和商圈之后就立马下载图片
+	 * @param hotelID
+	 * @return
+	 */
+	public void setHotelImages() {
+		hotelImageMap.clear();
+		ArrayList<Image> images = new ArrayList<Image>();
+		ArrayList<HotelVO> hotelVOs = UserInfoUtil.getInstance().getHotelVOs();
+		for(int i=0;i<hotelVOs.size();i++){
+			ArrayList<String> urls = UserInfoUtil.getInstance().getImageUrls(hotelVOs.get(i).hotelID);
+			for(int j = 0;j<urls.size();j++){
+				Image image = null;
+				if(getImageByUrl.containsKey(urls.get(j))){
+					image = getImageByUrl.get(urls.get(j));
+				}else {
+					image = new Image(urls.get(j),330,229,false,true);
+					getImageByUrl.put(urls.get(j), image);
+				}
+				images.add(image);
+			}
+			hotelImageMap.put(hotelVOs.get(i).hotelID, images);
+		}
+	}
+	
+	
 	public Image getHotelImage(String hotelID) {
 		return hotelImageMap.get(hotelID).get(0);
+	}
+	
+	public Image getRoomImage(String roomType) {
+		String url = UserInfoUtil.getInstance().getImageUrl(roomType);
+		return getImageByUrl.get(url);
 	}
 
 }
