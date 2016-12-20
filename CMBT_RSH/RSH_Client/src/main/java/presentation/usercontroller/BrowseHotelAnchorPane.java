@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -32,6 +33,8 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 	private Button createOrderButton = null;
 	private Label priceLabel = null;
 //	private ArrayList<Label> promotionLabels = null;
+	private ArrayList<Image> hotelImages = null;
+	private int imagePointer = 0;
 	private Label orderStateLabel = null;
 	private boolean left = true;
 	public BrowseHotelAnchorPane(HotelVO hotelVO,boolean left) {
@@ -42,8 +45,9 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 	}
 	
 	private void init(){
+		hotelImages = UserInfoUtil.getInstance().getHotelImages(hotelVO.hotelID);
 		hotelImageView = new ImageView();
-		hotelImageView.setImage(ImageFactory.getImageFactory().getHotelImage());
+		hotelImageView.setImage(hotelImages.get(imagePointer));
 		labelOnHotelImage = new Label();
 		lastImageArrow = new ImageView(ImageFactory.getImageFactory().getLastImageArrow());
 		nextImageArrow = new ImageView(ImageFactory.getImageFactory().getNextImageArrow());
@@ -52,6 +56,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		createOrderButton = new Button("新建订单");
 		//浏览酒店界面上显示的价格是标准间价格
 		priceLabel = new Label(String.valueOf(hotelVO.standardRoomPrice));
+		
 		//TODO 得到的促销策略应该适用于当前日期
 		//TODO bL层单利？？？？？？？
 /*		ArrayList<PromotionVO> promotionVOs = UserInfoUtil.getInstance().getPromotionVOs(hotelVO.id);
@@ -161,7 +166,10 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
-				
+				if(imagePointer-1>=0){
+					imagePointer--;
+					hotelImageView.setImage(hotelImages.get(imagePointer));
+				}
 			}
 		});
 		nextImageArrow.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -169,7 +177,10 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
-				
+				if(imagePointer+1!=hotelImages.size()){
+					imagePointer++;
+					hotelImageView.setImage(hotelImages.get(imagePointer));
+				}
 			}
 		});
 	}

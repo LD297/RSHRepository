@@ -27,6 +27,7 @@ import constant.Sexuality;
 import constant.SortBy;
 import constant.SortMethod;
 import constant.StateOfOrder;
+import javafx.scene.image.Image;
 import vo.CreditRecordVO;
 import vo.HotelVO;
 import vo.OrderInfo;
@@ -287,6 +288,15 @@ public String getHotelID() {
      */
     public StateOfOrder getOrderStateOfUser(String hotelID) {
 		return orderForUser.getOrderStateOfUser(userID, hotelID);
+	}
+    
+    /**
+     * 浏览酒店界面调用，得到该酒店的所有图片
+     */
+    public ArrayList<Image> getHotelImages(String hotelID) {
+		ArrayList<String> urls = hotelService.getImageAddresses(hotelID);
+		ArrayList<Image> images = ImageFactory.getImageFactory().getHotelImages(urls);
+		return images;
 	}
     
     /**

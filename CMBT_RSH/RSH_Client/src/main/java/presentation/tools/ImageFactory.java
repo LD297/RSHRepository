@@ -4,6 +4,7 @@ import constant.Role;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 
@@ -43,6 +44,7 @@ public class ImageFactory {
     private Image unexecutedOrderImage = new Image("/images/exclamation.png");//未执行订单
     private Image phoneImage = new Image("/images/电话图标.png");
     private Image penImage = new Image("/images/pen.png");
+   
 
     public Image getPenImage() {
 		return penImage;
@@ -150,6 +152,15 @@ public class ImageFactory {
 
 	public Image getUnexecutedOrderImage() {
 		return unexecutedOrderImage;
+	}
+	
+	public ArrayList<Image> getHotelImages(ArrayList<String> urls) {
+		ArrayList<Image> images = new ArrayList<Image>();
+		for(int i=0;i<urls.size();i++){
+			Image image = new Image(urls.get(i),330,229,false,true);
+			images.add(image);
+		}
+		return images;
 	}
 
 }

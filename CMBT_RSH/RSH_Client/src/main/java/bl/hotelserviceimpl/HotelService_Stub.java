@@ -33,7 +33,7 @@ public class HotelService_Stub implements HotelService{
 	@Override
 	public ArrayList<RoomVO> getRoomList(String id) {
 		RoomVO vo1 = new RoomVO("001", "单人间", 20, 200, "basic");
-		RoomVO vo2 = new RoomVO("002", "双人间", 10, 300, "basic");
+		RoomVO vo2 = new RoomVO("002", "标准间", 10, 300, "basic");
 		RoomVO vo3 = new RoomVO("003", "三人间", 30, 400, "basic");
 		RoomVO vo4 = new RoomVO("004", "大床房", 50, 500, "basic");
 		RoomVO vo5 = new RoomVO("005", "小床房", 15, 600, "special");
@@ -96,15 +96,31 @@ public class HotelService_Stub implements HotelService{
 	public ArrayList<String> getImageAddresses(String hotelID) {
 		// TODO Auto-generated method stub
 		ArrayList<String> imageUrls = new ArrayList<>();
-		imageUrls.add("http://i1.piimg.com/4851/e80b91b9c46f0a61.jpg");
-		imageUrls.add("http://i1.piimg.com/4851/68b5adb5d8cafda2.jpg");
-		return null;
+		imageUrls.add("http://i1.piimg.com/4851/e80b91b9c46f0a61.jpg");//酒店图片
+		imageUrls.add("http://p1.bqimg.com/4851/57e9209924eaf3c8.jpg");//单人间
+		imageUrls.add("http://p1.bqimg.com/4851/332b3d840e84488e.jpg");//标准间
+		imageUrls.add("http://p1.bpimg.com/4851/fabade19b78d6293.jpg");//小床房
+		imageUrls.add("http://p1.bpimg.com/4851/20928c273e528f8c.jpg");//大床房
+		imageUrls.add("http://p1.bpimg.com/4851/be1a1e8673028877.jpg");//三人间
+		return imageUrls;
 	}
 
 	@Override
 	public String getImageAddress(String hotelID, String roomType) {
-		// TODO Auto-generated method stub
-		return null;
+		if(roomType.equals("单人间")){
+			return "http://p1.bqimg.com/4851/57e9209924eaf3c8.jpg";
+		}else if (roomType.equals("标准间")) {
+			return "http://p1.bqimg.com/4851/332b3d840e84488e.jpg";
+		}else if (roomType.equals("小床房")) {
+			return "http://p1.bpimg.com/4851/fabade19b78d6293.jpg";
+		}else if (roomType.equals("大床房")) {
+			return "http://p1.bpimg.com/4851/20928c273e528f8c.jpg";
+		}else if (roomType.equals("三人间")) {
+			return "http://p1.bpimg.com/4851/be1a1e8673028877.jpg";
+		}else {
+			return "http://i1.piimg.com/4851/e80b91b9c46f0a61.jpg";
+		}
+		
 	}
 
 
