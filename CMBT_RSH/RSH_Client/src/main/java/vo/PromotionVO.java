@@ -55,6 +55,8 @@ public class PromotionVO {
         this.promotionID = promotionID;
         this.reason = promotionID;
 
+        this.reason = reason;
+
        this.beginDate = beginDate;
        this.endDate = endDate;
 

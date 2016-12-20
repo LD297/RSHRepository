@@ -119,7 +119,7 @@ public class RoomInfoUIController {
 
 
     private void setCurrentRoom(){
-        currentRoom = hotelService.getRoomList();
+        currentRoom = hotelService.getRoomList(hotelid);
     }
     private void setFullPageNum(){
         fullPageNum = currentRoom.size()/NUM_OF_ROOMS_SHOWN;
