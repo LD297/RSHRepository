@@ -63,7 +63,7 @@
       </Label>
       <TabPane fx:id="tabPane" layoutX="91.0" layoutY="94.0" maxWidth="640.0" minWidth="632.0" prefHeight="496.0" prefWidth="632.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="94.0">
         <tabs>
-            <Tab fx:id="exceptionalTab" onSelectionChanged="#exceptionalTabSelected" text="  异常  ">
+            <Tab text="  异常  ">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="610.0">
                      <children>
@@ -72,7 +72,7 @@
                               <Separator prefHeight="0.0" prefWidth="642.0" GridPane.rowIndex="1" />
                               <Separator prefWidth="200.0" GridPane.rowIndex="3" />
                               <Separator prefWidth="200.0" GridPane.rowIndex="5" />
-                              <AnchorPane maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0">
+                              <AnchorPane fx:id="showPane0" maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0">
                                  <children>
                                     <Label layoutX="56.0" layoutY="12.0" text="15105191234(sunshine)" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="12.0">
                                        <font>
@@ -106,16 +106,6 @@
                                        </font>
                                     </Label>
                                     <Label layoutX="364.0" layoutY="46.0" text="2016-10-11" AnchorPane.leftAnchor="364.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="82.0" text="2016-10-09">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="117.0" text="2016-10-11">
                                        <font>
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
@@ -165,19 +155,9 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="253.0" layoutY="82.0" text="实际入住: " AnchorPane.bottomAnchor="47.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="118.0" text="实际离开: " AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="2">
+                              <AnchorPane fx:id="showPane1" maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="2">
                                  <children>
                                     <Label layoutX="56.0" layoutY="12.0" text="15105191234(sunshine)" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="12.0">
                                        <font>
@@ -211,16 +191,6 @@
                                        </font>
                                     </Label>
                                     <Label layoutX="364.0" layoutY="46.0" text="2016-10-11" AnchorPane.leftAnchor="364.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="82.0" text="2016-10-09">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="117.0" text="2016-10-11">
                                        <font>
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
@@ -270,19 +240,9 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="253.0" layoutY="82.0" text="实际入住: " AnchorPane.bottomAnchor="47.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="118.0" text="实际离开: " AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="4">
+                              <AnchorPane fx:id="showPane2" maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="4">
                                  <children>
                                     <Label layoutX="56.0" layoutY="12.0" text="15105191234(sunshine)" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="12.0">
                                        <font>
@@ -316,16 +276,6 @@
                                        </font>
                                     </Label>
                                     <Label layoutX="364.0" layoutY="46.0" text="2016-10-11" AnchorPane.leftAnchor="364.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="82.0" text="2016-10-09">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="117.0" text="2016-10-11">
                                        <font>
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
@@ -375,358 +325,7 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="253.0" layoutY="82.0" text="实际入住: " AnchorPane.bottomAnchor="47.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="118.0" text="实际离开: " AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
                                     <Label layoutX="444.0" layoutY="109.0" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="150.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="0.0" prefWidth="680.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints maxHeight="168.0" minHeight="10.0" percentHeight="0.0" prefHeight="145.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="94.0" minHeight="0.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="168.0" minHeight="10.0" percentHeight="0.0" prefHeight="145.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="211.0" minHeight="3.0" prefHeight="8.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="168.0" minHeight="10.0" percentHeight="0.0" prefHeight="145.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="168.0" minHeight="10.0" percentHeight="0.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab fx:id="revokedTab" onSelectionChanged="#revokedTabSelected" text="  已撤销  ">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="610.0">
-                     <children>
-                        <GridPane layoutX="10.0" layoutY="10.0" maxWidth="680.0" minWidth="575.0" prefHeight="463.0" prefWidth="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                           <children>
-                              <Separator prefHeight="0.0" prefWidth="642.0" GridPane.rowIndex="1" />
-                              <Separator prefWidth="200.0" GridPane.rowIndex="3" />
-                              <Separator prefWidth="200.0" GridPane.rowIndex="5" />
-                              <AnchorPane maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0">
-                                 <children>
-                                    <Label layoutX="56.0" layoutY="12.0" text="15105191234(sunshine)" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="58.0" layoutY="46.0" text="12345678912345678912345678" AnchorPane.leftAnchor="56.0" />
-                                    <Label layoutX="56.0" layoutY="82.0" text="单人间" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="82.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="139.0" layoutY="82.0" prefHeight="16.0" prefWidth="25.0" text="100" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="139.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="200.0" layoutY="82.0" text="￥ 40000" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="200.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="85.0" layoutY="116.0" text="2016-11-19" AnchorPane.bottomAnchor="13.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="12.0" text="2016-10-09" AnchorPane.leftAnchor="364.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="46.0" text="2016-10-11" AnchorPane.leftAnchor="364.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="82.0" text="2016-10-09">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="117.0" text="2016-10-11">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="25.0" layoutY="13.0" text="用户: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="13.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="21.0" layoutY="47.0" text="编号: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="19.0" layoutY="82.0" text="类型: " AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="82.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="106.0" layoutY="82.0" text="数量: " AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="106.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="164.0" layoutY="82.0" text="价值: " AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="164.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="20.0" layoutY="117.0" text="生成日期: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="117.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="12.0" text="预计入住: " AnchorPane.rightAnchor="323.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="46.0" text="预计离开: " AnchorPane.rightAnchor="323.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="82.0" text="实际入住: " AnchorPane.bottomAnchor="47.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="118.0" text="实际离开: " AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="614.0" layoutY="116.0" text="已撤销" textFill="#ff5a5f" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="2">
-                                 <children>
-                                    <Label layoutX="56.0" layoutY="12.0" text="15105191234(sunshine)" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="58.0" layoutY="46.0" text="12345678912345678912345678" AnchorPane.leftAnchor="56.0" />
-                                    <Label layoutX="56.0" layoutY="82.0" text="单人间" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="82.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="139.0" layoutY="82.0" prefHeight="16.0" prefWidth="25.0" text="100" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="139.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="200.0" layoutY="82.0" text="￥ 40000" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="200.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="85.0" layoutY="116.0" text="2016-11-19" AnchorPane.bottomAnchor="13.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="12.0" text="2016-10-09" AnchorPane.leftAnchor="364.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="46.0" text="2016-10-11" AnchorPane.leftAnchor="364.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="82.0" text="2016-10-09">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="117.0" text="2016-10-11">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="25.0" layoutY="13.0" text="用户: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="13.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="21.0" layoutY="47.0" text="编号: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="19.0" layoutY="82.0" text="类型: " AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="82.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="106.0" layoutY="82.0" text="数量: " AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="106.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="164.0" layoutY="82.0" text="价值: " AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="164.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="20.0" layoutY="117.0" text="生成日期: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="117.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="12.0" text="预计入住: " AnchorPane.rightAnchor="323.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="46.0" text="预计离开: " AnchorPane.rightAnchor="323.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="82.0" text="实际入住: " AnchorPane.bottomAnchor="47.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="118.0" text="实际离开: " AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="232.0" layoutY="60.0" text="已撤销" textFill="#ff5a5f" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="4">
-                                 <children>
-                                    <Label layoutX="56.0" layoutY="12.0" text="15105191234(sunshine)" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="58.0" layoutY="46.0" text="12345678912345678912345678" AnchorPane.leftAnchor="56.0" />
-                                    <Label layoutX="56.0" layoutY="82.0" text="单人间" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="82.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="139.0" layoutY="82.0" prefHeight="16.0" prefWidth="25.0" text="100" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="139.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="200.0" layoutY="82.0" text="￥ 40000" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="200.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="85.0" layoutY="116.0" text="2016-11-19" AnchorPane.bottomAnchor="13.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="12.0" text="2016-10-09" AnchorPane.leftAnchor="364.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="46.0" text="2016-10-11" AnchorPane.leftAnchor="364.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="82.0" text="2016-10-09">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="364.0" layoutY="117.0" text="2016-10-11">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="25.0" layoutY="13.0" text="用户: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="13.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="21.0" layoutY="47.0" text="编号: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="19.0" layoutY="82.0" text="类型: " AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="82.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="106.0" layoutY="82.0" text="数量: " AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="106.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="164.0" layoutY="82.0" text="价值: " AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="164.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="20.0" layoutY="117.0" text="生成日期: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="117.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="12.0" text="预计入住: " AnchorPane.rightAnchor="323.0" AnchorPane.topAnchor="12.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="46.0" text="预计离开: " AnchorPane.rightAnchor="323.0" AnchorPane.topAnchor="46.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="82.0" text="实际入住: " AnchorPane.bottomAnchor="47.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="253.0" layoutY="118.0" text="实际离开: " AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="74.0" layoutY="36.0" text="已撤销" textFill="#ff5a5f" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0">
                                        <font>
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
@@ -752,5 +351,10 @@
             </Tab>
         </tabs>
       </TabPane>
+      <CheckBox fx:id="isHalfCheckBox" layoutX="617.0" layoutY="58.0" mnemonicParsing="false" text="恢复信用值一半" textFill="#00a699">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </CheckBox>
    </children>
 </AnchorPane>

@@ -55,7 +55,7 @@ public class WebSalesmanHomepageUIController {
     private static PromotionUIController promotionUIController;
     private static ExceptionalOrderUIController exceptionalOrderUIController;
     private static TopUpCreditUIController topUpCreditUIController;
-    private static AboutUsUIController makeMemberStandardUIController;
+    private static MakeMemberStandardUIController makeMemberStandardUIController;
 
     private static final int NUM_OF_NEXTPAGE = 4;
 

@@ -62,6 +62,9 @@ public class PromotionVO {
         this.scopeNum = scopeNum;
         this.roomType = roomType;
 
+        this.conditionType = conditionType;
+        this.conditionNum = conditionNum;
+
         this.deductionType = deductionType;
         this.deductionNum = deductionNum;
     }
