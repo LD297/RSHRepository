@@ -111,16 +111,11 @@ public class RoomAvailUIController {
     @FXML
     private Label pageLabel;
 
+    private static AnchorPane prePane;
+    private HotelService hotelService;
+    private String hotelId;
     // 当前入住日期
     private Date currentDate = Date.from(Instant.now());
-
-    // TODO 记得设置
-    private HotelService hotelService  = new HotelService_Stub();
-
-    private static AnchorPane prePane;
-    public void setPrePane(AnchorPane prePane) {
-        this.prePane = prePane;
-    }
 
     private static final int NUM_OF_ITEMS = 4;
     private static final int NUM_OF_PANES_FOR_SHOW = 6;
@@ -131,16 +126,6 @@ public class RoomAvailUIController {
     private RoomAvailVO[] roomAvailOnShow = new RoomAvailVO[NUM_OF_PANES_FOR_SHOW];
     // 存放当前页用于展示的anchorPanes
     private AnchorPane[] showPanes = new AnchorPane[NUM_OF_PANES_FOR_SHOW];
-
-    private void setShowPanes(){
-        showPanes[0] = showPane0;
-        showPanes[1] = showPane01;
-        showPanes[2] = showPane02;
-        showPanes[3] = showPane03;
-        showPanes[4] = showPane04;
-        showPanes[5] = showPane05;
-    }
-
     // （当前日期对应的）房间共几页
     private int fullPageNum = 0;
     // 最后剩下不满一页的房间有几条
@@ -150,14 +135,6 @@ public class RoomAvailUIController {
 
     private void setCurrentRoomAvailList(Date checkIn){
         currentRoomAvailList = hotelService.getRoomAvailList(checkIn);
-    }
-
-    private void refreshPage() {
-        setCurrentRoomAvailList(currentDate);
-        initCurrentPage();
-        setFullPageNum();
-        setRemainderRoomAvailNum();
-        showPage();
     }
 
     private void initCurrentPage() {
@@ -194,9 +171,11 @@ public class RoomAvailUIController {
             }
         }
     }
-    private void showRoomAvail(){
-        for(int i=0; i<NUM_OF_PANES_FOR_SHOW; i++){
-            showRoomAvailItems(showPanes[i], roomAvailOnShow[i]);
+    private void showBlank(AnchorPane theAnchorPane) {
+        // 设置改条目anchorPane所有子女不可见
+        int size = theAnchorPane.getChildren().size();
+        for(int i=0; i<size; i++){
+            theAnchorPane.getChildren().get(i).setVisible(false);
         }
     }
     private void showRoomAvailItems(AnchorPane theAnchorPane, RoomAvailVO theRoomAvail){
@@ -222,15 +201,11 @@ public class RoomAvailUIController {
             showBlank(theAnchorPane);
         }
     }
-
-    private void showBlank(AnchorPane theAnchorPane) {
-        // 设置改条目anchorPane所有子女不可见
-        int size = theAnchorPane.getChildren().size();
-        for(int i=0; i<size; i++){
-            theAnchorPane.getChildren().get(i).setVisible(false);
+    private void showRoomAvail(){
+        for(int i=0; i<NUM_OF_PANES_FOR_SHOW; i++){
+            showRoomAvailItems(showPanes[i], roomAvailOnShow[i]);
         }
     }
-
     private void showPage() {
         // 流程：set当前页的roomAvail->初始化showPanes->显示roomAvail
         if(currentPage>=0&&currentPage<fullPageNum){
@@ -393,7 +368,31 @@ public class RoomAvailUIController {
         assert datePicker != null : "fx:id=\"datePicker\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
 
         setShowPanes();
-        refreshPage();
+    }
+
+    public void setPrePane(AnchorPane prePane) {
+        this.prePane = prePane;
+    }
+    public void setHotelService(HotelService hotelService) {
+        this.hotelService = hotelService;
+    }
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
+    }
+    private void setShowPanes(){
+        showPanes[0] = showPane0;
+        showPanes[1] = showPane01;
+        showPanes[2] = showPane02;
+        showPanes[3] = showPane03;
+        showPanes[4] = showPane04;
+        showPanes[5] = showPane05;
+    }
+    public void refreshPage() {
+        setCurrentRoomAvailList(currentDate);
+        initCurrentPage();
+        setFullPageNum();
+        setRemainderRoomAvailNum();
+        showPage();
     }
 }
 

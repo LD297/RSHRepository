@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
+import bl.orderservice.OrderForHotel;
+import bl.promotionservice.PromotionService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import presentation.tools.HotelAndWebSalesmanUIFactory;
+import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import vo.HotelVO;
 
 public class HotelHomepageUIController {
@@ -44,6 +46,14 @@ public class HotelHomepageUIController {
     @FXML
     private ImageView basicInfo;
 
+    private String hotelId;
+
+    private HotelService hotelService;
+
+    private PromotionService promotionService;
+
+    private OrderForHotel orderForHotel;
+
     // 酒店信息维护界面根结点
     private static AnchorPane hotelBasicInfoUIPane;
     // 酒店信息维护界面控制器
@@ -69,30 +79,21 @@ public class HotelHomepageUIController {
     // 关于我们界面控制器
     private static AboutUsUIController aboutUsUIController;
 
-    private HotelVO hotelVO;
-
-    private HotelService hotelService;
-
-    public void setHotelVO(HotelVO hotelVO){
-        this.hotelVO = hotelVO;
-        init();
-    }
-
-
+    // Login界面set进来的
     public void setHotelService(HotelService hotelService) {
         this.hotelService = hotelService;
     }
-
-    private void init() {
-        // TODO 看看要不要在首页加每个酒店的id或者头像或者名称信息
+    public void setPromotionService(PromotionService promotionService) {
+        this.promotionService = promotionService;
     }
-
-    // TODO 代码格式一致，后期考虑优化
+    public void setOrderForHotel(OrderForHotel orderForHotel) {
+        this.orderForHotel = orderForHotel;
+    }
 
     @FXML
     void changeToBasicInfoUI(MouseEvent event) {
         // 加载酒店基本信息维护界面
-        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getHotelBasicInfoUILoader();
+        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getHotelBasicInfoUILoader();
         // 加载酒店信息维护界面根结点
         if(hotelBasicInfoUIPane==null)
             try {
@@ -105,15 +106,14 @@ public class HotelHomepageUIController {
             hotelBasicInfoUIController = loader.getController();
         // 传入酒店首页根结点引用
         hotelBasicInfoUIController.setPrePane(anchorPane);
-        // 传入酒店基本信息
-        hotelBasicInfoUIController.setHotelVO(hotelVO);
-        hotelBasicInfoUIController.init();
         // 配置hotelService
         hotelBasicInfoUIController.setHotelService(hotelService);
+        hotelBasicInfoUIController.setHotelId(hotelId);
+        hotelBasicInfoUIController.refreshPage();
 
         Scene scene = null;
         if(hotelBasicInfoUIPane.getScene()==null)
-            scene = new Scene(hotelBasicInfoUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
+            scene = new Scene(hotelBasicInfoUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = hotelBasicInfoUIPane.getScene();
 
@@ -125,12 +125,11 @@ public class HotelHomepageUIController {
     @FXML
     void changeToPromotionUI(MouseEvent event) {
         // 加载促销策略维护界面
-        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getPromotionUILoader();
+        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getPromotionUILoader();
         // 加载促销策略维护界面根结点
         if(promotionUIPane==null)
             try {
                 promotionUIPane = (AnchorPane)loader.load();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -139,10 +138,15 @@ public class HotelHomepageUIController {
                 promotionUIController = loader.getController();
         // 传入酒店首页根结点引用
         promotionUIController.setPrePane(anchorPane);
+        // 配置promotionService
+        promotionUIController.setPromotionService(promotionService);
+        promotionUIController.setIsHotel(true);
+        promotionUIController.setIdForSearchPro(hotelId);
+        promotionUIController.refreshPage();
 
         Scene scene = null;
         if(promotionUIPane.getScene()==null)
-            scene = new Scene(promotionUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
+            scene = new Scene(promotionUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = promotionUIPane.getScene();
 
@@ -153,7 +157,7 @@ public class HotelHomepageUIController {
     @FXML
     void changeToAboutUsUI(MouseEvent event) {
         // 加载关于我们界面
-        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getAboutUsUILoader();
+        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getAboutUsUILoader();
         // 加载关于我们界面根结点
         if(aboutUsUIPane==null)
             try {
@@ -169,7 +173,7 @@ public class HotelHomepageUIController {
 
         Scene scene = null;
         if(aboutUsUIPane.getScene()==null)
-            scene = new Scene(aboutUsUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
+            scene = new Scene(aboutUsUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = aboutUsUIPane.getScene();
 
@@ -181,7 +185,7 @@ public class HotelHomepageUIController {
     @FXML
     void changeToCheckOrderUI(MouseEvent event) {
         // 加载订单搜索并浏览界面
-        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getCheckOrderUILoader();
+        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getCheckOrderUILoader();
 
         // 加载订单搜索并浏览界面根结点
         if(checkOrderUIPane==null)
@@ -195,10 +199,13 @@ public class HotelHomepageUIController {
             checkOrderUIController = loader.getController();
         // 传入酒店首页根结点引用
         checkOrderUIController.setPrePane(anchorPane);
+        // 配置orderForHotel
+        checkOrderUIController.setOrderForHotel(orderForHotel);
+        checkOrderUIController.setHotelId(hotelId);
 
         Scene scene = null;
         if(checkOrderUIPane.getScene()==null)
-            scene = new Scene(checkOrderUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
+            scene = new Scene(checkOrderUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = checkOrderUIPane.getScene();
 
@@ -209,10 +216,11 @@ public class HotelHomepageUIController {
     @FXML
     void changeToRoomAvailUI(MouseEvent event) {
         // 加载可用客房信息维护界面
-        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getRoomAvailUILoader();
+        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getRoomAvailUILoader();
         // 加载可用客房信息维护界面根结点
         if(roomAvailUIPane==null)
             try {
+                System.out.println((loader==null)+"~~");
                 roomAvailUIPane = (AnchorPane) loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -222,10 +230,14 @@ public class HotelHomepageUIController {
             roomAvailUIController = loader.getController();
         // 传入酒店首页根结点引用
         roomAvailUIController.setPrePane(anchorPane);
+        // 配置hotelService
+        roomAvailUIController.setHotelService(hotelService);
+        roomAvailUIController.setHotelId(hotelId);
+        roomAvailUIController.refreshPage();
 
         Scene scene = null;
         if(roomAvailUIPane.getScene()==null)
-            scene = new Scene(roomAvailUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
+            scene = new Scene(roomAvailUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = roomAvailUIPane.getScene();
 
@@ -242,5 +254,8 @@ public class HotelHomepageUIController {
         assert roomAvail != null : "fx:id=\"roomAvail\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert basicInfo != null : "fx:id=\"basicInfo\" was not injected: check your FXML file '酒店首页.fxml'.";
 
+    }
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
     }
 }

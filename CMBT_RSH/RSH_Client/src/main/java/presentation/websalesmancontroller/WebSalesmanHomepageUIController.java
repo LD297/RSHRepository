@@ -7,10 +7,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import presentation.hotelcontroller.AboutUsUIController;
 import presentation.hotelcontroller.PromotionUIController;
-import presentation.tools.HotelAndWebSalesmanUIFactory;
-import presentation.tools.Locator;
+import presentation.hotelcontrollertools.HotelUIFXMLFactory;
+import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,10 +59,10 @@ public class WebSalesmanHomepageUIController {
     private static final int NUM_OF_NEXTPAGE = 4;
 
     private void prePareNextPage() {
-        FXMLLoader loader0 = HotelAndWebSalesmanUIFactory.getInstance().getPromotionUILoader();
-        FXMLLoader loader1 = HotelAndWebSalesmanUIFactory.getInstance().getExceptionalOrderUILoader();
-        FXMLLoader loader2 = HotelAndWebSalesmanUIFactory.getInstance().getTopUpCreditUILoader();
-        FXMLLoader loader3 = HotelAndWebSalesmanUIFactory.getInstance().getMakeMemberStandardUILoader();
+        FXMLLoader loader0 = WebSalesmanUIFXMLFactory.getInstance().getPromotionUILoader();
+        FXMLLoader loader1 = WebSalesmanUIFXMLFactory.getInstance().getExceptionalOrderUILoader();
+        FXMLLoader loader2 = WebSalesmanUIFXMLFactory.getInstance().getTopUpCreditUILoader();
+        FXMLLoader loader3 = WebSalesmanUIFXMLFactory.getInstance().getMakeMemberStandardUILoader();
 
         // 加载各页根结点
         if(promotionPane==null)
@@ -111,7 +110,7 @@ public class WebSalesmanHomepageUIController {
     void changeToPromotionUI(MouseEvent event) {
         Scene scene = null;
         if(promotionPane.getScene()==null)
-            scene = new Scene(promotionPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
+            scene = new Scene(promotionPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = promotionPane.getScene();
 
@@ -123,7 +122,7 @@ public class WebSalesmanHomepageUIController {
     void changeToExceptionalOrderUI(MouseEvent event) {
         Scene scene = null;
         if(exceptionalOrderPane.getScene()==null)
-            scene = new Scene(exceptionalOrderPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
+            scene = new Scene(exceptionalOrderPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = exceptionalOrderPane.getScene();
 
@@ -142,6 +141,8 @@ public class WebSalesmanHomepageUIController {
             scene = topUpCreditPane.getScene();
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
+        stage.setX(400);
+        stage.setY(160);
         stage.setScene(scene);
     }
 
@@ -156,6 +157,8 @@ public class WebSalesmanHomepageUIController {
             scene = makeMemberStandardPane.getScene();
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
+        stage.setX(400);
+        stage.setY(160);
         stage.setScene(scene);
     }
 

@@ -49,6 +49,9 @@ public class TopUpCreditUIController {
 
     @FXML
     void backButtonClicked(MouseEvent event) {
+        Stage stage = (Stage)anchorPane.getScene().getWindow();
+        stage.setX(320);
+        stage.setY(46);
         ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
 
     }

@@ -19,7 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import presentation.tools.HotelAndWebSalesmanUIFactory;
+import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import vo.RoomVO;
 
 public class RoomInfoUIController {
@@ -93,9 +93,8 @@ public class RoomInfoUIController {
 
     // 酒店主界面根结点
     private AnchorPane prePane;
-    // TODO
-    private String hotelid;
-    private HotelService hotelService = new HotelService_Stub();
+    private HotelService hotelService;
+    private String hotelId;
     // 当前的room
     private ArrayList<RoomVO> currentRoom;
     private static final int NUM_OF_ITEMS = 4;
@@ -109,17 +108,11 @@ public class RoomInfoUIController {
     private int fullPageNum = 0;
     private int remainderRoomVONum = 0;
 
-    public void setAnchorPane(AnchorPane anchorPane) {
-        this.anchorPane = anchorPane;
+    private void initCurrentPage(){
+        currentPage = 0;
     }
-
-    public void setPrePane(AnchorPane prePane) {
-        this.prePane = prePane;
-    }
-
-
     private void setCurrentRoom(){
-        currentRoom = hotelService.getRoomList(hotelid);
+        currentRoom = hotelService.getRoomList(hotelId);
     }
     private void setFullPageNum(){
         fullPageNum = currentRoom.size()/NUM_OF_ROOMS_SHOWN;
@@ -127,45 +120,6 @@ public class RoomInfoUIController {
     private void setRemainderRoomVONum(){
         remainderRoomVONum = currentRoom.size()%NUM_OF_ROOMS_SHOWN;
     }
-
-    private void setShowPanes(){
-        showPanes =  new AnchorPane[]{showPane0, showPane01, showPane02,
-                showPane03, showPane04,showPane05};
-    }
-    private void initCurrentPage(){
-        currentPage = 0;
-    }
-    private void showPageNumber(){
-        if(pageLabel!=null)
-            pageLabel.setText(String.valueOf(currentPage+1));
-    }
-
-    public void refreshPage(){
-        initCurrentPage();
-        setCurrentRoom();
-        setFullPageNum();
-        setRemainderRoomVONum();
-        showPage();
-    }
-    private void showPage(){
-        if((currentPage>=0)&&(currentPage<fullPageNum))
-            setRoomOnShow(true);
-        else if((remainderRoomVONum!=0)&&(currentPage==fullPageNum))
-            setRoomOnShow(false);
-        else if(currentPage<0){
-            System.out.println("已是第一页！");
-            currentPage++;
-            return;
-        }  else {
-            System.out.println("已是最后一页！");
-             currentPage--;
-            return;
-        }
-        initShowPanes();
-        showRoom();
-        showPageNumber();
-    }
-
     private void setRoomOnShow(boolean isFullPage){
         if(isFullPage){
             for(int i=0; i<NUM_OF_ROOMS_SHOWN; i++)
@@ -178,10 +132,24 @@ public class RoomInfoUIController {
             }
         }
     }
-
-    private void showRoom(){
-        for(int i=0; i<NUM_OF_ROOMS_SHOWN; i++)
-            showRoomItems(showPanes[i], roomOnShow[i]);
+    // 设置showPanes所有子女可见
+    private void initShowPanes(){
+        if(showPanes!=null){
+            int size= 0;
+            for(int i=0; i<NUM_OF_ROOMS_SHOWN; i++){
+                size = showPanes[i].getChildren().size();
+                for(int j=0; j<size; j++){
+                    showPanes[i].getChildren().get(j).setVisible(true);
+                }
+            }
+        }
+    }
+    // 设置该条目anchorPane所有子女不可见
+    private void showBlank(AnchorPane theAnchorPane){
+        int size = theAnchorPane.getChildren().size();
+        for(int i=0; i<size; i++){
+            theAnchorPane.getChildren().get(i).setVisible(false);
+        }
     }
     private void showRoomItems(AnchorPane theAnchorPane, RoomVO theRoom){
         if(theRoom!=null){
@@ -204,26 +172,31 @@ public class RoomInfoUIController {
             showBlank(theAnchorPane);
         }
     }
-
-    // 设置该条目anchorPane所有子女不可见
-    private void showBlank(AnchorPane theAnchorPane){
-        int size = theAnchorPane.getChildren().size();
-        for(int i=0; i<size; i++){
-            theAnchorPane.getChildren().get(i).setVisible(false);
-        }
+    private void showRoom(){
+        for(int i=0; i<NUM_OF_ROOMS_SHOWN; i++)
+            showRoomItems(showPanes[i], roomOnShow[i]);
     }
-
-    // 设置showPanes所有子女可见
-    private void initShowPanes(){
-        if(showPanes!=null){
-            int size= 0;
-            for(int i=0; i<NUM_OF_ROOMS_SHOWN; i++){
-                size = showPanes[i].getChildren().size();
-                for(int j=0; j<size; j++){
-                    showPanes[i].getChildren().get(j).setVisible(true);
-                }
-            }
+    private void showPageNumber(){
+        if(pageLabel!=null)
+            pageLabel.setText(String.valueOf(currentPage+1));
+    }
+    private void showPage(){
+        if((currentPage>=0)&&(currentPage<fullPageNum))
+            setRoomOnShow(true);
+        else if((remainderRoomVONum!=0)&&(currentPage==fullPageNum))
+            setRoomOnShow(false);
+        else if(currentPage<0){
+            System.out.println("已是第一页！");
+            currentPage++;
+            return;
+        }  else {
+            System.out.println("已是最后一页！");
+            currentPage--;
+            return;
         }
+        initShowPanes();
+        showRoom();
+        showPageNumber();
     }
 
     private RoomVO createRoomByPane(AnchorPane thePane){
@@ -281,7 +254,7 @@ public class RoomInfoUIController {
 
     @FXML
     void addRoom(MouseEvent event) {
-        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getAddRoomUILoader();
+        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getAddRoomUILoader();
         if(addRoomAnchorPane==null)
             try {
                 addRoomAnchorPane = (AnchorPane) loader.load();
@@ -327,6 +300,26 @@ public class RoomInfoUIController {
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
 
         setShowPanes();
-        refreshPage();
+    }
+    public void setPrePane(AnchorPane prePane) {
+        this.prePane = prePane;
+    }
+    public void setHotelService(HotelService hotelService) {
+        this.hotelService = hotelService;
+    }
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
+    }
+    private void setShowPanes(){
+        showPanes =  new AnchorPane[]{showPane0, showPane01, showPane02,
+                showPane03, showPane04,showPane05};
+    }
+
+    public void refreshPage(){
+        initCurrentPage();
+        setCurrentRoom();
+        setFullPageNum();
+        setRemainderRoomVONum();
+        showPage();
     }
 }

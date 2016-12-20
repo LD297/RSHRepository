@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import presentation.logincontroller.LoginUIController;
 import presentation.usercontroller.BrowseHotelUIController;
 import presentation.usercontroller.GuideUIController;
@@ -290,12 +291,12 @@ public class UIJumpTool {
     public void changeLoginToHotelHomePage(){
         Parent root = null;
         try {
-            root = HotelAndWebSalesmanUIFactory.getInstance().getHomepageUILoader().load();
+            root = HotelUIFXMLFactory.getInstance().getHotelHomepageUILoader().load();
         } catch (IOException e) {
             e.printStackTrace();
         }
         stage.setTitle("hotel");
-        stage.setScene(new Scene(root, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT));
+        stage.setScene(new Scene(root, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT));
     }
 
     //从注册界面返回到登陆界面

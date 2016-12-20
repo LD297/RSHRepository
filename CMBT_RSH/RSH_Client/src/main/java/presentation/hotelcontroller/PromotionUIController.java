@@ -18,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import presentation.tools.HotelAndWebSalesmanUIFactory;
+import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import vo.PromotionVO;
 
 public class PromotionUIController {
@@ -98,7 +98,7 @@ public class PromotionUIController {
     // 如果不是酒店，是网站营销人员，该string为网站营销人员所在地区
     private String idForSearchPro;
     // 如果不是酒店，该string为网站营销人员id
-    private String webSalesId;
+    private String webSalesId = null;
 
     // 该酒店所有促销策略
     private ArrayList<PromotionVO> promotions ;
@@ -108,22 +108,9 @@ public class PromotionUIController {
 
     private PromotionVO[] promotionOnShow = new PromotionVO[NUM_OF_PROS_SHOWN];
     private AnchorPane[] showPanes;
-
     private int currentPage = 0;
     private int fullPageNum = 0;
     private int remainderProNum = 0;
-
-    public void setPrePane(AnchorPane prePane) {
-        this.prePane = prePane;
-    }
-
-    public void setIsHotel(boolean isHotel){
-        this.isHotel = isHotel;
-    }
-    public void setIdForSearchPro(String id){idForSearchPro  = id;}
-    public void setWebSalesId(String webSalesId){
-        this.webSalesId = webSalesId;
-    }
 
     private void setPromotions(){
         if(isHotel)
@@ -131,6 +118,16 @@ public class PromotionUIController {
         else
             promotions = promotionService.getPromotionOfDistrict(idForSearchPro);
     }
+    private void initCurrentPage(){
+        currentPage = 0;
+    }
+    private void setFullPageNum(){
+        fullPageNum = promotions.size()/NUM_OF_PROS_SHOWN;
+    }
+    private void setRemainderProNum(){
+        remainderProNum = promotions.size()%NUM_OF_PROS_SHOWN;
+    }
+
     private void setPromotionOnShow(boolean isFullPage){
         if(isFullPage)
             for(int i=0; i<NUM_OF_PROS_SHOWN; i++)
@@ -141,22 +138,6 @@ public class PromotionUIController {
             for(int i=remainderProNum; i<NUM_OF_PROS_SHOWN; i++)
                 promotionOnShow[i] = null;
         }
-    }
-    private void setShowPanes(){
-        showPanes = new AnchorPane[]{showPane0, showPane01, showPane02,
-                showPane03, showPane04, showPane05};
-    }
-    private void initCurrentPage(){
-        currentPage = 0;
-    }
-    private void showPageNum(){
-        pageLabel.setText(String.valueOf(currentPage+1));
-    }
-    private void setFullPageNum(){
-        fullPageNum = promotions.size()/NUM_OF_PROS_SHOWN;
-    }
-    private void setRemainderProNum(){
-        remainderProNum = promotions.size()%NUM_OF_PROS_SHOWN;
     }
     // 设置showPanes所有子女可见
     private void initShowPanes(){
@@ -226,6 +207,9 @@ public class PromotionUIController {
             showPromotionItems(showPanes[i], promotionOnShow[i]);
         }
     }
+    private void showPageNum(){
+        pageLabel.setText(String.valueOf(currentPage+1));
+    }
     private void showPage(){
         if((currentPage>=0)&&(currentPage<fullPageNum))
             setPromotionOnShow(true);
@@ -245,13 +229,6 @@ public class PromotionUIController {
         showPageNum();
     }
 
-    private void refreshPage(){
-        setPromotions();
-        initCurrentPage();
-        setFullPageNum();
-        setRemainderProNum();
-        showPage();
-    }
 
     private void delete(AnchorPane thePane){
         String promotionID = ((Label)thePane.getChildren().get(0)).getText();
@@ -310,7 +287,7 @@ public class PromotionUIController {
 
     @FXML
     void addPromotion(MouseEvent event){
-        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getAddPromotionUILoader();
+        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getAddPromotionUILoader();
         if(addPromotionAnchorPane==null)
             try {
                 addPromotionAnchorPane = loader.load();
@@ -355,12 +332,30 @@ public class PromotionUIController {
         assert showPane0 != null : "fx:id=\"showPane0\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
 
-        setIsHotel(true);
-        setIdForSearchPro("酒店12345678");
-        setWebSalesId(null);
-
         setShowPanes();
+    }
 
-        refreshPage();
+    public void setPrePane(AnchorPane prePane) {
+        this.prePane = prePane;
+    }
+    public void setPromotionService(PromotionService promotionService) {
+        this.promotionService = promotionService;
+    }
+    public void setIsHotel(boolean isHotel){
+        this.isHotel = isHotel;
+    }
+    public void setIdForSearchPro(String id){this.idForSearchPro  = id;}
+    public void setWebSalesId(String webSalesId){
+        this.webSalesId = webSalesId;
+    }
+    private void setShowPanes(){
+        showPanes = new AnchorPane[]{showPane0, showPane01, showPane02, showPane03, showPane04, showPane05};
+    }
+    public void refreshPage(){
+        setPromotions();
+        initCurrentPage();
+        setFullPageNum();
+        setRemainderProNum();
+        showPage();
     }
 }

@@ -3,15 +3,21 @@ package presentation.logincontroller;
 /**
  * Created by john on 2016/12/4.
  */
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import bl.hotelservice.HotelService;
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginController;
+import bl.orderservice.OrderForHotel;
+import bl.promotionServiceimpl.PromotionService_Stub;
+import bl.promotionservice.PromotionService;
 import constant.ResultMessage;
 import constant.Role;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -22,7 +28,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.hotelcontroller.HotelHomepageUIController;
+import presentation.hotelcontrollertools.HotelServiceFactory;
+import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import presentation.tools.*;
+import presentation.websalesmancontrollertools.WebSalesmanServiceFactory;
+import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
 
 /**
  * 登陆界面，其中如果是用户，可以选择注册
@@ -144,8 +155,50 @@ public class LoginUIController {
 			}else{
 				passwordFormLabel.setText("用户名或密码错误");
 			}
-		}
-/*        if(resultMessage==resultMessage.succeed){
+		} else if(role==Role.hotel){
+            LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
+
+            if(loginService.checkOnline(Role.hotel, id, password).equals(ResultMessage.succeed)){
+
+                HotelService hotelService = HotelServiceFactory.getInstance().getHotelService();
+                PromotionService promotionService = HotelServiceFactory.getInstance().getPromotionService();
+                OrderForHotel orderForHotel = HotelServiceFactory.getInstance().getOrderForHotel();
+
+                FXMLLoader loader = HotelUIFXMLFactory.getInstance().getHotelHomepageUILoader();
+                try {
+                    AnchorPane hotelHomepage = loader.load();
+                    HotelHomepageUIController hotelHomepageUIController = loader.getController();
+
+                    hotelHomepageUIController.setHotelId(id);
+                    hotelHomepageUIController.setHotelService(hotelService);
+                    hotelHomepageUIController.setPromotionService(promotionService);
+                    hotelHomepageUIController.setOrderForHotel(orderForHotel);
+
+                    Stage stage = (Stage)idField.getScene().getWindow();
+                    Scene scene = null;
+                    if(hotelHomepage.getScene()==null)
+                        scene = new Scene(hotelHomepage, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
+                    else
+                        scene = hotelHomepage.getScene();
+                    stage.setScene(scene);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                passwordFormLabel.setText("用户名或密码错误");
+            }
+
+        } else if(role.equals(Role.websalesman)){
+            LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
+            if(loginService.checkOnline(Role.websalesman, id, password ).equals(ResultMessage.succeed)){
+                PromotionService promotionService = WebSalesmanServiceFactory.getInstance().getPromotionService();
+
+
+            }
+
+
+        }/*        if(resultMessage==resultMessage.succeed){
             if(role == Role.user){
 
             }else if(role==Role.hotel){

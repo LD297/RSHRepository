@@ -120,9 +120,7 @@ public class AddRoomUIController {
                 property = "特色";
             RoomVO newRoom = new RoomVO("", type, num, price, property);
             hotelService.addSpecialRoom(newRoom);
-            int size = prePane.getChildren().size();
-            prePane.getChildren().get(size-2).setVisible(false);
-            prePane.getChildren().remove(size-1);
+            backButtonClicked(null);
         }
     }
 

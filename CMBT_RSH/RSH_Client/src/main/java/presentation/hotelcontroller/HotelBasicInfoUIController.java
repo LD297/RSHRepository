@@ -22,8 +22,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import presentation.tools.HotelBasicInfoUICheck;
-import presentation.tools.HotelAndWebSalesmanUIFactory;
+import presentation.hotelcontrollertools.HotelBasicInfoUICheck;
+import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import vo.HotelVO;
 
 public class HotelBasicInfoUIController {
@@ -86,17 +86,14 @@ public class HotelBasicInfoUIController {
     private TextArea facilityTextArea;
 
     private AnchorPane prePane;
-
+    private HotelService hotelService;
+    private String hotelId;
     // 从数据库加载的酒店原始信息
     private HotelVO hotelVO;
-
-    private HotelService hotelService;
-
     // 客房信息维护界面根结点
     private AnchorPane roomInfoUIPane;
     // 客房信息维护界面控制器
     private RoomInfoUIController roomInfoUIController;
-
     // 该界面是否可编辑
     boolean editable = false;
 
@@ -179,7 +176,7 @@ public class HotelBasicInfoUIController {
     @FXML
     void changeToRoomInfoUI(MouseEvent event) {
         // 加载客房信息维护界面
-        FXMLLoader loader = HotelAndWebSalesmanUIFactory.getInstance().getRoomInfoUILoader();
+        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getRoomInfoUILoader();
         // 加载客房信息维护界面根结点
         if(roomInfoUIPane==null)
             try {
@@ -190,14 +187,16 @@ public class HotelBasicInfoUIController {
         // 得到客房信息维护界面控制器
         if(roomInfoUIController==null)
             roomInfoUIController = loader.getController();
-        // 设置客房信息维护界面根结点
-        roomInfoUIController.setAnchorPane(roomInfoUIPane);
         // 传入酒店信息维护界面根结点
         roomInfoUIController.setPrePane(anchorPane);
+        // 配置hotelService
+        roomInfoUIController.setHotelService(hotelService);
+        roomInfoUIController.setHotelId(hotelId);
+        roomInfoUIController.refreshPage();
 
         Scene scene = null;
         if(roomInfoUIPane.getScene()==null)
-            scene = new Scene(roomInfoUIPane, HotelAndWebSalesmanUIFactory.UI_WIDTH, HotelAndWebSalesmanUIFactory.UI_HEIGHT);
+            scene = new Scene(roomInfoUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = roomInfoUIPane.getScene();
 
@@ -243,20 +242,13 @@ public class HotelBasicInfoUIController {
             // TODO 弹出提示框
         }
 
+        refreshPage();
         editable = false;
     }
 
     @FXML
     void backButtonClicked(MouseEvent event){
         ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
-    }
-
-    public void setAnchorPane(AnchorPane anchorePane){
-        this.anchorPane = anchorePane;
-    }
-
-    public void setPrePane(AnchorPane prePane) {
-        this.prePane = prePane;
     }
 
     @FXML
@@ -281,16 +273,20 @@ public class HotelBasicInfoUIController {
 
     }
 
-    public void setHotelVO(HotelVO hotelVO) {
-        this.hotelVO = hotelVO;
+    public void setPrePane(AnchorPane prePane) {
+        this.prePane = prePane;
     }
-
-
     public void setHotelService(HotelService hotelService) {
         this.hotelService = hotelService;
     }
-
-    public void init(){
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
+    }
+    public void setHotelVO() {
+        this.hotelVO = hotelService.getHotelInfo(hotelId);
+    }
+    public void refreshPage() {
+        setHotelVO();
         nameTextField.setText(hotelVO.name);
         idLabel.setText(hotelVO.hotelID);
         telTextField.setText(hotelVO.tel);
@@ -302,4 +298,5 @@ public class HotelBasicInfoUIController {
         introductionTextArea.setText(hotelVO.briefIntro);
         facilityTextArea.setText(hotelVO.facility);
     }
+
 }

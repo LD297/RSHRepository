@@ -99,10 +99,12 @@ public class CheckOrderUIController {
     @FXML
     private TabPane tabPane;
 
-    OrderForHotel orderForHotel = new OrderForHotel_Stub();
 
     // 酒店首页根结点
     private AnchorPane prePane;
+    private OrderForHotel orderForHotel;
+    private String hotelId;
+
     // 当前tab的anchorPane
     private AnchorPane currentTabAnchorPane;
     // 当前tabAnchorPane的唯一子女gridPane
@@ -146,27 +148,18 @@ public class CheckOrderUIController {
     // 当前页数，从0开始计，显示出来要加一
     private int currentPage=0;
 
-    // TODO 是否要删？
-    public void setAnchorPane(AnchorPane anchorPane) {
-        this.anchorPane = anchorPane;
-    }
-
-    public void setPrePane(AnchorPane prePane) {
-        this.prePane = prePane;
-    }
-
     // TODO 从数据库拿到各种order
     public void setUnexecutedOrder(){
-        this.unexecutedOrder = DataFactory.getOrderVOList(5);
+        this.unexecutedOrder = orderForHotel.hotelClassify(hotelId, StateOfOrder.unexecuted);
     }
     public void setExecutedOrder(){
-        this.executedOrder = DataFactory.getOrderVOList(4);
+        this.executedOrder = orderForHotel.hotelClassify(hotelId,StateOfOrder.executed);
     }
     public void setExceptionalOrder(){
-        this.exceptionalOrder = DataFactory.getOrderVOList(3);
+        this.exceptionalOrder = orderForHotel.hotelClassify(hotelId,StateOfOrder.abnormal);
     }
     public void setRevokedOrder(){
-        this.revokedOrder = DataFactory.getOrderVOList(2);
+        this.revokedOrder = orderForHotel.hotelClassify(hotelId, StateOfOrder.canceled);
     }
 
     // 每次更换tab回到开始页
@@ -213,7 +206,6 @@ public class CheckOrderUIController {
         aPanesForShow[1] = (AnchorPane) currentGridPane.getChildren().get(4);
         aPanesForShow[2] = (AnchorPane) currentGridPane.getChildren().get(5);
     }
-
     // 初始化anchorPanes所有子女可见
     private void initAPanesForShow() {
         if(aPanesForShow!=null){
@@ -226,10 +218,11 @@ public class CheckOrderUIController {
             }
         }
     }
-    // 显示存放于orderOnShow[]的有限条订单
-    private void showOrder() {
-        for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
-            showOrderItems(aPanesForShow[i], orderOnShow[i]);
+    // 设置该条目anchorPane所有子女不可见
+    private void showBlank(AnchorPane theAnchorPane) {
+        int size = theAnchorPane.getChildren().size();
+        for(int i=0; i<size; i++){
+            theAnchorPane.getChildren().get(i).setVisible(false);
         }
     }
     private void showOrderItems(AnchorPane theAnchorePane, OrderVO theOrder){
@@ -281,11 +274,10 @@ public class CheckOrderUIController {
             showBlank(theAnchorePane);
         }
     }
-    // 设置该条目anchorPane所有子女不可见
-    private void showBlank(AnchorPane theAnchorPane) {
-        int size = theAnchorPane.getChildren().size();
-        for(int i=0; i<size; i++){
-            theAnchorPane.getChildren().get(i).setVisible(false);
+    // 显示存放于orderOnShow[]的有限条订单
+    private void showOrder() {
+        for(int i=0; i<NUM_OF_ORDERS_SHOWN; i++){
+            showOrderItems(aPanesForShow[i], orderOnShow[i]);
         }
     }
     private void showPage() {
@@ -308,7 +300,6 @@ public class CheckOrderUIController {
         showOrder();
         showPageNumber();
     }
-
     private void showPageNumber() {
         if(pageNumberLabel!=null)
             pageNumberLabel.setText(String.valueOf(currentPage+1));
@@ -566,5 +557,15 @@ public class CheckOrderUIController {
         assert telescope != null : "fx:id=\"telescope\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
         assert tabPane != null : "fx:id=\"tabPane\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
 
+    }
+
+    public void setPrePane(AnchorPane prePane) {
+        this.prePane = prePane;
+    }
+    public void setOrderForHotel(OrderForHotel orderForHotel) {
+        this.orderForHotel = orderForHotel;
+    }
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
     }
 }

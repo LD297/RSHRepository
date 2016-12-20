@@ -1,18 +1,18 @@
-package presentation.tools;
+package presentation.hotelcontrollertools;
 
 import javafx.fxml.FXMLLoader;
 
 /**
  * Created by a297 on 16/12/5.
  */
-public class HotelAndWebSalesmanUIFactory {
+public class HotelUIFXMLFactory {
 
     public static final int UI_WIDTH = 800;
     public static final int UI_HEIGHT = 720;
 
-    private static HotelAndWebSalesmanUIFactory hotelUIFactory;
+    private static HotelUIFXMLFactory hotelUIFXMLFactory;
 
-    private FXMLLoader homepageUILoader;
+    private FXMLLoader hotelHomepageUILoader;
 
     private FXMLLoader hotelBasicInfoUILoader;
 
@@ -30,24 +30,17 @@ public class HotelAndWebSalesmanUIFactory {
 
     private FXMLLoader addPromotionUILoader;
 
-    private FXMLLoader webSalesmanHomepageUILoader;
 
-    private FXMLLoader exceptionalOrderUILoader;
-
-    private FXMLLoader topUpCreditUILoader;
-
-    private FXMLLoader makeMemberStandardUILoader;
-
-    public static HotelAndWebSalesmanUIFactory getInstance(){
-        if(hotelUIFactory==null)
-            hotelUIFactory = new HotelAndWebSalesmanUIFactory();
-        return hotelUIFactory;
+    public static HotelUIFXMLFactory getInstance(){
+        if(hotelUIFXMLFactory==null)
+            hotelUIFXMLFactory = new HotelUIFXMLFactory();
+        return hotelUIFXMLFactory;
     }
 
-    public FXMLLoader getHomepageUILoader(){
-        if(homepageUILoader==null)
-            homepageUILoader = new FXMLLoader(getClass().getResource("/fxml/酒店首页.fxml"));
-        return homepageUILoader;
+    public FXMLLoader getHotelHomepageUILoader(){
+        if(hotelHomepageUILoader==null)
+            hotelHomepageUILoader = new FXMLLoader(getClass().getResource("/fxml/酒店首页.fxml"));
+        return hotelHomepageUILoader;
     }
 
     public FXMLLoader getHotelBasicInfoUILoader(){
@@ -98,26 +91,5 @@ public class HotelAndWebSalesmanUIFactory {
         return addPromotionUILoader;
     }
 
-    public FXMLLoader getExceptionalOrderUILoader(){
-        if(exceptionalOrderUILoader==null)
-            exceptionalOrderUILoader = new FXMLLoader(getClass().getResource("/fxml/网站营销人员浏览异常订单.fxml"));
-        return exceptionalOrderUILoader;
-    }
 
-    public FXMLLoader getTopUpCreditUILoader(){
-        if(topUpCreditUILoader==null)
-            topUpCreditUILoader = new FXMLLoader(getClass().getResource("/fxml/信用充值界面.fxml"));
-        return topUpCreditUILoader;
-    }
-
-    public FXMLLoader getWebSalesmanHomepageUILoader() {
-        if(webSalesmanHomepageUILoader==null)
-            webSalesmanHomepageUILoader = new FXMLLoader(getClass().getResource("/fxml/网站营销人员首页.fxml"));
-        return webSalesmanHomepageUILoader;
-    }
-    public FXMLLoader getMakeMemberStandardUILoader() {
-        if(makeMemberStandardUILoader==null)
-            makeMemberStandardUILoader = new FXMLLoader(getClass().getResource("/fxml/制定会员等级界面.fxml"));
-        return makeMemberStandardUILoader;
-    }
 }
