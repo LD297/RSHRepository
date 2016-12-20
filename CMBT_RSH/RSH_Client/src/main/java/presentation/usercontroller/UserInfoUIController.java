@@ -71,13 +71,15 @@ public class UserInfoUIController {
     @FXML
     void ensureChangeHeadImage(ActionEvent event) {
     	String url = urlField.getText().trim();
-    	//更换数据库头像地址
-    	UserInfoUtil.getInstance().modifyHeadImage(url);
-    	Image image = new Image(url, 250, 250, false, true);
-    	headImage.setImage(image);
-    	//更换导航栏上的头像
-    	GuideUIController guideUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getGuideUIController();
-    	guideUIController.setHeadImage(url);
+    	if(!url.equals("")){
+    		//更换数据库头像地址
+        	UserInfoUtil.getInstance().modifyHeadImage(url);
+        	Image image = new Image(url, 250, 250, false, true);
+        	headImage.setImage(image);
+        	//更换导航栏上的头像
+        	GuideUIController guideUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getGuideUIController();
+        	guideUIController.setHeadImage(url);
+    	}
     	urlField.setText("");
     	urlField.setVisible(false);
     }

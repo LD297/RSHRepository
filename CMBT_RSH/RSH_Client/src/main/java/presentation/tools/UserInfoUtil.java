@@ -289,15 +289,7 @@ public String getHotelID() {
     public StateOfOrder getOrderStateOfUser(String hotelID) {
 		return orderForUser.getOrderStateOfUser(userID, hotelID);
 	}
-    
-    /**
-     * 浏览酒店界面调用，得到该酒店的所有图片
-     */
-    public ArrayList<Image> getHotelImages(String hotelID) {
-		ArrayList<Image> images = ImageFactory.getImageFactory().getHotelImages(hotelID);
-		return images;
-	}
-    
+  
     /**
      * 图片工厂调用，得到一个酒店的所有图片地址
      */

@@ -176,10 +176,10 @@ public class ImageFactory {
 	 */
 	public void setHotelImages() {
 		hotelImageMap.clear();
-		ArrayList<Image> images = new ArrayList<Image>();
 		ArrayList<HotelVO> hotelVOs = UserInfoUtil.getInstance().getHotelVOs();
 		for(int i=0;i<hotelVOs.size();i++){
 			ArrayList<String> urls = UserInfoUtil.getInstance().getImageUrls(hotelVOs.get(i).hotelID);
+			ArrayList<Image> images = new ArrayList<Image>();
 			for(int j = 0;j<urls.size();j++){
 				Image image = null;
 				if(getImageByUrl.containsKey(urls.get(j))){

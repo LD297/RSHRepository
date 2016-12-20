@@ -45,7 +45,8 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 	}
 	
 	private void init(){
-		hotelImages = UserInfoUtil.getInstance().getHotelImages(hotelVO.hotelID);
+		hotelImages = ImageFactory.getImageFactory().getHotelImages(hotelVO.hotelID);
+		System.out.println(hotelImages.size());
 		hotelImageView = new ImageView();
 		hotelImageView.setImage(hotelImages.get(imagePointer));
 		labelOnHotelImage = new Label();

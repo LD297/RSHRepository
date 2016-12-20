@@ -66,11 +66,7 @@ public class SearchHotelUIController {
     
     @FXML
     private Label messageLabel;
-    @FXML
-    private AnchorPane loadingAnchorPane;
-    @FXML
-    private ImageView loadingImage;
-
+  
 
     @FXML
     void toSetArea(ActionEvent event) {
@@ -120,7 +116,6 @@ public class SearchHotelUIController {
     		messageLabel.setVisible(true);
     	}else {
     		messageLabel.setVisible(false);
-    		loadingImage.setVisible(true);
     		UserInfoUtil.getInstance().setHotelAreaAndAddress(province,city,district);
     		//跳转到加载界面
     		UIJumpTool.getUiJumpTool().changeToLoading();
@@ -145,7 +140,6 @@ public class SearchHotelUIController {
         assert areaCombox != null : "fx:id=\"areaCombox\" was not injected: check your FXML file '搜索酒店.fxml'.";
         assert cityCombox != null : "fx:id=\"cityCombox\" was not injected: check your FXML file '搜索酒店.fxml'.";
         assert messageLabel != null : "fx:id=\"messageLabel\" was not injected: check your FXML file '搜索酒店.fxml'.";
-        assert loadingAnchorPane != null : "fx:id=\"loadingAnchorPane\" was not injected: check your FXML file '搜索酒店.fxml'.";
         init();
     }
 }
