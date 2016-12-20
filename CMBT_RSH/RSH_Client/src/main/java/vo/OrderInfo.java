@@ -5,6 +5,14 @@ import java.util.Date;
 public class OrderInfo {
 	String hotelID;
 	String roomType;
+	public void setHotelID(String hotelID) {
+		this.hotelID = hotelID;
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
 	int roomNum;
 	Date checkInDate;
 	Date checkOutDate;

@@ -125,7 +125,9 @@ public class SelectConditionUIController {
 		}
 		if(!(highestPriceField.getText().trim()==null||highestPriceField.getText().trim().equals(""))){
 			double highestPrice = Double.parseDouble(highestPriceField.getText().trim());
-	    	selectConditionVO.highestPrice = highestPrice;
+			if(highestPrice>=selectConditionVO.lowestPrice){
+				selectConditionVO.highestPrice = highestPrice;
+			}
 		}
     	
     	//将;ocaldate转换成date
@@ -209,7 +211,7 @@ public class SelectConditionUIController {
 				.observableArrayList(new ArrayList<String>(Arrays.asList(new String[] { "1","2","3","4","5","6" })));
 		starLevelCombobox.setItems(starLevelObservableList);
 		ObservableList<String> roomTypeList = FXCollections
-				.observableArrayList(new ArrayList<String>(Arrays.asList(new String[] { "单人间", "双人间", "其他" })));
+				.observableArrayList(new ArrayList<String>(Arrays.asList(new String[] { "单人间", "标准间", "其他" })));
 		roomtypeCombobox.setItems(roomTypeList);
 		//设置入住时间的时间选择器只能从今天开始选起
 		checkinTimePicker.setValue(LocalDate.now());

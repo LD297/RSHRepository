@@ -50,8 +50,8 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		hotelNameLabel = new Label(hotelVO.name);
 //		promotionLabels = new ArrayList<Label>();
 		createOrderButton = new Button("新建订单");
-		//TODO 在逻辑层添加get酒店最低价格的方法
-		priceLabel = new Label("￥2340/晚");
+		//浏览酒店界面上显示的价格是标准间价格
+		priceLabel = new Label(String.valueOf(hotelVO.standardRoomPrice));
 		//TODO 得到的促销策略应该适用于当前日期
 		//TODO bL层单利？？？？？？？
 /*		ArrayList<PromotionVO> promotionVOs = UserInfoUtil.getInstance().getPromotionVOs(hotelVO.id);

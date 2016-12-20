@@ -8,9 +8,9 @@ import java.util.Iterator;
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.hotelservice.SearchHotelService;
+import bl.hotelserviceimpl.HotelService_Stub;
 import bl.hotelserviceimpl.SearchHotelService_Stub;
 import bl.hotelserviceimpl.controller.HotelInfoService_Stub;
-import bl.hotelserviceimpl.hotel_stub.HotelService_Stub;
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginService_Stub;
 import bl.orderservice.OrderForHotel;
@@ -75,7 +75,7 @@ public String getHotelID() {
     private LoginService loginService = new LoginService_Stub();
     // use stub
     private SearchHotelService searchHotelService = new SearchHotelService_Stub();
-    private HotelService hotelService = null;;
+    private HotelService hotelService =  new HotelService_Stub();
     private OrderForUser orderForUser = new OrderForUser_Stub();
     private OrderForHotel orderForHotel = new OrderForHotel_Stub();
     private PromotionService promotionService = new PromotionService_Stub();
@@ -202,7 +202,7 @@ public String getHotelID() {
      * 酒店详情界面调用,根据酒店id得到酒店vo
      */
     public HotelVO getHotelVO() {
-    	hotelService = new HotelService_Stub();
+    	
     	HotelVO hotelVO = hotelService.getHotelInfo(hotelID);
 		return hotelVO;
 	}
@@ -212,7 +212,6 @@ public String getHotelID() {
      * @return
      */
     public ArrayList<RoomVO> getRoomVos() {
-    	hotelService = new HotelService_Stub();
 		ArrayList<RoomVO> roomVOs = hotelService.getRoomList();
 		return roomVOs;
 	}
@@ -254,6 +253,8 @@ public String getHotelID() {
      * 生成订单界面调用，得到该订单的总价值
      */
     public String getOrderPriceAndPromotion(OrderInfo orderInfo){
+    	orderInfo.setHotelID(hotelID);
+    	orderInfo.setUserID(userID);
     	return orderForUser.getTrueValue(orderInfo);
     }
     

@@ -1,7 +1,7 @@
 package presentation.Main;
 
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.hotel_stub.HotelService_Stub;
+import bl.hotelserviceimpl.HotelService_Stub;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

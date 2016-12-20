@@ -1,4 +1,4 @@
-package bl.hotelserviceimpl.hotel_stub;
+package bl.hotelserviceimpl;
 
 import java.util.ArrayList;
 import java.util.Date;
