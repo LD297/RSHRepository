@@ -11,8 +11,10 @@ import bl.hotelservice.HotelService;
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginController;
 import bl.orderservice.OrderForHotel;
+import bl.orderservice.OrderForWebsite;
 import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
+import bl.userservice.UserService;
 import constant.ResultMessage;
 import constant.Role;
 import javafx.event.ActionEvent;
@@ -32,6 +34,7 @@ import presentation.hotelcontroller.HotelHomepageUIController;
 import presentation.hotelcontrollertools.HotelServiceFactory;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import presentation.tools.*;
+import presentation.websalesmancontroller.WebSalesmanHomepageUIController;
 import presentation.websalesmancontrollertools.WebSalesmanServiceFactory;
 import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
 
@@ -164,27 +167,23 @@ public class LoginUIController {
                 PromotionService promotionService = HotelServiceFactory.getInstance().getPromotionService();
                 OrderForHotel orderForHotel = HotelServiceFactory.getInstance().getOrderForHotel();
 
-                FXMLLoader loader = HotelUIFXMLFactory.getInstance().getHotelHomepageUILoader();
-                try {
-                    AnchorPane hotelHomepage = loader.load();
-                    HotelHomepageUIController hotelHomepageUIController = loader.getController();
+                AnchorPane hotelHomepage = HotelUIFXMLFactory.getInstance().getHotelHomePage();
+                HotelHomepageUIController hotelHomepageUIController = HotelUIFXMLFactory.getInstance().
+                        getHotelHomepageUIController();
 
-                    hotelHomepageUIController.setHotelId(id);
-                    hotelHomepageUIController.setHotelService(hotelService);
-                    hotelHomepageUIController.setPromotionService(promotionService);
-                    hotelHomepageUIController.setOrderForHotel(orderForHotel);
+                hotelHomepageUIController.setPrePane(loginBelowAnchorpane);
+                hotelHomepageUIController.setHotelId(id);
+                hotelHomepageUIController.setHotelService(hotelService);
+                hotelHomepageUIController.setPromotionService(promotionService);
+                hotelHomepageUIController.setOrderForHotel(orderForHotel);
 
-                    Stage stage = (Stage)idField.getScene().getWindow();
-                    Scene scene = null;
-                    if(hotelHomepage.getScene()==null)
-                        scene = new Scene(hotelHomepage, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
-                    else
-                        scene = hotelHomepage.getScene();
-                    stage.setScene(scene);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Stage stage = (Stage)idField.getScene().getWindow();
+                Scene scene = null;
+                if(hotelHomepage.getScene()==null)
+                    scene = new Scene(hotelHomepage, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
+                else
+                    scene = hotelHomepage.getScene();
+                stage.setScene(scene);
             } else {
                 passwordFormLabel.setText("用户名或密码错误");
             }
@@ -192,12 +191,31 @@ public class LoginUIController {
         } else if(role.equals(Role.websalesman)){
             LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
             if(loginService.checkOnline(Role.websalesman, id, password ).equals(ResultMessage.succeed)){
+
                 PromotionService promotionService = WebSalesmanServiceFactory.getInstance().getPromotionService();
+                OrderForWebsite orderForWebsite = WebSalesmanServiceFactory.getInstance().getOrderForWebsite();
+                UserService userService = WebSalesmanServiceFactory.getInstance().getUserService();
 
+                AnchorPane webSalesmanHomepage = WebSalesmanUIFXMLFactory.getInstance().getWebSalesmanHomepage();
+                WebSalesmanHomepageUIController webSalesmanHomepageUIController = WebSalesmanUIFXMLFactory.
+                        getInstance().getWebSalesmanHomepageUIController();
 
+                webSalesmanHomepageUIController.setPrePane(loginBelowAnchorpane);
+                webSalesmanHomepageUIController.setWebSalesmanId(id);
+                webSalesmanHomepageUIController.setPromotionService(promotionService);
+                webSalesmanHomepageUIController.setOrderForWebsite(orderForWebsite);
+                webSalesmanHomepageUIController.setUserService(userService);
+
+                Stage stage = (Stage)idField.getScene().getWindow();
+                Scene scene = null;
+                if(webSalesmanHomepage.getScene()==null)
+                    scene = new Scene(webSalesmanHomepage, WebSalesmanUIFXMLFactory.UI_WIDTH, WebSalesmanUIFXMLFactory.UI_HEIGHT);
+                else
+                    scene = webSalesmanHomepage.getScene();
+                stage.setScene(scene);
+            } else {
+                passwordFormLabel.setText("用户名或密码错误");
             }
-
-
         }/*        if(resultMessage==resultMessage.succeed){
             if(role == Role.user){
 

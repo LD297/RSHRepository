@@ -1,6 +1,10 @@
 package presentation.hotelcontrollertools;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+import presentation.hotelcontroller.HotelHomepageUIController;
+
+import java.io.IOException;
 
 /**
  * Created by a297 on 16/12/5.
@@ -30,6 +34,9 @@ public class HotelUIFXMLFactory {
 
     private FXMLLoader addPromotionUILoader;
 
+    private AnchorPane hotelHomePage;
+
+    private HotelHomepageUIController hotelHomepageUIController;
 
     public static HotelUIFXMLFactory getInstance(){
         if(hotelUIFXMLFactory==null)
@@ -91,5 +98,32 @@ public class HotelUIFXMLFactory {
         return addPromotionUILoader;
     }
 
+
+    public AnchorPane getHotelHomePage() {
+        if(hotelHomePage==null){
+            FXMLLoader loader = HotelUIFXMLFactory.getInstance().getHotelHomepageUILoader();
+            try {
+                hotelHomePage = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return hotelHomePage;
+    }
+
+    //
+    public HotelHomepageUIController getHotelHomepageUIController() {
+        if(hotelHomepageUIController==null){
+            FXMLLoader loader = HotelUIFXMLFactory.getInstance().getHotelHomepageUILoader();
+            if(hotelHomePage==null)
+                try {
+                    hotelHomePage = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            hotelHomepageUIController = loader.getController();
+        }
+        return hotelHomepageUIController;
+    }
 
 }

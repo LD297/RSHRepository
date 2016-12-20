@@ -41,5 +41,10 @@
             <Image url="@../images/会员等级.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="logoutImageView" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#logout" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
+         <image>
+            <Image url="@../images/logout.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

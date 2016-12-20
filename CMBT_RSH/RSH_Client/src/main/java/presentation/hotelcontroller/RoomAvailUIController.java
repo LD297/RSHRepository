@@ -134,7 +134,7 @@ public class RoomAvailUIController {
     private int currentPage=0;
 
     private void setCurrentRoomAvailList(Date checkIn){
-        currentRoomAvailList = hotelService.getRoomAvailList(checkIn);
+        currentRoomAvailList = hotelService.getRoomAvailList(hotelId, checkIn);
     }
 
     private void initCurrentPage() {
@@ -244,9 +244,9 @@ public class RoomAvailUIController {
                 currentDate = Date.from(Instant.now());
             // TODO 告诉逻辑实现，最后两个日期，任一为null；默认设为系统当前时间
             if(change==1)
-                hotelService.plusRoomAvail(roomType.getText(), availNum, currentDate, currentDate);
+                hotelService.plusRoomAvail(hotelId, roomType.getText(), availNum, currentDate, currentDate);
             else if(change==-1)
-                hotelService.minusRoomAvail(roomType.getText(), availNum, currentDate, currentDate);
+                hotelService.minusRoomAvail(hotelId, roomType.getText(), availNum, currentDate, currentDate);
         }
     }
 
@@ -330,7 +330,7 @@ public class RoomAvailUIController {
     @FXML
     void gotoDate(MouseEvent event) {
         currentDate = (Date)datePicker.getUserData();
-        currentRoomAvailList = hotelService.getRoomAvailList(currentDate);
+        currentRoomAvailList = hotelService.getRoomAvailList(hotelId, currentDate);
         refreshPage();
     }
 

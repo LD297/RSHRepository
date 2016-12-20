@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -26,7 +28,7 @@
             <Image url="@../images/酒店首页c1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="promotin" fitHeight="99.0" fitWidth="100.0" layoutX="476.0" layoutY="182.0" onMouseClicked="#changeToPromotionUI">
+      <ImageView fx:id="promotion" fitHeight="99.0" fitWidth="100.0" layoutX="476.0" layoutY="182.0" onMouseClicked="#changeToPromotionUI">
          <image>
             <Image url="@../images/酒店首页c2.png" />
          </image>
@@ -44,6 +46,11 @@
       <ImageView fx:id="roomAvail" fitHeight="100.0" fitWidth="99.0" layoutX="190.0" layoutY="417.0" onMouseClicked="#changeToRoomAvailUI">
          <image>
             <Image url="@../images/c5.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="logoutImageView" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#logout" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
+         <image>
+            <Image url="@../images/logout.png" />
          </image>
       </ImageView>
    </children>

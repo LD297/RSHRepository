@@ -1,5 +1,8 @@
 package presentation.websalesmancontroller;
 
+import bl.orderservice.OrderForWebsite;
+import bl.promotionservice.PromotionService;
+import bl.userservice.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -38,6 +41,9 @@ public class WebSalesmanHomepageUIController {
     private ImageView logo;
 
     @FXML
+    private ImageView logoutImageView;
+
+    @FXML
     private ImageView topUpCredit;
 
     @FXML
@@ -45,6 +51,16 @@ public class WebSalesmanHomepageUIController {
 
     @FXML
     private ImageView whiteBackground;
+
+    private AnchorPane prePane;
+
+    private String webSalesmanId;
+
+    private PromotionService promotionService;
+
+    private OrderForWebsite orderForWebsite;
+
+    private UserService userService;
 
     private static AnchorPane promotionPane;
     private static AnchorPane exceptionalOrderPane;
@@ -134,15 +150,16 @@ public class WebSalesmanHomepageUIController {
     void changeToTopUpCreditUI(MouseEvent event) {
         Scene scene = null;
         if(topUpCreditPane.getScene()==null){
-            scene = new Scene(topUpCreditPane, 600, 450);
+            scene = new Scene(topUpCreditPane,
+                    WebSalesmanUIFXMLFactory.TOPUPCREDIT_WIDTH, WebSalesmanUIFXMLFactory.TOPUPCREDIT_HEIGHT);
         }
 
         else
             scene = topUpCreditPane.getScene();
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
-        stage.setX(400);
-        stage.setY(160);
+        stage.setX(WebSalesmanUIFXMLFactory.TOPUPCREDIT_X);
+        stage.setY(WebSalesmanUIFXMLFactory.TOPUPCREDIT_Y);
         stage.setScene(scene);
     }
 
@@ -150,16 +167,23 @@ public class WebSalesmanHomepageUIController {
     void changeToMakeMemberStandardUI(MouseEvent event) {
         Scene scene = null;
         if(makeMemberStandardPane.getScene()==null){
-            scene = new Scene(makeMemberStandardPane, 600, 450);
+            scene = new Scene(makeMemberStandardPane,
+                    WebSalesmanUIFXMLFactory.TOPUPCREDIT_WIDTH, WebSalesmanUIFXMLFactory.TOPUPCREDIT_HEIGHT);
         }
 
         else
             scene = makeMemberStandardPane.getScene();
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
-        stage.setX(400);
-        stage.setY(160);
+        stage.setX(WebSalesmanUIFXMLFactory.TOPUPCREDIT_X);
+        stage.setY(WebSalesmanUIFXMLFactory.TOPUPCREDIT_Y);
         stage.setScene(scene);
+    }
+
+    @FXML
+    void logout(MouseEvent event){
+        ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
+
     }
 
     @FXML
@@ -168,9 +192,26 @@ public class WebSalesmanHomepageUIController {
         assert promotin != null : "fx:id=\"promotin\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
         assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
         assert logo != null : "fx:id=\"logo\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
+        assert logoutImageView != null : "fx:id=\"logoutImageView\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
         assert topUpCredit != null : "fx:id=\"topUpCredit\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
         assert exceptionalOrder != null : "fx:id=\"exceptionalOrder\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
         assert whiteBackground != null : "fx:id=\"whiteBackground\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
         prePareNextPage();
+    }
+
+    public void setPrePane(AnchorPane prePane) {
+        this.prePane = prePane;
+    }
+    public void setWebSalesmanId(String webSalesmanId) {
+        this.webSalesmanId = webSalesmanId;
+    }
+    public void setPromotionService(PromotionService promotionService) {
+        this.promotionService = promotionService;
+    }
+    public void setOrderForWebsite(OrderForWebsite orderForWebsite) {
+        this.orderForWebsite = orderForWebsite;
+    }
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }

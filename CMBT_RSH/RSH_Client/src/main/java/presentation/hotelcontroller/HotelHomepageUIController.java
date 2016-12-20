@@ -10,6 +10,7 @@ import bl.promotionservice.PromotionService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -19,8 +20,6 @@ import vo.HotelVO;
 
 public class HotelHomepageUIController {
 
-    @FXML
-    private AnchorPane anchorPane;
 
     @FXML
     private ResourceBundle resources;
@@ -29,10 +28,16 @@ public class HotelHomepageUIController {
     private URL location;
 
     @FXML
-    private ImageView promotin;
+    private ImageView aboutUs;
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private ImageView logo;
+
+    @FXML
+    private ImageView logoutImageView;
 
     @FXML
     private ImageView whiteBackground;
@@ -45,6 +50,11 @@ public class HotelHomepageUIController {
 
     @FXML
     private ImageView basicInfo;
+
+    @FXML
+    private ImageView promotion;
+
+    private AnchorPane prePane;
 
     private String hotelId;
 
@@ -220,7 +230,6 @@ public class HotelHomepageUIController {
         // 加载可用客房信息维护界面根结点
         if(roomAvailUIPane==null)
             try {
-                System.out.println((loader==null)+"~~");
                 roomAvailUIPane = (AnchorPane) loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -244,17 +253,25 @@ public class HotelHomepageUIController {
         Stage stage = (Stage)anchorPane.getScene().getWindow();
         stage.setScene(scene);
     }
+    @FXML
+    void logout(MouseEvent event) {
+        ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
+    }
 
     @FXML
     void initialize() {
-        assert promotin != null : "fx:id=\"promotin\" was not injected: check your FXML file '酒店首页.fxml'.";
+        assert aboutUs != null : "fx:id=\"aboutUs\" was not injected: check your FXML file '酒店首页.fxml'.";
+        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert logo != null : "fx:id=\"logo\" was not injected: check your FXML file '酒店首页.fxml'.";
+        assert logoutImageView != null : "fx:id=\"logoutImageView\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert whiteBackground != null : "fx:id=\"whiteBackground\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert checkOrder != null : "fx:id=\"checkOrder\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert roomAvail != null : "fx:id=\"roomAvail\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert basicInfo != null : "fx:id=\"basicInfo\" was not injected: check your FXML file '酒店首页.fxml'.";
+        assert promotion != null : "fx:id=\"promotion\" was not injected: check your FXML file '酒店首页.fxml'.";
 
     }
+    public void setPrePane(AnchorPane prePane){this.prePane = prePane;}
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }

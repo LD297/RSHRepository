@@ -1,15 +1,32 @@
 package presentation.websalesmancontrollertools;
 
+import bl.webstaffserviceimpl.WebSalesman;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+import presentation.websalesmancontroller.WebSalesmanHomepageUIController;
+
+import java.io.IOException;
 
 /**
  * Created by a297 on 16/12/20.
  */
 public class WebSalesmanUIFXMLFactory {
 
+    public static final int UI_X = 320;
+    public static final int UI_Y = 46;
 
     public static final int UI_WIDTH = 800;
     public static final int UI_HEIGHT = 720;
+
+    public static final int TOPUPCREDIT_X = 400;
+    public static final int TOPUPCREDIT_Y = 160;
+
+    public static final int TOPUPCREDIT_WIDTH = 600;
+    public static final int TOPUPCREDIT_HEIGHT = 450;
+
+
+
+
 
     private static WebSalesmanUIFXMLFactory webSalesmanUIFXMLFactory;
 
@@ -22,6 +39,10 @@ public class WebSalesmanUIFXMLFactory {
     private FXMLLoader topUpCreditUILoader;
 
     private FXMLLoader makeMemberStandardUILoader;
+
+    private AnchorPane webSalesmanHomepage;
+
+    private WebSalesmanHomepageUIController webSalesmanHomepageUIController;
 
     public static WebSalesmanUIFXMLFactory getInstance(){
         if(webSalesmanUIFXMLFactory==null)
@@ -57,5 +78,32 @@ public class WebSalesmanUIFXMLFactory {
         if(makeMemberStandardUILoader==null)
             makeMemberStandardUILoader = new FXMLLoader(getClass().getResource("/fxml/制定会员等级界面.fxml"));
         return makeMemberStandardUILoader;
+    }
+
+    public AnchorPane getWebSalesmanHomepage() {
+        if(webSalesmanHomepage==null){
+            FXMLLoader loader = WebSalesmanUIFXMLFactory.getInstance().getWebSalesmanHomepageUILoader();
+            try {
+                webSalesmanHomepage = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return webSalesmanHomepage;
+    }
+
+    public WebSalesmanHomepageUIController getWebSalesmanHomepageUIController() {
+        if(webSalesmanHomepageUIController==null){
+            FXMLLoader loader = WebSalesmanUIFXMLFactory.getInstance().getWebSalesmanHomepageUILoader();
+            if(webSalesmanHomepage==null){
+                try {
+                    webSalesmanHomepage = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            webSalesmanHomepageUIController = loader.getController();
+        }
+        return webSalesmanHomepageUIController;
     }
 }

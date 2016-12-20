@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -55,8 +56,8 @@ public class MakeMemberStandardUIController {
         @FXML
         void backButtonClicked(MouseEvent event) {
             Stage stage = (Stage)anchorPane.getScene().getWindow();
-            stage.setX(320);
-            stage.setY(46);
+            stage.setX(WebSalesmanUIFXMLFactory.UI_X);
+            stage.setY(WebSalesmanUIFXMLFactory.UI_Y);
             ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
         }
 
