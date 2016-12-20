@@ -6,9 +6,14 @@ package presentation.usercontroller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import constant.ResultMessage;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,15 +25,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
+import presentation.tools.ImageFactory;
 import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
 import presentation.tools.UserUIFXMLFactory;
 import presentation.tools.WebManagerInfoUtil;
 import vo.DistrictHelper;
+import vo.HotelVO;
 
 public class SearchHotelUIController {
 
@@ -58,8 +66,7 @@ public class SearchHotelUIController {
     
     @FXML
     private Label messageLabel;
-    @FXML
-    private AnchorPane loadingAnchorPane;
+  
 
     @FXML
     void toSetArea(ActionEvent event) {
@@ -110,10 +117,9 @@ public class SearchHotelUIController {
     	}else {
     		messageLabel.setVisible(false);
     		UserInfoUtil.getInstance().setHotelAreaAndAddress(province,city,district);
-    		UIJumpTool.getUiJumpTool().changeToLoading();
     		//跳转到加载界面
-    		LoadingUIController loadingUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getLoadingUIController();
-    		loadingUIController.init(false);
+    		UIJumpTool.getUiJumpTool().changeToLoading();
+    		
 //    		UIJumpTool.getUiJumpTool().changeSearchHotelToBrowseHotel();
 		}
 		
@@ -134,7 +140,6 @@ public class SearchHotelUIController {
         assert areaCombox != null : "fx:id=\"areaCombox\" was not injected: check your FXML file '搜索酒店.fxml'.";
         assert cityCombox != null : "fx:id=\"cityCombox\" was not injected: check your FXML file '搜索酒店.fxml'.";
         assert messageLabel != null : "fx:id=\"messageLabel\" was not injected: check your FXML file '搜索酒店.fxml'.";
-        assert loadingAnchorPane != null : "fx:id=\"loadingAnchorPane\" was not injected: check your FXML file '搜索酒店.fxml'.";
         init();
     }
 }

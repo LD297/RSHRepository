@@ -6,9 +6,9 @@
 
 <AnchorPane fx:id="loadingAnchorPane" onMouseEntered="#mouseEntered" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.LoadingUIController">
    <children>
-      <ImageView fitHeight="240.0" fitWidth="279.0" layoutX="251.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="239.0">
+      <ImageView fitHeight="327.0" fitWidth="624.0" layoutX="88.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="182.0">
          <image>
-            <Image url="@../images/loading.gif" />
+            <Image url="@../images/loading(静).jpg" />
          </image>
       </ImageView>
    </children>
