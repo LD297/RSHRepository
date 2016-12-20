@@ -18,11 +18,6 @@ public class HotelService_Stub implements HotelService{
 				"no more info", "懒得写", 3, 99.9, "1day");
 	}
 
-	@Override
-	public HotelVO getHotelInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public ResultMessage updateHotel(HotelVO vo) {
@@ -59,7 +54,7 @@ public class HotelService_Stub implements HotelService{
 	}
 
 	@Override
-	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn) {
+	public ArrayList<RoomAvailVO> getRoomAvailList(String hotelID,Date checkIn) {
 		RoomAvailVO vo1 = new RoomAvailVO("001", "单人间", 20, 200, "basic");
 		RoomAvailVO vo2 = new RoomAvailVO("002", "双人间", 10, 300, "basic");
 		RoomAvailVO vo3 = new RoomAvailVO("003", "三人间", 30, 400, "basic");
@@ -75,19 +70,19 @@ public class HotelService_Stub implements HotelService{
 	}
 
 	@Override
-	public ResultMessage plusRoomAvail(String roomType, int num, Date checkIn, Date checkOut) {
+	public ResultMessage plusRoomAvail(String hotelID,String roomType, int num, Date checkIn, Date checkOut) {
 		// TODO Auto-generated method stub
 		return ResultMessage.succeed;
 	}
 
 	@Override
-	public ResultMessage minusRoomAvail(String roomType, int num, Date checkIn, Date checkOut) {
+	public ResultMessage minusRoomAvail(String hotelID,String roomType, int num, Date checkIn, Date checkOut) {
 		// TODO Auto-generated method stub
 		return ResultMessage.succeed;
 	}
 
 	@Override
-	public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut) {
+	public int numOfRoomAvail(String hotelID,String roomType, Date checkIn, Date checkOut) {
 		// TODO Auto-generated method stub
 		return 20;
 	}

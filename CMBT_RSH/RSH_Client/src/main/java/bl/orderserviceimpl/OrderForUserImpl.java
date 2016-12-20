@@ -106,7 +106,7 @@ public class OrderForUserImpl implements OrderForUser{
         // 酒店可用客房数量增加
         // 增加量=订单中预定的客房数量
         HotelService hotelService = new HotelController(hotelID);
-        hotelService.plusRoomAvail(room.getRoomType(),roomNum,checkIn,checkOut);
+        hotelService.plusRoomAvail(hotelID,room.getRoomType(),roomNum,checkIn,checkOut);
         // 订单状态置为已撤销
         try{
             orderDao.stateUpdate(orderID,StateOfOrder.canceled);

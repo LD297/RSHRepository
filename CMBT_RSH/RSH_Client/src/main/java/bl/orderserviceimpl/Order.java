@@ -58,8 +58,7 @@ public class Order {
 	
     public static Order getInstance(String orderID){
     	OrderVO orderVO  = getOrderInfo(orderID);
-    	Order order = changeIntoOrder(orderVO);
-    	return order;
+    	return orderVO.changeIntoOrder();
     }
     
 
@@ -222,17 +221,13 @@ public class Order {
     			checkInDate, checkOutDate, hotelDDL, generationDate, 
     			actualCheckInTime, actualCheckOutTime, 
     			cancelTime, cancelAbnormalTime);
-		return null;
+		return orderPO;
 	}
     
-    private static Order changeIntoOrder(OrderVO orderVO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public ResultMessage addAvailRoom() {
 		// TODO Auto-generated method stub
 		HotelService hotelService = new HotelController(orderID.substring(0, 10));
-		return hotelService.plusRoomAvail(RoomType, roomNumber, checkInDate, checkOutDate);
+		return hotelService.plusRoomAvail(orderID.substring(0,10),RoomType, roomNumber, checkInDate, checkOutDate);
 	}
 }

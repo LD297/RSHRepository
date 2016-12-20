@@ -6,6 +6,8 @@ import po.OrderPO;
 import java.time.LocalDate;
 import java.util.Date;
 
+import bl.orderserviceimpl.Order;
+
 /**
  * Created by sky-PC on 2016/12/10.
  */
@@ -199,6 +201,10 @@ public class OrderVO {
 	public String getRoomType() {
 		// TODO Auto-generated method stub
 		return room.getRoomType();
+	}
+	public Order changeIntoOrder() {
+		// TODO Auto-generated method stub
+		return null;
 	}
     
     

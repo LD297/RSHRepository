@@ -50,7 +50,7 @@ public class HotelController implements HotelService {
 		return hotel.getHotelInfo();
 	}
 
-	@Override
+
 	public HotelVO getHotelInfo() {
 		// TODO Auto-generated method stub
 		return getHotelInfo(hotelID);
@@ -86,19 +86,19 @@ public class HotelController implements HotelService {
 		return roomAvail.getRoomAvailList(checkIn);
 	}
 
-	@Override
+
 	public ResultMessage plusRoomAvail(String roomType, int num, Date checkIn, Date checkOut) {
 		// TODO Auto-generated method stub
 		return roomAvail.changeRoomAvail(roomType, true, num, checkIn, checkOut);
 	}
 
-	@Override
+
 	public ResultMessage minusRoomAvail(String roomType, int num, Date checkIn, Date checkOut) {
 		// TODO Auto-generated method stub
 		return roomAvail.changeRoomAvail(roomType, false, num, checkIn, checkOut);
 	}
 
-	@Override
+
 	public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut) {
 		// TODO Auto-generated method stub
 		return roomAvail.getRoomAvailNum(roomType, checkIn, checkOut);
@@ -120,6 +120,30 @@ public class HotelController implements HotelService {
 	public String getImageAddress(String hotelID, String roomType) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<RoomAvailVO> getRoomAvailList(String hotelId, Date checkIn) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage plusRoomAvail(String hotelId, String roomType, int num, Date checkIn, Date checkOut) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage minusRoomAvail(String hotelId, String roomType, int num, Date checkIn, Date checkOut) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int numOfRoomAvail(String hotelId, String roomType, Date checkIn, Date checkOut) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	
