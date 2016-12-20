@@ -118,9 +118,9 @@ public class OrderInfoUIController {
     public void init(){
     	//初始化订单中的酒店信息
     	HotelVO hotelVO = UserInfoUtil.getInstance().getHotelVO();
-		hotelName.setText(hotelVO.name);
-		hotelAddress.setText(hotelVO.addr);
-		hotelPhoneNumber.setText(hotelVO.tel);
+		hotelName.setText(hotelVO.getHotelName());
+		hotelAddress.setText(hotelVO.getDetailAddress());
+		hotelPhoneNumber.setText(hotelVO.getTel());
 		//初始化订单中的用户信息
 		UserVO userVO = UserInfoUtil.getInstance().getUserVO();
 		userName.setText(userVO.name);

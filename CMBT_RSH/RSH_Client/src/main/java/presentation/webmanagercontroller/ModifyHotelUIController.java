@@ -166,16 +166,16 @@ public class ModifyHotelUIController {
     
     public void init(HotelVO hotelVO) {
     	this.hotelVO = hotelVO;
-		hotelNameField.setText(hotelVO.name);
-		ArrayList<String> pcd = WebManagerInfoUtil.getInstance().getPCD(hotelVO.district);
+		hotelNameField.setText(hotelVO.getHotelName());
+		ArrayList<String> pcd = WebManagerInfoUtil.getInstance().getPCD(hotelVO.getDistrict());
 		provinceComboox.setValue(pcd.get(0));
 		cityCombox.setValue(pcd.get(1));
 		districtCombox.setValue(pcd.get(2));
 		ArrayList<String> provinces = WebManagerInfoUtil.getInstance().getProvinces();
 		ObservableList<String> provinceItems = FXCollections.observableArrayList(provinces);
 		provinceComboox.setItems(provinceItems);
-		addressField.setText(hotelVO.addr);
-		phoneField.setText(hotelVO.tel);
+		addressField.setText(hotelVO.getDetailAddress());
+		phoneField.setText(hotelVO.getTel());
 		passwordField.setText(hotelVO.getPassword());
 	}
 

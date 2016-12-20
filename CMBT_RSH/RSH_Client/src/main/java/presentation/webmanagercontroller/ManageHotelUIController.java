@@ -90,7 +90,7 @@ public class ManageHotelUIController {
     	boolean found = false;
     	String id = hotelIDField.getText().trim();
     	for (int i = 0; i < hotelVOs.size(); i++) {
-			if(hotelVOs.get(i).hotelID.equals(id)){
+			if(hotelVOs.get(i).getHotelID().equals(id)){
 				AnchorPane modifyHotel = WebManagerUIFXMLFactory.getInstance().getModifyHotel();
 				ModifyHotelUIController modifyHotelUIController = WebManagerUIFXMLFactory.getInstance().getModifyHotelUIController();
 				modifyHotelUIController.init(hotelVOs.get(i));

@@ -23,10 +23,10 @@ public class SingleHotelAnchorPane extends AnchorPane{
 	private ImageView phoneImage = new ImageView(ImageFactory.getImageFactory().getPhoneImage());
 
 	public SingleHotelAnchorPane(HotelVO hotelVO) {
-		nameIndoLabel.setText(hotelVO.name);
-		areaInfoLabel.setText(hotelVO.district);
-		idInfoLabel.setText(hotelVO.hotelID);
-		phoneInfoLabel.setText(hotelVO.tel);
+		nameIndoLabel.setText(hotelVO.getHotelName());
+		areaInfoLabel.setText(hotelVO.getDistrict());
+		idInfoLabel.setText(hotelVO.getHotelID());
+		phoneInfoLabel.setText(hotelVO.getTel());
 		
 		//set组件属性
 		penImage.setFitHeight(23);

@@ -287,14 +287,14 @@ public class HotelBasicInfoUIController {
     }
     public void refreshPage() {
         setHotelVO();
-        nameTextField.setText(hotelVO.name);
-        idLabel.setText(hotelVO.hotelID);
-        telTextField.setText(hotelVO.tel);
+        nameTextField.setText(hotelVO.getHotelName());
+        idLabel.setText(hotelVO.getHotelID());
+        telTextField.setText(hotelVO.getTel());
         checkInDDLTextField.setText(hotelVO.latestCheckinTime);
-        levelTextField.setText(String.valueOf(hotelVO.level));
-        gradeLabel.setText(String.valueOf(hotelVO.grade));
-        addressTextField.setText(hotelVO.addr);
-        businessAreaTextField.setText(hotelVO.district);
+        levelTextField.setText(String.valueOf(hotelVO.getLevel()));
+        gradeLabel.setText(String.valueOf(hotelVO.getGrade()));
+        addressTextField.setText(hotelVO.getDetailAddress());
+        businessAreaTextField.setText(hotelVO.getDistrict());
         introductionTextArea.setText(hotelVO.briefIntro);
         facilityTextArea.setText(hotelVO.facility);
     }

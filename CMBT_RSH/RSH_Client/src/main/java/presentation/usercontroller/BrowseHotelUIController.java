@@ -152,9 +152,9 @@ public class BrowseHotelUIController {
         String hotelName = searchNameField.getText().trim();
         boolean found  = false;
         for(int i=0;i<hotelVOs.size();i++){
-        	if(hotelVOs.get(i).name.equals(hotelName)){
+        	if(hotelVOs.get(i).getHotelName().equals(hotelName)){
  //       		UserInfoUtil.getInstance().setHotelName(hotelName);
-        		UserInfoUtil.getInstance().setHotelID(hotelVOs.get(i).hotelID);
+        		UserInfoUtil.getInstance().setHotelID(hotelVOs.get(i).getHotelID());
                 UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo();
                 found = true;
         	}

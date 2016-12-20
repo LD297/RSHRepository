@@ -84,13 +84,13 @@ private static HotelDao hotelDao = null;
 			return false;
 		if(standardPrice<selectConditionVO.lowestPrice)
 			return false;
-		if(hotelVO.grade<selectConditionVO.lowestGrade)
+		if(hotelVO.getGrade()<selectConditionVO.lowestGrade)
 			return false;
-		if(hotelVO.grade>selectConditionVO.highestGrade)
+		if(hotelVO.getGrade()>selectConditionVO.highestGrade)
 			return false;
-		if(hotelVO.level!=selectConditionVO.level)
+		if(hotelVO.getLevel()!=selectConditionVO.level)
 			return false;
-		String hotelID = hotelVO.hotelID;
+		String hotelID = hotelVO.getHotelID();
 		Hotel hotel = Hotel.getInstance(hotelID);
 		if(!hotel.hasEnoughRoom(selectConditionVO.roomType,selectConditionVO.roomNum
 				,selectConditionVO.begin,selectConditionVO.end))
@@ -105,7 +105,7 @@ private static HotelDao hotelDao = null;
 	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,String hotelName) {
 		ArrayList<HotelVO> result = new ArrayList<>();
 		for(HotelVO hotelVO:hotelList){
-			if(hotelVO.name.equals(hotelName)){
+			if(hotelVO.getHotelName().equals(hotelName)){
 				result.add(hotelVO);
 			}
 		}
@@ -148,10 +148,10 @@ private static HotelDao hotelDao = null;
 			difference = hotelVO2.standardRoomPrice-hotelVO1.standardRoomPrice;
 			break;	
 		case level:
-			difference = hotelVO2.level-hotelVO1.level;
+			difference = hotelVO2.getLevel()-hotelVO1.getLevel();
 			break;
 		case grade:
-			difference= hotelVO2.grade-hotelVO1.grade;
+			difference= hotelVO2.getGrade()-hotelVO1.getGrade();
 			break;
 		default:
 			break;

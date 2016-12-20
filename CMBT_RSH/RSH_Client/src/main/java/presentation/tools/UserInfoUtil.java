@@ -267,7 +267,7 @@ public String getHotelID() {
 		UserVO userVO = getUserVO();
 		HotelVO hotelVO = getHotelVO();
 		RoomNormVO roomNormVO = new RoomNormVO(hotelID, roomType, roomPrice);
-		OrderVO orderVO = new OrderVO(orderID, userID, userVO.name, hotelID, hotelVO.name,
+		OrderVO orderVO = new OrderVO(orderID, userID, userVO.name, hotelID, hotelVO.getHotelName(),
     			null, roomNormVO, roomPrice, roomNumber, peopleNumber, 
     			withChild, roomPrice*roomNumber, totalPrice, promotion, null, -1, 
     			checkIn, checkOut, hotelVO.latestCheckinTime, generationDate, null, 

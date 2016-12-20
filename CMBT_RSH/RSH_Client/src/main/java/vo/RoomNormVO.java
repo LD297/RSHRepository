@@ -1,5 +1,11 @@
 package vo;
 
+/**
+ * 房间类型vo，
+ * 在添加订单时使用
+ * @author aa
+ *
+ */
 public class RoomNormVO {
 	private String hotelID;
     private String roomType;

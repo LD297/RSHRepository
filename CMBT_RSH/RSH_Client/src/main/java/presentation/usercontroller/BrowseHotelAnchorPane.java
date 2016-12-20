@@ -45,13 +45,13 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 	}
 	
 	private void init(){
-		hotelImages = UserInfoUtil.getInstance().getHotelImages(hotelVO.hotelID);
+		hotelImages = UserInfoUtil.getInstance().getHotelImages(hotelVO.getHotelID());
 		hotelImageView = new ImageView();
 		hotelImageView.setImage(hotelImages.get(imagePointer));
 		labelOnHotelImage = new Label();
 		lastImageArrow = new ImageView(ImageFactory.getImageFactory().getLastImageArrow());
 		nextImageArrow = new ImageView(ImageFactory.getImageFactory().getNextImageArrow());
-		hotelNameLabel = new Label(hotelVO.name);
+		hotelNameLabel = new Label(hotelVO.getHotelName());
 //		promotionLabels = new ArrayList<Label>();
 		createOrderButton = new Button("新建订单");
 		//浏览酒店界面上显示的价格是标准间价格
@@ -68,7 +68,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			promotionLabels.add(label);
 		}*/
 		//从数据层拿到该用户最近一笔订单的状态
-		orderStateLabel = new Label(UserInfoUtil.getInstance().getOrderStateOfUser(hotelVO.hotelID).getString());
+		orderStateLabel = new Label(UserInfoUtil.getInstance().getOrderStateOfUser(hotelVO.getHotelID()).getString());
 		
 		
 		//设置组件的属性
@@ -148,7 +148,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			//点击图片上蒙的label跳转到酒店详情界面
 			public void handle(MouseEvent event) {
 //				UserInfoUtil.getInstance().setHotelName(hotelVO.name);
-				UserInfoUtil.getInstance().setHotelID(hotelVO.hotelID);
+				UserInfoUtil.getInstance().setHotelID(hotelVO.getHotelID());
 				UIJumpTool.getUiJumpTool().changeBrowseHotelToHotelInfo();
 			}
 		});
@@ -157,7 +157,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			@Override
 			public void handle(MouseEvent event) {
 //				UserInfoUtil.getInstance().setHotelName(hotelVO.name);
-				UserInfoUtil.getInstance().setHotelID(hotelVO.hotelID);
+				UserInfoUtil.getInstance().setHotelID(hotelVO.getHotelID());
 			    UIJumpTool.getUiJumpTool().changeToCreateOrder();				
 			}
 		});

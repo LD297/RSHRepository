@@ -283,9 +283,9 @@ public class CreateOrderUIController {
     public void init() {
     	//初始化订单中的酒店信息
     	HotelVO hotelVO = UserInfoUtil.getInstance().getHotelVO();
-		hotelName.setText(hotelVO.name);
-		hoteladdressLabel.setText(hotelVO.addr);
-		hotelPhonenumberLabel.setText(hotelVO.tel);
+		hotelName.setText(hotelVO.getHotelName());
+		hoteladdressLabel.setText(hotelVO.getDetailAddress());
+		hotelPhonenumberLabel.setText(hotelVO.getTel());
 		//初始化订单中的用户信息
 		UserVO userVO = UserInfoUtil.getInstance().getUserVO();
 		userNameLabel.setText(userVO.name);

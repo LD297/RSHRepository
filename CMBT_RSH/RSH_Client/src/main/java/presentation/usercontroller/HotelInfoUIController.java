@@ -148,10 +148,10 @@ public class HotelInfoUIController {
     public void init() {
     	  UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
           hotelVO = userInfoUtil.getHotelVO();
-          hotelNameLabel.setText(hotelVO.name);
-          startLevelLabel.setText(String.valueOf(hotelVO.level));
-          gradeLabel.setText(String.valueOf(hotelVO.grade));
-          addressLabel.setText(hotelVO.addr);
+          hotelNameLabel.setText(hotelVO.getHotelName());
+          startLevelLabel.setText(String.valueOf(hotelVO.getLevel()));
+          gradeLabel.setText(String.valueOf(hotelVO.getGrade()));
+          addressLabel.setText(hotelVO.getDetailAddress());
           briefLabel.setText(hotelVO.briefIntro);
           //TODO 设置设施服务
           //TODO 设置酒店图片
