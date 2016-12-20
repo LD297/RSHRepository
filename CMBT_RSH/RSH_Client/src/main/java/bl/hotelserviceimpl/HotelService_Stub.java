@@ -95,6 +95,9 @@ public class HotelService_Stub implements HotelService{
 	@Override
 	public ArrayList<String> getImageAddresses(String hotelID) {
 		// TODO Auto-generated method stub
+		ArrayList<String> imageUrls = new ArrayList<>();
+		imageUrls.add("http://i1.piimg.com/4851/e80b91b9c46f0a61.jpg");
+		imageUrls.add("http://i1.piimg.com/4851/68b5adb5d8cafda2.jpg");
 		return null;
 	}
 
