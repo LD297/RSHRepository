@@ -189,7 +189,6 @@ public class PromotionUIController {
 
             ConditionType conditionType = thePromotion.conditionType;
             String condition = "";
-            System.out.println(thePromotion.reason);
             condition = ConditionType.getStringConditionType(conditionType);
 
             // 如果有需要，显示折扣条件中的数量

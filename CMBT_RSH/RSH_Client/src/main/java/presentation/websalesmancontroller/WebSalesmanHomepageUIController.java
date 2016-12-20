@@ -90,7 +90,6 @@ public class WebSalesmanHomepageUIController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println(topUpCreditPane.getChildren().size());
         // 得到各页控制器
         if(promotionUIController==null)
             promotionUIController = loader0.getController();
