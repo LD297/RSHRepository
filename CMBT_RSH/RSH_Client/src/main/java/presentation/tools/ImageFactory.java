@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.TreeMap;
 
 
@@ -44,6 +45,7 @@ public class ImageFactory {
     private Image unexecutedOrderImage = new Image("/images/exclamation.png");//未执行订单
     private Image phoneImage = new Image("/images/电话图标.png");
     private Image penImage = new Image("/images/pen.png");
+    private Map<String, ArrayList<Image>> hotelImageMap = new TreeMap<>();
    
 
     public Image getPenImage() {
@@ -153,14 +155,25 @@ public class ImageFactory {
 	public Image getUnexecutedOrderImage() {
 		return unexecutedOrderImage;
 	}
-	
-	public ArrayList<Image> getHotelImages(ArrayList<String> urls) {
+	/**
+	 * 根据地址得到酒店的所有图片
+	 * @param hotelID
+	 * @param urls
+	 * @return
+	 */
+	public ArrayList<Image> getHotelImages(String hotelID,ArrayList<String> urls) {
 		ArrayList<Image> images = new ArrayList<Image>();
 		for(int i=0;i<urls.size();i++){
 			Image image = new Image(urls.get(i),330,229,false,true);
 			images.add(image);
 		}
+		if(!hotelImageMap.containsKey(hotelID)){
+			hotelImageMap.put(hotelID, images);
+		}
 		return images;
+	}
+	public Image getHotelImage(String hotelID) {
+		return hotelImageMap.get(hotelID).get(0);
 	}
 
 }

@@ -1,10 +1,13 @@
 package presentation.tools;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import presentation.logincontroller.LoginUIController;
 import presentation.usercontroller.BrowseHotelUIController;
 import presentation.usercontroller.GuideUIController;
+import presentation.usercontroller.LoadingUIController;
 import presentation.usercontroller.UserOrderUIController;
 import presentation.usercontroller.UserRegisterUIController;
 
@@ -19,17 +22,31 @@ public class UserUIFXMLFactory {
     private LoginUIController loginUIController = null;
     private UserRegisterUIController userRegisterUIController = null;
     private UserOrderUIController userOrderUIController = null;
-    
+    private LoadingUIController loadingUIController = null;
     private AnchorPane roleChoose = null;
+    private AnchorPane loading = null;
 
     private UserUIFXMLFactory(){}
-
+  
     public static UserUIFXMLFactory getUserUIFXMLFactory() {
         if(userUIFXMLFactory==null){
             userUIFXMLFactory = new UserUIFXMLFactory();
         }
         return userUIFXMLFactory;
     }
+    
+    public AnchorPane getLoading() {
+    	if(loading==null){
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/正在加载.fxml"));
+    		try {
+    			loading = loader.load();
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    		loadingUIController = loader.getController();
+    	}
+		return loading;
+	}
 
     public AnchorPane getAddComment(){
         FXMLLoader addCommentLoader = new FXMLLoader(getClass().getResource("/fxml/添加评价.fxml"));
@@ -309,4 +326,9 @@ public class UserUIFXMLFactory {
     public UserRegisterUIController getUserRegisterUIController() {
         return userRegisterUIController;
     }
+
+	public LoadingUIController getLoadingUIController() {
+		return loadingUIController;
+	}
+    
 }

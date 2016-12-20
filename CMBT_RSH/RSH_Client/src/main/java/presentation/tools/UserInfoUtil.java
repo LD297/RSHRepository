@@ -295,7 +295,7 @@ public String getHotelID() {
      */
     public ArrayList<Image> getHotelImages(String hotelID) {
 		ArrayList<String> urls = hotelService.getImageAddresses(hotelID);
-		ArrayList<Image> images = ImageFactory.getImageFactory().getHotelImages(urls);
+		ArrayList<Image> images = ImageFactory.getImageFactory().getHotelImages(hotelID,urls);
 		return images;
 	}
     

@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import presentation.tools.ImageFactory;
 import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
 import vo.HotelVO;
@@ -154,6 +155,7 @@ public class HotelInfoUIController {
           briefLabel.setText(hotelVO.briefIntro);
           //TODO 设置设施服务
           //TODO 设置酒店图片
+          hotelImage.setImage(ImageFactory.getImageFactory().getHotelImage(UserInfoUtil.getInstance().getHotelID()));
 	}
 
     @FXML

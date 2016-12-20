@@ -231,12 +231,26 @@ public class UIJumpTool {
         anchorPanes.push(searchHotel);
         browseHotel = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotel();
         gridPane.add(browseHotel,0,1);
+        stage.setScene(gridPane.getScene());
         browseHotelUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotelUIController();
         //设置导航栏上的箭头可点
         guideUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getGuideUIController();
         guideUIController.setBackImage(true);
-
     }
+    
+    /**
+     * 跳转到loading界面
+     */
+	public void changeToLoading() {
+		Scene scene = null;
+		AnchorPane loading = UserUIFXMLFactory.getUserUIFXMLFactory().getLoading();
+		if (loading.getScene() != null) {
+			scene = loading.getScene();
+		} else {
+			scene = new Scene(loading, 800, 720);
+		}
+		stage.setScene(scene);
+	}
 
     //从登陆界面跳转到搜索酒店界面
     public void changeLoginToSearchHotel(){
