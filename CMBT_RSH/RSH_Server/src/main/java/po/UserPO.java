@@ -50,6 +50,9 @@ public class UserPO implements Serializable{
 	public String getId() {
 		return id;
 	}
+	public void setId(String id){
+		this.id = id;
+	}
 	public String getNickName() {
 		return nickName;
 	}
@@ -68,6 +71,9 @@ public class UserPO implements Serializable{
 	public String getName() {
 		return name;
 	}
+	public void setName(String name){
+		this.name = name;
+	}
 	public Sexuality getSexuality() {
 		return sexuality;
 	}
@@ -79,5 +85,8 @@ public class UserPO implements Serializable{
 	}
 	public String getPassword() {
 		return password;
+	}
+	public void setPassword(String password){
+		this.password = password;
 	}
 }

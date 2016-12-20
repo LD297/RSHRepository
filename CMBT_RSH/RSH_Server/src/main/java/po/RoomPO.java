@@ -4,55 +4,54 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class RoomPO implements Serializable{
-	public String id;//hotelid
-	public Date date;
-	public String type;
-	public int amountAvailable;
-	public int amountTotal;
-	public double price;
-	public Boolean basicOrSpecial;
-	public ArrayList<Integer> aList;
-	public RoomPO(String id,Date date,String type,int amountAvailable,int amountTotal,double price,Boolean basicOrSpecial,ArrayList<Integer> aList) {
-		this.id = id;
-		this.date = date;
-		this.type = type;
-		this.amountAvailable = amountAvailable;
-		this.amountTotal = amountTotal;
-		this.price = price;
-		this.basicOrSpecial = basicOrSpecial;
-		this.aList = aList;
-	}
-	public RoomPO(String id, String type, int amountTotal, double price, boolean basicOrSpecial) {
-		this.id = id;
-		this.type = type;
-		this.amountTotal = amountTotal;
-		this.price = price;
-		this.basicOrSpecial = basicOrSpecial;
-	}
+import vo.RoomVO;
 
+public class RoomPO implements Serializable{
+    private String hotelID;
+	
+	private String roomType;
+	
+	private int numOfRoom;
+	/**
+	 * 该类型房间的单价（元／晚（12:00～次日11:59））
+	 */
+	private double price;
+	/**
+	 * 该类型房间是否被设为特色
+	 */
+	private boolean basicOrSpecial;
+	private String imageAddress;
+	
+	public RoomPO(String hotelID,String roomType,String imageAddress,int numOfRoom,double price, boolean basicOrSpecial){
+		this.hotelID = hotelID;
+		this.roomType = roomType;
+		this.imageAddress = imageAddress;
+		this.numOfRoom = numOfRoom;
+		this.price = price;
+		this.basicOrSpecial = basicOrSpecial;
+	}
 	public String getID() {
-		return id;
+		return hotelID;
 	}
 
 	public void setID(String id) {
-		this.id = id;
+		this.hotelID = id;
 	}
 
 	public String getType() {
-		return type;
+		return roomType;
 	}
 
 	public void setType(String type) {
-		this.type = type;
+		this.roomType = type;
 	}
 
 	public int getAmountTotal() {
-		return amountTotal;
+		return numOfRoom;
 	}
 
 	public void setAmountTotal(int amountTotal) {
-		this.amountTotal = amountTotal;
+		this.numOfRoom = amountTotal;
 	}
 
 	public double getPrice() {
@@ -69,6 +68,12 @@ public class RoomPO implements Serializable{
 
 	public void setBasicOrSpecial(boolean basicOrSpecial) {
 		this.basicOrSpecial = basicOrSpecial;
+	}
+	public String getImageAddress(){
+		return this.imageAddress;
+	}
+	public void setImageAddress(String imageAddress){
+		this.imageAddress = imageAddress;
 	}
 
 }

@@ -7,5 +7,6 @@ public enum ResultMessage {
 	idAlreadyExist,
 	idNotExist,
 	timeOut,
-	noChangeMade;
+	noChangeMade,
+	recordNotExist;
 }

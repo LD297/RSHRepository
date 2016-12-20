@@ -92,5 +92,10 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
     public ArrayList<HotelPO> getAll() throws RemoteException{
     	return hotelDaoHelper.getAll();
     }
+    // 得到酒店所需图片地址
+    public ArrayList<String> getImageAddresses(String hotelID) throws RemoteException{
+    	return hotelDaoHelper.getImageAddresses(hotelID);
+    }
+  
 
 }

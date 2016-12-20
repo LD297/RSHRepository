@@ -30,7 +30,8 @@ import java.util.Date;
 
 public class test {
 // success
-    static OrderDaoHelperMySql orderDao = new OrderDaoHelperMySql();
+   static OrderDaoHelperMySql orderDao = new OrderDaoHelperMySql();
+    
 
 
     // 根据订单编号查找订单
@@ -71,7 +72,18 @@ public class test {
         ArrayList<OrderPO> list = orderDao.searchByState(state);
         assertEquals(list.get(0).getRoomPrice(),120.0,0.1);
     }
-
+    
+    // 订单状态更新 success
+    @Test
+    public void teststateUpdate() throws RemoteException{
+        String orderID = "2016-01-282153000001000001";
+        StateOfOrder newState = StateOfOrder.executed;
+        ResultMessage result = orderDao.stateUpdate(orderID,newState);
+        assertEquals(result,ResultMessage.noChangeMade);
+    }
+    
+  
+    
     // 新建订单 success
     @Test
     public void testinsert() throws RemoteException,ParseException{
@@ -97,17 +109,6 @@ public class test {
         assertEquals(result,ResultMessage.succeed);
 
     }
-    
-    
-    // 订单状态更新 success
-    @Test
-    public void teststateUpdate() throws RemoteException{
-        String orderID = "2016-01-282153000001000001";
-        StateOfOrder newState = StateOfOrder.executed;
-        ResultMessage result = orderDao.stateUpdate(orderID,newState);
-        assertEquals(result,ResultMessage.noChangeMade);
-    }
-    
     
     // 评价订单 success
     @Test
@@ -162,7 +163,7 @@ public class test {
 
 
 
-/*    public static void main(String[] args) throws RemoteException {
+  /*  public static void main(String[] args) throws RemoteException {
 
         OrderDaoHelperMySql orderdao = new OrderDaoHelperMySql();
         orderdao.init();

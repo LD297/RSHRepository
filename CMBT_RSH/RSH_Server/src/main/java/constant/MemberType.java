@@ -2,7 +2,8 @@ package constant;
 
 public enum MemberType {
 	commom("普通会员"),
-	commerce("企业会员");
+	commerce("企业会员"),
+	not_member("非会员");
 	
 	private String s;
 	private MemberType(String s){

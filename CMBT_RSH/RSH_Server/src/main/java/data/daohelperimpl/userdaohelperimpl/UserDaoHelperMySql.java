@@ -16,6 +16,7 @@ import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -24,17 +25,18 @@ import java.util.ArrayList;
 public class UserDaoHelperMySql implements UserDaoHelper{
 
     private DBHelper db = new DBHelper();
-
+    private static final String nameKey = "1jkl43";
+    private static final String pwKey = "&afds890";
     public void init(){
 
         db.executeSql("USE OurData");
         // 账号 密码 昵称 头像url
         // 生日 会员等级 会员类型 企业名称 信用值
         // 真实姓名 性别 邮箱 信用记录条数
-        db.executeSql("CREATE TABLE if not exists UserInfo(userID char(11),password char(20),"
-        		+ "nickName char(10),image varchar(30),birthday char(10),level tinyint,"
+        db.executeSql("CREATE TABLE if not exists UserInfo(userID blob,password blob,"
+        		+ "nickName char(10),image tinytext,birthday char(10),level tinyint,"
         		+ "memberType tinyint,commerceName char(12),credit int," +
-                "trueName char(10),sex tinyint,eMail char(30),creditRecordNum int)" );
+                "trueName blob,sex tinyint,eMail char(30),creditRecordNum int)" );
     }
 
     public void finish(){
@@ -47,12 +49,15 @@ public class UserDaoHelperMySql implements UserDaoHelper{
 
         if(this.checkExistence(userID)==ResultMessage.idNotExist)
             return null;
-        String getInfoSql = "SELECT *FROM UserInfo WHERE userID='"+userID+"' LIMIT 1";
+        String deUserID = this.getSecreted(userID, nameKey);
+        String getInfoSql = "SELECT *FROM UserInfo WHERE userID="+deUserID+" LIMIT 1";
         ResultSet result = db.query(getInfoSql);
         
         if(result==null)
         	return null;
-        return this.resultSetToUserPO(result).get(0);
+        UserPO userPO = this.resultSetToUserPO(result).get(0);
+        userPO = this.getClearByID(userID, userPO);
+        return userPO; 
     }
     // 修改用户基本信息
     public ResultMessage update(UserPO userPO) throws RemoteException {
@@ -61,22 +66,27 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         String userID = userPO.getId();
         if(this.checkExistence(userID)==ResultMessage.idNotExist)
             return ResultMessage.idNotExist;
-      
+        
+        String deUserID = this.getSecreted(userID, nameKey);
         String password = userPO.getPassword();
+        String dePassword = this.getSecreted(password, pwKey);
         String nickName = userPO.getNickName();
         String image = userPO.getImageAddress();
+        String birth = userPO.getBirthday().toString();
         int level = userPO.getLevel();
         int type = userPO.getMemberType().ordinal();
         int credit = userPO.getCredit();
-        
+        String name = userPO.getName();
+        String deName = this.getSecreted(name, nameKey);
         int sex = userPO.getSexuality().ordinal();
         String eMail = userPO.geteMail();
         String commerceName = userPO.getCommerceName();
 
-        String updateSql = "UPDATE UserInfo SET password='"+password+"',nickName='"+nickName+"',image='"+image+
-                "',level="+String.valueOf(level)+",memberType="+String.valueOf(type)+",credit="+String.valueOf(credit)
-                +",sex="+String.valueOf(sex)+",eMail='"+eMail+"',commerceName='"+commerceName
-                +"' WHERE userID='"+userID+"' LIMIT 1";
+        String updateSql = "UPDATE UserInfo SET password="+dePassword+",nickName='"+nickName+"',image='"+image+
+                "',birthday='"+birth+"',level="+String.valueOf(level)+",memberType="+String.valueOf(type)+
+                ",credit="+String.valueOf(credit)+",trueName="+deName+",sex="+String.valueOf(sex)+
+                ",eMail='"+eMail+"',commerceName='"+commerceName
+                +"' WHERE userID="+deUserID+" LIMIT 1";
         db.executeSql(updateSql);
         return ResultMessage.succeed;
     }
@@ -91,16 +101,19 @@ public class UserDaoHelperMySql implements UserDaoHelper{
             return ResultMessage.idAlreadyExist;
        
         String userID = userPO.getId();
+        String deUserID = this.getSecreted(userID, nameKey);
         String password = userPO.getPassword();
+        String dePassword = this.getSecreted(password, pwKey);
         String nickName = userPO.getNickName();
         String image = userPO.getImageAddress();
         String birthday = userPO.getBirthday().toString();
         String name = userPO.getName();
+        String deName = this.getSecreted(name, nameKey);
         int sex = userPO.getSexuality().ordinal();
         String eMail = userPO.geteMail();
-        String insertSql = "INSERT INTO UserInfo VALUES('"+userID+"','"+password+
-        		"','"+nickName+"','"+image+"','"+birthday+"',0,null,null,0,'"
-        		+ name+"',"+String.valueOf(sex)+",'"+eMail+"',0)";
+        String insertSql = "INSERT INTO UserInfo VALUES("+deUserID+","+dePassword+
+        		",'"+nickName+"','"+image+"','"+birthday+"',0,null,null,0,"
+        		+ deName+","+String.valueOf(sex)+",'"+eMail+"',0)";
         db.executeSql(insertSql);
 
         return ResultMessage.succeed;
@@ -121,11 +134,12 @@ public class UserDaoHelperMySql implements UserDaoHelper{
 
     // 检查需要操作的账号存在
     public ResultMessage checkExistence(String userID){
-        String checkExistenceSql = "SELECT userID FROM UserInfo";
+        String checkExistenceSql = "SELECT count(*) FROM UserInfo WHERE userID="
+                                     +this.getSecreted(userID, nameKey);
         ResultSet result = db.query(checkExistenceSql);
         try{
             while(result.next())
-                if(result.getString(1).equals(userID))
+                if(result.getInt(1)>0)
                     return ResultMessage.idAlreadyExist;
         }catch(SQLException e){
             e.printStackTrace();
@@ -143,8 +157,8 @@ public class UserDaoHelperMySql implements UserDaoHelper{
                  String nickName = result.getString("nickName");
                  String image = result.getString("image");
                  String birth = result.getString("birthday");
+                 LocalDate birthday = LocalDate.parse(birth);
                  int level = result.getInt("level");
-                 LocalDate birthday = LocalDate.now();//////////
                  MemberType type = MemberType.values()[result.getInt("memberType")];
                  int credit = result.getInt("credit");
                  String name = result.getString("trueName");
@@ -162,5 +176,27 @@ public class UserDaoHelperMySql implements UserDaoHelper{
              return null;
          }
     }
-
+    // 
+    private String getSecreted(String clear,String key){
+    	return "aes_encrypt('"+clear+"','"+key+"')";
+    }
+    //
+    private UserPO getClearByID(String userID,UserPO userPO){
+    	String deUserID = this.getSecreted(userID, nameKey);
+    	String getSecrtedSql = "SELECT aes_decrypt(password,'"+pwKey+"'),"
+    			+ "aes_decrypt(trueName,'"+nameKey+"') FROM UserInfo "
+    					+ "WHERE userID="+deUserID+" LIMIT 1";
+    	ResultSet result = db.query(getSecrtedSql);
+    	try{
+    		while(result.next()){
+    			userPO.setId(userID);
+    			userPO.setPassword(result.getString(1));
+    			userPO.setName(result.getString(2));
+    			return userPO;
+    		}
+    	}catch(SQLException e){
+    		e.printStackTrace();
+    	}
+    	return userPO;
+    }
 }

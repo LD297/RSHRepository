@@ -20,7 +20,7 @@ import java.sql.SQLException;
 public class OrderDaoHelperMySql implements OrderDaoHelper{
 
     private DBHelper db = new DBHelper();
-
+    private static final String key = "952ntjh";
     public void init(){
 
         // 订单编号 用户编号
@@ -28,9 +28,9 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         // 入住人数 是否有儿童 原价 折后 促销策略
         // 评价 评分 预计入住、退房时间 酒店最晚时间
         // 实际入住、退房时间 订单生成时间 撤销订单时间 撤销异常时间
-        db.executeSql("CREATE TABLE if not exists OrderGeneral(orderID char(26),userID char(11)," +
-                "userName char(10), hotelID char(10), hotelName char(10), state tinyint,roomType char(10),roomPrice double,roomNum tinyint," +
-                "peopleNum tinyint,withChild tinyint,originValue double,trueValue double,promotion varchar(20)," +
+        db.executeSql("CREATE TABLE if not exists OrderGeneral(orderID char(26),userID blob," +
+                "userName blob, hotelID char(10), hotelName char(10), state tinyint,roomType char(10),roomPrice double,roomNum tinyint," +
+                "peopleNum tinyint,withChild tinyint,originValue double,trueValue double,promotion char(20)," +
                 "comment tinytext,grade tinyint,checkIn date,checkOut date,hotelDDL char(8)," +
                 "bornDate date,actCheckIn datetime,actCheckOut datetime,cancelTime datetime,cancelAbTime datetime)");
     }
@@ -71,8 +71,6 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
          }
     }
 
-
-
     // 根据订单编号查找订单(返回详情)
     public OrderPO searchByID(String orderID) throws RemoteException {
         db.executeSql("USE OurData");
@@ -80,40 +78,41 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
             return null;
 
         this.updateAll();
-        String getDetailSql = "SELECT *FROM OrderGeneral WHERE orderID='" + orderID + "' LIMIT 1";
+        String getDetailSql = "SELECT *FROM OrderGeneral WHERE orderID='"+orderID+"' LIMIT 1";
         ResultSet result = db.query(getDetailSql);
-
-        return this.transformResultSetToPOList(result).get(0);
+        
+        return this.getClearFromResult(result).get(0);
     }
     // 根据用户、酒店编号查找订单
     public ArrayList<OrderPO> searchByUserWithHotel(String userID,String hotelID)throws RemoteException{
         db.executeSql("USE OurData");
 
         this.updateAll();
-        String generalSql = "SELECT *FROM OrderGeneral WHERE userID='" + userID + "' and hotelID='"+hotelID+"'";
+        String deUserID = this.getSecreted(userID);
+        String generalSql = "SELECT *FROM OrderGeneral WHERE userID="+deUserID+" and hotelID='"+hotelID+"'";
         ResultSet result = db.query(generalSql);
-
-        return this.transformResultSetToPOList(result);
+        return this.getClearFromResult(result);
     }
     // 根据用户编号查找订单
     public ArrayList<OrderPO> searchByUser(String userID) throws RemoteException {
         db.executeSql("USE OurData");
 
         this.updateAll();
-        String generalSql = "SELECT *FROM OrderGeneral WHERE userID='" + userID + "'";
+        String deUserID = this.getSecreted(userID);
+        String generalSql = "SELECT *FROM OrderGeneral WHERE userID="+deUserID;
         ResultSet result = db.query(generalSql);
 
-        return this.transformResultSetToPOList(result);
+        return this.getClearFromResult(result);
     }
     // 根据酒店编号查找订单
     public ArrayList<OrderPO> searchByHotel(String hotelID) throws RemoteException{
         db.executeSql("USE OurData");
         
         this.updateAll();
-        String generalSql = "SELECT *FROM OrderGeneral WHERE hotelID = '" + hotelID + "'";
+        String generalSql = "SELECT *FROM OrderGeneral WHERE hotelID='"+hotelID+"'";
         ResultSet result = db.query(generalSql);
 
-        return this.transformResultSetToPOList(result);
+        return this.getClearFromResult(result);
     }
     // 根据状态查找订单
     public ArrayList<OrderPO> searchByState(StateOfOrder state) throws RemoteException{
@@ -123,12 +122,14 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         String generalSql = "SELECT *FROM OrderGeneral WHERE state=" +String.valueOf(state.ordinal());
         ResultSet result = db.query(generalSql);
 
-        return this.transformResultSetToPOList(result);
+        return this.getClearFromResult(result);
     }
     // 插入订单
     public ResultMessage insert(OrderPO orderPO) throws RemoteException{
         String userID = orderPO.getUserID();
+        String deUserID = this.getSecreted(userID);
         String userName = orderPO.getUserName();
+        String deUserName = this.getSecreted(userName);
         String hotelID = orderPO.getHotelID();
         String hotelName= orderPO.getHotelName();
 
@@ -141,9 +142,9 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
         int peopleNum = orderPO.getPeopleNumber();
         boolean withChild = orderPO.getWithChild();
-        int withchild = 0;// right -> child along with
+        int withchild = 1;// right -> child along with
         if (withChild==false)
-            withchild = 1;
+            withchild = 0;
         Date checkIn = orderPO.getCheckIn();
         Date checkOut = orderPO.getCheckOut();
         Date bornDate = orderPO.getGenerationDate();
@@ -158,8 +159,8 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         String orderID = this.calculateOrderID(borndate,hotelID);
 
         db.executeSql("USE Ourdata");
-        String insertOrderSql = "INSERT INTO OrderGeneral VALUES('"+orderID+"','"+userID+"','"+
-                userName+"','"+hotelID+"','"+hotelName+"',0,'"+roomType+"',"+String.valueOf(roomPrice)+","+String.valueOf(roomNumber) +","+String.valueOf(peopleNum)+ ","+String.valueOf(withchild)+
+        String insertOrderSql = "INSERT INTO OrderGeneral VALUES('"+orderID+"',"+deUserID+","+
+                deUserName+",'"+hotelID+"','"+hotelName+"',0,'"+roomType+"',"+String.valueOf(roomPrice)+","+String.valueOf(roomNumber) +","+String.valueOf(peopleNum)+ ","+String.valueOf(withchild)+
                 ","+String.valueOf(originValue)+","+String.valueOf(trueValue)+",'"+promotion+"'," +
                 "null,null,'"+checkin+"','"+checkout+"','"+hotelDDL+"','"+borndate+"',null,null,null,null)";
         db.executeSql(insertOrderSql);
@@ -332,4 +333,38 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         }
         return selectedList;
     }
+    public String getSecreted(String clear){
+    	return "aes_encrypt('"+clear+"','"+key+"')";
+    }
+    private OrderPO getClearByID(String orderID,OrderPO orderPO){
+    	String getSecretedSql = "SELECT aes_decrypt(userID,'"+key+"'),"
+    			+ "aes_decrypt(userName,'"+key+"') FROM OrderGeneral "
+    					+ "WHERE orderID='"+orderID+"' LIMIT 1";
+    	ResultSet result = db.query(getSecretedSql);
+    	try{
+    		while(result.next()){
+    			orderPO.setUserID(result.getString(1));
+    			orderPO.setUserName(result.getString(2));
+    			return orderPO;
+    		}
+    	}catch(SQLException e){
+    		e.printStackTrace();
+    	}
+    	return orderPO;
+    }
+    private ArrayList<OrderPO> getClearFromResult(ResultSet result){
+    	ArrayList<OrderPO> list = this.transformResultSetToPOList(result);
+    	if(list==null)
+    		return new ArrayList<OrderPO>();
+    	else{
+         	ArrayList<OrderPO> clearList = new ArrayList<OrderPO>();
+         	for(int i=0;i<list.size();i++){
+         		OrderPO orderPO = list.get(i);
+         		String orderID = orderPO.getOrderID();
+         		clearList.add(this.getClearByID(orderID, orderPO));
+         	}
+         	return clearList;
+         }
+    }
+    
 }

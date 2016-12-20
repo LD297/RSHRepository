@@ -17,30 +17,34 @@ import java.sql.SQLException;
 public class WebManagerDaoHelperMySql implements WebManagerDaoHelper{
     // with websalesman
     private DBHelper db = new DBHelper();
+    private static final String key = "&fas03#j63uk,qw4";
+
     public void init(){
         db.executeSql("USE OurData");
         // 账号 密码 地区
-        String initSql = "INSERT INTO WebStaffInfo VALUES('0000000000','123456','null','null')";
+        String initSql = "INSERT INTO WebStaffInfo VALUES('0000000000',"
+        		+ "aes_encrypt('123456','"+key+"'),null)";
         db.executeSql(initSql);
     }
     // 更新管理人员信息
     public ResultMessage update(String managerID,String password)throws RemoteException {
         db.executeSql("USE OurData");
-        String updateMangerSql = "UPDATE WebStaffInfo SET password='"+password+
-                "' WHERE id='"+managerID+"' LIMIT 1";
+        String dePassword = "aes_encrypt('"+password+"','"+key+"')";
+        String updateMangerSql = "UPDATE WebStaffInfo SET password="+dePassword+
+                " WHERE id='"+managerID+"' LIMIT 1";
         db.executeSql(updateMangerSql);
         return ResultMessage.succeed;
     }
     // 得到管理人员信息
     public WebManagerPO getManagerInfo(String managerID)throws RemoteException{
         db.executeSql("USE OurData");
-        String getManagerSql = "SELECT *FROM WebStaffInfo WHERE id='"+managerID+"' LIMIT 1";
+        String getManagerSql = "SELECT aes_decrypt(password,'"+key+"') From WebStaffInfo"
+        		+ " WHERE id='"+managerID+"' LIMIT 1";
         ResultSet result = db.query(getManagerSql);
         try{
             while(result.next()){
-                String id = result.getString("id");
-                String password = result.getString("password");
-                return new WebManagerPO(id,password);
+                String password = result.getString(1);
+                return new WebManagerPO(managerID,password);
             }
         }catch (SQLException e){
             e.printStackTrace();

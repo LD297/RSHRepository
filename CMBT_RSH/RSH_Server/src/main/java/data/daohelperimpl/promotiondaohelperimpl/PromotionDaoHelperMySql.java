@@ -87,10 +87,15 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
     // 删除促销策略
     public ResultMessage delete(String setter, String id)throws RemoteException {
         db.executeSql("USE OurData");
-        String checkSql = "SELECT *FROM PromotionInfo WHERE setter='"+setter+"' and id='"+id+"' LIMIT 1";
+        String checkSql = "SELECT count(*) FROM PromotionInfo WHERE setter='"+setter+"' and id='"+id+"' LIMIT 1";
         ResultSet result = db.query(checkSql);
-        if(result==null)
-        	return ResultMessage.idNotExist;
+        try{
+        	while(result.next())
+        		if(result.getInt(1)<=0)
+        			return ResultMessage.idNotExist;
+        }catch(SQLException e){
+        	e.printStackTrace();
+        }
         
         String deleteSql = "DELETE FROM PromotionInfo WHERE setter='"+setter+"' and id='"+id+"' LIMIT 1";
         db.executeSql(deleteSql);

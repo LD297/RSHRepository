@@ -44,4 +44,7 @@ public interface HotelDao extends Remote{
     public ArrayList<HotelPO> getHotelList(String district) throws RemoteException;
     // 网站管理人员 得到酒店信息
     public ArrayList<HotelPO> getAll() throws RemoteException;
+    
+    public ArrayList<String> getImageAddresses(String hotelID) throws RemoteException;
+    
 }

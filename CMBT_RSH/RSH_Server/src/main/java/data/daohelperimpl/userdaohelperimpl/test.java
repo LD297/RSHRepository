@@ -50,7 +50,7 @@ public class test {
     public void  testgetCreditRecordList() throws RemoteException{
         String userid = "14775378908";
         Iterator<CreditRecordPO> iterator = creditDao.getCreditRecordList(userid);
-        assertEquals(iterator.next().getCredit(),2300);
+        assertEquals(iterator.next().getCredit(),300);
     }
    
     @Test
@@ -61,7 +61,5 @@ public class test {
         ResultMessage result = userDao.insert(po);
         assertEquals(result,ResultMessage.idAlreadyExist);
     }
-    
-    
     
 }

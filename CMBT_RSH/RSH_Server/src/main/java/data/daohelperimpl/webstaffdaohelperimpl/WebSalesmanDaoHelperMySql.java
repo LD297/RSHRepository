@@ -3,6 +3,7 @@ package data.daohelperimpl.webstaffdaohelperimpl;
 import constant.ResultMessage;
 import data.daohelper.WebSalesmanDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
+import po.WebManagerPO;
 import po.WebSalesmanPO;
 
 import java.io.File;
@@ -19,13 +20,13 @@ import java.util.Date;
  */
 public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
     private DBHelper db = new DBHelper();
-
+    private static final String key = "13klad0s";
     public void init(){
 
         db.executeSql("USE OurData");
         // 账号 密码 姓名 地区 IF NOT EXISTS
         db.executeSql("CREATE TABLE if not exists WebStaffInfo(id char(10),"
-        		+ "password char(20),name char(10),district char(6))" );
+        		+ "password blob,district char(6))" );
     }
 
     public void finish(){
@@ -36,9 +37,11 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
     public ResultMessage insert(WebSalesmanPO po) {
         db.executeSql("USE OurData");
         String salesManID = this.getNewID();
+        String password = "aes_encrypt('"+po.getPassword()+"','"+key+"')";
+        
         if(this.checkExistence(po.getID())==ResultMessage.idNotExist){
             String addWebSalesmanSql = "INSERT INTO WebStaffInfo VALUES('"+
-               salesManID+"','"+po.getPassword()+"','"+po.getName()+"','"+po.getDistrict()+"')";
+               salesManID+"',"+password+",'"+po.getDistrict()+"')";
             db.executeSql(addWebSalesmanSql);
             return ResultMessage.succeed;
         }
@@ -48,9 +51,11 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
     // 网站营销人员更新
     public ResultMessage update(WebSalesmanPO po) {
         db.executeSql("USE OurData");
+
+        String password = "aes_encrypt('"+po.getPassword()+"','"+key+"')";
         if(this.checkExistence(po.getID())==ResultMessage.idAlreadyExist){
             String updateWebSalesmanSql = "UPDATE WebStaffInfo " +
-                "SET password='"+po.getPassword()+"',name='"+po.getName()+"',district='"+po.getDistrict()+"'"+
+                "SET password="+password+",district='"+po.getDistrict()+"'"+
                 " WHERE id='"+po.getID()+"' LIMIT 1";
             db.executeSql(updateWebSalesmanSql);
             return ResultMessage.succeed;
@@ -63,36 +68,86 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
     public WebSalesmanPO findByID(String id) {
         db.executeSql("USE OurData");
 
-        String getSalesmanByIDSql = "SELECT *FROM WebStaffInfo WHERE id='"+id+"' LIMIT 1";
+        String getSalesmanByIDSql = "SELECT count(*) FROM WebStaffInfo WHERE id='"+id+"' LIMIT 1";
         ResultSet result = db.query(getSalesmanByIDSql);
-        if(result==null)
-        	return null;
-        return this.resultSetTOPO(result).get(0);
+        try{
+        	while(result.next())
+        		if(result.getInt(1)<=0)
+        			return null;
+        }catch(SQLException e){
+        	e.printStackTrace();
+        }
+        String getPasswordSql = "SELECT aes_decrypt(password,'"+key+"'),district FROM WebStaffInfo"
+        		+ " WHERE id='"+id+"' LIMIT 1";
+        ResultSet pwResult = db.query(getPasswordSql);
+        try{
+        	while(pwResult.next()){
+        		String password = pwResult.getString(1);
+        		String district = pwResult.getString(2);
+        		return new WebSalesmanPO(id,password,district);
+        	}
+        }catch(SQLException e){
+        	e.printStackTrace();
+        }
+        return null;
     }
     // 网站管理人员 根据地区查找 网站营销人员
     public ArrayList<WebSalesmanPO> findByDistrict(String district) {
         db.executeSql("USE OurData");
-
-        String findWebSalesmanByDistrictSql = "SELECT *FROM WebStaffInfo WHERE district='"+district +"'";
-        ResultSet result = db.query(findWebSalesmanByDistrictSql);
-        if(result==null)
-        	return null;
-        return this.resultSetTOPO(result);
+        ArrayList<WebSalesmanPO> list = new ArrayList<WebSalesmanPO>();
+        String checkExistSql = "SELECT count(*) FROM WebStaffInfo WHERE district='"+district +"'";
+        ResultSet result = db.query(checkExistSql);
+        try{
+        	while(result.next())
+        		if(result.getInt(1)<=0)
+        			return new ArrayList<WebSalesmanPO>();
+        }catch(SQLException e){
+        	e.printStackTrace();
+        }
+        
+        String getInfoSql = "SELECT id,aes_decrypt(password,'"+key+"') FROM WebStaffInfo "
+        		+ "WHERE district='"+district +"'";
+        ResultSet infoResult = db.query(getInfoSql);
+        try{
+        	while(infoResult.next()){
+        		String id = infoResult.getString(1);
+        		String password = infoResult.getString(2);
+        		list.add(new WebSalesmanPO(id,password,district));
+        	}
+        	return list;
+        }catch(SQLException e){
+        	e.printStackTrace();
+        }
+        return new ArrayList<WebSalesmanPO>();
     }
     // 网站管理人员 查找 网站营销人员
     public ArrayList<WebSalesmanPO> getAll() {
         db.executeSql("USE OurData");
 
-        String findAllWebSalesmanSql = "SELECT *FROM WebStaffInfo";
+        String findAllWebSalesmanSql = "SELECT count(*) FROM WebStaffInfo";
         ResultSet result = db.query(findAllWebSalesmanSql);
-        if(result==null)
-        	return null;
-        ArrayList<WebSalesmanPO> list = this.resultSetTOPO(result);
-        for(int i=0;i<list.size();i++)
-        	if(list.get(i).getID().equals("0000000000")){
-        		list.remove(i);
-        		break;
+        try{
+        	while(result.next())
+        		if(result.getInt(1)<=0)
+        			return new ArrayList<WebSalesmanPO>();
+        }catch(SQLException e){
+        	e.printStackTrace();
+        }
+        String infoSql = "SELECT *FROM WebStaffInfo";
+        ResultSet infoResult = db.query(infoSql);
+        ArrayList<WebSalesmanPO> list = this.resultSetTOPO(infoResult);
+        
+        String getPasswordSql = "SELECT aes_decrypt(password,'"+key+"') FROM WebStaffInfo";
+        ResultSet pwResult = db.query(getPasswordSql);
+        try{
+        	int i=0;
+        	while(pwResult.next()){
+        		list.get(i).setPassword(pwResult.getString(1));
         	}
+        	return list;
+        }catch(SQLException e){
+        	e.printStackTrace();
+        }
         return list; 
     }
     
@@ -101,8 +156,10 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
     	ArrayList<WebSalesmanPO> list = new ArrayList<WebSalesmanPO>();
         try{
             while(result.next()){
+            	if(result.getString("id")=="0000000000")
+            		continue;
                 WebSalesmanPO po = new WebSalesmanPO(result.getString("id"),
-                		result.getString("password"),result.getString("name"),result.getString("district"));
+                		result.getString("password"),result.getString("district"));
                 list.add(po);
             }
             return list;

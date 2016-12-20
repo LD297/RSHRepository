@@ -16,6 +16,7 @@ public class HotelPO implements Serializable{
 	 * 酒店名称
 	 */
 	private String name;
+	private String imageAddress; 
 	/**
 	 * 酒店地址
 	 */
@@ -39,6 +40,7 @@ public class HotelPO implements Serializable{
 	 * 最晚入住时间
 	 */
 	private String latestCheckInTime;
+	
 	
 	public HotelPO(String hotelID) {
 		this.hotelID = hotelID;
@@ -127,11 +129,21 @@ public class HotelPO implements Serializable{
 	public void setLatestCheckInTime(String latestCheckInTime) {
 		this.latestCheckInTime = latestCheckInTime;
 	}
-	public HotelPO(String hotelID, String tel, String name, String address, String addressDetail,
+	public String getImageAddress(){
+		return this.imageAddress;
+	}
+	public double getStandardPrice(){
+		return this.standardPrice;
+	}
+	public void setStandardPrice(double standardPrice){
+		this.standardPrice = standardPrice;
+	}
+	public HotelPO(String hotelID, String tel, String name,String imageAddress, String address, String addressDetail,
 				   double standardPrice,String briefIntro,String facility, int level,double grade, String latestCheckInTime){
 		this.hotelID =  hotelID;
 		this.tel = tel;
 		this.name = name;
+		this.imageAddress = imageAddress;
 		this.address = address;
 		this.addressDetail = addressDetail;
 		this.standardPrice = standardPrice;

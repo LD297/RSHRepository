@@ -18,9 +18,9 @@ public class RoomAvailPO extends RoomPO implements Serializable{
      * 该时间段内的可用房间数量（算法处理后的结果）
      */
     private int amountAvail;
-    public RoomAvailPO(String id, String roomType, int amountTotal, double price,
+    public RoomAvailPO(String id, String roomType,String address, int amountTotal, double price,
                        boolean basicOrSpecial) {
-        super(id, roomType, amountTotal, price, basicOrSpecial);
+        super(id, roomType, address,amountTotal, price, basicOrSpecial);
     }
 
 

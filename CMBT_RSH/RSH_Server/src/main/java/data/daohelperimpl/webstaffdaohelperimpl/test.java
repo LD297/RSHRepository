@@ -19,17 +19,17 @@ public class test {
     @Test
     public void testinsert()throws RemoteException{
     	String id = salesDao.getNewID();
-        WebSalesmanPO webSalesmanPO = new WebSalesmanPO(id,"123456","李峰","215300");
+        WebSalesmanPO webSalesmanPO = new WebSalesmanPO(id,"123456","215300");
         ResultMessage result = salesDao.insert(webSalesmanPO);
         String id2 = salesDao.getNewID();
-        WebSalesmanPO anotherPO = new WebSalesmanPO(id2,"1234**56","李洛克","215300");
+        WebSalesmanPO anotherPO = new WebSalesmanPO(id2,"1234**56","215300");
         salesDao.insert(anotherPO);
         assertEquals(result,ResultMessage.succeed);
     }
     @Test
     public void testsalseupdate()throws RemoteException{
     	String id = "2016000001";
-        WebSalesmanPO webSalesmanPO = new WebSalesmanPO(id,"765442","周延","215300");
+        WebSalesmanPO webSalesmanPO = new WebSalesmanPO(id,"765442","215300");
         ResultMessage result = salesDao.update(webSalesmanPO) ;
         assertEquals(result,ResultMessage.succeed);
     }
@@ -39,17 +39,7 @@ public class test {
         WebSalesmanPO po = salesDao.findByID(id);
         assertEquals(po.getDistrict(),"215300");
     }
-    @Test
-    public void testfindByDistrict()throws RemoteException{
-        String district = "215300";
-        ArrayList<WebSalesmanPO> list = salesDao.findByDistrict(district);
-        assertEquals(list.get(1).getName(),"李峰");
-    }
-    @Test
-    public void testgetAll()throws RemoteException{
-        ArrayList<WebSalesmanPO> list = salesDao.getAll();
-        assertEquals(list.get(0).getName(),"周延");
-    }
+    
     WebManagerDaoHelperMySql managerDao = new WebManagerDaoHelperMySql();
     @Test
     public void testupdate ()throws RemoteException{
@@ -62,6 +52,18 @@ public class test {
         WebManagerPO po = managerDao.getManagerInfo(managerID);
         assertEquals(po.getPassword(),"123456");
     }
-
+     @Test
+    public void testgetAll()throws RemoteException{
+        ArrayList<WebSalesmanPO> list = salesDao.getAll();
+        assertEquals(list.get(1).getID(),"2016000001");
+    }
+    
+    @Test
+    public void testfindByDistrict()throws RemoteException{
+        String district = "215300";
+        ArrayList<WebSalesmanPO> list = salesDao.findByDistrict(district);
+        assertEquals(list.get(1).getID(),"2016000002");
+    }
+   
 
 }

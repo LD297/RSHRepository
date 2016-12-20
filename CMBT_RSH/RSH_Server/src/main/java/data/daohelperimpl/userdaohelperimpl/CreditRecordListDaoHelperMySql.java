@@ -20,12 +20,12 @@ import java.util.Iterator;
 public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper {
 
     private DBHelper db = new DBHelper();
-
+    private static final String nameKey = "1jkl43";
     public void init(){
 
         db.executeSql("USE OurData");
         // 账号 日期 订单号 信用更改原因 信用变化 变更后信用值
-        db.executeSql("CREATE TABLE if not exists CreditRecordInfo(userID char(11),changeDate date,orderID char(26)," +
+        db.executeSql("CREATE TABLE if not exists CreditRecordInfo(userID blob,changeDate date,orderID char(26)," +
                 "creditAction tinyint,changeValue int,credit int)" );
     }
 
@@ -38,10 +38,12 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
         db.executeSql("USE OurData");
         
         ArrayList<CreditRecordPO> CreditRecordList = new ArrayList<CreditRecordPO>();
-        if(this.checkExistence(userID)==ResultMessage.idNotExist)
+        if(this.checkExistence(userID)==ResultMessage.idNotExist||
+        		this.checkExistence(userID)==ResultMessage.recordNotExist)
         	return CreditRecordList.iterator();
         
-        String getCreditRecordNumSql = "SELECT creditRecordNum FROM UserInfo WHERE userID='"+userID+"' LIMIT 1";
+        String deUserID = this.getSecreted(userID);
+        String getCreditRecordNumSql = "SELECT creditRecordNum FROM UserInfo WHERE userID="+deUserID+" LIMIT 1";
         ResultSet recordNumResult = db.query(getCreditRecordNumSql);
         int recordNum = 0;
         try{
@@ -50,32 +52,29 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
             }
         }catch(SQLException e){
             e.printStackTrace();
-            return null;
+            return CreditRecordList.iterator();
         }
-        if(recordNum >0){
-            String getCreditRecordListSql = "SELECT *FROM CreditRecordInfo WHERE userID='"+ userID+"' LIMIT "+String.valueOf(recordNum);
-            ResultSet result = db.query(getCreditRecordListSql);
-            try{
-                while(result.next()){
-                    Date date = result.getDate("changeDate");
-                    String orderID = result.getString("orderID");
-                    CreditAction creditAction = CreditAction.values()[result.getInt("creditAction")];
-                    int changeValue = result.getInt("changeValue");
-                    String change = String.valueOf(changeValue);
-                    if(changeValue>0)
-                    	change = "+"+change;
-                    int credit= result.getInt("credit");
+        String getCreditRecordListSql = "SELECT *FROM CreditRecordInfo WHERE userID="+ deUserID+" LIMIT "+String.valueOf(recordNum);
+        ResultSet result = db.query(getCreditRecordListSql);
+        try{
+            while(result.next()){
+                Date date = result.getDate("changeDate");
+                String orderID = result.getString("orderID");
+                CreditAction creditAction = CreditAction.values()[result.getInt("creditAction")];
+                int changeValue = result.getInt("changeValue");
+                String change = String.valueOf(changeValue);
+                if(changeValue>0)
+                    change = "+"+change;
+                int credit= result.getInt("credit");
                    
-                    CreditRecordList.add(new CreditRecordPO(userID,date,orderID,creditAction,change,credit));
-                }
-                Iterator<CreditRecordPO> iter = CreditRecordList.iterator();
-                return iter;
-            }catch(SQLException e){
-                e.printStackTrace();
-                return null;
+                CreditRecordList.add(new CreditRecordPO(userID,date,orderID,creditAction,change,credit));
             }
+            Iterator<CreditRecordPO> iter = CreditRecordList.iterator();
+            return iter;
+        }catch(SQLException e){
+            e.printStackTrace();
         }
-        return null;
+        return CreditRecordList.iterator();
     }
 
     public ResultMessage addCreditRecord(CreditRecordPO po) throws RemoteException {
@@ -84,7 +83,9 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
         String userID = po.getUserid();
         if(this.checkExistence(userID)==ResultMessage.idNotExist)
         	return ResultMessage.idNotExist;
-        String getCreditRecordSql = "SELECT creditRecordNum FROM UserInfo WHERE userID='"+userID+"' LIMIT 1";
+        
+        String deUserID = this.getSecreted(userID);
+        String getCreditRecordSql = "SELECT creditRecordNum FROM UserInfo WHERE userID="+deUserID+" LIMIT 1";
         ResultSet recordResult = db.query(getCreditRecordSql);
         
         int creditNum = -1;
@@ -103,14 +104,16 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
         String orderID = po.getOrderID();
         int action = po.getCreditAction().ordinal();
         String change = po.getChange();
+        if(change.charAt(0)=='+')
+        	change = change.substring(1);
         int creditUpdated = po.getCredit();
         
-        String addCreditRecordSql = "INSERT INTO CreditRecordInfo VALUES('"+userID+"','"+dateStr+"','"+orderID+"',"
-                +String.valueOf(action)+","+change.substring(1)+","+String.valueOf(creditUpdated)+")";
+        String addCreditRecordSql = "INSERT INTO CreditRecordInfo VALUES("+deUserID+",'"+dateStr+"','"+orderID+"',"
+                +String.valueOf(action)+","+change+","+String.valueOf(creditUpdated)+")";
         db.executeSql(addCreditRecordSql);
         
         String updateUserInfoSql = "UPDATE UserInfo SET credit="+String.valueOf(creditUpdated)
-        		+",creditRecordNum="+String.valueOf(creditNum+1)+" WHERE userID='"+userID+"' LIMIT 1";
+        		+",creditRecordNum="+String.valueOf(creditNum+1)+" WHERE userID="+deUserID+" LIMIT 1";
         db.executeSql(updateUserInfoSql);
         
         return ResultMessage.succeed;
@@ -118,16 +121,24 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
   
     // 检查需要操作的账号存在
     public ResultMessage checkExistence(String userID){
-        String checkExistenceSql = "SELECT userID FROM UserInfo";
+        String checkExistenceSql = "SELECT creditRecordNum FROM UserInfo WHERE userID="
+                                     +this.getSecreted(userID);
         ResultSet result = db.query(checkExistenceSql);
+        if(result==null)
+        	return ResultMessage.idNotExist;
+        
         try{
             while(result.next())
-                if(result.getString(1).equals(userID))
-                    return ResultMessage.idAlreadyExist;
+                if(result.getInt(1)<=0)
+                    return ResultMessage.recordNotExist;
         }catch(SQLException e){
             e.printStackTrace();
             return null;
         }
-        return ResultMessage.idNotExist;
+        return ResultMessage.idAlreadyExist;
+    }
+    //
+    private String getSecreted(String clear){
+    	return "aes_encrypt('"+clear+"','"+nameKey+"')";
     }
 }
