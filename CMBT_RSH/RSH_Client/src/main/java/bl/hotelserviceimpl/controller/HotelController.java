@@ -63,7 +63,7 @@ public class HotelController implements HotelService {
 	}
 
 	@Override
-	public ArrayList<RoomVO> getRoomList() {
+	public ArrayList<RoomVO> getRoomList(String id) {
 		// TODO Auto-generated method stub
 		return roomManager.getRoomList();
 	}

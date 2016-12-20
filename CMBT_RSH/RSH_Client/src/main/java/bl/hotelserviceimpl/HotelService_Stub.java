@@ -31,7 +31,7 @@ public class HotelService_Stub implements HotelService{
 	}
 
 	@Override
-	public ArrayList<RoomVO> getRoomList() {
+	public ArrayList<RoomVO> getRoomList(String id) {
 		RoomVO vo1 = new RoomVO("001", "单人间", 20, 200, "basic");
 		RoomVO vo2 = new RoomVO("002", "双人间", 10, 300, "basic");
 		RoomVO vo3 = new RoomVO("003", "三人间", 30, 400, "basic");

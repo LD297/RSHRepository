@@ -30,7 +30,7 @@ public interface HotelService {
     public ResultMessage updateHotel (HotelVO vo);
 
     // 返回该酒店的客房信息列表
-    public ArrayList<RoomVO> getRoomList();
+    public ArrayList<RoomVO> getRoomList(String id);
 
 	// 增加客房, 实现类中需要参数String hotelID
 	public ResultMessage addSpecialRoom(RoomVO vo);

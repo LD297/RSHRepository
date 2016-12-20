@@ -212,7 +212,7 @@ public String getHotelID() {
      * @return
      */
     public ArrayList<RoomVO> getRoomVos() {
-		ArrayList<RoomVO> roomVOs = hotelService.getRoomList();
+		ArrayList<RoomVO> roomVOs = hotelService.getRoomList(hotelID);
 		return roomVOs;
 	}
     
