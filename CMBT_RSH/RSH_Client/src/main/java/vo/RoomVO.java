@@ -3,25 +3,10 @@ package vo;
 import po.RoomPO;
 
 public class RoomVO {
-	/**
-	 * 酒店名称
-	 */
 	public String hotelID;
-	/**
-	 * 房间类型（单人间／标准间）
-	 */
 	public String roomType;
-	/**
-	 * 该类型房间总量
-	 */
-	public int numOfRoom;
-	/**
-	 * 该类型房间的单价（元／晚（12:00～次日11:59））
-	 */
+	public int numOfRoom;   		//该酒店该种类型房间总数量
 	public double price;
-	/**
-	 * 该类型房间是否被设为特色
-	 */
 	public String basicOrSpecial;
 
 	public RoomVO(String hotelID, String roomType, int numOfRoom, double price, String basicOrSpecial) {

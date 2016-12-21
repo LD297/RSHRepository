@@ -1,10 +1,5 @@
 package vo;
 
-
-import java.util.concurrent.Future;
-
-import org.junit.validator.PublicClassValidator;
-
 import po.HotelPO;
 
 public class HotelVO {

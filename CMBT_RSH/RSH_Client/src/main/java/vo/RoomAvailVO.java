@@ -2,6 +2,11 @@ package vo;
 
 import java.util.Date;
 
+/**
+ * 特定酒店特定房间特定日期可用房间数量
+ * @author aa
+ *
+ */
 public class RoomAvailVO  {
 	
 	String hotelID;
@@ -9,15 +14,14 @@ public class RoomAvailVO  {
 	public Date beginDate;
 	public Date endDate;
 	private int numOfAvailRoom;
-	
 	double price;
 	String basicOrSpecial;
-	public RoomAvailVO(String id, String roomType, int amountTotal, double price,
+	
+	public RoomAvailVO(String hotelID, String roomType, int numOfAcailRoom, double price,
 					   String basicOrSpecial) {
-//		super(id, roomType, amountTotal, price, basicOrSpecial);
-		this.hotelID = id;
+		this.hotelID = hotelID;
 		this.roomType = roomType;
-		this.numOfAvailRoom = amountTotal;
+		this.numOfAvailRoom = numOfAcailRoom;
 		this.price = price;
 		this.basicOrSpecial = basicOrSpecial;
 	}

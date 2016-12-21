@@ -3,16 +3,21 @@ package vo;
 import po.WebSalesmanPO;
 
 public class WebSalesmanVO {
-	String id;
-	String province;
-	String city;
-	String area;
+	
+	String webSalesmanID;
 	String district;
 	String password = "sadghgfhj";
 	String name;
 	
+	/**
+	 * these will be get from district
+	 */
+	String province;
+	String city;
+	String area;
+	
 	public WebSalesmanVO(String webSalesmnaID,String province,String city,String area,String name){
-		this.id  = webSalesmnaID;
+		this.webSalesmanID  = webSalesmnaID;
 		this.province = province;
 		this.city = city;
 		this.area = area;
@@ -20,7 +25,7 @@ public class WebSalesmanVO {
 	}
 	
 	public WebSalesmanVO(String webSalesmanID,String district,String password,String name) {
-		this.id = webSalesmanID;
+		this.webSalesmanID = webSalesmanID;
 		this.password = password;
 		this.name = name;
 		DistrictHelper districtHelper = new DistrictHelper(district);
@@ -29,7 +34,7 @@ public class WebSalesmanVO {
 		area = districtHelper.getArea();
 	}
 	public String getId() {
-		return id;
+		return webSalesmanID;
 	}
 	public String getProvince() {
 		return province;
@@ -46,11 +51,6 @@ public class WebSalesmanVO {
 		return district;
 	}
 	
-	public String getPassword() {
-		return password;
-	}
-	
-	
 	public String getName() {
 		return name;
 	}
@@ -59,8 +59,8 @@ public class WebSalesmanVO {
 		this.name = name;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId(String webSalesmanID) {
+		this.webSalesmanID = webSalesmanID;
 	}
 
 	public void setProvince(String province) {
@@ -84,7 +84,7 @@ public class WebSalesmanVO {
 	}
 
 	public WebSalesmanPO changeIntoPO(){
-		WebSalesmanPO webSalesmanPO = new WebSalesmanPO(id, district, password, name);
+		WebSalesmanPO webSalesmanPO = new WebSalesmanPO(webSalesmanID, district, password, name);
 		return webSalesmanPO;
 	}
 }
