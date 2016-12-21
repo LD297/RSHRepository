@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -24,6 +25,7 @@ import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import vo.RoomVO;
 
 public class RoomInfoUIController {
+
 
 
     @FXML
@@ -39,16 +41,13 @@ public class RoomInfoUIController {
     private AnchorPane showPane01;
 
     @FXML
-    private AnchorPane showPane04;
-
-    @FXML
-    private AnchorPane showPane03;
-
-    @FXML
-    private AnchorPane showPane05;
+    private ImageView plus;
 
     @FXML
     private Button delete0;
+
+    @FXML
+    private Label greyLabel;
 
     @FXML
     private AnchorPane anchorPane;
@@ -57,88 +56,22 @@ public class RoomInfoUIController {
     private Label prePageLabel;
 
     @FXML
-    private Button backButton;
-
-    @FXML
-    private Label nextPageLabel;
-
-    @FXML
-    private Text view0;
-
-    @FXML
-    private Button delete05;
-
-    @FXML
-    private ImageView plus;
-
-    @FXML
-    private Label greyLabel;
-
-    @FXML
-    private Text view02;
-
-    @FXML
-    private Button delete04;
-
-    @FXML
-    private Text view01;
-
-    @FXML
-    private Button delete03;
-
-    @FXML
     private Button delete02;
 
     @FXML
     private Button delete01;
 
     @FXML
-    private Text view05;
+    private Button backButton;
+
+    @FXML
+    private Label nextPageLabel;
 
     @FXML
     private AnchorPane showPane0;
 
     @FXML
-    private Text view04;
-
-    @FXML
-    private Text view03;
-
-    @FXML
     private Label pageLabel;
-    
-
-    @FXML
-    void view0Clicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void view01Clicked(MouseEvent event) {
-
-    }
-    
-
-    @FXML
-    void view02Clicked(MouseEvent event) {
-
-    }
-    
-
-    @FXML
-    void view03Clicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void view04Clicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void view05Clicked(MouseEvent event) {
-
-    }
 
     AnchorPane addRoomAnchorPane;
     AddRoomUIController addRoomUIController;
@@ -149,8 +82,8 @@ public class RoomInfoUIController {
     private String hotelId;
     // 当前的room
     private ArrayList<RoomVO> currentRoom;
-    private static final int NUM_OF_ITEMS = 4;
-    private static final int NUM_OF_ROOMS_SHOWN = 6;
+    private static final int NUM_OF_ITEMS = 3;
+    private static final int NUM_OF_ROOMS_SHOWN = 3;
     // 当前页面的room
     private RoomVO[] roomOnShow = new RoomVO[NUM_OF_ROOMS_SHOWN];
     // 用于展示的anchorPane
@@ -205,15 +138,18 @@ public class RoomInfoUIController {
     }
     private void showRoomItems(AnchorPane theAnchorPane, RoomVO theRoom){
         if(theRoom!=null){
+            // 显示该类型房间图片
+            ImageView roomImage = (ImageView) theAnchorPane.getChildren().get(0);
+            roomImage.setImage(new Image( , 146, 92, false, true));
             // 存放每条roomItem展示信息的label
             ArrayList<Label> labels = new ArrayList<>(NUM_OF_ITEMS);
             for(int i=0; i<NUM_OF_ITEMS; i++){
-                labels.add((Label) theAnchorPane.getChildren().get(i));
+                labels.add((Label) theAnchorPane.getChildren().get(i+1));
             }
 
-            //  存放每条roomItem相应的展示信息
-            String[] items = new String[]{theRoom.roomType, theRoom.basicOrSpecial,
-                    String.valueOf(theRoom.price),String.valueOf(theRoom.numOfRoom)};
+            //  存放每条roomItem相应的展示信息(房间、数量、价格)
+            String[] items = new String[]{theRoom.roomType, String.valueOf(theRoom.numOfRoom),
+                    String.valueOf(theRoom.price)};
 
             // 将每条信息的string放进相应的label
             for(int i=0; i<NUM_OF_ITEMS; i++){
@@ -252,7 +188,7 @@ public class RoomInfoUIController {
     }
 
     private RoomVO createRoomByPane(AnchorPane thePane){
-        String type = ((Label)thePane.getChildren().get(0)).getText();
+        String type = ((Label)thePane.getChildren().get(1)).getText();
         RoomVO roomVO = new RoomVO("",type, 0, 0.0,"");
         return roomVO;
     }
@@ -274,21 +210,6 @@ public class RoomInfoUIController {
     @FXML
     void delete02Clicked(MouseEvent event) {
         deleteTheRoom(showPane02);
-        refreshPage();
-    }
-    @FXML
-    void delete03Clicked(MouseEvent event) {
-        deleteTheRoom(showPane03);
-        refreshPage();
-    }
-    @FXML
-    void delete04Clicked(MouseEvent event) {
-        deleteTheRoom(showPane04);
-        refreshPage();
-    }
-    @FXML
-    void delete05Clicked(MouseEvent event) {
-        deleteTheRoom(showPane05);
         refreshPage();
     }
 
@@ -333,28 +254,16 @@ public class RoomInfoUIController {
     void initialize() {
         assert showPane02 != null : "fx:id=\"showPane02\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert showPane01 != null : "fx:id=\"showPane01\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert showPane04 != null : "fx:id=\"showPane04\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert showPane03 != null : "fx:id=\"showPane03\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert showPane05 != null : "fx:id=\"showPane05\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert plus != null : "fx:id=\"plus\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert delete0 != null : "fx:id=\"delete0\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert greyLabel != null : "fx:id=\"greyLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert prePageLabel != null : "fx:id=\"prePageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert nextPageLabel != null : "fx:id=\"nextPageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert view0 != null : "fx:id=\"view0\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert delete05 != null : "fx:id=\"delete05\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert plus != null : "fx:id=\"plus\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert greyLabel != null : "fx:id=\"greyLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert view02 != null : "fx:id=\"view02\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert delete04 != null : "fx:id=\"delete04\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert view01 != null : "fx:id=\"view01\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert delete03 != null : "fx:id=\"delete03\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert delete02 != null : "fx:id=\"delete02\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert delete01 != null : "fx:id=\"delete01\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert view05 != null : "fx:id=\"view05\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert nextPageLabel != null : "fx:id=\"nextPageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert showPane0 != null : "fx:id=\"showPane0\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert view04 != null : "fx:id=\"view04\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert view03 != null : "fx:id=\"view03\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
 
         setShowPanes();
@@ -369,8 +278,7 @@ public class RoomInfoUIController {
         this.hotelId = hotelId;
     }
     private void setShowPanes(){
-        showPanes =  new AnchorPane[]{showPane0, showPane01, showPane02,
-                showPane03, showPane04,showPane05};
+        showPanes =  new AnchorPane[]{showPane0, showPane01, showPane02};
     }
 
     public void refreshPage(){
