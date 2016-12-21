@@ -220,8 +220,9 @@ public class HotelBasicInfoUIController {
         String facility = facilityTextArea.getText();
 
         HotelVO newHotelVO = new HotelVO(id, name,
-                address, tel, "", Integer.parseInt(level),businessArea, 0,briefIntro,
-                facility,, Double.parseDouble(grade), latestCheckinTime);
+                address, tel, "password", Integer.parseInt(level),998 , latestCheckinTime,
+                , briefIntro, businessArea, facility, imageAddress,0,
+                , ,Double.parseDouble(grade), );
 
         String[] feedback = HotelBasicInfoUICheck.checkHotelVO(newHotelVO);
 
