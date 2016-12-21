@@ -103,11 +103,6 @@ public class UserController implements UserService{
 		return null;
 	}
 
-	@Override
-	public String resetPassword(String userid) {
-		// TODO Auto-generated method stub
-		return BLHelper.getRandom(20);
-	}
 
 	@Override
 	public ResultMessage addCredit(int value, String userID) {

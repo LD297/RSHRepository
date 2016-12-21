@@ -16,8 +16,4 @@ public class WebManagerPO {
 		return password;
 	}
 
-	public WebManagerVO changeIntoVO(){
-		WebManagerVO webManagerVO = new WebManagerVO();
-		return webManagerVO;
-	}
 }

@@ -14,11 +14,7 @@ public class LoginService_Stub implements LoginService{
 		return ResultMessage.succeed;
 	}
 
-	@Override
-	public ResultMessage register(WebManagerVO vo) {
-		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
-	}
+	
 
 	@Override
 	public ResultMessage checkOnline(Role role, String id, String password) {

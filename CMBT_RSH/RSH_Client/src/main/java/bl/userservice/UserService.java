@@ -9,40 +9,31 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * 处理userui对应的逻辑，所有传入的参数都需要在界面层检验输入是否合法
- * @author wxy shfbsjhf
+ * 
+ * @author John
  *
  */
 public interface UserService {
-	/**
-	 * 返回用户基本信息
-	 */
-	public UserVO getInfo(String userid);
 	
-	/**
-	 * 网站管理人员为用户重置密码
-	 * @return
-	 */
-	public String resetPassword(String userid);
+	public UserVO getInfo(String userID);
 	
 	public ArrayList<UserVO> getUserVOS();
 
-	/**
-	 * 更新用户的基本信息
-	 */
 	public ResultMessage update(UserVO userVO);
+	
 	/**
-	 * 增加信用变化记录（用户信用充值的时候）
+	 * 增加用户信用充值的记录
 	 */
 	public ResultMessage addCredit(int value, String userID);
+	
 	/**
 	 * 返回用户信用记录列表（用户查看信用记录的时候）
 	 */
-	public Iterator<CreditRecordVO> getCreditRecordList(String userid);
+	public Iterator<CreditRecordVO> getCreditRecordList(String userID);
 	/**
 	 * 注册普通会员
 	 */
-	public ResultMessage registerMember(String userid);
+	public ResultMessage registerMember(String userID);
 	/**
 	 * 注册企业会员
 	 */

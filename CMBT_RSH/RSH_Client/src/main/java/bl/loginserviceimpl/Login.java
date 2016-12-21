@@ -11,13 +11,9 @@ import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
 
-//<<<<<<< Updated upstream
-//=======
-//>>>>>>> Stashed changes
-
 public class Login {
 	private static Login login = null;
-	private static LoginDao loginDao=null;
+	private static LoginDao loginDao = null;
 
 	public static Login getInstance(){
 		if(login==null){
@@ -46,21 +42,23 @@ public class Login {
 		case websalesman:
 			resultMessage = WebStaffController.checkPassword(id, password);
 			break;
+		default:
+			return ResultMessage.not_exist;
 		}
 		//检验是否有登陆冲突
 		if(resultMessage==ResultMessage.succeed){
 			try {
-				OnlinePersonPO po = new OnlinePersonPO(role, id, password);
+				OnlinePersonPO po = new OnlinePersonPO(role, id);
 				resultMessage = loginDao.addOnline(po);
 			} catch (RemoteException e) {
 				return ResultMessage.remote_fail;
 			}
+			return resultMessage;
 		}
 		else{
-			resultMessage = ResultMessage.password_wrong;
-		}
+			return resultMessage;
+		}	
 		
-		return resultMessage;
 	}
 
 	/**

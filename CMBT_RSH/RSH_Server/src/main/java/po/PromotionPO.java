@@ -9,6 +9,10 @@ import java.util.Date;
 
 public class PromotionPO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String setter;
 	String id;
 	String name;

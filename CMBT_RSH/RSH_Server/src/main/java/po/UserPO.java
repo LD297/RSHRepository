@@ -2,8 +2,6 @@ package po;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
-
 import constant.MemberType;
 import constant.Sexuality;
 
@@ -11,7 +9,7 @@ public class UserPO implements Serializable{
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = -8288241397984958515L;
+	private static final long serialVersionUID = 1L;
 	String id;
 	String password;
 	String nickName;

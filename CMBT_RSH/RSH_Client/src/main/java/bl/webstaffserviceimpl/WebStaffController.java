@@ -19,6 +19,9 @@ import javax.naming.ldap.ManageReferralControl;
  *
  */
 public class WebStaffController implements WebStaffService{
+	
+	private static final String MANAGER_ID = "0000000000";
+	
 	private static WebSalesmanDao webSalesmanDao = null;
 	
 	private static void initRemote(){
@@ -27,6 +30,8 @@ public class WebStaffController implements WebStaffService{
 			webSalesmanDao = remoteHelper.getWebSalesmanDao();
 		}		
 	}
+	
+	
 	@Override
 	public String getIDForWebsalesman() {
 		// TODO Auto-generated method stub
@@ -45,7 +50,11 @@ public class WebStaffController implements WebStaffService{
 	public ResultMessage addWebSalesman(WebSalesmanVO webSalesmanVO) {
 		// TODO Auto-generated method stub
 		initRemote();
+		String webSalesmanID = webSalesmanVO.getId();
 		try {
+			if(webSalesmanDao.getSalesmanInstance(webSalesmanID)!=null){
+				return ResultMessage.already_exist;
+			}
 			return webSalesmanDao.addWebSalesman(webSalesmanVO.changeIntoPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -72,10 +81,11 @@ public class WebStaffController implements WebStaffService{
 		}
 		return webSalesmanVOs;
 	}
+	
 	@Override
 	public ResultMessage changePassword(String ID, String oldPassword,String newPassword) {
 		// TODO Auto-generated method stub
-		if(ID=="0000000000"){
+		if(ID.equals(MANAGER_ID)){
 			WebManager manager = WebManager.getInstance();
 			return manager.changePassword(oldPassword,newPassword);
 		}
@@ -84,27 +94,26 @@ public class WebStaffController implements WebStaffService{
 			return webSalesman.changePassword(oldPassword,newPassword);
 		}
 	}
-	@Override
-	public ResultMessage forceChangePassword(String ID, String newPassword) {
+
+	public ResultMessage updateWebSalesman(WebSalesmanVO webSalesmanVO) {
 		// TODO Auto-generated method stub
-		if(ID=="0000000000"){
-			return ResultMessage.noChangeMade;
-		}
-		else{
-			WebSalesman webSalesman = WebSalesman.getInstance(ID);
-			return webSalesman.forceChangePassword(newPassword);
+		String webSalesmanID = webSalesmanVO.getId();
+		initRemote();
+		
+		try {
+			if(webSalesmanDao.getSalesmanInstance(webSalesmanID)==null){
+				return ResultMessage.idNotExist;
+			}
+			return webSalesmanDao.updateWebSalesman(webSalesmanVO.changeIntoPO());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
 	}
 
-	@Override
-	public ResultMessage addWebManager(String ID, String password) {
-		// TODO Auto-generated method stub
-		return ResultMessage.noChangeMade;
-	}
-
-	
 	public static ResultMessage checkPassword(String ID, String password) {
-		if(ID=="0000000000"){
+		if(ID.equals(MANAGER_ID)){
 			WebManager webManager = WebManager.getInstance();
 			return webManager.checkPassword(password);
 		}
@@ -112,11 +121,6 @@ public class WebStaffController implements WebStaffService{
 			WebSalesman webSalesman = WebSalesman.getInstance(ID);
 			return webSalesman.checkPassword(password);
 		}
-	}
-	@Override
-	public ResultMessage updateWebSalesman(WebSalesmanVO webSalesmanVO) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	

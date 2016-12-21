@@ -9,7 +9,7 @@ public class CreditRecordPO implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -163720997980736608L;
+	private static final long serialVersionUID = 1L;
 	String userID;
 	Date date;
 	String orderID;

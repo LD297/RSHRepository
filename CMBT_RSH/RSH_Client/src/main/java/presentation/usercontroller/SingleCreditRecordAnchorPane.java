@@ -41,7 +41,7 @@ public class SingleCreditRecordAnchorPane extends AnchorPane{
 		CreditAction creditAction = creditRecordVO.getCreditAction();
 		ImageFactory imageFactory = ImageFactory.getImageFactory();
 		//如果是延迟入住或恢复异常订单
-		if(creditAction==CreditAction.delay_checkin||creditAction==CreditAction.cancel_abnomal){
+		if(creditAction==CreditAction.cancel_abnomal){
 			orderStateImage.setImage(imageFactory.getDelayCheckinImage());
 		//如果是异常订单
 		}else if (creditAction==CreditAction.abnormal) {

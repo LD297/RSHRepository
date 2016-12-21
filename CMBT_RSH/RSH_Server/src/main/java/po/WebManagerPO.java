@@ -6,6 +6,10 @@ import java.io.Serializable;
 
 public class WebManagerPO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String id;
 	String password;
 	public WebManagerPO(String id, String password){

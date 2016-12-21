@@ -17,10 +17,9 @@ import java.rmi.RemoteException;
  */
 public class WebManager {
 
-//	private static final int  MAXNUM= 1;// 网站管理人员的最大数量
 	private static WebManager webManager = null;
-	private String webManagerID;
-	private String password=null;
+	private static final String webManagerID = "0000000000";
+	private String password;
 	private static WebManagerDao webManagerDao = null;
 	
 	private static void initRemote(){
@@ -29,12 +28,6 @@ public class WebManager {
 			webManagerDao = remoteHelper.getWebManagerDao();
 		}
 	}
-	
-	private WebManager(String password){
-		webManagerID = "0000000000";
-		this.password = password;
-	}
-
 
 	/**
 	 * 需要数据层中提取数据，判断是否已经初始化
@@ -45,7 +38,7 @@ public class WebManager {
 			initRemote();
 			WebManagerPO webManagerPO = null;
 			try {
-				webManagerPO = webManagerDao.getManagerInstance("0000000000");
+				webManagerPO = webManagerDao.getManagerInstance(webManagerID);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -56,32 +49,26 @@ public class WebManager {
 		return webManager;
 	}
 
-	/**
-	 *
-	 * @param oldPassword
-	 * @param newPassword
-	 * @return 是否成功
-	 */
+	private WebManager(String password){
+		this.password = password;
+	}
+	
 	public ResultMessage changePassword(String oldPassword, String newPassword){
 		if(webManager==null){
 			webManager = WebManager.getInstance();
 			if(webManager==null)
 				return ResultMessage.remote_fail;
 		}
-		if (oldPassword==password){
+		if (oldPassword.equals(password)){
 			password=newPassword;
-			return this.update();
+			return this.updateData();
 		}
 		else{
 			return ResultMessage.password_wrong;
 		}
 	}
 	
-	/**
-	 * 在数据层更新
-	 * @return
-	 */
-	private ResultMessage update() {
+	private ResultMessage updateData() {
 		if(webManager==null)
 			webManager = getInstance();
 		try {
@@ -98,7 +85,7 @@ public class WebManager {
 		if(webManager==null){
 			webManager = getInstance();
 		}
-		if(this.password == password){
+		if(this.password.equals(password)){
 			return ResultMessage.succeed;
 		}
 		else{

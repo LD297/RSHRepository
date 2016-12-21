@@ -37,4 +37,10 @@ public class WebSalesmanPO {
 		return webSalesmanVO;
 	}
 
+	public WebSalesman changeIntoWebSalesman() {
+		// TODO Auto-generated method stub
+		WebSalesman webSalesman = new WebSalesman(webSalesmanID, district, password, name);
+		return webSalesman;
+	}
+
 }

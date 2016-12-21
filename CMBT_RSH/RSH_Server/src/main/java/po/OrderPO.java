@@ -5,6 +5,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class OrderPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// 注：一笔订单允许一种房间类型
 	private String orderID = null;
 	private String userID = null;

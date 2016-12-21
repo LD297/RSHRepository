@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class HotelStaffPO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String hotelID;
 	String tel;
 	public String getHotelID(){

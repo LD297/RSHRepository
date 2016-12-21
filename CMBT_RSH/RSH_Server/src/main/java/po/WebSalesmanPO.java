@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class WebSalesmanPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String webSalesmanID;
 	String password;
 	String district;//6位编码

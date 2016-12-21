@@ -6,7 +6,11 @@ import java.io.Serializable;
  * Created by sky-PC on 2016/12/16.
  */
 public class RoomNormPO implements Serializable {
-    private String hotelID;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String hotelID;
     private String roomType;
     private double price;
 

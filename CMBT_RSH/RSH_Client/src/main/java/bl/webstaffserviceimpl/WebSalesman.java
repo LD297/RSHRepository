@@ -24,7 +24,7 @@ public class WebSalesman {
 	}
 	
 	
-	protected WebSalesman(String webSalesmanID, String district, String password,String name) {
+	public WebSalesman(String webSalesmanID, String district, String password,String name) {
 		// TODO Auto-generated constructor stub
 		this.webSalesmanID = webSalesmanID;
 		this.district = district;
@@ -45,21 +45,11 @@ public class WebSalesman {
 		if(webSalesmanPO==null){
 			return null;
 		}
-		WebSalesman webSalesman = new WebSalesman(webSalesmanPO.getID(), 
-				webSalesmanPO.getDistrict(),webSalesmanPO.getPassword(),webSalesmanPO.getName());
+		WebSalesman webSalesman = webSalesmanPO.changeIntoWebSalesman();
 		return webSalesman;
 	}
 
-	public ResultMessage insert(){
-		initRemote();
-		try {
-			return webSalesmanDao.addWebSalesman(this.changeIntoPO());
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return ResultMessage.remote_fail;
-		}
-	}
+	
 
 	public ResultMessage update(){
 		initRemote();
@@ -72,6 +62,28 @@ public class WebSalesman {
 		}
 	}
 
+	
+
+	public ResultMessage changePassword(String oldPassword, String newPassword) {
+		// TODO Auto-generated method stub
+		if(password.equals(oldPassword)){
+			password = newPassword;
+			return update();
+		}
+		return ResultMessage.password_wrong;
+	}
+
+	public ResultMessage checkPassword(String password) {
+		// TODO Auto-generated method stub
+		if(this.password .equals( password )){
+			return ResultMessage.succeed;
+		}
+		else{
+			return ResultMessage.password_wrong;
+		}
+	}
+
+	
 	public WebSalesmanPO changeIntoPO(){
 		WebSalesmanPO webSalesmanPO = new WebSalesmanPO(webSalesmanID, district, password, name);
 		return webSalesmanPO;
@@ -82,32 +94,4 @@ public class WebSalesman {
 		return webSalesmanVO;
 	}
 
-
-	public ResultMessage changePassword(String oldPassword, String newPassword) {
-		// TODO Auto-generated method stub
-		if(password == oldPassword){
-			password = newPassword;
-			return update();
-		}
-		return ResultMessage.password_wrong;
-	}
-
-
-	public ResultMessage forceChangePassword(String newPassword) {
-		// TODO Auto-generated method stub
-		password = newPassword ;
-		return update();
-	}
-
-
-	public ResultMessage checkPassword(String password) {
-		// TODO Auto-generated method stub
-		if(this.password == password){
-			return ResultMessage.succeed;
-		}
-		else{
-			return ResultMessage.password_wrong;
-		}
-	}
-	
 }

@@ -42,15 +42,15 @@ public class UserService_Stub implements UserService{
 		CreditRecordVO cVo4 = new CreditRecordVO(userid, new Date(), "17235412647553465",
 				CreditAction.cancel_abnomal, "+70",100);
 		CreditRecordVO cVo5 = new CreditRecordVO(userid, new Date(), "17235412647553465",
-				CreditAction.delay_checkin, "+7020",100);
+				CreditAction.cancel_abnomal, "+7020",100);
 		CreditRecordVO cVO6 = new CreditRecordVO(userid, new Date(), "17235412647553465",
 				CreditAction.execute, "+900",100);
 		CreditRecordVO cVo7 = new CreditRecordVO(userid, new Date(), "17235412647553465",
 				CreditAction.execute, "+6010",100);
 		CreditRecordVO cVo8 = new CreditRecordVO(userid, new Date(), "17235412647553465",
-				CreditAction.delay_checkin, "+7020",100);
+				CreditAction.cancel_abnomal, "+7020",100);
 		CreditRecordVO cVo9 = new CreditRecordVO(userid, new Date(), "17235412647553465",
-				CreditAction.delay_checkin, "+7020",100);
+				CreditAction.cancel_abnomal, "+7020",100);
 		creditRecordVOs.add(cVo1);
 		creditRecordVOs.add(cVo9);
 		creditRecordVOs.add(cVo8);
@@ -146,10 +146,6 @@ public class UserService_Stub implements UserService{
 		return userVOs;
 	}
 
-	@Override
-	public String resetPassword(String userid) {
-		return "hdgfjf_2565472";
-	}
 
 	@Override
 	public ResultMessage addCredit(int value, String userID) {

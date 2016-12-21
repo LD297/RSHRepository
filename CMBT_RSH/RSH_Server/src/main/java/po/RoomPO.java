@@ -7,7 +7,12 @@ import java.util.ArrayList;
 import vo.RoomVO;
 
 public class RoomPO implements Serializable{
-    private String hotelID;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String hotelID;
 	
 	private String roomType;
 	

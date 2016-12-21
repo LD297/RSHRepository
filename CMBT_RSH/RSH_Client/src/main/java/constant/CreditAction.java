@@ -5,7 +5,6 @@ public enum CreditAction {
 	cancel("撤销订单"),
 	abnormal("异常订单"),
 	execute("执行订单"),
-	delay_checkin("延迟入住"),
 	cancel_abnomal("恢复异常订单");
 	private String string;
 	private CreditAction(String string){
@@ -23,8 +22,6 @@ public enum CreditAction {
 			return CreditAction.abnormal;
 		}else if (s.equals("执行订单")) {
 			return CreditAction.execute;
-		}else if(s.equals("延迟入住")){
-			return CreditAction.delay_checkin;
 		}else {
 			return CreditAction.cancel_abnomal;
 		}
