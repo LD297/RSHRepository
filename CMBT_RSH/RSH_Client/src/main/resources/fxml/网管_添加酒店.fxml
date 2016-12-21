@@ -34,7 +34,7 @@
             <ComboBox fx:id="provinceCombox" layoutX="130.0" layoutY="149.0" onAction="#toSetCityCombox" prefHeight="30.0" prefWidth="110.0" promptText="所在省" />
             <ComboBox fx:id="districtCombox" layoutX="350.0" layoutY="149.0" prefHeight="30.0" prefWidth="110.0" promptText="所在区" />
             <ComboBox fx:id="cityCombox" layoutX="240.0" layoutY="149.0" onAction="#ToSetDistrictCombox" prefHeight="30.0" prefWidth="110.0" promptText="所在市" />
-            <TextField fx:id="addressField" layoutX="130.0" layoutY="200.0" prefHeight="30.0" prefWidth="329.0" promptText="请输入详细地址">
+            <TextField fx:id="addressField" layoutX="130.0" layoutY="200.0" prefHeight="30.0" prefWidth="329.0" promptText="请输入街道和门牌号">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>

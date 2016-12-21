@@ -13,7 +13,7 @@ import vo.HotelVO;
 
 public class SingleHotelAnchorPane extends AnchorPane{
 	private Label nameLabel = new Label("酒店名称：");
-	private Label areaLabel = new Label("所属商圈:");
+	private Label areaLabel = new Label("所在地址:");
 	private Label idLabel = new Label("酒店账号：");
 	private Label nameIndoLabel = new Label();
 	private Label areaInfoLabel = new Label();
@@ -24,7 +24,7 @@ public class SingleHotelAnchorPane extends AnchorPane{
 
 	public SingleHotelAnchorPane(HotelVO hotelVO) {
 		nameIndoLabel.setText(hotelVO.getHotelName());
-		areaInfoLabel.setText(hotelVO.getDetailAddress());
+		areaInfoLabel.setText(hotelVO.getFullAddress());
 		idInfoLabel.setText(hotelVO.getHotelID());
 		phoneInfoLabel.setText(hotelVO.getTel());
 		

@@ -35,7 +35,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 	private Label hotelNameLabel = null;
 	private Button createOrderButton = null;
 	private Label priceLabel = null;
-//	private ArrayList<Label> promotionLabels = null;
+	private ArrayList<Label> promotionLabels = null;
 	private ArrayList<Image> hotelImages = null;
 	private int imagePointer = 0;
 	private ImageView orderStateImage = null;
@@ -57,21 +57,21 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		lastImageArrow = new ImageView(ImageFactory.getImageFactory().getLastImageArrow());
 		nextImageArrow = new ImageView(ImageFactory.getImageFactory().getNextImageArrow());
 		hotelNameLabel = new Label(hotelVO.getHotelName());
-//		promotionLabels = new ArrayList<Label>();
+		promotionLabels = new ArrayList<Label>();
 		createOrderButton = new Button("新建订单");
 		//浏览酒店界面上显示的价格是标准间价格
 		priceLabel = new Label("￥"+String.valueOf(hotelVO.getStandardRoomPrice())+"/晚");
 		
 		//TODO 得到的促销策略应该适用于当前日期
 		//TODO bL层单利？？？？？？？
-/*		ArrayList<PromotionVO> promotionVOs = UserInfoUtil.getInstance().getPromotionVOs(hotelVO.id);
-		for(int i=0;i<2;i++){
+		ArrayList<PromotionVO> promotionVOs = UserInfoUtil.getInstance().getPromotionVOs(hotelVO.getHotelID());
+		for(int i=0;i<3;i++){
 			if(promotionVOs.size()<=i){
 				break;
 			}
-			Label label = new Label(promotionVOs.get(i).reason);
+			Label label = new Label("   "+promotionVOs.get(i).reason);
 			promotionLabels.add(label);
-		}*/
+		}
 		//从数据层拿到该用户最近一笔订单的状态
 		StateOfOrder stateOfOrder = UserInfoUtil.getInstance().getOrderStateOfUser(hotelVO.getHotelID());
 		orderStateImage = new ImageView(ImageFactory.getImageFactory().getOrderStateImage(stateOfOrder));
@@ -85,7 +85,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		nextImageArrow.setFitWidth(65.0);
 		nextImageArrow.setFitHeight(95.0);
 		orderStateImage.setFitHeight(26.0);
-		orderStateImage.setFitWidth(76.0);
+		orderStateImage.setFitWidth(60.0);
 		hotelImageView.setPreserveRatio(false);
 		lastImageArrow.setPreserveRatio(false);
 		nextImageArrow.setPreserveRatio(false);
@@ -101,10 +101,10 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		priceLabel.setFont(Font.font("Times New Roman", 18));
 		priceLabel.setStyle("-fx-text-fill: #ff5a5f");
 		//promotionLabel的背景颜色为#ff5a5f，字体颜色白色,字体Times New Roman，大小14
-/*		for(int i=0;i<promotionLabels.size();i++){
+		for(int i=0;i<promotionLabels.size();i++){
 			promotionLabels.get(i).setStyle("-fx-background-color:#ff5a5f;-fx-text-fill: white");
 			promotionLabels.get(i).setFont(Font.font("Times New Roman", 14));
-		}*/
+		}
 	
 		//添加组件
 		this.getChildren().add(hotelImageView);
@@ -117,9 +117,9 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		this.getChildren().add(createOrderButton);
 		this.getChildren().add(priceLabel);
 		this.getChildren().add(orderStateImage);
-/*		for(int i=0;i<promotionLabels.size();i++){
+		for(int i=0;i<promotionLabels.size();i++){
 			this.getChildren().add(promotionLabels.get(i));
-		}*/
+		}
 		double begin;
 		//设置组件的位置
 		Locator locator = Locator.getLocator();
@@ -133,7 +133,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			locator.setLocation(hotelNameLabel, 26.0, 241.0, 67.0, 159.0);
 			locator.setLocation(createOrderButton, 197.0, 70.0, 281.0, 23.0);
 			locator.setLocation(priceLabel, 243.0, 30.0, 56.0, 260.0);
-			locator.setLocation(orderStateImage, 249.0, 24.0, 308.0, 14.0);
+			locator.setLocation(orderStateImage, 249.0, 24.0, 323.0, 14.0);
 			begin = 56.0;
 		}else{
 			locator.setLocation(hotelImageView, 14.0, 56.0, 14.0, 56.0);
@@ -145,14 +145,14 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			locator.setLocation(hotelNameLabel, 26.0, 241.0, 26.0, 200.0);
 			locator.setLocation(createOrderButton, 197.0, 70.0, 240.0, 64.0);
 			locator.setLocation(priceLabel, 243.0, 30.0, 14.0, 301.0);
-			locator.setLocation(orderStateImage, 249.0, 24.0, 266.0, 56.0);
+			locator.setLocation(orderStateImage, 249.0, 24.0, 281.0, 56.0);
 			begin = 14.0;
 		}
-/*		for(int i=0;i<promotionLabels.size();i++){
+		for(int i=0;i<promotionLabels.size();i++){
 			double width = 14*promotionLabels.get(i).getText().trim().length() + 20;
 			locator.setLocation(promotionLabels.get(i), 269.0, 4.0, begin, WIDTH-begin-width);
 			begin = begin + width + 2;
-		}*/
+		}
 		
 		//设置组件的监听
 		labelOnHotelImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -176,7 +176,6 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			//跳转到该酒店的上一张图片
 			@Override
 			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
 				if(imagePointer-1>=0){
 					imagePointer--;
 					hotelImageView.setImage(hotelImages.get(imagePointer));
@@ -187,7 +186,6 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			//跳转到该酒店的下一张图片
 			@Override
 			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
 				if(imagePointer+1!=hotelImages.size()){
 					imagePointer++;
 					hotelImageView.setImage(hotelImages.get(imagePointer));

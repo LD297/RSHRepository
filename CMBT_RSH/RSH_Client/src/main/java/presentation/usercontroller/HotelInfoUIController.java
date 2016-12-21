@@ -156,9 +156,21 @@ public class HotelInfoUIController {
           hotelNameLabel.setText(hotelVO.getHotelName());
           startLevelLabel.setText(String.valueOf(hotelVO.getLevel()));
           gradeLabel.setText(String.valueOf(hotelVO.getGrade()));
-          addressLabel.setText(hotelVO.getDetailAddress());
+          addressLabel.setText(hotelVO.getFullAddress());
           briefLabel.setText(hotelVO.getBriefIntro());
           //TODO 设置设施服务
+          if(!hotelVO.hasWIFI()){
+        	  wifiText.setStrikethrough(true);
+          }
+          if(!hotelVO.hasCanteen()){
+        	  diningText.setStrikethrough(true);
+          }
+          if(!hotelVO.hasPark()){
+        	  parkText.setStrikethrough(true);
+          }
+          if(!hotelVO.hasSwimmingPool()){
+        	  swimText.setStrikethrough(true);
+          }
           hotelImage.setImage(ImageFactory.getImageFactory().getHotelImage(UserInfoUtil.getInstance().getHotelID()));
           phoneLabel.setText(hotelVO.tel);
     }
