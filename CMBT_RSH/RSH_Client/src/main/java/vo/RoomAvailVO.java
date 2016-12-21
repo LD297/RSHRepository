@@ -15,15 +15,15 @@ public class RoomAvailVO  {
 	public Date endDate;
 	private int numOfAvailRoom;
 	double price;
-	String basicOrSpecial;
+	String imageAddress;
 	
 	public RoomAvailVO(String hotelID, String roomType, int numOfAcailRoom, double price,
-					   String basicOrSpecial) {
+					   String imageAddress) {
 		this.hotelID = hotelID;
 		this.roomType = roomType;
 		this.numOfAvailRoom = numOfAcailRoom;
 		this.price = price;
-		this.basicOrSpecial = basicOrSpecial;
+		this.imageAddress = imageAddress;
 	}
 	
 	public RoomAvailVO(String hotelID,String roomType,Date beginDate,Date endDate,int numOfAvailRoom){
@@ -43,7 +43,7 @@ public class RoomAvailVO  {
 
 	public String getBasicOrSpecial() {
 		// TODO Auto-generated method stub
-		return this.basicOrSpecial;
+		return this.imageAddress;
 	}
 
 	public String getRoomType() {
@@ -56,5 +56,7 @@ public class RoomAvailVO  {
 		return price;
 	}
 	
-	
+	public String getImageAddress(){
+		return imageAddress;
+	}
 }

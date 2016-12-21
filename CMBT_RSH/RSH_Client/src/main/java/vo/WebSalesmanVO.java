@@ -66,7 +66,9 @@ public class WebSalesmanVO {
 		this.area = districtHelper.getArea();
 	}
 
-
+	public void setName(String name){
+		this.name = name;
+	}
 	public WebSalesmanPO changeIntoPO(){
 		WebSalesmanPO webSalesmanPO = new WebSalesmanPO(webSalesmanID, district, password, name);
 		return webSalesmanPO;

@@ -17,7 +17,7 @@ public class ClientRunner {
 		ResultMessage resultMessage = null;
 		RemoteHelper remoteHelper = RemoteHelper.getInstance();
 		try{
-			OnlinePersonPO onlinePersonPO = new OnlinePersonPO(Role.user, "shgf", "bhdskfj");
+			OnlinePersonPO onlinePersonPO = new OnlinePersonPO(Role.user, "shgf");
 			resultMessage = remoteHelper.getLoginDao().addOnline(onlinePersonPO);
 		}catch(RemoteException e){
 			e.printStackTrace();

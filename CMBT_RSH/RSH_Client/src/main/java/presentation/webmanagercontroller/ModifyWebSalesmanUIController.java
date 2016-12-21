@@ -105,13 +105,9 @@ public class ModifyWebSalesmanUIController {
     	if(!rightInput){
     		messageLabel.setText("您有尚未填写的信息");
     	}else {
-    		webSalesmanVO.setArea(district);
-    		webSalesmanVO.setCity(city);
-    		webSalesmanVO.setProvince(province);
+    		webSalesmanVO.setDistrict(province, city, district);
     		webSalesmanVO.setName(name);
-    		String districtID = WebManagerInfoUtil.getInstance().getDistrictID(province, city, district);
-    		webSalesmanVO.setDistrict(districtID);
-			ResultMessage resultMessage = WebManagerInfoUtil.getInstance().modifyWebSalesman(webSalesmanVO);
+    		ResultMessage resultMessage = WebManagerInfoUtil.getInstance().modifyWebSalesman(webSalesmanVO);
 			if(resultMessage==ResultMessage.succeed){
 				AnchorPane manageWebSalesman = WebManagerUIFXMLFactory.getInstance().getManageWebSalesman();
 				ManafeWebsalesmanUIController manafeWebsalesmanUIController = WebManagerUIFXMLFactory.getInstance().getManafeWebsalesmanUIController();

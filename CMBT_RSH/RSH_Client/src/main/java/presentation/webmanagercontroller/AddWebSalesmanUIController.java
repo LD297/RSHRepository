@@ -93,7 +93,7 @@ public class AddWebSalesmanUIController {
     		messageLabel.setText("您有尚未填写的信息");
     	}else {
     		String id = WebManagerInfoUtil.getInstance().getWebSalesmanID();
-    		WebSalesmanVO webSalesmanVO = new WebSalesmanVO(id, province, city, district, name);
+    		WebSalesmanVO webSalesmanVO = new WebSalesmanVO(id, province, city, district, password,name);
     		ResultMessage resultMessage = WebManagerInfoUtil.getInstance().addWebSalesman(webSalesmanVO);
     		if(resultMessage==ResultMessage.succeed){//添加成功，弹出提示界面
     			AnchorPane manageWebSalesman = WebManagerUIFXMLFactory.getInstance().getManageWebSalesman();
