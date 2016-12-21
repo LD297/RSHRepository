@@ -79,7 +79,7 @@ private static HotelDao hotelDao = null;
  */
 	private boolean match(HotelVO hotelVO, SelectConditionVO selectConditionVO) {
 		// TODO Auto-generated method stub
-		double standardPrice = hotelVO.standardRoomPrice;
+		double standardPrice = hotelVO.getStandardRoomPrice();
 		if(standardPrice>selectConditionVO.highestPrice)
 			return false;
 		if(standardPrice<selectConditionVO.lowestPrice)
@@ -145,7 +145,7 @@ private static HotelDao hotelDao = null;
 		double difference = 0;
 		switch (sortBy) {
 		case price:
-			difference = hotelVO2.standardRoomPrice-hotelVO1.standardRoomPrice;
+			difference = hotelVO2.getStandardRoomPrice()-hotelVO1.getStandardRoomPrice();
 			break;	
 		case level:
 			difference = hotelVO2.getLevel()-hotelVO1.getLevel();

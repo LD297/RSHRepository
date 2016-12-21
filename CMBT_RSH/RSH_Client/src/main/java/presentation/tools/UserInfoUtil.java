@@ -279,7 +279,7 @@ public String getHotelID() {
 		OrderVO orderVO = new OrderVO(orderID, userID, userVO.name, hotelID, hotelVO.getHotelName(),
     			null, roomNormVO, roomPrice, roomNumber, peopleNumber, 
     			withChild, roomPrice*roomNumber, totalPrice, promotion, null, -1, 
-    			checkIn, checkOut, hotelVO.latestCheckInTime, generationDate, null, 
+    			checkIn, checkOut, hotelVO.getLatestCheckInTime(), generationDate, null, 
     			null, null, null);
     	return orderForUser.confirmReservation(orderVO);
     }

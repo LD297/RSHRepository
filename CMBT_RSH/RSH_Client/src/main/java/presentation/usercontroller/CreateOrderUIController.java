@@ -296,7 +296,7 @@ public class CreateOrderUIController {
 		maskLabel.setVisible(false);
 		String dateOfOrderCreate = MyDateFormat.getInstance().toString(LocalDate.now());
 		dateOfOrderCreatedLabel.setText(dateOfOrderCreate);
-		latestCheckinTimeLabel.setText(hotelVO.latestCheckInTime);
+		latestCheckinTimeLabel.setText(hotelVO.getLatestCheckInTime());
 		ObservableList<String> withChildren = FXCollections.observableArrayList(Arrays.asList(new String[]{"有","无"}));
 		withChildrenCombox.setItems(withChildren);
 		ArrayList<String> roomTypes = UserInfoUtil.getInstance().getRoomTypes();
