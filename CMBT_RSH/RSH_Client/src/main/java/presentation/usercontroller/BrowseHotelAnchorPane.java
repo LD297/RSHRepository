@@ -28,7 +28,9 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 	private ImageView hotelImageView = null;
 	private Label labelOnHotelImage = null;
 	private ImageView lastImageArrow = null;
+	private Label lastImageArrowLabel = new Label("");
 	private ImageView nextImageArrow = null;
+	private Label nextImageArrowLabel = new Label("");
 	private Label hotelNameLabel = null;
 	private Button createOrderButton = null;
 	private Label priceLabel = null;
@@ -57,7 +59,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 //		promotionLabels = new ArrayList<Label>();
 		createOrderButton = new Button("新建订单");
 		//浏览酒店界面上显示的价格是标准间价格
-		priceLabel = new Label(String.valueOf(hotelVO.standardRoomPrice));
+		priceLabel = new Label("￥"+String.valueOf(hotelVO.standardRoomPrice)+"/晚");
 		
 		//TODO 得到的促销策略应该适用于当前日期
 		//TODO bL层单利？？？？？？？
@@ -107,7 +109,9 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		this.getChildren().add(hotelImageView);
 		this.getChildren().add(labelOnHotelImage);
 		this.getChildren().add(lastImageArrow);
+		this.getChildren().add(lastImageArrowLabel);
 		this.getChildren().add(nextImageArrow);
+		this.getChildren().add(nextImageArrowLabel);
 		this.getChildren().add(hotelNameLabel);
 		this.getChildren().add(createOrderButton);
 		this.getChildren().add(priceLabel);
@@ -122,7 +126,9 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			locator.setLocation(hotelImageView, 14.0, 56.0, 56.0, 14.0);
 			locator.setLocation(labelOnHotelImage, 14.0, 56.0, 56.0, 14.0);
 			locator.setLocation(lastImageArrow, 81.0, 123.0, 56.0, 279.0);
+			locator.setLocation(lastImageArrowLabel, 81.0, 123.0, 56.0, 279.0);
 			locator.setLocation(nextImageArrow, 81.0, 123.0, 321.0, 14.0);
+			locator.setLocation(nextImageArrowLabel, 81.0, 123.0, 321.0, 14.0);
 			locator.setLocation(hotelNameLabel, 26.0, 241.0, 67.0, 159.0);
 			locator.setLocation(createOrderButton, 197.0, 70.0, 281.0, 23.0);
 			locator.setLocation(priceLabel, 243.0, 30.0, 56.0, 280.0);
@@ -132,7 +138,9 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			locator.setLocation(hotelImageView, 14.0, 56.0, 14.0, 56.0);
 			locator.setLocation(labelOnHotelImage, 14.0, 56.0, 14.0, 56.0);
 			locator.setLocation(lastImageArrow, 81.0, 123.0, 14.0, 321.0);
+			locator.setLocation(lastImageArrowLabel, 81.0, 123.0, 14.0, 321.0);
 			locator.setLocation(nextImageArrow, 81.0, 123.0, 279.0, 56.0);
+			locator.setLocation(nextImageArrowLabel, 81.0, 123.0, 279.0, 56.0);
 			locator.setLocation(hotelNameLabel, 26.0, 241.0, 26.0, 200.0);
 			locator.setLocation(createOrderButton, 197.0, 70.0, 240.0, 64.0);
 			locator.setLocation(priceLabel, 243.0, 30.0, 14.0, 321.0);
@@ -163,7 +171,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			    UIJumpTool.getUiJumpTool().changeToCreateOrder();				
 			}
 		});
-		lastImageArrow.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		lastImageArrowLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			//跳转到该酒店的上一张图片
 			@Override
 			public void handle(MouseEvent event) {
@@ -174,7 +182,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 				}
 			}
 		});
-		nextImageArrow.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		nextImageArrowLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			//跳转到该酒店的下一张图片
 			@Override
 			public void handle(MouseEvent event) {

@@ -27,7 +27,6 @@ import constant.Sexuality;
 import constant.SortBy;
 import constant.SortMethod;
 import constant.StateOfOrder;
-import javafx.scene.image.Image;
 import vo.CreditRecordVO;
 import vo.HotelVO;
 import vo.OrderInfo;
@@ -138,6 +137,16 @@ public String getHotelID() {
     public UserVO getUserVO() {
     	UserVO userVO = userService.getInfo(userID);
 		return userVO;
+	}
+    
+    /**
+     * 图片工厂得到，得到该用户的头像地址
+     * @param userID
+     * @return
+     */
+    public String getUserHeadImageUrl(String userID) {
+		String url = userService.getInfo(userID).imageAddress;
+		return url;
 	}
 
     /**
@@ -270,7 +279,7 @@ public String getHotelID() {
 		OrderVO orderVO = new OrderVO(orderID, userID, userVO.name, hotelID, hotelVO.getHotelName(),
     			null, roomNormVO, roomPrice, roomNumber, peopleNumber, 
     			withChild, roomPrice*roomNumber, totalPrice, promotion, null, -1, 
-    			checkIn, checkOut, hotelVO.latestCheckinTime, generationDate, null, 
+    			checkIn, checkOut, hotelVO.latestCheckInTime, generationDate, null, 
     			null, null, null);
     	return orderForUser.confirmReservation(orderVO);
     }

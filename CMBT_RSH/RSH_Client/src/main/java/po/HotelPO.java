@@ -8,6 +8,10 @@ import bl.hotelserviceimpl.Hotel;
 
 public class HotelPO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String hotelID;
 	private String password;
 	/**
@@ -33,7 +37,8 @@ public class HotelPO implements Serializable{
 	
 	public double standardRoomPrice;
 	private String latestCheckinTime;
-	
+
+	String imageAddress;
 	public HotelPO(String hotelID,String password,String tel,
 			String name,String addr,String district,String briefIntro,String facility,
 			int level,double grade, double standardRoomPrice){
@@ -106,9 +111,7 @@ public class HotelPO implements Serializable{
 	}
 	
 	public HotelVO changeIntoVO(){
-		HotelVO hotelVO = new HotelVO(hotelID, tel, 
-				name, addr, district, briefIntro, facility,
-				level, grade, latestCheckinTime);		
+		HotelVO hotelVO = new HotelVO(hotelID, name, addr, hotelID, password, level, standardRoomPrice, latestCheckinTime, briefIntro, facility, imageAddress);
 		return hotelVO;
 	}
 

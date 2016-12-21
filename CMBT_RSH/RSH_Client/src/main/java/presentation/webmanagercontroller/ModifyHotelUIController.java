@@ -48,8 +48,6 @@ public class ModifyHotelUIController {
     private Button finishModifyButton;
     
     @FXML
-    private PasswordField passwordField;
-    @FXML
     private Label messageLabel;
     private HotelVO hotelVO = null;
 
@@ -77,10 +75,6 @@ public class ModifyHotelUIController {
     		rightInput = false;
     	}
     	
-    	String password = passwordField.getText().trim();
-    	if(password.equals("")){
-    		
-    	}
     	String phone = phoneField.getText().trim();
     	if(phone.equals("")){
     		rightInput = false;
@@ -89,13 +83,13 @@ public class ModifyHotelUIController {
     	if(!rightInput){
     		messageLabel.setText("您有尚未填写的信息");
     	}else {
-    		hotelVO.name  = hotelName;
+    		hotelVO.hotelName  = hotelName;
     		hotelVO.tel = phone;
-    		hotelVO.setPassword(password);
 			ResultMessage resultMessage = WebManagerInfoUtil.getInstance().modifyHotel(hotelVO);
 			if(resultMessage==ResultMessage.succeed){//修改成功，关闭修改信息界面
 				AnchorPane manageHotel = WebManagerUIFXMLFactory.getInstance().getManageHotel();
 				manageHotel.getChildren().remove(manageHotel.getChildren().size()-1);
+				//刷新酒店浏览界面
 		    	ManageHotelUIController manageHotelUIController = WebManagerUIFXMLFactory.getInstance().getManageHotelUIController();
 		    	manageHotelUIController.init();
 		    	
@@ -117,7 +111,6 @@ public class ModifyHotelUIController {
         assert phoneField != null : "fx:id=\"phoneField\" was not injected: check your FXML file '网管_修改酒店信息.fxml'.";
         assert cancelImage != null : "fx:id=\"cancelImage\" was not injected: check your FXML file '网管_修改酒店信息.fxml'.";
         assert finishModifyButton != null : "fx:id=\"finishModifyButton\" was not injected: check your FXML file '网管_修改酒店信息.fxml'.";
-        assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file '网管_修改酒店信息.fxml'.";
         assert messageLabel != null : "fx:id=\"messageLabel\" was not injected: check your FXML file '网管_修改酒店信息.fxml'.";
     }
 }
