@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -448,7 +449,9 @@ public class HotelBasicInfoUIController {
         promptsInvisible();
         setHotelVO();
 
-        IDLabel.setText(hotelVO);
+        Image hotelImage = new Image();
+
+        IDLabel.setText(hotelVO.);
 
         hotelNameTextField.setText(hotelVO.hotelName);
         hotelNameLabel.setText(hotelVO.hotelName);
