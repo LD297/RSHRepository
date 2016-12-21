@@ -13,8 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import presentation.tools.ImageFactory;
-import presentation.tools.WebManagerInfoUtil;
-import presentation.tools.WebManagerUIFXMLFactory;
+import presentation.webmanagercontrollertools.WebManagerInfoUtil;
+import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 import vo.UserVO;
 
 public class ModifyUserInfoUIController {
@@ -54,6 +54,9 @@ public class ModifyUserInfoUIController {
     @FXML
     private Label messageLabel;
     
+    @FXML
+    private TextField emailField;
+    
     private UserVO userVO = null;
 
     @FXML
@@ -77,7 +80,8 @@ public class ModifyUserInfoUIController {
     	messageLabel.setText("");
     	String userName = nameField.getText().trim();
     	String nickName = nickNameField.getText().trim();
-    	if(userName.equals("")||nickName.equals("")){
+    	String email = emailField.getText().trim();
+    	if(userName.equals("")||nickName.equals("")||email.equals("")){
     		messageLabel.setText("您有尚未填写的信息");
     	}else {
     		userVO.nickName = nickName;
@@ -109,6 +113,7 @@ public class ModifyUserInfoUIController {
     	}else {
 			sexImage.setImage(ImageFactory.getImageFactory().getMale());
 		}
+    	emailField.setText(userVO.eMail);
     }
 
     @FXML
@@ -123,5 +128,6 @@ public class ModifyUserInfoUIController {
         assert nickNameField != null : "fx:id=\"nickNameField\" was not injected: check your FXML file '网管_修改用户信息.fxml'.";
         assert phoneLabel != null : "fx:id=\"phoneLabel\" was not injected: check your FXML file '网管_修改用户信息.fxml'.";
         assert messageLabel != null : "fx:id=\"messageLabel\" was not injected: check your FXML file '网管_修改用户信息.fxml'.";
+        assert emailField != null : "fx:id=\"emailField\" was not injected: check your FXML file '网管_修改用户信息.fxml'.";
     }
 }

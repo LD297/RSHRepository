@@ -12,66 +12,51 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.webmanagercontroller.ModifyOwnPasswordUIController">
    <children>
       <Label prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.5);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="400.0" style="-fx-background-color: #f4f4f4;" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="105.0">
+      <AnchorPane layoutX="234.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="343.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="146.0" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="223.0" AnchorPane.topAnchor="105.0">
          <children>
-            <ImageView fx:id="userHeadImage" fitHeight="114.0" fitWidth="114.0" layoutX="143.0" layoutY="42.0" pickOnBounds="true" AnchorPane.bottomAnchor="354.0" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="42.0">
+            <ImageView fx:id="userHeadImage" fitHeight="114.0" fitWidth="114.0" layoutX="109.0" layoutY="42.0" pickOnBounds="true" AnchorPane.bottomAnchor="309.0" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="109.0" AnchorPane.topAnchor="42.0">
                <image>
                   <Image url="@../images/用户头像.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="114.0" fitWidth="114.0" layoutX="143.0" layoutY="42.0" pickOnBounds="true" AnchorPane.bottomAnchor="354.0" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="42.0">
+            <ImageView fitHeight="114.0" fitWidth="114.0" layoutX="109.0" layoutY="42.0" pickOnBounds="true" AnchorPane.bottomAnchor="309.0" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="109.0" AnchorPane.topAnchor="42.0">
                <image>
                   <Image url="@../images/头像背景.png" />
                </image>
             </ImageView>
-            <Button fx:id="finishModifyButton" layoutX="130.0" layoutY="401.0" mnemonicParsing="false" onMouseClicked="#finishModifyButtonClicked" prefHeight="43.0" prefWidth="220.0" style="-fx-background-color: #ff5a5f;" text="确认修改" textFill="WHITE">
+            <Button fx:id="finishModifyButton" layoutX="44.0" layoutY="393.0" mnemonicParsing="false" onMouseClicked="#finishModifyButtonClicked" prefHeight="43.0" prefWidth="269.0" style="-fx-background-color: #ff5a5f;" text="确认修改" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="14.0" />
                </font>
             </Button>
-            <PasswordField fx:id="prePasswordField" layoutX="130.0" layoutY="209.0" prefHeight="30.0" prefWidth="220.0" promptText="请输入原密码">
+            <PasswordField fx:id="prePasswordField" layoutX="38.0" layoutY="176.0" prefHeight="43.0" prefWidth="269.0" promptText="请输入原密码">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font></PasswordField>
-            <PasswordField fx:id="confirmNewPasswordField" layoutX="130.0" layoutY="333.0" prefHeight="30.0" prefWidth="220.0" promptText="请确认新密码">
+            <PasswordField fx:id="confirmNewPasswordField" layoutX="42.0" layoutY="321.0" prefHeight="43.0" prefWidth="269.0" promptText="请确认新密码">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font></PasswordField>
-            <PasswordField fx:id="newPasswordField" layoutX="130.0" layoutY="273.0" prefHeight="30.0" prefWidth="220.0" promptText="请输入新密码">
+            <PasswordField fx:id="newPasswordField" layoutX="41.0" layoutY="248.0" prefHeight="43.0" prefWidth="269.0" promptText="请输入新密码">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font></PasswordField>
-            <ImageView fx:id="cancelImage" fitHeight="30.0" fitWidth="30.0" layoutX="371.0" layoutY="-1.0" onMouseClicked="#closeModifyPassword" onMouseExited="#changeCancelImageToGray" onMouseMoved="#changeCancelImageToRed" pickOnBounds="true">
+            <ImageView fx:id="cancelImage" fitHeight="30.0" fitWidth="30.0" layoutX="314.0" layoutY="-1.0" onMouseClicked="#closeModifyPassword" onMouseExited="#changeCancelImageToGray" onMouseMoved="#changeCancelImageToRed" pickOnBounds="true">
                <image>
                   <Image url="@../images/cancel.png" />
                </image>
             </ImageView>
-            <Label layoutX="22.0" layoutY="209.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="输入原密码：" textFill="#484848">
-               <font>
-                  <Font name="Times New Roman" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="22.0" layoutY="333.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="确认新密码：" textFill="#484848">
-               <font>
-                  <Font name="Times New Roman" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="22.0" layoutY="273.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="输入新密码：" textFill="#484848">
-               <font>
-                  <Font name="Times New Roman" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="prepasswordLabel" layoutX="130.0" layoutY="239.0" prefHeight="30.0" prefWidth="269.0" textFill="#ff5a5f">
+            <Label fx:id="prepasswordLabel" layoutX="42.0" layoutY="218.0" prefHeight="30.0" prefWidth="262.0" textFill="#ff5a5f">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="confirmnewpasswordLabel" layoutX="130.0" layoutY="363.0" prefHeight="30.0" prefWidth="269.0" textFill="#ff5a5f">
+            <Label fx:id="confirmnewpasswordLabel" layoutX="41.0" layoutY="364.0" prefHeight="30.0" prefWidth="269.0" textFill="#ff5a5f">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="newpasswordLabel" layoutX="130.0" layoutY="303.0" prefHeight="30.0" prefWidth="269.0" textFill="#ff5a5f">
+            <Label fx:id="newpasswordLabel" layoutX="41.0" layoutY="291.0" prefHeight="30.0" prefWidth="269.0" textFill="#ff5a5f">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>

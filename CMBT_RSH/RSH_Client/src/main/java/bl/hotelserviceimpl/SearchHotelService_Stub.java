@@ -120,15 +120,15 @@ public class SearchHotelService_Stub implements SearchHotelService{
 
 	@Override
 	public ArrayList<HotelVO> getHotelList() {
-		HotelVO vo1 = new HotelVO("0100190001", "1号酒店", "仙林大道", "0100097890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
-		HotelVO vo2 = new HotelVO("0100090002", "2号酒店", "仙林大道", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
-		HotelVO vo3 = new HotelVO("0100090003", "3号酒店", "仙林大道", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
-		HotelVO vo4 = new HotelVO("0100090004", "4号酒店", "仙林大道", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
-		HotelVO vo5 = new HotelVO("0100090005", "5号酒店", "仙林大道", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
-		HotelVO vo6 = new HotelVO("0100090006", "6号酒店", "仙林大道", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
-		HotelVO vo7 = new HotelVO("0100090007", "7号酒店", "仙林大道", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
-		HotelVO vo8 = new HotelVO("0100090008", "8号酒店", "仙林大道", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
-		HotelVO vo9 = new HotelVO("0100090009", "9号酒店", "仙林大道", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
+		HotelVO vo1 = new HotelVO("0100190001", "1号酒店", "仙林大道163号", "0100097890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
+		HotelVO vo2 = new HotelVO("0100090002", "2号酒店", "仙林大道163号", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
+		HotelVO vo3 = new HotelVO("0100090003", "3号酒店", "仙林大道163号", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
+		HotelVO vo4 = new HotelVO("0100090004", "4号酒店", "仙林大道163号", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
+		HotelVO vo5 = new HotelVO("0100090005", "5号酒店", "仙林大道163号", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
+		HotelVO vo6 = new HotelVO("0100090006", "6号酒店", "仙林大道163号", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
+		HotelVO vo7 = new HotelVO("0100090007", "7号酒店", "仙林大道163号", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
+		HotelVO vo8 = new HotelVO("0100090008", "8号酒店", "仙林大道163号", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
+		HotelVO vo9 = new HotelVO("0100090009", "9号酒店", "仙林大道163号", "1234567890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
 		
 		ArrayList<HotelVO> list = new ArrayList<>();
 		

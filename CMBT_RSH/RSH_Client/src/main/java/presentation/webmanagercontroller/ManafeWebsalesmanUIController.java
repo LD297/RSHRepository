@@ -14,8 +14,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import presentation.tools.WebManagerInfoUtil;
-import presentation.tools.WebManagerUIFXMLFactory;
+import presentation.webmanagercontrollertools.WebManagerInfoUtil;
+import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 import vo.WebSalesmanVO;
 
 /**

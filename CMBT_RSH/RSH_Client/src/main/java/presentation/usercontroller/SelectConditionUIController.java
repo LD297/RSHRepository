@@ -31,9 +31,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import presentation.tools.ImageFactory;
-import presentation.tools.UIJumpTool;
-import presentation.tools.UserInfoUtil;
-import presentation.tools.UserUIFXMLFactory;
+import presentation.usercontrollertools.UIJumpTool;
+import presentation.usercontrollertools.UserInfoUtil;
+import presentation.usercontrollertools.UserUIFXMLFactory;
 import vo.HotelVO;
 import vo.SelectConditionVO;
 
@@ -109,7 +109,6 @@ public class SelectConditionUIController {
         UIJumpTool.getUiJumpTool().closeSelectCondition();
     }
 
-    @SuppressWarnings("null")
 	@FXML
     void finishSelect(MouseEvent event) {
     	//筛选

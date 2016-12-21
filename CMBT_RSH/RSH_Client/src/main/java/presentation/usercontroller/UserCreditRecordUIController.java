@@ -4,9 +4,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import presentation.tools.MyDateFormat;
-import presentation.tools.UserInfoUtil;
+import presentation.usercontrollertools.UserInfoUtil;
 import vo.CreditRecordVO;
 
 public class UserCreditRecordUIController {

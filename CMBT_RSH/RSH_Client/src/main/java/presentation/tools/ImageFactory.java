@@ -1,8 +1,10 @@
 package presentation.tools;
 
 import constant.Role;
+import constant.StateOfOrder;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import presentation.usercontrollertools.UserInfoUtil;
 import vo.HotelVO;
 
 import java.util.ArrayList;
@@ -46,7 +48,11 @@ public class ImageFactory {
     private Image unexecutedOrderImage = new Image("/images/exclamation.png");//未执行订单
     private Image phoneImage = new Image("/images/电话图标.png");
     private Image penImage = new Image("/images/pen.png");
-    private Map<String, ArrayList<Image>> hotelImageMap = new TreeMap<>();//酒店id，对应该酒店的所有图片
+    private Image address = new Image("/images/地址图标（黑色）.png");
+    public Image getAddress() {
+		return address;
+	}
+	private Map<String, ArrayList<Image>> hotelImageMap = new TreeMap<>();//酒店id，对应该酒店的所有图片
   //图片地址，对应图片，用来存储加载过的图片，这样就不用再次加载； 
     private Map<String, Image> getImageByUrl = new TreeMap<>();
    
@@ -105,6 +111,16 @@ public class ImageFactory {
 
     public Image getCancel_red(){return cancel_red;}
 
+    /**
+     * 浏览酒店界面调用，得到订单状态图片
+     * @param stateOfOrder
+     * @return
+     */
+    public Image getOrderStateImage(StateOfOrder stateOfOrder) {
+		String state = stateOfOrder.getString();
+		Image image = new Image("/images/"+state+".png");
+		return image;
+	}
     //用于身份选择界面的头像明暗变化
     public MyMap getTurnDark(ImageView userImage,ImageView hotelStaffImage,
                                             ImageView webSalsmanImage,ImageView webManagerImage){
@@ -185,7 +201,11 @@ public class ImageFactory {
 				if(getImageByUrl.containsKey(urls.get(j))){
 					image = getImageByUrl.get(urls.get(j));
 				}else {
-					image = new Image(urls.get(j),400,240,false,true);
+					if(j==0){
+						image = new Image(urls.get(j),800,400,false,true);
+					}else {
+						image = new Image(urls.get(j),400,240,false,true);
+					}
 					getImageByUrl.put(urls.get(j), image);
 				}
 				images.add(image);

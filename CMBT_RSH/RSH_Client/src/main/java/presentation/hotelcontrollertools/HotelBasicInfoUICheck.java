@@ -8,50 +8,11 @@ import vo.HotelVO;
  */
 public class HotelBasicInfoUICheck {
 
-<<<<<<< HEAD
-    public static String checkHotelName(String hotelName){
-        if(hotelName.length()<1||hotelName.length()>15)
+    public static String checkHotelName(String hotelName) {
+        if (hotelName.length() < 1 || hotelName.length() > 15)
             return HotelBasicInfoUIFeedback.NAME_ILLEGAL;
-=======
-    public static String[] checkHotelVO(HotelVO newHotelVO) {
-        /**
-         * Fb = feedback (反馈)
-         */
-        String nameFb = checkHotelName(newHotelVO.getHotelName());
-        String telFb = checkTel(newHotelVO.getTel());
-        String latestCheckinTimeFb = checkTime(newHotelVO.getLatestCheckInTime());
-        String levelFb = checkLevel(newHotelVO.getLevel());
-        String addrFb = checkAddr(newHotelVO.getDetailAddress());
-        String districtFb = checkBArea(newHotelVO.getDistrict());
-        String briefIntroFb = checkBriefIntro(newHotelVO.getBriefIntro());
-        String facilityFb = checkFacility(newHotelVO.getFacility());
-        String[] feedback = new String[]{nameFb, telFb,
-                latestCheckinTimeFb, levelFb,
-                addrFb, districtFb, briefIntroFb, facilityFb};
-        return feedback;
-    }
-
-    private static String checkFacility(String facility) {
-        if(facility.length()>20)
-            return HotelBasicInfoUIFeedback.FACILITY_ILLEGAL;
         else
             return HotelBasicInfoUIFeedback.LEGAL;
-    }
-
-    private static String checkBriefIntro(String briefIntro) {
-        if(briefIntro.length()>20)
-            return HotelBasicInfoUIFeedback.BRIEFINTRO_ILLEGAL;
-        else
-            return HotelBasicInfoUIFeedback.LEGAL;
-    }
-
-    private static String checkBArea(String businessArea) {
-        if(businessArea.length()>10)
-            return HotelBasicInfoUIFeedback.BUSSINESS_ILLEGAL;
->>>>>>> origin/master
-        else
-            return HotelBasicInfoUIFeedback.LEGAL;
-
     }
 
     public static String checkLevel(String level) {

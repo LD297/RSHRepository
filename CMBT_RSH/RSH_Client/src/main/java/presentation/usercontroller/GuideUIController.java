@@ -6,19 +6,14 @@ package presentation.usercontroller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import org.omg.CORBA.Context;
-
 import constant.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import presentation.tools.ImageFactory;
-import presentation.tools.UIJumpTool;
-import presentation.tools.UserInfoUtil;
+import presentation.usercontrollertools.UIJumpTool;
+import presentation.usercontrollertools.UserInfoUtil;
 import vo.UserVO;
 
 public class GuideUIController {
@@ -33,12 +28,6 @@ public class GuideUIController {
     private ImageView backImage;
 
     @FXML
-    private TextField whereToGoField;
-
-    @FXML
-    private Label helpLabel;
-
-    @FXML
     private Label logoutLabel;
 
     @FXML
@@ -47,12 +36,7 @@ public class GuideUIController {
     @FXML
     private ImageView headMaskImage;
   
-    //TODO 点击help label跳出help提示框
-    @FXML
-    void changeToHeplInfo(MouseEvent event) {
-
-    }
-
+   
     //点击退出label跳转到登陆界面
     @FXML
     void changeToLogin(MouseEvent event) {
@@ -62,12 +46,7 @@ public class GuideUIController {
     	}
     }
 
-    //点击搜索框跳转到搜索酒店界面，并且设置光标
-    @FXML
-    void changeToSearchHotel(MouseEvent event) {
-        UIJumpTool.getUiJumpTool().changeToSearchHotel();
-    }
-
+  
     //点击头像跳转到用户个人信息界面
     @FXML
     void changeToUserInfo(MouseEvent event) {
@@ -94,8 +73,6 @@ public class GuideUIController {
     @FXML
     void initialize() {
         assert backImage != null : "fx:id=\"backImage\" was not injected: check your FXML file '导航栏.fxml'.";
-        assert whereToGoField != null : "fx:id=\"whereToGoField\" was not injected: check your FXML file '导航栏.fxml'.";
-        assert helpLabel != null : "fx:id=\"helpLabel\" was not injected: check your FXML file '导航栏.fxml'.";
         assert logoutLabel != null : "fx:id=\"logoutLabel\" was not injected: check your FXML file '导航栏.fxml'.";
         assert headImage != null : "fx:id=\"headImage\" was not injected: check your FXML file '导航栏.fxml'.";
         assert headMaskImage != null : "fx:id=\"headMaskImage\" was not injected: check your FXML file '导航栏.fxml'.";

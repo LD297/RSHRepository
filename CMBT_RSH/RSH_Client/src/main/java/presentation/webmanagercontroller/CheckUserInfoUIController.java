@@ -11,8 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import presentation.tools.ImageFactory;
-import presentation.tools.WebManagerInfoUtil;
-import presentation.tools.WebManagerUIFXMLFactory;
+import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 import vo.UserVO;
 
 /**
@@ -54,6 +53,9 @@ public class CheckUserInfoUIController {
 
     @FXML
     private Button modifyUserInfoButton;
+    
+    @FXML
+    private Label emailLabel;
 
     private UserVO userVO = null;
 
@@ -103,6 +105,7 @@ public class CheckUserInfoUIController {
     	}else {
 			sexImage.setImage(ImageFactory.getImageFactory().getMale());
 		}
+    	emailLabel.setText(userVO.eMail);
 	}
 
     @FXML
@@ -115,6 +118,6 @@ public class CheckUserInfoUIController {
         assert memberTypeLabel != null : "fx:id=\"memberTypeLabel\" was not injected: check your FXML file '网管_查看用户信息.fxml'.";
         assert userCreditLabel != null : "fx:id=\"userCreditLabel\" was not injected: check your FXML file '网管_查看用户信息.fxml'.";
         assert memberLevelLabel != null : "fx:id=\"memberLevelLabel\" was not injected: check your FXML file '网管_查看用户信息.fxml'.";
-
+        assert emailLabel != null : "fx:id=\"emailLabel\" was not injected: check your FXML file '网管_查看用户信息.fxml'.";
     }
 }

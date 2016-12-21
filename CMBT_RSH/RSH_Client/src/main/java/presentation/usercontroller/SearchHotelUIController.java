@@ -6,37 +6,20 @@ package presentation.usercontroller;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import constant.ResultMessage;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.util.Callback;
-import presentation.tools.ImageFactory;
-import presentation.tools.UIJumpTool;
-import presentation.tools.UserInfoUtil;
-import presentation.tools.UserUIFXMLFactory;
-import presentation.tools.WebManagerInfoUtil;
+import presentation.usercontrollertools.UIJumpTool;
+import presentation.usercontrollertools.UserInfoUtil;
+import presentation.webmanagercontrollertools.WebManagerInfoUtil;
 import vo.DistrictHelper;
-import vo.HotelVO;
 
 public class SearchHotelUIController {
 

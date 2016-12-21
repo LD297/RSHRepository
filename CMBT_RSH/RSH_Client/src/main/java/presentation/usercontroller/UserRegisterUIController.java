@@ -9,9 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-
-import bl.loginservice.LoginService;
-import bl.loginserviceimpl.LoginController;
 import constant.MemberType;
 import constant.ResultMessage;
 import constant.Sexuality;
@@ -27,9 +24,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import presentation.logincontroller.LoginUIController;
-import presentation.tools.UIJumpTool;
-import presentation.tools.UserInfoUtil;
-import presentation.tools.UserInputFormCheckTool;
+import presentation.usercontrollertools.UIJumpTool;
+import presentation.usercontrollertools.UserInfoUtil;
+import presentation.usercontrollertools.UserInputFormCheckTool;
 import vo.UserVO;
 
 public class UserRegisterUIController {

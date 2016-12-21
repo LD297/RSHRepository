@@ -1,4 +1,4 @@
-package presentation.tools;
+package presentation.webmanagercontrollertools;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -12,7 +12,6 @@ import presentation.webmanagercontroller.ModifyUserInfoUIController;
 import presentation.webmanagercontroller.ModifyWebSalesmanUIController;
 import presentation.webmanagercontroller.SuccessAddHotelUIController;
 import presentation.webmanagercontroller.SuccessAddWebSalesmanUIController;
-import presentation.webmanagercontroller.SuccessResetPasswordUIController;
 
 public class WebManagerUIFXMLFactory {
 	private static WebManagerUIFXMLFactory webManagerUIFXMLFactory = null;
@@ -29,7 +28,6 @@ public class WebManagerUIFXMLFactory {
 	private ManageUserUIController manageUserUIController = null;
 	private ManafeWebsalesmanUIController manafeWebsalesmanUIController = null;
 	private CheckUserInfoUIController checkUserInfoUIController = null;
-	private SuccessResetPasswordUIController successResetPasswordUIController = null;
 	private SuccessAddHotelUIController successAddHotelUIController = null;
 	private SuccessAddWebSalesmanUIController successAddWebSalesmanUIController = null;
 	private ModifyHotelUIController modifyHotelUIController = null;
@@ -213,23 +211,11 @@ public class WebManagerUIFXMLFactory {
 		return anchorPane;
 	}
 	
-	public AnchorPane getSuccessResetPassword() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_重置密码成功.fxml"));
-		AnchorPane anchorPane = null;
-		try {
-			anchorPane = loader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		successResetPasswordUIController = loader.getController();
-		return anchorPane;
-	}
+
 	public CheckUserInfoUIController getCheckUserInfoUIController() {
 		return checkUserInfoUIController;
 	}
-	public SuccessResetPasswordUIController getSuccessResetPasswordUIController() {
-		return successResetPasswordUIController;
-	}
+	
 	public SuccessAddHotelUIController getSuccessAddHotelUIController() {
 		return successAddHotelUIController;
 	}

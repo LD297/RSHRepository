@@ -9,7 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 import vo.RoomVO;
 
 public class AddRoomUIController {
+
 
     @FXML
     private ResourceBundle resources;
@@ -28,16 +31,22 @@ public class AddRoomUIController {
     private TextField roomPriceTextField;
 
     @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    private TextField roomImageAddressTextField;
+
+    @FXML
+    private Label changeRoomImageLabel;
+
+    @FXML
+    private ImageView roomImage;
+
+    @FXML
     private Button backButton;
 
     @FXML
     private Button confirmButton;
-
-    @FXML
-    private CheckBox basicCheckBox;
-
-    @FXML
-    private CheckBox specialCheckBox;
 
     @FXML
     private TextField roomNumTextField;
@@ -45,18 +54,7 @@ public class AddRoomUIController {
     @FXML
     private TextField roomTypeTextField;
 
-    @FXML
-    private AnchorPane anchorPane;
-
     private AnchorPane prePane;
-
-    private boolean isBasicSelectable = true;
-
-    private boolean isSpecialSelectable = true;
-
-    private boolean isBasic = false;
-
-    private boolean isSpecial = false;
 
     private HotelService hotelService = new HotelService_Stub();
 
@@ -65,43 +63,11 @@ public class AddRoomUIController {
     }
 
     @FXML
-    void basicCheckBoxListener(ActionEvent event){
-        if(isBasicSelectable){
-            if(basicCheckBox.isSelected()){
-                basicCheckBox.setSelected(true);
-                isBasic = true;
-                isSpecialSelectable = false;
-            } else {
-                basicCheckBox.setSelected(false);
-                isBasic = false;
-                isSpecialSelectable = true;
-            }
-        } else
-            basicCheckBox.setSelected(false);
-    }
-
-    @FXML
-    void specialCheckBoxListener(ActionEvent event){
-        if(isSpecialSelectable){
-            if(specialCheckBox.isSelected()){
-                specialCheckBox.setSelected(true);
-                isSpecial = true;
-                isBasicSelectable = false;
-            } else {
-                specialCheckBox.setSelected(false);
-                isSpecial = false;
-                isBasicSelectable = true;
-            }
-        } else
-            specialCheckBox.setSelected(false);
-    }
-    @FXML
     void backButtonClicked(MouseEvent event) {
         int size = prePane.getChildren().size();
         prePane.getChildren().get(size-2).setVisible(false);
         prePane.getChildren().remove(size-1);
     }
-
 
     @FXML
     void confirmButtonClicked(MouseEvent event) {
@@ -113,27 +79,34 @@ public class AddRoomUIController {
         double price = Double.valueOf(roomPrice);
         String property = "";
 
-        if((type!=null&&num>0&&price>=0)&&(isBasic&&!isSpecial)||(!isBasic&&isSpecial)){
-            if(isBasic)
-                property = "基本";
-            if(isSpecial)
-                property = "特色";
+        // 象征性检查一下
+        if(type!=null&&num>0&&price>=0){
+            if(roomImageAddressTextField.isVisible()){
+                String roomImageAddress = roomImageAddressTextField.getText().trim();
+            }
             RoomVO newRoom = new RoomVO("", type, num, price, property);
             hotelService.addSpecialRoom(newRoom);
             backButtonClicked(null);
         }
+        roomImageAddressTextField.setVisible(false);
+    }
+
+    @FXML
+    void changeRoomImage(MouseEvent event) {
+        roomImageAddressTextField.setVisible(true);
     }
 
     @FXML
     void initialize() {
         assert roomPriceTextField != null : "fx:id=\"roomPriceTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert roomImageAddressTextField != null : "fx:id=\"roomImageAddressTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert changeRoomImageLabel != null : "fx:id=\"changeRoomImageLabel\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert roomImage != null : "fx:id=\"roomImage\" was not injected: check your FXML file '添加客房界面.fxml'.";
         assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '添加客房界面.fxml'.";
         assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '添加客房界面.fxml'.";
-        assert basicCheckBox != null : "fx:id=\"basicCheckBox\" was not injected: check your FXML file '添加客房界面.fxml'.";
-        assert specialCheckBox != null : "fx:id=\"specialCheckBox\" was not injected: check your FXML file '添加客房界面.fxml'.";
         assert roomNumTextField != null : "fx:id=\"roomNumTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
         assert roomTypeTextField != null : "fx:id=\"roomTypeTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
-        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '添加客房界面.fxml'.";
 
     }
 }

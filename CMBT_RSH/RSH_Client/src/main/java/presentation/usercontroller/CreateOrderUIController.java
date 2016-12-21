@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import bl.promotionServiceimpl.Promotion;
 import constant.ResultMessage;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -19,23 +18,19 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import presentation.tools.ImageFactory;
 import presentation.tools.MyDateFormat;
-import presentation.tools.UIJumpTool;
-import presentation.tools.UserInfoUtil;
+import presentation.usercontrollertools.UIJumpTool;
+import presentation.usercontrollertools.UserInfoUtil;
 import vo.HotelVO;
 import vo.OrderInfo;
-import vo.OrderVO;
-import vo.RoomNormVO;
 import vo.UserVO;
 
 public class CreateOrderUIController {

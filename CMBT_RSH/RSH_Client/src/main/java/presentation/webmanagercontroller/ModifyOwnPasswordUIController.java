@@ -3,19 +3,16 @@ package presentation.webmanagercontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import presentation.tools.ImageFactory;
-import presentation.tools.UserInfoUtil;
-import presentation.tools.UserInputFormCheckTool;
-import presentation.tools.WebManagerInfoUtil;
-import presentation.tools.WebManagerUIFXMLFactory;
+import presentation.usercontrollertools.UserInputFormCheckTool;
+import presentation.webmanagercontrollertools.WebManagerInfoUtil;
+import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 
 /**
  * 网管修改自己的密码界面

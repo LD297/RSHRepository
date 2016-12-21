@@ -2,20 +2,13 @@ package presentation.usercontroller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import presentation.tools.ImageFactory;
 import presentation.tools.Locator;
-import presentation.tools.UserInfoUtil;
 import vo.OrderVO;
 
 /**

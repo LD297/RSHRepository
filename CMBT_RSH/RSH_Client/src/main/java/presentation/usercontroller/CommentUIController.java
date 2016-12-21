@@ -10,8 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import presentation.tools.UserInfoUtil;
-import vo.HotelVO;
+import presentation.usercontrollertools.UserInfoUtil;
 import vo.OrderVO;
 
 /**

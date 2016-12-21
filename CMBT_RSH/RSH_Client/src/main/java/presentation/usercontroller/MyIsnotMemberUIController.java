@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import presentation.tools.UIJumpTool;
+import presentation.usercontrollertools.UIJumpTool;
 
 public class MyIsnotMemberUIController {
 

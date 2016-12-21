@@ -18,8 +18,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import presentation.tools.ImageFactory;
-import presentation.tools.WebManagerInfoUtil;
-import presentation.tools.WebManagerUIFXMLFactory;
+import presentation.webmanagercontrollertools.WebManagerInfoUtil;
+import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 import vo.WebSalesmanVO;
 
 public class AddWebSalesmanUIController {
@@ -50,6 +50,9 @@ public class AddWebSalesmanUIController {
 
     @FXML
     private ComboBox<String> districtCombox;
+    
+    @FXML
+    private TextField nameField;
 
     @FXML
     void changeCancelImageToGray(MouseEvent event) {
@@ -70,13 +73,15 @@ public class AddWebSalesmanUIController {
   //完成添加，检查是否有未输入的信息
     @FXML
     void finishAdd(MouseEvent event) {
-    	//TODO 刷新管理网站营销人员界面
     	boolean rightInput = true;
     	String password = passwordField.getText().trim();
     	if(password.equals("")){
     		rightInput = false;
     	}
-
+    	String name = nameField.getText().trim();
+    	if(name.equals("")){
+    		rightInput = false;
+    	}
     	String province = provinceCombox.getValue();
     	String city = cityCombox.getValue();
     	String district = districtCombox.getValue();
@@ -88,7 +93,7 @@ public class AddWebSalesmanUIController {
     		messageLabel.setText("您有尚未填写的信息");
     	}else {
     		String id = WebManagerInfoUtil.getInstance().getWebSalesmanID();
-    		WebSalesmanVO webSalesmanVO = new WebSalesmanVO(id, province, city, district, null);
+    		WebSalesmanVO webSalesmanVO = new WebSalesmanVO(id, province, city, district, name);
     		ResultMessage resultMessage = WebManagerInfoUtil.getInstance().addWebSalesman(webSalesmanVO);
     		if(resultMessage==ResultMessage.succeed){//添加成功，弹出提示界面
     			AnchorPane manageWebSalesman = WebManagerUIFXMLFactory.getInstance().getManageWebSalesman();

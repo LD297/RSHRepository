@@ -1,14 +1,10 @@
 package presentation.Main;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import presentation.tools.UIJumpTool;
-import presentation.tools.UserUIFXMLFactory;
-
-import java.io.IOException;
+import presentation.usercontrollertools.UserUIFXMLFactory;
 
 /**
  * Created by john on 2016/12/4.
