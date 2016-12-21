@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
@@ -47,25 +48,40 @@ public class RoomInfoUIController {
     private AnchorPane showPane05;
 
     @FXML
+    private Button delete0;
+
+    @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    private Label prePageLabel;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private Label nextPageLabel;
+
+    @FXML
+    private Text view0;
+
+    @FXML
     private Button delete05;
 
     @FXML
     private ImageView plus;
 
     @FXML
-    private Button delete0;
-
-    @FXML
     private Label greyLabel;
 
     @FXML
-    private AnchorPane anchorPane;
+    private Text view02;
 
     @FXML
     private Button delete04;
 
     @FXML
-    private Label prePageLabel;
+    private Text view01;
 
     @FXML
     private Button delete03;
@@ -77,16 +93,52 @@ public class RoomInfoUIController {
     private Button delete01;
 
     @FXML
-    private Button backButton;
-
-    @FXML
-    private Label nextPageLabel;
+    private Text view05;
 
     @FXML
     private AnchorPane showPane0;
 
     @FXML
+    private Text view04;
+
+    @FXML
+    private Text view03;
+
+    @FXML
     private Label pageLabel;
+    
+
+    @FXML
+    void view0Clicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void view01Clicked(MouseEvent event) {
+
+    }
+    
+
+    @FXML
+    void view02Clicked(MouseEvent event) {
+
+    }
+    
+
+    @FXML
+    void view03Clicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void view04Clicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void view05Clicked(MouseEvent event) {
+
+    }
 
     AnchorPane addRoomAnchorPane;
     AddRoomUIController addRoomUIController;
@@ -284,19 +336,25 @@ public class RoomInfoUIController {
         assert showPane04 != null : "fx:id=\"showPane04\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert showPane03 != null : "fx:id=\"showPane03\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert showPane05 != null : "fx:id=\"showPane05\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert delete0 != null : "fx:id=\"delete0\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert prePageLabel != null : "fx:id=\"prePageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert nextPageLabel != null : "fx:id=\"nextPageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert view0 != null : "fx:id=\"view0\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert delete05 != null : "fx:id=\"delete05\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert plus != null : "fx:id=\"plus\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert delete0 != null : "fx:id=\"delete0\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert greyLabel != null : "fx:id=\"greyLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert view02 != null : "fx:id=\"view02\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert delete04 != null : "fx:id=\"delete04\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert prePageLabel != null : "fx:id=\"prePageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert view01 != null : "fx:id=\"view01\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert delete03 != null : "fx:id=\"delete03\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert delete02 != null : "fx:id=\"delete02\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert delete01 != null : "fx:id=\"delete01\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '客房信息维护.fxml'.";
-        assert nextPageLabel != null : "fx:id=\"nextPageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert view05 != null : "fx:id=\"view05\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert showPane0 != null : "fx:id=\"showPane0\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert view04 != null : "fx:id=\"view04\" was not injected: check your FXML file '客房信息维护.fxml'.";
+        assert view03 != null : "fx:id=\"view03\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
 
         setShowPanes();

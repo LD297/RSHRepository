@@ -167,15 +167,15 @@ public class HotelBasicInfoUIController {
     CheckBox[] facilityCheckBox;
     Label[] prompts;
 
-    private void promptsInvisible(){
-        for(int i=0; i<prompts.length; i++){
+    private void promptsInvisible() {
+        for (int i = 0; i < prompts.length; i++) {
             prompts[i].setVisible(false);
         }
     }
 
     @FXML
     void editHotelName(ActionEvent event) {
-        if(!editable)
+        if (!editable)
             hotelNameTextField.setEditable(false);
         else
             hotelNameTextField.setEditable(true);
@@ -183,7 +183,7 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void editLevel(ActionEvent event) {
-        if(!editable)
+        if (!editable)
             levelTextField.setEditable(false);
         else
             levelTextField.setEditable(true);
@@ -191,7 +191,7 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void editCheckIn(ActionEvent event) {
-        if(!editable)
+        if (!editable)
             checkInTextField.setEditable(false);
         else
             checkInTextField.setEditable(true);
@@ -199,7 +199,7 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void editBriefIntro(MouseEvent event) {
-        if(!editable)
+        if (!editable)
             briefIntroTextArea.setEditable(false);
         else
             briefIntroTextArea.setEditable(true);
@@ -207,8 +207,8 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void editWifi(ActionEvent event) {
-        if(!editable){
-            if(!wifiCheckBox.isSelected())
+        if (!editable) {
+            if (!wifiCheckBox.isSelected())
                 wifiCheckBox.setSelected(false);
             else
                 wifiCheckBox.setSelected(true);
@@ -217,8 +217,8 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void editSwimmingPool(ActionEvent event) {
-        if(!editable){
-            if(!swimmingPoolCheckBox.isSelected())
+        if (!editable) {
+            if (!swimmingPoolCheckBox.isSelected())
                 swimmingPoolCheckBox.setSelected(false);
             else
                 swimmingPoolCheckBox.setSelected(true);
@@ -227,8 +227,8 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void editPark(ActionEvent event) {
-        if(!editable){
-            if(!parkCheckBox.isSelected())
+        if (!editable) {
+            if (!parkCheckBox.isSelected())
                 parkCheckBox.setSelected(false);
             else
                 parkCheckBox.setSelected(true);
@@ -238,8 +238,8 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void editCanteen(ActionEvent event) {
-        if(!editable){
-            if(!canteeCheckBox.isSelected())
+        if (!editable) {
+            if (!canteeCheckBox.isSelected())
                 canteeCheckBox.setSelected(false);
             else
                 canteeCheckBox.setSelected(true);
@@ -253,8 +253,8 @@ public class HotelBasicInfoUIController {
 
     }
 
-    private void showPrompt(String inputCheck, Label promt){
-        if(!inputCheck.equals(HotelBasicInfoUIFeedback.LEGAL)){
+    private void showPrompt(String inputCheck, Label promt) {
+        if (!inputCheck.equals(HotelBasicInfoUIFeedback.LEGAL)) {
             promt.setVisible(true);
             promt.setText(inputCheck);
         }
@@ -283,35 +283,35 @@ public class HotelBasicInfoUIController {
 
         String url = imageUrlTextField.getText().trim();
         inputCheck = HotelBasicInfoUICheck.checkURL(url);
-        showPrompt(inputCheck ,urlPrompt);
+        showPrompt(inputCheck, urlPrompt);
 
         String briefIntro = briefIntroTextArea.getText();
         inputCheck = HotelBasicInfoUICheck.checkBriefIntro(briefIntro);
         showPrompt(inputCheck, briefIntroPrompt);
 
         boolean isInputLegal = true;
-        for(int i=0; i<prompts.length; i++){
-            if(prompts[i].isVisible()){
+        for (int i = 0; i < prompts.length; i++) {
+            if (prompts[i].isVisible()) {
                 isInputLegal = false;
                 break;
             }
         }
-        if(isInputLegal){
+        if (isInputLegal) {
             String facility = "";
-            for(int i=0; i<facilityCheckBox.length; i++){
-                if(facilityCheckBox[i].isSelected())
+            for (int i = 0; i < facilityCheckBox.length; i++) {
+                if (facilityCheckBox[i].isSelected())
                     facility += 1;
                 else
                     facility += 0;
             }
             hotelVO.setName(name);
-            hotelVO.setLevel(level);
+            hotelVO.setLevel(Integer.valueOf(level));
             hotelVO.setFacility(facility);
-            hotelVO.setStandardRoomPrice(price);
+//            hotelVO.set;
             hotelVO.setImageAddress(url);
             hotelVO.setBriefIntro(briefIntro);
             ResultMessage resultMessage = hotelService.updateHotel(hotelVO);
-            if(resultMessage.equals(ResultMessage.succeed)){
+            if (resultMessage.equals(ResultMessage.succeed)) {
                 refreshPage();
                 editable = false;
             } else {
@@ -322,7 +322,7 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void editImageUrl(ActionEvent event) {
-        if(!editable)
+        if (!editable)
             imageUrlTextField.setEditable(false);
         else
             imageUrlTextField.setEditable(true);
@@ -330,7 +330,7 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void editPrice(ActionEvent event) {
-        if(!editable)
+        if (!editable)
             priceTextField.setEditable(false);
         else
             priceTextField.setEditable(true);
@@ -341,14 +341,14 @@ public class HotelBasicInfoUIController {
         // 加载客房信息维护界面
         FXMLLoader loader = HotelUIFXMLFactory.getInstance().getRoomInfoUILoader();
         // 加载客房信息维护界面根结点
-        if(roomInfoUIPane==null)
+        if (roomInfoUIPane == null)
             try {
                 roomInfoUIPane = (AnchorPane) loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         // 得到客房信息维护界面控制器
-        if(roomInfoUIController==null)
+        if (roomInfoUIController == null)
             roomInfoUIController = loader.getController();
         // 传入酒店信息维护界面根结点
         roomInfoUIController.setPrePane(anchorPane);
@@ -358,19 +358,19 @@ public class HotelBasicInfoUIController {
         roomInfoUIController.refreshPage();
 
         Scene scene = null;
-        if(roomInfoUIPane.getScene()==null)
+        if (roomInfoUIPane.getScene() == null)
             scene = new Scene(roomInfoUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = roomInfoUIPane.getScene();
 
-        Stage stage = (Stage)anchorPane.getScene().getWindow();
+        Stage stage = (Stage) anchorPane.getScene().getWindow();
         stage.setScene(scene);
 
     }
 
     @FXML
-    void backButtonClicked(MouseEvent event){
-        ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
+    void backButtonClicked(MouseEvent event) {
+        ((Stage) anchorPane.getScene().getWindow()).setScene(prePane.getScene());
     }
 
     @FXML
@@ -420,54 +420,60 @@ public class HotelBasicInfoUIController {
 
     }
 
-    private void setFacilityText(){
-        facilitiyText = new Text[]{wifiText, swimmingPoolText, parkText,canteenText};
+    private void setFacilityText() {
+        facilitiyText = new Text[]{wifiText, swimmingPoolText, parkText, canteenText};
 
     }
-    private void setFacilityCheckBox(){
+
+    private void setFacilityCheckBox() {
         facilityCheckBox = new CheckBox[]{wifiCheckBox, swimmingPoolCheckBox,
                 parkCheckBox, canteeCheckBox};
     }
-    private void setPrompts(){
+
+    private void setPrompts() {
         prompts = new Label[]{hotelNamePrompt, levelPrompt, timePrompt, pricePrompt,
                 urlPrompt, briefIntroPrompt};
     }
+
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
+
     public void setHotelService(HotelService hotelService) {
         this.hotelService = hotelService;
     }
+
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }
+
     public void setHotelVO() {
         this.hotelVO = hotelService.getHotelInfo(hotelId);
     }
+
     public void refreshPage() {
 
         promptsInvisible();
         setHotelVO();
 
-        Image hotelImage = new Image();
+        hotelImage.setImage(new Image(hotelVO.getImageAddress(), 800, 400, false, true));
 
-        IDLabel.setText(hotelVO.);
+        IDLabel.setText(hotelVO.getHotelID());
 
-        hotelNameTextField.setText(hotelVO.hotelName);
-        hotelNameLabel.setText(hotelVO.hotelName);
+        hotelNameTextField.setText(hotelVO.getHotelName());
+        hotelNameLabel.setText(hotelVO.getHotelName());
 
-        startLevelLabel.setText(hotelVO.+"");
-        levelTextField.setText(hotelVO.getLevel()+"");
+        startLevelLabel.setText(hotelVO.getLevel() + "");
+        levelTextField.setText(hotelVO.getLevel() + "");
 
-        gradeLabel.setText(hotelVO.getGrade()+"");
+        gradeLabel.setText(hotelVO.getGrade() + "");
         addressLabel.setText(hotelVO.getFullAddress());
 
-        for(int i=0; i<facilitiyText.length; i++){
-            if(hotelVO.facility.charAt(i)=='0'){
+        for (int i = 0; i < facilitiyText.length; i++) {
+            if (hotelVO.getFacility().charAt(i) == '0') {
                 facilitiyText[i].setStrikethrough(true);
                 facilityCheckBox[i].setSelected(false);
-            }
-            else{
+            } else {
                 facilitiyText[i].setStrikethrough(false);
                 facilityCheckBox[i].setSelected(true);
             }
@@ -480,3 +486,4 @@ public class HotelBasicInfoUIController {
         briefIntroTextArea.setText(hotelVO.getBriefIntro());
 
     }
+}
