@@ -5,13 +5,11 @@ package constant;
  */
 public class HotelBasicInfoUIFeedback {
 
-    public static final String LEGAL = "Legal";
-    public static final String NAME_ILLEGAL = "Illegal name input!";
-    public static final String TEL_ILLEGAL = "Illegal tel input!";
-    public static final String TIME_ILLEGAL = "Illegal time input!";
-    public static final String LEVEL_ILLEGAL = "Illegal level input!";
-    public static final String ADDR_ILLEGAL = "Illegal address input!";
-    public static final String BUSSINESS_ILLEGAL = "Illegal businessArea input!";
-    public static final String BRIEFINTRO_ILLEGAL = "Illegal briefTntroduction input!";
-    public static final String FACILITY_ILLEGAL = "Illegal facility input!";
+    public static final String LEGAL = "合法";
+    public static final String NAME_ILLEGAL = "酒店名称长度为1~15位";
+    public static final String LEVEL_ILLEGAL = "星级为1～6的整数";
+    public static final String TIME_ILLEGAL = "时间格式为00:00:00";
+    public static final String PRICE_ILLEGAL= "价格不得低于0";
+    public static final String URL_ILLEGAL = "未找到图片资源，请检查输入";
+    public static final String BRIEFINTRO_ILLEGAL = "简介长度为1～128位";
 }

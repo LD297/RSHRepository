@@ -52,7 +52,7 @@ public class HotelUIFXMLFactory {
 
     public FXMLLoader getHotelBasicInfoUILoader(){
         if(hotelBasicInfoUILoader==null)
-            hotelBasicInfoUILoader = new FXMLLoader(getClass().getResource("/fxml/酒店信息维护.fxml"));
+            hotelBasicInfoUILoader = new FXMLLoader(getClass().getResource("/fxml/酒店信息维护界面.fxml"));
         return hotelBasicInfoUILoader;
     }
 

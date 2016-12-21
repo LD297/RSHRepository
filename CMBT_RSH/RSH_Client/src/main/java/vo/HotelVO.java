@@ -4,20 +4,20 @@ package vo;
 import po.HotelPO;
 
 public class HotelVO {
-	
+
 	private static final int DISTRICT_LENGTH = 6;
-	
+
 	private String hotelID;
 	public String name; //酒店名称
 	private String addr;
-	public String tel; 
-	
+	public String tel;
+
 	private String password;
-	
+
 	private int level = -1; 				//星级，未设置时置为-1，最大为5;
 	private double grade = 0;		 	//酒店评分所有用户评分的均值
 	public double standardRoomPrice ; 	//标准间价格（酒店价格排序标准）
-	
+
 	public String latestCheckinTime = "23:45:00";	//形式为 HH:mm:ss
 	public String briefIntro;   		//简单介绍
 	public String facility;			 	//酒店（基础）设施（WiFi available？……）
@@ -42,7 +42,7 @@ public class HotelVO {
 		this.tel = tel;
 		this.password = password;
 	}
-	
+
 
 	/**
 	 * 酒店调用
@@ -59,24 +59,24 @@ public class HotelVO {
 	 * @param imageAddress
 	 */
 	public HotelVO(String hotelID, String hotelName,String detailAddress,String tel,String password,
-			int level, double standardRoomPrice,
-			String latestCheckInTime,String briefIntro,String facility, String imageAddress){
+				   int level, double standardRoomPrice,
+				   String latestCheckInTime,String briefIntro,String facility, String imageAddress){
 		this.hotelID = hotelID;
 		this.name = hotelName;
 		this.addr = detailAddress;
 		this.tel = tel;
 		this.password = password;
-		
+
 		this.level = level;
 		this.standardRoomPrice = standardRoomPrice;
 		this.latestCheckinTime = latestCheckInTime;
 		this.briefIntro = briefIntro;
 		this.facility = facility;
 		this.imageAddress = imageAddress;
-		
+
 		this.district = hotelID.substring(0,DISTRICT_LENGTH);
 	}
-	
+
 	public String getHotelID(){
 		return hotelID;
 	}
@@ -98,14 +98,14 @@ public class HotelVO {
 	public double getGrade(){
 		return grade;
 	}
-	
+
 	public String getProvince(){
 		return province;
 	}
 	public String getCity(){
 		return city;
 	}
-	
+
 	public String getArea(){
 		return area;
 	}
@@ -118,7 +118,7 @@ public class HotelVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
+
+
+
 }

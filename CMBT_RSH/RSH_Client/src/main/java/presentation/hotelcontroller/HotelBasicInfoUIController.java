@@ -9,18 +9,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
+import bl.hotelserviceimpl.Hotel;
+import com.sun.prism.Image;
 import constant.HotelBasicInfoUIFeedback;
 import constant.ResultMessage;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import presentation.hotelcontrollertools.HotelBasicInfoUICheck;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
@@ -35,55 +36,116 @@ public class HotelBasicInfoUIController {
     private URL location;
 
     @FXML
-    private AnchorPane anchorPane;
+    private TextField hotelNameTextField;
 
     @FXML
-    private TextField addressTextField;
+    private Label checkInLabel;
 
     @FXML
-    private TextField businessAreaTextField;
+    private TextField imageUrlTextField;
 
     @FXML
-    private TextField telTextField;
+    private ImageView parkImage;
 
     @FXML
-    private Button editButton;
+    private TextArea briefIntroTextArea;
 
     @FXML
-    private Button backButton;
+    private CheckBox canteeCheckBox;
 
     @FXML
-    private TextField nameTextField;
+    private Label addressLabel;
 
     @FXML
-    private Label idLabel;
-
-    @FXML
-    private TextField levelTextField;
-
-    @FXML
-    private Label gradeLabel;
-
-    @FXML
-    private ImageView hotelImage;
-
-    @FXML
-    private TextField checkInDDLTextField;
-
-    @FXML
-    private Button changeImageButton;
-
-    @FXML
-    private TextArea introductionTextArea;
-
-    @FXML
-    private Button roomInfoButton;
+    private ImageView wifiImage;
 
     @FXML
     private Button confirmButton;
 
     @FXML
-    private TextArea facilityTextArea;
+    private Button backButton;
+
+    @FXML
+    private CheckBox parkCheckBox;
+
+    @FXML
+    private Label hotelNameLabel;
+
+    @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    private Label startLevelLabel;
+
+    @FXML
+    private Label IDLabel;
+
+    @FXML
+    private CheckBox swimmingPoolCheckBox;
+
+    @FXML
+    private Label telLabel;
+
+    @FXML
+    private Label gradeLabel;
+
+    @FXML
+    private Text parkText;
+
+    @FXML
+    private ImageView hotelImage;
+
+    @FXML
+    private Text swimmingPoolText;
+
+    @FXML
+    private TextField levelTextField;
+
+    @FXML
+    private Label briefLabel;
+
+    @FXML
+    private ImageView diningroomImage;
+
+    @FXML
+    private Text canteenText;
+
+    @FXML
+    private TextField checkInTextField;
+
+    @FXML
+    private TextField priceTextField;
+
+    @FXML
+    private CheckBox wifiCheckBox;
+
+    @FXML
+    private Text wifiText;
+
+    @FXML
+    private ImageView swimpoolImage;
+
+    @FXML
+    private ImageView editImage;
+
+    @FXML
+    private Label hotelNamePrompt;
+
+    @FXML
+    private Label levelPrompt;
+
+    @FXML
+    private Label timePrompt;
+
+    @FXML
+    private Label pricePrompt;
+
+    @FXML
+    private Label urlPrompt;
+
+    @FXML
+    private Label briefIntroPrompt;
+
 
     private AnchorPane prePane;
     private HotelService hotelService;
@@ -97,38 +159,26 @@ public class HotelBasicInfoUIController {
     // 该界面是否可编辑
     boolean editable = false;
 
-    @FXML
-    void editButtonClicked(MouseEvent event) {
-        editable = true;
+    Text[] facilitiyText;
+    CheckBox[] facilityCheckBox;
+    Label[] prompts;
+
+    private void promptsInvisible(){
+        for(int i=0; i<prompts.length; i++){
+            prompts[i].setVisible(false);
+        }
     }
 
     @FXML
-    void editHotelName(MouseEvent event){
+    void editHotelName(ActionEvent event) {
         if(!editable)
-            nameTextField.setEditable(false);
+            hotelNameTextField.setEditable(false);
         else
-            nameTextField.setEditable(true);
-
+            hotelNameTextField.setEditable(true);
     }
 
     @FXML
-    void editHotelTel(MouseEvent event){
-        if(!editable)
-            telTextField.setEditable(false);
-        else
-            telTextField.setEditable(true);
-    }
-
-    @FXML
-    void editCheckInDDL(MouseEvent event){
-        if(!editable)
-            checkInDDLTextField.setEditable(false);
-        else
-            checkInDDLTextField.setEditable(true);
-    }
-
-    @FXML
-    void editLevel(MouseEvent event){
+    void editLevel(ActionEvent event) {
         if(!editable)
             levelTextField.setEditable(false);
         else
@@ -136,42 +186,132 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void editAddress(MouseEvent event){
+    void editCheckIn(ActionEvent event) {
         if(!editable)
-            addressTextField.setEditable(false);
+            checkInTextField.setEditable(false);
         else
-            addressTextField.setEditable(true);
+            checkInTextField.setEditable(true);
     }
 
     @FXML
-    void editBusinessArea(MouseEvent event){
+    void editBriefIntro(MouseEvent event) {
         if(!editable)
-            businessAreaTextField.setEditable(false);
+            briefIntroTextArea.setEditable(false);
         else
-            businessAreaTextField.setEditable(true);
+            briefIntroTextArea.setEditable(true);
     }
 
     @FXML
-    void editIntroduction(MouseEvent event){
-        if(!editable)
-            introductionTextArea.setEditable(false);
-        else
-            introductionTextArea.setEditable(true);
+    void editWifi(ActionEvent event) {
+        if(!editable){
+
+        }
+
     }
 
     @FXML
-    void editFacility(MouseEvent event){
-        if(!editable)
-            facilityTextArea.setEditable(false);
-        else
-            facilityTextArea.setEditable(true);
+    void editSwimmingPool(ActionEvent event) {
+
     }
 
     @FXML
-    void changeImageButtonClicked(MouseEvent event) {
-        // TODO
+    void editPark(ActionEvent event) {
+
     }
 
+    @FXML
+    void editCanteen(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editImageClicked(MouseEvent event) {
+        editable = true;
+
+    }
+
+    private void showPrompt(String inputCheck, Label promt){
+        if(!inputCheck.equals(HotelBasicInfoUIFeedback.LEGAL)){
+            promt.setVisible(true);
+            promt.setText(inputCheck);
+        }
+    }
+
+    @FXML
+    void confirmButtonClicked(MouseEvent event) {
+        promptsInvisible();
+        String inputCheck = "";
+
+        String name = hotelNameTextField.getText();
+        inputCheck = HotelBasicInfoUICheck.checkHotelName(name);
+        showPrompt(inputCheck, hotelNamePrompt);
+
+        String level = levelTextField.getText();
+        inputCheck = HotelBasicInfoUICheck.checkLevel(level);
+        showPrompt(inputCheck, levelPrompt);
+
+        String checkIn = checkInTextField.getText();
+        inputCheck = HotelBasicInfoUICheck.checkTime(checkIn);
+        showPrompt(inputCheck, timePrompt);
+
+        String price = priceTextField.getText();
+        inputCheck = HotelBasicInfoUICheck.checkPrice(price);
+        showPrompt(inputCheck, pricePrompt);
+
+        String url = imageUrlTextField.getText().trim();
+        inputCheck = HotelBasicInfoUICheck.checkURL(url);
+        showPrompt(inputCheck ,urlPrompt);
+
+        String briefIntro = briefIntroTextArea.getText();
+        inputCheck = HotelBasicInfoUICheck.checkBriefIntro(briefIntro);
+        showPrompt(inputCheck, briefIntroPrompt);
+
+        boolean isInputLegal = true;
+        for(int i=0; i<prompts.length; i++){
+            if(prompts[i].isVisible()){
+                isInputLegal = false;
+                break;
+            }
+        }
+        if(isInputLegal){
+            String facility = "";
+            for(int i=0; i<facilityCheckBox.length; i++){
+                if(facilityCheckBox[i].isSelected())
+                    facility += 1;
+                else
+                    facility += 0;
+            }
+            hotelVO.setName(name);
+            hotelVO.setLevel(level);
+            hotelVO.setFacility(facility);
+            hotelVO.setStandardRoomPrice(price);
+            hotelVO.setImageAddress(url);
+            hotelVO.setbriefIntro(briefIntro);
+            ResultMessage resultMessage = hotelService.updateHotel(hotelVO);
+            if(resultMessage.equals(ResultMessage.succeed)){
+                refreshPage();
+                editable = false;
+            } else {
+                // TODO
+            }
+        }
+    }
+
+    @FXML
+    void editImageUrl(ActionEvent event) {
+        if(!editable)
+            imageUrlTextField.setEditable(false);
+        else
+            imageUrlTextField.setEditable(true);
+    }
+
+    @FXML
+    void editPrice(ActionEvent event) {
+        if(!editable)
+            priceTextField.setEditable(false);
+        else
+            priceTextField.setEditable(true);
+    }
 
     @FXML
     void changeToRoomInfoUI(MouseEvent event) {
@@ -206,74 +346,78 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void confimButtonClicked(MouseEvent event) {
-        // TODO 处理信息
-        String name = nameTextField.getText();
-        String id = idLabel.getText();
-        String tel = telTextField.getText();
-        String latestCheckinTime = checkInDDLTextField.getText();
-        String level = levelTextField.getText();
-        String grade = gradeLabel.getText();
-        String address = addressTextField.getText();
-        String businessArea = businessAreaTextField.getText();
-        String briefIntro = introductionTextArea.getText();
-        String facility = facilityTextArea.getText();
-
-        HotelVO newHotelVO = new HotelVO(id, name,
-                address, tel, "password", Integer.parseInt(level),998 , latestCheckinTime,
-                , briefIntro, businessArea, facility, imageAddress,0,
-                , ,Double.parseDouble(grade), );
-
-        String[] feedback = HotelBasicInfoUICheck.checkHotelVO(newHotelVO);
-
-        boolean isLegal = true;
-        for(String eachItem:feedback){
-            if(!eachItem.equals(HotelBasicInfoUIFeedback.LEGAL)){
-                isLegal = false;
-                // TODO 结合下面的弹出提示框
-                System.out.println(eachItem);
-            }
-        }
-        if(isLegal){
-            ResultMessage rm = hotelService.updateHotel(newHotelVO);
-            if(rm.equals(ResultMessage.succeed))
-                // TODO 用的stub所以不会有反应
-                System.out.println("成功保存");
-        } else {
-            // TODO 弹出提示框
-        }
-
-        refreshPage();
-        editable = false;
-    }
-
-    @FXML
     void backButtonClicked(MouseEvent event){
         ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
     }
 
+
     @FXML
-    void initialize() {
-        assert gradeLabel != null : "fx:id=\"gradeLabel\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert addressTextField != null : "fx:id=\"addressTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert businessAreaTextField != null : "fx:id=\"businessAreaTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert hotelImage != null : "fx:id=\"hotelImage\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert levelTextField != null : "fx:id=\"levelTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert nameTextField != null : "fx:id=\"nameTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert checkInDDLTextField != null : "fx:id=\"checkInDDLTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert introductionTextArea != null : "fx:id=\"introductionTextArea\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert changeImageButton != null : "fx:id=\"changeImageButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert idLabel != null : "fx:id=\"idLabel\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert editButton != null : "fx:id=\"editButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert telTextField != null : "fx:id=\"telTextField\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert roomInfoButton != null : "fx:id=\"roomInfoButton\" was not injected: check your FXML file '酒店信息维护.fxml'.";
-        assert facilityTextArea != null : "fx:id=\"facilityTextArea\" was not injected: check your FXML file '酒店信息维护.fxml'.";
+    void editImageClicked(ActionEvent event) {
+    }
+
+    @FXML
+    void confirmButtonClicked(ActionEvent event) {
 
     }
 
+    @FXML
+    void initialize() {
+        assert hotelNameTextField != null : "fx:id=\"hotelNameTextField\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert checkInLabel != null : "fx:id=\"checkInLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert imageUrlTextField != null : "fx:id=\"imageUrlTextField\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert parkImage != null : "fx:id=\"parkImage\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert canteeCheckBox != null : "fx:id=\"canteeCheckBox\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert briefIntroPrompt != null : "fx:id=\"briefIntroPrompt\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert addressLabel != null : "fx:id=\"addressLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert wifiImage != null : "fx:id=\"wifiImage\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert parkCheckBox != null : "fx:id=\"parkCheckBox\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert hotelNameLabel != null : "fx:id=\"hotelNameLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert startLevelLabel != null : "fx:id=\"startLevelLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert IDLabel != null : "fx:id=\"IDLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert urlPrompt != null : "fx:id=\"urlPrompt\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert priceTextField != null : "fx:id=\"priceTextField\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert swimmingPoolCheckBox != null : "fx:id=\"swimmingPoolCheckBox\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert telLabel != null : "fx:id=\"telLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert timePrompt != null : "fx:id=\"timePrompt\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert gradeLabel != null : "fx:id=\"gradeLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert parkText != null : "fx:id=\"parkText\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert hotelNamePrompt != null : "fx:id=\"hotelNamePrompt\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert hotelImage != null : "fx:id=\"hotelImage\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert swimmingPoolText != null : "fx:id=\"swimmingPoolText\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert levelTextField != null : "fx:id=\"levelTextField\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert briefLabel != null : "fx:id=\"briefLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert diningroomImage != null : "fx:id=\"diningroomImage\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert canteenText != null : "fx:id=\"canteenText\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert pricePrompt != null : "fx:id=\"pricePrompt\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert checkInTextField != null : "fx:id=\"checkInTextField\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert wifiCheckBox != null : "fx:id=\"wifiCheckBox\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert wifiText != null : "fx:id=\"wifiText\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert swimpoolImage != null : "fx:id=\"swimpoolImage\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert editImage != null : "fx:id=\"editImage\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert levelPrompt != null : "fx:id=\"levelPrompt\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert briefIntroTextArea != null : "fx:id=\"briefIntroTextArea\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+
+        setFacilityText();
+        setFacilityCheckBox();
+        setPrompts();
+
+    }
+
+    private void setFacilityText(){
+        facilitiyText = new Text[]{wifiText, swimmingPoolText, parkText,canteenText};
+
+    }
+    private void setFacilityCheckBox(){
+        facilityCheckBox = new CheckBox[]{wifiCheckBox, swimmingPoolCheckBox,
+                parkCheckBox, canteeCheckBox};
+    }
+    private void setPrompts(){
+        prompts = new Label[]{hotelNamePrompt, levelPrompt, timePrompt, pricePrompt,
+        urlPrompt, briefIntroPrompt};
+    }
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
@@ -287,17 +431,40 @@ public class HotelBasicInfoUIController {
         this.hotelVO = hotelService.getHotelInfo(hotelId);
     }
     public void refreshPage() {
+
+        promptsInvisible();
         setHotelVO();
-        nameTextField.setText(hotelVO.getHotelName());
-        idLabel.setText(hotelVO.getHotelID());
-        telTextField.setText(hotelVO.getTel());
-        checkInDDLTextField.setText(hotelVO.latestCheckinTime);
-        levelTextField.setText(String.valueOf(hotelVO.getLevel()));
-        gradeLabel.setText(String.valueOf(hotelVO.getGrade()));
-        addressTextField.setText(hotelVO.getDetailAddress());
-        businessAreaTextField.setText(hotelVO.getDistrict());
-        introductionTextArea.setText(hotelVO.briefIntro);
-        facilityTextArea.setText(hotelVO.facility);
+
+        IDLabel.setText(hotelVO.getHotelID());
+
+        hotelNameTextField.setText(hotelVO.getHotelName());
+        hotelNameLabel.setText(hotelVO.getHotelName());
+
+        startLevelLabel.setText(hotelVO.getLevel()+"");
+        levelTextField.setText(hotelVO.getLevel()+"");
+
+        gradeLabel.setText(hotelVO.getGrade()+"");
+        addressLabel.setText(hotelVO.getFullAddress());
+
+        for(int i=0; i<facilitiyText.length; i++){
+            if(hotelVO.facility.charAt(i)=='0'){
+                facilitiyText[i].setStrikethrough(true);
+                facilityCheckBox[i].setSelected(false);
+            }
+            else{
+                facilitiyText[i].setStrikethrough(false);
+                facilityCheckBox[i].setSelected(true);
+            }
+        }
+
+        checkInLabel.setText(hotelVO.latestCheckinTime);
+        checkInTextField.setText(hotelVO.latestCheckinTime);
+
+        briefLabel.setText(hotelVO.briefIntro);
+        briefIntroTextArea.setText(hotelVO.briefIntro);
+
+        telLabel.setText(hotelVO.getTel());
+        imageUrlTextField.setText(hotelVO.imageAddress);
     }
 
 }
