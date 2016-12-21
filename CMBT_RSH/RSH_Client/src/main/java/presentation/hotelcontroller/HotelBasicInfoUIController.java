@@ -207,8 +207,8 @@ public class HotelBasicInfoUIController {
     @FXML
     void editWifi(ActionEvent event) {
         if(!editable){
-           if(!wifiCheckBox.isSelected())
-               wifiCheckBox.setSelected(false);
+            if(!wifiCheckBox.isSelected())
+                wifiCheckBox.setSelected(false);
             else
                 wifiCheckBox.setSelected(true);
         }
@@ -429,7 +429,7 @@ public class HotelBasicInfoUIController {
     }
     private void setPrompts(){
         prompts = new Label[]{hotelNamePrompt, levelPrompt, timePrompt, pricePrompt,
-        urlPrompt, briefIntroPrompt};
+                urlPrompt, briefIntroPrompt};
     }
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
@@ -447,14 +447,13 @@ public class HotelBasicInfoUIController {
 
         promptsInvisible();
         setHotelVO();
-<<<<<<< HEAD
 
-        IDLabel.setText(hotelVO.getHotelID());
+        IDLabel.setText(hotelVO);
 
-        hotelNameTextField.setText(hotelVO.getHotelName());
-        hotelNameLabel.setText(hotelVO.getHotelName());
+        hotelNameTextField.setText(hotelVO.hotelName);
+        hotelNameLabel.setText(hotelVO.hotelName);
 
-        startLevelLabel.setText(hotelVO.getLevel()+"");
+        startLevelLabel.setText(hotelVO.+"");
         levelTextField.setText(hotelVO.getLevel()+"");
 
         gradeLabel.setText(hotelVO.getGrade()+"");
@@ -477,18 +476,4 @@ public class HotelBasicInfoUIController {
         briefLabel.setText(hotelVO.briefIntro);
         briefIntroTextArea.setText(hotelVO.briefIntro);
 
-=======
-        nameTextField.setText(hotelVO.getHotelName());
-        idLabel.setText(hotelVO.getHotelID());
-        telTextField.setText(hotelVO.getTel());
-        checkInDDLTextField.setText(hotelVO.getLatestCheckInTime());
-        levelTextField.setText(String.valueOf(hotelVO.getLevel()));
-        gradeLabel.setText(String.valueOf(hotelVO.getGrade()));
-        addressTextField.setText(hotelVO.getDetailAddress());
-        businessAreaTextField.setText(hotelVO.getDistrict());
-        introductionTextArea.setText(hotelVO.getBriefIntro());
-        facilityTextArea.setText(hotelVO.getFacility());
->>>>>>> origin/master
     }
-
-}
