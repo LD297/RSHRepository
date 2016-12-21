@@ -290,7 +290,7 @@ public class HotelBasicInfoUIController {
         nameTextField.setText(hotelVO.getHotelName());
         idLabel.setText(hotelVO.getHotelID());
         telTextField.setText(hotelVO.getTel());
-        checkInDDLTextField.setText(hotelVO.latestCheckinTime);
+        checkInDDLTextField.setText(hotelVO.latestCheckInTime);
         levelTextField.setText(String.valueOf(hotelVO.getLevel()));
         gradeLabel.setText(String.valueOf(hotelVO.getGrade()));
         addressTextField.setText(hotelVO.getDetailAddress());

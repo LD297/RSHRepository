@@ -89,7 +89,7 @@ public class ModifyHotelUIController {
     	if(!rightInput){
     		messageLabel.setText("您有尚未填写的信息");
     	}else {
-    		hotelVO.name  = hotelName;
+    		hotelVO.hotelName  = hotelName;
     		hotelVO.tel = phone;
     		hotelVO.setPassword(password);
 			ResultMessage resultMessage = WebManagerInfoUtil.getInstance().modifyHotel(hotelVO);

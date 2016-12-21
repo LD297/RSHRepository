@@ -14,7 +14,7 @@ public class HotelBasicInfoUICheck {
          */
         String nameFb = checkHotelName(newHotelVO.getHotelName());
         String telFb = checkTel(newHotelVO.getTel());
-        String latestCheckinTimeFb = checkTime(newHotelVO.latestCheckinTime);
+        String latestCheckinTimeFb = checkTime(newHotelVO.latestCheckInTime);
         String levelFb = checkLevel(newHotelVO.getLevel());
         String addrFb = checkAddr(newHotelVO.getDetailAddress());
         String districtFb = checkBArea(newHotelVO.getDistrict());

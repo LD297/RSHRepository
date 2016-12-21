@@ -270,7 +270,7 @@ public String getHotelID() {
 		OrderVO orderVO = new OrderVO(orderID, userID, userVO.name, hotelID, hotelVO.getHotelName(),
     			null, roomNormVO, roomPrice, roomNumber, peopleNumber, 
     			withChild, roomPrice*roomNumber, totalPrice, promotion, null, -1, 
-    			checkIn, checkOut, hotelVO.latestCheckinTime, generationDate, null, 
+    			checkIn, checkOut, hotelVO.latestCheckInTime, generationDate, null, 
     			null, null, null);
     	return orderForUser.confirmReservation(orderVO);
     }
