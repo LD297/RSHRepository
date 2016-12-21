@@ -308,7 +308,7 @@ public class HotelBasicInfoUIController {
             hotelVO.setFacility(facility);
             hotelVO.setStandardRoomPrice(price);
             hotelVO.setImageAddress(url);
-            hotelVO.setbriefIntro(briefIntro);
+            hotelVO.setBriefIntro(briefIntro);
             ResultMessage resultMessage = hotelService.updateHotel(hotelVO);
             if(resultMessage.equals(ResultMessage.succeed)){
                 refreshPage();
@@ -470,10 +470,10 @@ public class HotelBasicInfoUIController {
             }
         }
 
-        checkInLabel.setText(hotelVO.latestCheckinTime);
-        checkInTextField.setText(hotelVO.latestCheckinTime);
+        checkInLabel.setText(hotelVO.getLatestCheckInTime());
+        checkInTextField.setText(hotelVO.getLatestCheckInTime());
 
-        briefLabel.setText(hotelVO.briefIntro);
-        briefIntroTextArea.setText(hotelVO.briefIntro);
+        briefLabel.setText(hotelVO.getBriefIntro());
+        briefIntroTextArea.setText(hotelVO.getBriefIntro());
 
     }

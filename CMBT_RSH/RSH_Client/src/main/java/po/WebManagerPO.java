@@ -4,6 +4,7 @@ import vo.WebManagerVO;
 
 public class WebManagerPO {
 
+	
 	String webManagerID;
 	String password;
 
