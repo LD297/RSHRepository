@@ -37,16 +37,7 @@ public class PromotionUIController {
     private AnchorPane showPane01;
 
     @FXML
-    private AnchorPane showPane04;
-
-    @FXML
     private AnchorPane showPane03;
-
-    @FXML
-    private AnchorPane showPane05;
-
-    @FXML
-    private Button delete05;
 
     @FXML
     private ImageView plus;
@@ -59,9 +50,6 @@ public class PromotionUIController {
 
     @FXML
     private AnchorPane anchorPane;
-
-    @FXML
-    private Button delete04;
 
     @FXML
     private Label prePageLabel;
@@ -104,7 +92,7 @@ public class PromotionUIController {
     private ArrayList<PromotionVO> promotions ;
 
     private static final int NUM_OF_ITEMS = 4;
-    private static final int NUM_OF_PROS_SHOWN = 6;
+    private static final int NUM_OF_PROS_SHOWN = 4;
 
     private PromotionVO[] promotionOnShow = new PromotionVO[NUM_OF_PROS_SHOWN];
     private AnchorPane[] showPanes;
@@ -276,14 +264,6 @@ public class PromotionUIController {
     void delete03Clicked(MouseEvent event){
         delete(showPane03);
     }
-    @FXML
-    void delete04Clicked(MouseEvent event){
-        delete(showPane04);
-    }
-    @FXML
-    void delete05Clicked(MouseEvent event){
-        delete(showPane05);
-    }
 
     @FXML
     void addPromotion(MouseEvent event){
@@ -314,15 +294,11 @@ public class PromotionUIController {
     void initialize() {
         assert showPane02 != null : "fx:id=\"showPane02\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
         assert showPane01 != null : "fx:id=\"showPane01\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
-        assert showPane04 != null : "fx:id=\"showPane04\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
         assert showPane03 != null : "fx:id=\"showPane03\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
-        assert showPane05 != null : "fx:id=\"showPane05\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
-        assert delete05 != null : "fx:id=\"delete05\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
         assert plus != null : "fx:id=\"plus\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
         assert greyLabel != null : "fx:id=\"greyLabel\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
         assert delete0 != null : "fx:id=\"delete0\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
         assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
-        assert delete04 != null : "fx:id=\"delete04\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
         assert prePageLabel != null : "fx:id=\"prePageLabel\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
         assert delete03 != null : "fx:id=\"delete03\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
         assert delete02 != null : "fx:id=\"delete02\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
@@ -333,6 +309,7 @@ public class PromotionUIController {
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
 
         setShowPanes();
+        refreshPage();
     }
 
     public void setPrePane(AnchorPane prePane) {
@@ -349,7 +326,7 @@ public class PromotionUIController {
         this.webSalesId = webSalesId;
     }
     private void setShowPanes(){
-        showPanes = new AnchorPane[]{showPane0, showPane01, showPane02, showPane03, showPane04, showPane05};
+        showPanes = new AnchorPane[]{showPane0, showPane01, showPane02, showPane03};
     }
     public void refreshPage(){
         setPromotions();

@@ -12,8 +12,6 @@ import java.util.ResourceBundle;
 import bl.hotelservice.HotelService;
 import constant.HotelBasicInfoUIFeedback;
 import constant.ResultMessage;
-import javafx.event.ActionEvent;
-import javafx.event.EventDispatcher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,6 +25,8 @@ import javafx.stage.Stage;
 import presentation.hotelcontrollertools.HotelBasicInfoUICheck;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import vo.HotelVO;
+
+import javax.swing.*;
 
 public class HotelBasicInfoUIController {
 
@@ -174,7 +174,7 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void editHotelName(ActionEvent event) {
+    void editHotelName(MouseEvent event) {
         if (!editable)
             hotelNameTextField.setEditable(false);
         else
@@ -182,7 +182,7 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void editLevel(ActionEvent event) {
+    void editLevel(MouseEvent event) {
         if (!editable)
             levelTextField.setEditable(false);
         else
@@ -190,7 +190,7 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void editCheckIn(ActionEvent event) {
+    void editCheckIn(MouseEvent event) {
         if (!editable)
             checkInTextField.setEditable(false);
         else
@@ -206,7 +206,7 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void editWifi(ActionEvent event) {
+    void editWifi(MouseEvent event) {
         if (!editable) {
             if (!wifiCheckBox.isSelected())
                 wifiCheckBox.setSelected(false);
@@ -216,7 +216,7 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void editSwimmingPool(ActionEvent event) {
+    void editSwimmingPool(MouseEvent event) {
         if (!editable) {
             if (!swimmingPoolCheckBox.isSelected())
                 swimmingPoolCheckBox.setSelected(false);
@@ -226,7 +226,7 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void editPark(ActionEvent event) {
+    void editPark(MouseEvent event) {
         if (!editable) {
             if (!parkCheckBox.isSelected())
                 parkCheckBox.setSelected(false);
@@ -237,7 +237,7 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void editCanteen(ActionEvent event) {
+    void editCanteen(MouseEvent event) {
         if (!editable) {
             if (!canteeCheckBox.isSelected())
                 canteeCheckBox.setSelected(false);
@@ -249,6 +249,7 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void editImageClicked(MouseEvent event) {
+        promptsInvisible();
         editable = true;
 
     }
@@ -262,66 +263,68 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void confirmButtonClicked(MouseEvent event) {
-        promptsInvisible();
-        String inputCheck = "";
+        if(editable){
+            editable = false;
+            promptsInvisible();
+            String inputCheck = "";
 
-        String name = hotelNameTextField.getText();
-        inputCheck = HotelBasicInfoUICheck.checkHotelName(name);
-        showPrompt(inputCheck, hotelNamePrompt);
+            String name = hotelNameTextField.getText();
+            inputCheck = HotelBasicInfoUICheck.checkHotelName(name);
+            showPrompt(inputCheck, hotelNamePrompt);
 
-        String level = levelTextField.getText();
-        inputCheck = HotelBasicInfoUICheck.checkLevel(level);
-        showPrompt(inputCheck, levelPrompt);
+            String level = levelTextField.getText();
+            inputCheck = HotelBasicInfoUICheck.checkLevel(level);
+            showPrompt(inputCheck, levelPrompt);
 
-        String checkIn = checkInTextField.getText();
-        inputCheck = HotelBasicInfoUICheck.checkTime(checkIn);
-        showPrompt(inputCheck, timePrompt);
+            String checkIn = checkInTextField.getText();
+            inputCheck = HotelBasicInfoUICheck.checkTime(checkIn);
+            showPrompt(inputCheck, timePrompt);
 
-        String price = priceTextField.getText();
-        inputCheck = HotelBasicInfoUICheck.checkPrice(price);
-        showPrompt(inputCheck, pricePrompt);
+            String price = priceTextField.getText();
+            inputCheck = HotelBasicInfoUICheck.checkPrice(price);
+            showPrompt(inputCheck, pricePrompt);
 
-        String url = imageUrlTextField.getText().trim();
-        inputCheck = HotelBasicInfoUICheck.checkURL(url);
-        showPrompt(inputCheck, urlPrompt);
+            String url = imageUrlTextField.getText().trim();
+            inputCheck = HotelBasicInfoUICheck.checkURL(url);
+            showPrompt(inputCheck, urlPrompt);
 
-        String briefIntro = briefIntroTextArea.getText();
-        inputCheck = HotelBasicInfoUICheck.checkBriefIntro(briefIntro);
-        showPrompt(inputCheck, briefIntroPrompt);
+            String briefIntro = briefIntroTextArea.getText();
+            inputCheck = HotelBasicInfoUICheck.checkBriefIntro(briefIntro);
+            showPrompt(inputCheck, briefIntroPrompt);
 
-        boolean isInputLegal = true;
-        for (int i = 0; i < prompts.length; i++) {
-            if (prompts[i].isVisible()) {
-                isInputLegal = false;
-                break;
+            boolean isInputLegal = true;
+            for (int i = 0; i < prompts.length; i++) {
+                if (prompts[i].isVisible()) {
+                    isInputLegal = false;
+                    break;
+                }
             }
-        }
-        if (isInputLegal) {
-            String facility = "";
-            for (int i = 0; i < facilityCheckBox.length; i++) {
-                if (facilityCheckBox[i].isSelected())
-                    facility += 1;
-                else
-                    facility += 0;
-            }
-            hotelVO.setName(name);
-            hotelVO.setLevel(Integer.valueOf(level));
-            hotelVO.setFacility(facility);
-//            hotelVO.set;
-            hotelVO.setImageAddress(url);
-            hotelVO.setBriefIntro(briefIntro);
-            ResultMessage resultMessage = hotelService.updateHotel(hotelVO);
-            if (resultMessage.equals(ResultMessage.succeed)) {
-                refreshPage();
-                editable = false;
-            } else {
-                // TODO
+            if (isInputLegal) {
+                String facility = "";
+                for (int i = 0; i < facilityCheckBox.length; i++) {
+                    if (facilityCheckBox[i].isSelected())
+                        facility += 1;
+                    else
+                        facility += 0;
+                }
+                hotelVO.setName(name);
+                hotelVO.setLevel(Integer.valueOf(level));
+                hotelVO.setFacility(facility);
+                hotelVO.setImageAddress(url);
+                hotelVO.setBriefIntro(briefIntro);
+                ResultMessage resultMessage = hotelService.updateHotel(hotelVO);
+                if (resultMessage.equals(ResultMessage.succeed)) {
+                    refreshPage();
+
+                } else {
+                    System.out.println("酒店信息更新失败！");
+                }
             }
         }
     }
 
     @FXML
-    void editImageUrl(ActionEvent event) {
+    void editImageUrl(MouseEvent event) {
         if (!editable)
             imageUrlTextField.setEditable(false);
         else
@@ -329,7 +332,7 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void editPrice(ActionEvent event) {
+    void editPrice(MouseEvent event) {
         if (!editable)
             priceTextField.setEditable(false);
         else
@@ -456,7 +459,9 @@ public class HotelBasicInfoUIController {
         promptsInvisible();
         setHotelVO();
 
-        hotelImage.setImage(new Image(hotelVO.getImageAddress(), 800, 400, false, true));
+//        Image image = new Image(hotelVO.getImageAddress(), 800, 400, false, true);
+        Image image = new Image(hotelVO.getImageAddress());
+        hotelImage.setImage(image);
 
         IDLabel.setText(hotelVO.getHotelID());
 

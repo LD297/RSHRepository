@@ -158,8 +158,8 @@ public class RoomAvailUIController {
         if(theRoomAvail!=null){
 
             // 显示房间图片
-//            Image roomImage = new Image(theRoomAvail)
-//            ((ImageView)theAnchorPane.getChildren().get(0)).setImage();
+            Image roomImage = new Image(theRoomAvail.getImageAddress());
+            ((ImageView)theAnchorPane.getChildren().get(0)).setImage(roomImage);
 
             ArrayList<Label> labels = new ArrayList<>(NUM_OF_ITEMS);
             for(int  i=0; i<NUM_OF_ITEMS; i++)

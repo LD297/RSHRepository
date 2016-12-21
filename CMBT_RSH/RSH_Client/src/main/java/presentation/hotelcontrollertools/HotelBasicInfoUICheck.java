@@ -33,6 +33,7 @@ public class HotelBasicInfoUICheck {
             return HotelBasicInfoUIFeedback.LEGAL;
     }
     public static String checkPrice(String thePrice){
+
         double price = Double.valueOf(thePrice);
         if(price<0)
             return HotelBasicInfoUIFeedback.PRICE_ILLEGAL;

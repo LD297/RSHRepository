@@ -14,7 +14,7 @@ public class HotelService_Stub implements HotelService{
 	@Override
 	public HotelVO getHotelInfo(String id) {
 		// TODO Auto-generated method stub
-		HotelVO vo1 = new HotelVO("0100190001", "1号酒店", "仙林大道", "0100097890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "somewhere");
+		HotelVO vo1 = new HotelVO("0100190001", "1号酒店", "仙林大道", "0100097890","123456", 4, 99.9, "00:00:00", "nothing", "nothing", "/images/默认酒店图片.jpg");
 		
 		return vo1;
 	}
@@ -28,11 +28,11 @@ public class HotelService_Stub implements HotelService{
 
 	@Override
 	public ArrayList<RoomVO> getRoomList(String id) {
-		RoomVO vo1 = new RoomVO("001", "单人间", 20, 200, "basic");
-		RoomVO vo2 = new RoomVO("002", "标准间", 10, 300, "basic");
-		RoomVO vo3 = new RoomVO("003", "三人间", 30, 400, "basic");
-		RoomVO vo4 = new RoomVO("004", "大床房", 50, 500, "basic");
-		RoomVO vo5 = new RoomVO("005", "小床房", 15, 600, "special");
+		RoomVO vo1 = new RoomVO("001", "单人间", 20, 200, "/images/默认房间图片.jpg");
+		RoomVO vo2 = new RoomVO("002", "标准间", 10, 300, "/images/默认房间图片.jpg");
+		RoomVO vo3 = new RoomVO("003", "三人间", 30, 400, "/images/默认房间图片.jpg");
+		RoomVO vo4 = new RoomVO("004", "大床房", 50, 500, "/images/默认房间图片.jpg");
+		RoomVO vo5 = new RoomVO("005", "小床房", 15, 600, "/images/默认房间图片.jpg");
 		ArrayList<RoomVO> list = new ArrayList<>();
 		list.add(vo1);
 		list.add(vo2);
@@ -56,11 +56,11 @@ public class HotelService_Stub implements HotelService{
 
 	@Override
 	public ArrayList<RoomAvailVO> getRoomAvailList(String hotelID,Date checkIn) {
-		RoomAvailVO vo1 = new RoomAvailVO("001", "单人间", 20, 200, "basic");
-		RoomAvailVO vo2 = new RoomAvailVO("002", "双人间", 10, 300, "basic");
-		RoomAvailVO vo3 = new RoomAvailVO("003", "三人间", 30, 400, "basic");
-		RoomAvailVO vo4 = new RoomAvailVO("004", "大床房", 50, 500, "basic");
-		RoomAvailVO vo5 = new RoomAvailVO("005", "小床房", 15, 600, "special");
+		RoomAvailVO vo1 = new RoomAvailVO("001", "单人间", 20, 200, "/images/默认房间图片.jpg");
+		RoomAvailVO vo2 = new RoomAvailVO("002", "双人间", 10, 300, "/images/默认房间图片.jpg");
+		RoomAvailVO vo3 = new RoomAvailVO("003", "三人间", 30, 400, "/images/默认房间图片.jpg");
+		RoomAvailVO vo4 = new RoomAvailVO("004", "大床房", 50, 500, "/images/默认房间图片.jpg");
+		RoomAvailVO vo5 = new RoomAvailVO("005", "小床房", 15, 600, "/images/默认房间图片.jpg");
 		ArrayList<RoomAvailVO> list = new ArrayList<>();
 		list.add(vo1);
 		list.add(vo2);

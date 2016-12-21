@@ -20,7 +20,7 @@ public class HotelVO {
 	private String latestCheckInTime = "23:45:00";			//形式为 HH:mm:ss
 	private String briefIntro;   							//简单介绍
 	private String facility = "0000";			 			//酒店（基础）设施（WiFi available？……）
-	private String imageAddress ="默认酒店图片地址";			//酒店图片地址
+	private String imageAddress ="/images/默认酒店图片.jpg";			//酒店图片地址
 
 	/**
 	 * these will be get from hotelID and the detailAddress;
