@@ -8,6 +8,11 @@ import vo.HotelVO;
  */
 public class HotelBasicInfoUICheck {
 
+<<<<<<< HEAD
+    public static String checkHotelName(String hotelName){
+        if(hotelName.length()<1||hotelName.length()>15)
+            return HotelBasicInfoUIFeedback.NAME_ILLEGAL;
+=======
     public static String[] checkHotelVO(HotelVO newHotelVO) {
         /**
          * Fb = feedback (反馈)
@@ -43,26 +48,21 @@ public class HotelBasicInfoUICheck {
     private static String checkBArea(String businessArea) {
         if(businessArea.length()>10)
             return HotelBasicInfoUIFeedback.BUSSINESS_ILLEGAL;
+>>>>>>> origin/master
         else
             return HotelBasicInfoUIFeedback.LEGAL;
+
     }
 
-    private static String checkAddr(String addr) {
-        if(addr.length()>30)
-            return HotelBasicInfoUIFeedback.ADDR_ILLEGAL;
-         else
-             return HotelBasicInfoUIFeedback.LEGAL;
-    }
-
-    private static String checkLevel(int level) {
-        if(level<0||level>5)
+    public static String checkLevel(String level) {
+        if(Integer.valueOf(level)<1||Integer.valueOf(level)>6)
             return HotelBasicInfoUIFeedback.LEVEL_ILLEGAL;
         else
             return HotelBasicInfoUIFeedback.LEGAL;
     }
 
-    private static String checkTime(String latestCheckinTime) {
-        String[] time = latestCheckinTime.split(":");
+    public static String checkTime(String theTime) {
+        String[] time = theTime.split(":");
         int h = Integer.parseInt(time[0]);
         int min = Integer.parseInt(time[1]);
         int second = Integer.parseInt(time[2]);
@@ -71,18 +71,20 @@ public class HotelBasicInfoUICheck {
         else
             return HotelBasicInfoUIFeedback.LEGAL;
     }
-
-    private static String checkTel(String tel) {
-        if(tel.length()!=11)
-            return HotelBasicInfoUIFeedback.TEL_ILLEGAL;
+    public static String checkPrice(String thePrice){
+        double price = Double.valueOf(thePrice);
+        if(price<0)
+            return HotelBasicInfoUIFeedback.PRICE_ILLEGAL;
         else
             return HotelBasicInfoUIFeedback.LEGAL;
     }
-
-
-    private static String checkHotelName(String name) {
-        if(name.length()>15)
-            return HotelBasicInfoUIFeedback.NAME_ILLEGAL;
+    public static String checkURL(String theURL){
+        //TODO
+        return HotelBasicInfoUIFeedback.LEGAL;
+    }
+    public static String checkBriefIntro(String briefIntro) {
+        if(briefIntro.length()<1||briefIntro.length()>128)
+            return HotelBasicInfoUIFeedback.BRIEFINTRO_ILLEGAL;
         else
             return HotelBasicInfoUIFeedback.LEGAL;
     }
