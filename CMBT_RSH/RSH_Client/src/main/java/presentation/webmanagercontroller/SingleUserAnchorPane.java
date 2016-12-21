@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import presentation.tools.ImageFactory;
 import presentation.tools.Locator;
-import presentation.tools.WebManagerUIFXMLFactory;
+import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 import vo.UserVO;
 
 public class SingleUserAnchorPane extends AnchorPane{

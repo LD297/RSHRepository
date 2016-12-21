@@ -3,11 +3,10 @@ package presentation.usercontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import presentation.tools.ImageFactory;
-import presentation.tools.UIJumpTool;
+import presentation.usercontrollertools.UIJumpTool;
 
 public class LoadingUIController {
 

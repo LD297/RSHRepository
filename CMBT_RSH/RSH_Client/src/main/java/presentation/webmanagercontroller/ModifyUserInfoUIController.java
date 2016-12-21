@@ -13,8 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import presentation.tools.ImageFactory;
-import presentation.tools.WebManagerInfoUtil;
-import presentation.tools.WebManagerUIFXMLFactory;
+import presentation.webmanagercontrollertools.WebManagerInfoUtil;
+import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 import vo.UserVO;
 
 public class ModifyUserInfoUIController {

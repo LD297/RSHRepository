@@ -27,10 +27,8 @@ public class SingleCreditRecordAnchorPane extends AnchorPane{
 	 */
 	private Label totalCredit = null;
 	private ImageView orderStateImage = null;
-	private CreditRecordVO creditRecordVO = null;
 	
 	public SingleCreditRecordAnchorPane(CreditRecordVO creditRecordVO){
-		this.creditRecordVO = creditRecordVO;
 		orderStateImage = new ImageView();
 		weekLabel = new Label(MyDateFormat.getInstance().getWeek(creditRecordVO.getDate()));
 		dateLabel = new Label(MyDateFormat.getInstance().toString(creditRecordVO.getDate()));

@@ -1,4 +1,4 @@
-package presentation.tools;
+package presentation.webmanagercontrollertools;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -12,7 +12,6 @@ import presentation.webmanagercontroller.ModifyUserInfoUIController;
 import presentation.webmanagercontroller.ModifyWebSalesmanUIController;
 import presentation.webmanagercontroller.SuccessAddHotelUIController;
 import presentation.webmanagercontroller.SuccessAddWebSalesmanUIController;
-import presentation.webmanagercontroller.SuccessResetPasswordUIController;
 
 public class WebManagerUIFXMLFactory {
 	private static WebManagerUIFXMLFactory webManagerUIFXMLFactory = null;

@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import presentation.tools.WebManagerUIFXMLFactory;
+import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 
 public class AboutUsUIController {
 

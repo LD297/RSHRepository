@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import presentation.tools.ImageFactory;
 import presentation.tools.Locator;
-import presentation.tools.WebManagerUIFXMLFactory;
+import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 import vo.WebSalesmanVO;
 
 public class SingleWebSalesmanAnchorPane extends AnchorPane{

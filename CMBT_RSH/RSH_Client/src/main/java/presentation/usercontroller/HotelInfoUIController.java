@@ -16,8 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import presentation.tools.ImageFactory;
-import presentation.tools.UIJumpTool;
-import presentation.tools.UserInfoUtil;
+import presentation.usercontrollertools.UIJumpTool;
+import presentation.usercontrollertools.UserInfoUtil;
 import vo.HotelVO;
 
 public class HotelInfoUIController {

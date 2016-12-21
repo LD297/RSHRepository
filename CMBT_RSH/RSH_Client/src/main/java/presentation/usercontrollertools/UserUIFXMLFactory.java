@@ -1,9 +1,7 @@
-package presentation.tools;
+package presentation.usercontrollertools;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import presentation.logincontroller.LoginUIController;
 import presentation.usercontroller.BrowseHotelUIController;
 import presentation.usercontroller.GuideUIController;

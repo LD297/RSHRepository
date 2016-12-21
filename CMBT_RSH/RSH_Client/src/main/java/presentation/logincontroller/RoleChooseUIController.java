@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.tools.*;
+import presentation.usercontrollertools.UIJumpTool;
 
 public class RoleChooseUIController {
     @FXML

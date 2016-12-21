@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import presentation.tools.UserInfoUtil;
+import presentation.usercontrollertools.UserInfoUtil;
 import vo.UserVO;
 
 public class MyIsMemberUIController {
