@@ -24,15 +24,15 @@ public class SingleHotelAnchorPane extends AnchorPane{
 
 	public SingleHotelAnchorPane(HotelVO hotelVO) {
 		nameIndoLabel.setText(hotelVO.getHotelName());
-		areaInfoLabel.setText(hotelVO.getDistrict());
+		areaInfoLabel.setText(hotelVO.getDetailAddress());
 		idInfoLabel.setText(hotelVO.getHotelID());
 		phoneInfoLabel.setText(hotelVO.getTel());
 		
 		//set组件属性
 		penImage.setFitHeight(23);
 		penImage.setFitWidth(23);
-		phoneImage.setFitHeight(20);
-		phoneImage.setFitWidth(20);
+		phoneImage.setFitHeight(18);
+		phoneImage.setFitWidth(18);
 		penImage.setPreserveRatio(false);
 		phoneImage.setPreserveRatio(false);
 		setFont(areaInfoLabel);
@@ -56,15 +56,15 @@ public class SingleHotelAnchorPane extends AnchorPane{
 		
 		//设置组件位置
 		Locator locator = Locator.getLocator();
-		locator.setLocation(nameLabel, 13.0,73.0,40.0,470.0);
-		locator.setLocation(nameIndoLabel, 13.0,73.0, 151.0,200.0);
-		locator.setLocation(idLabel, 43.0,46.0, 40.0,470.0);
-		locator.setLocation(idInfoLabel, 43.0,46.0, 151.0,200.0);
+		locator.setLocation(idLabel, 13.0,73.0,40.0,470.0);
+		locator.setLocation(idInfoLabel, 13.0,73.0, 151.0,200.0);
+		locator.setLocation(nameLabel, 43.0,46.0, 40.0,470.0);
+		locator.setLocation(nameIndoLabel, 43.0,46.0, 151.0,0.0);
 		locator.setLocation(areaLabel, 73.0,13.0, 40.0,470.0);
-		locator.setLocation(areaInfoLabel, 73.0,13.0, 151.0,200.0);
+		locator.setLocation(areaInfoLabel, 73.0,13.0, 151.0,0.0);
 		locator.setLocation(penImage, 13.0,76.0,577.0,0.0);
-		locator.setLocation(phoneImage, 76.0,16.0,490.0,90.0);
-		locator.setLocation(phoneInfoLabel, 73.0,13.0,510.0,0.0);
+		locator.setLocation(phoneImage, 15.0,73.0,360.0,220.0);
+		locator.setLocation(phoneInfoLabel, 13.0,73.0,380.0,130.0);
 		
 		//为组件添加监听
 		penImage.setOnMouseClicked(new EventHandler<MouseEvent>() {

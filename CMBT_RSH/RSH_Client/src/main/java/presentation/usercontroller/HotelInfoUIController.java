@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import presentation.tools.ImageFactory;
 import presentation.tools.UIJumpTool;
 import presentation.tools.UserInfoUtil;
@@ -42,26 +43,30 @@ public class HotelInfoUIController {
     @FXML
     private ImageView wifiImage;
 
-    @FXML
-    private Label wifiLabel;
 
     @FXML
     private ImageView swimpoolImage;
 
     @FXML
-    private Label swimLabel;
-
-    @FXML
     private ImageView parkImage;
-
-    @FXML
-    private Label parkLabel;
 
     @FXML
     private ImageView diningroomImage;
 
     @FXML
-    private Label diningroomLabel;
+    private Text diningText;
+
+    @FXML
+    private Text parkText;
+
+    @FXML
+    private Text swimText;
+    
+    @FXML
+    private Text wifiText;
+
+    @FXML
+    private Label phoneLabel;
 
     @FXML
     private Button createOrderButton;
@@ -154,9 +159,9 @@ public class HotelInfoUIController {
           addressLabel.setText(hotelVO.getDetailAddress());
           briefLabel.setText(hotelVO.getBriefIntro());
           //TODO 设置设施服务
-          //TODO 设置酒店图片
           hotelImage.setImage(ImageFactory.getImageFactory().getHotelImage(UserInfoUtil.getInstance().getHotelID()));
-	}
+          phoneLabel.setText(hotelVO.tel);
+    }
 
     @FXML
     void initialize() {
@@ -165,13 +170,9 @@ public class HotelInfoUIController {
         assert addressLabel != null : "fx:id=\"addressLabel\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert briefLabel != null : "fx:id=\"briefLabel\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert wifiImage != null : "fx:id=\"wifiImage\" was not injected: check your FXML file '酒店详情.fxml'.";
-        assert wifiLabel != null : "fx:id=\"wifiLabel\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert swimpoolImage != null : "fx:id=\"swimpoolImage\" was not injected: check your FXML file '酒店详情.fxml'.";
-        assert swimLabel != null : "fx:id=\"swimLabel\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert parkImage != null : "fx:id=\"parkImage\" was not injected: check your FXML file '酒店详情.fxml'.";
-        assert parkLabel != null : "fx:id=\"parkLabel\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert diningroomImage != null : "fx:id=\"diningroomImage\" was not injected: check your FXML file '酒店详情.fxml'.";
-        assert diningroomLabel != null : "fx:id=\"diningroomLabel\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert createOrderButton != null : "fx:id=\"createOrderButton\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert startLevelLabel != null : "fx:id=\"startLevelLabel\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert gradeLabel != null : "fx:id=\"gradeLabel\" was not injected: check your FXML file '酒店详情.fxml'.";
@@ -180,6 +181,11 @@ public class HotelInfoUIController {
         assert roonInfoButton != null : "fx:id=\"roonInfoButton\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert commentButton != null : "fx:id=\"commentButton\" was not injected: check your FXML file '酒店详情.fxml'.";
         assert myOrderButton != null : "fx:id=\"myOrderButton\" was not injected: check your FXML file '酒店详情.fxml'.";
+        assert wifiText != null : "fx:id=\"wifiText\" was not injected: check your FXML file '酒店详情.fxml'.";
+        assert phoneLabel != null : "fx:id=\"phoneLabel\" was not injected: check your FXML file '酒店详情.fxml'.";
+        assert diningText != null : "fx:id=\"diningText\" was not injected: check your FXML file '酒店详情.fxml'.";
+        assert parkText != null : "fx:id=\"parkText\" was not injected: check your FXML file '酒店详情.fxml'.";
+        assert swimText != null : "fx:id=\"swimText\" was not injected: check your FXML file '酒店详情.fxml'.";
         init();
     }
 }

@@ -33,7 +33,7 @@
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="usernameLabel" layoutX="188.0" layoutY="116.0" prefHeight="30.0" prefWidth="226.0" text="张根硕">
+            <Label fx:id="usernameLabel" layoutX="175.0" layoutY="116.0" prefHeight="30.0" prefWidth="226.0" text="张根硕">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
@@ -48,46 +48,56 @@
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="userNicknameLabel" layoutX="188.0" layoutY="152.0" prefHeight="30.0" prefWidth="226.0" text="297">
+            <Label fx:id="userNicknameLabel" layoutX="175.0" layoutY="152.0" prefHeight="30.0" prefWidth="226.0" text="297">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="userPhonelabel" layoutX="188.0" layoutY="197.0" prefHeight="30.0" prefWidth="101.0" text="29711118790">
+            <Label fx:id="userPhonelabel" layoutX="175.0" layoutY="197.0" prefHeight="30.0" prefWidth="101.0" text="29711118790">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="97.0" layoutY="250.0" prefHeight="30.0" prefWidth="78.0" text="信用值：">
+            <Label layoutX="97.0" layoutY="280.0" prefHeight="30.0" prefWidth="78.0" text="信用值：">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="memberTypeLabel" layoutX="296.0" layoutY="250.0" prefHeight="30.0" prefWidth="101.0" text="普通会员：">
+            <Label fx:id="memberTypeLabel" layoutX="292.0" layoutY="280.0" prefHeight="30.0" prefWidth="101.0" text="普通会员：">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="userCreditLabel" layoutX="185.0" layoutY="250.0" prefHeight="30.0" prefWidth="56.0" text="100000">
+            <Label fx:id="userCreditLabel" layoutX="175.0" layoutY="280.0" prefHeight="30.0" prefWidth="56.0" text="100000">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="memberLevelLabel" layoutX="397.0" layoutY="250.0" prefHeight="30.0" prefWidth="56.0" text="3">
+            <Label fx:id="memberLevelLabel" layoutX="393.0" layoutY="280.0" prefHeight="30.0" prefWidth="56.0" text="3">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="99.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="94.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/pen_grey.png" />
                </image>
             </ImageView>
-            <Button fx:id="modifyUserInfoButton" layoutX="137.0" layoutY="299.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#changeToModifyUserInfo" prefHeight="30.0" style="-fx-background-color: #ff5a5f;" text="修改信息" textFill="WHITE">
+            <Button fx:id="modifyUserInfoButton" layoutX="137.0" layoutY="339.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#changeToModifyUserInfo" prefHeight="30.0" style="-fx-background-color: #ff5a5f;" text="修改信息" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Button>
+            <Label layoutX="97.0" layoutY="236.0" prefHeight="30.0" prefWidth="78.0" text="邮件：">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="emailLabel" layoutX="175.0" layoutY="236.0" prefHeight="30.0" prefWidth="226.0" text="151251335@qq.com">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Label>
          </children>
          <effect>
             <DropShadow />

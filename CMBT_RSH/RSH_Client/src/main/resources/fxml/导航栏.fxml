@@ -33,11 +33,6 @@
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font></TextField>
-                  <Label fx:id="helpLabel" layoutX="642.0" layoutY="1.0" onMouseClicked="#changeToHeplInfo" prefHeight="52.0" prefWidth="33.0" text="帮助" textFill="#000000a5" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="642.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="1.0">
-                     <font>
-                        <Font name="Times New Roman" size="12.0" />
-                     </font>
-                  </Label>
                   <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="133.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="644.0" AnchorPane.topAnchor="16.0">
                      <image>
                         <Image url="@../images/搜索图标.jpg" />

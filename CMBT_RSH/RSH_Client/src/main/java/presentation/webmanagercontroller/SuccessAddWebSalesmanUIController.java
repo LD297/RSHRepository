@@ -30,6 +30,7 @@ public class SuccessAddWebSalesmanUIController {
     void closeSuccessAdd(MouseEvent event) {
     	AnchorPane manageWebSalesman = WebManagerUIFXMLFactory.getInstance().getManageWebSalesman();
     	manageWebSalesman.getChildren().remove(manageWebSalesman.getChildren().size()-1);
+    	//刷新管理网站营销人员界面
     	ManageHotelUIController manageHotelUIController = WebManagerUIFXMLFactory.getInstance().getManageHotelUIController();
     	manageHotelUIController.init();
     }

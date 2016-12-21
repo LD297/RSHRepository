@@ -3,15 +3,14 @@ package presentation.webmanagercontroller;
 
 import constant.Sexuality;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import presentation.tools.ImageFactory;
 import presentation.tools.Locator;
-import presentation.tools.WebManagerInfoUtil;
 import presentation.tools.WebManagerUIFXMLFactory;
 import vo.UserVO;
 
@@ -27,8 +26,7 @@ public class SingleUserAnchorPane extends AnchorPane{
 	private Label memberLevelLabel;
 	private ImageView phoneImage;
 	private ImageView sexImage;
-	private ImageView penImage;
-	private Button resetPasswordButton;
+	private Label forMoreLabel = null;
 	public SingleUserAnchorPane(UserVO userVO){
 		phoneImage = new ImageView(ImageFactory.getImageFactory().getPhoneImage());
 		sexImage = new ImageView();
@@ -37,7 +35,6 @@ public class SingleUserAnchorPane extends AnchorPane{
 		}else {
 			sexImage.setImage(ImageFactory.getImageFactory().getMale());
 		}
-		penImage = new ImageView(ImageFactory.getImageFactory().getPenImage());
 		nameLabel = new Label("姓名：");
 		nameInfoLabel = new Label(userVO.name);
 		nickNameLabel = new Label("昵称");
@@ -47,7 +44,7 @@ public class SingleUserAnchorPane extends AnchorPane{
 		creditInfoLabel = new Label(String.valueOf(userVO.credit));
 		memberTypeLabel = new Label(userVO.getMemberType().getString());
 		memberLevelLabel = new Label(String.valueOf(userVO.level));
-		resetPasswordButton = new Button("重置密码");
+		forMoreLabel = new Label("更多>");
 		
 		//设置组件属性
 		setFont(creditInfoLabel);
@@ -59,14 +56,12 @@ public class SingleUserAnchorPane extends AnchorPane{
 		setFont(phoneInfoLabel);
 		setFont(nickNameLabel);
 		setFont(nickNameInfoLabel);
-		resetPasswordButton.setFont(Font.font("Times New Roman", 14));
-		resetPasswordButton.setStyle("-fx-background-color: #ff5a5f;-fx-text-fill: #ffffff");
 		phoneImage.setFitHeight(23);
 		phoneImage.setFitWidth(23);
-		penImage.setFitHeight(30);
-		penImage.setFitWidth(30);
 		sexImage.setFitHeight(20);
 		sexImage.setFitWidth(20);
+		forMoreLabel.setStyle("-fx-text-fill: #bababa");
+		forMoreLabel.setFont(Font.font("Times New Roman", 14));
 		
 		//添加组件
 		this.getChildren().add(creditInfoLabel);
@@ -79,9 +74,8 @@ public class SingleUserAnchorPane extends AnchorPane{
 		this.getChildren().add(phoneImage);
 		this.getChildren().add(nickNameInfoLabel);
 		this.getChildren().add(nickNameLabel);
-		this.getChildren().add(penImage);
 		this.getChildren().add(sexImage);
-		this.getChildren().add(resetPasswordButton);
+		this.getChildren().add(forMoreLabel);
 		
 		//设置组件位置
 		Locator locator = Locator.getLocator();
@@ -96,25 +90,35 @@ public class SingleUserAnchorPane extends AnchorPane{
 		locator.setLocation(nickNameLabel, 14.0, 86.0,330.0,182.0);
 		locator.setLocation(nickNameInfoLabel, 14.0, 86.0,435.0,20.0);
 		locator.setLocation(sexImage, 17.0,86.0,580.0,0.0);
-		locator.setLocation(penImage, 86.0,7.0,487.0,83.0);
-		locator.setLocation(resetPasswordButton, 86.0,7.0,524.0,0.0);
+		locator.setLocation(forMoreLabel, 86.0,7.0,560.0,0.0);
 		
-		//添加监听,重置密码
-		resetPasswordButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
+		//为组件添加监听
+		forMoreLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			//跳转到查看用户信息
 			@Override
 			public void handle(MouseEvent event) {
-				//重置密码
-		    	String password = WebManagerInfoUtil.getInstance().resetPassword(userVO.id);
 				AnchorPane manageUser = WebManagerUIFXMLFactory.getInstance().getManageUser();
-				AnchorPane successResetPassword = WebManagerUIFXMLFactory.getInstance().getSuccessResetPassword();
-				SuccessResetPasswordUIController successResetPasswordUIController = WebManagerUIFXMLFactory.getInstance()
-						.getSuccessResetPasswordUIController();
-				successResetPasswordUIController.init(password);//提示重置密码成功，并显示新密码
-				manageUser.getChildren().add(successResetPassword);
+				AnchorPane checkUserInfo = WebManagerUIFXMLFactory.getInstance().getCheckUserInfo();
+				CheckUserInfoUIController checkUserInfoUIController = WebManagerUIFXMLFactory.getInstance()
+						.getCheckUserInfoUIController();
+				checkUserInfoUIController.init(userVO);
+				manageUser.getChildren().add(checkUserInfo);
 			}
 		});
-		
+		forMoreLabel.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			//鼠标进入”更多“，颜色变为绿色
+			@Override
+			public void handle(MouseEvent event) {
+				forMoreLabel.setTextFill(Color.valueOf("#00a699"));
+			}
+		});
+		forMoreLabel.setOnMouseExited(new EventHandler<MouseEvent>() {
+			//鼠标离开”更多“，颜色变为灰色
+			@Override
+			public void handle(MouseEvent event) {
+				forMoreLabel.setTextFill(Color.valueOf("#bcbcbc"));
+			}
+		});
 	}
 	
 	private void setFont(Label label){

@@ -24,7 +24,7 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="9.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="248.0" style="-fx-background-color: #f4f4f4;" AnchorPane.leftAnchor="276.0" AnchorPane.rightAnchor="276.0" AnchorPane.topAnchor="130.0">
+      <AnchorPane layoutX="9.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="248.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="276.0" AnchorPane.rightAnchor="276.0" AnchorPane.topAnchor="130.0">
          <children>
             <AnchorPane layoutX="72.0" layoutY="28.0" prefHeight="120.0" prefWidth="120.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="36.0">
                <children>

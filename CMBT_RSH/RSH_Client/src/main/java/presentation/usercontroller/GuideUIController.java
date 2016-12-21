@@ -36,9 +36,6 @@ public class GuideUIController {
     private TextField whereToGoField;
 
     @FXML
-    private Label helpLabel;
-
-    @FXML
     private Label logoutLabel;
 
     @FXML
@@ -95,7 +92,6 @@ public class GuideUIController {
     void initialize() {
         assert backImage != null : "fx:id=\"backImage\" was not injected: check your FXML file '导航栏.fxml'.";
         assert whereToGoField != null : "fx:id=\"whereToGoField\" was not injected: check your FXML file '导航栏.fxml'.";
-        assert helpLabel != null : "fx:id=\"helpLabel\" was not injected: check your FXML file '导航栏.fxml'.";
         assert logoutLabel != null : "fx:id=\"logoutLabel\" was not injected: check your FXML file '导航栏.fxml'.";
         assert headImage != null : "fx:id=\"headImage\" was not injected: check your FXML file '导航栏.fxml'.";
         assert headMaskImage != null : "fx:id=\"headMaskImage\" was not injected: check your FXML file '导航栏.fxml'.";
