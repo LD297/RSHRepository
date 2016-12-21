@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import constant.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,6 +34,9 @@ public class CommerceMemberRegisterUIController {
 
     @FXML
     private ImageView cancelImage;
+    @FXML
+    private Label messageLabel;
+
 
     @FXML
     void changeCancelImageToGray(MouseEvent event) {
@@ -53,10 +57,15 @@ public class CommerceMemberRegisterUIController {
     
     @FXML
     void finishRegisterButtonClicked(MouseEvent event) {
+    	messageLabel.setText("");
     	String commerceName = commerceNameField.getText().trim();
-    	if(UserInfoUtil.getInstance().registerCommerceMember(commerceName)==ResultMessage.succeed){
-    		 UIJumpTool.getUiJumpTool().changeMemberRegisterToMember();
-    	}
+    	if(commerceName.equals("")){
+    		messageLabel.setText("请输入企业名称");
+    	}else {
+    		if(UserInfoUtil.getInstance().registerCommerceMember(commerceName)==ResultMessage.succeed){
+       		 UIJumpTool.getUiJumpTool().changeMemberRegisterToMember();
+       	}
+		}
     }
 
     @FXML

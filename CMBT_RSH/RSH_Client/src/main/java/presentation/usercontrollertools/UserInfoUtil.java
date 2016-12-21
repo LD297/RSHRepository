@@ -351,7 +351,6 @@ public String getHotelID() {
      */
     
     public OrderVO getOrderVO() {
-    	System.out.println("hbkjfhgdhsjbhb");
 		OrderVO orderVO = orderForUser.detail(orderID);
 		return orderVO;
 	}
