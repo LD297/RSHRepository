@@ -152,7 +152,7 @@ public class HotelInfoUIController {
           startLevelLabel.setText(String.valueOf(hotelVO.getLevel()));
           gradeLabel.setText(String.valueOf(hotelVO.getGrade()));
           addressLabel.setText(hotelVO.getDetailAddress());
-          briefLabel.setText(hotelVO.briefIntro);
+          briefLabel.setText(hotelVO.getBriefIntro());
           //TODO 设置设施服务
           //TODO 设置酒店图片
           hotelImage.setImage(ImageFactory.getImageFactory().getHotelImage(UserInfoUtil.getInstance().getHotelID()));

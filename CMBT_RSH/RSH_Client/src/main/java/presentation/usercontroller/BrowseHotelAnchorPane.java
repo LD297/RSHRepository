@@ -59,7 +59,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 //		promotionLabels = new ArrayList<Label>();
 		createOrderButton = new Button("新建订单");
 		//浏览酒店界面上显示的价格是标准间价格
-		priceLabel = new Label("￥"+String.valueOf(hotelVO.standardRoomPrice)+"/晚");
+		priceLabel = new Label("￥"+String.valueOf(hotelVO.getStandardRoomPrice())+"/晚");
 		
 		//TODO 得到的促销策略应该适用于当前日期
 		//TODO bL层单利？？？？？？？

@@ -19,13 +19,13 @@ public class HotelVO {
 	private String password;
 	
 	private double grade = 0;		 				//酒店评分所有用户评分的均值
-	public int level = -1; 						//星级，未设置时置为-1，最大为5;
-	public double standardRoomPrice ; 				//标准间价格（酒店价格排序标准）
+	private int level = -1; 						//星级，未设置时置为-1，最大为5;
+	private double standardRoomPrice ; 				//标准间价格（酒店价格排序标准）
 	
-	public String latestCheckInTime = "23:45:00";			//形式为 HH:mm:ss
-	public String briefIntro;   							//简单介绍
-	public String facility = "0000";			 			//酒店（基础）设施（WiFi available？……）
-	public String imageAddress ="默认酒店图片地址";			//酒店图片地址
+	private String latestCheckInTime = "23:45:00";			//形式为 HH:mm:ss
+	private String briefIntro;   							//简单介绍
+	private String facility = "0000";			 			//酒店（基础）设施（WiFi available？……）
+	private String imageAddress ="默认酒店图片地址";			//酒店图片地址
 
 	/**
 	 * these will be get from hotelID and the detailAddress;
@@ -117,22 +117,39 @@ public class HotelVO {
 	public String getHotelName(){
 		return hotelName;
 	}
-	public String getDistrict(){
-		return district;
-	}
 	public String getDetailAddress(){
 		return detailAddress;
 	}
 	public String getTel(){
 		return tel;
 	}
+	
 	public int getLevel(){
 		return level;
 	}
 	public double getGrade(){
 		return grade;
 	}
+	public double getStandardRoomPrice(){
+		return standardRoomPrice;
+	}
 	
+	public String getLatestCheckInTime(){
+		return latestCheckInTime;
+	}
+	public String getBriefIntro(){
+		return briefIntro;
+	}
+	public String getFacility(){
+		return facility;
+	}
+	public String getImageAddress(){
+		return imageAddress;
+	}
+	
+	public String getDistrict(){
+		return district;
+	}
 	public String getProvince(){
 		return province;
 	}
@@ -152,14 +169,29 @@ public class HotelVO {
 	public boolean hasSwimmingPool(){
 		return hasSwimmingPool;
 	}
-	
 	public boolean hasPark(){
 		return hasPark;
 	}
-	
 	public boolean hasCanteen(){
 		return hasCanteen;
 	}
+	
+	public void setLevel(int level){
+		this.level = level;
+	}
+	public void setLatestCheckInTime(String latestCheckInTime){
+		this.latestCheckInTime = latestCheckInTime;
+	}
+	public void setBriefIntro(String briefIntro){
+		this.briefIntro = briefIntro;
+	}
+	public void setFacility(String facility){
+		this.facility = facility;
+	}
+	public void setImageAddress(String imageAddress){
+		this.imageAddress = imageAddress;
+	}
+	
 	
 	public HotelPO changeIntoPO(){
 		HotelPO hotelPO = new HotelPO(hotelID, password, tel, hotelName, detailAddress, district, briefIntro, facility, level, grade, standardRoomPrice);
