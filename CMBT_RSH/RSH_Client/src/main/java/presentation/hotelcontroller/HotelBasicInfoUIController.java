@@ -6,14 +6,14 @@ package presentation.hotelcontroller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.EventListener;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.Hotel;
-import com.sun.prism.Image;
 import constant.HotelBasicInfoUIFeedback;
 import constant.ResultMessage;
 import javafx.event.ActionEvent;
+import javafx.event.EventDispatcher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -111,6 +111,9 @@ public class HotelBasicInfoUIController {
     private Text canteenText;
 
     @FXML
+    private Text roomInfoText;
+
+    @FXML
     private TextField checkInTextField;
 
     @FXML
@@ -204,23 +207,42 @@ public class HotelBasicInfoUIController {
     @FXML
     void editWifi(ActionEvent event) {
         if(!editable){
+           if(!wifiCheckBox.isSelected())
+               wifiCheckBox.setSelected(false);
+            else
+                wifiCheckBox.setSelected(true);
+        }
+    }
 
+    @FXML
+    void editSwimmingPool(ActionEvent event) {
+        if(!editable){
+            if(!swimmingPoolCheckBox.isSelected())
+                swimmingPoolCheckBox.setSelected(false);
+            else
+                swimmingPoolCheckBox.setSelected(true);
+        }
+    }
+
+    @FXML
+    void editPark(ActionEvent event) {
+        if(!editable){
+            if(!parkCheckBox.isSelected())
+                parkCheckBox.setSelected(false);
+            else
+                parkCheckBox.setSelected(true);
         }
 
     }
 
     @FXML
-    void editSwimmingPool(ActionEvent event) {
-
-    }
-
-    @FXML
-    void editPark(ActionEvent event) {
-
-    }
-
-    @FXML
     void editCanteen(ActionEvent event) {
+        if(!editable){
+            if(!canteeCheckBox.isSelected())
+                canteeCheckBox.setSelected(false);
+            else
+                canteeCheckBox.setSelected(true);
+        }
 
     }
 
@@ -350,16 +372,6 @@ public class HotelBasicInfoUIController {
         ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
     }
 
-
-    @FXML
-    void editImageClicked(ActionEvent event) {
-    }
-
-    @FXML
-    void confirmButtonClicked(ActionEvent event) {
-
-    }
-
     @FXML
     void initialize() {
         assert hotelNameTextField != null : "fx:id=\"hotelNameTextField\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
@@ -384,6 +396,7 @@ public class HotelBasicInfoUIController {
         assert timePrompt != null : "fx:id=\"timePrompt\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert gradeLabel != null : "fx:id=\"gradeLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert parkText != null : "fx:id=\"parkText\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert roomInfoText != null : "fx:id=\"roomInfoText\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert hotelNamePrompt != null : "fx:id=\"hotelNamePrompt\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert hotelImage != null : "fx:id=\"hotelImage\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert swimmingPoolText != null : "fx:id=\"swimmingPoolText\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
