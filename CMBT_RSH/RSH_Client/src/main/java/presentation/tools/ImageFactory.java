@@ -185,7 +185,7 @@ public class ImageFactory {
 				if(getImageByUrl.containsKey(urls.get(j))){
 					image = getImageByUrl.get(urls.get(j));
 				}else {
-					image = new Image(urls.get(j),330,229,false,true);
+					image = new Image(urls.get(j),400,240,false,true);
 					getImageByUrl.put(urls.get(j), image);
 				}
 				images.add(image);
@@ -202,10 +202,33 @@ public class ImageFactory {
 	public Image getHotelImage(String hotelID) {
 		return hotelImageMap.get(hotelID).get(0);
 	}
-	
+	/**
+	 * 根据房间类型得到房间
+	 * @param roomType
+	 * @return
+	 */
 	public Image getRoomImage(String roomType) {
 		String url = UserInfoUtil.getInstance().getImageUrl(roomType);
 		return getImageByUrl.get(url);
 	}
-
+	
+	/**
+	 * 根据用户id得到用户头像
+	 */
+	public Image getHeadImage(String userID) {
+		String url = UserInfoUtil.getInstance().getUserHeadImageUrl(userID);
+		return getHeadImageByUrl(url);
+	}
+	/**
+	 * 传入图片地址，得到图片
+	 */
+	public Image getHeadImageByUrl(String url) {
+		if(getImageByUrl.containsKey(url)){
+			return getImageByUrl.get(url);
+		}else {
+			Image image = new Image(url, 250, 250, false, true);
+			getImageByUrl.put(url, image);
+			return image;
+		}
+	}
 }

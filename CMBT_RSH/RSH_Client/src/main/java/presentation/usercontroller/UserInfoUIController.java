@@ -61,6 +61,7 @@ public class UserInfoUIController {
     private ImageView sexImage;
     @FXML
     private TextField urlField;
+    private UserVO userVO = null;
 
     @FXML
     void changeHeadImage(MouseEvent event) {
@@ -74,8 +75,7 @@ public class UserInfoUIController {
     	if(!url.equals("")){
     		//更换数据库头像地址
         	UserInfoUtil.getInstance().modifyHeadImage(url);
-        	Image image = new Image(url, 250, 250, false, true);
-        	headImage.setImage(image);
+        	headImage.setImage(ImageFactory.getImageFactory().getHeadImage(url));
         	//更换导航栏上的头像
         	GuideUIController guideUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getGuideUIController();
         	guideUIController.setHeadImage(url);
@@ -91,7 +91,7 @@ public class UserInfoUIController {
     }
     
 	public void init() {
-		UserVO userVO = UserInfoUtil.getInstance().getUserVO();
+		userVO = UserInfoUtil.getInstance().getUserVO();
 		nicknameLabel.setText(userVO.nickName);
 		userNameLabel.setText(userVO.name);
 		birthdayLabel.setText(MyDateFormat.getInstance().toString(userVO.birthday));

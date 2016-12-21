@@ -46,6 +46,7 @@ public class RoomInfoUIController {
     	private Label priceLabel = null;
     	private Button reserveButton = null;
     	private ImageView arrow = null;
+    	private Label arrowLabel = new Label("");
     	private boolean left = true;
     	private RoomVO roomVO = null;
     	
@@ -88,6 +89,7 @@ public class RoomInfoUIController {
 			this.getChildren().add(reserveButton);
 			this.getChildren().add(priceLabel);
 			this.getChildren().add(arrow);
+			this.getChildren().add(arrowLabel);
 			
 			//设置组件位置
 			Locator locator = Locator.getLocator();
@@ -95,13 +97,15 @@ public class RoomInfoUIController {
 			locator.setLocation(priceLabel, 36.0, 182.0, 14.0, 218.0);
 			if(left){
 				locator.setLocation(arrow, 58.0, 63.0, 14.0, 326.0);
+				locator.setLocation(arrowLabel, 58.0, 63.0, 14.0, 326.0);
 			}else{
 				locator.setLocation(arrow, 58.0, 63.0, 326.0,14.0);
+				locator.setLocation(arrowLabel, 58.0, 63.0, 326.0,14.0);
 			}
 			locator.setLocation(reserveButton, 194.0, 14.0, 300.0, 14.0);
 			
 			//设置组件的监听
-			arrow.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			arrowLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				//鼠标点击箭头，切换图片和对应的房间类型
 				@Override
 				public void handle(MouseEvent event) {
