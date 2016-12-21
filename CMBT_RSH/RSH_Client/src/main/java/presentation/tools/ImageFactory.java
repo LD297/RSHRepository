@@ -178,7 +178,7 @@ public class ImageFactory {
 		hotelImageMap.clear();
 		ArrayList<HotelVO> hotelVOs = UserInfoUtil.getInstance().getHotelVOs();
 		for(int i=0;i<hotelVOs.size();i++){
-			ArrayList<String> urls = UserInfoUtil.getInstance().getImageUrls(hotelVOs.get(i).hotelID);
+			ArrayList<String> urls = UserInfoUtil.getInstance().getImageUrls(hotelVOs.get(i).getHotelID());
 			ArrayList<Image> images = new ArrayList<Image>();
 			for(int j = 0;j<urls.size();j++){
 				Image image = null;
@@ -190,11 +190,15 @@ public class ImageFactory {
 				}
 				images.add(image);
 			}
-			hotelImageMap.put(hotelVOs.get(i).hotelID, images);
+			hotelImageMap.put(hotelVOs.get(i).getHotelID(), images);
 		}
 	}
 	
-	
+	/**
+	 * 得到酒店本身的图片
+	 * @param hotelID
+	 * @return
+	 */
 	public Image getHotelImage(String hotelID) {
 		return hotelImageMap.get(hotelID).get(0);
 	}

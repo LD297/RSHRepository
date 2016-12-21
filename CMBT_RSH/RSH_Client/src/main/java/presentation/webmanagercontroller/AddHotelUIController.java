@@ -130,7 +130,7 @@ public class AddHotelUIController {
     		messageLabel.setText("您有尚未填写的信息");
     	}else {
     		String hotelID = WebManagerInfoUtil.getInstance().getHotelID(province, city, district);
-			HotelVO hotelVO = new HotelVO(hotelID, null, hotelName, hotelAddress, district,null, null, 0, 0, null);
+			HotelVO hotelVO = new HotelVO(hotelID, hotelName, hotelAddress, phone, password);
 			ResultMessage resultMessage = WebManagerInfoUtil.getInstance().addHotel(hotelVO);
 			if(resultMessage==ResultMessage.succeed){//添加成功，弹出提示界面
 				AnchorPane manageHotel = WebManagerUIFXMLFactory.getInstance().getManageHotel();

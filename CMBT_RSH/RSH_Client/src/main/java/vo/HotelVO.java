@@ -1,6 +1,5 @@
 package vo;
 
-import java.io.ObjectInputStream.GetField;
 
 import po.HotelPO;
 
@@ -9,9 +8,9 @@ public class HotelVO {
 	private static final int DISTRICT_LENGTH = 6;
 	
 	private String hotelID;
-	private String name; //酒店名称
+	public String name; //酒店名称
 	private String addr;
-	private String tel; 
+	public String tel; 
 	
 	private String password;
 	
@@ -113,6 +112,11 @@ public class HotelVO {
 	public HotelPO changeIntoPO(){
 		HotelPO hotelPO = new HotelPO(hotelID, password, tel, name, addr, district, briefIntro, facility, level, grade, standardRoomPrice);
 		return hotelPO;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	
