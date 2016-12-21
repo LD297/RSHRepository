@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -36,9 +37,6 @@ public class RoomAvailUIController {
     private URL location;
 
     @FXML
-    private DatePicker datePicker;
-
-    @FXML
     private AnchorPane showPane02;
 
     @FXML
@@ -48,13 +46,7 @@ public class RoomAvailUIController {
     private ImageView minus01;
 
     @FXML
-    private AnchorPane showPane04;
-
-    @FXML
-    private AnchorPane showPane03;
-
-    @FXML
-    private ImageView minus03;
+    private DatePicker datePicker;
 
     @FXML
     private ImageView plus0;
@@ -63,13 +55,7 @@ public class RoomAvailUIController {
     private ImageView minus02;
 
     @FXML
-    private AnchorPane showPane05;
-
-    @FXML
-    private ImageView minus05;
-
-    @FXML
-    private ImageView minus04;
+    private Label greyLabel;
 
     @FXML
     private AnchorPane anchorPane;
@@ -78,19 +64,16 @@ public class RoomAvailUIController {
     private Label prePageLabel;
 
     @FXML
-    private ImageView plus05;
-
-    @FXML
     private Button backButton;
 
     @FXML
     private Label nextPageLabel;
 
     @FXML
-    private ImageView plus04;
+    private AnchorPane showPane0;
 
     @FXML
-    private ImageView plus03;
+    private ImageView minus0;
 
     @FXML
     private ImageView plus02;
@@ -99,14 +82,7 @@ public class RoomAvailUIController {
     private ImageView plus01;
 
     @FXML
-    private Label gotoImageView;
-
-
-    @FXML
-    private AnchorPane showPane0;
-
-    @FXML
-    private ImageView minus0;
+    private Label gotoDateLabel;
 
     @FXML
     private Label pageLabel;
@@ -117,8 +93,8 @@ public class RoomAvailUIController {
     // 当前入住日期
     private Date currentDate = Date.from(Instant.now());
 
-    private static final int NUM_OF_ITEMS = 4;
-    private static final int NUM_OF_PANES_FOR_SHOW = 6;
+    private static final int NUM_OF_ITEMS = 3;
+    private static final int NUM_OF_PANES_FOR_SHOW = 3;
 
     // 根据日期从数据库得到当天各种类型的可用数量
     private ArrayList<RoomAvailVO> currentRoomAvailList;
@@ -181,17 +157,18 @@ public class RoomAvailUIController {
     private void showRoomAvailItems(AnchorPane theAnchorPane, RoomAvailVO theRoomAvail){
         if(theRoomAvail!=null){
 
+            // 显示房间图片
+//            Image roomImage = new Image(theRoomAvail)
+//            ((ImageView)theAnchorPane.getChildren().get(0)).setImage();
+
             ArrayList<Label> labels = new ArrayList<>(NUM_OF_ITEMS);
-            for(int  i=0; i<NUM_OF_ITEMS; i++){
-                labels.add((Label)theAnchorPane.getChildren().get(i));
-            }
+            for(int  i=0; i<NUM_OF_ITEMS; i++)
+                labels.add((Label)theAnchorPane.getChildren().get(i+1));
 
             String type = theRoomAvail.getRoomType();
-            String baOrSpe = theRoomAvail.getBasicOrSpecial();
-            String price = String.valueOf(theRoomAvail.getPrice());
             String availNum = String.valueOf(theRoomAvail.getAmountAvail());
-
-            String[] items = new String[]{type, baOrSpe, price, availNum};
+            String price = String.valueOf(theRoomAvail.getPrice());
+            String[] items = new String[]{type, availNum, price};
 
             for(int i=0; i<NUM_OF_ITEMS; i++){
                 labels.get(i).setTextAlignment(TextAlignment.CENTER);
@@ -253,64 +230,27 @@ public class RoomAvailUIController {
     // 所有加号一个监听，响应时判断父节点
     @FXML
     void plus0Clicked(MouseEvent event){
-        AnchorPane actorPane = showPane0;
-        changeNum(actorPane, 1);
+        changeNum(showPane0, 1);
     }
     @FXML
-    void plus1Clicked(MouseEvent event){
-        AnchorPane actorPane = showPane01;
-        changeNum(actorPane, 1);
+    void plus01Clicked(MouseEvent event){
+        changeNum(showPane01, 1);
     }
     @FXML
-    void plus2Clicked(MouseEvent event){
-        AnchorPane actorPane = showPane02;
-        changeNum(actorPane, 1);
+    void plus02Clicked(MouseEvent event){
+        changeNum(showPane02, 1);
     }
-    @FXML
-    void plus3Clicked(MouseEvent event){
-        AnchorPane actorPane = showPane03;
-        changeNum(actorPane, 1);
-    }
-    @FXML
-    void plus4Clicked(MouseEvent event){
-        AnchorPane actorPane = showPane04;
-        changeNum(actorPane, 1);
-    }
-    @FXML
-    void plus5Clicked(MouseEvent event){
-        AnchorPane actorPane = showPane05;
-        changeNum(actorPane, 1);
-    }
-
     @FXML
     void minus0Clicked(MouseEvent event) {
-        AnchorPane actorPane = showPane0;
-        changeNum(actorPane, -1);
+        changeNum(showPane0, -1);
     }
     @FXML
-    void minus1Clicked(MouseEvent event) {
-        AnchorPane actorPane = showPane01;
-        changeNum(actorPane, -1);
+    void minus01Clicked(MouseEvent event) {
+        changeNum(showPane01, -1);
     }
     @FXML
-    void minus2Clicked(MouseEvent event) {
-        AnchorPane actorPane = showPane02;
-        changeNum(actorPane, -1);
-    }
-    @FXML
-    void minus3Clicked(MouseEvent event) {
-        AnchorPane actorPane = showPane03;
-        changeNum(actorPane, -1);
-    }
-    @FXML
-    void minus4Clicked(MouseEvent event) {
-        AnchorPane actorPane = showPane04;
-        changeNum(actorPane, -1);
-    }
-    @FXML
-    void minus5Clicked(MouseEvent event) {
-        AnchorPane actorPane = showPane05;
-        changeNum(actorPane, -1);
+    void minus02Clicked(MouseEvent event) {
+        changeNum(showPane02, -1);
     }
 
     @FXML
@@ -341,31 +281,23 @@ public class RoomAvailUIController {
 
     @FXML
     void initialize() {
-        assert showPane02 != null : "fx:id=\"showPane02\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert showPane01 != null : "fx:id=\"showPane01\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert minus01 != null : "fx:id=\"minus01\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert showPane04 != null : "fx:id=\"showPane04\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert showPane03 != null : "fx:id=\"showPane03\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert minus03 != null : "fx:id=\"minus03\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert plus0 != null : "fx:id=\"plus0\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert minus02 != null : "fx:id=\"minus02\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert showPane05 != null : "fx:id=\"showPane05\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert minus05 != null : "fx:id=\"minus05\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert minus04 != null : "fx:id=\"minus04\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert prePageLabel != null : "fx:id=\"prePageLabel\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert plus05 != null : "fx:id=\"plus05\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert nextPageLabel != null : "fx:id=\"nextPageLabel\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert plus04 != null : "fx:id=\"plus04\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert plus03 != null : "fx:id=\"plus03\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert plus02 != null : "fx:id=\"plus02\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert plus01 != null : "fx:id=\"plus01\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert gotoImageView != null : "fx:id=\"gotoImageView\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert showPane0 != null : "fx:id=\"showPane0\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert minus0 != null : "fx:id=\"minus0\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
-        assert datePicker != null : "fx:id=\"datePicker\" was not injected: check your FXML file '可用客房信息维护.fxml'.";
+        assert showPane02 != null : "fx:id=\"showPane02\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert showPane01 != null : "fx:id=\"showPane01\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert minus01 != null : "fx:id=\"minus01\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert datePicker != null : "fx:id=\"datePicker\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert plus0 != null : "fx:id=\"plus0\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert minus02 != null : "fx:id=\"minus02\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert greyLabel != null : "fx:id=\"greyLabel\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert prePageLabel != null : "fx:id=\"prePageLabel\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert nextPageLabel != null : "fx:id=\"nextPageLabel\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert showPane0 != null : "fx:id=\"showPane0\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert minus0 != null : "fx:id=\"minus0\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert plus02 != null : "fx:id=\"plus02\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert plus01 != null : "fx:id=\"plus01\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert gotoDateLabel != null : "fx:id=\"gotoDateLabel\" was not injected: check your FXML file '可用客房.fxml'.";
+        assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '可用客房.fxml'.";
 
         setShowPanes();
     }
@@ -383,9 +315,6 @@ public class RoomAvailUIController {
         showPanes[0] = showPane0;
         showPanes[1] = showPane01;
         showPanes[2] = showPane02;
-        showPanes[3] = showPane03;
-        showPanes[4] = showPane04;
-        showPanes[5] = showPane05;
     }
     public void refreshPage() {
         setCurrentRoomAvailList(currentDate);
