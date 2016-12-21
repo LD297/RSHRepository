@@ -140,7 +140,7 @@ public class RoomInfoUIController {
         if(theRoom!=null){
             // 显示该类型房间图片
             ImageView roomImage = (ImageView) theAnchorPane.getChildren().get(0);
-            roomImage.setImage(new Image( , 146, 92, false, true));
+            roomImage.setImage(new Image(theRoom.roomImageAddress , 146, 92, false, true));
             // 存放每条roomItem展示信息的label
             ArrayList<Label> labels = new ArrayList<>(NUM_OF_ITEMS);
             for(int i=0; i<NUM_OF_ITEMS; i++){

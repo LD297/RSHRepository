@@ -16,16 +16,16 @@ public class RoomPO implements Serializable{
 	 */
 	private double price;
 	/**
-	 * 该类型房间是否被设为特色
+	 * 该类型房间的图片地址
 	 */
-	private String basicOrSpecial;
+	private String roomImageAddress;
 
-	public RoomPO(String hotelID,String roomType,int numOfRoom,double price, String basicOrSpecial){
+	public RoomPO(String hotelID,String roomType,int numOfRoom,double price, String roomImageAddress){
 		this.hotelID = hotelID;
 		this.roomType = roomType;
 		this.numOfRoom = numOfRoom;
 		this.price = price;
-		this.basicOrSpecial = basicOrSpecial;
+		this.roomImageAddress = roomImageAddress;
 	}
 	public String getId() {
 		return hotelID;
@@ -59,16 +59,16 @@ public class RoomPO implements Serializable{
 		this.price = price;
 	}
 
-	public String getBasicOrSpecial() {
-		return basicOrSpecial;
+	public String getRoomImageAddress() {
+		return roomImageAddress;
 	}
 
-	public void setBasicOrSpecial(String basicOrSpecial) {
-		this.basicOrSpecial = basicOrSpecial;
+	public void setRoomImageAddress(String basicOrSpecial) {
+		this.roomImageAddress = roomImageAddress;
 	}
 
 	public RoomVO changeIntoVO(){
-		RoomVO roomVO = new RoomVO(hotelID, roomType, numOfRoom, price, basicOrSpecial);
+		RoomVO roomVO = new RoomVO(hotelID, roomType, numOfRoom, price, roomImageAddress);
 		return roomVO;
 	}
 }
