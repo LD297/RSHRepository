@@ -447,7 +447,6 @@ public class HotelBasicInfoUIController {
 
         promptsInvisible();
         setHotelVO();
-<<<<<<< HEAD
 
         IDLabel.setText(hotelVO.getHotelID());
 
@@ -477,20 +476,6 @@ public class HotelBasicInfoUIController {
         briefLabel.setText(hotelVO.briefIntro);
         briefIntroTextArea.setText(hotelVO.briefIntro);
 
-        telLabel.setText(hotelVO.getTel());
-        imageUrlTextField.setText(hotelVO.imageAddress);
-=======
-        nameTextField.setText(hotelVO.getHotelName());
-        idLabel.setText(hotelVO.getHotelID());
-        telTextField.setText(hotelVO.getTel());
-        checkInDDLTextField.setText(hotelVO.latestCheckInTime);
-        levelTextField.setText(String.valueOf(hotelVO.getLevel()));
-        gradeLabel.setText(String.valueOf(hotelVO.getGrade()));
-        addressTextField.setText(hotelVO.getDetailAddress());
-        businessAreaTextField.setText(hotelVO.getDistrict());
-        introductionTextArea.setText(hotelVO.briefIntro);
-        facilityTextArea.setText(hotelVO.facility);
->>>>>>> origin/master
     }
 
 }
