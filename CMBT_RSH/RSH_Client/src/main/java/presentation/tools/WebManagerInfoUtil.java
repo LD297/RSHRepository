@@ -84,11 +84,12 @@ public class WebManagerInfoUtil {
 	public ArrayList<WebSalesmanVO> getWebSalesmanVOs() {
 		return webStaffService.getWebSalesmanInfo();
 	}
+	
 	/**
-	 * 查看用户信息界面、管理用户信息界面调用
+	 * 修改用户信息界面调用
 	 */
-	public String resetPassword(String userid) {
-		return userService.resetPassword(userid);
+	public ResultMessage updateUser(UserVO userVO) {
+		return userService.update(userVO);
 	}
 	/**
 	 * 添加酒店界面调用，的到所有的省

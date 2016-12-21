@@ -53,8 +53,9 @@ public class CheckUserInfoUIController {
     private Label memberLevelLabel;
 
     @FXML
-    private Button resetPasswordButton;
-    private String userid = null;
+    private Button modifyUserInfoButton;
+
+    private UserVO userVO = null;
 
     @FXML
     void changeCancelImageToGray(MouseEvent event) {
@@ -65,18 +66,18 @@ public class CheckUserInfoUIController {
     void changeCancelImageToRed(MouseEvent event) {
     	cancelImage.setImage(ImageFactory.getImageFactory().getCancel_red());
     }
-
+    
     @FXML
-	void changeToSuccessResetPassword(MouseEvent event) {
-    	//重置密码
-    	String password = WebManagerInfoUtil.getInstance().resetPassword(userid);
-		AnchorPane manageUser = WebManagerUIFXMLFactory.getInstance().getManageUser();
-		AnchorPane successResetPassword = WebManagerUIFXMLFactory.getInstance().getSuccessResetPassword();
-		SuccessResetPasswordUIController successResetPasswordUIController = WebManagerUIFXMLFactory.getInstance()
-				.getSuccessResetPasswordUIController();
-		successResetPasswordUIController.init(password);//提示重置密码成功，并显示新密码
-		manageUser.getChildren().add(successResetPassword);
-	}
+    void changeToModifyUserInfo(MouseEvent event) {
+    	AnchorPane manageUser = WebManagerUIFXMLFactory.getInstance().getManageUser();
+    	AnchorPane modifyUser = WebManagerUIFXMLFactory.getInstance().getModifyUserInfo();
+    	ModifyUserInfoUIController modifyUserInfoUIController = WebManagerUIFXMLFactory.getInstance().getModifyUserInfoUIController();
+    	modifyUserInfoUIController.init(userVO);
+    	//先删除查看用户信息界面
+    	manageUser.getChildren().remove(manageUser.getChildren().size()-1);
+    	//添加修改用户信息界面
+    	manageUser.getChildren().add(modifyUser);
+    }
 
 
     @FXML
@@ -86,7 +87,7 @@ public class CheckUserInfoUIController {
     }
     
     public void init(UserVO userVO) {
-    	userid = userVO.id;
+    	this.userVO = userVO;
     	usernameLabel.setText(userVO.name);
     	userCreditLabel.setText(String.valueOf(userVO.credit));
     	userNicknameLabel.setText(userVO.nickName);
@@ -114,7 +115,6 @@ public class CheckUserInfoUIController {
         assert memberTypeLabel != null : "fx:id=\"memberTypeLabel\" was not injected: check your FXML file '网管_查看用户信息.fxml'.";
         assert userCreditLabel != null : "fx:id=\"userCreditLabel\" was not injected: check your FXML file '网管_查看用户信息.fxml'.";
         assert memberLevelLabel != null : "fx:id=\"memberLevelLabel\" was not injected: check your FXML file '网管_查看用户信息.fxml'.";
-        assert resetPasswordButton != null : "fx:id=\"resetPasswordButton\" was not injected: check your FXML file '网管_查看用户信息.fxml'.";
 
     }
 }

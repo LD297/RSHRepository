@@ -52,11 +52,10 @@ public class ModifyWebSalesmanUIController {
 
     @FXML
     private Label messageLabel;
-
-    @FXML
-    private PasswordField passwordField;
-
     
+    @FXML
+    private TextField nameField;
+
     private WebSalesmanVO webSalesmanVO = null;
 
     @FXML
@@ -79,8 +78,8 @@ public class ModifyWebSalesmanUIController {
     void finishModify(MouseEvent event) {
     	//TODO 更新信息，reset管理营销人员界面
     	boolean rightInput = true;
-    	String password = passwordField.getText().trim();
-    	if(password.equals("")){
+    	String name = nameField.getText().trim();
+    	if(name.equals("")){
     		rightInput = false;
     	}
     	String province = provinceCombox.getValue();
@@ -110,7 +109,7 @@ public class ModifyWebSalesmanUIController {
     		webSalesmanVO.setArea(district);
     		webSalesmanVO.setCity(city);
     		webSalesmanVO.setProvince(province);
-    		webSalesmanVO.setPassword(password);
+    		webSalesmanVO.setName(name);
     		String districtID = WebManagerInfoUtil.getInstance().getDistrictID(province, city, district);
     		webSalesmanVO.setDistrict(districtID);
 			ResultMessage resultMessage = WebManagerInfoUtil.getInstance().modifyWebSalesman(webSalesmanVO);
@@ -127,25 +126,26 @@ public class ModifyWebSalesmanUIController {
 
     @FXML
     void toSetCityCombox(ActionEvent event) {
+    	cityCombox.getItems().clear();
     	cityCombox.setValue("所在市");
+    	districtCombox.getItems().clear();
+    	districtCombox.setValue("所在区");
     	String province = provinceCombox.getValue();
     	ArrayList<String> citys = WebManagerInfoUtil.getInstance().getCitys(province);
     	ObservableList<String> cityItems = FXCollections.observableArrayList(citys);
     	cityCombox.setItems(cityItems);
-    	if(districtCombox.getItems().size()!=0){
-    		districtCombox.getItems().clear();
-    	}else {
-    		districtCombox.setValue("所在区");
-		}
     }
 
     @FXML
     void toSetDistrict(ActionEvent event) {
+    	districtCombox.getItems().clear();
     	String province = provinceCombox.getValue();
     	String city = cityCombox.getValue();
-    	ArrayList<String> districts = WebManagerInfoUtil.getInstance().getDistricts(province, city);
-    	ObservableList<String> districtItems = FXCollections.observableArrayList(districts);
-    	districtCombox.setItems(districtItems);
+    	if(province!=null&&city!=null&&!province.equals("所在省")&&!city.equals("所在市")){
+    		ArrayList<String> districts = WebManagerInfoUtil.getInstance().getDistricts(province, city);
+        	ObservableList<String> districtItems = FXCollections.observableArrayList(districts);
+        	districtCombox.setItems(districtItems);
+    	}
     }
 
     public void init(WebSalesmanVO webSalesmanVO) {
@@ -156,7 +156,7 @@ public class ModifyWebSalesmanUIController {
 		ArrayList<String> provinces = WebManagerInfoUtil.getInstance().getProvinces();
 		ObservableList<String> provinceItems = FXCollections.observableArrayList(provinces);
 		provinceCombox.setItems(provinceItems);
-		passwordField.setText(webSalesmanVO.getPassword());
+		nameField.setText(webSalesmanVO.getName());
 	}
     
     @FXML
@@ -166,8 +166,8 @@ public class ModifyWebSalesmanUIController {
         assert provinceCombox != null : "fx:id=\"provinceCombox\" was not injected: check your FXML file '网管_修改营销人员信息.fxml'.";
         assert cityCombox != null : "fx:id=\"cityCombox\" was not injected: check your FXML file '网管_修改营销人员信息.fxml'.";
         assert districtCombox != null : "fx:id=\"districtCombox\" was not injected: check your FXML file '网管_修改营销人员信息.fxml'.";
-        assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file '网管_修改营销人员信息.fxml'.";
         assert messageLabel != null : "fx:id=\"messageLabel\" was not injected: check your FXML file '网管_修改营销人员信息.fxml'.";
-        assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file '网管_修改营销人员信息.fxml'.";
+        assert nameField != null : "fx:id=\"nameField\" was not injected: check your FXML file '网管_修改营销人员信息.fxml'.";
+
     }
 }

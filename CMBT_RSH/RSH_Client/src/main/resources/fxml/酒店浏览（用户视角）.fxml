@@ -29,7 +29,7 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Button>
-                  <Line endX="799.0" layoutX="10.0" layoutY="11.0" stroke="#bcbcbc" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" />
+                  <Line endX="799.0" layoutX="10.0" layoutY="11.0" stroke="#bcbcbc" strokeWidth="0.5" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" />
                   <TextField fx:id="searchNameField" layoutX="389.0" layoutY="9.0" onAction="#searchByName" opacity="0.5" prefHeight="30.0" prefWidth="307.0" promptText="输入酒店名称">
                      <font>
                         <Font name="Times New Roman" size="14.0" />

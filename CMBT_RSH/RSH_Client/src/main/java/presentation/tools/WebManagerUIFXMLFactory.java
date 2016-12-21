@@ -8,6 +8,7 @@ import presentation.webmanagercontroller.ManageHotelUIController;
 import presentation.webmanagercontroller.ManageUserUIController;
 import presentation.webmanagercontroller.ManagerHomepageUIController;
 import presentation.webmanagercontroller.ModifyHotelUIController;
+import presentation.webmanagercontroller.ModifyUserInfoUIController;
 import presentation.webmanagercontroller.ModifyWebSalesmanUIController;
 import presentation.webmanagercontroller.SuccessAddHotelUIController;
 import presentation.webmanagercontroller.SuccessAddWebSalesmanUIController;
@@ -33,6 +34,7 @@ public class WebManagerUIFXMLFactory {
 	private SuccessAddWebSalesmanUIController successAddWebSalesmanUIController = null;
 	private ModifyHotelUIController modifyHotelUIController = null;
 	private ModifyWebSalesmanUIController modifyWebSalesmanUIController = null;
+	private ModifyUserInfoUIController modifyUserInfoUIController = null;
 	
 	private AnchorPane manageUserAnchorPane = null;
 	private AnchorPane manageHotelAnchorPane = null;
@@ -199,6 +201,18 @@ public class WebManagerUIFXMLFactory {
 		return anchorPane;
 	}
 	
+	public AnchorPane getModifyUserInfo() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_修改用户信息.fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		modifyUserInfoUIController = loader.getController();
+		return anchorPane;
+	}
+	
 	public AnchorPane getSuccessResetPassword() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/网管_重置密码成功.fxml"));
 		AnchorPane anchorPane = null;
@@ -237,8 +251,7 @@ public class WebManagerUIFXMLFactory {
 	public ModifyWebSalesmanUIController getModifyWebSalesmanUIController() {
 		return modifyWebSalesmanUIController;
 	}
-	
-	
-	
-	
+	public ModifyUserInfoUIController getModifyUserInfoUIController() {
+		return modifyUserInfoUIController;
+	}
 }
