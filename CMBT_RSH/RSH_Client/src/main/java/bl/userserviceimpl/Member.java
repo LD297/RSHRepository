@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 public class Member {
 
 	private static UserDao userDao=null;
-	private static int[] boundaries;
+	private static int boundaries;
 
 	private String userid;
 	private UserPO userPO = null;
@@ -87,41 +87,29 @@ public class Member {
 	}
 	/**
 	 * 网站营销人员更新所有会员的会员等级
-	 * @param levelWithCredit
+	 * @param boundariesForLevels
 	 * @return
 	 */
-	public ResultMessage setMemberStandard(int[] levelWithCredit){
-		if(levelWithCredit[0]!=0)
-			return ResultMessage.fail;
-		for(int i=1;i<levelWithCredit.length;i++){
-			if(levelWithCredit[i-1]>=levelWithCredit[i]){
-				return ResultMessage.fail;
-			}
-		}
+	public ResultMessage setMemberStandard(int boundariesForLevels){
 
 		ResultMessage resultMessage = null;
 		initRemote();
 		try{
-			resultMessage = userDao.setMemberLevel(levelWithCredit);
+			resultMessage = userDao.setMemberLevel(boundariesForLevels);
 		}catch(RemoteException e){
 			return ResultMessage.remote_fail;
 		}
 		return resultMessage;
 	}
 
-	public int[] getMemberStandard(){
+	public int	 getMemberStandard(){
 		return boundaries;
 	}
 
 
 	public int getMemberLevel(int credit) {
 		int level = 0;
-		for(;level<boundaries.length;level++){
-			if(credit<boundaries[level]){
-				level --;
-				break;
-			}
-		}
+		
 		return level;
 	}
 

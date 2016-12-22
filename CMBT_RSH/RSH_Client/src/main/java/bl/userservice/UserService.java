@@ -60,15 +60,15 @@ public interface UserService {
 
 	/**
 	 * 网站营销人员制定会员等级
-	 * 数组i位置存放i级最小值，0位置存0；
+	 * 
 	 */
-	public ResultMessage setMemberStandard(int[] boundariesForLevels);
+	public ResultMessage setMemberStandard(int num);
 
 	/**
 	 * 网站营销人员查看已制定的会员等级
 	 * @return
 	 */
-	public int[] getMemberStandard();
+	public int getMemberStandard();
 
 	/**
 	 * credit变动后计算会员等级

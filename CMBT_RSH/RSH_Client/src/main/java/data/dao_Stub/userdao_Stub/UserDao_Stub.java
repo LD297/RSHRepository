@@ -20,7 +20,7 @@ public class UserDao_Stub implements UserDao {
 
     ArrayList<UserPO> userPOS = new ArrayList<>();
     UserPO userPO=null;
-    int[] memberLevelBoundaries = new int[10];
+    int memberLevelBoundaries ;
 
 
     public static UserDao_Stub getInstance(){
@@ -57,13 +57,13 @@ public class UserDao_Stub implements UserDao {
     }
 
     @Override
-    public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException {
+    public ResultMessage setMemberLevel(int gradeWithCredit) throws RemoteException {
         memberLevelBoundaries = gradeWithCredit;
         return ResultMessage.succeed;
     }
 
     @Override
-    public int[] getMemberLevel() throws RemoteException {
+    public int getMemberLevel() throws RemoteException {
         return memberLevelBoundaries;
     }
 
