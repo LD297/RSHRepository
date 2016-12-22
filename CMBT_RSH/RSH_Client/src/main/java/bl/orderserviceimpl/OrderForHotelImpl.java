@@ -30,12 +30,14 @@ public class OrderForHotelImpl implements OrderForHotel{
         	orderDao = remoteHelper.getOrderDao();    		
     	}
     }
+    
     /**
      * 酒店分类查看订单
      * @param hotelID
      * @param state
      * @return
      */
+    @Override
     public ArrayList<OrderVO> hotelClassify(String hotelID, StateOfOrder state){
         ArrayList<OrderVO> list = this.getOrderOfHotel(hotelID);
         if(state==null)
@@ -55,6 +57,7 @@ public class OrderForHotelImpl implements OrderForHotel{
      * @param orderID
      * @return
      */
+    @Override
     public ResultMessage execute(String orderID){
     	Order order = Order.getInstance(orderID);
         return order.execute();
@@ -67,6 +70,7 @@ public class OrderForHotelImpl implements OrderForHotel{
      * @param orderID
      * @return
      */
+    @Override
     public ResultMessage leaveUpdate(String orderID){
         Order order = Order.getInstance(orderID);
         return order.leaveUpdate();
@@ -84,6 +88,7 @@ public class OrderForHotelImpl implements OrderForHotel{
      * 如果 在预计离开时间之后补登记 返回timeout
      *      抛异常 返回fail
      */
+    @Override
     public ResultMessage hotelCancelAbnormal(String orderID){
     	//此处需判断是否已超过预计离开时间
         Order order = Order.getInstance(orderID);
@@ -91,7 +96,12 @@ public class OrderForHotelImpl implements OrderForHotel{
         return order.execute();           
     }
 
-    // 得到该酒店的所有订单
+    /**
+     * 得到该酒店的所有订单
+     * 类内部调用
+     * @param hotelID
+     * @return
+     */
     private ArrayList<OrderVO> getOrderOfHotel(String hotelID){
         ArrayList<OrderPO> orderPOs;
         initRemote();

@@ -10,7 +10,7 @@ public class ManageHotelService_Stub implements ManagerHotelService{
 	@Override
 	public String getHotelID(String district) {
 		// TODO Auto-generated method stub
-		return "1100110010";
+		return district+"0010";
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class ManageHotelService_Stub implements ManagerHotelService{
 	@Override
 	public ResultMessage updateHotelStaff(HotelStaffVO hotelStaffVO) {
 		// TODO Auto-generated method stub
-		return null;
+		return ResultMessage.succeed;
 	}
 
 }

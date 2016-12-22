@@ -1,6 +1,5 @@
 package data.daohelperimpl.hoteldaohelperimpl;
 
-import bl.hotelserviceimpl.Hotel;
 import data.daohelper.HotelDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.*;
@@ -29,7 +28,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         // 编号 密码 电话 名称
         // 地址 商圈 标准双人间价格 简介 设施
         // 星级 评分 最晚入住时间  图片地址 评论人数 房间类型数量
-        db.executeSql("CREATE TABLE if not exists HotelInfo(hotelID char(10),password blob,phoneNumber char(11),name char(10)," +
+        db.executeSql("CREATE TABLE if not exists HotelInfo(hotelID char(10),password blob,phoneNumber char(11),name char(15)," +
                 "district char(6),addressDetail char(20),standardPrice double,briefIntro tinytext,facility char(20)," +
                 "level tinyint,grade double,latestCheckinTime char(8),imageAddress tinytext,commentNum int,roomTypeNum tinyint)");
         // 酒店 类型 总量

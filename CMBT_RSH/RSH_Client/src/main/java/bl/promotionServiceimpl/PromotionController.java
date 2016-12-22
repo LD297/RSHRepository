@@ -38,6 +38,7 @@ public class PromotionController implements PromotionService {
 		}
 	}
 	
+	@Override
 	public String getIDForNewPromotion(String setterID) {
 		initRemote();
 		String newID;
@@ -105,6 +106,11 @@ public class PromotionController implements PromotionService {
 	}
 
 
+	/**
+	 * 订单生成时计算最优策略
+	 * @param orderVO
+	 * @return
+	 */
 	public String countPromotionOfRoom(OrderInfo orderVO) {
 		// TODO Auto-generated method stub
 		return Count.countPromotionOfRoom(orderVO);

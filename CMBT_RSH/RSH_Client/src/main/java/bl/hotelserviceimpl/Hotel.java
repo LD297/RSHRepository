@@ -22,7 +22,9 @@ public class Hotel{
 	HotelPO hotelPO;   //持有持久化对象引用以保存具体数据
 	private HotelManager hotelManager;
 	RoomAvail roomAvail;
-	static HotelDao hotelDao= null;
+	private ArrayList<String> imageAddresses = null;
+	
+	private static HotelDao hotelDao= null;
 	
 	private void initRemote(){
 		RemoteHelper remoteHelper = RemoteHelper.getInstance();
@@ -36,12 +38,14 @@ public class Hotel{
 		roomAvail = RoomAvail.getInstance(hotelID);
 		try {
 			hotelPO = hotelDao.getHotel(hotelID);
+			imageAddresses = hotelDao.getImageAddresses(hotelID);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	
 	public static Hotel getInstance(String hotelID){
 		return new Hotel(hotelID);
 	}
@@ -170,5 +174,22 @@ public class Hotel{
 		return false;
 	}
 
+	public ArrayList<String> getImageAddresses(){
+		ArrayList<String > images = new ArrayList<>();
+		for(String imageAddress:imageAddresses){
+			images.add(imageAddress.split(" ")[1]);
+		}
+		return images;
+	}
+
+	public String getImageAddresForRoom(String roomType) {
+		// TODO Auto-generated method stub
+		for(String imageAddress:imageAddresses){
+			if(imageAddress.split(" ")[0].equals(roomType)){
+				return imageAddress.split(" ")[1];
+			}
+		}
+		return null;
+	}
 	
 }

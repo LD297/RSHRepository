@@ -30,7 +30,7 @@ public class test {
         ResultMessage result = creditDao.addCreditRecord(po);
         assertEquals(result,ResultMessage.succeed);
     }
-
+/*
 
     @Test
     public void testgetInfo() throws RemoteException{
@@ -52,7 +52,7 @@ public class test {
         Iterator<CreditRecordPO> iterator = creditDao.getCreditRecordList(userid);
         assertEquals(iterator.next().getCredit(),300);
     }
-   
+   */
     @Test
     public void testinsert() throws RemoteException{
         UserPO po = new UserPO("14775378908", "123456", "tina", "url://",

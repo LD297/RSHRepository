@@ -6,6 +6,7 @@ import constant.ResultMessage;
 import constant.StateOfOrder;
 import data.daohelper.WebSalesmanDaoHelper;
 import data.daohelperimpl.hoteldaohelperimpl.HotelDaoHelperMySql;
+import data.daohelperimpl.jdbc.DBHelper;
 import data.daohelperimpl.logindaohelperimpl.LoginDaoHelperMySql;
 import data.daohelperimpl.promotiondaohelperimpl.PromotionDaoHelperMySql;
 import data.daohelperimpl.userdaohelperimpl.CreditRecordListDaoHelperMySql;
@@ -33,7 +34,7 @@ public class test {
    static OrderDaoHelperMySql orderDao = new OrderDaoHelperMySql();
     
 
-
+/*
     // 根据订单编号查找订单
     @Test
     public void testsearchByID() throws RemoteException{
@@ -83,33 +84,33 @@ public class test {
     }
     
   
-    
+    */
     // 新建订单 success
-    @Test
+ /*   @Test
     public void testinsert() throws RemoteException,ParseException{
         String room = "标准大床间";
         SimpleDateFormat simm=new SimpleDateFormat("yyyy-MM-dd");
 
-        Date checkIn = simm.parse("2016-01-31");
-        Date checkOut = simm.parse("2016-02-05");
+        Date checkIn = simm.parse("2016-12-27");
+        Date checkOut = simm.parse("2016-12-31");
         String hotelDDL = "23:15:00";
-        Date generationDate = simm.parse("2016-01-28");
+        Date generationDate = simm.parse("2016-12-19");
         
         SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date actualCheckIn = sim.parse("2016-01-31 15:22:09");
-        Date actualCheckOut = sim.parse("2016-02-06 10:10:23");
+     //   Date actualCheckIn = sim.parse("2016-12-27 15:22:09");
+     //   Date actualCheckOut = sim.parse("2016-12-31 10:10:23");
         Date cancelTime = null;
         Date cancelAbnormalTime = null;
-        OrderPO orderPO = new OrderPO(null,"15935142165", "slt","2153000001","有间旅馆",StateOfOrder.unexecuted,
+        OrderPO orderPO = new OrderPO("2016-01-282153000001000001","15935142165", "slt","2153000001","有间旅馆",StateOfOrder.unexecuted,
                     room, 120, 1, 1, false,
                     120, 100, "任性优惠八折",
                     "睡得很香",4, checkIn,checkOut,hotelDDL,generationDate,
-                    actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);
+                    null,null, cancelTime, cancelAbnormalTime);
         ResultMessage result = orderDao.insert(orderPO);
         assertEquals(result,ResultMessage.succeed);
 
     }
-    
+    /*
     // 评价订单 success
     @Test
     public void commentUpdate() throws RemoteException{
@@ -159,12 +160,12 @@ public class test {
         ResultMessage result = orderDao.cancelAbTimeUpdate(orderID,cancelAbTime);
         assertEquals(result,ResultMessage.succeed);
     }
-    
+    */
 
+/*
 
-
-  /*  public static void main(String[] args) throws RemoteException {
-
+    public static void main(String[] args) throws RemoteException {
+       
         OrderDaoHelperMySql orderdao = new OrderDaoHelperMySql();
         orderdao.init();
         HotelDaoHelperMySql hoteldao = new HotelDaoHelperMySql();
@@ -181,7 +182,17 @@ public class test {
         websalesmandao.init();
         WebManagerDaoHelperMySql webmanagerdao = new WebManagerDaoHelperMySql();
         webmanagerdao.init();
+        
         orderdao.finish(); hoteldao.finish(); logindao.finish(); promotiondao.finish();
         userdao.finish(); cdao.finish(); websalesmandao.finish();
-    }*/
+        
+        
+       }*/
+   
+   public static void main(String[] args) throws ParseException, RemoteException{
+
+	    String userID = "15935142165";
+       ArrayList<OrderPO> list = orderDao.searchByUser(userID);
+       System.out.println(list.get(0).getRoomPrice());
+   }
 }

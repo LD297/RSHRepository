@@ -29,7 +29,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         // 评价 评分 预计入住、退房时间 酒店最晚时间
         // 实际入住、退房时间 订单生成时间 撤销订单时间 撤销异常时间
         db.executeSql("CREATE TABLE if not exists OrderGeneral(orderID char(26),userID blob," +
-                "userName blob, hotelID char(10), hotelName char(10), state tinyint,roomType char(10),roomPrice double,roomNum tinyint," +
+                "userName blob, hotelID char(10), hotelName char(15), state tinyint,roomType char(10),roomPrice double,roomNum tinyint," +
                 "peopleNum tinyint,withChild tinyint,originValue double,trueValue double,promotion char(20)," +
                 "comment tinytext,grade tinyint,checkIn date,checkOut date,hotelDDL char(8)," +
                 "bornDate date,actCheckIn datetime,actCheckOut datetime,cancelTime datetime,cancelAbTime datetime)");
@@ -173,8 +173,11 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         db.executeSql("USE OurData");
         if(this.checkExistence(orderID)==ResultMessage.idNotExist)
             return ResultMessage.idNotExist;
+<<<<<<< HEAD
+
+=======
         
-        this.updateAll();
+>>>>>>> origin/master
         String isStateChangedSql = "SELECT state FROM OrderGeneral WHERE orderID='"+orderID+"' LIMIT 1";
         ResultSet result = db.query(isStateChangedSql);
         try{

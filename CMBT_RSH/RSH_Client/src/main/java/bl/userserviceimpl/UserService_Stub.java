@@ -77,15 +77,15 @@ public class UserService_Stub implements UserService{
 	}
 
 	@Override
-	public ResultMessage setMemberStandard(int[] boundariesForLevels) {
+	public ResultMessage setMemberStandard(int boundariesForLevels) {
 		// TODO Auto-generated method stub
 		return ResultMessage.succeed;
 	}
 
 	@Override
-	public int[] getMemberStandard() {
+	public int getMemberStandard() {
 		// TODO Auto-generated method stub
-		return null;
+		return 500;
 	}
 
 	@Override
@@ -94,11 +94,7 @@ public class UserService_Stub implements UserService{
 		return 3;
 	}
 
-	@Override
-	public ResultMessage changePassword(String userid, String oldPassword, String newPassword) {
-		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
-	}
+	
 
 	@Override
 	public ArrayList<UserVO> getUserVOS() {

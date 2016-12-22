@@ -3,6 +3,8 @@ package bl.userserviceimpl;
 import bl.BLHelper;
 import bl.userservice.UserService;
 import constant.ResultMessage;
+import data.dao.userdao.UserDao;
+import rmi.RemoteHelper;
 import vo.CreditRecordVO;
 import vo.UserVO;
 
@@ -16,10 +18,20 @@ import java.util.Iterator;
  *
  */
 public class UserController implements UserService{
-
+	
+	private static UserDao userDao = null;
+	
+	private static void initRemote(){
+		if(userDao==null){
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
+			userDao = remoteHelper.getUserDao();
+		}
+	}
+	
 	/**
 	 * 获取用户基本信息
 	 */
+	@Override
 	public UserVO getInfo(String userid) {
 		User user = new User(userid);
 		return user.getInfo();
@@ -28,13 +40,14 @@ public class UserController implements UserService{
 	/**
 	 * 更新用户的基本信息
 	 */
+	@Override
 	public ResultMessage update(UserVO userVO)	{
 		User user = new User(userVO.getId());
 		return user.update(userVO);
 	}
 
 	/**
-	 * 增加信用变化记录（用户信用充值的时候）
+	 * 订单状态发生变化产生的信用记录变化
 	 */
 	public ResultMessage addCreditRecord(CreditRecordVO vo) {
 		CreditRecordList creditRecordList = new CreditRecordList(vo.getUserid());
@@ -44,6 +57,7 @@ public class UserController implements UserService{
 	/**
 	 * 用户信用记录列表（用户查看信用记录的时候）
 	 */
+	@Override
 	public Iterator<CreditRecordVO> getCreditRecordList(String userid) {
 		CreditRecordList creditRecordList = new CreditRecordList(userid);
 		return creditRecordList.getCreditRecordList();
@@ -52,6 +66,7 @@ public class UserController implements UserService{
 	/**
 	 * 注册普通会员
 	 */
+	@Override
 	public ResultMessage registerMember(String userid) {
 		Member member = new Member(userid);
 		return member.registerMember();
@@ -60,19 +75,20 @@ public class UserController implements UserService{
 	/**
 	 * 注册企业会员
 	 */
+	@Override
 	public ResultMessage registerMember(String userid, String commerceName) {
 		Member member = new Member(userid);
 		return member.registerMember(commerceName);
 	}
 
 	@Override
-	public ResultMessage setMemberStandard(int[] boundariesForLevels) {
+	public ResultMessage setMemberStandard(int boundariesForLevels) {
 		Member member = new Member();
 		return member.setMemberStandard(boundariesForLevels);
 	}
 
 	@Override
-	public int[] getMemberStandard() {
+	public int getMemberStandard() {
 		Member member = new Member();
 		return member.getMemberStandard();
 	}
@@ -86,12 +102,25 @@ public class UserController implements UserService{
 		return member.getMemberLevel(credit);
 	}
 
-	@Override
+
+	/**
+	 * 登陆模块调用
+	 * @param userid
+	 * @param oldPassword
+	 * @param newPassword
+	 * @return
+	 */
 	public ResultMessage changePassword(String userid, String oldPassword, String newPassword) {
 		User user = new User(userid);
 		return	user.changePassword(oldPassword,newPassword);
 	}
 
+	/**
+	 * 登陆模块调用
+	 * @param id
+	 * @param password
+	 * @return
+	 */
 	public ResultMessage checkPassword(String id,String password) {
 		User user = new User(id);
 		return user.checkPassword(password);
@@ -100,6 +129,7 @@ public class UserController implements UserService{
 	@Override
 	public ArrayList<UserVO> getUserVOS() {
 		// TODO Auto-generated method stub
+		User user = new User();
 		return null;
 	}
 

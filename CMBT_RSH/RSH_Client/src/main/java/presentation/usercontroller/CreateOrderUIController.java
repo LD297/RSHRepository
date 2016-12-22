@@ -168,7 +168,7 @@ public class CreateOrderUIController {
 				backToModifyButton.setVisible(true);
 			}else{//如果没有尚未填写的信息，得到总价和促销策略
 				getInfoFromUI();
-				OrderInfo orderInfo = new OrderInfo(null, roomtype, roomNum, expectedCheckinDate, expectedCheckoutDate, null);
+				OrderInfo orderInfo = new OrderInfo(null, roomtype, roomNum, expectedCheckinDate, expectedCheckoutDate, null,roomPrice);
 				String temp = UserInfoUtil.getInstance().getOrderPriceAndPromotion(orderInfo);
 				totalPrice = temp.split("#")[1];
 				promotion = temp.split("#")[0];

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import vo.RoomVO;
 
 public class RoomPO implements Serializable{
     /**

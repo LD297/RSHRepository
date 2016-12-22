@@ -21,6 +21,7 @@ public interface HotelInfoService {
     public ArrayList<RoomNormVO> getRoomNorm(String hotelID);
     
     /**
+     * 显示酒店信息时调用
      * 得到该酒店的最晚入住时间
      * @return  格式为HH:mm:ss 的时间
      */
@@ -36,7 +37,7 @@ public interface HotelInfoService {
     public int getRoomAvailNum(String hotelID,String roomType, Date checkIn, Date checkOut);
    
     /**
-     * 更新数据库中酒店的评分
+     * 更新数据库中酒店的评分，在用户评价订单后调用
      * 由逻辑层传入用户评分，数据层对已有的评分和新增评分取平均值
      * 并更新酒店的评分数据
      * @param grade 用户打分（范围0~5，闭区间）

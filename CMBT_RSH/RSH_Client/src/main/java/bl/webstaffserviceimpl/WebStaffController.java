@@ -95,6 +95,7 @@ public class WebStaffController implements WebStaffService{
 		}
 	}
 
+	@Override
 	public ResultMessage updateWebSalesman(WebSalesmanVO webSalesmanVO) {
 		// TODO Auto-generated method stub
 		String webSalesmanID = webSalesmanVO.getId();
@@ -112,6 +113,12 @@ public class WebStaffController implements WebStaffService{
 		}
 	}
 
+	/**
+	 * 登陆模块调用
+	 * @param ID
+	 * @param password
+	 * @return
+	 */
 	public static ResultMessage checkPassword(String ID, String password) {
 		if(ID.equals(MANAGER_ID)){
 			WebManager webManager = WebManager.getInstance();

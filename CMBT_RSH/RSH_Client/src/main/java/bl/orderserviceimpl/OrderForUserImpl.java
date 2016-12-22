@@ -46,6 +46,7 @@ public class OrderForUserImpl implements OrderForUser{
      * @param state
      * @return 查看全部订单时：state设为null
      */
+    @Override
     public ArrayList<OrderVO> userClassify(String userID, StateOfOrder state){
         ArrayList<OrderVO> list = this.getOrderOfUser(userID);
         if(state==null)
@@ -62,6 +63,7 @@ public class OrderForUserImpl implements OrderForUser{
      * @param orderID
      * @return
      */
+    @Override
     public OrderVO detail(String orderID){
     	initRemote();
         try{
@@ -81,6 +83,7 @@ public class OrderForUserImpl implements OrderForUser{
      * @return 被扣除的信用值(>=0 ,-1表示出错)
      * 注：出错（remote；订单状态不是unexecuted）
      */
+    @Override
     public int cancelMyOrder(String orderID){
         OrderPO orderPO;
         Date cancelTime = new Date();
@@ -105,7 +108,7 @@ public class OrderForUserImpl implements OrderForUser{
 
         // 酒店可用客房数量增加
         // 增加量=订单中预定的客房数量
-        HotelService hotelService = new HotelController(hotelID);
+        HotelService hotelService = new HotelController();
         hotelService.plusRoomAvail(hotelID,room.getRoomType(),roomNum,checkIn,checkOut);
         // 订单状态置为已撤销
         try{
@@ -136,6 +139,7 @@ public class OrderForUserImpl implements OrderForUser{
      * @param hotelID
      * @return 返回值为null：用户未在该酒店预定过
      */
+    @Override
     public StateOfOrder getOrderStateOfUser(String userID, String hotelID){
     	initRemote();
         try{
@@ -154,6 +158,7 @@ public class OrderForUserImpl implements OrderForUser{
      * @param hotelID
      * @return
      */
+    @Override
     public ArrayList<OrderVO> specificOrder(String userID,String hotelID){
         ArrayList<OrderPO> orders;
         try{
@@ -183,6 +188,7 @@ public class OrderForUserImpl implements OrderForUser{
      * @param roomNum
      * @return 优惠策略形式：String#double->promotion#truePrice
      */
+    @Override
     public String getTrueValue(OrderInfo orderInfo){
     	return Count.countPromotionOfRoom(orderInfo);
     }
@@ -199,11 +205,12 @@ public class OrderForUserImpl implements OrderForUser{
      * @param orderVO
      * @return
      */
+    @Override
     public ResultMessage confirmReservation(OrderVO orderVO){
         String userID = orderVO.getUserID();
         String hotelID= orderVO.getHotelID();
+        
         // 检查信用值
-//        CreditRecordList creditRecordList = new CreditRecordList(userID);
         User user = new User(userID);
         if(!user.canGenerateOrder())
             return ResultMessage.creditLack;
@@ -213,13 +220,14 @@ public class OrderForUserImpl implements OrderForUser{
         int roomNum = orderVO.getRoomNumber();
         Date checkIn = orderVO.getCheckIn();
         Date checkOut = orderVO.getCheckOut();
+        double roomPrice = orderVO.getRoomPrice();
         HotelInfoService hotelInfoService = new HotelInfoController();
         if(hotelInfoService.getRoomAvailNum(
                 hotelID,room.getRoomType(),checkIn,checkOut) < roomNum)
             return ResultMessage.roomNumLack;
 
         // 检查价格
-        double price = Double.parseDouble(this.getTrueValue(new OrderInfo(hotelID, room.getRoomType(), roomNum, checkIn, checkOut, userID)).split("#")[1]);
+        double price = Double.parseDouble(this.getTrueValue(new OrderInfo(hotelID, room.getRoomType(), roomNum, checkIn, checkOut, userID,roomPrice)).split("#")[1]);
         if(orderVO.getTrueValue()<price)
             return ResultMessage.promotionLoss;
 
@@ -234,6 +242,7 @@ public class OrderForUserImpl implements OrderForUser{
      * @param comment
      * @return
      */
+    @Override
     public ResultMessage addComment(String orderID, int grade, String comment){
         // 检查订单状态是否为已执行
         try{
@@ -256,7 +265,12 @@ public class OrderForUserImpl implements OrderForUser{
         return ResultMessage.fail;
     }
 
-    // 得到该用户的所有订单
+    /**
+     * 得到该用户的所有订单
+     * 类内部调用
+     * @param userID
+     * @return
+     */
     private ArrayList<OrderVO> getOrderOfUser(String userID){
         ArrayList<OrderPO> list;
         try{
@@ -274,10 +288,16 @@ public class OrderForUserImpl implements OrderForUser{
         return listTrans;
     }
 
-    // 数据库新增可持久化对象
+    /**
+     *  数据库新增可持久化对象
+     *  类内部调用
+     * @param orderVO
+     * @return
+     */
+  
     private ResultMessage add(OrderVO orderVO){
         try{
-            orderDao.insert(this.transformVOToPO(orderVO));
+            orderDao.insert(orderVO.changeIntoPO());
             return ResultMessage.succeed;
         }catch (RemoteException e){
             e.printStackTrace();
@@ -286,7 +306,14 @@ public class OrderForUserImpl implements OrderForUser{
     }
 
 
-    // 计算时间差 单位：秒
+    /**
+     * 计算时间差 单位：秒
+     * 类内部调用
+     * @param checkOut
+     * @param deadline
+     * @param cancelTime
+     * @return
+     */
     private static boolean isOvertime(Date checkOut,String deadline,Date cancelTime){
         long seconds;
 
@@ -308,8 +335,4 @@ public class OrderForUserImpl implements OrderForUser{
             return true;
     }
 
-    // 提供给生成订单：完成从PO到VO的操作
-    private OrderPO transformVOToPO(OrderVO orderVO){
-    	return orderVO.changeIntoPO();
-    }
 }

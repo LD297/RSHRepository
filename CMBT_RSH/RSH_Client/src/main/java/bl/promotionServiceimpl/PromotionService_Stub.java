@@ -68,6 +68,12 @@ public class PromotionService_Stub implements PromotionService{
 		return list;
 	}
 
+	@Override
+	public String getIDForNewPromotion(String setterID) {
+		// TODO Auto-generated method stub
+		return "010";
+	}
+
 	
 
 	

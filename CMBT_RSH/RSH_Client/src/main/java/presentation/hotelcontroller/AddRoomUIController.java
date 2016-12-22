@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.HotelService_Stub;
+import bl.hotelserviceimpl.controller.HotelService_Stub;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

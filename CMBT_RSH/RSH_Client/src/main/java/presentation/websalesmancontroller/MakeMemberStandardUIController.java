@@ -3,6 +3,7 @@ package presentation.websalesmancontroller;
 import bl.userservice.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -16,28 +17,30 @@ import java.util.ResourceBundle;
  * Created by a297 on 16/12/18.
  */
 public class MakeMemberStandardUIController {
-        @FXML
-        private ResourceBundle resources;
 
-        @FXML
-        private URL location;
 
-        @FXML
-        private AnchorPane anchorPane;
+    @FXML
+    private ResourceBundle resources;
 
-        @FXML
-        private TextField levelTextField;
+    @FXML
+    private URL location;
 
-        @FXML
-        private TextField boundaryTextField;
+    @FXML
+    private Label creditPrompt;
 
-        @FXML
-        private Button backButton;
+    @FXML
+    private AnchorPane anchorPane;
 
-        @FXML
-        private Button confirmButton;
+    @FXML
+    private Button backButton;
 
-        private AnchorPane prePane;
+    @FXML
+    private TextField creditTextField;
+
+    @FXML
+    private Button confirmButton;
+
+    private AnchorPane prePane;
 
         private UserService userService;
 
@@ -46,11 +49,17 @@ public class MakeMemberStandardUIController {
         }
         @FXML
         void confirmButtonClicked(MouseEvent event) {
-            String boundary = boundaryTextField.getText();
-            String level = levelTextField.getText();
-            int[] standard = new int[]{Integer.valueOf(boundary), Integer.valueOf(level)};
-//        userService.setMemberStandard(standard);
-            backButtonClicked(null);
+            String boundary = creditTextField.getText();
+            if(boundary!=null){
+                int credit = Integer.valueOf(boundary);
+                if(credit>0){
+                    creditPrompt.setVisible(false);
+//                    userService.setMemberStandard();
+                    backButtonClicked(null);
+                    creditTextField.setPromptText(boundary);
+                }
+            } else
+                creditPrompt.setVisible(true);
         }
 
         @FXML
@@ -63,12 +72,13 @@ public class MakeMemberStandardUIController {
 
         @FXML
         void initialize() {
+            assert creditPrompt != null : "fx:id=\"creditPrompt\" was not injected: check your FXML file '制定会员等级界面.fxml'.";
             assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '制定会员等级界面.fxml'.";
-            assert levelTextField != null : "fx:id=\"levelTextField\" was not injected: check your FXML file '制定会员等级界面.fxml'.";
-            assert boundaryTextField != null : "fx:id=\"boundaryTextField\" was not injected: check your FXML file '制定会员等级界面.fxml'.";
             assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '制定会员等级界面.fxml'.";
+            assert creditTextField != null : "fx:id=\"creditTextField\" was not injected: check your FXML file '制定会员等级界面.fxml'.";
             assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '制定会员等级界面.fxml'.";
 
+            creditPrompt.setVisible(false);
         }
 
 }
