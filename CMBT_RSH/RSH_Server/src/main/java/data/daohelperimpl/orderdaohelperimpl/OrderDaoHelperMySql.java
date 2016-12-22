@@ -173,7 +173,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         db.executeSql("USE OurData");
         if(this.checkExistence(orderID)==ResultMessage.idNotExist)
             return ResultMessage.idNotExist;
-        
+
         String isStateChangedSql = "SELECT state FROM OrderGeneral WHERE orderID='"+orderID+"' LIMIT 1";
         ResultSet result = db.query(isStateChangedSql);
         try{

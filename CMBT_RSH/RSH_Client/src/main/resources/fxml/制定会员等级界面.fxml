@@ -18,8 +18,8 @@
             <Font name="Times New Roman" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="boundaryTextField" layoutX="277.0" layoutY="136.0" prefHeight="27.0" prefWidth="120.0" />
-      <Label layoutX="184.0" layoutY="140.0" opacity="0.8" text="信用值满:" AnchorPane.leftAnchor="188.0">
+      <TextField fx:id="creditTextField" layoutX="241.0" layoutY="159.0" prefHeight="27.0" prefWidth="120.0" promptText="500" />
+      <Label layoutX="170.0" layoutY="163.0" opacity="0.8" text="信用值满:" AnchorPane.leftAnchor="170.0">
          <font>
             <Font name="Times New Roman" size="16.0" />
          </font>
@@ -34,17 +34,12 @@
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <Label layoutX="228.0" layoutY="189.0" opacity="0.8" text="升: " AnchorPane.topAnchor="204.0">
+      <Label layoutX="267.0" layoutY="225.0" opacity="0.8" text="升一级" AnchorPane.topAnchor="225.0">
          <font>
             <Font name="Times New Roman" size="16.0" />
          </font>
       </Label>
       <Label layoutX="170.0" layoutY="283.0" text="(部分促销策略可能依据会员等级,请谨慎考虑)" textFill="#ff5a5f" />
-      <Label layoutX="381.0" layoutY="189.0" opacity="0.8" text="级" AnchorPane.topAnchor="204.0">
-         <font>
-            <Font name="Times New Roman" size="16.0" />
-         </font>
-      </Label>
-      <TextField fx:id="levelTextField" layoutX="277.0" layoutY="185.0" prefHeight="27.0" prefWidth="82.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="200.0" />
+      <Label fx:id="creditPrompt" layoutX="241.0" layoutY="198.0" text="信用值必须大于0" textFill="RED" />
    </children>
 </AnchorPane>

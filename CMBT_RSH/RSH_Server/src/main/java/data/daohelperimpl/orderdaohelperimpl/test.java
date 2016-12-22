@@ -101,7 +101,7 @@ public class test {
      //   Date actualCheckOut = sim.parse("2016-12-31 10:10:23");
         Date cancelTime = null;
         Date cancelAbnormalTime = null;
-        OrderPO orderPO = new OrderPO(null,"15935142165", "slt","2153000001","有间旅馆",StateOfOrder.unexecuted,
+        OrderPO orderPO = new OrderPO("2016-01-282153000001000001","15935142165", "slt","2153000001","有间旅馆",StateOfOrder.unexecuted,
                     room, 120, 1, 1, false,
                     120, 100, "任性优惠八折",
                     "睡得很香",4, checkIn,checkOut,hotelDDL,generationDate,

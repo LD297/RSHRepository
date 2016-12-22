@@ -82,13 +82,13 @@ public class UserController implements UserService{
 	}
 
 	@Override
-	public ResultMessage setMemberStandard(int[] boundariesForLevels) {
+	public ResultMessage setMemberStandard(int boundariesForLevels) {
 		Member member = new Member();
 		return member.setMemberStandard(boundariesForLevels);
 	}
 
 	@Override
-	public int[] getMemberStandard() {
+	public int getMemberStandard() {
 		Member member = new Member();
 		return member.getMemberStandard();
 	}
