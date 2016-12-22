@@ -35,7 +35,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         // 真实姓名 性别 邮箱 信用记录条数
         db.executeSql("CREATE TABLE if not exists UserInfo(userID blob,password blob,"
         		+ "nickName char(10),image tinytext,birthday char(10),level tinyint,"
-        		+ "memberType tinyint,commerceName char(12),credit int," +
+        		+ "memberType tinyint,commerceName char(20),credit int," +
                 "trueName blob,sex tinyint,eMail char(30),creditRecordNum int)" );
     }
 
