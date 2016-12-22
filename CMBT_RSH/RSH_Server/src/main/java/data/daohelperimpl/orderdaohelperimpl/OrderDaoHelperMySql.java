@@ -177,6 +177,9 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
 =======
         
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
         String isStateChangedSql = "SELECT state FROM OrderGeneral WHERE orderID='"+orderID+"' LIMIT 1";
         ResultSet result = db.query(isStateChangedSql);
