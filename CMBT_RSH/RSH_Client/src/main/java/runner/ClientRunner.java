@@ -18,6 +18,7 @@ public class ClientRunner {
 		RemoteHelper remoteHelper = RemoteHelper.getInstance();
 		try{
 			OnlinePersonPO onlinePersonPO = new OnlinePersonPO(Role.user, "shgf");
+			System.out.println(onlinePersonPO.getId());
 			resultMessage = remoteHelper.getLoginDao().addOnline(onlinePersonPO);
 		}catch(RemoteException e){
 			e.printStackTrace();
@@ -32,7 +33,7 @@ public class ClientRunner {
 	public static void main(String[] args){
 		ClientRunner cr = new ClientRunner();
 		cr.test();
-	//	new Launcher().startLaunch(args);
+//		new Launcher().startLaunch(args);
 	}
 }
 

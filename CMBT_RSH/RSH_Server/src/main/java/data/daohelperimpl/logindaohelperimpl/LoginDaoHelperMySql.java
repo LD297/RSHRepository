@@ -16,13 +16,11 @@ import java.util.ArrayList;
  */
 public class LoginDaoHelperMySql implements LoginDaoHelper{
 	
-    private ArrayList<OnlinePersonPO> onlineInfo;
-    public void init(){
-    	onlineInfo = new ArrayList<OnlinePersonPO>();
-    }
+    private ArrayList<OnlinePersonPO> onlineInfo = new ArrayList<>();
+   
 
     public void finish(){
-        onlineInfo = null;
+        onlineInfo.clear();;
     }
     public ArrayList<OnlinePersonPO> get(){
     	return onlineInfo;
@@ -32,7 +30,8 @@ public class LoginDaoHelperMySql implements LoginDaoHelper{
         for(int i=0;i<onlineInfo.size();i++)
         	if(onlineInfo.get(i).getId().equals(po.getId()))
         		return ResultMessage.idAlreadyExist;
-        
+        System.out.println(po.getId());
+        System.out.println(po.getRole().toString());
         onlineInfo.add(po);
         return ResultMessage.succeed;
     }

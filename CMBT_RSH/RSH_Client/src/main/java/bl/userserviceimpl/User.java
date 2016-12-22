@@ -10,6 +10,9 @@ import vo.UserVO;
 
 import java.rmi.RemoteException;
 
+import bl.orderservice.OrderForUser;
+import bl.orderserviceimpl.OrderForUserImpl;
+
 /**
  * 处理与用户界面有关的业务
  * @author john
@@ -141,5 +144,10 @@ public class User {
 			return true;
 		else
 			return false;
+	}
+	public boolean hasReserved(String hotelID) {
+		// TODO Auto-generated method stub
+		
+		return false;
 	}
 }

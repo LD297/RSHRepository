@@ -16,6 +16,7 @@ public class LoginDaoImpl extends UnicastRemoteObject implements LoginDao{
 	private static LoginDaoImpl loginDaoImpl;
 	private LoginDaoHelper loginDaoHelper;
 	private DaoHelperFactory daoHelperFactory;
+	
 	private LoginDaoImpl() throws RemoteException {
 		daoHelperFactory = new DaoHelperFactoryImpl();
 		loginDaoHelper = daoHelperFactory.getLoginDaoHelper();
@@ -34,6 +35,7 @@ public class LoginDaoImpl extends UnicastRemoteObject implements LoginDao{
 
 	public ResultMessage addOnline(OnlinePersonPO po) throws RemoteException {
 		// TODO Auto-generated method stub
+		System.out.println("get");
 		return loginDaoHelper.addOnline(po);
 	}
 

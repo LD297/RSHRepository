@@ -6,6 +6,7 @@ import java.util.Date;
 
 import constant.MemberType;
 import constant.Sexuality;
+import vo.UserVO;
 
 public class UserPO implements Serializable{
 	/**
@@ -89,7 +90,12 @@ public class UserPO implements Serializable{
 		this.password = newPassword;
 	}
 
-	public void setID(String id) {
-		this.id = id;
+	public void setID(String userID) {
+		this.id = userID;
+	}
+	public UserVO changeIntoVO() {
+		// TODO Auto-generated method stub
+		UserVO userVO = new UserVO(id, password, nickName, imageAddress, birthday, level, memberType, name, sexuality, eMail, credit, commerceName);
+		return userVO;
 	}
 }

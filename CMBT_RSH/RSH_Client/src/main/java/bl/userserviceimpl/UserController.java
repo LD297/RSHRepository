@@ -3,11 +3,15 @@ package bl.userserviceimpl;
 import bl.BLHelper;
 import bl.userservice.UserService;
 import constant.ResultMessage;
+import data.dao.orderdao.OrderDao;
 import data.dao.userdao.UserDao;
+import po.UserPO;
 import rmi.RemoteHelper;
 import vo.CreditRecordVO;
+import vo.OrderVO;
 import vo.UserVO;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -129,8 +133,20 @@ public class UserController implements UserService{
 	@Override
 	public ArrayList<UserVO> getUserVOS() {
 		// TODO Auto-generated method stub
-		User user = new User();
-		return null;
+		initRemote();  
+		ArrayList<UserVO> userVOs = new ArrayList<>();
+		ArrayList<UserPO> userPOs = new ArrayList<>();
+		try {
+			userPOs = userDao.getAll();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return userVOs;
+		}
+		for(UserPO userPO:userPOs){
+			userVOs.add(userPO.changeIntoVO());
+		}
+		return userVOs;
 	}
 
 
@@ -143,7 +159,8 @@ public class UserController implements UserService{
 
 	public boolean hasReserved(String userID, String hotelID) {
 		// TODO Auto-generated method stub
-		return false;
+		User user = new User(userID);
+		return user.hasReserved(hotelID);
 	}
 
 }

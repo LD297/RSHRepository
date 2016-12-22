@@ -17,8 +17,7 @@ public class test {
     
     @Test
     public void addOnline() throws RemoteException{
-    	loginDao.init();
-        OnlinePersonPO po = new OnlinePersonPO(Role.user,"12345678","123456");
+    	 OnlinePersonPO po = new OnlinePersonPO(Role.user,"12345678");
         ResultMessage result = loginDao.addOnline(po);
         
     
