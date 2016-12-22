@@ -1,7 +1,7 @@
 package presentation.hotelcontrollertools;
 
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.HotelService_Stub;
+import bl.hotelserviceimpl.controller.HotelService_Stub;
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginService_Stub;
 import bl.orderservice.OrderForHotel;

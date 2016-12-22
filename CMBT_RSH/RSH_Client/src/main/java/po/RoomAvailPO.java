@@ -8,27 +8,24 @@ import vo.RoomAvailVO;
 
 public class RoomAvailPO implements Serializable{
 
-	public String hotelID;
-	public String roomType;
+	private String hotelID;
+	private String roomType;
+	private String imageAddress;
 	
-	Date beginDate;
-	Date endDate;
-
+	Date checkDate;
+	double price;
 	private int numOfAvailRoom;
-	public RoomAvailPO(String id, String type, ArrayList<Date> fromTo) {
-		this.hotelID = id;
-		this.roomType = type;
-		this.beginDate = fromTo.get(0);
-		this.endDate  = fromTo.get(1);
-	}
 	
-	public RoomAvailPO(String hotelID,String roomType, Date beginDate, Date endDate, int numOfAvailRoom){
+	public RoomAvailPO(String hotelID,String roomType,String imageAddress,
+			Date checkDate,	int numOfAvailRoom,double price){
 		this.hotelID = hotelID;
 		this.roomType = roomType;
-		this.beginDate = beginDate;
-		this.endDate = endDate;
+		this.imageAddress = imageAddress;
+		this.checkDate = checkDate;
 		this.numOfAvailRoom = numOfAvailRoom;
+		this.price = price;
 	}
+	
 	public int getAmountAvail() {
 		return numOfAvailRoom;
 	}
@@ -37,7 +34,7 @@ public class RoomAvailPO implements Serializable{
 	}
 	public RoomAvailVO changeIntoVO() {
 		// TODO Auto-generated method stub
-		RoomAvailVO roomAvailVO = new RoomAvailVO(hotelID, roomType, beginDate, endDate, numOfAvailRoom);
+		RoomAvailVO roomAvailVO = new RoomAvailVO(hotelID, roomType, imageAddress, checkDate, numOfAvailRoom, price);
 		return roomAvailVO;
 	}
 }

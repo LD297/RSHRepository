@@ -1,4 +1,4 @@
-package bl.hotelserviceimpl;
+package bl.hotelserviceimpl.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,11 +56,11 @@ public class HotelService_Stub implements HotelService{
 
 	@Override
 	public ArrayList<RoomAvailVO> getRoomAvailList(String hotelID,Date checkIn) {
-		RoomAvailVO vo1 = new RoomAvailVO("001", "单人间", 20, 200, "basic");
-		RoomAvailVO vo2 = new RoomAvailVO("002", "双人间", 10, 300, "basic");
-		RoomAvailVO vo3 = new RoomAvailVO("003", "三人间", 30, 400, "basic");
-		RoomAvailVO vo4 = new RoomAvailVO("004", "大床房", 50, 500, "basic");
-		RoomAvailVO vo5 = new RoomAvailVO("005", "小床房", 15, 600, "special");
+		RoomAvailVO vo1 = new RoomAvailVO("001", "单人间","",new Date(), 20, 200);
+		RoomAvailVO vo2 = new RoomAvailVO("002", "双人间","",new Date(), 10, 300);
+		RoomAvailVO vo3 = new RoomAvailVO("003", "三人间","",new Date(), 30, 400);
+		RoomAvailVO vo4 = new RoomAvailVO("004", "大床房","",new Date(), 50, 500);
+		RoomAvailVO vo5 = new RoomAvailVO("005", "小床房","",new Date(), 15, 600);
 		ArrayList<RoomAvailVO> list = new ArrayList<>();
 		list.add(vo1);
 		list.add(vo2);

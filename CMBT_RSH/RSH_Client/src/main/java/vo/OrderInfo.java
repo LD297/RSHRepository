@@ -5,18 +5,11 @@ import java.util.Date;
 public class OrderInfo {
 	String hotelID;
 	String roomType;
-	public void setHotelID(String hotelID) {
-		this.hotelID = hotelID;
-	}
-
-	public void setUserID(String userID) {
-		this.userID = userID;
-	}
-
 	int roomNum;
 	Date checkInDate;
 	Date checkOutDate;
 	String userID;
+	
 	double price;
 	double originalValue;
 	
@@ -28,6 +21,8 @@ public class OrderInfo {
 		this.checkInDate = checkInDate;
 		this.checkOutDate = checkOutDate;
 		this.userID = userID;
+		
+		H
 	}
 
 	public String getHotelID() {
@@ -62,6 +57,14 @@ public class OrderInfo {
 	public double getOriginalValue(){
 		return originalValue;
 	}
+	public void setHotelID(String hotelID) {
+		this.hotelID = hotelID;
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
 	
 
 }
