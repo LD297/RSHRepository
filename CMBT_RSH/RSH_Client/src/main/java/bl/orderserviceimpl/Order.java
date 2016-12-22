@@ -227,7 +227,7 @@ public class Order {
 
 	public ResultMessage addAvailRoom() {
 		// TODO Auto-generated method stub
-		HotelService hotelService = new HotelController(orderID.substring(0, 10));
+		HotelService hotelService = new HotelController();
 		return hotelService.plusRoomAvail(orderID.substring(0,10),RoomType, roomNumber, checkInDate, checkOutDate);
 	}
 }

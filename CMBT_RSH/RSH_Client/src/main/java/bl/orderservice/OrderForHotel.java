@@ -18,6 +18,7 @@ public interface OrderForHotel {
      * @return
      */
     public ArrayList<OrderVO> hotelClassify(String hotelID, StateOfOrder state);
+   
     /**
      * 酒店执行订单时调用
      * 根据订单id，在逻辑层记下该订单实际入住时间（日期＋时间）
@@ -27,6 +28,7 @@ public interface OrderForHotel {
      * @return
      */
     public ResultMessage execute(String orderID);
+   
     /**
      * 用户离开酒店时调用
      * 根据订单id，在逻辑层记下该订单实际离开时间（日期＋时间）

@@ -22,12 +22,14 @@ public interface OrderForUser {
      * @return 查看全部订单时：state设为null
      */
     public ArrayList<OrderVO> userClassify(String userID, StateOfOrder state);
+   
     /**
      * 用户查看订单详情
      * @param orderID
      * @return
      */
     public OrderVO detail(String orderID);
+    
     /**
      * 场景：用户取消未执行订单
      * 判断：距离最晚执行时间>=6h
@@ -39,6 +41,7 @@ public interface OrderForUser {
      * 注：出错（remote；订单状态不是unexecuted）
      */
     public int cancelMyOrder(String orderID);
+   
     /**
      * 用户查看酒店时，界面调用（显示自己在该酒店最近一笔订单的状态）
      * 返回该用户在酒店的最近订单的状态
@@ -47,6 +50,7 @@ public interface OrderForUser {
      * @return 返回值为null：用户未在该酒店预定过
      */
     public StateOfOrder getOrderStateOfUser(String userID, String hotelID);
+  
     /**
      * 用户浏览酒店时
      * 浏览在该酒店下的所有订单
@@ -55,24 +59,11 @@ public interface OrderForUser {
      * @return
      */
     public ArrayList<OrderVO> specificOrder(String userID,String hotelID);
-    /**
-     * 选择房间类型、房间数量完成后
-     * 根据用户id、酒店id、checkIn、checkOut、房间类型、房间数量
-     * 上述参数实时更新后 需要实时去计算
-     * 得到优惠后的价格以及优惠策略
-     * @param userID
-     * @param hotelID
-     * @param checkIn
-     * @param checkOut
-     * @param room
-     * @param roomNum
-     * @return 优惠策略形式：String#double->promotion#truePrice
-     */
-//    public String getTrueValue(String userID, String hotelID, Date checkIn, Date checkOut, RoomNormVO room, int roomNum);
+    
     
     /**
-     * 由于判断条件的缺失，原方法无法完成最优策略的计算
-     * 将方法传递的参数改为OrderVO
+     * 生成订单界面得到最优方案
+     * 方法传递的参数改为OrderInfo
      * @param orderVO
      * @return String#double ->promotionReason#truePrice
      */
@@ -93,6 +84,7 @@ public interface OrderForUser {
      * @return
      */
     public ResultMessage confirmReservation(OrderVO orderVO);
+    
     /**
      * 用户评价订单
      * 订单评分评论更新

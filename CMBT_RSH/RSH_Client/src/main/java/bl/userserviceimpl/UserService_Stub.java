@@ -94,11 +94,7 @@ public class UserService_Stub implements UserService{
 		return 3;
 	}
 
-	@Override
-	public ResultMessage changePassword(String userid, String oldPassword, String newPassword) {
-		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
-	}
+	
 
 	@Override
 	public ArrayList<UserVO> getUserVOS() {

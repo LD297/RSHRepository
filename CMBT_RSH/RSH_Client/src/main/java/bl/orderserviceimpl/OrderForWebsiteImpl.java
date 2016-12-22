@@ -36,6 +36,7 @@ public class OrderForWebsiteImpl implements OrderForWebsite {
      * 网站营销人员浏览未执行订单
      * @return
      */
+    @Override
     public ArrayList<OrderVO> browseUnperformed(){
         ArrayList<OrderVO> selectedList = new ArrayList<OrderVO>();
         initRemote();
@@ -53,6 +54,7 @@ public class OrderForWebsiteImpl implements OrderForWebsite {
      * 网站营销人员查看异常订单
      * @return
      */
+    @Override
     public ArrayList<OrderVO> browseAbnormal(){
         ArrayList<OrderVO> selectedList = new ArrayList<OrderVO>();
 
@@ -82,6 +84,7 @@ public class OrderForWebsiteImpl implements OrderForWebsite {
      *      撤销异常 checkOut12:00 的24.5小时之内不予撤销 返回timeout
      *      抛异常 返回fail
      */
+    @Override
     public ResultMessage webCancelAbnormal(String orderID, boolean isHalf){
     	Order order = Order.getInstance(orderID);
     	order.cancelAbnormal(isHalf);

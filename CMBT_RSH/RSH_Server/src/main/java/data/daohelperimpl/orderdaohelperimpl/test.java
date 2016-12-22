@@ -6,6 +6,7 @@ import constant.ResultMessage;
 import constant.StateOfOrder;
 import data.daohelper.WebSalesmanDaoHelper;
 import data.daohelperimpl.hoteldaohelperimpl.HotelDaoHelperMySql;
+import data.daohelperimpl.jdbc.DBHelper;
 import data.daohelperimpl.logindaohelperimpl.LoginDaoHelperMySql;
 import data.daohelperimpl.promotiondaohelperimpl.PromotionDaoHelperMySql;
 import data.daohelperimpl.userdaohelperimpl.CreditRecordListDaoHelperMySql;
@@ -85,7 +86,7 @@ public class test {
   
     */
     // 新建订单 success
-    @Test
+ /*   @Test
     public void testinsert() throws RemoteException,ParseException{
         String room = "标准大床间";
         SimpleDateFormat simm=new SimpleDateFormat("yyyy-MM-dd");
@@ -187,4 +188,11 @@ public class test {
         
         
        }*/
+   
+   public static void main(String[] args) throws ParseException, RemoteException{
+
+	    String userID = "15935142165";
+       ArrayList<OrderPO> list = orderDao.searchByUser(userID);
+       System.out.println(list.get(0).getRoomPrice());
+   }
 }

@@ -47,6 +47,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		init();
 	}
 	
+	@SuppressWarnings("restriction")
 	private void init(){
 		//得到酒店本身的图片
 		hotelImages = ImageFactory.getImageFactory().getHotelImages(hotelVO.getHotelID());

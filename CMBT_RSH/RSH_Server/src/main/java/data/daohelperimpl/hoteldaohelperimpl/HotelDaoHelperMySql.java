@@ -1,6 +1,5 @@
 package data.daohelperimpl.hoteldaohelperimpl;
 
-import bl.hotelserviceimpl.Hotel;
 import data.daohelper.HotelDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.*;

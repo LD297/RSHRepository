@@ -8,21 +8,21 @@ public class OrderInfo {
 	int roomNum;
 	Date checkInDate;
 	Date checkOutDate;
-	String userID;
-	
+	String userID;	
 	double price;
+	
 	double originalValue;
 	
 	public OrderInfo(String hotelID,String roomType,int roomNum,
-			Date checkInDate, Date checkOutDate,String userID){
+			Date checkInDate, Date checkOutDate,String userID,double price){
 		this.hotelID = hotelID;
 		this.roomType = roomType;
 		this.roomNum = roomNum;
 		this.checkInDate = checkInDate;
 		this.checkOutDate = checkOutDate;
 		this.userID = userID;
-		
-		H
+		this.price = price;
+		originalValue = roomNum*price;
 	}
 
 	public String getHotelID() {
