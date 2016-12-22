@@ -86,7 +86,7 @@
                               <Image url="@../images/PLUS.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="minus0" fitHeight="15.0" fitWidth="15.0" layoutX="559.0" layoutY="75.0" onMouseClicked="#minus0">
+                        <ImageView fx:id="minus0" fitHeight="15.0" fitWidth="15.0" layoutX="559.0" layoutY="75.0" onMouseClicked="#minus0Clicked">
                            <image>
                               <Image url="@../images/Minus.png" />
                            </image>
@@ -135,7 +135,7 @@
                               <Image url="@../images/PLUS.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="minus01" fitHeight="15.0" fitWidth="15.0" layoutX="559.0" layoutY="75.0" onMouseClicked="#minus01">
+                        <ImageView fx:id="minus01" fitHeight="15.0" fitWidth="15.0" layoutX="559.0" layoutY="75.0" onMouseClicked="#minus01Clicked">
                            <image>
                               <Image url="@../images/Minus.png" />
                            </image>
@@ -184,7 +184,7 @@
                               <Image url="@../images/PLUS.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="minus02" fitHeight="15.0" fitWidth="15.0" layoutX="559.0" layoutY="75.0" onMouseClicked="#minus02">
+                        <ImageView fx:id="minus02" fitHeight="15.0" fitWidth="15.0" layoutX="559.0" layoutY="75.0" onMouseClicked="#minus02Clicked">
                            <image>
                               <Image url="@../images/Minus.png" />
                            </image>

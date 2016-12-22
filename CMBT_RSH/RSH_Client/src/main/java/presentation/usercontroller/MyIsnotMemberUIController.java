@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import presentation.tools.ImageFactory;
 import presentation.usercontrollertools.UIJumpTool;
+import presentation.usercontrollertools.UserInfoUtil;
 
 public class MyIsnotMemberUIController {
 
@@ -45,6 +47,6 @@ public class MyIsnotMemberUIController {
         assert userHeadImage != null : "fx:id=\"userHeadImage\" was not injected: check your FXML file '我的会员（不是会员）.fxml'.";
         assert registerCommonMemberButton != null : "fx:id=\"registerCommonMemberButton\" was not injected: check your FXML file '我的会员（不是会员）.fxml'.";
         assert registerCommerceMemberButton != null : "fx:id=\"registerCommerceMemberButton\" was not injected: check your FXML file '我的会员（不是会员）.fxml'.";
-
+        userHeadImage.setImage(ImageFactory.getImageFactory().getHeadImage(UserInfoUtil.getInstance().getUserID()));
     }
 }

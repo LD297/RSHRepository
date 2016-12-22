@@ -84,11 +84,6 @@ public class HotelHomepageUIController {
     // 可用客房信息维护界面控制器
     private static RoomAvailUIController roomAvailUIController;
 
-    // 关于我们界面根结点
-    private static AnchorPane aboutUsUIPane;
-    // 关于我们界面控制器
-    private static AboutUsUIController aboutUsUIController;
-
     // Login界面set进来的
     public void setHotelService(HotelService hotelService) {
         this.hotelService = hotelService;
@@ -165,34 +160,6 @@ public class HotelHomepageUIController {
     }
 
     @FXML
-    void changeToAboutUsUI(MouseEvent event) {
-        // 加载关于我们界面
-        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getAboutUsUILoader();
-        // 加载关于我们界面根结点
-        if(aboutUsUIPane==null)
-            try {
-                aboutUsUIPane = (AnchorPane) loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        // 得到关于我们界面控制器
-        if(aboutUsUIController==null)
-            aboutUsUIController = loader.getController();
-        // 传入酒店首页根结点引用
-        aboutUsUIController.setPrePane(anchorPane);
-
-        Scene scene = null;
-        if(aboutUsUIPane.getScene()==null)
-            scene = new Scene(aboutUsUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
-        else
-            scene = aboutUsUIPane.getScene();
-
-        Stage stage = (Stage) anchorPane.getScene().getWindow();
-        stage.setScene(scene);
-
-    }
-
-    @FXML
     void changeToCheckOrderUI(MouseEvent event) {
         // 加载订单搜索并浏览界面
         FXMLLoader loader = HotelUIFXMLFactory.getInstance().getCheckOrderUILoader();
@@ -260,7 +227,6 @@ public class HotelHomepageUIController {
 
     @FXML
     void initialize() {
-        assert aboutUs != null : "fx:id=\"aboutUs\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert logo != null : "fx:id=\"logo\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert logoutImageView != null : "fx:id=\"logoutImageView\" was not injected: check your FXML file '酒店首页.fxml'.";

@@ -24,7 +24,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="userHeadImage" fitHeight="194.0" fitWidth="200.0" layoutX="25.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="userHeadImage" fitHeight="170.0" fitWidth="200.0" layoutX="40.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/用户头像.jpg" />
                      </image>

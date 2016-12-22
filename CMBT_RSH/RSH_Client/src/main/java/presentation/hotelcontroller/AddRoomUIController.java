@@ -71,6 +71,8 @@ public class AddRoomUIController {
 
     @FXML
     void confirmButtonClicked(MouseEvent event) {
+        roomImageAddressTextField.setText("");
+        roomImageAddressTextField.setVisible(false);
         String type = roomTypeTextField.getText();
         String roomNum = roomNumTextField.getText();
         String roomPrice = roomPriceTextField.getText();
@@ -108,5 +110,6 @@ public class AddRoomUIController {
         assert roomNumTextField != null : "fx:id=\"roomNumTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
         assert roomTypeTextField != null : "fx:id=\"roomTypeTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
 
+        roomImageAddressTextField.setVisible(false);
     }
 }

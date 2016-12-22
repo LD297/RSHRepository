@@ -140,12 +140,6 @@ public class CreateOrderUIController {
     //点击返回修改，还原编辑场景
     @FXML
     void backToModifyOrderInfo(MouseEvent event) {
-//    	expectedCheckinTimepicker.setDisable(false);
-  //  	expectedCheckoutTimepicker.setDisable(false);
-    //	roomtypeCombox.setDisable(false);
-//    	peopleNumombox.setDisable(false);
-  //  	roomnumCombox.setDisable(false);
-    //	withChildrenCombox.setDisable(false);
     	maskLabel.setVisible(false);
     	finishCreateOrder.setText("提交订单");
     	finishCreateOrder.setDisable(false);
@@ -161,14 +155,6 @@ public class CreateOrderUIController {
 	void finishCreateOrder(MouseEvent event) {
 		// 如果用户是提交订单，则显示总价格，提醒用户确认订单信息
 		if (finishCreateOrder.getText().equals("提交订单")) {
-			//将组件还原
-			//设置组件不可编辑
-//			expectedCheckinTimepicker.setDisable(true);
-	//    	expectedCheckoutTimepicker.setDisable(true);
-	  //  	roomtypeCombox.setDisable(true);
-	    //	peopleNumombox.setDisable(true);
-	    	//roomnumCombox.setDisable(true);
-	//    	withChildrenCombox.setDisable(true);
 			maskLabel.setVisible(true);
 	    	//返回修改按钮可见
 			backToModifyButton.setVisible(true);
@@ -176,27 +162,12 @@ public class CreateOrderUIController {
 			getInfoFromUI();
 			if(expectedCheckinDate==null||expectedCheckoutDate==null||roomtype==null||peopleNum==-1||roomNum==-1||
 					withChildrenCombox.getValue()==null){
-/*			if(expectedCheckinTimepicker.getValue()==null||
-					expectedCheckoutTimepicker.getValue()==null||
-					roomtypeCombox.getValue()==null||
-					peopleNumombox.getValue()==null||
-					roomnumCombox.getValue()==null||
-					withChildrenCombox.getValue()==null){*/
-//					roomtypeCombox.getValue().equals("")||
-	//				peopleNumombox.getValue().equals("")||
-		//			roomnumCombox.getValue().equals("")||
-//					withChildrenCombox.getValue().equals("")){
 				messageLabel.setText("您有尚未填写的信息");
 				//提交订单不可点
 				finishCreateOrder.setDisable(true);
 				backToModifyButton.setVisible(true);
 			}else{//如果没有尚未填写的信息，得到总价和促销策略
 				getInfoFromUI();
-				
-				
-				/**
-				 * must get hotelId and userID to calculate;
-				 */
 				OrderInfo orderInfo = new OrderInfo(null, roomtype, roomNum, expectedCheckinDate, expectedCheckoutDate, null);
 				String temp = UserInfoUtil.getInstance().getOrderPriceAndPromotion(orderInfo);
 				totalPrice = temp.split("#")[1];

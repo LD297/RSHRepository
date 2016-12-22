@@ -76,7 +76,7 @@ public class HotelUIFXMLFactory {
 
     public FXMLLoader getRoomAvailUILoader() {
         if(roomAvailUILoader==null)
-            roomAvailUILoader = new FXMLLoader(getClass().getResource("/fxml/可用客房信息维护.fxml"));
+            roomAvailUILoader = new FXMLLoader(getClass().getResource("/fxml/可用客房.fxml"));
         return roomAvailUILoader;
     }
 

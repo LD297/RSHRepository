@@ -20,7 +20,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation..HotelBasicInfoUIController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.HotelBasicInfoUIController">
    <children>
       <GridPane layoutX="14.0" layoutY="111.0" prefHeight="670.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -39,7 +39,7 @@
                      </image>
                   </ImageView>
                   <Label opacity="0.3" prefHeight="406.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.5);" text="Label" />
-                  <Label layoutX="102.0" layoutY="119.0" opacity="0.5" style="-fx-background-color: rgba(0,0,0,0.3);" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Label layoutX="102.0" layoutY="119.0" opacity="0.8" style="-fx-background-color: rgba(0,0,0,0.3);" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font>
@@ -159,60 +159,60 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <TextField fx:id="hotelNameTextField" layoutX="107.0" layoutY="46.0" onAction="#editHotelName" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="107.0" AnchorPane.topAnchor="50.0" />
-                  <TextField fx:id="levelTextField" layoutX="109.0" layoutY="87.0" onAction="#editLevel" onMouseClicked="#editLevel" prefHeight="27.0" prefWidth="81.0" AnchorPane.leftAnchor="107.0" AnchorPane.topAnchor="94.0" />
-                  <TextField fx:id="checkInTextField" layoutX="393.0" layoutY="11.0" onAction="#editCheckIn" opacity="0.8" prefHeight="27.0" prefWidth="148.0" AnchorPane.leftAnchor="393.0" />
-                  <TextArea fx:id="briefIntroTextArea" layoutX="393.0" layoutY="143.0" onMouseClicked="#editBriefIntro" opacity="0.8" prefHeight="74.0" prefWidth="322.0" AnchorPane.leftAnchor="393.0" />
-                  <CheckBox fx:id="wifiCheckBox" layoutX="107.0" layoutY="136.0" mnemonicParsing="false" onAction="#editWifi" opacity="0.8" text="无线网络" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="107.0">
+                  <TextField fx:id="hotelNameTextField" layoutX="107.0" layoutY="65.0" onMouseClicked="#editHotelName" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="107.0" AnchorPane.topAnchor="65.0" />
+                  <TextField fx:id="levelTextField" layoutX="107.0" layoutY="122.0" onAction="#editLevel" onMouseClicked="#editLevel" prefHeight="27.0" prefWidth="81.0" AnchorPane.leftAnchor="107.0" AnchorPane.topAnchor="122.0" />
+                  <TextField fx:id="checkInTextField" layoutX="393.0" layoutY="20.0" onMouseClicked="#editCheckIn" opacity="0.8" prefHeight="27.0" prefWidth="148.0" AnchorPane.leftAnchor="393.0" />
+                  <TextArea fx:id="briefIntroTextArea" layoutX="393.0" layoutY="180.0" onMouseClicked="#editBriefIntro" opacity="0.8" prefHeight="74.0" prefWidth="322.0" AnchorPane.leftAnchor="393.0" />
+                  <CheckBox fx:id="wifiCheckBox" layoutX="107.0" layoutY="184.0" mnemonicParsing="false" onMouseClicked="#editWifi" opacity="0.8" text="无线网络" AnchorPane.bottomAnchor="117.0" AnchorPane.leftAnchor="107.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox fx:id="swimmingPoolCheckBox" layoutX="107.0" layoutY="169.0" mnemonicParsing="false" onAction="#editSwimmingPool" opacity="0.8" text="游泳池" AnchorPane.bottomAnchor="76.0">
+                  <CheckBox fx:id="swimmingPoolCheckBox" layoutX="107.0" layoutY="217.0" mnemonicParsing="false" onMouseClicked="#editSwimmingPool" opacity="0.8" text="游泳池" AnchorPane.bottomAnchor="84.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox fx:id="parkCheckBox" layoutX="107.0" layoutY="201.0" mnemonicParsing="false" onAction="#editPark" opacity="0.8" text="停车场" AnchorPane.bottomAnchor="44.0">
+                  <CheckBox fx:id="parkCheckBox" layoutX="107.0" layoutY="252.0" mnemonicParsing="false" onMouseClicked="#editPark" opacity="0.8" text="停车场" AnchorPane.bottomAnchor="49.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox fx:id="canteeCheckBox" layoutX="107.0" layoutY="236.0" mnemonicParsing="false" onAction="#editCanteen" opacity="0.8" text="餐厅" AnchorPane.bottomAnchor="12.0">
+                  <CheckBox fx:id="canteeCheckBox" layoutX="107.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#editCanteen" opacity="0.8" text="餐厅" AnchorPane.bottomAnchor="19.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font></CheckBox>
-                  <Label layoutX="14.0" layoutY="14.0" opacity="0.8" text="ID: " AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="14.0">
+                  <Label layoutX="21.0" layoutY="23.0" opacity="0.8" text="ID: " AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="23.0">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="IDLabel" layoutX="103.0" layoutY="14.0" opacity="0.8" text="6666999969" AnchorPane.leftAnchor="110.0">
+                  <Label fx:id="IDLabel" layoutX="107.0" layoutY="23.0" opacity="0.8" text="6666999969" AnchorPane.leftAnchor="107.0">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="12.0" layoutY="49.0" opacity="0.8" text="酒店名称:" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="54.0">
+                  <Label layoutX="14.0" layoutY="68.0" opacity="0.8" text="酒店名称:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="68.0">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="97.0" opacity="0.8" text="星级:" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="97.0">
+                  <Label layoutX="14.0" layoutY="125.0" opacity="0.8" text="星级:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="125.0">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="12.0" layoutY="143.0" opacity="0.8" text="设施服务:" AnchorPane.leftAnchor="12.0">
+                  <Label layoutX="17.0" layoutY="183.0" opacity="0.8" text="设施服务:" AnchorPane.leftAnchor="14.0">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="338.0" layoutY="143.0" opacity="0.8" text="简介:" AnchorPane.leftAnchor="338.0">
+                  <Label layoutX="338.0" layoutY="184.0" opacity="0.8" text="简介:" AnchorPane.leftAnchor="338.0">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="299.0" layoutY="14.0" opacity="0.8" text="最晚入住:" AnchorPane.leftAnchor="299.0" AnchorPane.topAnchor="14.0">
+                  <Label layoutX="299.0" layoutY="23.0" opacity="0.8" text="最晚入住:" AnchorPane.leftAnchor="299.0" AnchorPane.topAnchor="23.0">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
@@ -222,38 +222,38 @@
                         <Image url="@../images/pen.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="confirmButton" layoutX="733.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClicked" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.bottomAnchor="15.0">
+                  <Button fx:id="confirmButton" layoutX="733.0" layoutY="278.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClicked" prefHeight="27.0" prefWidth="48.0" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="278.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Button>
-                  <Label layoutX="299.0" layoutY="98.0" opacity="0.8" text="更换图片:">
+                  <Label layoutX="299.0" layoutY="115.0" opacity="0.8" text="更换图片:">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="imageUrlTextField" layoutX="393.0" layoutY="94.0" onAction="#editImageUrl" prefHeight="27.0" prefWidth="322.0" promptText="请输入图片地址">
+                  <TextField fx:id="imageUrlTextField" layoutX="391.0" layoutY="116.0" onMouseClicked="#editImageUrl" prefHeight="27.0" prefWidth="322.0" promptText="请输入图片地址">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="304.0" layoutY="54.0" opacity="0.8" text="标准间 ¥ :" AnchorPane.leftAnchor="299.0">
+                  <Label layoutX="299.0" layoutY="69.0" opacity="0.8" text="标准间 ¥ :" AnchorPane.leftAnchor="299.0">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="priceTextField" layoutX="393.0" layoutY="51.0" onAction="#editPrice" prefHeight="27.0" prefWidth="148.0" />
-                  <Button fx:id="backButton" layoutX="667.0" layoutY="229.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回">
+                  <TextField fx:id="priceTextField" layoutX="393.0" layoutY="65.0" onMouseClicked="#editPrice" prefHeight="27.0" prefWidth="148.0" />
+                  <Button fx:id="backButton" layoutX="667.0" layoutY="278.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" prefHeight="27.0" prefWidth="48.0" text="返回" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="278.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Button>
-                  <Label fx:id="hotelNamePrompt" layoutX="105.0" layoutY="77.0" prefHeight="17.0" prefWidth="167.0" text="酒店名称长度为1~15位" textFill="RED" AnchorPane.leftAnchor="108.0" />
-                  <Label fx:id="levelPrompt" layoutX="107.0" layoutY="121.0" prefHeight="17.0" prefWidth="167.0" text="星级为1~6的整数" textFill="RED" AnchorPane.leftAnchor="108.0" />
-                  <Label fx:id="timePrompt" layoutX="554.0" layoutY="16.0" prefHeight="17.0" prefWidth="148.0" text="时间格式为00:00:00" textFill="RED" />
-                  <Label fx:id="pricePrompt" layoutX="554.0" layoutY="55.0" prefHeight="17.0" prefWidth="148.0" text="价格不得低于0" textFill="RED" />
-                  <Label fx:id="urlPrompt" layoutX="392.0" layoutY="121.0" text="未找到图片资源,请检查输入" textFill="RED" />
-                  <Label fx:id="briefIntroPrompt" layoutX="392.0" layoutY="218.0" prefHeight="17.0" prefWidth="160.0" text="简介长度为1~128位" textFill="RED" />
+                  <Label fx:id="hotelNamePrompt" layoutX="107.0" layoutY="92.0" prefHeight="17.0" prefWidth="167.0" text="酒店名称长度为1~15位" textFill="RED" AnchorPane.leftAnchor="107.0" />
+                  <Label fx:id="levelPrompt" layoutX="107.0" layoutY="152.0" prefHeight="17.0" prefWidth="167.0" text="星级为1~6的整数" textFill="RED" AnchorPane.leftAnchor="107.0" />
+                  <Label fx:id="timePrompt" layoutX="393.0" layoutY="47.0" prefHeight="17.0" prefWidth="322.0" text="时间格式为00:00:00" textFill="RED" />
+                  <Label fx:id="pricePrompt" layoutX="393.0" layoutY="92.0" prefHeight="17.0" prefWidth="322.0" text="价格不得低于0" textFill="RED" AnchorPane.topAnchor="93.0" />
+                  <Label fx:id="urlPrompt" layoutX="392.0" layoutY="152.0" text="未找到图片资源,请检查输入" textFill="RED" />
+                  <Label fx:id="briefIntroPrompt" layoutX="392.0" layoutY="253.0" prefHeight="17.0" prefWidth="160.0" text="简介长度为1~128位" textFill="RED" AnchorPane.topAnchor="254.0" />
                </children>
             </AnchorPane>
          </children>
