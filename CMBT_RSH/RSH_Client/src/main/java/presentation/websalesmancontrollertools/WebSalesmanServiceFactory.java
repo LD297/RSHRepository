@@ -2,7 +2,7 @@ package presentation.websalesmancontrollertools;
 
 import bl.orderservice.OrderForWebsite;
 import bl.orderserviceimpl.OrderForHotel_Stub;
-import bl.orderserviceimpl.OrderForWebsiteImpl;
+import bl.orderserviceimpl.OrderForWebsiteController;
 import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
 import bl.userservice.UserService;
@@ -35,7 +35,7 @@ public class WebSalesmanServiceFactory {
     }
     public OrderForWebsite getOrderForWebsite(){
         if(orderForWebsite==null)
-            orderForWebsite = new OrderForWebsiteImpl();
+            orderForWebsite = new OrderForWebsiteController();
         return orderForWebsite;
     }
 }

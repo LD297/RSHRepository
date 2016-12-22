@@ -36,7 +36,7 @@ public class WebSalesman {
 		initRemote();
 		WebSalesmanPO webSalesmanPO = null;
 		try {
-			webSalesmanPO = webSalesmanDao.getSalesmanInstance(id);
+			webSalesmanPO = webSalesmanDao.findByID(id);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,7 +54,7 @@ public class WebSalesman {
 	public ResultMessage update(){
 		initRemote();
 		try {
-			return webSalesmanDao.updateWebSalesman(this.changeIntoPO());
+			return webSalesmanDao.update(this.changeIntoPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -93,7 +93,7 @@ public class CheckUserInfoUIController {
     	usernameLabel.setText(userVO.name);
     	userCreditLabel.setText(String.valueOf(userVO.credit));
     	userNicknameLabel.setText(userVO.nickName);
-    	userPhonelabel.setText(userVO.id);
+    	userPhonelabel.setText(userVO.userID);
     	if(userVO.memberType==null){
     		memberTypeLabel.setText("非会员");
     	}else {

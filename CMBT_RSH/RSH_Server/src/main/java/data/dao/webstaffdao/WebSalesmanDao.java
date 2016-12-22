@@ -21,5 +21,13 @@ public interface WebSalesmanDao extends Remote{
     public ArrayList<WebSalesmanPO> findByDistrict(String district)throws RemoteException;
     // 得到所有网站营销人员
     public ArrayList<WebSalesmanPO> getAll()throws RemoteException;
-
+  
+    /**
+     * 根据四位入职年份得到新的ID
+     * @param year
+     * @return
+     * @throws RemoteException
+     */
+    public String getIDForNewWebSalesman(String year) throws RemoteException;
+	
 }

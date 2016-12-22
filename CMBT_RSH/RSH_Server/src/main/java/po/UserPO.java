@@ -2,6 +2,8 @@ package po;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
+
 import constant.MemberType;
 import constant.Sexuality;
 
@@ -10,7 +12,7 @@ public class UserPO implements Serializable{
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	String id;
+	String userID;
 	String password;
 	String nickName;
 	String imageAddress;
@@ -26,7 +28,7 @@ public class UserPO implements Serializable{
 	public UserPO(String id, String password, String nickName, String imageAddress,
 				  LocalDate birth,int level, MemberType memberType, int credit,
 				  String name, Sexuality sexuality, String eMail,String commerceName) {
-		this.id = id;
+		this.userID = id;
 		this.nickName = nickName;
 		this.imageAddress = imageAddress;
 		this.birthday = birth;
@@ -42,14 +44,8 @@ public class UserPO implements Serializable{
 	public String getCommerceName() {
 		return commerceName;
 	}
-	public void setCommerceName(String commerceName) {
-		this.commerceName = commerceName;
-	}
 	public String getId() {
-		return id;
-	}
-	public void setId(String id){
-		this.id = id;
+		return userID;
 	}
 	public String getNickName() {
 		return nickName;
@@ -69,9 +65,6 @@ public class UserPO implements Serializable{
 	public String getName() {
 		return name;
 	}
-	public void setName(String name){
-		this.name = name;
-	}
 	public Sexuality getSexuality() {
 		return sexuality;
 	}
@@ -84,7 +77,19 @@ public class UserPO implements Serializable{
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password){
+	public void setId(String userID) {
+		// TODO Auto-generated method stub
+		this.userID = userID;
+	}
+	public void setPassword(String password) {
+		// TODO Auto-generated method stub
 		this.password = password;
 	}
+	public void setName(String name) {
+		// TODO Auto-generated method stub
+		this.name = name;
+	}
+
+
+	
 }

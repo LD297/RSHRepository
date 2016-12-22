@@ -30,7 +30,7 @@ import java.util.Date;
 /**
  * Created by sky-PC on 2016/12/14.
  */
-public class OrderForUserImpl implements OrderForUser{
+public class OrderForUserController implements OrderForUser{
     private static OrderDao orderDao = null;
     private HotelInfoService hotelInfoService = new HotelInfoController();
     private static void initRemote(){
@@ -87,12 +87,15 @@ public class OrderForUserImpl implements OrderForUser{
     public int cancelMyOrder(String orderID){
         OrderPO orderPO;
         Date cancelTime = new Date();
+        initRemote();
         try{
             orderPO = orderDao.searchByID(orderID);
         }catch (RemoteException e){
             return -1;
         }
-
+        if(orderPO==null){
+        	return -1;
+        }
         // 检查订单状态
         if(orderPO.getState()!=StateOfOrder.unexecuted)
             return -1;
@@ -120,7 +123,7 @@ public class OrderForUserImpl implements OrderForUser{
         int deducted = 0;
         // 判断是否超时：成立->扣除信用值（订单价值一半）
         String deadline = hotelInfoService.getCheckInDDL(hotelID);
-        if(OrderForUserImpl.isOvertime(checkOut,deadline,cancelTime)){
+        if(OrderForUserController.isOvertime(checkOut,deadline,cancelTime)){
             CreditRecordList creditRecordList = new CreditRecordList(userID);
             int credit = creditRecordList.getCredit();
             credit += (int)orderValue/2;

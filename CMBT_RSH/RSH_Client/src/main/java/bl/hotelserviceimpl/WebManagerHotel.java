@@ -9,11 +9,13 @@ import vo.HotelVO;
 
 import java.rmi.RemoteException;
 
+import javax.naming.InitialContext;
+
 public class WebManagerHotel{
 
 	private static HotelDao hotelDao = null;
 
-	private void initRemote(){
+	private static void initRemote(){
 		if(hotelDao==null){
 			RemoteHelper remoteHelper = RemoteHelper.getInstance();
 			hotelDao = remoteHelper.getHotelDao();
@@ -22,6 +24,7 @@ public class WebManagerHotel{
 
 	public static String getHotelID(String district) {
 		String hotelID = null;
+		initRemote();
 		try {
 			hotelID = hotelDao.getNewHotelID(district);
 		}catch (RemoteException e){
@@ -30,27 +33,4 @@ public class WebManagerHotel{
 		return hotelID;
 	}
 
-	public static ResultMessage updateHotelStaff(HotelStaffVO hotelStaffVO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-/**
- * what is this for???
- * is there any need to transfer hotelStaffPO???
- * @param hotelStaffVO
- * @return
- */
-	/**
-	public ResultMessage updateHotelStaff(HotelStaffVO hotelStaffVO) {
-		HotelStaffPO hotelStaffPO = new HotelStaffPO(hotelStaffVO.hotelID, hotelStaffVO.tel);
-		ResultMessage resultMessage = null;
-		try {
-			resultMessage = hotelDao.updateHotelStaff(hotelStaffPO);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return resultMessage;
-	}
-*/
 }

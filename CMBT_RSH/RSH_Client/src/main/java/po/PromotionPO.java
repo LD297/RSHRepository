@@ -6,10 +6,15 @@ import constant.DeductionType;
 import constant.ScopeType;
 import vo.PromotionVO;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PromotionPO {
+public class PromotionPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int HOTEL_LENGTH = 10;
 	private static final int DISTRICT_LENGTH = 6;
 

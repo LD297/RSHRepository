@@ -13,7 +13,7 @@ public class UserPO implements Serializable{
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	String id;
+	String userID;
 	String password;
 	String nickName;
 	String imageAddress;
@@ -26,10 +26,10 @@ public class UserPO implements Serializable{
 	LocalDate birthday;
 	String commerceName;
 
-	public UserPO(String id, String password, String nickName, String imageAddress,
+	public UserPO(String userID, String password, String nickName, String imageAddress,
 				  LocalDate birth,int level, MemberType memberType, int credit,
 				  String name, Sexuality sexuality, String eMail,String commerceName) {
-		this.id = id;
+		this.userID = userID;
 		this.nickName = nickName;
 		this.imageAddress = imageAddress;
 		this.birthday = birth;
@@ -45,11 +45,8 @@ public class UserPO implements Serializable{
 	public String getCommerceName() {
 		return commerceName;
 	}
-	public void setCommerceName(String commerceName) {
-		this.commerceName = commerceName;
-	}
 	public String getId() {
-		return id;
+		return userID;
 	}
 	public String getNickName() {
 		return nickName;
@@ -82,20 +79,23 @@ public class UserPO implements Serializable{
 		return password;
 	}
 
-    public void setLevel(int level) {
-		this.level = level;
-    }
 
-	public void setPassword(String newPassword) {
-		this.password = newPassword;
-	}
-
-	public void setID(String userID) {
-		this.id = userID;
-	}
 	public UserVO changeIntoVO() {
 		// TODO Auto-generated method stub
-		UserVO userVO = new UserVO(id, password, nickName, imageAddress, birthday, level, memberType, name, sexuality, eMail, credit, commerceName);
+		UserVO userVO = new UserVO(userID, password, nickName, imageAddress, birthday, level, memberType, name, sexuality, eMail, credit, commerceName);
 		return userVO;
+	}
+	public void setLevel(int level) {
+		// TODO Auto-generated method stub
+		this.level = level;
+	}
+	public void setCommerceName(String commerceName) {
+		// TODO Auto-generated method stub
+		this.commerceName = commerceName;
+		
+	}
+	public void setPassword(String newPassword) {
+		// TODO Auto-generated method stub
+		password = newPassword;
 	}
 }

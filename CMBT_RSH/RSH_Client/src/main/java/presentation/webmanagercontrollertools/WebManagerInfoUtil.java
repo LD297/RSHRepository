@@ -82,7 +82,7 @@ public class WebManagerInfoUtil {
 	 * 管理网站营销人员界面调用
 	 */
 	public ArrayList<WebSalesmanVO> getWebSalesmanVOs() {
-		return webStaffService.getWebSalesmanInfo();
+		return webStaffService.getAllWebSalesmen();
 	}
 	
 	/**

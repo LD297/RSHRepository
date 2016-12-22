@@ -139,6 +139,9 @@ public class HotelController implements HotelService {
 	public static  ResultMessage checkPassword(String hotelID, String password) {
 		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);
+		if(hotel==null){
+			return ResultMessage.idNotExist;
+		}
 		return hotel.checkPassword(password);
 	}
 }

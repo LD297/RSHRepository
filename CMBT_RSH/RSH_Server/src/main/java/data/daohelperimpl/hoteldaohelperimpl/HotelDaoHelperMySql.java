@@ -49,8 +49,10 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
 
         String getHotelSql = "SELECT *FROM HotelInfo WHERE hotelID='"+hotelID+"' LIMIT 1";
         ResultSet result = db.query(getHotelSql);
-
-        return this.resultsetToHotelPO(result).get(0);
+        ArrayList<HotelPO> hotelPOs =this.resultsetToHotelPO(result);
+        if(hotelPOs.size()==0)
+        	return null;
+        return hotelPOs.get(0);
     }
     // 根据酒店传入地区 初始化酒店账号
     public String getNewHotelID(String district) throws RemoteException{
@@ -187,10 +189,10 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         String imageAddress = roomPO.getImageAddress();
         int amount = roomPO.getAmountTotal();
         double price = roomPO.getPrice();
-        boolean isSpecial = roomPO.getBasicOrSpecial();
+//        boolean isSpecial = roomPO.getBasicOrSpecial();
         int special = 1;
-        if(isSpecial)
-            special = 0;//特色
+//        if(isSpecial)
+//            special = 0;//特色
         String availableRoom = String.valueOf(amount);
 
         for(int i=0;i<180-1;i++){
@@ -310,10 +312,10 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         
         int amountTotal = roomPO.getAmountTotal();
         double price = roomPO.getPrice();
-        boolean isSpecial = roomPO.getBasicOrSpecial();
+//        boolean isSpecial = roomPO.getBasicOrSpecial();
         int judSpecial = 1;
-        if(isSpecial)
-            judSpecial = 0;//特色
+//        if(isSpecial)
+//            judSpecial = 0;//特色
         String checkIsRoomNumChangedSql = "SELECT amountTotal FROM RoomInfo"
                 +" Where hotelID='"+hotelID+"' and roomType='"+roomType+"' LIMIT 1";
         ResultSet result = db.query(checkIsRoomNumChangedSql);
@@ -483,8 +485,8 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
                 	String[] avail = roomAvailResult.getString("aList").split(",");
                     int num = Integer.valueOf(avail[this.getDayGap(date)]);
                     RoomAvailPO roomAvailPO = new RoomAvailPO(hotelID,roomAvailResult.getString("roomType"),
-                    		roomAvailResult.getString("imageAddress"),roomAvailResult.getInt("amountTotal"),
-                            roomAvailResult.getDouble("price"),roomAvailResult.getBoolean("basicOrSpecial"));
+                    		roomAvailResult.getString("imageAddress"),date,roomAvailResult.getInt("amountTotal"),
+                            roomAvailResult.getDouble("price"));
                     roomAvailPO.setAmountAvail(num);
                     roomAvailList.add(roomAvailPO);
                 }

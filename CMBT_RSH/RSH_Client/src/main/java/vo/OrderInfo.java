@@ -1,5 +1,6 @@
 package vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class OrderInfo {
@@ -8,6 +9,7 @@ public class OrderInfo {
 	int roomNum;
 	Date checkInDate;
 	Date checkOutDate;
+	int stayDay;
 	String userID;	
 	double price;
 	
@@ -20,9 +22,13 @@ public class OrderInfo {
 		this.roomNum = roomNum;
 		this.checkInDate = checkInDate;
 		this.checkOutDate = checkOutDate;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		stayDay = Integer.parseInt(simpleDateFormat.format(checkOutDate))-
+				Integer.parseInt(simpleDateFormat.format(checkInDate));
+		
 		this.userID = userID;
 		this.price = price;
-		originalValue = roomNum*price;
+		originalValue = stayDay*roomNum*price;
 	}
 
 	public String getHotelID() {

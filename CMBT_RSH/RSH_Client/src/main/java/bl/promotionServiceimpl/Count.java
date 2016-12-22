@@ -61,7 +61,7 @@ public class Count {
 			return "remote_fail";
 		}
 		double tempValue;
-		double minValue = 0;
+		double minValue = orderInfo.getOriginalValue();
 		String reason = null;
 		for(PromotionPO promotionPO:promotionPOsForDistrict){
 			tempValue = count(promotionPO.changeIntoPromotion(),orderInfo);

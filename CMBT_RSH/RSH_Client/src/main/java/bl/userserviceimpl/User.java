@@ -2,15 +2,18 @@ package bl.userserviceimpl;
 
 
 import constant.ResultMessage;
+import constant.Sexuality;
 import data.dao.userdao.UserDao;
 import po.UserPO;
 import rmi.RemoteHelper;
 import vo.UserVO;
 
 import java.rmi.RemoteException;
+import java.time.LocalDate;
+import java.util.Date;
 
 import bl.orderservice.OrderForUser;
-import bl.orderserviceimpl.OrderForUserImpl;
+import bl.orderserviceimpl.OrderForUserController;
 
 /**
  * 处理与用户界面有关的业务
@@ -23,20 +26,24 @@ public class User {
 	UserPO userPO = null;
 
 	private static UserDao userDao = null;
-
-	public User(){
-		initRemote();
-	};
+	
 	public User(String id) {
 		initRemote();
 		this.id = id;
+		try {
+			userPO = userDao.getInfo(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private static void initRemote(){
 		if(userDao==null){
 			RemoteHelper remoteHelper = RemoteHelper.getInstance();
 			userDao = remoteHelper.getUserDao();
-		}		
+		}	
+		return;
 	}
 
 	/**
@@ -44,14 +51,15 @@ public class User {
 	 */
 	public UserVO getInfo(){
 		if(userPO!=null) {
-			return changeIntoVO(userPO);
+			return userPO.changeIntoVO();
 		}
 		try{
 			userPO = userDao.getInfo(id);
+			System.out.println(userPO.getId());
 		}catch (RemoteException e){
 			e.printStackTrace();
 		}
-		return changeIntoVO(userPO);
+		return userPO.changeIntoVO();
 	}
 
 	/**
@@ -61,7 +69,7 @@ public class User {
 	 */
 	public ResultMessage update(UserVO vo) {
 		ResultMessage resultMessage = null;
-		UserPO po = changeIntoPO(vo);
+		UserPO po = vo.changeIntoPO();
 		try {
 			resultMessage = userDao.update(po);
 		}catch (RemoteException e){
@@ -81,21 +89,19 @@ public class User {
 			if(userDao.getInfo(vo.getId())!=null){
 				System.out.println("已存在");
 				return ResultMessage.already_exist;
+				
 			}
 				
 		} catch (RemoteException e) {
 			System.out.println("链接错误");
 			return ResultMessage.remote_fail;
 		}
-
 		ResultMessage resultMessage = null;
-		UserPO po = changeIntoPO(vo);
 		try {
-			resultMessage = userDao.insert(po);
-		}catch (RemoteException e){
+			resultMessage = userDao.insert(vo.changeIntoPO());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("连接一场");
-			return ResultMessage.remote_fail;
 		}
 		return resultMessage;
 	}
@@ -109,24 +115,6 @@ public class User {
 		return ResultMessage.password_wrong;
 	}
 
-	private UserPO changeIntoPO(UserVO vo) {
-		UserPO po = new UserPO(vo.getId(), vo.getPassword(), vo.getNickName(),vo.getImageAddress(),vo.getBirthday(),
-				vo.getLevel(), vo.getMemberType(), vo.getCredit(),
-				vo.getName(), vo.getSexuality(), vo.geteMail() ,vo.getCommerceName()){
-
-					/**
-					 * 
-					 */
-					private static final long serialVersionUID = 1L;};
-		return po;
-	}
-
-	private UserVO changeIntoVO(UserPO po) {
-		UserVO vo = new UserVO(po.getId(),po.getPassword(),po.getNickName(),
-				po.getImageAddress(),po.getBirthday(),po.getLevel(),po.getMemberType(),po.getName(),
-				po.getSexuality(),po.geteMail(),po.getCredit(),po.getCommerceName());
-		return vo;
-	}
 
 	public ResultMessage changePassword(String oldPassword, String newPassword) {
 		if(userPO==null){

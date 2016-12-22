@@ -8,6 +8,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class OrderPO implements Serializable{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// 注：一笔订单允许一种房间类型
 	private String orderID = null;
 	private String userID = null;
@@ -15,7 +21,8 @@ public class OrderPO implements Serializable{
 	private String hotelID = null;
     private String hotelName = null;
 	private StateOfOrder state = null;
-	String roomType = null;
+	
+	private String roomType = null;
 	private int roomNumber = 0;
 	// 计算后的单间房间实际价格
 	private double roomPrice = 0;

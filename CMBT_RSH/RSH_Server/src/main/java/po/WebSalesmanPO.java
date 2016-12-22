@@ -8,9 +8,14 @@ public class WebSalesmanPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	String name;         //should be set;
 	String webSalesmanID;
 	String password;
 	String district;//6位编码
+	
+	
+	
 	public WebSalesmanPO(String webSalesmanID,String password,String district){
 		this.webSalesmanID = webSalesmanID;
 		this.password = password;

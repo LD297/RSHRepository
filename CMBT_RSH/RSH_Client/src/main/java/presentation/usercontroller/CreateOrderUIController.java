@@ -255,7 +255,7 @@ public class CreateOrderUIController {
 		//初始化订单中的用户信息
 		UserVO userVO = UserInfoUtil.getInstance().getUserVO();
 		userNameLabel.setText(userVO.name);
-		userPhoneNumberLabel.setText(userVO.id);
+		userPhoneNumberLabel.setText(userVO.userID);
 		memberLevelLabel.setText(Integer.toString(userVO.level));
 		userCreditLabel.setText(Integer.toString(userVO.credit));
 		//初始化订单中的纯订单信息

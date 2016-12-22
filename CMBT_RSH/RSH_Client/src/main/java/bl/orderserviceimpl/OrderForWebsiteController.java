@@ -23,7 +23,7 @@ import java.util.Date;
 /**
  * Created by sky-PC on 2016/12/14.
  */
-public class OrderForWebsiteImpl implements OrderForWebsite {
+public class OrderForWebsiteController implements OrderForWebsite {
     private static OrderDao orderDao = null;
     private void initRemote(){
     	if(orderDao == null){

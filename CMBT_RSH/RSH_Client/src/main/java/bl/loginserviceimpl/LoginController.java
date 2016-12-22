@@ -2,6 +2,7 @@ package bl.loginserviceimpl;
 
 import bl.loginservice.LoginService;
 import bl.userserviceimpl.User;
+import bl.userserviceimpl.UserController;
 import bl.webstaffserviceimpl.MockWebManager;
 import constant.ResultMessage;
 import constant.Role;
@@ -14,8 +15,8 @@ public class LoginController implements LoginService{
 	 * 为用户注册，若该用户名没有被注册过，则增加该用户的持久化对象
 	 */
 	public ResultMessage register(UserVO vo) {
-		User user = new User();
-		return user.add(vo);
+		UserController userController = new UserController();
+		return userController.add(vo);
 	}
 
 	

@@ -10,14 +10,14 @@ public class WebManagerPO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String id;
+	String webManagerID;
 	String password;
 	public WebManagerPO(String id, String password){
-		this.id = id;
+		this.webManagerID = id;
 		this.password = password;
 	}
 	public String getID(){
-		return this.id;
+		return this.webManagerID;
 	}
 	public String getPassword(){
 		return this.password;

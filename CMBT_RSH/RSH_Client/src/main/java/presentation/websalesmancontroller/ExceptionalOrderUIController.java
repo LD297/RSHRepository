@@ -1,7 +1,7 @@
 package presentation.websalesmancontroller;
 
 import bl.orderservice.OrderForWebsite;
-import bl.orderserviceimpl.OrderForWebsiteImpl;
+import bl.orderserviceimpl.OrderForWebsiteController;
 import constant.StateOfOrder;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

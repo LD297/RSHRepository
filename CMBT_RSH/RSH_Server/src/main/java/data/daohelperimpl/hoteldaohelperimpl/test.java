@@ -2,7 +2,6 @@ package data.daohelperimpl.hoteldaohelperimpl;
 
 import constant.ResultMessage;
 import po.HotelPO;
-import po.HotelStaffPO;
 import po.RoomAvailPO;
 import po.RoomPO;
 

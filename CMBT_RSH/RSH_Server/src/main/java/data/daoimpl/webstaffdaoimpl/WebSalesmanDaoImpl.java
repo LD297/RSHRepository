@@ -63,4 +63,11 @@ public class WebSalesmanDaoImpl extends UnicastRemoteObject implements WebSalesm
     public ArrayList<WebSalesmanPO> getAll()throws RemoteException {
         return webSalesmanDaoHelper.getAll();
     }
+
+	@Override
+	public String getIDForNewWebSalesman(String year) throws RemoteException {
+		// TODO Auto-generated method stub
+//		System.out.println(year+"1s");
+		return year + "000001s";
+	}
 }

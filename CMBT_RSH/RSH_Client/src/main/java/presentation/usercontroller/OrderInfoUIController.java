@@ -121,7 +121,7 @@ public class OrderInfoUIController {
 		//初始化订单中的用户信息
 		UserVO userVO = UserInfoUtil.getInstance().getUserVO();
 		userName.setText(userVO.name);
-		userPhoneNumber.setText(userVO.id);
+		userPhoneNumber.setText(userVO.userID);
 		userMemberLevel.setText(Integer.toString(userVO.level));
 		userCredit.setText(Integer.toString(userVO.credit));
 		//初始化纯订单信息

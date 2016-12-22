@@ -11,6 +11,8 @@ import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
 
+import javax.naming.InitialContext;
+
 public class Login {
 	private static Login login = null;
 	private static LoginDao loginDao = null;
@@ -22,6 +24,15 @@ public class Login {
 			loginDao = remoteHelper.getLoginDao();
 		}
 		return login;
+	}
+	
+	private static void initRemote(){
+		if(loginDao==null){
+			if(loginDao == null){
+				RemoteHelper remoteHelper = RemoteHelper.getInstance();
+				loginDao = remoteHelper.getLoginDao();
+			}
+		}
 	}
 
 	/**
@@ -66,6 +77,7 @@ public class Login {
 	 */
 	public static ResultMessage logout(Role role, String id) {
 		ResultMessage resultMessage = null;
+		initRemote();
 		try{
 			resultMessage = loginDao.deleteOnline(role, id);
 		}catch (RemoteException e){

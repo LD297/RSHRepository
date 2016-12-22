@@ -19,10 +19,4 @@ public class ManageHotelService_Stub implements ManagerHotelService{
 		return ResultMessage.succeed;
 	}
 
-	@Override
-	public ResultMessage updateHotelStaff(HotelStaffVO hotelStaffVO) {
-		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
-	}
-
 }

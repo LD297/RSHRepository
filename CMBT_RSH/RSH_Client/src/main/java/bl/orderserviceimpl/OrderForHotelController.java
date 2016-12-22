@@ -21,7 +21,7 @@ import java.util.Date;
 /**
  * Created by sky-PC on 2016/12/14.
  */
-public class OrderForHotelImpl implements OrderForHotel{
+public class OrderForHotelController implements OrderForHotel{
     private static OrderDao orderDao = null;
     
     private static void initRemote(){
@@ -60,6 +60,9 @@ public class OrderForHotelImpl implements OrderForHotel{
     @Override
     public ResultMessage execute(String orderID){
     	Order order = Order.getInstance(orderID);
+    	if(order==null){
+    		return ResultMessage.idNotExist;
+    	}
         return order.execute();
     }
 

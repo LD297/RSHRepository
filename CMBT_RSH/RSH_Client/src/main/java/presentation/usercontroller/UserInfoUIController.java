@@ -95,7 +95,7 @@ public class UserInfoUIController {
 		nicknameLabel.setText(userVO.nickName);
 		userNameLabel.setText(userVO.name);
 		birthdayLabel.setText(MyDateFormat.getInstance().toString(userVO.birthday));
-		phonenumberLabel.setText(userVO.id);
+		phonenumberLabel.setText(userVO.userID);
 		emailaddressLabel.setText(userVO.eMail);
 		if (userVO.sexuality == Sexuality.female) {
 			sexImage.setImage(ImageFactory.getImageFactory().getFemale());

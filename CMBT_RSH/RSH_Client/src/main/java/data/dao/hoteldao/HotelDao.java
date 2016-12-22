@@ -29,7 +29,7 @@ public interface HotelDao extends Remote{
     
     public ResultMessage addHotel(HotelPO hotelPO) throws RemoteException;
     
-    public ResultMessage deleteHotel(String id) throws RemoteException;
+   
     
     public ResultMessage updateHotel (HotelPO hotelPO) throws RemoteException;
     
@@ -56,6 +56,12 @@ public interface HotelDao extends Remote{
     public ArrayList<HotelPO> getAll() throws RemoteException;
     
     public ArrayList<String> getImageAddresses(String hotelID) throws RemoteException;
-  
+    
+    
+    
+    
+      // 根据roompo里的酒店账号 更新该房间类型的信息
+    public ResultMessage updateRoom(RoomPO roomPO) throws RemoteException;
+   
 }
 

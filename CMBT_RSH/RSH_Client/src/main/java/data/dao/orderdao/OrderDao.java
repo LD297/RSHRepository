@@ -42,4 +42,7 @@ public interface OrderDao extends Remote{
     // 订单撤销异常时间更新
     public ResultMessage cancelAbTimeUpdate(String orderID, Date cancelAbTime) throws RemoteException;
 
+    
+    
+    
 }

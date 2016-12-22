@@ -15,12 +15,9 @@ public class CreditRecordPO implements Serializable{
 	String orderID;
 	CreditAction creditAction;
 	/**
-	 * for example"+200"
+	 * for example    "+200"
 	 */
 	String change;
-	/**
-	 * 变化后的信用值
-	 */
 	int credit;
 	public CreditRecordPO(String userID,Date date,String orderID,
 			CreditAction creditAction,String change,int credit) {
@@ -34,37 +31,25 @@ public class CreditRecordPO implements Serializable{
 	public String getUserid() {
 		return userID;
 	}
-	public void setUserid(String userID) {
-		this.userID = userID;
-	}
 	public Date getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public String getOrderID() {
+	public String getOrderid() {
 		return orderID;
-	}
-	public void setOrderID(String orderID) {
-		this.orderID = orderID;
 	}
 	public CreditAction getCreditAction() {
 		return creditAction;
 	}
-	public void setCreditAction(CreditAction creditAction) {
-		this.creditAction = creditAction;
-	}
 	public String getChange() {
 		return change;
-	}
-	public void setChange(String change) {
-		this.change = change;
 	}
 	public int getCredit() {
 		return credit;
 	}
-	public void setCredit(int credit) {
-		this.credit = credit;
+	public String getOrderID() {
+		// TODO Auto-generated method stub
+		return orderID;
 	}
+	
+	
 }

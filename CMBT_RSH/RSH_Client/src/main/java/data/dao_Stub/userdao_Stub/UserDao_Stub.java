@@ -41,7 +41,10 @@ public class UserDao_Stub implements UserDao {
     }
     @Override
     public UserPO getInfo(String id) throws RemoteException {
-        userPO.setID(id);
+    	 LocalDate localDate = LocalDate.of(2011,1,2);
+        UserPO userPO = new UserPO(id, "123456","fanfan","??",
+                localDate ,1, MemberType.commerce,1,"WuYifam", Sexuality.male,
+                "111@nju,cn","dajiudian");
         return userPO;
     }
 

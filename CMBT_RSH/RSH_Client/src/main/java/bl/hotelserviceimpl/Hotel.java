@@ -64,7 +64,10 @@ public class Hotel{
 
 	// 调用自身数据库
 	public ResultMessage checkPassword(String password) {
-		if(this.hotelPO.getPassword()==password){
+		if(hotelPO==null){
+			return ResultMessage.idNotExist;
+		}
+		if(this.hotelPO.getPassword().equals(password)){
 			return ResultMessage.succeed;
 		}
 		else{
@@ -74,6 +77,8 @@ public class Hotel{
 	
 	// 酒店自身dao建立后，随即初始化该酒店po，用来生成vo，供展示层用
 	public HotelVO getHotelInfo() {
+		if(hotelPO == null)
+			return null;
 		return hotelPO.changeIntoVO();
 	}
 
@@ -146,6 +151,9 @@ public class Hotel{
 	 * @return
 	 */
 	public String getCheckInDDL() {
+		if(hotelPO==null){
+			return "00:00:00";
+		}
 		return hotelPO.getLatestCheckinTime();
 	}
 	/**

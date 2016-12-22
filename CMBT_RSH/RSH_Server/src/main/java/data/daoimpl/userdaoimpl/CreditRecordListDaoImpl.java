@@ -9,6 +9,7 @@ import po.CreditRecordPO;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class CreditRecordListDaoImpl extends UnicastRemoteObject implements CreditRecordListDao{
@@ -32,7 +33,7 @@ public class CreditRecordListDaoImpl extends UnicastRemoteObject implements Cred
 		creditRecordListDaoHelper = daoHelperFactory.getCrediRecordListDdaoHelper();
 	}
 
-	public Iterator<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException {
+	public ArrayList<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException {
 		return creditRecordListDaoHelper.getCreditRecordList(userid);
 	}
 

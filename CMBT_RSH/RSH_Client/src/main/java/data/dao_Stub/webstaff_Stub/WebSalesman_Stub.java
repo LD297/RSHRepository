@@ -21,25 +21,25 @@ public class WebSalesman_Stub implements WebSalesmanDao{
 	}
 
 	@Override
-	public ResultMessage addWebSalesman(WebSalesmanPO webSalesmanPO) throws RemoteException {
+	public ResultMessage insert(WebSalesmanPO webSalesmanPO) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage updateWebSalesman(WebSalesmanPO webSalesmanPO) throws RemoteException {
+	public ResultMessage update(WebSalesmanPO webSalesmanPO) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public WebSalesmanPO getSalesmanInstance(String SalesmanID) throws RemoteException {
+	public WebSalesmanPO findByID(String SalesmanID) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<WebSalesmanPO> finds(String district) throws RemoteException {
+	public ArrayList<WebSalesmanPO> findByDistrict(String district) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

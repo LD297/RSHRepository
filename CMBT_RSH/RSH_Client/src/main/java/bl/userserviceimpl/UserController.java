@@ -2,7 +2,9 @@ package bl.userserviceimpl;
 
 import bl.BLHelper;
 import bl.userservice.UserService;
+import constant.MemberType;
 import constant.ResultMessage;
+import constant.Sexuality;
 import data.dao.orderdao.OrderDao;
 import data.dao.userdao.UserDao;
 import po.UserPO;
@@ -12,9 +14,12 @@ import vo.OrderVO;
 import vo.UserVO;
 
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+
+import javax.jws.soap.SOAPBinding.Use;
 
 /**
  * 处理用户界面包的逻辑
@@ -161,6 +166,11 @@ public class UserController implements UserService{
 		// TODO Auto-generated method stub
 		User user = new User(userID);
 		return user.hasReserved(hotelID);
+	}
+	
+	public ResultMessage add(UserVO userVO){
+		User user = new User(userVO.getId());
+		return user.add(userVO);
 	}
 
 }

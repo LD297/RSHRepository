@@ -4,6 +4,7 @@ import constant.ResultMessage;
 import po.CreditRecordPO;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Iterator;
  */
 public interface CreditRecordListDaoHelper {
 
-    public Iterator<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException ;
+    public ArrayList<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException ;
 
     public ResultMessage addCreditRecord(CreditRecordPO po) throws RemoteException ;
 }

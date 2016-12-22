@@ -8,6 +8,10 @@ import vo.RoomAvailVO;
 
 public class RoomAvailPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String hotelID;
 	private String roomType;
 	private String imageAddress;

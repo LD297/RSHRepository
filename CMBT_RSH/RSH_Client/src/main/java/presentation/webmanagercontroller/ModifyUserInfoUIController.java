@@ -101,7 +101,7 @@ public class ModifyUserInfoUIController {
     	nameField.setText(userVO.name);
     	userCreditLabel.setText(String.valueOf(userVO.credit));
     	nickNameField.setText(userVO.nickName);
-    	phoneLabel.setText(userVO.id);
+    	phoneLabel.setText(userVO.userID);
     	if(userVO.memberType==null){
     		memberTypeLabel.setText("非会员");
     	}else {

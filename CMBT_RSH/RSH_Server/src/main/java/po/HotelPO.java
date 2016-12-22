@@ -24,8 +24,8 @@ public class HotelPO implements Serializable{
 	/**
 	 * 酒店地址
 	 */
-	private String address;//6位编码
-	private String addressDetail;
+	private String district;//6位编码
+	private String detailAddress;
 	private String briefIntro;
 	/**
 	 * 酒店（基础）设施（WiFi available？……）
@@ -79,19 +79,19 @@ public class HotelPO implements Serializable{
 	}
 
 	public String getAddress() {
-		return address;
+		return district;
 	}
 
 	public void setAddress(String address) {
-		this.address = address;
+		this.district = address;
 	}
 
 	public String getAddressDetail() {
-		return addressDetail;
+		return detailAddress;
 	}
 
 	public void setAddressDetail(String addressDetail) {
-		this.addressDetail = addressDetail;
+		this.detailAddress = addressDetail;
 	}
 
 	public String getBriefIntro() {
@@ -148,8 +148,8 @@ public class HotelPO implements Serializable{
 		this.tel = tel;
 		this.name = name;
 		this.imageAddress = imageAddress;
-		this.address = address;
-		this.addressDetail = addressDetail;
+		this.district = address;
+		this.detailAddress = addressDetail;
 		this.standardPrice = standardPrice;
 		this.briefIntro = briefIntro;
 		this.facility = facility;
@@ -162,8 +162,8 @@ public class HotelPO implements Serializable{
 		this.hotelID = hotelID;
 		this.tel = tel;
 		this.name = name;
-		this.address = address;
-		this.addressDetail = addressDetail;
+		this.district = address;
+		this.detailAddress = addressDetail;
 		this.password = password;
 	}
 }

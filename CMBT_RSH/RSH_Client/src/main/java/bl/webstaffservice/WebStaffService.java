@@ -28,7 +28,7 @@ public interface WebStaffService {
 	 * 网站管理人员调用所有营销人员信息
 	 * @return
 	 */
-	public ArrayList<WebSalesmanVO> getWebSalesmanInfo();
+	public ArrayList<WebSalesmanVO> getAllWebSalesmen();
 	
 	/**
 	 * 网站营销人员修改密码

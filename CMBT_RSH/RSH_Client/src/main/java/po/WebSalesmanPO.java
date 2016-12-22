@@ -1,10 +1,16 @@
 package po;
 
+import java.io.Serializable;
+
 import bl.webstaffserviceimpl.WebSalesman;
 import vo.WebSalesmanVO;
 
-public class WebSalesmanPO {
+public class WebSalesmanPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String webSalesmanID;
 	private String password;

@@ -65,4 +65,10 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 		return 0;
 	}
 
+	@Override
+	public ResultMessage setMemberLevel(int gradeWithCredit) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

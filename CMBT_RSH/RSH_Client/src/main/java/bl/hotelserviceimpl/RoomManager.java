@@ -42,6 +42,7 @@ public class RoomManager {
 	}
 	public ResultMessage addSpecialRoom(RoomVO vo) {
 		ResultMessage resultMessage = null;
+		initRemote();
 		try {
 			resultMessage = hotelDao.addSpecialRoom(vo.changeIntoPO());
 		}catch (RemoteException e){

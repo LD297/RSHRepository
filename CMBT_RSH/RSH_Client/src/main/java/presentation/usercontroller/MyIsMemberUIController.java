@@ -36,7 +36,7 @@ public class MyIsMemberUIController {
         UserVO userVO = UserInfoUtil.getInstance().getUserVO();
         membertypeLabel.setText(userVO.memberType.getString());
         memberLevelLabel.setText(String.valueOf(userVO.level));
-        userHeadImage.setImage(ImageFactory.getImageFactory().getHeadImage(userVO.id));
+        userHeadImage.setImage(ImageFactory.getImageFactory().getHeadImage(userVO.userID));
 	}
 
     @FXML

@@ -140,13 +140,7 @@ public class HotelDao_Stub implements  HotelDao{
             return ResultMessage.fail;
     }
 
-    @Override
-    public ResultMessage deleteHotel(String id) {
-        if(id.equals("2333333333"))
-            return ResultMessage.succeed;
-        else
-            return ResultMessage.fail;
-    }
+  
 /**
     @Override
     public ResultMessage updateHotelStaff(HotelStaffPO hotelStaffPO) {
@@ -190,6 +184,12 @@ public class HotelDao_Stub implements  HotelDao{
 
 	@Override
 	public ArrayList<String> getImageAddresses(String hotelID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage updateRoom(RoomPO roomPO) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

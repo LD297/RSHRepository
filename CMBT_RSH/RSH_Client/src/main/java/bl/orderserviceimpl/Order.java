@@ -52,12 +52,17 @@ public class Order {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
+    	if(orderPO==null){
+    		return null;
+    	}
     	return orderPO.changeIntoVO();
     }
 	
     public static Order getInstance(String orderID){
     	OrderVO orderVO  = getOrderInfo(orderID);
+    	if(orderVO==null){
+    		return null;
+    	}
     	return orderVO.changeIntoOrder();
     }
     

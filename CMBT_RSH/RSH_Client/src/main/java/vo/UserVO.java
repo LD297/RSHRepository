@@ -2,11 +2,12 @@ package vo;
 
 import constant.MemberType;
 import constant.Sexuality;
+import po.UserPO;
 
 import java.time.LocalDate;
 
 public class UserVO {
-	public String id;
+	public String userID;
 	public String password;
 	public String nickName;
 	public String imageAddress;
@@ -23,7 +24,7 @@ public class UserVO {
 	public UserVO(String id, String password, String nickName,
 				  String imageAddress,LocalDate birth, int level, MemberType memberType, String name,
 				  Sexuality sexuality, String eMail, int credit,String commerceName) {
-		this.id = id;
+		this.userID = id;
 		this.nickName = nickName;
 		this.imageAddress = imageAddress;
 		this.birthday = birth;
@@ -43,7 +44,7 @@ public class UserVO {
 		this.commerceName = commerceName;
 	}
 	public String getId() {
-		return id;
+		return userID;
 	}
 	public String getNickName() {
 		return nickName;
@@ -76,5 +77,11 @@ public class UserVO {
 		return password;
 	}
 	public void setPassword(String password){this.password = password;}
+	
+	public UserPO changeIntoPO(){
+		UserPO userPO = new UserPO(userID, password, nickName, imageAddress, birthday, level, memberType, credit, name, sexuality, eMail, commerceName);
+		System.out.println(userPO.getCommerceName());
+		return userPO;
+	}
 }
 

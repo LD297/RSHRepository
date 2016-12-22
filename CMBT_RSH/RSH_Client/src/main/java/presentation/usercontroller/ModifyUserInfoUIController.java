@@ -133,7 +133,7 @@ public class ModifyUserInfoUIController {
     	  UserVO userVO = UserInfoUtil.getInstance().getUserVO();
           nicknameField.setText(userVO.nickName);
           nameField.setText(userVO.name);
-          phonenumberField.setText(userVO.id);
+          phonenumberField.setText(userVO.userID);
           emailaddressField.setText(userVO.eMail);
           birthdayPicker.setValue(userVO.birthday);
   		ObservableList<String> sexualities = FXCollections.observableArrayList((new ArrayList<String>(

@@ -88,7 +88,9 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     // 会员等级 会员类型 信用值
     // 真实姓名 性别 邮箱
     public ResultMessage insert(UserPO userPO) throws RemoteException {
-    	System.out.println("shujuceng insert");
+    	System.out.println(userPO.geteMail()
+    			+userPO.getBirthday().toString()
+    			+userPO.getLevel());
         db.executeSql("USE OurData");
 
         if(this.checkExistence(userPO.getId())==ResultMessage.idAlreadyExist)

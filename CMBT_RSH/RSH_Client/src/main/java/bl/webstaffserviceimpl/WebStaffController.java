@@ -9,6 +9,7 @@ import rmi.RemoteHelper;
 import vo.WebSalesmanVO;
 
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -35,7 +36,7 @@ public class WebStaffController implements WebStaffService{
 	@Override
 	public String getIDForWebsalesman() {
 		// TODO Auto-generated method stub
-		String year = String.valueOf(Calendar.YEAR);
+		String year = String.valueOf(LocalDate.now().getYear());
 		initRemote();
 		try {
 			return webSalesmanDao.getIDForNewWebSalesman(year);
@@ -52,10 +53,10 @@ public class WebStaffController implements WebStaffService{
 		initRemote();
 		String webSalesmanID = webSalesmanVO.getId();
 		try {
-			if(webSalesmanDao.getSalesmanInstance(webSalesmanID)!=null){
+			if(webSalesmanDao.findByID(webSalesmanID)!=null){
 				return ResultMessage.already_exist;
 			}
-			return webSalesmanDao.addWebSalesman(webSalesmanVO.changeIntoPO());
+			return webSalesmanDao.insert(webSalesmanVO.changeIntoPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -64,7 +65,7 @@ public class WebStaffController implements WebStaffService{
 	}
 
 	@Override
-	public ArrayList<WebSalesmanVO> getWebSalesmanInfo() {
+	public ArrayList<WebSalesmanVO> getAllWebSalesmen() {
 		// TODO Auto-generated method stub
 		initRemote();
 		ArrayList<WebSalesmanPO> webSalesmanPOs = new ArrayList<>();
@@ -102,10 +103,10 @@ public class WebStaffController implements WebStaffService{
 		initRemote();
 		
 		try {
-			if(webSalesmanDao.getSalesmanInstance(webSalesmanID)==null){
+			if(webSalesmanDao.findByID(webSalesmanID)==null){
 				return ResultMessage.idNotExist;
 			}
-			return webSalesmanDao.updateWebSalesman(webSalesmanVO.changeIntoPO());
+			return webSalesmanDao.update(webSalesmanVO.changeIntoPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -131,5 +132,4 @@ public class WebStaffController implements WebStaffService{
 	}
 
 	
-
 }

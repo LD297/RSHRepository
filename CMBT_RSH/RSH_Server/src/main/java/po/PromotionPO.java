@@ -13,29 +13,33 @@ public class PromotionPO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String setter;
-	String id;
-	String name;
-	Date beginDate;
-	Date endDate;
+	
+	private static final int HOTEL_LENGTH = 10;
+	private static final int DISTRICT_LENGTH = 6;
 
-	ScopeType scopeType;//销售策略适用的范围，包括某地区、某酒店、某房间类型，若无用等长0代替
-	String scopeNum;
+	private String setterID;
+	private String promotionID;
+	private String reason;
+	private Date beginDate;
+	private Date endDate;
 
-	ConditionType conditionType;//销售策略适用的条件，包括房间数量、价值、会员等级（企业会员）、用户生日
-	double condionNum;
+	private ScopeType scopeType;//销售策略适用的范围，包括某地区、某酒店、某房间类型，若无用等长0代替
+	private String scopeNum;
 
-	DeductionType deductionType;//折扣的方式，包括打折，降价，（coupon优惠券方式暂缓）
-	double deductionNum;
+	private ConditionType conditionType;//销售策略适用的条件，包括房间数量、价值、会员等级（企业会员）、用户生日
+	private double condionNum;
+
+	private DeductionType deductionType;//折扣的方式，包括打折，降价，（coupon优惠券方式暂缓）
+	private double deductionNum;
 
 	public PromotionPO(String setter,String id,String name,
 					   Date beginDate,Date endDate,
 					   	ScopeType tempSType,String tempSNum,
 					   ConditionType tempCType,double tempCNum,
 					   DeductionType tempDType,double tempDNum){
-		this.setter = setter;
-		this.id = id;
-		this.name = name;
+		this.setterID = setter;
+		this.promotionID = id;
+		this.reason = name;
 		this.beginDate = beginDate;
 		this.endDate = endDate;
 
@@ -49,13 +53,13 @@ public class PromotionPO implements Serializable {
 		deductionNum =tempDNum;
 	}
 	public String getSetter(){
-		return this.setter;
+		return this.setterID;
 	}
 	public String getId(){
-		return this.id;
+		return this.promotionID;
 	}
 	public String getName(){
-		return this.name;
+		return this.reason;
 	}
 	public Date getBeginDate(){
 		return this.beginDate;

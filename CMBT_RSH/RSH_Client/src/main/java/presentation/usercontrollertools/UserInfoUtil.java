@@ -19,9 +19,9 @@ import bl.loginserviceimpl.LoginController;
 import bl.loginserviceimpl.LoginService_Stub;
 import bl.orderservice.OrderForHotel;
 import bl.orderservice.OrderForUser;
-import bl.orderserviceimpl.OrderForHotelImpl;
+import bl.orderserviceimpl.OrderForHotelController;
 import bl.orderserviceimpl.OrderForHotel_Stub;
-import bl.orderserviceimpl.OrderForUserImpl;
+import bl.orderserviceimpl.OrderForUserController;
 import bl.orderserviceimpl.OrderForUser_Stub;
 import bl.promotionServiceimpl.PromotionController;
 import bl.promotionServiceimpl.PromotionService_Stub;
@@ -92,8 +92,8 @@ public String getHotelID() {
     private LoginService loginService = new LoginController();
     private SearchHotelService searchHotelService = new SearchHotel();
     private HotelService hotelService =  new HotelController();
-    private OrderForUser orderForUser = new OrderForUserImpl();
-    private OrderForHotel orderForHotel = new OrderForHotelImpl();
+    private OrderForUser orderForUser = new OrderForUserController();
+    private OrderForHotel orderForHotel = new OrderForHotelController();
     private PromotionService promotionService = new PromotionController();
     private HotelInfoService hotelInfoService = new HotelInfoController();
     
@@ -189,7 +189,7 @@ public String getHotelID() {
     	UserVO userVO = userService.getInfo(userID);
     	userVO.birthday = birthday;
     	userVO.eMail = email;
-    	userVO.id = userID;
+    	userVO.userID = userID;
     	userVO.eMail = email;
     	userVO.sexuality = sexuality;
     	userVO.nickName = nickName;

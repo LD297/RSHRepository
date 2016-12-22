@@ -25,7 +25,7 @@ public class HotelPO implements Serializable{
 	/**
 	 * 酒店地址
 	 */
-	private String addr;
+	private String detailAddress;
 	private String district;
 	private String briefIntro;
 	
@@ -35,7 +35,7 @@ public class HotelPO implements Serializable{
 	
 	private double grade;
 	
-	public double standardRoomPrice;
+	public double standardPrice;
 	private String latestCheckinTime;
 
 	String imageAddress;
@@ -46,13 +46,13 @@ public class HotelPO implements Serializable{
 		this.password = password;
 		this.tel = tel;
 		this.name = name;
-		this.addr = addr;
+		this.detailAddress = addr;
 		this.district = district;
 		this.briefIntro = briefIntro;
 		this.facility = facility;
 		this.level = level;
 		this.grade = grade;
-		this.standardRoomPrice = standardRoomPrice;
+		this.standardPrice = standardRoomPrice;
 	}
 
 	public String getId() {
@@ -73,7 +73,7 @@ public class HotelPO implements Serializable{
 
 
 	public String getAddr() {
-		return addr;
+		return detailAddress;
 	}
 
 
@@ -98,7 +98,7 @@ public class HotelPO implements Serializable{
 	}
 
 	public double getStandardRoomPrice(){
-		return this.standardRoomPrice;
+		return this.standardPrice;
 	}
 
 	public String getLatestCheckinTime() {
@@ -111,7 +111,7 @@ public class HotelPO implements Serializable{
 	}
 	
 	public HotelVO changeIntoVO(){
-		HotelVO hotelVO = new HotelVO(hotelID, name, addr, hotelID, password, level, standardRoomPrice, latestCheckinTime, briefIntro, facility, imageAddress);
+		HotelVO hotelVO = new HotelVO(hotelID, name, detailAddress, hotelID, password, level, standardPrice, latestCheckinTime, briefIntro, facility, imageAddress);
 		return hotelVO;
 	}
 

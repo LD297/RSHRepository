@@ -24,9 +24,6 @@ public class ManagerHotelController implements ManagerHotelService{
 	}
 
 	// 网站管理人员更新酒店工作人员信息（酒店工作人员信息：酒店id，联系方式）
-	@Override
-	public ResultMessage updateHotelStaff(HotelStaffVO hotelStaffVO){
-		return WebManagerHotel.updateHotelStaff(hotelStaffVO);
-	}
+	
 
 }

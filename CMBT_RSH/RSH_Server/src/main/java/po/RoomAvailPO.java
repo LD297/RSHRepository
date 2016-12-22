@@ -1,39 +1,38 @@
 package po;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by sky-PC on 2016/12/16.
- */
-public class RoomAvailPO extends RoomPO implements Serializable{
-    /**
+
+public class RoomAvailPO implements Serializable{
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/**
-     * 对该类型房间信息查询的时间段
-     * (只包含起止日期，起于fromTo[0]的12:00，止于fromTo[1]的11：59)
-     */
-    public Date beginDate;
-    public Date endDate;
-    /**
-     * 该时间段内的可用房间数量（算法处理后的结果）
-     */
-    private int amountAvail;
-    
-    public RoomAvailPO(String id, String roomType,String address, int amountTotal, double price,
-                       boolean basicOrSpecial) {
-        super(id, roomType, address,amountTotal, price, basicOrSpecial);
-    }
-
-
-    public int getAmountAvail() {
-        return amountAvail;
-    }
-    public void setAmountAvail(int amountAvail) {
-        this.amountAvail = amountAvail;
-    }
-
+	private String hotelID;
+	private String roomType;
+	private String imageAddress;
+	
+	Date checkDate;
+	double price;
+	private int numOfAvailRoom;
+	
+	public RoomAvailPO(String hotelID,String roomType,String imageAddress,
+			Date checkDate,	int numOfAvailRoom,double price){
+		this.hotelID = hotelID;
+		this.roomType = roomType;
+		this.imageAddress = imageAddress;
+		this.checkDate = checkDate;
+		this.numOfAvailRoom = numOfAvailRoom;
+		this.price = price;
+	}
+	
+	public int getAmountAvail() {
+		return numOfAvailRoom;
+	}
+	public void setAmountAvail(int amountAvail) {
+		this.numOfAvailRoom = amountAvail;
+	}
+	
 }

@@ -76,7 +76,7 @@ public class ManageUserUIController {
     	String userid = idField.getText().trim();
     	boolean found = false;
     	for(int i=0;i<userVOs.size();i++){
-    		if(userVOs.get(i).id.equals(userid)){
+    		if(userVOs.get(i).userID.equals(userid)){
 				AnchorPane checkUserInfo = WebManagerUIFXMLFactory.getInstance().getCheckUserInfo();
 				CheckUserInfoUIController checkUserInfoUIController = WebManagerUIFXMLFactory.getInstance()
 						.getCheckUserInfoUIController();

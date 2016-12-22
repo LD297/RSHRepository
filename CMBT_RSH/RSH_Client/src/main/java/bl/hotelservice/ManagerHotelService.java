@@ -20,10 +20,4 @@ public interface ManagerHotelService {
 	 */
 	public ResultMessage addHotel(HotelVO hotelVO);
 
-	/**
-	 *  网站管理人员更新酒店工作人员信息（酒店工作人员信息：酒店id，联系方式）
-	 * @param hotelStaffVO
-	 * @return
-	 */
-	public ResultMessage updateHotelStaff(HotelStaffVO hotelStaffVO);
-}
+	}

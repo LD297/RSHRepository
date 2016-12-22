@@ -34,13 +34,14 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
         db.executeSql("DROP TABLE IF EXISTS CreditRecordInfo");
     }
     
-    public Iterator<CreditRecordPO> getCreditRecordList(String userID) throws RemoteException {
+    public ArrayList<CreditRecordPO> getCreditRecordList(String userID) throws RemoteException {
         db.executeSql("USE OurData");
         
         ArrayList<CreditRecordPO> CreditRecordList = new ArrayList<CreditRecordPO>();
+        
         if(this.checkExistence(userID)==ResultMessage.idNotExist||
         		this.checkExistence(userID)==ResultMessage.recordNotExist)
-        	return CreditRecordList.iterator();
+        	return CreditRecordList;
         
         String deUserID = this.getSecreted(userID);
         String getCreditRecordNumSql = "SELECT creditRecordNum FROM UserInfo WHERE userID="+deUserID+" LIMIT 1";
@@ -52,7 +53,7 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
             }
         }catch(SQLException e){
             e.printStackTrace();
-            return CreditRecordList.iterator();
+            return CreditRecordList;
         }
         String getCreditRecordListSql = "SELECT *FROM CreditRecordInfo WHERE userID="+ deUserID+" LIMIT "+String.valueOf(recordNum);
         ResultSet result = db.query(getCreditRecordListSql);
@@ -69,12 +70,12 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
                    
                 CreditRecordList.add(new CreditRecordPO(userID,date,orderID,creditAction,change,credit));
             }
-            Iterator<CreditRecordPO> iter = CreditRecordList.iterator();
-            return iter;
+            ArrayList<CreditRecordPO> creditRecordPOs = CreditRecordList;
+            return creditRecordPOs;
         }catch(SQLException e){
             e.printStackTrace();
         }
-        return CreditRecordList.iterator();
+        return CreditRecordList;
     }
 
     public ResultMessage addCreditRecord(CreditRecordPO po) throws RemoteException {

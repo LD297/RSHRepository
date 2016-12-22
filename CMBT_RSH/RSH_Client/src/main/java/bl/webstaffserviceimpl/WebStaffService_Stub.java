@@ -21,7 +21,7 @@ public class WebStaffService_Stub implements WebStaffService{
 	}
 
 	@Override
-	public ArrayList<WebSalesmanVO> getWebSalesmanInfo() {
+	public ArrayList<WebSalesmanVO> getAllWebSalesmen() {
 		WebSalesmanVO vo1 = new WebSalesmanVO("754656473838", "江苏省", "南京市", "栖霞区","", "王小二");
 		WebSalesmanVO vo2 = new WebSalesmanVO("713207738356", "江苏省", "南京市", "栖霞区", "","王小二");
 		WebSalesmanVO vo3 = new WebSalesmanVO("754333333336", "江苏省", "南京市", "栖霞区","", "王小二");

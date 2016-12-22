@@ -133,6 +133,9 @@ public class DistrictHelper {
 	};
 
 	public DistrictHelper(String district){
+		if(district==null ||district.length()<6){
+			district = "010009";
+		}
 		int iProvince = Integer.parseInt(district.substring(0,2));
 		int iCity = Integer.parseInt(district.substring(2,4));
 		int iArea = Integer.parseInt(district.substring(4,6));

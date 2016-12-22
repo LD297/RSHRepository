@@ -39,7 +39,7 @@ public class SingleUserAnchorPane extends AnchorPane{
 		nameInfoLabel = new Label(userVO.name);
 		nickNameLabel = new Label("昵称");
 		nickNameInfoLabel = new Label(userVO.nickName);
-		phoneInfoLabel = new Label(userVO.id);
+		phoneInfoLabel = new Label(userVO.userID);
 		creditLabel = new Label("信用值：");
 		creditInfoLabel = new Label(String.valueOf(userVO.credit));
 		memberTypeLabel = new Label(userVO.getMemberType().getString());
