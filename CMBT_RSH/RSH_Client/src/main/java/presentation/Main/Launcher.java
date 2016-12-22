@@ -24,11 +24,11 @@ public class Launcher extends Application{
         }
     }
 
-  /*  public void startLaunch(String[] args){
-        launch(args);
-    }*/
-    public static void main(String[] args){
+    public void startLaunch(String[] args){
         launch(args);
     }
+/*    public static void main(String[] args){
+        launch(args);
+    }*/
 
 }

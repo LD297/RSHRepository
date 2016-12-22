@@ -1,6 +1,8 @@
 package constant;
 
-public enum MemberType {
+import java.io.Serializable;
+
+public enum MemberType implements Serializable{
 	commom("普通会员"),
 	commerce("企业会员"),
 	not_member("非会员");

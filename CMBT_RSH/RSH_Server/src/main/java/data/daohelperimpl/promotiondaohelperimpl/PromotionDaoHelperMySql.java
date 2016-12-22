@@ -11,6 +11,7 @@ import po.PromotionPO;
 import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -21,8 +22,7 @@ import java.util.Date;
  * Created by sky-PC on 2016/12/3.
  */
 public class PromotionDaoHelperMySql implements PromotionDaoHelper{
-
-    private DBHelper db = new DBHelper();
+	private DBHelper db = new DBHelper();
 
     public void init(){                         
 

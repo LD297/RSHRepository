@@ -4,7 +4,6 @@ package bl.userserviceimpl;
 import constant.ResultMessage;
 import data.dao.userdao.UserDao;
 import po.UserPO;
-import rmi.Mock_RemoteHelper;
 import rmi.RemoteHelper;
 import vo.UserVO;
 
@@ -31,10 +30,10 @@ public class User {
 	}
 
 	private static void initRemote(){
-		if(userDao==null)
-			return;
-		RemoteHelper remoteHelper = Mock_RemoteHelper.getInstance();
-		userDao = remoteHelper.getUserDao();
+		if(userDao==null){
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
+			userDao = remoteHelper.getUserDao();
+		}		
 	}
 
 	/**
@@ -74,18 +73,25 @@ public class User {
 	 * @return
 	 */
 	public ResultMessage add(UserVO vo) {
+		initRemote();
 		try {
-			if(userDao.getInfo(vo.getId())!=null)
+			if(userDao.getInfo(vo.getId())!=null){
+				System.out.println("已存在");
 				return ResultMessage.already_exist;
+			}
+				
 		} catch (RemoteException e) {
+			System.out.println("链接错误");
 			return ResultMessage.remote_fail;
 		}
 
 		ResultMessage resultMessage = null;
 		UserPO po = changeIntoPO(vo);
 		try {
-			resultMessage = userDao.add(po);
+			resultMessage = userDao.insert(po);
 		}catch (RemoteException e){
+			e.printStackTrace();
+			System.out.println("连接一场");
 			return ResultMessage.remote_fail;
 		}
 		return resultMessage;
@@ -103,7 +109,12 @@ public class User {
 	private UserPO changeIntoPO(UserVO vo) {
 		UserPO po = new UserPO(vo.getId(), vo.getPassword(), vo.getNickName(),vo.getImageAddress(),vo.getBirthday(),
 				vo.getLevel(), vo.getMemberType(), vo.getCredit(),
-				vo.getName(), vo.getSexuality(), vo.geteMail() ,vo.getCommerceName()){};
+				vo.getName(), vo.getSexuality(), vo.geteMail() ,vo.getCommerceName()){
+
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;};
 		return po;
 	}
 

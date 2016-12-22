@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * Created by sky-PC on 2016/12/12.
  */
 public class test {
-    static HotelDaoHelperMySql hotelDao = new HotelDaoHelperMySql();
+    static HotelDaoHelperMySql hotelDao = null; // new HotelDaoHelperMySql();
    /*
 
     // success

@@ -19,7 +19,7 @@ import org.junit.Test;
  * Created by sky-PC on 2016/12/12.
  */
 public class test {
-    static PromotionDaoHelperMySql promotionDao = new PromotionDaoHelperMySql();
+    static PromotionDaoHelperMySql promotionDao =null;// new PromotionDaoHelperMySql();
 
    @Test 
     public void insert() throws RemoteException,ParseException{

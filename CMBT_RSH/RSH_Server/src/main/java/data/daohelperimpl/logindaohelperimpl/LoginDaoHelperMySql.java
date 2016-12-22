@@ -9,17 +9,17 @@ import po.OnlinePersonPO;
 import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 /**
  * Created by sky-PC on 2016/12/3.
  */
 public class LoginDaoHelperMySql implements LoginDaoHelper{
-	
-    private ArrayList<OnlinePersonPO> onlineInfo;
-    public void init(){
+	private static ArrayList<OnlinePersonPO> onlineInfo = new ArrayList<>();
+/*    public void init(){
     	onlineInfo = new ArrayList<OnlinePersonPO>();
-    }
+    }*/
 
     public void finish(){
         onlineInfo = null;

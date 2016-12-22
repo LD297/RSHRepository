@@ -15,7 +15,7 @@ import org.junit.Test;
  * Created by sky-PC on 2016/12/12.
  */
 public class test {
-    WebSalesmanDaoHelperMySql salesDao = new WebSalesmanDaoHelperMySql() ;
+    WebSalesmanDaoHelperMySql salesDao =  null ;//new WebSalesmanDaoHelperMySql() ;
     @Test
     public void testinsert()throws RemoteException{
     	String id = salesDao.getNewID();

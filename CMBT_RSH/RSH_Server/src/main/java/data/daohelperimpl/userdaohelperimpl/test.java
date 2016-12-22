@@ -21,7 +21,7 @@ import org.junit.Test;
  */
 public class test {
     static CreditRecordListDaoHelperMySql creditDao = new CreditRecordListDaoHelperMySql();
-    static UserDaoHelperMySql userDao = new UserDaoHelperMySql();
+    static UserDaoHelperMySql userDao =null;// new UserDaoHelperMySql();
     
     @Test
     public void testaddCreditRecord() throws RemoteException{

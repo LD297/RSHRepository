@@ -1,30 +1,23 @@
 package data.daohelperimpl.userdaohelperimpl;
 
-import com.mysql.jdbc.StringUtils;
-
 import constant.MemberType;
 import constant.ResultMessage;
 import constant.Sexuality;
-import data.dao.userdao.UserDao;
 import data.daohelper.UserDaoHelper;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.UserPO;
 
-import java.io.File;
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
  * Created by sky-PC on 2016/12/3.
  */
 public class UserDaoHelperMySql implements UserDaoHelper{
-
-    private DBHelper db = new DBHelper();
+	private DBHelper db = new DBHelper();
     private static final String nameKey = "1jkl43";
     private static final String pwKey = "&afds890";
     public void init(){
@@ -95,6 +88,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     // 会员等级 会员类型 信用值
     // 真实姓名 性别 邮箱
     public ResultMessage insert(UserPO userPO) throws RemoteException {
+    	System.out.println("shujuceng insert");
         db.executeSql("USE OurData");
 
         if(this.checkExistence(userPO.getId())==ResultMessage.idAlreadyExist)

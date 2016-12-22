@@ -13,11 +13,11 @@ import org.junit.Test;
  * Created by sky-PC on 2016/12/12.
  */
 public class test {
-    static LoginDaoHelperMySql loginDao = new LoginDaoHelperMySql();
+    static LoginDaoHelperMySql loginDao = null;// new LoginDaoHelperMySql();
     
     @Test
     public void addOnline() throws RemoteException{
-    	loginDao.init();
+//    	loginDao.init();
         OnlinePersonPO po = new OnlinePersonPO(Role.user,"12345678","123456");
         ResultMessage result = loginDao.addOnline(po);
         

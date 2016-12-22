@@ -8,18 +8,26 @@ import java.util.Iterator;
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.hotelservice.SearchHotelService;
+import bl.hotelserviceimpl.SearchHotel;
 import bl.hotelserviceimpl.SearchHotelService_Stub;
+import bl.hotelserviceimpl.controller.HotelController;
+import bl.hotelserviceimpl.controller.HotelInfoController;
 import bl.hotelserviceimpl.controller.HotelInfoService_Stub;
 import bl.hotelserviceimpl.controller.HotelService_Stub;
 import bl.loginservice.LoginService;
+import bl.loginserviceimpl.LoginController;
 import bl.loginserviceimpl.LoginService_Stub;
 import bl.orderservice.OrderForHotel;
 import bl.orderservice.OrderForUser;
+import bl.orderserviceimpl.OrderForHotelImpl;
 import bl.orderserviceimpl.OrderForHotel_Stub;
+import bl.orderserviceimpl.OrderForUserImpl;
 import bl.orderserviceimpl.OrderForUser_Stub;
+import bl.promotionServiceimpl.PromotionController;
 import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
 import bl.userservice.UserService;
+import bl.userserviceimpl.UserController;
 import bl.userserviceimpl.UserService_Stub;
 import constant.ResultMessage;
 import constant.Role;
@@ -69,20 +77,28 @@ public String getHotelID() {
     private String city = null;
     private String area = null;
     private String orderID = null;
-//    private UserVO userVO = null;
     // use stub
-    private UserService userService = new UserService_Stub();
+/*  private UserService userService = new UserService_Stub();
     private LoginService loginService = new LoginService_Stub();
-    // use stub
     private SearchHotelService searchHotelService = new SearchHotelService_Stub();
     private HotelService hotelService =  new HotelService_Stub();
     private OrderForUser orderForUser = new OrderForUser_Stub();
     private OrderForHotel orderForHotel = new OrderForHotel_Stub();
     private PromotionService promotionService = new PromotionService_Stub();
-    private HotelInfoService hotelInfoService = new HotelInfoService_Stub();
-//    private OtherOrderService otherOrderService = new OtherOrderController();
-  
-//    private ArrayList<HotelVO> hotelVOs = null;
+    private HotelInfoService hotelInfoService = new HotelInfoService_Stub();*/
+    
+//替换stub
+    private UserService userService = new UserController();
+    private LoginService loginService = new LoginController();
+    private SearchHotelService searchHotelService = new SearchHotel();
+    private HotelService hotelService =  new HotelController();
+    private OrderForUser orderForUser = new OrderForUserImpl();
+    private OrderForHotel orderForHotel = new OrderForHotelImpl();
+    private PromotionService promotionService = new PromotionController();
+    private HotelInfoService hotelInfoService = new HotelInfoController();
+    
+    
+    
     
     public String getUserID() {
         return userID;

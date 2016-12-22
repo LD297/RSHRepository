@@ -13,6 +13,10 @@ import po.UserPO;
 
 public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static UserDaoImpl userDaoImpl;
 	private UserDaoHelper userDaoHelper;
 	private DaoHelperFactory daoHelperFactory;
@@ -53,6 +57,12 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 	}
 	public ArrayList<UserPO> getAll()throws RemoteException{
 		return userDaoHelper.getAll();
+	}
+
+	@Override
+	public int getMemberLevel() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

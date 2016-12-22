@@ -1,9 +1,15 @@
 package po;
 
+import java.io.Serializable;
+
 import vo.RoomNormVO;
 
-public class RoomNormPO {
+public class RoomNormPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String hotelID;
 	private String roomType;
 	private double price;
