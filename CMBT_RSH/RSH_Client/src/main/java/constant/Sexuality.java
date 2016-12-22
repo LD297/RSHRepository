@@ -1,6 +1,8 @@
 package constant;
 
-public enum Sexuality {
+import java.io.Serializable;
+
+public enum Sexuality implements Serializable{
 	male("男"),
 	female("女");
 	

@@ -12,7 +12,7 @@ public class UserPO implements Serializable{
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = -8288241397984958515L;
+	private static final long serialVersionUID = 1L;
 	String id;
 	String password;
 	String nickName;

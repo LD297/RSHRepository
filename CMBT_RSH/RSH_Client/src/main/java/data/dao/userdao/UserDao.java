@@ -18,7 +18,7 @@ public interface UserDao extends Remote{
 
 	public ResultMessage update(UserPO po) throws RemoteException;
 
-	public ResultMessage add(UserPO po) throws RemoteException;
+	public ResultMessage insert(UserPO po) throws RemoteException;
 
 	/*
 	public ResultMessage checkPassword(String id,String password) throws RemoteException;

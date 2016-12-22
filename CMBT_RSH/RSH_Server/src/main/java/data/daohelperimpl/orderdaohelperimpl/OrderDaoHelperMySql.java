@@ -18,8 +18,7 @@ import java.sql.SQLException;
  * Created by sky-PC on 2016/11/27.
  */
 public class OrderDaoHelperMySql implements OrderDaoHelper{
-
-    private DBHelper db = new DBHelper();
+	private DBHelper db = new DBHelper();
     private static final String key = "952ntjh";
     public void init(){
 

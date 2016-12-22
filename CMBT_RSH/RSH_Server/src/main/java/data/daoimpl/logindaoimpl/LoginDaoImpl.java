@@ -13,6 +13,10 @@ import po.OnlinePersonPO;
 
 public class LoginDaoImpl extends UnicastRemoteObject implements LoginDao{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static LoginDaoImpl loginDaoImpl;
 	private LoginDaoHelper loginDaoHelper;
 	private DaoHelperFactory daoHelperFactory;

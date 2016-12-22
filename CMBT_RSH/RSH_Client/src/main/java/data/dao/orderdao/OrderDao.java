@@ -4,6 +4,7 @@ import constant.ResultMessage;
 import constant.StateOfOrder;
 import po.OrderPO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Date;
 /**
  * Created by sky-PC on 2016/11/27.
  */
-public interface OrderDao {
+public interface OrderDao extends Remote{
     // 根据订单编号查找订单
     public OrderPO searchByID(String orderID) throws RemoteException;
     // 根据用户编号查找订单

@@ -88,8 +88,7 @@ public class RemoteHelper {
     }
 
 	public OrderDao getOrderDao() {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDao;
 	}
 }
 

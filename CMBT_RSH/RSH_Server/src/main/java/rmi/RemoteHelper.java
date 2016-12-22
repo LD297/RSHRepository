@@ -44,7 +44,7 @@ public class RemoteHelper {
             LocateRegistry.createRegistry(8888);
             loginDaoImpl = LoginDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/LoginDaoImpl", loginDaoImpl);
-            creditRecordListDaoImpl = creditRecordListDaoImpl.getInstance();
+            creditRecordListDaoImpl = CreditRecordListDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/CreditRecordListDaoImpl", creditRecordListDaoImpl);
             userDaoImpl = UserDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/UserDaoImpl", userDaoImpl);

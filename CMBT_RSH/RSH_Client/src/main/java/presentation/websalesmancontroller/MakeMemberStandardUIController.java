@@ -54,12 +54,13 @@ public class MakeMemberStandardUIController {
                 int credit = Integer.valueOf(boundary);
                 if(credit>0){
                     creditPrompt.setVisible(false);
-//                    userService.setMemberStandard();
+                    userService.setMemberStandard(credit);
                     backButtonClicked(null);
                     creditTextField.setPromptText(boundary);
+                    return;
                 }
-            } else
-                creditPrompt.setVisible(true);
+            }
+            creditPrompt.setVisible(true);
         }
 
         @FXML

@@ -26,7 +26,11 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao{
     private final String tableName = "OrderInfo";
     private Connection conn = null;**/
 
-    private static OrderDaoImpl orderDaoImpl;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static OrderDaoImpl orderDaoImpl;
     private OrderDaoHelper orderDaoHelper;
     private DaoHelperFactory daoHelperFactory;
 
@@ -95,6 +99,12 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao{
     public ResultMessage cancelAbTimeUpdate(String orderID, Date cancelAbTime) throws RemoteException{
         return orderDaoHelper.cancelAbTimeUpdate(orderID, cancelAbTime);
     }
+
+	@Override
+	public ResultMessage update(OrderPO orderPO) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

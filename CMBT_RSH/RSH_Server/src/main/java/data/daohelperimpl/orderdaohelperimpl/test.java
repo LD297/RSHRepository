@@ -31,7 +31,7 @@ import java.util.Date;
 
 public class test {
 // success
-   static OrderDaoHelperMySql orderDao = new OrderDaoHelperMySql();
+   static OrderDaoHelperMySql orderDao = null;// new OrderDaoHelperMySql();
     
 
 /*

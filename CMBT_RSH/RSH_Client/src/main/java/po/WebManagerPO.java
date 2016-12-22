@@ -1,10 +1,14 @@
 package po;
 
-import vo.WebManagerVO;
+import java.io.Serializable;
 
-public class WebManagerPO {
+public class WebManagerPO implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6478574264988315579L;
 	String webManagerID;
 	String password;
 

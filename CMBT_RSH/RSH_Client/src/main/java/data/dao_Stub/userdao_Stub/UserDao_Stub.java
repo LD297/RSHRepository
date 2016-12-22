@@ -51,7 +51,7 @@ public class UserDao_Stub implements UserDao {
     }
 
     @Override
-    public ResultMessage add(UserPO po) throws RemoteException {
+    public ResultMessage insert(UserPO po) throws RemoteException {
         userPOS.add(po);
         return ResultMessage.succeed;
     }
