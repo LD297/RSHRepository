@@ -42,7 +42,7 @@ public class MakeMemberStandardUIController {
 
     private AnchorPane prePane;
 
-        private UserService userService;
+    private UserService userService;
 
         public void setPrePane(AnchorPane prePane){
             this.prePane = prePane;
@@ -82,4 +82,8 @@ public class MakeMemberStandardUIController {
             creditPrompt.setVisible(false);
         }
 
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 }

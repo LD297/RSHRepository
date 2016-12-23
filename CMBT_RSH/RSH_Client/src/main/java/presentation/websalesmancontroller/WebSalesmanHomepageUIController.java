@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import presentation.hotelcontroller.PromotionUIController;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
+import vo.WebSalesmanVO;
 
 import java.io.IOException;
 import java.net.URL;
@@ -54,12 +55,10 @@ public class WebSalesmanHomepageUIController {
 
     private AnchorPane prePane;
 
-    private String webSalesmanId;
+    private WebSalesmanVO webSalesmanVO;
 
     private PromotionService promotionService;
-
     private OrderForWebsite orderForWebsite;
-
     private UserService userService;
 
     private static AnchorPane promotionPane;
@@ -130,6 +129,11 @@ public class WebSalesmanHomepageUIController {
         else
             scene = promotionPane.getScene();
 
+        promotionUIController.setPromotionService(promotionService);
+        promotionUIController.setWebSalesVO(webSalesmanVO);
+        promotionUIController.setSetterId();
+        promotionUIController.refreshPage();
+
         Stage stage = (Stage) anchorPane.getScene().getWindow();
         stage.setScene(scene);
     }
@@ -142,6 +146,9 @@ public class WebSalesmanHomepageUIController {
         else
             scene = exceptionalOrderPane.getScene();
 
+        exceptionalOrderUIController.setOrderForWebsite(orderForWebsite);
+        exceptionalOrderUIController.refreshPage();
+
         Stage stage = (Stage) anchorPane.getScene().getWindow();
         stage.setScene(scene);
     }
@@ -150,12 +157,13 @@ public class WebSalesmanHomepageUIController {
     void changeToTopUpCreditUI(MouseEvent event) {
         Scene scene = null;
         if(topUpCreditPane.getScene()==null){
-            scene = new Scene(topUpCreditPane,
-                    WebSalesmanUIFXMLFactory.TOPUPCREDIT_WIDTH, WebSalesmanUIFXMLFactory.TOPUPCREDIT_HEIGHT);
+            scene = new Scene(topUpCreditPane, WebSalesmanUIFXMLFactory.TOPUPCREDIT_WIDTH,
+                    WebSalesmanUIFXMLFactory.TOPUPCREDIT_HEIGHT);
         }
-
         else
             scene = topUpCreditPane.getScene();
+
+        topUpCreditUIController.setUservice(userService );
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
         stage.setX(WebSalesmanUIFXMLFactory.TOPUPCREDIT_X);
@@ -173,6 +181,8 @@ public class WebSalesmanHomepageUIController {
 
         else
             scene = makeMemberStandardPane.getScene();
+
+        makeMemberStandardUIController.setUserService(userService);
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
         stage.setX(WebSalesmanUIFXMLFactory.TOPUPCREDIT_X);
@@ -202,9 +212,6 @@ public class WebSalesmanHomepageUIController {
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
-    public void setWebSalesmanId(String webSalesmanId) {
-        this.webSalesmanId = webSalesmanId;
-    }
     public void setPromotionService(PromotionService promotionService) {
         this.promotionService = promotionService;
     }
@@ -213,5 +220,9 @@ public class WebSalesmanHomepageUIController {
     }
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    public void setWebSalesmanVO(WebSalesmanVO webSalesmanVO) {
+        this.webSalesmanVO = webSalesmanVO;
     }
 }

@@ -186,7 +186,7 @@ public class RoomAvailUIController {
         // 流程：set当前页的roomAvail->初始化showPanes->显示roomAvail
         if(currentPage>=0&&currentPage<fullPageNum){
             setRoomAvailOnShow(true);
-        } else if((remainderRoomAvailNum!=0)&&(currentPage==fullPageNum))
+        } else if((fullPageNum==0&&remainderRoomAvailNum==0)||(remainderRoomAvailNum>0&&currentPage==fullPageNum))
             setRoomAvailOnShow(false);
         else if(currentPage<0){
             System.out.println("已是第一页！");

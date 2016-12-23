@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import bl.hotelservice.HotelInfoService;
 import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
 import constant.ConditionType;
@@ -17,9 +18,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import vo.PromotionVO;
+import vo.WebSalesmanVO;
 
 public class PromotionUIController {
 
@@ -79,14 +82,10 @@ public class PromotionUIController {
     private AddPromotionUIController addPromotionUIController;
 
     private AnchorPane prePane;
-    // TODO
-    PromotionService promotionService = new PromotionService_Stub();
-    private boolean isHotel;
-    // 如果是酒店，该string为酒店id
-    // 如果不是酒店，是网站营销人员，该string为网站营销人员所在地区
-    private String idForSearchPro;
-    // 如果不是酒店，该string为网站营销人员id
-    private String webSalesId = null;
+
+    private PromotionService promotionService;
+    private HotelInfoService hotelInfoService = null;
+
 
     // 该酒店所有促销策略
     private ArrayList<PromotionVO> promotions ;
@@ -100,11 +99,12 @@ public class PromotionUIController {
     private int fullPageNum = 0;
     private int remainderProNum = 0;
 
+    private WebSalesmanVO webSalesmanVO = null;
+    private String hotelId = "";
+    private String setterId = "";
+
     private void setPromotions(){
-        if(isHotel)
-            promotions = promotionService.getPromotionOfHotel(idForSearchPro);
-        else
-            promotions = promotionService.getPromotionOfDistrict(idForSearchPro);
+        promotions = promotionService.getPromotionOfHotel(setterId);
     }
     private void initCurrentPage(){
         currentPage = 0;
@@ -155,14 +155,21 @@ public class PromotionUIController {
 
             String id = thePromotion.promotionID;
             String reason = thePromotion.reason;
+            if(reason.length()<5)
+                reason = "  "+reason;
 
             ConditionType conditionType = thePromotion.conditionType;
             String condition = "";
             condition = ConditionType.getStringConditionType(conditionType);
+            if(condition.length()<5)
+                condition = "           "+condition;
 
             // 如果有需要，显示折扣条件中的数量
-            if(conditionType.equals(ConditionType.ROOMNUM)||conditionType.equals(ConditionType.TOTAL))
+            if(conditionType.equals(ConditionType.ROOMNUM)){
+                condition += (int)thePromotion.conditionNum;
+            } else if(conditionType.equals(ConditionType.TOTAL)){
                 condition += thePromotion.conditionNum;
+            }
 
             DeductionType deductionType = thePromotion.deductionType;
             String deduction = "";
@@ -182,7 +189,7 @@ public class PromotionUIController {
             for(int i=0; i<NUM_OF_ITEMS; i++){
                 eachLabel = labels.get(i);
                 // TODO 让字体居中
-//                eachLabel.setTextAlignment(TextAlignment.CENTER);
+                eachLabel.setTextAlignment(TextAlignment.CENTER);
                 eachLabel.setText(items[i]);
             }
 
@@ -199,6 +206,7 @@ public class PromotionUIController {
         pageLabel.setText(String.valueOf(currentPage+1));
     }
     private void showPage(){
+        System.out.println(fullPageNum+"~"+remainderProNum+"~~~"+currentPage);
         if((currentPage>=0)&&(currentPage<fullPageNum))
             setPromotionOnShow(true);
         else if((fullPageNum==0&&remainderProNum==0)||(remainderProNum>0&&currentPage==fullPageNum))
@@ -222,10 +230,10 @@ public class PromotionUIController {
         String promotionID = ((Label)thePane.getChildren().get(0)).getText();
 
         String setterID = "";
-        if(isHotel)
-            setterID = idForSearchPro;
+        if(webSalesmanVO==null)
+            setterID = hotelId;
         else
-            setterID = webSalesId;
+            setterID = webSalesmanVO.getId();
 
         ResultMessage res = promotionService.delPromotion(setterID,  promotionID);
         System.out.println(res);
@@ -239,13 +247,13 @@ public class PromotionUIController {
     @FXML
     void nextPageClicked(MouseEvent event){
         currentPage++;
-        refreshPage();
+        showPage();
     }
 
     @FXML
     void prePageClicked(MouseEvent event){
         currentPage--;
-        refreshPage();
+        showPage();
     }
 
     @FXML
@@ -276,14 +284,17 @@ public class PromotionUIController {
             }
         if(addPromotionUIController==null)
             addPromotionUIController = loader.getController();
-
         addPromotionUIController.setPrePane(anchorPane);
-        if(isHotel)
-            addPromotionUIController.setSetterID(idForSearchPro);
-        else
-            addPromotionUIController.setSetterID(webSalesId);
 
-        addPromotionUIController.setIsHotel(isHotel);
+        addPromotionUIController.setPromotionService(promotionService);
+        addPromotionUIController.setHotelInfoService(hotelInfoService);
+
+        addPromotionUIController.setWebSalesmanVO(webSalesmanVO);
+        addPromotionUIController.setSetterId(setterId);
+        String promotionId = promotionService.getIDForNewPromotion(setterId);
+        addPromotionUIController.setPromotionId(promotionId);
+
+        addPromotionUIController.refreshPageBySetter();
 
         greyLabel.setVisible(true);
 
@@ -311,21 +322,10 @@ public class PromotionUIController {
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
 
         setShowPanes();
-        refreshPage();
     }
 
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
-    }
-    public void setPromotionService(PromotionService promotionService) {
-        this.promotionService = promotionService;
-    }
-    public void setIsHotel(boolean isHotel){
-        this.isHotel = isHotel;
-    }
-    public void setIdForSearchPro(String id){this.idForSearchPro  = id;}
-    public void setWebSalesId(String webSalesId){
-        this.webSalesId = webSalesId;
     }
     private void setShowPanes(){
         showPanes = new AnchorPane[]{showPane0, showPane01, showPane02, showPane03};
@@ -336,5 +336,25 @@ public class PromotionUIController {
         setFullPageNum();
         setRemainderProNum();
         showPage();
+    }
+
+    public void setPromotionService(PromotionService promotionService) {
+        this.promotionService = promotionService;
+    }
+    public void setHotelInfoService(HotelInfoService hotelInfoService){
+        this.hotelInfoService = hotelInfoService;
+    }
+    public void setWebSalesVO(WebSalesmanVO webSalesVO) {
+        this.webSalesmanVO = webSalesVO;
+    }
+    public void setHotelId(String hotelId){
+        this.hotelId = hotelId;
+    }
+
+    public void setSetterId(){
+        if(webSalesmanVO!=null)
+            this.setterId = webSalesmanVO.getId();
+        else
+            this.setterId = hotelId;
     }
 }

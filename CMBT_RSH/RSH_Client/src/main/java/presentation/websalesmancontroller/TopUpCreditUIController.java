@@ -1,5 +1,6 @@
 package presentation.websalesmancontroller;
 
+import bl.userservice.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -7,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
+import sun.jvm.hotspot.jdi.IntegerTypeImpl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,9 +44,13 @@ public class TopUpCreditUIController {
     @FXML
     private Button confirmButton;
 
+    private UserService uservice;
+
     @FXML
     void confirmButtonClicked(MouseEvent event) {
-        // TODO
+        String userId = userIdTextField.getText();
+        String  value = topNumTextField.getText();
+        uservice.addCredit(Integer.valueOf(value), userId);
         backButtonClicked(null);
     }
 
@@ -65,5 +71,9 @@ public class TopUpCreditUIController {
         assert topNumTextField != null : "fx:id=\"topNumTextField\" was not injected: check your FXML file '信用充值界面.fxml'.";
         assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '信用充值界面.fxml'.";
 
+    }
+
+    public void setUservice(UserService uservice) {
+        this.uservice = uservice;
     }
 }

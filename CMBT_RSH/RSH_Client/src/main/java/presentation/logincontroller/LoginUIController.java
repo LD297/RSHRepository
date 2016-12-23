@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginController;
@@ -15,6 +16,8 @@ import bl.orderservice.OrderForWebsite;
 import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
 import bl.userservice.UserService;
+import bl.webstaffservice.WebStaffService;
+import bl.webstaffserviceimpl.WebSalesman;
 import constant.ResultMessage;
 import constant.Role;
 import javafx.event.ActionEvent;
@@ -42,6 +45,7 @@ import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 import presentation.websalesmancontroller.WebSalesmanHomepageUIController;
 import presentation.websalesmancontrollertools.WebSalesmanServiceFactory;
 import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
+import vo.WebSalesmanVO;
 
 /**
  * 登陆界面，其中如果是用户，可以选择注册
@@ -174,6 +178,7 @@ public class LoginUIController {
 
                 HotelService hotelService = HotelServiceFactory.getInstance().getHotelService();
                 PromotionService promotionService = HotelServiceFactory.getInstance().getPromotionService();
+                HotelInfoService hotelInfoService = HotelServiceFactory.getInstance().getHotelInfoService();
                 OrderForHotel orderForHotel = HotelServiceFactory.getInstance().getOrderForHotel();
 
                 AnchorPane hotelHomepage = HotelUIFXMLFactory.getInstance().getHotelHomePage();
@@ -184,6 +189,7 @@ public class LoginUIController {
                 hotelHomepageUIController.setHotelId(id);
                 hotelHomepageUIController.setHotelService(hotelService);
                 hotelHomepageUIController.setPromotionService(promotionService);
+                hotelHomepageUIController.setHotelInfoService(hotelInfoService);
                 hotelHomepageUIController.setOrderForHotel(orderForHotel);
 
                 Stage stage = (Stage)idField.getScene().getWindow();
@@ -201,6 +207,7 @@ public class LoginUIController {
             LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
             if(loginService.checkOnline(Role.websalesman, id, password ).equals(ResultMessage.succeed)){
 
+                WebStaffService webStaffService = WebSalesmanServiceFactory.getInstance().getWebStaffService();
                 PromotionService promotionService = WebSalesmanServiceFactory.getInstance().getPromotionService();
                 OrderForWebsite orderForWebsite = WebSalesmanServiceFactory.getInstance().getOrderForWebsite();
                 UserService userService = WebSalesmanServiceFactory.getInstance().getUserService();
@@ -209,8 +216,10 @@ public class LoginUIController {
                 WebSalesmanHomepageUIController webSalesmanHomepageUIController = WebSalesmanUIFXMLFactory.
                         getInstance().getWebSalesmanHomepageUIController();
 
+                WebSalesmanVO webSalesmanVO = webStaffService.webSalesmanVO(id);
                 webSalesmanHomepageUIController.setPrePane(loginBelowAnchorpane);
-                webSalesmanHomepageUIController.setWebSalesmanId(id);
+                webSalesmanHomepageUIController.setWebSalesmanVO(webSalesmanVO);
+                // 配置逻辑处理服务
                 webSalesmanHomepageUIController.setPromotionService(promotionService);
                 webSalesmanHomepageUIController.setOrderForWebsite(orderForWebsite);
                 webSalesmanHomepageUIController.setUserService(userService);

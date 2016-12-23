@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.orderservice.OrderForHotel;
 import bl.promotionservice.PromotionService;
@@ -56,9 +57,8 @@ public class HotelHomepageUIController {
     private String hotelId;
 
     private HotelService hotelService;
-
     private PromotionService promotionService;
-
+    private HotelInfoService hotelInfoService;
     private OrderForHotel orderForHotel;
 
     // 酒店信息维护界面根结点
@@ -80,17 +80,6 @@ public class HotelHomepageUIController {
     private static AnchorPane roomAvailUIPane;
     // 可用客房信息维护界面控制器
     private static RoomAvailUIController roomAvailUIController;
-
-    // Login界面set进来的
-    public void setHotelService(HotelService hotelService) {
-        this.hotelService = hotelService;
-    }
-    public void setPromotionService(PromotionService promotionService) {
-        this.promotionService = promotionService;
-    }
-    public void setOrderForHotel(OrderForHotel orderForHotel) {
-        this.orderForHotel = orderForHotel;
-    }
 
     @FXML
     void changeToBasicInfoUI(MouseEvent event) {
@@ -142,8 +131,9 @@ public class HotelHomepageUIController {
         promotionUIController.setPrePane(anchorPane);
         // 配置promotionService
         promotionUIController.setPromotionService(promotionService);
-        promotionUIController.setIsHotel(true);
-        promotionUIController.setIdForSearchPro(hotelId);
+        promotionUIController.setHotelInfoService(hotelInfoService);
+        promotionUIController.setHotelId(hotelId);
+        promotionUIController.setSetterId();
         promotionUIController.refreshPage();
 
         Scene scene = null;
@@ -243,4 +233,20 @@ public class HotelHomepageUIController {
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }
+
+
+    // Login界面set进来的
+    public void setHotelService(HotelService hotelService) {
+        this.hotelService = hotelService;
+    }
+    public void setPromotionService(PromotionService promotionService) {
+        this.promotionService = promotionService;
+    }
+    public void setHotelInfoService(HotelInfoService hotelInfoService) {
+        this.hotelInfoService = hotelInfoService;
+    }
+    public void setOrderForHotel(OrderForHotel orderForHotel) {
+        this.orderForHotel = orderForHotel;
+    }
+
 }

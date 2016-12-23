@@ -284,7 +284,7 @@ public class CheckOrderUIController {
         // 流程：set当前页面要显示的order-> set要显示的anchorPanes->初始化容器->显示order
         if(currentPage>=0&&currentPage<fullPageNum)
             setOrderOnShow(true);
-        else if((remainderOrderNum!=0)&&(currentPage==fullPageNum))
+        else if((fullPageNum==0&&remainderOrderNum==0)||(remainderOrderNum>0&&currentPage==fullPageNum))
             setOrderOnShow(false);
         else if(currentPage<0){
             System.out.println("已是第一页！");

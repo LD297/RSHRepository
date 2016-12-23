@@ -94,7 +94,7 @@ public class ExceptionalOrderUIController {
 
     private AnchorPane[] aPanesForShow;
 
-    private void refreshPage(){
+    public void refreshPage(){
         setExceptionalOrder();
         setFullPageNum();
         setRemainderOrderNum();
@@ -213,8 +213,8 @@ public class ExceptionalOrderUIController {
 
     private void setExceptionalOrder(){
         // TODO
-//        exceptionalOrder = orderForWebsite.browseUnperformed();
-        exceptionalOrder = DataFactory.getOrderVOList(4);
+        exceptionalOrder = orderForWebsite.browseUnperformed();
+//        exceptionalOrder = DataFactory.getOrderVOList(4);
 
     }
 
@@ -291,12 +291,14 @@ public class ExceptionalOrderUIController {
         assert isHalfCheckBox != null : "fx:id=\"isHalfCheckBox\" was not injected: check your FXML file '网站营销人员浏览异常订单.fxml'.";
 
         setAPanesForShow();
-        refreshPage();
 
     }
-
     private void setAPanesForShow(){
         aPanesForShow = new AnchorPane[]{showPane0, showPane1, showPane2};
+    }
+
+    public void setOrderForWebsite(OrderForWebsite orderForWebsite){
+        this.orderForWebsite = orderForWebsite;
     }
 }
 
