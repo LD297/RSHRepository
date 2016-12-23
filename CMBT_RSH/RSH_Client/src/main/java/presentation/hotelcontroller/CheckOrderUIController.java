@@ -112,19 +112,19 @@ public class CheckOrderUIController {
     /**
      * 未执行订单的tab可选吗？
      */
-    boolean isUnExeSelectable = true;
+    boolean isUnExeSelectable = false;
     /**
      * 已执行订单的tab可选吗？
      */
-    boolean isExeSelectable = true;
+    boolean isExeSelectable = false;
     /**
      * 异常订单的tab可选吗？
      */
-    boolean isExcSelectable = true;
+    boolean isExcSelectable = false;
     /**
      * 已撤销订单的tab可选吗？
      */
-    boolean isRevoSelectable = true;
+    boolean isRevoSelectable = false;
     // 该酒店所有未执行订单
     private ArrayList<OrderVO> unexecutedOrder;
     private ArrayList<OrderVO> executedOrder;
@@ -284,7 +284,7 @@ public class CheckOrderUIController {
         // 流程：set当前页面要显示的order-> set要显示的anchorPanes->初始化容器->显示order
         if(currentPage>=0&&currentPage<fullPageNum)
             setOrderOnShow(true);
-        else if((remainderOrderNum!=0)&&(currentPage==fullPageNum))
+        else if((fullPageNum==0&&remainderOrderNum==0)||(remainderOrderNum>0&&currentPage==fullPageNum))
             setOrderOnShow(false);
         else if(currentPage<0){
             System.out.println("已是第一页！");
@@ -562,10 +562,16 @@ public class CheckOrderUIController {
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
+    }
     public void setOrderForHotel(OrderForHotel orderForHotel) {
         this.orderForHotel = orderForHotel;
     }
-    public void setHotelId(String hotelId) {
-        this.hotelId = hotelId;
+    public void initSelectable(){
+        isUnExeSelectable = true;
+        isExcSelectable = true;
+        isExcSelectable = true;
+        isRevoSelectable = true;
     }
 }

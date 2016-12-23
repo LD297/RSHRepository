@@ -52,5 +52,9 @@
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Label>
+      <Label fx:id="roomTypePrompt" layoutX="146.0" layoutY="136.0" prefHeight="17.0" prefWidth="105.0" text="不得为空" textFill="RED" />
+      <Label fx:id="roomNumPrompt" layoutX="146.0" layoutY="223.0" prefHeight="17.0" prefWidth="105.0" text="数量不得小于1" textFill="RED" />
+      <Label fx:id="roomPricePrompt" layoutX="146.0" layoutY="300.0" text="价格不得低于0" textFill="RED" />
+      <Label fx:id="roomUrlPrompt" layoutX="336.0" layoutY="300.0" prefHeight="17.0" prefWidth="146.0" text="图片地址不得为空" textFill="RED" />
    </children>
 </AnchorPane>

@@ -6,11 +6,10 @@ package presentation.hotelcontroller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.EventListener;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
-import constant.HotelBasicInfoUIFeedback;
+import constant.HotelInputFeedback;
 import constant.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,11 +21,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import presentation.hotelcontrollertools.HotelBasicInfoUICheck;
+import presentation.hotelcontrollertools.HotelInputCheck;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import vo.HotelVO;
-
-import javax.swing.*;
 
 public class HotelBasicInfoUIController {
 
@@ -255,7 +252,7 @@ public class HotelBasicInfoUIController {
     }
 
     private void showPrompt(String inputCheck, Label promt) {
-        if (!inputCheck.equals(HotelBasicInfoUIFeedback.LEGAL)) {
+        if (!inputCheck.equals(HotelInputFeedback.LEGAL)) {
             promt.setVisible(true);
             promt.setText(inputCheck);
         }
@@ -264,32 +261,31 @@ public class HotelBasicInfoUIController {
     @FXML
     void confirmButtonClicked(MouseEvent event) {
         if(editable){
-            editable = false;
             promptsInvisible();
             String inputCheck = "";
 
             String name = hotelNameTextField.getText();
-            inputCheck = HotelBasicInfoUICheck.checkHotelName(name);
+            inputCheck = HotelInputCheck.checkHotelName(name);
             showPrompt(inputCheck, hotelNamePrompt);
 
             String level = levelTextField.getText();
-            inputCheck = HotelBasicInfoUICheck.checkLevel(level);
+            inputCheck = HotelInputCheck.checkLevel(level);
             showPrompt(inputCheck, levelPrompt);
 
             String checkIn = checkInTextField.getText();
-            inputCheck = HotelBasicInfoUICheck.checkTime(checkIn);
+            inputCheck = HotelInputCheck.checkTime(checkIn);
             showPrompt(inputCheck, timePrompt);
 
             String price = priceTextField.getText();
-            inputCheck = HotelBasicInfoUICheck.checkPrice(price);
+            inputCheck = HotelInputCheck.checkPrice(price);
             showPrompt(inputCheck, pricePrompt);
 
             String url = imageUrlTextField.getText().trim();
-            inputCheck = HotelBasicInfoUICheck.checkURL(url);
+            inputCheck = HotelInputCheck.checkURL(url);
             showPrompt(inputCheck, urlPrompt);
 
             String briefIntro = briefIntroTextArea.getText();
-            inputCheck = HotelBasicInfoUICheck.checkBriefIntro(briefIntro);
+            inputCheck = HotelInputCheck.checkBriefIntro(briefIntro);
             showPrompt(inputCheck, briefIntroPrompt);
 
             boolean isInputLegal = true;
@@ -310,15 +306,16 @@ public class HotelBasicInfoUIController {
                 hotelVO.setName(name);
                 hotelVO.setLevel(Integer.valueOf(level));
                 hotelVO.setFacility(facility);
+                hotelVO.setLatestCheckInTime(checkIn);
+                hotelVO.setStandardRoomPrice(Double.valueOf(price));
                 hotelVO.setImageAddress(url);
                 hotelVO.setBriefIntro(briefIntro);
                 ResultMessage resultMessage = hotelService.updateHotel(hotelVO);
-                if (resultMessage.equals(ResultMessage.succeed)) {
-                    refreshPage();
-
-                } else {
+                if (!resultMessage.equals(ResultMessage.succeed))
                     System.out.println("酒店信息更新失败！");
-                }
+                refreshPage();
+            } else {
+                return;
             }
         }
     }
@@ -373,6 +370,7 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void backButtonClicked(MouseEvent event) {
+        editable = false;
         ((Stage) anchorPane.getScene().getWindow()).setScene(prePane.getScene());
     }
 
@@ -420,7 +418,6 @@ public class HotelBasicInfoUIController {
         setFacilityText();
         setFacilityCheckBox();
         setPrompts();
-        refreshPage();
 
     }
 
@@ -459,13 +456,9 @@ public class HotelBasicInfoUIController {
 
         promptsInvisible();
         setHotelVO();
-        System.out.println(hotelVO.getBriefIntro()+"简介");
 
-//        Image image = new Image(hotelVO.getImageAddress(), 800, 400, false, true);
-        System.out.println(hotelVO.getImageAddress());
-        Image image = new Image(hotelVO.getImageAddress()+"图片地址");
+        Image image = new Image(hotelVO.getImageAddress());
         hotelImage.setImage(image);
-
         IDLabel.setText(hotelVO.getHotelID());
 
         hotelNameTextField.setText(hotelVO.getHotelName());

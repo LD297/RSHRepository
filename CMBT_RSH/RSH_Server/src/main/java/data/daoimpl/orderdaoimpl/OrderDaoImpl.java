@@ -71,42 +71,11 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao{
     public ResultMessage insert(OrderPO orderPO) throws RemoteException{
         return orderDaoHelper.insert(orderPO);
     }
-
-    //订单状态更新
-    @Override
-    public ResultMessage stateUpdate(String orderID,StateOfOrder newState) throws RemoteException{
-        return orderDaoHelper.stateUpdate(orderID,newState);
-    }
-    //评价订单
-    @Override
-    public ResultMessage commentUpdate(String orderid, int grade, String comment) throws RemoteException{
-        return orderDaoHelper.commentUpdate(orderid,grade,comment);
-    }
-    // 订单实际入住时间更新
-    @Override
-    public ResultMessage actCheckInUpdate(String orderID, Date actCheckIn) throws RemoteException{
-        return orderDaoHelper.actCheckInUpdate(orderID, actCheckIn);
-    }
-    // 订单实际离开时间更新
-    @Override
-    public ResultMessage actCheckOutUpdate(String orderID, Date actCheckOut) throws RemoteException{
-        return orderDaoHelper.actCheckOutUpdate(orderID, actCheckOut);
-    }
-    // 订单撤销时间更新
-    @Override
-    public ResultMessage cancelTimeUpdate(String orderID, Date cancelTime) throws RemoteException{
-        return orderDaoHelper.cancelTimeUpdate(orderID, cancelTime);
-    }
-    // 订单撤销异常时间更新
-    @Override
-    public ResultMessage cancelAbTimeUpdate(String orderID, Date cancelAbTime) throws RemoteException{
-        return orderDaoHelper.cancelAbTimeUpdate(orderID, cancelAbTime);
-    }
-
+ 
+    //更新订单
 	@Override
 	public ResultMessage update(OrderPO orderPO) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDaoHelper.update(orderPO);
 	}
 
 

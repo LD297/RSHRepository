@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
+import bl.loginservice.LoginService;
 import bl.orderservice.OrderForHotel;
 import bl.promotionservice.PromotionService;
+import constant.Role;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,9 +29,6 @@ public class HotelHomepageUIController {
 
     @FXML
     private URL location;
-
-    @FXML
-    private ImageView aboutUs;
 
     @FXML
     private AnchorPane anchorPane;
@@ -58,10 +58,10 @@ public class HotelHomepageUIController {
 
     private String hotelId;
 
+    private LoginService loginService;
     private HotelService hotelService;
-
     private PromotionService promotionService;
-
+    private HotelInfoService hotelInfoService;
     private OrderForHotel orderForHotel;
 
     // 酒店信息维护界面根结点
@@ -84,17 +84,6 @@ public class HotelHomepageUIController {
     // 可用客房信息维护界面控制器
     private static RoomAvailUIController roomAvailUIController;
 
-    // Login界面set进来的
-    public void setHotelService(HotelService hotelService) {
-        this.hotelService = hotelService;
-    }
-    public void setPromotionService(PromotionService promotionService) {
-        this.promotionService = promotionService;
-    }
-    public void setOrderForHotel(OrderForHotel orderForHotel) {
-        this.orderForHotel = orderForHotel;
-    }
-
     @FXML
     void changeToBasicInfoUI(MouseEvent event) {
         // 加载酒店基本信息维护界面
@@ -114,7 +103,6 @@ public class HotelHomepageUIController {
         // 配置hotelService
         hotelBasicInfoUIController.setHotelService(hotelService);
         hotelBasicInfoUIController.setHotelId(hotelId);
-        hotelBasicInfoUIController.setHotelVO();
         hotelBasicInfoUIController.refreshPage();
 
         Scene scene = null;
@@ -146,8 +134,9 @@ public class HotelHomepageUIController {
         promotionUIController.setPrePane(anchorPane);
         // 配置promotionService
         promotionUIController.setPromotionService(promotionService);
-        promotionUIController.setIsHotel(true);
-        promotionUIController.setIdForSearchPro(hotelId);
+        promotionUIController.setHotelInfoService(hotelInfoService);
+        promotionUIController.setHotelId(hotelId);
+        promotionUIController.setSetterId();
         promotionUIController.refreshPage();
 
         Scene scene = null;
@@ -178,14 +167,17 @@ public class HotelHomepageUIController {
         // 传入酒店首页根结点引用
         checkOrderUIController.setPrePane(anchorPane);
         // 配置orderForHotel
-        checkOrderUIController.setOrderForHotel(orderForHotel);
         checkOrderUIController.setHotelId(hotelId);
+        checkOrderUIController.setOrderForHotel(orderForHotel);
+        checkOrderUIController.initSelectable();
 
         Scene scene = null;
         if(checkOrderUIPane.getScene()==null)
             scene = new Scene(checkOrderUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = checkOrderUIPane.getScene();
+
+
 
         Stage stage = (Stage)anchorPane.getScene().getWindow();
         stage.setScene(scene);
@@ -198,7 +190,7 @@ public class HotelHomepageUIController {
         // 加载可用客房信息维护界面根结点
         if(roomAvailUIPane==null)
             try {
-                System.out.println(loader.load()==null);
+//                System.out.println(loader.load()==null);
                 roomAvailUIPane = (AnchorPane) loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -211,7 +203,7 @@ public class HotelHomepageUIController {
         // 配置hotelService
         roomAvailUIController.setHotelService(hotelService);
         roomAvailUIController.setHotelId(hotelId);
-//        roomAvailUIController.refreshPage();
+        roomAvailUIController.refreshPage();
 
         Scene scene = null;
 //        System.out.println(roomAvailUIPane==null);
@@ -225,6 +217,7 @@ public class HotelHomepageUIController {
     }
     @FXML
     void logout(MouseEvent event) {
+        loginService.logout(Role.hotel,hotelId);
         ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
     }
 
@@ -244,4 +237,21 @@ public class HotelHomepageUIController {
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }
+
+
+    // Login界面set进来的
+    public void setLoginService(LoginService loginService){this.loginService = loginService;};
+    public void setHotelService(HotelService hotelService) {
+        this.hotelService = hotelService;
+    }
+    public void setPromotionService(PromotionService promotionService) {
+        this.promotionService = promotionService;
+    }
+    public void setHotelInfoService(HotelInfoService hotelInfoService) {
+        this.hotelInfoService = hotelInfoService;
+    }
+    public void setOrderForHotel(OrderForHotel orderForHotel) {
+        this.orderForHotel = orderForHotel;
+    }
+
 }

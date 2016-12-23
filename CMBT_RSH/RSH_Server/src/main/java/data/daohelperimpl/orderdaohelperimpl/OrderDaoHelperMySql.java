@@ -190,62 +190,26 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         return ResultMessage.succeed;
     }
     // 评价订单
-    public ResultMessage commentUpdate(String orderID, int grade, String comment) throws RemoteException{
+    public ResultMessage update(OrderPO orderPO) throws RemoteException{
         db.executeSql("USE OurData");
+        String orderID = orderPO.getOrderID();
         if(this.checkExistence(orderID)==ResultMessage.idNotExist)
             return ResultMessage.idNotExist;
 
-        String updateCommentSql = "UPDATE OrderGeneral SET grade="+String.valueOf(grade)+
-                ",comment='"+comment+"' WHERE orderID='"+orderID+"' LIMIT 1";
-        db.executeSql(updateCommentSql);
-        return ResultMessage.succeed;
-    }
-    // 订单实际入住时间更新
-    public ResultMessage actCheckInUpdate(String orderID, Date actCheckIn) throws RemoteException{
-        db.executeSql("USE OurData");
-        if(this.checkExistence(orderID)==ResultMessage.idNotExist)
-            return ResultMessage.idNotExist;
+        int state = orderPO.getState().ordinal();
+        int grade = orderPO.getGrade();
+        String comment  = orderPO.getComment();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+        String actCheckIn = sdf.format(orderPO.getActualCheckIn());
+        String actCheckOut = sdf.format(orderPO.getActualCheckOut());
+        String cancelTime = sdf.format(orderPO.getCancelTime());
+        String cancelAbTime = sdf.format(orderPO.getCancelAbnormalTime());
         
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-        String actcheckin = sdf.format(actCheckIn);
-        String cometimeupdateSql = "UPDATE OrderGeneral SET actCheckIn='"+actcheckin+"' WHERE orderID='"+orderID+"' LIMIT 1";
-        db.executeSql(cometimeupdateSql);
-        return ResultMessage.succeed;
-    }
-    //订单实际离开时间更新
-    public ResultMessage actCheckOutUpdate(String orderID,Date actCheckOut) throws RemoteException{
-        db.executeSql("USE OurData");
-        if(this.checkExistence(orderID)==ResultMessage.idNotExist)
-            return ResultMessage.idNotExist;
-
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-        String actcheckout = sdf.format(actCheckOut);
-        String leavetimeupdateSql = "UPDATE OrderGeneral SET actCheckOut='"+actcheckout+"' WHERE orderID='"+orderID+"' LIMIT 1";
-        db.executeSql(leavetimeupdateSql);
-        return ResultMessage.succeed;
-    }
-    // 订单撤销时间更新
-    public ResultMessage cancelTimeUpdate(String orderID, Date cancelTime) throws RemoteException{
-        db.executeSql("USE OurData");
-        if(this.checkExistence(orderID)==ResultMessage.idNotExist)
-            return ResultMessage.idNotExist;
-
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-        String canceltime = sdf.format(cancelTime);
-        String canceltimeupdateSql = "UPDATE OrderGeneral SET cancelTime='"+canceltime+"' WHERE orderID='"+orderID+"' LIMIT 1";
-        db.executeSql(canceltimeupdateSql);
-        return ResultMessage.succeed;
-    }
-    // 订单撤销异常时间更新
-    public ResultMessage cancelAbTimeUpdate(String orderID, Date cancelAbTime) throws RemoteException{
-        db.executeSql("USE OurData");
-        if(this.checkExistence(orderID)==ResultMessage.idNotExist)
-            return ResultMessage.idNotExist;
-
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-        String cancelabtime = sdf.format(cancelAbTime);
-        String cancelabtimeupdateSql = "UPDATE OrderGeneral SET cancelAbtime='"+cancelabtime+"' WHERE orderID='"+orderID+"' LIMIT 1";
-        db.executeSql(cancelabtimeupdateSql);
+        String updateSql = "UPDATE OrderGeneral SET state="+String.valueOf(state)+",grade="
+            +String.valueOf(grade)+",comment='"+comment+"',actCheckIn='"+actCheckIn+
+            "',actCheckOut='"+actCheckOut+"',cancelTime='"+cancelTime+"',cancelAbTime='"+
+            cancelAbTime+"' WHERE orderID='"+orderID+"' LIMIT 1";
+        db.equals(updateSql);
         return ResultMessage.succeed;
     }
 

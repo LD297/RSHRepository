@@ -194,7 +194,7 @@
                </children>
             </GridPane>
             <DatePicker fx:id="datePicker" layoutY="1.0" prefHeight="27.0" prefWidth="153.0" promptText="请选择日期" />
-            <Label fx:id="gotoDateLabel" layoutX="170.0" layoutY="4.0" opacity="0.8" text="&gt;">
+            <Label fx:id="gotoDateLabel" layoutX="170.0" layoutY="4.0" onMouseClicked="#gotoDate" opacity="0.8" text="&gt;">
                <font>
                   <Font size="16.0" />
                </font>

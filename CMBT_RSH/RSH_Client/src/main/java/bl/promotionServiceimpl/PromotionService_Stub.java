@@ -28,7 +28,7 @@ public class PromotionService_Stub implements PromotionService{
 
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfHotel(String hotelID) {
-		PromotionVO vo1 = new PromotionVO("", "001", "满减", new Date(), new Date(), ScopeType.DISTRICT, "", "",
+		PromotionVO vo1 = new PromotionVO("", "001", "大额满减", new Date(), new Date(), ScopeType.DISTRICT, "", "",
 				ConditionType.BIRTHDAY, 0, DeductionType.DISCOUNT, 9);
 		PromotionVO vo2 = new PromotionVO("", "002", "双十一促销", new Date(), new Date(), ScopeType.DISTRICT, "", "",
 				ConditionType.MEMBER, 0, DeductionType.DISCOUNT, 9);
