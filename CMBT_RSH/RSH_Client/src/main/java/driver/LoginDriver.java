@@ -3,6 +3,7 @@ package driver;
 import bl.loginserviceimpl.LoginController;
 import constant.Role;
 import junit.framework.Test;
+import vo.UserVO;
 
 public class LoginDriver {
 
@@ -17,12 +18,13 @@ public class LoginDriver {
 	
 	String hotelID = "2016000001";
 	String userID = "11111111111";
-	
+	UserVO userVO = new UserVO(userID, userID, userID, userID, null, 0, null, userID, null, userID, 0, null);
 	String password = "123";
 	public void test(){
 		LoginController loginController = new LoginController();
 		System.out.println("begin");
-		System.out.println(loginController.checkOnline(role, hotelID, password).toString());
+		loginController.register(userVO);
+		System.out.println(loginController.checkOnline(role2, userID, "123").toString());
 		System.out.println(loginController.logout(role, hotelID));
 		System.out.println("end");
 	}

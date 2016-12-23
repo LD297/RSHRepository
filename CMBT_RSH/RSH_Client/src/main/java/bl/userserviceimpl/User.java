@@ -110,7 +110,7 @@ public class User {
 		if(userPO==null){
 			return ResultMessage.not_exist;
 		}
-		if(password==userPO.getPassword())
+		if(password.equals(userPO.getPassword()))
 			return ResultMessage.succeed;
 		return ResultMessage.password_wrong;
 	}
