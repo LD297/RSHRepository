@@ -37,22 +37,19 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 		return userDaoImpl;
 	}
 	public UserPO getInfo(String userid) throws RemoteException {
-		// TODO Auto-generated method stub
 		return userDaoHelper.getInfo(userid);
 	}
 
 	public ResultMessage update(UserPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return userDaoHelper.update(po);
 	}
-
+	@Override
 	public ResultMessage insert(UserPO po) throws RemoteException {
-		// TODO Auto-generated method stub
+		System.out.print("get into daoimpl");
 		return userDaoHelper.insert(po);
 	}
 
 	public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	public ArrayList<UserPO> getAll()throws RemoteException{

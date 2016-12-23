@@ -23,13 +23,12 @@ public class RoomPO implements Serializable{
 	
 	private String imageAddress;
 	
-	public RoomPO(String hotelID,String roomType,String imageAddress,int numOfRoom,double price, boolean basicOrSpecial){
+	public RoomPO(String hotelID,String roomType,String imageAddress,int numOfRoom,double price){
 		this.hotelID = hotelID;
 		this.roomType = roomType;
 		this.imageAddress = imageAddress;
 		this.numOfRoom = numOfRoom;
 		this.price = price;
-		
 	}
 	public String getID() {
 		return hotelID;

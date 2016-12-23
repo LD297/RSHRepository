@@ -78,7 +78,6 @@ public class UserPO implements Serializable{
 		return password;
 	}
 	public void setId(String userID) {
-		// TODO Auto-generated method stub
 		this.userID = userID;
 	}
 	public void setPassword(String password) {

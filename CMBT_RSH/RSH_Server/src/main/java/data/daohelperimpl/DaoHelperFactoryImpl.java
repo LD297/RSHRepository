@@ -25,14 +25,6 @@ public class DaoHelperFactoryImpl implements DaoHelperFactory {
 	UserDaoHelper userDaoHelper = null;
 	CreditRecordListDaoHelper creditRecordListDaoHelper = null;
 	LoginDaoHelper loginDaoHelper = null;
-	
-	public WebManagerDaoHelper getWebManagerDaoHelper() {
-		if(webManagerDaoHelper==null){
-		    webManagerDaoHelper = new WebManagerDaoHelperMySql();
-		    webManagerDaoHelper.init();    
-		}
-		return webManagerDaoHelper;
-	}
 
 	public WebSalesmanDaoHelper getWebSalesManDaoHelper() {
 		if(webSalesmanDaoHelper==null){
@@ -42,6 +34,14 @@ public class DaoHelperFactoryImpl implements DaoHelperFactory {
 		return webSalesmanDaoHelper;
 	}
 
+	public WebManagerDaoHelper getWebManagerDaoHelper() {
+		if(webManagerDaoHelper==null){
+		    webManagerDaoHelper = new WebManagerDaoHelperMySql();
+		    webManagerDaoHelper.init();    
+		}
+		return webManagerDaoHelper;
+	}
+	
 	public PromotionDaoHelper getPromotionDaoHelper() {
 		if(promotionDaoHelper==null){
 		    promotionDaoHelper = new PromotionDaoHelperMySql();
