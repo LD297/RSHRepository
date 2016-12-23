@@ -12,6 +12,8 @@ import java.util.Iterator;
  */
 public interface CreditRecordListDaoHelper {
 
+	public void init();
+	
     public ArrayList<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException ;
 
     public ResultMessage addCreditRecord(CreditRecordPO po) throws RemoteException ;

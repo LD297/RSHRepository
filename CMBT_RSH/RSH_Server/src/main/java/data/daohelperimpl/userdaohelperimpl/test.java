@@ -21,8 +21,8 @@ import org.junit.Test;
  */
 public class test {
     static CreditRecordListDaoHelperMySql creditDao = new CreditRecordListDaoHelperMySql();
-    static UserDaoHelperMySql userDao =null;// new UserDaoHelperMySql();
-    
+    static UserDaoHelperMySql userDao = new UserDaoHelperMySql();
+ /*   
     @Test
     public void testaddCreditRecord() throws RemoteException{
         CreditRecordPO po = new CreditRecordPO("14775378908",new Date(),null,
@@ -30,13 +30,13 @@ public class test {
         ResultMessage result = creditDao.addCreditRecord(po);
         assertEquals(result,ResultMessage.succeed);
     }
-/*
+
 
     @Test
     public void testgetInfo() throws RemoteException{
         String id = "14775378908";
         UserPO po = userDao.getInfo(id);
-        assertEquals(po.geteMail(),"229@sian.com");
+        System.out.print(po.getPassword());
     }
     @Test
     public void testupdate() throws RemoteException{
@@ -52,7 +52,7 @@ public class test {
         Iterator<CreditRecordPO> iterator = creditDao.getCreditRecordList(userid);
         assertEquals(iterator.next().getCredit(),300);
     }
-   */
+   
     @Test
     public void testinsert() throws RemoteException{
         UserPO po = new UserPO("14775378908", "123456", "tina", "url://",
@@ -60,6 +60,11 @@ public class test {
                 "李未", Sexuality.female, "2299357362@qq.com",null);
         ResultMessage result = userDao.insert(po);
         assertEquals(result,ResultMessage.idAlreadyExist);
-    }
+    }*/
+    public static void main(String[] args) throws RemoteException{
     
+    	 String id = "14175378908";
+         UserPO po = userDao.getInfo(id);
+         System.out.print(po.getPassword());
+    }
 }

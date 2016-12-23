@@ -22,7 +22,7 @@ import java.util.Date;
 public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
 	private DBHelper db = new DBHelper();
     private static final String key = "13klad0s";
-    public void init(){
+    public void init() {
 
         db.executeSql("USE OurData");
         // 账号 密码 姓名 地区 IF NOT EXISTS

@@ -10,7 +10,8 @@ import java.util.ArrayList;
  * Created by aa on 2016/12/3.
  */
 public interface WebSalesmanDaoHelper {
-
+	public void init();
+	
     public ResultMessage insert(WebSalesmanPO po) throws RemoteException ;
 
     public ResultMessage update(WebSalesmanPO po)throws RemoteException  ;

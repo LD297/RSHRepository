@@ -12,6 +12,7 @@ import java.util.Date;
  * Created by aa on 2016/12/3.
  */
 public interface OrderDaoHelper {
+	public void init();
     // 根据订单编号查找订单
     public OrderPO searchByID(String orderID) throws RemoteException;
     // 根据用户编号查找订单

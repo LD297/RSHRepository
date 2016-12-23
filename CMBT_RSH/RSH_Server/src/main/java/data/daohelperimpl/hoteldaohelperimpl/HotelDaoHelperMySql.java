@@ -23,7 +23,7 @@ import java.util.Calendar;
 public class HotelDaoHelperMySql implements HotelDaoHelper {
 	private DBHelper db = new DBHelper();
     private static final String key = "^sf43&67u";
-    public void init(){
+    public void init() {
 
         db.executeSql("USE OurData");
         // 编号 密码 电话 名称

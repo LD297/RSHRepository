@@ -21,7 +21,7 @@ public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper
 
     private DBHelper db = new DBHelper();
     private static final String nameKey = "1jkl43";
-    public void init(){
+    public void init() {
 
         db.executeSql("USE OurData");
         // 账号 日期 订单号 信用更改原因 信用变化 变更后信用值

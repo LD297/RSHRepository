@@ -10,6 +10,7 @@ import java.sql.Statement;
  * Created by sky-PC on 2016/11/27.
  */
 public class DBHelper {
+	private DBHelper dbHelper = null;
     private Statement statement = null;
     private Connection connection = null;
 
@@ -25,6 +26,12 @@ public class DBHelper {
             e.printStackTrace();
         }
     }
+    public DBHelper getDBHelper(){
+    	if(dbHelper==null)
+    		dbHelper = new DBHelper();
+    	return dbHelper;
+    }
+    
     public Connection getConn(){
         return this.connection;
     }

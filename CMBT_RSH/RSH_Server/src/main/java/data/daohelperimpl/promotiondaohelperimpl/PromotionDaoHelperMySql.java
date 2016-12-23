@@ -24,7 +24,7 @@ import java.util.Date;
 public class PromotionDaoHelperMySql implements PromotionDaoHelper{
 	private DBHelper db = new DBHelper();
 
-    public void init(){                         
+    public void init() {                         
 
         db.executeSql("USE OurData");
         // 制定者 序号 策略名称

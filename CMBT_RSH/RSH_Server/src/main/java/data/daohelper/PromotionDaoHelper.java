@@ -11,7 +11,7 @@ import java.util.Date;
  * Created by aa on 2016/12/3.
  */
 public interface PromotionDaoHelper {
-
+	public void init();
 	// 得到新的促销策略的编号
 	public String getNewID(String setterID)throws RemoteException;
     // 添加策略

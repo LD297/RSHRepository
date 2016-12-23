@@ -16,51 +16,77 @@ import data.daohelperimpl.webstaffdaohelperimpl.WebSalesmanDaoHelperMySql;
  * Created by aa on 2016/12/6.
  */
 public class DaoHelperFactoryImpl implements DaoHelperFactory {
-
+// 给daoimpl
+	WebManagerDaoHelper webManagerDaoHelper = null;
+	WebSalesmanDaoHelper webSalesmanDaoHelper = null;
+	PromotionDaoHelper promotionDaoHelper = null;
+	HotelDaoHelper hotelDaoHelper = null;
+	OrderDaoHelper orderDaoHelper = null;
+	UserDaoHelper userDaoHelper = null;
+	CreditRecordListDaoHelper creditRecordListDaoHelper = null;
+	LoginDaoHelper loginDaoHelper = null;
+	
 	public WebManagerDaoHelper getWebManagerDaoHelper() {
-		WebManagerDaoHelper webManagerDaoHelper = null;
-		webManagerDaoHelper = new WebManagerDaoHelperMySql();
+		if(webManagerDaoHelper==null){
+		    webManagerDaoHelper = new WebManagerDaoHelperMySql();
+		    webManagerDaoHelper.init();    
+		}
 		return webManagerDaoHelper;
 	}
 
 	public WebSalesmanDaoHelper getWebSalesManDaoHelper() {
-		WebSalesmanDaoHelper webSalesmanDaoHelper = null;
-		webSalesmanDaoHelper = new WebSalesmanDaoHelperMySql();
+		if(webSalesmanDaoHelper==null){
+		    webSalesmanDaoHelper = new WebSalesmanDaoHelperMySql();
+		    webSalesmanDaoHelper.init();    
+		}
 		return webSalesmanDaoHelper;
 	}
 
 	public PromotionDaoHelper getPromotionDaoHelper() {
-		PromotionDaoHelper promotionDaoHelper = null;
-		promotionDaoHelper = new PromotionDaoHelperMySql();
+		if(promotionDaoHelper==null){
+		    promotionDaoHelper = new PromotionDaoHelperMySql();
+			promotionDaoHelper.init();
+		}
 		return promotionDaoHelper;
 	}
 
 	public HotelDaoHelper getHotelDaoHelper() {
-		HotelDaoHelper hotelDaoHelper = null;
-		hotelDaoHelper = new HotelDaoHelperMySql();
+		if(hotelDaoHelper==null){
+		    hotelDaoHelper = new HotelDaoHelperMySql();
+			hotelDaoHelper.init();
+	    }
 		return hotelDaoHelper;
 	}
 
 	public OrderDaoHelper getOrderDaoHelper() {
-		OrderDaoHelper orderDaoHelper = null;
-		orderDaoHelper = new OrderDaoHelperMySql();
+		if(orderDaoHelper==null){
+		    orderDaoHelper = new OrderDaoHelperMySql();
+			orderDaoHelper.init();
+		}
 		return orderDaoHelper;
 	}
 
 	public UserDaoHelper getUserDaoHelper() {
-		UserDaoHelper userDaoHelper = null;
-		userDaoHelper = new UserDaoHelperMySql();
+		if(userDaoHelper==null){
+		    userDaoHelper = new UserDaoHelperMySql();
+			userDaoHelper.init();
+		}
 		return userDaoHelper;
 	}
 
 	public CreditRecordListDaoHelper getCrediRecordListDdaoHelper() {
-		CreditRecordListDaoHelper creditRecordListDaoHelper = new CreditRecordListDaoHelperMySql();
+		if(creditRecordListDaoHelper==null){
+			creditRecordListDaoHelper = new CreditRecordListDaoHelperMySql();
+			creditRecordListDaoHelper.init();
+		}
 		return creditRecordListDaoHelper;
 	}
 
 	public LoginDaoHelper getLoginDaoHelper() {
-		LoginDaoHelper loginDaoHelper = null;
-		loginDaoHelper = new LoginDaoHelperMySql();
+		if(loginDaoHelper==null){
+    		loginDaoHelper = new LoginDaoHelperMySql();
+    	    loginDaoHelper.init();
+		}
 		return loginDaoHelper;
 	}
 }

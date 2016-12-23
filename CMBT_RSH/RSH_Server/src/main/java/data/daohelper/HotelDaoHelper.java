@@ -13,6 +13,7 @@ import java.util.Date;
  * Created by aa on 2016/12/3.
  */
 public interface HotelDaoHelper {
+	public void init();
     // 根据酒店ID 得到酒店对象
     public HotelPO getHotel(String hotelID) throws RemoteException;
     // 根据酒店传入地区 初始化酒店账号

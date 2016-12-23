@@ -10,7 +10,8 @@ import java.util.ArrayList;
  * Created by aa on 2016/12/3.
  */
 public interface UserDaoHelper {
-
+	public void init() ;
+	
     public UserPO getInfo(String id) throws RemoteException ;
 
     public ResultMessage update(UserPO po) throws RemoteException ;
