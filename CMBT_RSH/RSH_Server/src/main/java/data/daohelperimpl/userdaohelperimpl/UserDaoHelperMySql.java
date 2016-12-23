@@ -46,7 +46,6 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         
         String getInfoSql = "SELECT *FROM UserInfo WHERE userID="+deUserID+" LIMIT 1";
         ResultSet result = db.query(getInfoSql);
-        System.out.println(this.resultSetToUserPO(result).size());
         UserPO userPO = this.resultSetToUserPO(result).get(0);
         userPO = this.getClearByID(userID, userPO);
         return userPO; 
@@ -98,17 +97,22 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         String dePassword = this.getSecreted(password, pwKey);
         String nickName = userPO.getNickName();
         String image = userPO.getImageAddress();
-        String birthday = "null"; 
-        if(userPO.getBirthday()==null)
-            birthday = "'"+userPO.getBirthday().toString()+"'";
+        int level = userPO.getLevel();
+        int memberType = userPO.geMemberType().ordinal();
+        
         String name = userPO.getName();
         String deName = this.getSecreted(name, nameKey);
-        int sex = 0;
-        if(userPO.getSexuality()==null)
-            sex = userPO.getSexuality().ordinal();
+        int sex = userPO.getSexuality().ordinal();
         String eMail = userPO.geteMail();
+        int credit = userPO.getCredit();
+        String birthday = "null"; 
+        if(userPO.getBirthday()!=null)
+            birthday = "'"+userPO.getBirthday().toString()+"'";
+        String commerceName = userPO.getCommerceName();
+       
         String insertSql = "INSERT INTO UserInfo VALUES("+deUserID+","+dePassword+
-        		",'"+nickName+"','"+image+"',"+birthday+",0,null,null,0,"
+        		",'"+nickName+"','"+image+"',"+birthday+","+String.valueOf(level)+","+
+        		String.valueOf(memberType)+",'"+commerceName+"',"+String.valueOf(credit)+","
         		+ deName+","+String.valueOf(sex)+",'"+eMail+"',0)";
         db.executeSql(insertSql);
 
@@ -153,6 +157,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
                  String nickName = result.getString("nickName");
                  String image = result.getString("image");
                  String birth = result.getString("birthday");
+                 System.out.println("birth = "+birth);
                  LocalDate birthday = LocalDate.parse(birth);
                  int level = result.getInt("level");
                  MemberType type = MemberType.values()[result.getInt("memberType")];

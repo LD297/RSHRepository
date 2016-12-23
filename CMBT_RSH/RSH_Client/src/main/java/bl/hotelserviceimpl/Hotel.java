@@ -60,6 +60,9 @@ public class Hotel{
 	public static ResultMessage addHotel(HotelVO hotelVO) {
 		HotelPO newHotelPO = hotelVO.changeIntoPO();
 		ResultMessage resultMessage = null;
+		if(Hotel.getInstance(hotelVO.getHotelID())!=null){
+			return ResultMessage.idAlreadyExist;
+		}
 		try {
 			resultMessage = hotelDao.addHotel(newHotelPO);
 		}catch (RemoteException e){

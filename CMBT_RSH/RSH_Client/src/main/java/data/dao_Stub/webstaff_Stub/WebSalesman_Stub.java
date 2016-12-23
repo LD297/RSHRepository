@@ -15,7 +15,7 @@ import po.WebSalesmanPO;
 public class WebSalesman_Stub implements WebSalesmanDao{
 
 	@Override
-	public String getIDForNewWebSalesman(String year) throws RemoteException {
+	public String getNewID() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

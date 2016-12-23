@@ -21,4 +21,6 @@ public interface WebSalesmanDaoHelper {
     public ArrayList<WebSalesmanPO> findByDistrict(String district)throws RemoteException  ;
 
     public ArrayList<WebSalesmanPO> getAll()throws RemoteException ;
+    
+    public String getNewID() throws RemoteException;
 }

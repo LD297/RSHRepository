@@ -53,6 +53,9 @@ public class UserPO implements Serializable{
 	public String getImageAddress() {
 		return imageAddress;
 	}
+	public MemberType geMemberType(){
+		return memberType;
+	}
 	public LocalDate getBirthday(){
 		return birthday;
 	}

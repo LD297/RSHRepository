@@ -192,7 +192,8 @@ public class HotelVO {
 	
 	
 	public HotelPO changeIntoPO(){
-		HotelPO hotelPO = new HotelPO(hotelID, password, tel, hotelName, detailAddress, district, briefIntro, facility, level, grade, standardRoomPrice);
+		HotelPO hotelPO = new HotelPO(hotelID, password, tel, hotelName, detailAddress, district, briefIntro, facility, level, grade, standardRoomPrice,latestCheckInTime,imageAddress);
+		System.out.println(latestCheckInTime);
 		return hotelPO;
 	}
 

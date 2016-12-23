@@ -36,12 +36,12 @@ public class HotelPO implements Serializable{
 	private double grade;
 	
 	public double standardPrice;
-	private String latestCheckinTime;
+	private String latestCheckInTime;
 
 	String imageAddress;
 	public HotelPO(String hotelID,String password,String tel,
 			String name,String addr,String district,String briefIntro,String facility,
-			int level,double grade, double standardRoomPrice){
+			int level,double grade, double standardRoomPrice,String latestCheckInTime,String imageAddress){
 		this.hotelID = hotelID;
 		this.password = password;
 		this.tel = tel;
@@ -53,6 +53,9 @@ public class HotelPO implements Serializable{
 		this.level = level;
 		this.grade = grade;
 		this.standardPrice = standardRoomPrice;
+		this.latestCheckInTime = latestCheckInTime;
+		this.imageAddress = imageAddress;
+		System.out.println(latestCheckInTime);
 	}
 
 	public String getId() {
@@ -102,7 +105,7 @@ public class HotelPO implements Serializable{
 	}
 
 	public String getLatestCheckinTime() {
-		return latestCheckinTime;
+		return latestCheckInTime;
 	}
 	
 	public static Hotel changeIntoHotel(HotelPO PO){
@@ -111,7 +114,7 @@ public class HotelPO implements Serializable{
 	}
 	
 	public HotelVO changeIntoVO(){
-		HotelVO hotelVO = new HotelVO(hotelID, name, detailAddress, hotelID, password, level, standardPrice, latestCheckinTime, briefIntro, facility, imageAddress);
+		HotelVO hotelVO = new HotelVO(hotelID, name, detailAddress, hotelID, password, level, standardPrice, latestCheckInTime, briefIntro, facility, imageAddress);
 		return hotelVO;
 	}
 

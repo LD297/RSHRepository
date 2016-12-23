@@ -246,8 +246,8 @@ public String getHotelID() {
      * 生成订单界面调用，得到符合该日期和该房间类型的房间数量
      */
     public int getAvailRoomNum(String roomType,Date checkIn,Date checkOut) {
-    	int avilRoomNum = hotelInfoService.getRoomAvailNum(hotelID, roomType, checkIn, checkOut);
-		return avilRoomNum;
+    	int avilRoomNum =hotelService.numOfRoomAvail(hotelID, roomType, checkIn, checkOut);
+    	return avilRoomNum;
 	}
     
     /**

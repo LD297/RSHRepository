@@ -152,7 +152,10 @@ public class User {
 	}
 
 	public boolean canGenerateOrder(){
-		if(userPO.getCredit()>0)
+		if(userPO == null){
+			return false;
+		}
+		if(userPO.getCredit()>=0)
 			return true;
 		else
 			return false;

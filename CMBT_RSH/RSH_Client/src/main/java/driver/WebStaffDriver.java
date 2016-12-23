@@ -16,7 +16,7 @@ public class WebStaffDriver {
 	}
 	
 	String ID = "0000000000";
-	String ID2 = "0000000001";
+	String ID2 = "2016000001" ;
 	String password = "123";
 	String district = "000000";
 	WebSalesmanVO webSalesmanVO = new WebSalesmanVO(ID2, district, password, "123");
@@ -27,6 +27,9 @@ public class WebStaffDriver {
 		System.out.println(webStaffController.updateWebSalesman(webSalesmanVO));
 		System.out.println(webStaffController.addWebSalesman(webSalesmanVO).toString());
 		System.out.println(webStaffController.getIDForWebsalesman());
+		System.out.println(webStaffController.checkPassword(ID, "123456"));
+		System.out.println(webStaffController.changePassword(ID, "123456", "123"));
+		System.out.println(webStaffController.checkPassword(ID, "123"));
 		System.out.println("end");
 	}
 

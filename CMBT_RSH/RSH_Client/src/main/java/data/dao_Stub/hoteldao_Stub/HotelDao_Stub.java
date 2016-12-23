@@ -29,7 +29,7 @@ public class HotelDao_Stub implements  HotelDao{
     @Override
     public HotelPO getHotel(String id) {
     	HotelPO hotelPO = new HotelPO("0123456789","11122233344", "12345667781",  "天鸿凯莱大酒店", "南京市栖霞区", "123456",  
-                "新开张", "一应俱全", 4, 4.8, 123);
+                "新开张", "一应俱全", 4, 4.8, 123,"00:00:00","");
     			
         return hotelPO;
     }

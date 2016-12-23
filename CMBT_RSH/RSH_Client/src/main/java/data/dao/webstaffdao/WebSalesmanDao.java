@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public interface WebSalesmanDao extends Remote {
 
-	public String getIDForNewWebSalesman(String year) throws RemoteException;
+	public String getNewID() throws RemoteException;
 	
     public ResultMessage insert(WebSalesmanPO webSalesmanPO)throws RemoteException;
 

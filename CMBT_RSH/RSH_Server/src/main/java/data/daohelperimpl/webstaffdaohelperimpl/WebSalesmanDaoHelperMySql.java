@@ -38,7 +38,9 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
     // 网站营销人员添加
     public ResultMessage insert(WebSalesmanPO po) {
         db.executeSql("USE OurData");
-        String salesManID = this.getNewID();
+        String salesManID = po.getID();
+        if(this.checkExistence(po.getID())==ResultMessage.idAlreadyExist)
+        	return ResultMessage.idAlreadyExist;
         String password = "aes_encrypt('"+po.getPassword()+"','"+key+"')";
         
         if(this.checkExistence(po.getID())==ResultMessage.idNotExist){
@@ -158,7 +160,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
     	ArrayList<WebSalesmanPO> list = new ArrayList<WebSalesmanPO>();
         try{
             while(result.next()){
-            	if(result.getString("id")=="0000000000")
+            	if(result.getString("id").equals("0000000000"))
             		continue;
                 WebSalesmanPO po = new WebSalesmanPO(result.getString("id"),
                 		result.getString("password"),result.getString("district"));

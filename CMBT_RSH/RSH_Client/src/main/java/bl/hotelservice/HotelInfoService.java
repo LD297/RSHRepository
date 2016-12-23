@@ -27,14 +27,6 @@ public interface HotelInfoService {
      */
     public String getCheckInDDL(String hotelID);
     
-    /**
-     * 得到某酒店某房间类型特定时间段的可用客房数量
-     * @param roomType
-     * @param checkIn
-     * @param checkOut
-     * @return
-     */
-    public int getRoomAvailNum(String hotelID,String roomType, Date checkIn, Date checkOut);
    
     /**
      * 更新数据库中酒店的评分，在用户评价订单后调用

@@ -1,5 +1,6 @@
 package data.daoimpl.userdaoimpl;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import data.dao.userdao.UserDao;
 import data.daohelper.DaoHelperFactory;
 import data.daohelper.UserDaoHelper;
 import data.daohelperimpl.DaoHelperFactoryImpl;
+import data.daohelperimpl.userdaohelperimpl.MemberLevelTXT;
 import po.UserPO;
 
 public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
@@ -46,7 +48,13 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 	
 	@Override
 	public ResultMessage setMemberLevel(int gradeWithCredit) throws RemoteException {
-		return null;
+		MemberLevelTXT memberLevelTXT = new MemberLevelTXT();
+		try {
+			return memberLevelTXT.setMemberLevel(gradeWithCredit);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return ResultMessage.fail;
+		}
 	}
 	@Override
 	public ArrayList<UserPO> getAll()throws RemoteException{
@@ -55,8 +63,13 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 
 	@Override
 	public int getMemberLevel() throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		MemberLevelTXT memberLevelTXT = new MemberLevelTXT();
+		try {
+			return memberLevelTXT.getMemberLevel();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 

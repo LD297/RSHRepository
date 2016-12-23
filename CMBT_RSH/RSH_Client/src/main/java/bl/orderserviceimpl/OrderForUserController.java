@@ -33,6 +33,7 @@ import java.util.Date;
 public class OrderForUserController implements OrderForUser{
     private static OrderDao orderDao = null;
     private HotelInfoService hotelInfoService = new HotelInfoController();
+    private HotelService hotelService = new HotelController();
     private static void initRemote(){
     	if(orderDao == null){
         	RemoteHelper remoteHelper = RemoteHelper.getInstance();
@@ -225,9 +226,7 @@ public class OrderForUserController implements OrderForUser{
         Date checkIn = orderVO.getCheckIn();
         Date checkOut = orderVO.getCheckOut();
         double roomPrice = orderVO.getRoomPrice();
-        HotelInfoService hotelInfoService = new HotelInfoController();
-        if(hotelInfoService.getRoomAvailNum(
-                hotelID,room.getRoomType(),checkIn,checkOut) < roomNum)
+        if(hotelService.numOfRoomAvail(hotelID, room.getRoomType(), checkIn, checkOut)< roomNum)
             return ResultMessage.roomNumLack;
 
         // 检查价格

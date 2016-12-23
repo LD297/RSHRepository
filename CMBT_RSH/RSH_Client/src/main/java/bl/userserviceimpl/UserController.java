@@ -88,7 +88,7 @@ public class UserController implements UserService{
 
 	@Override
 	public int getMemberStandard() {
-		return Member.getMemberStandard();
+		return Member.getBoundaryForLevels();
 	}
 
 

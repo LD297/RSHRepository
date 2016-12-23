@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
+import bl.userserviceimpl.Member;
 import constant.MemberType;
 import constant.Sexuality;
 import vo.UserVO;
@@ -53,6 +54,9 @@ public class UserPO implements Serializable{
 	}
 	public String getImageAddress() {
 		return imageAddress;
+	}
+	public MemberType geMemberType(){
+		return memberType;
 	}
 	public LocalDate getBirthday(){
 		return birthday;

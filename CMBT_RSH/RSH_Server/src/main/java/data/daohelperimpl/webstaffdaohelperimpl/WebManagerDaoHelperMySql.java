@@ -24,6 +24,16 @@ public class WebManagerDaoHelperMySql implements WebManagerDaoHelper{
     public void init() {
         db.executeSql("USE OurData");
         // 账号 密码 地区
+        String checkExistenceSql = "SELECT count(*) FROM WebStaffInfo WHERE id='0000000000'";
+        ResultSet result = db.query(checkExistenceSql);
+        try{
+        	while(result.next()){
+        		if(result.getInt(1)>0)
+        			return;
+        	}
+        }catch(SQLException e){
+        	e.printStackTrace();
+        }
         String initSql = "INSERT INTO WebStaffInfo VALUES('0000000000',"
         		+ "aes_encrypt('123456','"+key+"'),null)";
         db.executeSql(initSql);

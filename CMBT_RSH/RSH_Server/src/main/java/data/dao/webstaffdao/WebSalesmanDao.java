@@ -28,6 +28,6 @@ public interface WebSalesmanDao extends Remote{
      * @return
      * @throws RemoteException
      */
-    public String getIDForNewWebSalesman(String year) throws RemoteException;
+    public String getNewID() throws RemoteException;
 	
 }

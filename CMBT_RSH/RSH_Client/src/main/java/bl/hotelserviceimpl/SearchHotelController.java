@@ -5,6 +5,7 @@ import constant.SortMethod;
 import data.dao.hoteldao.HotelDao;
 import po.HotelPO;
 import rmi.RemoteHelper;
+import vo.DistrictHelper;
 import vo.HotelVO;
 import vo.SelectConditionVO;
 
@@ -40,8 +41,9 @@ private static HotelDao hotelDao = null;
 		ArrayList<HotelPO> hotelPOs = new ArrayList<>();
 		ArrayList<HotelVO> hotelVOs = new ArrayList<>();
 		initRemote();
+		DistrictHelper districtHelper = new DistrictHelper(province, city, area);
 		try {
-			hotelPOs = hotelDao.getHotelList(province);
+			hotelPOs = hotelDao.getHotelList(districtHelper.getDistrict());
 		}catch (RemoteException e){
 			e.printStackTrace();
 			return hotelVOs;

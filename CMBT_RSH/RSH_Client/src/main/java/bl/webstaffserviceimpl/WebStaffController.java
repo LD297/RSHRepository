@@ -39,7 +39,7 @@ public class WebStaffController implements WebStaffService{
 		String year = String.valueOf(LocalDate.now().getYear());
 		initRemote();
 		try {
-			return webSalesmanDao.getIDForNewWebSalesman(year);
+			return webSalesmanDao.getNewID();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

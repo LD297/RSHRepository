@@ -35,16 +35,6 @@ public class HotelInfoController implements HotelInfoService{
 	}
 
 	@Override
-	public int getRoomAvailNum(String hotelID, String roomType, Date checkIn, Date checkOut) {
-		// TODO Auto-generated method stub
-		Hotel hotel = Hotel.getInstance(hotelID);
-		if(hotel == null){
-			return -1;
-		}
-		return hotel.numOfRoomAvail(roomType, checkIn, checkOut);
-	}
-
-	@Override
 	public ResultMessage updateGrade(String hotelID,int grade) {
 		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);

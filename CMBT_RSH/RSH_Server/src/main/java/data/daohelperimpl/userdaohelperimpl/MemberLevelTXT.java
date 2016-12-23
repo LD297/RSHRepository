@@ -16,9 +16,8 @@ import java.rmi.RemoteException;
  * Created by sky-PC on 2016/12/6.
  */
 public class MemberLevelTXT {
-    private static final String fileName = "MemberLevelSetting.txt";
+    private static final String fileName = "TXTData/MemberLevelSetting.txt";
     public void init(){
-
         // fileName表示你创建的文件名；
         File file = new File(fileName);
         if(!file.exists()){
@@ -41,12 +40,11 @@ public class MemberLevelTXT {
     }
     public int getMemberLevel()throws RemoteException,IOException {
     	BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
-    	String data = null;
-    	data = br.readLine();
-    	
+    	String data = br.readLine();
     	br.close();
     	
     	return Integer.parseInt(data);
     	
     }
+ 
 }

@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.function.DoubleToLongFunction;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -67,18 +68,28 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
     // 星级 评分 最晚入住时间  图片地址 评论人数 房间类型数量
     public ResultMessage addHotel(HotelPO hotelPO)throws RemoteException {
         db.executeSql("USE OurData");
+      
         String hotelID = hotelPO.getID(); 
+        
         String password = hotelPO.getPassword();
         String dePassword = this.getSecreted(password);
         String tel = hotelPO.getTel();
         String name = hotelPO.getName();
         String district = hotelPO.getAddress();
         String detail = hotelPO.getAddressDetail();
-        
+        double standardPrice = hotelPO.getStandardPrice();
+        String briefIntro = hotelPO.getBriefIntro();
+        String facility = hotelPO.getFacility();
+        int level = hotelPO.getLevel();
+        double grade = hotelPO.getGrade();
+        String latestCheckinTime = hotelPO.getLatestCheckInTime();
+        String imageAddress = hotelPO.getImageAddress();
+        System.out.println(latestCheckinTime);
         String addHotelSql = "INSERT INTO HotelInfo VALUES('"+hotelID+"',"+
-                dePassword+",'"+tel+"','"+name+"','" +
-                district+"','"+detail+"',9999,null,null,"+
-                "null,0,null,null,0,2)";
+                dePassword+",'"+tel+"','"+name+"','" + district+"','"+detail+"',"+
+        		String.valueOf(standardPrice)+",'"+briefIntro+"','"+facility+"',"+
+                String.valueOf(level)+","+String.valueOf(grade)+",'"+latestCheckinTime+
+                "','"+imageAddress+"',0,2)";
         db.executeSql(addHotelSql);
         // 酒店 类型 总量
         // 价格 是否特色  图片地址 可用数量日期列表
@@ -86,9 +97,9 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         for(int i=0;i<180-1;i++)
         	aList+=",0";
         String addSingleRoomSql = "INSERT INTO RoomInfo VALUES('"+hotelID+"','标准间',0," +
-                                                                   "9999,0,null,'"+aList+"')";
+                                                                   "9999,null,'"+aList+"')";
         String addDoubleRoomSql = "INSERT INTO RoomInfo VALUES('"+hotelID+"','单人间',0," +
-                                                                   "9999,0,null,'"+aList+"')";
+                                                                   "9999,null,'"+aList+"')";
         db.executeSql(addSingleRoomSql);
         db.executeSql(addDoubleRoomSql);
         return ResultMessage.succeed;

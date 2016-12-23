@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 public class Member {
 
 	private static UserDao userDao=null;
-	private static int boundaryForLevel = 500;
+	private static int boundaryForLevels = 0;
 
 	private String userID;
 	private UserPO userPO = null;
@@ -42,7 +42,7 @@ public class Member {
 			RemoteHelper remoteHelper = RemoteHelper.getInstance();
 			userDao = remoteHelper.getUserDao();
 			try {
-				boundaryForLevel = userDao.getMemberLevel();
+				boundaryForLevels = userDao.getMemberLevel();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -100,18 +100,24 @@ public class Member {
 			return ResultMessage.remote_fail;
 		}
 		if(resultMessage == ResultMessage.succeed){
-			Member.boundaryForLevel = boundaryForLevel;
+			Member.boundaryForLevels = boundaryForLevel;
 		}
 		return resultMessage;
 	}
 
-	public static int getMemberStandard(){
-		return boundaryForLevel;
+	public static int getBoundaryForLevels(){
+		initRemote();
+		try {
+			boundaryForLevels = userDao.getMemberLevel();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return boundaryForLevels;
 	}
 
 
 	public static int getMemberLevel(int credit) {
-		return credit/boundaryForLevel+1;
+		return credit/boundaryForLevels+1;
 	}
 	
 	
