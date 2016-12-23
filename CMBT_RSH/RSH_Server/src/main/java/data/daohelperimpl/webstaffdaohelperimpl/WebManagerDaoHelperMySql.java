@@ -3,6 +3,7 @@ package data.daohelperimpl.webstaffdaohelperimpl;
 //import bl.webstaffserviceimpl.WebManager;
 import constant.ResultMessage;
 import data.daohelper.WebManagerDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.WebManagerPO;
 import po.WebSalesmanPO;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
  */
 public class WebManagerDaoHelperMySql implements WebManagerDaoHelper{
 	// with websalesman
-    private DBHelper db = new DBHelper();
+	private DBHelper db = DaoHelperFactoryImpl.getDBHelper();
     private static final String key = "&fas03#j63uk,qw4";
 
     public void init() {

@@ -3,6 +3,7 @@ package data.daohelperimpl.userdaohelperimpl;
 import constant.CreditAction;
 import constant.ResultMessage;
 import data.daohelper.CreditRecordListDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.CreditRecordPO;
 
@@ -19,7 +20,7 @@ import java.util.Iterator;
  */
 public class CreditRecordListDaoHelperMySql implements CreditRecordListDaoHelper {
 
-    private DBHelper db = new DBHelper();
+	private DBHelper db = DaoHelperFactoryImpl.getDBHelper();
     private static final String nameKey = "1jkl43";
     public void init() {
 

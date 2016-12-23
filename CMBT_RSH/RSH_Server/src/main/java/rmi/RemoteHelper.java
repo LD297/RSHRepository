@@ -1,5 +1,6 @@
 package rmi;
 
+import data.daohelperimpl.jdbc.DBHelper;
 import data.daoimpl.hoteldaoimpl.HotelDaoImpl;
 import data.daoimpl.logindaoimpl.LoginDaoImpl;
 import data.daoimpl.orderdaoimpl.OrderDaoImpl;
@@ -58,7 +59,6 @@ public class RemoteHelper {
             Naming.bind("rmi://localhost:8888/WebSalesmanDaoImpl", webSalesmanDaoImpl);
             promotionDaoImpl = PromotionDaoImpl.getInstance();
             Naming.bind("rmi://localhost:8888/PromotionDaoImpl",promotionDaoImpl);
-
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {

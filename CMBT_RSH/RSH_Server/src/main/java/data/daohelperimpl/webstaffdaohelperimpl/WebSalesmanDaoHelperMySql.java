@@ -2,6 +2,7 @@ package data.daohelperimpl.webstaffdaohelperimpl;
 
 import constant.ResultMessage;
 import data.daohelper.WebSalesmanDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.WebManagerPO;
 import po.WebSalesmanPO;
@@ -20,7 +21,7 @@ import java.util.Date;
  * Created by sky-PC on 2016/12/3.
  */
 public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
-	private DBHelper db = new DBHelper();
+	private DBHelper db = DaoHelperFactoryImpl.getDBHelper();
     private static final String key = "13klad0s";
     public void init() {
 

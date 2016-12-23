@@ -4,6 +4,7 @@ import constant.MemberType;
 import constant.ResultMessage;
 import constant.Sexuality;
 import data.daohelper.UserDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.UserPO;
 
@@ -17,11 +18,10 @@ import java.util.ArrayList;
  * Created by sky-PC on 2016/12/3.
  */
 public class UserDaoHelperMySql implements UserDaoHelper{
-	private DBHelper db = new DBHelper();
+	private DBHelper db = DaoHelperFactoryImpl.getDBHelper();
     private static final String nameKey = "1jkl43";
     private static final String pwKey = "&afds890";
     public void init(){
-
         db.executeSql("USE OurData");
         // 账号 密码 昵称 头像url
         // 生日 会员等级 会员类型 企业名称 信用值
@@ -43,11 +43,10 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         if(this.checkExistence(userID)==ResultMessage.idNotExist)
             return null;
         String deUserID = this.getSecreted(userID, nameKey);
+        
         String getInfoSql = "SELECT *FROM UserInfo WHERE userID="+deUserID+" LIMIT 1";
         ResultSet result = db.query(getInfoSql);
-        
-        if(result==null)
-        	return null;
+        System.out.println(this.resultSetToUserPO(result).size());
         UserPO userPO = this.resultSetToUserPO(result).get(0);
         userPO = this.getClearByID(userID, userPO);
         return userPO; 
@@ -88,9 +87,6 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     // 会员等级 会员类型 信用值
     // 真实姓名 性别 邮箱
     public ResultMessage insert(UserPO userPO) throws RemoteException {
-    	System.out.println(userPO.geteMail()
-    			+userPO.getBirthday().toString()
-    			+userPO.getLevel());
         db.executeSql("USE OurData");
 
         if(this.checkExistence(userPO.getId())==ResultMessage.idAlreadyExist)
@@ -102,13 +98,17 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         String dePassword = this.getSecreted(password, pwKey);
         String nickName = userPO.getNickName();
         String image = userPO.getImageAddress();
-        String birthday = userPO.getBirthday().toString();
+        String birthday = "null"; 
+        if(userPO.getBirthday()==null)
+            birthday = "'"+userPO.getBirthday().toString()+"'";
         String name = userPO.getName();
         String deName = this.getSecreted(name, nameKey);
-        int sex = userPO.getSexuality().ordinal();
+        int sex = 0;
+        if(userPO.getSexuality()==null)
+            sex = userPO.getSexuality().ordinal();
         String eMail = userPO.geteMail();
         String insertSql = "INSERT INTO UserInfo VALUES("+deUserID+","+dePassword+
-        		",'"+nickName+"','"+image+"','"+birthday+"',0,null,null,0,"
+        		",'"+nickName+"','"+image+"',"+birthday+",0,null,null,0,"
         		+ deName+","+String.valueOf(sex)+",'"+eMail+"',0)";
         db.executeSql(insertSql);
 

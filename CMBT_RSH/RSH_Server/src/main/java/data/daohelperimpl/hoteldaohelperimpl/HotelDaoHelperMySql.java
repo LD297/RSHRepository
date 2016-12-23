@@ -1,6 +1,7 @@
 package data.daohelperimpl.hoteldaohelperimpl;
 
 import data.daohelper.HotelDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.*;
 import constant.ResultMessage;
@@ -21,7 +22,7 @@ import java.util.Calendar;
  * Created by a297 on 16/11/27.
  */
 public class HotelDaoHelperMySql implements HotelDaoHelper {
-	private DBHelper db = new DBHelper();
+	private DBHelper db = DaoHelperFactoryImpl.getDBHelper();
     private static final String key = "^sf43&67u";
     public void init() {
 
@@ -35,6 +36,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         // 酒店 类型 总量
         // 价格 图片地址 可用数量日期列表
         db.executeSql("CREATE TABLE if not exists RoomInfo(hotelID char(10),roomType char(10),amountTotal int,"
+                +"price double,imageAddress tinytext,aList text)");
     }
     public void finish(){
         db.executeSql("USE OurData");

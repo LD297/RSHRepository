@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 
 import data.daohelper.*;
 import data.daohelperimpl.hoteldaohelperimpl.HotelDaoHelperMySql;
+import data.daohelperimpl.jdbc.DBHelper;
+import data.daohelperimpl.jdbc.Values;
 import data.daohelperimpl.logindaohelperimpl.LoginDaoHelperMySql;
 import data.daohelperimpl.orderdaohelperimpl.OrderDaoHelperMySql;
 import data.daohelperimpl.promotiondaohelperimpl.PromotionDaoHelperMySql;
@@ -25,7 +27,16 @@ public class DaoHelperFactoryImpl implements DaoHelperFactory {
 	UserDaoHelper userDaoHelper = null;
 	CreditRecordListDaoHelper creditRecordListDaoHelper = null;
 	LoginDaoHelper loginDaoHelper = null;
-
+    static DBHelper db = null;
+    
+    public static DBHelper getDBHelper(){
+    	if(db==null){
+    		Values.setURL();
+    		db = new DBHelper();
+    	}
+    	return db;
+    }
+    
 	public WebSalesmanDaoHelper getWebSalesManDaoHelper() {
 		if(webSalesmanDaoHelper==null){
 		    webSalesmanDaoHelper = new WebSalesmanDaoHelperMySql();
