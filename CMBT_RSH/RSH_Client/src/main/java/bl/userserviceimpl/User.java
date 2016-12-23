@@ -107,7 +107,7 @@ public class User {
 	}
 
 	public ResultMessage checkPassword(String password) {
-		if(userPO==null){
+		if(userPO==null){System.out.println("getinfo!!");
 			return ResultMessage.not_exist;
 		}
 		if(password.equals(userPO.getPassword()))

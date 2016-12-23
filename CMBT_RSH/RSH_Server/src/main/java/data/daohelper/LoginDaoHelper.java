@@ -10,6 +10,8 @@ import java.rmi.RemoteException;
  * Created by aa on 2016/12/3.
  */
 public interface LoginDaoHelper {
+	public void init();
+	
     public ResultMessage addOnline(OnlinePersonPO po) throws RemoteException ;
 
     public ResultMessage deleteOnline(Role role, String id) throws RemoteException;

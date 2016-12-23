@@ -9,7 +9,8 @@ import java.rmi.RemoteException;
  * Created by aa on 2016/12/3.
  */
 public interface WebManagerDaoHelper {
-
+	public void init();
+	
     public ResultMessage update(String managerID,String password) throws RemoteException ;
 
     public WebManagerPO getManagerInfo(String managerID)throws RemoteException;

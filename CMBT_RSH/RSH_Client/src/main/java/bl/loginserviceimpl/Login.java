@@ -62,6 +62,7 @@ public class Login {
 				OnlinePersonPO po = new OnlinePersonPO(role, id);
 				resultMessage = loginDao.addOnline(po);
 			} catch (RemoteException e) {
+				e.printStackTrace();
 				return ResultMessage.remote_fail;
 			}
 			return resultMessage;

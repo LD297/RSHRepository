@@ -20,7 +20,7 @@ public class WebManagerDaoHelperMySql implements WebManagerDaoHelper{
     private DBHelper db = new DBHelper();
     private static final String key = "&fas03#j63uk,qw4";
 
-    public void init(){
+    public void init() {
         db.executeSql("USE OurData");
         // 账号 密码 地区
         String initSql = "INSERT INTO WebStaffInfo VALUES('0000000000',"

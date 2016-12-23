@@ -16,8 +16,11 @@ import java.util.ArrayList;
  */
 public class LoginDaoHelperMySql implements LoginDaoHelper{
 	
-    private ArrayList<OnlinePersonPO> onlineInfo = new ArrayList<>();
+    private ArrayList<OnlinePersonPO> onlineInfo = null;
    
+    public void init() {
+    	onlineInfo = new ArrayList<OnlinePersonPO>();
+    }
 
     public void finish(){
         onlineInfo.clear();;
