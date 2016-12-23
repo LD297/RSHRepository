@@ -6,8 +6,10 @@ import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
+import bl.loginservice.LoginService;
 import bl.orderservice.OrderForHotel;
 import bl.promotionservice.PromotionService;
+import constant.Role;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -56,6 +58,7 @@ public class HotelHomepageUIController {
 
     private String hotelId;
 
+    private LoginService loginService;
     private HotelService hotelService;
     private PromotionService promotionService;
     private HotelInfoService hotelInfoService;
@@ -214,6 +217,7 @@ public class HotelHomepageUIController {
     }
     @FXML
     void logout(MouseEvent event) {
+        loginService.logout(Role.hotel,hotelId);
         ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
     }
 
@@ -236,6 +240,7 @@ public class HotelHomepageUIController {
 
 
     // Login界面set进来的
+    public void setLoginService(LoginService loginService){this.loginService = loginService;};
     public void setHotelService(HotelService hotelService) {
         this.hotelService = hotelService;
     }

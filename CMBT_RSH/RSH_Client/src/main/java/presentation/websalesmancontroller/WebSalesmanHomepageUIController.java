@@ -1,8 +1,10 @@
 package presentation.websalesmancontroller;
 
+import bl.loginservice.LoginService;
 import bl.orderservice.OrderForWebsite;
 import bl.promotionservice.PromotionService;
 import bl.userservice.UserService;
+import constant.Role;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -57,6 +59,7 @@ public class WebSalesmanHomepageUIController {
 
     private WebSalesmanVO webSalesmanVO;
 
+    private LoginService loginService;
     private PromotionService promotionService;
     private OrderForWebsite orderForWebsite;
     private UserService userService;
@@ -192,6 +195,7 @@ public class WebSalesmanHomepageUIController {
 
     @FXML
     void logout(MouseEvent event){
+        loginService.logout(Role.websalesman, webSalesmanVO.getId());
         ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
 
     }
@@ -212,6 +216,11 @@ public class WebSalesmanHomepageUIController {
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
+
+    public void setLoginService(LoginService loginService) {
+        this.loginService = loginService;
+    }
+
     public void setPromotionService(PromotionService promotionService) {
         this.promotionService = promotionService;
     }

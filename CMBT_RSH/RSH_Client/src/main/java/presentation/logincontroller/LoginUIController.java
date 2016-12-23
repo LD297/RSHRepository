@@ -187,6 +187,7 @@ public class LoginUIController {
 
                 hotelHomepageUIController.setPrePane(loginBelowAnchorpane);
                 hotelHomepageUIController.setHotelId(id);
+                hotelHomepageUIController.setLoginService(loginService);
                 hotelHomepageUIController.setHotelService(hotelService);
                 hotelHomepageUIController.setPromotionService(promotionService);
                 hotelHomepageUIController.setHotelInfoService(hotelInfoService);
@@ -220,6 +221,7 @@ public class LoginUIController {
                 webSalesmanHomepageUIController.setPrePane(loginBelowAnchorpane);
                 webSalesmanHomepageUIController.setWebSalesmanVO(webSalesmanVO);
                 // 配置逻辑处理服务
+                webSalesmanHomepageUIController.setLoginService(loginService);
                 webSalesmanHomepageUIController.setPromotionService(promotionService);
                 webSalesmanHomepageUIController.setOrderForWebsite(orderForWebsite);
                 webSalesmanHomepageUIController.setUserService(userService);
