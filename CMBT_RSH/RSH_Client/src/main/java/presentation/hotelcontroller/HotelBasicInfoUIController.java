@@ -420,6 +420,7 @@ public class HotelBasicInfoUIController {
         setFacilityText();
         setFacilityCheckBox();
         setPrompts();
+        refreshPage();
 
     }
 
@@ -458,9 +459,11 @@ public class HotelBasicInfoUIController {
 
         promptsInvisible();
         setHotelVO();
+        System.out.println(hotelVO.getBriefIntro()+"简介");
 
 //        Image image = new Image(hotelVO.getImageAddress(), 800, 400, false, true);
-        Image image = new Image(hotelVO.getImageAddress());
+        System.out.println(hotelVO.getImageAddress());
+        Image image = new Image(hotelVO.getImageAddress()+"图片地址");
         hotelImage.setImage(image);
 
         IDLabel.setText(hotelVO.getHotelID());

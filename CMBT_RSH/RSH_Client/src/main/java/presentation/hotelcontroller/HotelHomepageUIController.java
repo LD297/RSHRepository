@@ -114,6 +114,7 @@ public class HotelHomepageUIController {
         // 配置hotelService
         hotelBasicInfoUIController.setHotelService(hotelService);
         hotelBasicInfoUIController.setHotelId(hotelId);
+        hotelBasicInfoUIController.setHotelVO();
         hotelBasicInfoUIController.refreshPage();
 
         Scene scene = null;
@@ -197,6 +198,7 @@ public class HotelHomepageUIController {
         // 加载可用客房信息维护界面根结点
         if(roomAvailUIPane==null)
             try {
+                System.out.println(loader.load()==null);
                 roomAvailUIPane = (AnchorPane) loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -209,9 +211,10 @@ public class HotelHomepageUIController {
         // 配置hotelService
         roomAvailUIController.setHotelService(hotelService);
         roomAvailUIController.setHotelId(hotelId);
-        roomAvailUIController.refreshPage();
+//        roomAvailUIController.refreshPage();
 
         Scene scene = null;
+//        System.out.println(roomAvailUIPane==null);
         if(roomAvailUIPane.getScene()==null)
             scene = new Scene(roomAvailUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else

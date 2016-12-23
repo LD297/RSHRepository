@@ -300,6 +300,7 @@ public class RoomAvailUIController {
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '可用客房.fxml'.";
 
         setShowPanes();
+        refreshPage();
     }
 
     public void setPrePane(AnchorPane prePane) {
