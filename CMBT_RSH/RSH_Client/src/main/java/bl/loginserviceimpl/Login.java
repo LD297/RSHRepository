@@ -56,8 +56,10 @@ public class Login {
 		default:
 			return ResultMessage.not_exist;
 		}
+		
 		//检验是否有登陆冲突
 		if(resultMessage==ResultMessage.succeed){
+			initRemote();
 			try {
 				OnlinePersonPO po = new OnlinePersonPO(role, id);
 				resultMessage = loginDao.addOnline(po);
@@ -82,6 +84,7 @@ public class Login {
 		try{
 			resultMessage = loginDao.deleteOnline(role, id);
 		}catch (RemoteException e){
+			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
 		return resultMessage;

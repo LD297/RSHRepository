@@ -1,5 +1,6 @@
 package bl.userserviceimpl;
 
+import constant.MemberType;
 import constant.ResultMessage;
 import data.dao.userdao.UserDao;
 import po.UserPO;
@@ -10,7 +11,7 @@ import java.rmi.RemoteException;
 public class Member {
 
 	private static UserDao userDao=null;
-	private static int boundaries;
+	private static int boundaryForLevel;
 
 	private String userid;
 	private UserPO userPO = null;
@@ -41,7 +42,7 @@ public class Member {
 			RemoteHelper remoteHelper = RemoteHelper.getInstance();
 			userDao = remoteHelper.getUserDao();
 			try {
-				boundaries = userDao.getMemberLevel();
+				boundaryForLevel = userDao.getMemberLevel();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -51,66 +52,67 @@ public class Member {
 	/**
 	 * 注册普通会员
 	 */
-	public ResultMessage registerMember() {
+	public ResultMessage registerCommonMember() {
 		level = getMemberLevel(credit);
 		userPO.setLevel(level);
-
-		ResultMessage resultMessage = null;
+		userPO.setMemberType(MemberType.commom);
 		initRemote();
 		try{
-			resultMessage = userDao.update(userPO);
+			return userDao.update(userPO);
 		}catch(RemoteException e){
+			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
-		return resultMessage;
+	
 	}
 
 	/**
 	 * 注册企业会员
 	 */
-	public ResultMessage registerMember(String commerceName) {
+	public ResultMessage registerCommerceMember(String commerceName) {
 
 		level = getMemberLevel(credit);
 		userPO.setLevel(level);
-
 		this.commerceName = commerceName;
+		userPO.setLevel(level);
 		userPO.setCommerceName(commerceName);
-
-		ResultMessage resultMessage = null;
+		userPO.setMemberType(MemberType.commerce);
 		initRemote();
 		try{
-			resultMessage = userDao.update(userPO);
+			return userDao.update(this.userPO);
 		}catch(RemoteException e){
+			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
-		return resultMessage;
 	}
 	/**
 	 * 网站营销人员更新所有会员的会员等级
-	 * @param boundariesForLevels
+	 * @param boundaryForLevel
 	 * @return
 	 */
-	public ResultMessage setMemberStandard(int boundariesForLevels){
-
-		ResultMessage resultMessage = null;
+	public static ResultMessage setMemberStandard(int boundaryForLevel){
 		initRemote();
+		ResultMessage resultMessage = null;
 		try{
-			resultMessage = userDao.setMemberLevel(boundariesForLevels);
+			resultMessage = userDao.setMemberLevel(boundaryForLevel);
 		}catch(RemoteException e){
+			e.printStackTrace();
 			return ResultMessage.remote_fail;
+		}
+		if(resultMessage == ResultMessage.succeed){
+			Member.boundaryForLevel = boundaryForLevel;
 		}
 		return resultMessage;
 	}
 
-	public int	 getMemberStandard(){
-		return boundaries;
+	public static int getMemberStandard(){
+		return boundaryForLevel;
 	}
 
 
-	public int getMemberLevel(int credit) {
-		int level = 0;
-		
-		return level;
+	public static int getMemberLevel(int credit) {
+		return credit/boundaryForLevel+1;
 	}
-
+	
+	
 }

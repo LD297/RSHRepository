@@ -10,17 +10,29 @@ public class UserVO {
 	public String userID;
 	public String password;
 	public String nickName;
-	public String imageAddress;
+	public String imageAddress = "somewhere,needing changes";
 	public LocalDate birthday;
 
-	public MemberType memberType;
-	public int level;
-	public int credit;
-	public String commerceName;
+	public MemberType memberType = MemberType.not_member;
+	public int level = -1;
+	public int credit = 0;
+	public String commerceName = null;
 	public String name;
 	public Sexuality sexuality;
 	public String eMail;
 
+	public UserVO(String userID, String password,String nickName,
+			LocalDate birthday, String name, Sexuality sexuality, String eMail){
+		this.userID = userID;
+		this.password = password;
+		this.nickName = nickName;
+		this.birthday = birthday;
+		this.name = name;
+		this.sexuality = sexuality;
+		this.eMail = eMail;
+	}
+	
+	
 	public UserVO(String id, String password, String nickName,
 				  String imageAddress,LocalDate birth, int level, MemberType memberType, String name,
 				  Sexuality sexuality, String eMail, int credit,String commerceName) {

@@ -71,6 +71,7 @@ public class WebManager {
 	private ResultMessage updateData() {
 		if(webManager==null)
 			webManager = getInstance();
+		initRemote();
 		try {
 			return	webManagerDao.updateManager(webManagerID,password);
 		} catch (RemoteException e) {
@@ -84,6 +85,9 @@ public class WebManager {
 		// TODO Auto-generated method stub
 		if(webManager==null){
 			webManager = getInstance();
+		}
+		if(webManager==null){
+			return ResultMessage.idNotExist;
 		}
 		if(this.password.equals(password)){
 			return ResultMessage.succeed;

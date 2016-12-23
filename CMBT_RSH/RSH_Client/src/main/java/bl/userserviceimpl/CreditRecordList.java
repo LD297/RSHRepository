@@ -15,7 +15,7 @@ import java.util.Iterator;
 public class CreditRecordList {
 	private String userid ;
 	int credit;
-	ArrayList<CreditRecordVO> creditRecordVOArrayList = new ArrayList<>();
+	ArrayList<CreditRecordVO> creditRecordVOArrayList ;
 
 	private static CreditRecordListDao creditRecordListDao = null;
 
@@ -64,16 +64,16 @@ public class CreditRecordList {
 	 * 增加用户信用变化记录	 */
 	public ResultMessage addCreditRecord(CreditRecordVO vo) {
 		ResultMessage resultMessage = null;
-		CreditRecordPO po = vo.changeIntoPO();
 		initRemote();
 		try {
-			resultMessage = creditRecordListDao.addCreditRecord(po);
+			resultMessage = creditRecordListDao.addCreditRecord(vo.changeIntoPO());
 		}catch (RemoteException e){
 			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
 		if(resultMessage==ResultMessage.succeed){
 			creditRecordVOArrayList.add(vo);
+			credit = vo.getCredit();
 		}
 		return resultMessage;
 	}
@@ -82,7 +82,6 @@ public class CreditRecordList {
 	 * @return
 	 */
 	public Iterator<CreditRecordVO> getCreditRecordList() {
-
 		return creditRecordVOArrayList.iterator();
 	}
 	/**

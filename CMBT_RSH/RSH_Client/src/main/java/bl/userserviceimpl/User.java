@@ -22,16 +22,16 @@ import bl.orderserviceimpl.OrderForUserController;
  */
 public class User {
 
-	String id;
+	String userID;
 	UserPO userPO = null;
 
 	private static UserDao userDao = null;
 	
-	public User(String id) {
+	public User(String userID) {
 		initRemote();
-		this.id = id;
+		this.userID = userID;
 		try {
-			userPO = userDao.getInfo(id);
+			userPO = userDao.getInfo(userID);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,8 +42,7 @@ public class User {
 		if(userDao==null){
 			RemoteHelper remoteHelper = RemoteHelper.getInstance();
 			userDao = remoteHelper.getUserDao();
-		}	
-		return;
+		}
 	}
 
 	/**
@@ -54,10 +53,13 @@ public class User {
 			return userPO.changeIntoVO();
 		}
 		try{
-			userPO = userDao.getInfo(id);
-			System.out.println(userPO.getId());
+			userPO = userDao.getInfo(userID);
 		}catch (RemoteException e){
 			e.printStackTrace();
+			return null;
+		}
+		if(userPO == null){
+			return null; 		//该用户不存在
 		}
 		return userPO.changeIntoVO();
 	}
@@ -67,15 +69,20 @@ public class User {
 	 * @param vo 更新后VO
 	 * @return 执行后信息
 	 */
-	public ResultMessage update(UserVO vo) {
-		ResultMessage resultMessage = null;
-		UserPO po = vo.changeIntoPO();
+	public static ResultMessage update(UserVO vo) {
+		initRemote();
 		try {
-			resultMessage = userDao.update(po);
-		}catch (RemoteException e){
+			if(userDao.getInfo(vo.getId())==null){
+				return ResultMessage.idNotExist;
+			}
+			else{
+				return userDao.update(vo.changeIntoPO());
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
-		return resultMessage;
 	}
 
 	/**
@@ -83,32 +90,35 @@ public class User {
 	 * @param vo
 	 * @return
 	 */
-	public ResultMessage add(UserVO vo) {
+	public static ResultMessage add(UserVO vo) {
 		initRemote();
+		
+		//判断该账号是否存在
 		try {
 			if(userDao.getInfo(vo.getId())!=null){
 				System.out.println("已存在");
 				return ResultMessage.already_exist;
 				
-			}
-				
+			}				
 		} catch (RemoteException e) {
-			System.out.println("链接错误");
+			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
-		ResultMessage resultMessage = null;
+		
+		//增加用户
 		try {
-			resultMessage = userDao.insert(vo.changeIntoPO());
+			return userDao.insert(vo.changeIntoPO());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
-		return resultMessage;
 	}
 
 	public ResultMessage checkPassword(String password) {
-		if(userPO==null){System.out.println("getinfo!!");
-			return ResultMessage.not_exist;
+		if(userPO==null){
+			System.out.println("getinfo!!");
+			return ResultMessage.idNotExist;
 		}
 		if(password.equals(userPO.getPassword()))
 			return ResultMessage.succeed;
@@ -120,7 +130,7 @@ public class User {
 		if(userPO==null){
 			return ResultMessage.not_exist;
 		}
-		if(oldPassword==userPO.getPassword()){
+		if(oldPassword.equals(userPO.getPassword())){
 			return forceChangePassword(newPassword);
 		}
 		else{

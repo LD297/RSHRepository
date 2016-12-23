@@ -25,7 +25,7 @@ public class LoginDriver {
 		System.out.println("begin");
 		loginController.register(userVO);
 		System.out.println(loginController.checkOnline(role2, userID, "123").toString());
-		System.out.println(loginController.logout(role, hotelID));
+		System.out.println(loginController.logout(role2,userID).toString());
 		System.out.println("end");
 	}
 }

@@ -67,11 +67,11 @@ public class Hotel{
 		if(hotelPO==null){
 			return ResultMessage.idNotExist;
 		}
-		if(this.hotelPO.getPassword().equals(password)){
+		if(hotelPO.getPassword().equals(password)){
 			return ResultMessage.succeed;
 		}
 		else{
-			return ResultMessage.fail;
+			return ResultMessage.password_wrong;
 		}
 	}
 	

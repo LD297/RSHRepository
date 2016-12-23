@@ -168,9 +168,8 @@ public class UserRegisterUIController {
     	if(rightInput){
     		LocalDate birth = dataPicker.getValue();
     		Sexuality sexuality = Sexuality.getSexuality(sexChoicebox.getValue());     
-    		//TODO 获取头像地址
-    		String imageAddress = null;
-    		UserVO userVO = new UserVO(phoneNum, password, nickName, imageAddress, birth, 0, MemberType.commom, name, sexuality, email, 0,null);
+    		
+    		UserVO userVO = new UserVO(phoneNum, password, nickName,  birth, name, sexuality, email);
     		 //将该用户注册的内容存到数据库
         	ResultMessage resultMessage = UserInfoUtil.getInstance().register(userVO);
         	if(resultMessage!=ResultMessage.succeed){

@@ -96,6 +96,10 @@ public class UserPO implements Serializable{
 	}
 	public void setPassword(String newPassword) {
 		// TODO Auto-generated method stub
-		password = newPassword;
+		this.password = newPassword;
+	}
+	public void setMemberType(MemberType commerce) {
+		// TODO Auto-generated method stub
+		this.memberType = commerce;
 	}
 }

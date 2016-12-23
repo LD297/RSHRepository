@@ -1,25 +1,17 @@
 package bl.userserviceimpl;
 
-import bl.BLHelper;
 import bl.userservice.UserService;
 import constant.MemberType;
 import constant.ResultMessage;
-import constant.Sexuality;
-import data.dao.orderdao.OrderDao;
 import data.dao.userdao.UserDao;
 import po.UserPO;
 import rmi.RemoteHelper;
 import vo.CreditRecordVO;
-import vo.OrderVO;
 import vo.UserVO;
 
 import java.rmi.RemoteException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
-
-import javax.jws.soap.SOAPBinding.Use;
 
 /**
  * 处理用户界面包的逻辑
@@ -51,8 +43,7 @@ public class UserController implements UserService{
 	 */
 	@Override
 	public ResultMessage update(UserVO userVO)	{
-		User user = new User(userVO.getId());
-		return user.update(userVO);
+		return User.update(userVO);
 	}
 
 	/**
@@ -76,30 +67,28 @@ public class UserController implements UserService{
 	 * 注册普通会员
 	 */
 	@Override
-	public ResultMessage registerMember(String userid) {
-		Member member = new Member(userid);
-		return member.registerMember();
+	public ResultMessage registerMember(String userID) {
+		Member member = new Member(userID);
+		return member.registerCommonMember();
 	}
 
 	/**
 	 * 注册企业会员
 	 */
 	@Override
-	public ResultMessage registerMember(String userid, String commerceName) {
-		Member member = new Member(userid);
-		return member.registerMember(commerceName);
+	public ResultMessage registerMember(String userID, String commerceName) {
+		Member member = new Member(userID);
+		return member.registerCommerceMember(commerceName);
 	}
 
 	@Override
-	public ResultMessage setMemberStandard(int boundariesForLevels) {
-		Member member = new Member();
-		return member.setMemberStandard(boundariesForLevels);
+	public ResultMessage setMemberStandard(int boundaryForLevel) {
+		return Member.setMemberStandard(boundaryForLevel);
 	}
 
 	@Override
 	public int getMemberStandard() {
-		Member member = new Member();
-		return member.getMemberStandard();
+		return Member.getMemberStandard();
 	}
 
 
@@ -107,8 +96,7 @@ public class UserController implements UserService{
 	public int getMemberLevel(int credit) {
 		if(credit<=0)
 			return 0;
-		Member member = new Member();
-		return member.getMemberLevel(credit);
+		return Member.getMemberLevel(credit);
 	}
 
 
@@ -126,12 +114,12 @@ public class UserController implements UserService{
 
 	/**
 	 * 登陆模块调用
-	 * @param id
+	 * @param userID
 	 * @param password
 	 * @return
 	 */
-	public ResultMessage checkPassword(String id,String password) {
-		User user = new User(id);
+	public ResultMessage checkPassword(String userID,String password) {
+		User user = new User(userID);
 		return user.checkPassword(password);
 	}
 
@@ -169,8 +157,7 @@ public class UserController implements UserService{
 	}
 	
 	public ResultMessage add(UserVO userVO){
-		User user = new User(userVO.getId());
-		return user.add(userVO);
+		return User.add(userVO);
 	}
 
 }
