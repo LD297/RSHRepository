@@ -23,6 +23,10 @@ public class SingleWebSalesmanAnchorPane extends AnchorPane{
 		areaInfoLabel.setText(webSalesmanVO.getProvince()+" "+webSalesmanVO.getCity()+" "+webSalesmanVO.getArea());;
 		
 		//设置组件属性
+		areaInfoLabel.setOpacity(0.8);
+		areaLabel.setOpacity(0.8);
+		idInfoLabel.setOpacity(0.8);
+		idLabel.setOpacity(0.8);
 		setFont(areaInfoLabel);
 		setFont(areaLabel);
 		setFont(idInfoLabel);
@@ -40,9 +44,9 @@ public class SingleWebSalesmanAnchorPane extends AnchorPane{
 		
 		//设置组件位置
 		Locator locator = Locator.getLocator();
-		locator.setLocation(idLabel, 14.0,53.0,59.0,400.0);
+		locator.setLocation(idLabel, 14.0,53.0,10.0,400.0);
 		locator.setLocation(idInfoLabel, 14.0,53.0, 218.0,199.0);
-		locator.setLocation(areaLabel, 49.0,15.0,59.0, 452.0);
+		locator.setLocation(areaLabel, 49.0,15.0,10.0, 452.0);
 		locator.setLocation(areaInfoLabel, 49.0,15.0, 218.0,99.0);
 		locator.setLocation(penImage, 14.0, 53.0, 578.0, 0.0);
 		
