@@ -156,13 +156,13 @@ public class PromotionUIController {
             String id = thePromotion.promotionID;
             String reason = thePromotion.reason;
             if(reason.length()<5)
-                reason = "  "+reason;
+                reason = "   "+reason;
 
             ConditionType conditionType = thePromotion.conditionType;
             String condition = "";
             condition = ConditionType.getStringConditionType(conditionType);
             if(condition.length()<5)
-                condition = "           "+condition;
+                condition = "       "+condition;
 
             // 如果有需要，显示折扣条件中的数量
             if(conditionType.equals(ConditionType.ROOMNUM)){

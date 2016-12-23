@@ -13,7 +13,7 @@ public enum ConditionType {
         if(type.equals(ConditionType.BIRTHDAY))
             return "生日特惠";
         if(type.equals(ConditionType.ROOMNUM))
-            return "单次预定房间数 >= ";
+            return "单次预定房间数>=";
         if(type.equals(ConditionType.TOTAL))
             return "总额 >= ";
         if(type.equals(ConditionType.MEMBER))
