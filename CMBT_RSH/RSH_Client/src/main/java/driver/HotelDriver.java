@@ -22,11 +22,12 @@ public class HotelDriver {
 		HotelController hotelController = new HotelController();
 		HotelInfoController hotelInfoController = new HotelInfoController();
 		ManagerHotelController managerHotelController = new ManagerHotelController();
+		
 		System.out.println("begin");
 		System.out.println(hotelInfoController.getCheckInDDL(hotelID));
+		System.out.println(managerHotelController.addHotel(hotelVO));
 		System.out.println(managerHotelController.getHotelID("010009"));
-		hotelController.getHotelInfo(hotelID);
-		
+		System.out.println(hotelController.getHotelInfo(hotelID));		
 		System.out.println(hotelController.addSpecialRoom(roomVO));
 		System.out.println("end");
 	}

@@ -9,6 +9,7 @@ public enum ResultMessage {
 	timeOut,
 	already_exist,
 	remote_fail,
+
 	not_exist,
 	noChangeMade,
 	creditLack,

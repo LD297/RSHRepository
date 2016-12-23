@@ -52,13 +52,16 @@ public class User {
 		if(userPO!=null) {
 			return userPO.changeIntoVO();
 		}
+		initRemote();
 		try{
 			userPO = userDao.getInfo(userID);
 		}catch (RemoteException e){
 			e.printStackTrace();
+			System.out.println("aaa");
 			return null;
 		}
 		if(userPO == null){
+			System.out.println("bucunzai");
 			return null; 		//该用户不存在
 		}
 		return userPO.changeIntoVO();
@@ -156,7 +159,12 @@ public class User {
 	}
 	public boolean hasReserved(String hotelID) {
 		// TODO Auto-generated method stub
-		
-		return false;
+		OrderForUserController orderForUserController = new OrderForUserController();
+		if(orderForUserController.getOrderStateOfUser(userID, hotelID)==null){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 }

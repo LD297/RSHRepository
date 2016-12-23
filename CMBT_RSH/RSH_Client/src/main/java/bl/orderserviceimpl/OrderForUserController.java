@@ -114,8 +114,9 @@ public class OrderForUserController implements OrderForUser{
         HotelService hotelService = new HotelController();
         hotelService.plusRoomAvail(hotelID,room.getRoomType(),roomNum,checkIn,checkOut);
         // 订单状态置为已撤销
+        orderPO.setState(StateOfOrder.canceled);
         try{
-            orderDao.stateUpdate(orderID,StateOfOrder.canceled);
+            orderDao.update(orderPO);
         }catch (RemoteException e){
             return -1;
         }
@@ -248,8 +249,10 @@ public class OrderForUserController implements OrderForUser{
     @Override
     public ResultMessage addComment(String orderID, int grade, String comment){
         // 检查订单状态是否为已执行
+    	OrderPO orderPO;
         try{
-            if(orderDao.searchByID(orderID).getState()!=StateOfOrder.executed)
+        	orderPO = orderDao.searchByID(orderID);
+            if(orderPO.getState()!=StateOfOrder.executed)
                 return ResultMessage.fail;
         }catch (RemoteException e){
             e.printStackTrace();
@@ -257,8 +260,9 @@ public class OrderForUserController implements OrderForUser{
         }
         // 订单评分评论更新
         // 酒店评分更新
+       orderPO.setComment(comment);
         try {
-            if(orderDao.commentUpdate(orderID, grade, comment)==ResultMessage.succeed
+            if(orderDao.update(orderPO)==ResultMessage.succeed
                     &&hotelInfoService.updateGrade(orderID.substring(0,10), grade)==ResultMessage.succeed)
                 return ResultMessage.succeed;
         }catch(RemoteException e){

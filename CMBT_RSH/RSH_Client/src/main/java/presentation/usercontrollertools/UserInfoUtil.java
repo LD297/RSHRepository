@@ -8,7 +8,7 @@ import java.util.Iterator;
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.hotelservice.SearchHotelService;
-import bl.hotelserviceimpl.SearchHotel;
+import bl.hotelserviceimpl.SearchHotelController;
 import bl.hotelserviceimpl.SearchHotelService_Stub;
 import bl.hotelserviceimpl.controller.HotelController;
 import bl.hotelserviceimpl.controller.HotelInfoController;
@@ -90,7 +90,7 @@ public String getHotelID() {
 //替换stub
     private UserService userService = new UserController();
     private LoginService loginService = new LoginController();
-    private SearchHotelService searchHotelService = new SearchHotel();
+    private SearchHotelService searchHotelService = new SearchHotelController();
     private HotelService hotelService =  new HotelController();
     private OrderForUser orderForUser = new OrderForUserController();
     private OrderForHotel orderForHotel = new OrderForHotelController();

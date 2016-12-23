@@ -25,7 +25,7 @@ import bl.userserviceimpl.UserController;
  * @author aa
  *
  */
-public class SearchHotel implements SearchHotelService{
+public class SearchHotelController implements SearchHotelService{
 private static HotelDao hotelDao = null;
 	
 	private void initRemote(){
@@ -34,15 +34,12 @@ private static HotelDao hotelDao = null;
 			hotelDao = remoteHelper.getHotelDao();
 		}
 	}
-	public HotelVO getHotelInfo(String hotelID) {
-		Hotel hotel = Hotel.getInstance(hotelID);
-		HotelVO hotelVO = hotel.getHotelInfo();
-		return hotelVO;
-	}
 
+	@Override
 	public ArrayList<HotelVO> getHotelList(String province, String city, String area) {
 		ArrayList<HotelPO> hotelPOs = new ArrayList<>();
 		ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+		initRemote();
 		try {
 			hotelPOs = hotelDao.getHotelList(province);
 		}catch (RemoteException e){
@@ -56,23 +53,19 @@ private static HotelDao hotelDao = null;
 		return hotelVOs;
 	}
 
+	@Override
 	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,SelectConditionVO selectConditionVO) {
 		ArrayList<HotelVO> result = new ArrayList<>();
 		for(HotelVO hotelVO:hotelList){
 			if(match(hotelVO,selectConditionVO)){
 				result.add(hotelVO);
 			}
-		}
-		
+		}		
 		return result;
 	}
 /**
- * public String roomType;??
-	public int roomNum;
-	public Date begin;
-	public Date end;
-	public String userID;
-	public Boolean reserved;
+ * 内部调用
+ * 产看条件是否匹配
  * @param hotelVO
  * @param selectConditionVO
  * @return
@@ -102,6 +95,8 @@ private static HotelDao hotelDao = null;
 		}
 		return true;
 	}
+	
+	@Override
 	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,String hotelName) {
 		ArrayList<HotelVO> result = new ArrayList<>();
 		for(HotelVO hotelVO:hotelList){
@@ -132,6 +127,7 @@ private static HotelDao hotelDao = null;
 	}
 	
 	/**
+	 * 内部调用
 	 * if return true,
 	 * hotelVO1 will be added just before hotelVO2
 	 * @param hotelVO1

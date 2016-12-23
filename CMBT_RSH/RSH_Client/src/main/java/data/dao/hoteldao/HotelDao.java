@@ -48,17 +48,12 @@ public interface HotelDao extends Remote{
     public int numOfRoomAvail(String id, String roomType, Date checkIn, Date checkOut) throws RemoteException;
     
     public ArrayList<HotelPO> getHotelList(String district) throws RemoteException;
-     
-   
    
     public ResultMessage updateGrade(String hotelID,int grade) throws RemoteException;
     
     public ArrayList<HotelPO> getAll() throws RemoteException;
     
     public ArrayList<String> getImageAddresses(String hotelID) throws RemoteException;
-    
-    
-    
     
       // 根据roompo里的酒店账号 更新该房间类型的信息
     public ResultMessage updateRoom(RoomPO roomPO) throws RemoteException;

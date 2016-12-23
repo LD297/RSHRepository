@@ -4,26 +4,44 @@ import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
 import po.RoomPO;
 import rmi.RemoteHelper;
+import vo.HotelVO;
 import vo.RoomVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.naming.InitialContext;
+
 public class RoomManager {
 
-	HotelDao hotelDao  = null;
+	private static HotelDao hotelDao  = null;
 	String hotelID;
 	ArrayList<RoomVO> roomList;
 	
-	private void initRemote(){
+	private static void initRemote(){
 		if(hotelDao == null){
 			RemoteHelper remoteHelper = RemoteHelper.getInstance();
 			hotelDao = remoteHelper.getHotelDao();
 		}
 	}
 	
-	public RoomManager(String hotelID){
+	private RoomManager(String hotelID){
 		this.hotelID = hotelID;
+	}
+	
+	protected static RoomManager getInstance(String hotelID){
+		RoomManager roomManager = new RoomManager(hotelID);
+		initRemote();
+		try {
+			if(hotelDao.getHotel(hotelID)==null){
+				return null;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		return roomManager;
 	}
 
 	public ArrayList<RoomVO> getRoomList() {
@@ -79,4 +97,5 @@ public class RoomManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

@@ -264,4 +264,8 @@ public class OrderPO implements Serializable{
 				actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);
 		return orderVO;
 	}
+	public void setComment(String comment) {
+		// TODO Auto-generated method stub
+		this.comment = comment;
+	}
 }

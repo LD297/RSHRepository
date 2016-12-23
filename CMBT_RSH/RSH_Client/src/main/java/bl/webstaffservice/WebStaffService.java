@@ -47,5 +47,7 @@ public interface WebStaffService {
 	 */
 	public ResultMessage updateWebSalesman(WebSalesmanVO webSalesmanVO);
 	
+	public WebSalesmanVO webSalesmanVO(String webSalesmanID);
+	
 
 }

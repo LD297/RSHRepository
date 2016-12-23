@@ -11,9 +11,9 @@ import java.rmi.RemoteException;
 public class Member {
 
 	private static UserDao userDao=null;
-	private static int boundaryForLevel;
+	private static int boundaryForLevel = 500;
 
-	private String userid;
+	private String userID;
 	private UserPO userPO = null;
 	private int level;
 	private int credit;
@@ -21,7 +21,7 @@ public class Member {
 
 	public  Member(String userid){
 		initRemote();
-		this.userid = userid;
+		this.userID = userid;
 		try {
 			userPO = userDao.getInfo(userid);
 			level = userPO.getLevel();

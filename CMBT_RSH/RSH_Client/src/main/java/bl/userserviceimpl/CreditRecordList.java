@@ -29,14 +29,14 @@ public class CreditRecordList {
 	public CreditRecordList(String userid) {
 		initRemote();
 		this.userid = userid;
-		credit = getCredit();
 		creditRecordVOArrayList = getCreditRecords();
+		credit = getCredit();	
 	}
 	/*
 	用以在初始化对象的时候从数据库获得信用记录列表
 	 */
 	private ArrayList<CreditRecordVO> getCreditRecords() {
-		ArrayList<CreditRecordPO> creditRecordPOS= new ArrayList<CreditRecordPO>();
+		ArrayList<CreditRecordPO> creditRecordPOS= new ArrayList<>();
 		ArrayList<CreditRecordVO> creditRecordVOs = new ArrayList<>();
 		initRemote();
 		try {
@@ -48,7 +48,7 @@ public class CreditRecordList {
 		for(CreditRecordPO creditRecordPO:creditRecordPOS){
 			creditRecordVOs.add(creditRecordPO.changeIntoVO());
 		}
-		return creditRecordVOArrayList;
+		return creditRecordVOs;
 	}
 
 	public ResultMessage add(int value){

@@ -21,7 +21,7 @@ public class UserDriver {
 	String imageAddress = "111";
 	LocalDate birth = LocalDate.now();
 	int level = 2;
-	MemberType memberType = MemberType.commom;
+	MemberType memberType = MemberType.commerce;
 	String name = "123";
 	Sexuality sexuality = Sexuality.female;
 	String eMail = "234";
@@ -39,6 +39,7 @@ public class UserDriver {
 		System.out.println(userController.addCredit(12, userID).toString());
 		System.out.println(userController.getCreditRecordList(userID).hasNext());
 		System.out.println(userController.getInfo(userID).commerceName);
+		System.out.println(Member.getMemberStandard());
 	}
 	
 

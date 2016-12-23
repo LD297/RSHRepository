@@ -32,7 +32,7 @@ public class HotelManager {
 	private HotelManager(String hotelID) {
 		// TODO Auto-generated constructor stub
 		this.hotelID = hotelID;
-		roomManager = new RoomManager(hotelID);
+		roomManager = RoomManager.getInstance(hotelID);
 	}
 	
 	public RoomManager getRoomManager(){

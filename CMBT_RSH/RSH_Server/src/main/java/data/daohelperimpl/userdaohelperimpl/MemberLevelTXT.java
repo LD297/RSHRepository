@@ -29,30 +29,24 @@ public class MemberLevelTXT {
         }
     }
     // 网站营销人员 制定会员等级制度
-    public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException,IOException {
+    public ResultMessage setMemberLevel(int gradeWithCredit) throws RemoteException,IOException {
     	FileOutputStream fs = new FileOutputStream(new File(fileName));
     	
     	FileWriter fw = new FileWriter(fileName);
-    	String credits = String.valueOf(gradeWithCredit[0]);
-    	for(int i=1;i<gradeWithCredit.length;i++)
-    		credits+=","+String.valueOf(gradeWithCredit[i]);
+    	String credits = String.valueOf(gradeWithCredit);
     	fw.write(credits);
     	fw.flush();
     	fw.close();
     	return ResultMessage.succeed;
     }
-    public int[] getMemberLevel()throws RemoteException,IOException {
+    public int getMemberLevel()throws RemoteException,IOException {
     	BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
     	String data = null;
     	data = br.readLine();
     	
     	br.close();
-    	String[] credits = data.split(",");
-    	int[] result = new int[credits.length];
-    	for(int i=0;i<credits.length;i++)
-    		result[i] = Integer.valueOf(credits[i]);
     	
-    	return result;
+    	return Integer.parseInt(data);
     	
     }
 }

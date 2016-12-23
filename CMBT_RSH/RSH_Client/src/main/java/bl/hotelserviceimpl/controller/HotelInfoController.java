@@ -18,6 +18,9 @@ public class HotelInfoController implements HotelInfoService{
 	public ArrayList<RoomNormVO> getRoomNorm(String hotelID) {
 		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);
+		if(hotel == null){
+			return new ArrayList<>();
+		}
 		return hotel.getRoomNorms();
 	}
 
@@ -25,6 +28,9 @@ public class HotelInfoController implements HotelInfoService{
 	public String getCheckInDDL(String hotelID) {
 		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);
+		if(hotel==null){
+			return null;
+		}
 		return hotel.getCheckInDDL();
 	}
 
@@ -32,6 +38,9 @@ public class HotelInfoController implements HotelInfoService{
 	public int getRoomAvailNum(String hotelID, String roomType, Date checkIn, Date checkOut) {
 		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);
+		if(hotel == null){
+			return -1;
+		}
 		return hotel.numOfRoomAvail(roomType, checkIn, checkOut);
 	}
 
@@ -39,6 +48,9 @@ public class HotelInfoController implements HotelInfoService{
 	public ResultMessage updateGrade(String hotelID,int grade) {
 		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);
+		if(hotel == null){
+			return ResultMessage.idNotExist;
+		}
 		return hotel.updateGrade(grade);
 	}
 

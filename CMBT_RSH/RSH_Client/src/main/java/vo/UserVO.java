@@ -10,13 +10,13 @@ public class UserVO {
 	public String userID;
 	public String password;
 	public String nickName;
-	public String imageAddress = "somewhere,needing changes";
+	public String imageAddress = "http://cdn.duitang.com/uploads/item/201410/05/20141005160337_RZX8W.thumb.224_0.jpeg";
 	public LocalDate birthday;
 
 	public MemberType memberType = MemberType.not_member;
 	public int level = -1;
 	public int credit = 0;
-	public String commerceName = null;
+	public String commerceName ;
 	public String name;
 	public Sexuality sexuality;
 	public String eMail;
@@ -92,7 +92,7 @@ public class UserVO {
 	
 	public UserPO changeIntoPO(){
 		UserPO userPO = new UserPO(userID, password, nickName, imageAddress, birthday, level, memberType, credit, name, sexuality, eMail, commerceName);
-		System.out.println(userPO.getCommerceName());
+		System.out.println("coom"+userPO.getCommerceName());
 		return userPO;
 	}
 }

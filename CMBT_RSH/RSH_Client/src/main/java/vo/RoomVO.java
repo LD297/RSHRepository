@@ -29,5 +29,10 @@ public class RoomVO {
 		return hotelID;
 	}
 
+	public String getRoomType() {
+		// TODO Auto-generated method stub
+		return roomType;
+	}
+
 
 }

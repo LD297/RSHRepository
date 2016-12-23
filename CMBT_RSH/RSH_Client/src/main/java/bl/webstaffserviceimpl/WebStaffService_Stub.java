@@ -76,4 +76,10 @@ public class WebStaffService_Stub implements WebStaffService{
 		return ResultMessage.succeed;
 	}
 
+	@Override
+	public WebSalesmanVO webSalesmanVO(String webSalesmanID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -131,5 +131,13 @@ public class WebStaffController implements WebStaffService{
 		}
 	}
 
+
+	@Override
+	public WebSalesmanVO webSalesmanVO(String webSalesmanID) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
 	
 }
