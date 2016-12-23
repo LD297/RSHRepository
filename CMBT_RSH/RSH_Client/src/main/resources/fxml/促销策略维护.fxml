@@ -18,7 +18,7 @@
       </ImageView>
       <AnchorPane layoutX="109.0" layoutY="131.0" prefHeight="429.0" prefWidth="583.0">
          <children>
-            <Label layoutX="151.0" layoutY="14.0" text="名称" textFill="#00a699" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="14.0">
+            <Label layoutX="153.0" layoutY="14.0" text="名称" textFill="#00a699" AnchorPane.rightAnchor="394.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
@@ -69,22 +69,22 @@
                   </Label>
                   <AnchorPane fx:id="showPane0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Label layoutX="53.0" layoutY="21.0" opacity="0.8" text="000" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="44.0" layoutY="18.0" opacity="0.8" text="000" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="20.5">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="129.0" layoutY="21.0" opacity="0.8" prefHeight="26.0" prefWidth="72.0" text="   三间及以" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="95.0" layoutY="7.0" opacity="0.8" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="20.5">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="228.0" layoutY="20.0" opacity="0.8" prefHeight="27.0" prefWidth="153.0" text="单次预定单次呃呃考" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="228.0" AnchorPane.topAnchor="20.0">
+                        <Label layoutX="246.0" layoutY="20.0" opacity="0.8" prefHeight="16.0" prefWidth="133.0" text="单次预定  &gt;=  三间" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="246.0" AnchorPane.topAnchor="20.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="408.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="36.0" text="9.0折" textAlignment="CENTER" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="385.0" layoutY="21.0" opacity="0.8" prefHeight="26.0" prefWidth="72.0" text="打折" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="21.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -98,22 +98,22 @@
                   </AnchorPane>
                   <AnchorPane fx:id="showPane01" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
-                        <Label layoutX="44.0" layoutY="18.0" opacity="0.8" text="000" textAlignment="CENTER" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="20.5">
+                        <Label layoutX="44.0" layoutY="18.0" opacity="0.8" text="000" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="20.5">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="109.0" layoutY="21.0" opacity="0.8" prefHeight="26.0" prefWidth="72.0" text="三间及以上预定特惠" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="95.0" layoutY="7.0" opacity="0.8" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="20.5">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="226.0" layoutY="20.0" opacity="0.8" prefHeight="27.0" prefWidth="153.0" text="单次预定  &gt;=  三间" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="228.0" AnchorPane.topAnchor="20.0">
+                        <Label layoutX="246.0" layoutY="20.0" opacity="0.8" prefHeight="16.0" prefWidth="133.0" text="单次预定  &gt;=  三间" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="246.0" AnchorPane.topAnchor="20.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="36.0" text="打折" textAlignment="CENTER" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="26.0" prefWidth="72.0" text="打折" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="21.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -127,22 +127,22 @@
                   </AnchorPane>
                   <AnchorPane fx:id="showPane02" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
                      <children>
-                        <Label layoutX="44.0" layoutY="18.0" opacity="0.8" text="000" textAlignment="CENTER" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="20.5">
+                        <Label layoutX="44.0" layoutY="18.0" opacity="0.8" text="000" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="20.5">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="108.0" layoutY="21.0" opacity="0.8" prefHeight="26.0" prefWidth="72.0" text="三间及以上预定特惠" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="95.0" layoutY="7.0" opacity="0.8" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="20.5">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="226.0" layoutY="20.0" opacity="0.8" prefHeight="27.0" prefWidth="153.0" text="单次预定  &gt;=  三间" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="228.0" AnchorPane.topAnchor="20.0">
+                        <Label layoutX="246.0" layoutY="20.0" opacity="0.8" prefHeight="16.0" prefWidth="133.0" text="单次预定  &gt;=  三间" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="246.0" AnchorPane.topAnchor="20.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="36.0" text="打折" textAlignment="CENTER" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="26.0" prefWidth="72.0" text="打折" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="21.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -156,22 +156,22 @@
                   </AnchorPane>
                   <AnchorPane fx:id="showPane03" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="7">
                      <children>
-                        <Label layoutX="44.0" layoutY="18.0" opacity="0.8" text="000" textAlignment="CENTER" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="20.5">
+                        <Label layoutX="44.0" layoutY="18.0" opacity="0.8" text="000" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="20.5">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="95.0" layoutY="21.0" opacity="0.8" prefHeight="26.0" prefWidth="72.0" text="双十一特惠" textAlignment="CENTER" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="95.0" layoutY="7.0" opacity="0.8" prefHeight="16.0" prefWidth="133.0" text="三间及以上预定特惠" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="20.5">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="226.0" layoutY="20.0" opacity="0.8" prefHeight="27.0" prefWidth="153.0" text="单次预定  &gt;=  三间" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="228.0" AnchorPane.topAnchor="20.0">
+                        <Label layoutX="246.0" layoutY="20.0" opacity="0.8" prefHeight="16.0" prefWidth="133.0" text="单次预定  &gt;=  三间" AnchorPane.bottomAnchor="20.5" AnchorPane.leftAnchor="246.0" AnchorPane.topAnchor="20.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="408.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="36.0" text="打折" textAlignment="CENTER" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="26.0" prefWidth="72.0" text="打折" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="21.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
