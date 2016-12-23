@@ -46,7 +46,6 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         
         String getInfoSql = "SELECT *FROM UserInfo WHERE userID="+deUserID+" LIMIT 1";
         ResultSet result = db.query(getInfoSql);
-        System.out.println(this.resultSetToUserPO(result).size());
         UserPO userPO = this.resultSetToUserPO(result).get(0);
         userPO = this.getClearByID(userID, userPO);
         return userPO; 
@@ -117,7 +116,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
 
 
     // 网站营销人员 制定会员等级制度
-    public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException {
+    public ResultMessage setMemberLevel(int gradeWithCredit) throws RemoteException {
         // TODO Auto-generated method stub
         return null;
     }
@@ -153,7 +152,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
                  String nickName = result.getString("nickName");
                  String image = result.getString("image");
                  String birth = result.getString("birthday");
-                 LocalDate birthday = LocalDate.parse(birth);
+                // LocalDate birthday = LocalDate.parse(birth);
                  int level = result.getInt("level");
                  MemberType type = MemberType.values()[result.getInt("memberType")];
                  int credit = result.getInt("credit");
@@ -163,7 +162,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
                  String commerceName = result.getString("commerceName");
 
                  UserPO userPO = new UserPO(userID,password,nickName,image,
-                 		birthday,level,type,credit,name,sex,eMail,commerceName);
+                 		LocalDate.now(),level,type,credit,name,sex,eMail,commerceName);
                  list.add(userPO);
              }
              return list;
