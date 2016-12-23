@@ -145,7 +145,11 @@ public class LoginUIController {
                     }
                     UIJumpTool.getUiJumpTool().changeLoginToSearchHotel();
                 }else{
-                	//TODO 该用户名不存在或者有登陆冲突
+                	if(resultMessage==ResultMessage.idNotExist){
+                		idFormLabel.setText("该用户名不存在");
+                	}else if (resultMessage==ResultMessage.password_wrong) {
+						passwordFormLabel.setText("密码错误");
+					}
                 }
             }
         }else if (role==Role.webmanager) {

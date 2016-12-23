@@ -14,33 +14,33 @@ import java.util.Iterator;
 
 public class CreditRecordListDaoImpl extends UnicastRemoteObject implements CreditRecordListDao{
 
-	private static CreditRecordListDaoImpl creditRecordListDaoImpl;
-	private CreditRecordListDaoHelper creditRecordListDaoHelper;
-	private DaoHelperFactory daoHelperFactory;
+	private CreditRecordListDaoHelper creditRecordListDaoHelper = null;
+	private DaoHelperFactory daoHelperFactory = null;
 
-	public static CreditRecordListDaoImpl getInstance() {
-		if(creditRecordListDaoImpl == null){
-			try {
-				creditRecordListDaoImpl = new CreditRecordListDaoImpl();
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
-		}
-		return creditRecordListDaoImpl;
-}
 	private CreditRecordListDaoImpl() throws RemoteException {
-		daoHelperFactory = new DaoHelperFactoryImpl();
-		creditRecordListDaoHelper = daoHelperFactory.getCrediRecordListDdaoHelper();
+		if(daoHelperFactory==null)
+		    daoHelperFactory = new DaoHelperFactoryImpl();
+		if(creditRecordListDaoHelper==null)
+	    	creditRecordListDaoHelper = daoHelperFactory.getCrediRecordListDdaoHelper();
 	}
-
+	
+	public static CreditRecordListDaoImpl getInstance(){
+		try {
+			return new CreditRecordListDaoImpl();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Override
 	public ArrayList<CreditRecordPO> getCreditRecordList(String userid) throws RemoteException {
 		return creditRecordListDaoHelper.getCreditRecordList(userid);
 	}
-
+	@Override
 	public ResultMessage addCreditRecord(CreditRecordPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		return creditRecordListDaoHelper.addCreditRecord(po);
 	}
-
 
 }

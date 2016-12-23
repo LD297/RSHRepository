@@ -29,6 +29,13 @@ public class SingleHotelAnchorPane extends AnchorPane{
 		phoneInfoLabel.setText(hotelVO.getTel());
 		
 		//set组件属性
+		nameIndoLabel.setOpacity(0.8);
+		nameLabel.setOpacity(0.8);
+		phoneInfoLabel.setOpacity(0.8);
+		areaInfoLabel.setOpacity(0.8);
+		areaLabel.setOpacity(0.8);
+		idInfoLabel.setOpacity(0.8);
+		idLabel.setOpacity(0.8);
 		penImage.setFitHeight(23);
 		penImage.setFitWidth(23);
 		phoneImage.setFitHeight(18);

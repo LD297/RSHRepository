@@ -5,6 +5,7 @@ import constant.DeductionType;
 import constant.ResultMessage;
 import constant.ScopeType;
 import data.daohelper.PromotionDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.PromotionPO;
 
@@ -22,7 +23,7 @@ import java.util.Date;
  * Created by sky-PC on 2016/12/3.
  */
 public class PromotionDaoHelperMySql implements PromotionDaoHelper{
-	private DBHelper db = new DBHelper();
+	private DBHelper db = DaoHelperFactoryImpl.getDBHelper();
 
     public void init() {                         
 

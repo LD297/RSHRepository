@@ -13,36 +13,30 @@ import po.OnlinePersonPO;
 
 public class LoginDaoImpl extends UnicastRemoteObject implements LoginDao{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private static LoginDaoImpl loginDaoImpl;
-	private LoginDaoHelper loginDaoHelper;
-	private DaoHelperFactory daoHelperFactory;
-	
+	private LoginDaoHelper loginDaoHelper = null;
+	private DaoHelperFactory daoHelperFactory = null;
+
 	private LoginDaoImpl() throws RemoteException {
-		daoHelperFactory = new DaoHelperFactoryImpl();
-		loginDaoHelper = daoHelperFactory.getLoginDaoHelper();
+		if(daoHelperFactory==null)
+		    daoHelperFactory = new DaoHelperFactoryImpl();
+		if(loginDaoHelper==null)
+		    loginDaoHelper = daoHelperFactory.getLoginDaoHelper();
 	}
-
 	public static LoginDaoImpl getInstance(){
-		if(loginDaoImpl == null){
-			try {
-				loginDaoImpl = new LoginDaoImpl();
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
+		try {
+			return new LoginDaoImpl();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
 		}
-		return loginDaoImpl;
 	}
-
+	@Override
 	public ResultMessage addOnline(OnlinePersonPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("get");
 		return loginDaoHelper.addOnline(po);
 	}
-
+	@Override
 	public ResultMessage deleteOnline(Role role, String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		return loginDaoHelper.deleteOnline(role,id);

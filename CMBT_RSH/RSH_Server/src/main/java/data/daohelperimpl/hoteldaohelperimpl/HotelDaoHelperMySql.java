@@ -1,6 +1,7 @@
 package data.daohelperimpl.hoteldaohelperimpl;
 
 import data.daohelper.HotelDaoHelper;
+import data.daohelperimpl.DaoHelperFactoryImpl;
 import data.daohelperimpl.jdbc.DBHelper;
 import po.*;
 import constant.ResultMessage;
@@ -21,7 +22,7 @@ import java.util.Calendar;
  * Created by a297 on 16/11/27.
  */
 public class HotelDaoHelperMySql implements HotelDaoHelper {
-	private DBHelper db = new DBHelper();
+	private DBHelper db = DaoHelperFactoryImpl.getDBHelper();
     private static final String key = "^sf43&67u";
     public void init() {
 
@@ -30,12 +31,12 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         // 地址 商圈 标准双人间价格 简介 设施
         // 星级 评分 最晚入住时间  图片地址 评论人数 房间类型数量
         db.executeSql("CREATE TABLE if not exists HotelInfo(hotelID char(10),password blob,phoneNumber char(11),name char(15)," +
-                "district char(6),addressDetail char(20),standardPrice double,briefIntro tinytext,facility char(20)," +
+                "district char(6),addressDetail char(20),standardPrice double,briefIntro tinytext,facility char(4)," +
                 "level tinyint,grade double,latestCheckinTime char(8),imageAddress tinytext,commentNum int,roomTypeNum tinyint)");
         // 酒店 类型 总量
-        // 价格 是否特色  图片地址 可用数量日期列表
+        // 价格 图片地址 可用数量日期列表
         db.executeSql("CREATE TABLE if not exists RoomInfo(hotelID char(10),roomType char(10),amountTotal int,"
-                +"price double,basicOrSpecial tinyint,imageAddress tinytext,aList text)");
+                +"price double,imageAddress tinytext,aList text)");
     }
     public void finish(){
         db.executeSql("USE OurData");
@@ -189,10 +190,6 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         String imageAddress = roomPO.getImageAddress();
         int amount = roomPO.getAmountTotal();
         double price = roomPO.getPrice();
-//        boolean isSpecial = roomPO.getBasicOrSpecial();
-        int special = 1;
-//        if(isSpecial)
-//            special = 0;//特色
         String availableRoom = String.valueOf(amount);
 
         for(int i=0;i<180-1;i++){
@@ -200,7 +197,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         }
 
         String addSpecialRoomSql = "INSERT INTO RoomInfo VALUES('"+hotelID+"','"+roomType+"',"+amount+
-                ","+price+","+special+",'"+imageAddress+"','"+availableRoom+"')";
+                ","+price+",'"+imageAddress+"','"+availableRoom+"')";
         db.executeSql(addSpecialRoomSql);
         
         String updateHotelSql = "UPDATE HotelInfo SET roomTypeNum="+String.valueOf(typeNum)+
@@ -277,9 +274,8 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
                         String type = roomResult.getString("roomType");
                         int amountTotal = roomResult.getInt("amountTotal");
                         double price = roomResult.getDouble("price");
-                        boolean isSpecial = roomResult.getBoolean("basicOrSpecial");
                         String imageAddress = roomResult.getString("imageAddress");
-                        roomList.add(new RoomPO(hotelID,type,imageAddress,amountTotal,price,isSpecial));
+                        roomList.add(new RoomPO(hotelID,type,imageAddress,amountTotal,price));
                     }
                     return roomList;
                 }catch (SQLException e){
@@ -312,10 +308,6 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         
         int amountTotal = roomPO.getAmountTotal();
         double price = roomPO.getPrice();
-//        boolean isSpecial = roomPO.getBasicOrSpecial();
-        int judSpecial = 1;
-//        if(isSpecial)
-//            judSpecial = 0;//特色
         String checkIsRoomNumChangedSql = "SELECT amountTotal FROM RoomInfo"
                 +" Where hotelID='"+hotelID+"' and roomType='"+roomType+"' LIMIT 1";
         ResultSet result = db.query(checkIsRoomNumChangedSql);
@@ -357,8 +349,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         }
         String imageAddress = roomPO.getImageAddress();
         String updateRoomInfoSql = "UPDATE RoomInfo SET amountTotal="+String.valueOf(amountTotal)+
-                ",price="+String.valueOf(price)+",basicOrSpecial="+String.valueOf(judSpecial)+
-                ",imageAddress='"+imageAddress
+                ",price="+String.valueOf(price)+",imageAddress='"+imageAddress
                 +"' Where hotelID='"+roomPO.getID()+"' and roomType='"+roomType+"' LIMIT 1";
         db.executeSql(updateRoomInfoSql);
         

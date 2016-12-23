@@ -35,18 +35,27 @@ public class SingleUserAnchorPane extends AnchorPane{
 		}else {
 			sexImage.setImage(ImageFactory.getImageFactory().getMale());
 		}
-		nameLabel = new Label("姓名：");
+		nameLabel = new Label("姓名");
 		nameInfoLabel = new Label(userVO.name);
 		nickNameLabel = new Label("昵称");
 		nickNameInfoLabel = new Label(userVO.nickName);
 		phoneInfoLabel = new Label(userVO.userID);
-		creditLabel = new Label("信用值：");
+		creditLabel = new Label("信用值");
 		creditInfoLabel = new Label(String.valueOf(userVO.credit));
 		memberTypeLabel = new Label(userVO.getMemberType().getString());
 		memberLevelLabel = new Label(String.valueOf(userVO.level));
 		forMoreLabel = new Label("更多>");
 		
 		//设置组件属性
+		nameInfoLabel.setOpacity(0.8);
+		nameLabel.setOpacity(0.8);
+		nickNameInfoLabel.setOpacity(0.8);
+		nickNameLabel.setOpacity(0.8);
+		phoneInfoLabel.setOpacity(0.8);
+		creditInfoLabel.setOpacity(0.8);
+		creditLabel.setOpacity(0.8);
+		memberTypeLabel.setOpacity(0.8);
+		memberLevelLabel.setOpacity(0.8);
 		setFont(creditInfoLabel);
 		setFont(creditLabel);
 		setFont(memberLevelLabel);
@@ -79,16 +88,16 @@ public class SingleUserAnchorPane extends AnchorPane{
 		
 		//设置组件位置
 		Locator locator = Locator.getLocator();
-		locator.setLocation(creditInfoLabel,89.0, 11.0,128.0,409.0 );
-		locator.setLocation(creditLabel, 89.0, 11.0,52.0,472.0);
-		locator.setLocation(memberTypeLabel, 48.0,52.0, 330.0,182.0);
-		locator.setLocation(memberLevelLabel, 48.0,52.0, 434.0,147.0);
-		locator.setLocation(nameInfoLabel,14.0, 86.0,128.0,307.0 );
-		locator.setLocation(nameLabel, 14.0, 86.0,59.0,485.0);
-		locator.setLocation(phoneInfoLabel, 48.0, 52.0, 128.0,370.0);
-		locator.setLocation(phoneImage, 48.0, 52.0, 63.0,514.0);
-		locator.setLocation(nickNameLabel, 14.0, 86.0,330.0,182.0);
-		locator.setLocation(nickNameInfoLabel, 14.0, 86.0,435.0,20.0);
+		locator.setLocation(creditInfoLabel,89.0, 11.0,89.0,346.0 );
+		locator.setLocation(creditLabel, 89.0, 11.0,10.0,504.0);
+		locator.setLocation(memberTypeLabel, 48.0,52.0, 310.0,162.0);
+		locator.setLocation(memberLevelLabel, 48.0,52.0, 424.0,127.0);
+		locator.setLocation(nameInfoLabel,14.0, 86.0,89.0,346.0 );
+		locator.setLocation(nameLabel, 14.0, 86.0,10.0,534.0);
+		locator.setLocation(phoneInfoLabel, 48.0, 52.0, 89.0,346.0);
+		locator.setLocation(phoneImage, 48.0, 52.0, 10.0,567.0);
+		locator.setLocation(nickNameLabel, 14.0, 86.0,310.0,162.0);
+		locator.setLocation(nickNameInfoLabel, 14.0, 86.0,415.0,0.0);
 		locator.setLocation(sexImage, 17.0,86.0,580.0,0.0);
 		locator.setLocation(forMoreLabel, 86.0,7.0,560.0,0.0);
 		

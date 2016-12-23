@@ -13,48 +13,42 @@ import po.UserPO;
 
 public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private static UserDaoImpl userDaoImpl;
-	private UserDaoHelper userDaoHelper;
-	private DaoHelperFactory daoHelperFactory;
+	private UserDaoHelper userDaoHelper = null;
+	private DaoHelperFactory daoHelperFactory = null;
 
 	private UserDaoImpl() throws RemoteException {
-		daoHelperFactory = new DaoHelperFactoryImpl();
-		userDaoHelper = daoHelperFactory.getUserDaoHelper();
+		if(daoHelperFactory==null)
+		    daoHelperFactory = new DaoHelperFactoryImpl();
+		if(userDaoHelper==null)
+		    userDaoHelper = daoHelperFactory.getUserDaoHelper();
 	}
-
-	public static UserDaoImpl getInstance() {
-		if(userDaoImpl == null){
-			try {
-				userDaoImpl = new UserDaoImpl();
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
+	
+	public static UserDaoImpl getInstance(){
+		try {
+			return new UserDaoImpl();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
 		}
-		return userDaoImpl;
 	}
+	@Override
 	public UserPO getInfo(String userid) throws RemoteException {
-		// TODO Auto-generated method stub
 		return userDaoHelper.getInfo(userid);
 	}
-
+	@Override
 	public ResultMessage update(UserPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return userDaoHelper.update(po);
 	}
-
+	@Override
 	public ResultMessage insert(UserPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return userDaoHelper.insert(po);
 	}
-
-	public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException {
-		// TODO Auto-generated method stub
+	
+	@Override
+	public ResultMessage setMemberLevel(int gradeWithCredit) throws RemoteException {
 		return null;
 	}
+	@Override
 	public ArrayList<UserPO> getAll()throws RemoteException{
 		return userDaoHelper.getAll();
 	}
@@ -65,10 +59,5 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao{
 		return 0;
 	}
 
-	@Override
-	public ResultMessage setMemberLevel(int gradeWithCredit) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
