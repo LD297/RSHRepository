@@ -283,6 +283,8 @@ public class PromotionUIController {
         else
             addPromotionUIController.setSetterID(webSalesId);
 
+        addPromotionUIController.setIsHotel(isHotel);
+
         greyLabel.setVisible(true);
 
         AnchorPane.setTopAnchor(addPromotionAnchorPane,50.0);

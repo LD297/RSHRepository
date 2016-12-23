@@ -28,9 +28,6 @@ public class HotelHomepageUIController {
     private URL location;
 
     @FXML
-    private ImageView aboutUs;
-
-    @FXML
     private AnchorPane anchorPane;
 
     @FXML
@@ -114,7 +111,6 @@ public class HotelHomepageUIController {
         // 配置hotelService
         hotelBasicInfoUIController.setHotelService(hotelService);
         hotelBasicInfoUIController.setHotelId(hotelId);
-        hotelBasicInfoUIController.setHotelVO();
         hotelBasicInfoUIController.refreshPage();
 
         Scene scene = null;
@@ -178,14 +174,17 @@ public class HotelHomepageUIController {
         // 传入酒店首页根结点引用
         checkOrderUIController.setPrePane(anchorPane);
         // 配置orderForHotel
-        checkOrderUIController.setOrderForHotel(orderForHotel);
         checkOrderUIController.setHotelId(hotelId);
+        checkOrderUIController.setOrderForHotel(orderForHotel);
+        checkOrderUIController.initSelectable();
 
         Scene scene = null;
         if(checkOrderUIPane.getScene()==null)
             scene = new Scene(checkOrderUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = checkOrderUIPane.getScene();
+
+
 
         Stage stage = (Stage)anchorPane.getScene().getWindow();
         stage.setScene(scene);
@@ -198,7 +197,7 @@ public class HotelHomepageUIController {
         // 加载可用客房信息维护界面根结点
         if(roomAvailUIPane==null)
             try {
-                System.out.println(loader.load()==null);
+//                System.out.println(loader.load()==null);
                 roomAvailUIPane = (AnchorPane) loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -211,7 +210,7 @@ public class HotelHomepageUIController {
         // 配置hotelService
         roomAvailUIController.setHotelService(hotelService);
         roomAvailUIController.setHotelId(hotelId);
-//        roomAvailUIController.refreshPage();
+        roomAvailUIController.refreshPage();
 
         Scene scene = null;
 //        System.out.println(roomAvailUIPane==null);

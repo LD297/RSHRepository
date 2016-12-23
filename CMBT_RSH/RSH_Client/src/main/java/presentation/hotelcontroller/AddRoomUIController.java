@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.controller.HotelService_Stub;
+import constant.HotelInputFeedback;
+import constant.ResultMessage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,9 +18,11 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.hotelcontrollertools.HotelInputCheck;
 import vo.RoomVO;
 
 public class AddRoomUIController {
+
 
 
     @FXML
@@ -28,22 +32,10 @@ public class AddRoomUIController {
     private URL location;
 
     @FXML
-    private TextField roomPriceTextField;
-
-    @FXML
-    private AnchorPane anchorPane;
-
-    @FXML
-    private TextField roomImageAddressTextField;
-
-    @FXML
-    private Label changeRoomImageLabel;
-
-    @FXML
     private ImageView roomImage;
 
     @FXML
-    private Button backButton;
+    private Label roomPricePrompt;
 
     @FXML
     private Button confirmButton;
@@ -52,7 +44,35 @@ public class AddRoomUIController {
     private TextField roomNumTextField;
 
     @FXML
+    private TextField roomPriceTextField;
+
+    @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    private Label roomUrlPrompt;
+
+    @FXML
+    private TextField roomImageAddressTextField;
+
+    @FXML
+    private Label changeRoomImageLabel;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private Label roomNumPrompt;
+
+    @FXML
+    private Label roomTypePrompt;
+
+    @FXML
     private TextField roomTypeTextField;
+
+    private String hotelId;
+
+    private Label[] prompts;
 
     private AnchorPane prePane;
 
@@ -62,35 +82,83 @@ public class AddRoomUIController {
         this.prePane = prePane;
     }
 
+    private void clearTextField() {
+        roomTypeTextField.clear();
+        roomNumTextField.clear();
+        roomPriceTextField.clear();
+        roomImageAddressTextField.clear();
+    }
+
+
     @FXML
     void backButtonClicked(MouseEvent event) {
+        clearTextField();
+        promptsInvisible();
+        roomImageAddressTextField.setVisible(false);
+
         int size = prePane.getChildren().size();
         prePane.getChildren().get(size-2).setVisible(false);
         prePane.getChildren().remove(size-1);
     }
 
+    private void showPrompt(String inputCheck, Label promt) {
+        if (!inputCheck.equals(HotelInputFeedback.LEGAL)) {
+            promt.setVisible(true);
+            promt.setText(inputCheck);
+        }
+    }
+
     @FXML
     void confirmButtonClicked(MouseEvent event) {
-        roomImageAddressTextField.setText("");
-        roomImageAddressTextField.setVisible(false);
+
+        promptsInvisible();
+
         String type = roomTypeTextField.getText();
         String roomNum = roomNumTextField.getText();
         String roomPrice = roomPriceTextField.getText();
 
-        int num = Integer.valueOf(roomNum);
-        double price = Double.valueOf(roomPrice);
-        String property = "";
+        String inputCheck = "";
 
-        // 象征性检查一下
-        if(type!=null&&num>0&&price>=0){
-            if(roomImageAddressTextField.isVisible()){
-                String roomImageAddress = roomImageAddressTextField.getText().trim();
-            }
-            RoomVO newRoom = new RoomVO("", type, num, price, property);
-            hotelService.addSpecialRoom(newRoom);
-            backButtonClicked(null);
+        inputCheck = HotelInputCheck.checkRoomType(type);
+        showPrompt(inputCheck, roomTypePrompt);
+
+        inputCheck = HotelInputCheck.checkRoomNum(roomNum);
+        showPrompt(inputCheck, roomNumPrompt);
+
+        inputCheck = HotelInputCheck.checkPrice(roomPrice);
+        showPrompt(inputCheck, roomPricePrompt);
+
+        if(roomImageAddressTextField.isVisible()){
+            String roomImageAddress = roomImageAddressTextField.getText();
+            inputCheck = HotelInputCheck.checkURL(roomImageAddress);
+            showPrompt(inputCheck, roomUrlPrompt);
         }
-        roomImageAddressTextField.setVisible(false);
+
+        int numOfInput = 3;
+        if(roomImageAddressTextField.isVisible())
+            numOfInput = 4;
+
+        boolean isInputLegal = true;
+        for(int i=0; i<numOfInput; i++){
+            if(prompts[i].isVisible()){
+                isInputLegal =false;
+                break;
+            }
+        }
+        if(isInputLegal){
+            String roomImageAddress = "/images/默认房间图片.jpg";
+            if(roomImageAddressTextField.isVisible()){
+                 roomImageAddress = roomImageAddressTextField.getText().trim();
+            }
+            RoomVO newRoom = new RoomVO(hotelId, type, Integer.valueOf(roomNum),
+                    Double.valueOf(roomPrice), roomImageAddress);
+            ResultMessage rm = hotelService.addSpecialRoom(newRoom);
+            if(!rm.equals(ResultMessage.succeed))
+                System.out.println("房间添加失败！");
+            promptsInvisible();
+            roomImageAddressTextField.setVisible(false);
+        } else
+            return;
     }
 
     @FXML
@@ -100,16 +168,33 @@ public class AddRoomUIController {
 
     @FXML
     void initialize() {
-        assert roomPriceTextField != null : "fx:id=\"roomPriceTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
-        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '添加客房界面.fxml'.";
-        assert roomImageAddressTextField != null : "fx:id=\"roomImageAddressTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
-        assert changeRoomImageLabel != null : "fx:id=\"changeRoomImageLabel\" was not injected: check your FXML file '添加客房界面.fxml'.";
         assert roomImage != null : "fx:id=\"roomImage\" was not injected: check your FXML file '添加客房界面.fxml'.";
-        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert roomPricePrompt != null : "fx:id=\"roomPricePrompt\" was not injected: check your FXML file '添加客房界面.fxml'.";
         assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '添加客房界面.fxml'.";
         assert roomNumTextField != null : "fx:id=\"roomNumTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert roomPriceTextField != null : "fx:id=\"roomPriceTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert roomUrlPrompt != null : "fx:id=\"roomUrlPrompt\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert roomImageAddressTextField != null : "fx:id=\"roomImageAddressTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert changeRoomImageLabel != null : "fx:id=\"changeRoomImageLabel\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert roomNumPrompt != null : "fx:id=\"roomNumPrompt\" was not injected: check your FXML file '添加客房界面.fxml'.";
+        assert roomTypePrompt != null : "fx:id=\"roomTypePrompt\" was not injected: check your FXML file '添加客房界面.fxml'.";
         assert roomTypeTextField != null : "fx:id=\"roomTypeTextField\" was not injected: check your FXML file '添加客房界面.fxml'.";
 
         roomImageAddressTextField.setVisible(false);
+        setPrompts();
+        promptsInvisible();
     }
+
+    private void promptsInvisible() {
+        for(int i=0; i<prompts.length; i++)
+            prompts[i].setVisible(false);
+
+    }
+    private void setPrompts(){
+        prompts = new Label[]{roomTypePrompt, roomNumPrompt, roomPricePrompt, roomUrlPrompt};
+    }
+
+    public void setHotelId(String hotelId){this.hotelId = hotelId;}
 }

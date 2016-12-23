@@ -180,6 +180,7 @@ public class HotelVO {
 	public void setLatestCheckInTime(String latestCheckInTime){
 		this.latestCheckInTime = latestCheckInTime;
 	}
+	public void setStandardRoomPrice(double standardRoomPrice){this.standardRoomPrice = standardRoomPrice;}
 	public void setBriefIntro(String briefIntro){
 		this.briefIntro = briefIntro;
 	}

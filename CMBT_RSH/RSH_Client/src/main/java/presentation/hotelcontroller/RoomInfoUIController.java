@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.controller.HotelService_Stub;
+import constant.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -187,29 +188,26 @@ public class RoomInfoUIController {
         showPageNumber();
     }
 
-    private RoomVO createRoomByPane(AnchorPane thePane){
-        String type = ((Label)thePane.getChildren().get(1)).getText();
-        RoomVO roomVO = new RoomVO("",type, 0, 0.0,"");
-        return roomVO;
-    }
 
-    private void deleteTheRoom(AnchorPane thePane){
-        RoomVO roomToDelete = createRoomByPane(thePane);
-        hotelService.deleteSpecialRoom(roomToDelete);
+    private void deleteTheRoom(int whichOrderOnShow){
+        ResultMessage rm = hotelService.deleteSpecialRoom(roomOnShow[whichOrderOnShow]);
+        if(!rm.equals(ResultMessage.succeed))
+            System.out.println("添加失败");
+        refreshPage();
     }
     @FXML
     void delete0Clicked(MouseEvent event) {
-        deleteTheRoom(showPane0);
+        deleteTheRoom(0);
         refreshPage();
     }
     @FXML
     void delete01Clicked(MouseEvent event) {
-        deleteTheRoom(showPane01);
+        deleteTheRoom(1);
         refreshPage();
     }
     @FXML
     void delete02Clicked(MouseEvent event) {
-        deleteTheRoom(showPane02);
+        deleteTheRoom(2);
         refreshPage();
     }
 
@@ -238,6 +236,7 @@ public class RoomInfoUIController {
             addRoomUIController = loader.getController();
 
         addRoomUIController.setPrePane(anchorPane);
+        addRoomUIController.setHotelId(hotelId);
 
         greyLabel.setVisible(true);
 

@@ -4,11 +4,10 @@ package presentation.hotelcontroller;
  * Created by a297 on 16/12/5.
  */
 import java.net.URL;
+import java.sql.Time;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Observable;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
 
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.controller.HotelService_Stub;
@@ -26,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import presentation.tools.MyDateFormat;
 import vo.RoomAvailVO;
 
 public class RoomAvailUIController {
@@ -91,7 +91,7 @@ public class RoomAvailUIController {
     private HotelService hotelService;
     private String hotelId;
     // 当前入住日期
-    private Date currentDate = Date.from(Instant.now());
+    private Date currentDate = new Date();
 
     private static final int NUM_OF_ITEMS = 3;
     private static final int NUM_OF_PANES_FOR_SHOW = 3;
@@ -156,7 +156,6 @@ public class RoomAvailUIController {
     }
     private void showRoomAvailItems(AnchorPane theAnchorPane, RoomAvailVO theRoomAvail){
         if(theRoomAvail!=null){
-
             // 显示房间图片
             Image roomImage = new Image(theRoomAvail.getImageAddress());
             ((ImageView)theAnchorPane.getChildren().get(0)).setImage(roomImage);
@@ -269,8 +268,9 @@ public class RoomAvailUIController {
 
     @FXML
     void gotoDate(MouseEvent event) {
-        currentDate = (Date)datePicker.getUserData();
-        currentRoomAvailList = hotelService.getRoomAvailList(hotelId, currentDate);
+        LocalDate dateChosen = datePicker.getValue();
+        if(dateChosen!=null)
+            currentDate = MyDateFormat.getInstance().changeLocalDateToDate(dateChosen);
         refreshPage();
     }
 
@@ -300,7 +300,7 @@ public class RoomAvailUIController {
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '可用客房.fxml'.";
 
         setShowPanes();
-        refreshPage();
+//        refreshPage();
     }
 
     public void setPrePane(AnchorPane prePane) {
