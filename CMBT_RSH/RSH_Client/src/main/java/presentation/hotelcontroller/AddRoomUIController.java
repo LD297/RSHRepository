@@ -70,6 +70,8 @@ public class AddRoomUIController {
     @FXML
     private TextField roomTypeTextField;
 
+    private RoomInfoUIController roomInfoUIController;
+
     private String hotelId;
 
     private Label[] prompts;
@@ -98,6 +100,7 @@ public class AddRoomUIController {
 
         int size = prePane.getChildren().size();
         prePane.getChildren().get(size-2).setVisible(false);
+        roomInfoUIController.refreshPage();
         prePane.getChildren().remove(size-1);
     }
 
@@ -153,10 +156,11 @@ public class AddRoomUIController {
             RoomVO newRoom = new RoomVO(hotelId, type, Integer.valueOf(roomNum),
                     Double.valueOf(roomPrice), roomImageAddress);
             ResultMessage rm = hotelService.addSpecialRoom(newRoom);
+            System.out.println(rm+" result message");
             if(!rm.equals(ResultMessage.succeed))
                 System.out.println("房间添加失败！");
             promptsInvisible();
-            roomImageAddressTextField.setVisible(false);
+            backButtonClicked(null);
         } else
             return;
     }
@@ -197,4 +201,8 @@ public class AddRoomUIController {
     }
 
     public void setHotelId(String hotelId){this.hotelId = hotelId;}
+
+    public void setRoomInfoUIController(RoomInfoUIController roomInfoUIController) {
+        this.roomInfoUIController = roomInfoUIController;
+    }
 }

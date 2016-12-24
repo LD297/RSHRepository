@@ -303,7 +303,6 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
     // 改变 酒店某一房间数量、价格、特色
     public ResultMessage updateRoom(RoomPO roomPO)throws RemoteException {
         db.executeSql("USE OurData");
-        
         String hotelID = roomPO.getID();
         String roomType = roomPO.getType();
         String checkExistenceSql = "SELECT count(*) FROM RoomInfo "

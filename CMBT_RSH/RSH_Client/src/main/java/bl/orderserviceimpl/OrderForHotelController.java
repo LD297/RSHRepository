@@ -95,8 +95,15 @@ public class OrderForHotelController implements OrderForHotel{
     public ResultMessage hotelCancelAbnormal(String orderID){
     	//此处需判断是否已超过预计离开时间
         Order order = Order.getInstance(orderID);
-        order.cancelAbnormal(false);
-        return order.execute();           
+
+        ResultMessage resultMessage = order.cancelAbnormal(false);
+
+        if(resultMessage == ResultMessage.succeed){
+            return order.execute();
+        }
+        else{
+            return resultMessage;
+        }
     }
 
     /**
@@ -106,15 +113,15 @@ public class OrderForHotelController implements OrderForHotel{
      * @return
      */
     private ArrayList<OrderVO> getOrderOfHotel(String hotelID){
-        ArrayList<OrderPO> orderPOs;
+        ArrayList<OrderPO> orderPOs = new ArrayList<>();
+        ArrayList<OrderVO> orderVOs = new ArrayList<>();
         initRemote();
         try{
             orderPOs = orderDao.searchByHotel(hotelID);
         }catch(RemoteException e){
             e.printStackTrace();
-            return null;
+            return orderVOs;
         }
-        ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
         for(OrderPO orderPO:orderPOs){
         	orderVOs.add(orderPO.changeIntoVO());
         }

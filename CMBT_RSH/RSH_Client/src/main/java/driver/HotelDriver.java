@@ -30,12 +30,11 @@ public class HotelDriver {
 		System.out.println("begin");
 		
 		System.out.println(managerHotelController.addHotel(hotelVO));
-		System.out.println(hotelInfoController.getCheckInDDL(hotelID));
-		System.out.println(managerHotelController.getHotelID("010009"));
-		System.out.println(hotelController.getHotelInfo(hotelID).tel);		
+		System.out.println(hotelController.getHotelInfo(hotelID).tel);
 		System.out.println(hotelController.addSpecialRoom(roomVO));
-		System.out.println(hotelController.deleteSpecialRoom(roomVO));
-		System.out.println(searchHotelController.getHotelList("江苏省","南京市","栖霞区"));
+		System.out.println(hotelController.getRoomList(hotelID).size());
+	//	System.out.println(hotelController.deleteSpecialRoom(roomVO));
+		System.out.println(searchHotelController.getHotelList("江苏省","南京市","栖霞区").size());
 		System.out.println("end");
 	}
 

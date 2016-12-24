@@ -74,6 +74,8 @@ public class RoomInfoUIController {
     @FXML
     private Label pageLabel;
 
+    private RoomInfoUIController roomInfoUIController;
+
     AnchorPane addRoomAnchorPane;
     AddRoomUIController addRoomUIController;
 
@@ -172,7 +174,7 @@ public class RoomInfoUIController {
     private void showPage(){
         if((currentPage>=0)&&(currentPage<fullPageNum))
             setRoomOnShow(true);
-        else if((remainderRoomVONum!=0)&&(currentPage==fullPageNum))
+        else if((currentPage==0&&fullPageNum==0&&remainderRoomVONum==0)||(remainderRoomVONum>0&&currentPage==fullPageNum))
             setRoomOnShow(false);
         else if(currentPage<0){
             System.out.println("已是第一页！");
@@ -189,8 +191,8 @@ public class RoomInfoUIController {
     }
 
 
-    private void deleteTheRoom(int whichOrderOnShow){
-        ResultMessage rm = hotelService.deleteSpecialRoom(roomOnShow[whichOrderOnShow]);
+    private void deleteTheRoom(int whichRoomOnShow){
+        ResultMessage rm = hotelService.deleteSpecialRoom(roomOnShow[whichRoomOnShow]);
         if(!rm.equals(ResultMessage.succeed))
             System.out.println("添加失败");
         refreshPage();
@@ -234,6 +236,8 @@ public class RoomInfoUIController {
             }
         if(addRoomUIController==null)
             addRoomUIController = loader.getController();
+
+        addRoomUIController.setRoomInfoUIController(roomInfoUIController);
 
         addRoomUIController.setPrePane(anchorPane);
         addRoomUIController.setHotelId(hotelId);
@@ -283,8 +287,14 @@ public class RoomInfoUIController {
     public void refreshPage(){
         initCurrentPage();
         setCurrentRoom();
+        System.out.println(hotelId+" has "+currentRoom.size()+" room(s)~~~");
         setFullPageNum();
         setRemainderRoomVONum();
+//        System.out.println(fullPageNum+"  "+remainderRoomVONum);
         showPage();
+    }
+
+    public void setRoomInfoUIController(RoomInfoUIController roomInfoUIController) {
+        this.roomInfoUIController = roomInfoUIController;
     }
 }
