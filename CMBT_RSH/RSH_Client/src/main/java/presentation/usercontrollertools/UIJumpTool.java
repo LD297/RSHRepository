@@ -14,6 +14,8 @@ import presentation.usercontroller.UserOrderUIController;
 import java.io.IOException;
 import java.util.Stack;
 
+import constant.MemberType;
+
 /**
  * Created by john on 2016/12/5.
  */
@@ -202,10 +204,19 @@ public class UIJumpTool {
 
     //跳转到我的会员
     public void changeToMyMember(){
-        myMember = UserUIFXMLFactory.getUserUIFXMLFactory().getMyMember();
-        GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
-        gridPane.getChildren().remove(1);
-        gridPane.add(myMember,0,1);
+    	MemberType memberType = UserInfoUtil.getInstance().getUserVO().memberType;
+    	if(memberType==MemberType.not_member){
+    		myMember = UserUIFXMLFactory.getUserUIFXMLFactory().getMyMember();
+            GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
+            gridPane.getChildren().remove(1);
+            gridPane.add(myMember,0,1);
+    	}else {
+			isMember = UserUIFXMLFactory.getUserUIFXMLFactory().getIsMember();
+			GridPane gridPane = (GridPane)userGuide.getChildren().get(0);
+            gridPane.getChildren().remove(1);
+            gridPane.add(isMember,0,1);
+		}
+       
     }
 
     //跳转到我的订单

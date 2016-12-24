@@ -350,6 +350,7 @@ public class HotelBasicInfoUIController {
         // 得到客房信息维护界面控制器
         if (roomInfoUIController == null)
             roomInfoUIController = loader.getController();
+        roomInfoUIController.setRoomInfoUIController(roomInfoUIController);
         // 传入酒店信息维护界面根结点
         roomInfoUIController.setPrePane(anchorPane);
         // 配置hotelService

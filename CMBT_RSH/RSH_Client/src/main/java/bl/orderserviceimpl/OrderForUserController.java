@@ -31,9 +31,11 @@ import java.util.Date;
  * Created by sky-PC on 2016/12/14.
  */
 public class OrderForUserController implements OrderForUser{
+
     private static OrderDao orderDao = null;
     private HotelInfoService hotelInfoService = new HotelInfoController();
     private HotelService hotelService = new HotelController();
+
     private static void initRemote(){
     	if(orderDao == null){
         	RemoteHelper remoteHelper = RemoteHelper.getInstance();
@@ -53,7 +55,7 @@ public class OrderForUserController implements OrderForUser{
         if(state==null)
             return list;
         else{
-            for(int i=list.size();i>=0;i--)
+            for(int i=list.size()-1;i>=0;i--)
                 if(list.get(i).getState()!=state)
                     list.remove(i);
         }

@@ -2,6 +2,8 @@ package presentation.webmanagercontroller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import constant.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -9,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.usercontrollertools.UserUIFXMLFactory;
+import presentation.webmanagercontrollertools.WebManagerInfoUtil;
 import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 
 /**
@@ -115,15 +118,18 @@ public class ManagerHomepageUIController {
 
     @FXML
     void logout(MouseEvent event) {
-    	Stage stage  = (Stage)logoutImage.getScene().getWindow();
-    	Scene scene = null;
-    	AnchorPane roleChoose = UserUIFXMLFactory.getUserUIFXMLFactory().getRoleChoose();
-    	if(roleChoose.getScene()!=null){
-    		scene = roleChoose.getScene();
-    	}else {
-			scene = new Scene(roleChoose,800,720);
-		}
-    	stage.setScene(scene);
+    	if(WebManagerInfoUtil.getInstance().logout()==ResultMessage.succeed){
+    		Stage stage  = (Stage)logoutImage.getScene().getWindow();
+        	Scene scene = null;
+        	AnchorPane roleChoose = UserUIFXMLFactory.getUserUIFXMLFactory().getRoleChoose();
+        	if(roleChoose.getScene()!=null){
+        		scene = roleChoose.getScene();
+        	}else {
+    			scene = new Scene(roleChoose,800,720);
+    		}
+        	stage.setScene(scene);
+    	}
+    	
     }
 
     @FXML

@@ -132,7 +132,7 @@ public class WebManagerInfoUtil {
 	 * 添加酒店界面调用，得到酒店的Id
 	 */
 	public String getHotelID(String province,String city,String district) {
-		String districtID = DistrictHelper.getAreaID(province, city, district);
+		String districtID = DistrictHelper.getDistrict(province, city, district);
 		return managerHotelService.getHotelID(districtID);
 	}
 	/**
@@ -184,5 +184,12 @@ public class WebManagerInfoUtil {
 	 */
 	public ResultMessage changePassword(String newPassword) {
 		return webStaffService.changePassword(managerid, password, newPassword);
+	}
+	/**
+	 * 网站管理人员退出
+	 */
+	public ResultMessage logout() {
+		ResultMessage resultMessage = loginService.logout(Role.webmanager,managerid);
+		return resultMessage;
 	}
 }
