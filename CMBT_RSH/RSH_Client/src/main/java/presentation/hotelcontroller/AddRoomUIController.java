@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.hotelcontrollertools.HotelInputCheck;
+import presentation.hotelcontrollertools.HotelServiceFactory;
 import vo.RoomVO;
 
 public class AddRoomUIController {
@@ -78,7 +79,7 @@ public class AddRoomUIController {
 
     private AnchorPane prePane;
 
-    private HotelService hotelService = new HotelService_Stub();
+    private HotelService hotelService;
 
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
@@ -162,6 +163,7 @@ public class AddRoomUIController {
             promptsInvisible();
             backButtonClicked(null);
         } else
+            System.out.println("!!!");
             return;
     }
 
@@ -189,6 +191,12 @@ public class AddRoomUIController {
         roomImageAddressTextField.setVisible(false);
         setPrompts();
         promptsInvisible();
+
+        initializeService();
+    }
+
+    private void initializeService() {
+        this.hotelService = HotelServiceFactory.getInstance().getHotelService();
     }
 
     private void promptsInvisible() {

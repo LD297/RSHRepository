@@ -176,11 +176,11 @@ public class LoginUIController {
             LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
 
             if(loginService.checkOnline(Role.hotel, id, password).equals(ResultMessage.succeed)){
-
-                HotelService hotelService = HotelServiceFactory.getInstance().getHotelService();
-                PromotionService promotionService = HotelServiceFactory.getInstance().getPromotionService();
-                HotelInfoService hotelInfoService = HotelServiceFactory.getInstance().getHotelInfoService();
-                OrderForHotel orderForHotel = HotelServiceFactory.getInstance().getOrderForHotel();
+//
+//                HotelService hotelService = HotelServiceFactory.getInstance().getHotelService();
+//                PromotionService promotionService = HotelServiceFactory.getInstance().getPromotionService();
+//                HotelInfoService hotelInfoService = HotelServiceFactory.getInstance().getHotelInfoService();
+//                OrderForHotel orderForHotel = HotelServiceFactory.getInstance().getOrderForHotel();
 
                 AnchorPane hotelHomepage = HotelUIFXMLFactory.getInstance().getHotelHomePage();
                 HotelHomepageUIController hotelHomepageUIController = HotelUIFXMLFactory.getInstance().
@@ -188,11 +188,11 @@ public class LoginUIController {
 
                 hotelHomepageUIController.setPrePane(loginBelowAnchorpane);
                 hotelHomepageUIController.setHotelId(id);
-                hotelHomepageUIController.setLoginService(loginService);
-                hotelHomepageUIController.setHotelService(hotelService);
-                hotelHomepageUIController.setPromotionService(promotionService);
-                hotelHomepageUIController.setHotelInfoService(hotelInfoService);
-                hotelHomepageUIController.setOrderForHotel(orderForHotel);
+//                hotelHomepageUIController.setLoginService(loginService);
+//                hotelHomepageUIController.setHotelService(hotelService);
+//                hotelHomepageUIController.setPromotionService(promotionService);
+//                hotelHomepageUIController.setHotelInfoService(hotelInfoService);
+//                hotelHomepageUIController.setOrderForHotel(orderForHotel);
 
                 Stage stage = (Stage)idField.getScene().getWindow();
                 Scene scene = null;
@@ -210,9 +210,9 @@ public class LoginUIController {
             if(loginService.checkOnline(Role.websalesman, id, password ).equals(ResultMessage.succeed)){
 
                 WebStaffService webStaffService = WebSalesmanServiceFactory.getInstance().getWebStaffService();
-                PromotionService promotionService = WebSalesmanServiceFactory.getInstance().getPromotionService();
-                OrderForWebsite orderForWebsite = WebSalesmanServiceFactory.getInstance().getOrderForWebsite();
-                UserService userService = WebSalesmanServiceFactory.getInstance().getUserService();
+//                PromotionService promotionService = WebSalesmanServiceFactory.getInstance().getPromotionService();
+//                OrderForWebsite orderForWebsite = WebSalesmanServiceFactory.getInstance().getOrderForWebsite();
+//                UserService userService = WebSalesmanServiceFactory.getInstance().getUserService();
 
                 AnchorPane webSalesmanHomepage = WebSalesmanUIFXMLFactory.getInstance().getWebSalesmanHomepage();
                 WebSalesmanHomepageUIController webSalesmanHomepageUIController = WebSalesmanUIFXMLFactory.
@@ -221,11 +221,11 @@ public class LoginUIController {
                 WebSalesmanVO webSalesmanVO = webStaffService.webSalesmanVO(id);
                 webSalesmanHomepageUIController.setPrePane(loginBelowAnchorpane);
                 webSalesmanHomepageUIController.setWebSalesmanVO(webSalesmanVO);
-                // 配置逻辑处理服务
-                webSalesmanHomepageUIController.setLoginService(loginService);
-                webSalesmanHomepageUIController.setPromotionService(promotionService);
-                webSalesmanHomepageUIController.setOrderForWebsite(orderForWebsite);
-                webSalesmanHomepageUIController.setUserService(userService);
+//                // 配置逻辑处理服务
+//                webSalesmanHomepageUIController.setLoginService(loginService);
+//                webSalesmanHomepageUIController.setPromotionService(promotionService);
+//                webSalesmanHomepageUIController.setOrderForWebsite(orderForWebsite);
+//                webSalesmanHomepageUIController.setUserService(userService);
 
                 Stage stage = (Stage)idField.getScene().getWindow();
                 Scene scene = null;

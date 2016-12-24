@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 import javafx.stage.Stage;
 import presentation.hotelcontroller.DataFactory;
 import presentation.hotelcontroller.DateTransform;
+import presentation.websalesmancontrollertools.WebSalesmanServiceFactory;
 import vo.OrderVO;
 
 /**
@@ -291,14 +292,19 @@ public class ExceptionalOrderUIController {
         assert isHalfCheckBox != null : "fx:id=\"isHalfCheckBox\" was not injected: check your FXML file '网站营销人员浏览异常订单.fxml'.";
 
         setAPanesForShow();
-
+        initializeService();
     }
+
+    private void initializeService() {
+        this.orderForWebsite = WebSalesmanServiceFactory.getInstance().getOrderForWebsite();
+    }
+
     private void setAPanesForShow(){
         aPanesForShow = new AnchorPane[]{showPane0, showPane1, showPane2};
     }
 
-    public void setOrderForWebsite(OrderForWebsite orderForWebsite){
-        this.orderForWebsite = orderForWebsite;
-    }
+//    public void setOrderForWebsite(OrderForWebsite orderForWebsite){
+//        this.orderForWebsite = orderForWebsite;
+//    }
 }
 

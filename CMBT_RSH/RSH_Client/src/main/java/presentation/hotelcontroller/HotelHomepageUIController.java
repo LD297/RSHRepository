@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.hotelcontrollertools.HotelServiceFactory;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import vo.HotelVO;
 
@@ -100,8 +101,8 @@ public class HotelHomepageUIController {
             hotelBasicInfoUIController = loader.getController();
         // 传入酒店首页根结点引用
         hotelBasicInfoUIController.setPrePane(anchorPane);
-        // 配置hotelService
-        hotelBasicInfoUIController.setHotelService(hotelService);
+//        // 配置hotelService
+//        hotelBasicInfoUIController.setHotelService(hotelService);
         hotelBasicInfoUIController.setHotelId(hotelId);
         hotelBasicInfoUIController.refreshPage();
 
@@ -133,9 +134,9 @@ public class HotelHomepageUIController {
         // 传入酒店首页根结点引用
         promotionUIController.setPrePane(anchorPane);
         promotionUIController.setPromotionUIController(promotionUIController);
-        // 配置promotionService
-        promotionUIController.setPromotionService(promotionService);
-        promotionUIController.setHotelInfoService(hotelInfoService);
+//        // 配置promotionService
+//        promotionUIController.setPromotionService(promotionService);
+//        promotionUIController.setHotelInfoService(hotelInfoService);
         promotionUIController.setHotelId(hotelId);
         promotionUIController.setSetterId();
         promotionUIController.refreshPage();
@@ -170,7 +171,7 @@ public class HotelHomepageUIController {
         checkOrderUIController.setPrePane(anchorPane);
         // 配置orderForHotel
         checkOrderUIController.setHotelId(hotelId);
-        checkOrderUIController.setOrderForHotel(orderForHotel);
+//        checkOrderUIController.setOrderForHotel(orderForHotel);
 
         checkOrderUIController.initSelectable();
         checkOrderUIController.unexecutedTabSelected();
@@ -203,7 +204,7 @@ public class HotelHomepageUIController {
         // 传入酒店首页根结点引用
         roomAvailUIController.setPrePane(anchorPane);
         // 配置hotelService
-        roomAvailUIController.setHotelService(hotelService);
+//        roomAvailUIController.setHotelService(hotelService);
         roomAvailUIController.setHotelId(hotelId);
         roomAvailUIController.refreshPage();
 
@@ -234,7 +235,18 @@ public class HotelHomepageUIController {
         assert basicInfo != null : "fx:id=\"basicInfo\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert promotion != null : "fx:id=\"promotion\" was not injected: check your FXML file '酒店首页.fxml'.";
 
+        initilizeService();
+        
     }
+
+    private void initilizeService() {
+        this.loginService = HotelServiceFactory.getInstance().getLoginService();
+        this.hotelService = HotelServiceFactory.getInstance().getHotelService();
+        this.promotionService = HotelServiceFactory.getInstance().getPromotionService();
+        this.hotelInfoService = HotelServiceFactory.getInstance().getHotelInfoService();
+        this.orderForHotel = HotelServiceFactory.getInstance().getOrderForHotel();
+    }
+
     public void setPrePane(AnchorPane prePane){this.prePane = prePane;}
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;

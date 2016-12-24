@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.websalesmancontrollertools.WebSalesmanServiceFactory;
 import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -69,9 +70,15 @@ public class TopUpCreditUIController {
         assert topNumTextField != null : "fx:id=\"topNumTextField\" was not injected: check your FXML file '信用充值界面.fxml'.";
         assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '信用充值界面.fxml'.";
 
+        initializeService();
+
     }
 
-    public void setUservice(UserService uservice) {
-        this.uservice = uservice;
+    private void initializeService() {
+        uservice = WebSalesmanServiceFactory.getInstance().getUserService();
     }
+
+//    public void setUservice(UserService uservice) {
+//        this.uservice = uservice;
+//    }
 }

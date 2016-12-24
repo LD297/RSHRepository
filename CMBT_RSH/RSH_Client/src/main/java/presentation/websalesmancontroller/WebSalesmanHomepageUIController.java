@@ -4,6 +4,7 @@ import bl.loginservice.LoginService;
 import bl.orderservice.OrderForWebsite;
 import bl.promotionservice.PromotionService;
 import bl.userservice.UserService;
+import bl.webstaffserviceimpl.WebSalesman;
 import constant.Role;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.hotelcontroller.PromotionUIController;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
+import presentation.websalesmancontrollertools.WebSalesmanServiceFactory;
 import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
 import vo.WebSalesmanVO;
 
@@ -134,7 +136,7 @@ public class WebSalesmanHomepageUIController {
 
         promotionUIController.setPromotionUIController(promotionUIController);
 
-        promotionUIController.setPromotionService(promotionService);
+//        promotionUIController.setPromotionService(promotionService);
         promotionUIController.setWebSalesVO(webSalesmanVO);
         promotionUIController.setSetterId();
         promotionUIController.refreshPage();
@@ -151,7 +153,7 @@ public class WebSalesmanHomepageUIController {
         else
             scene = exceptionalOrderPane.getScene();
 
-        exceptionalOrderUIController.setOrderForWebsite(orderForWebsite);
+//        exceptionalOrderUIController.setOrderForWebsite(orderForWebsite);
         exceptionalOrderUIController.refreshPage();
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
@@ -168,7 +170,7 @@ public class WebSalesmanHomepageUIController {
         else
             scene = topUpCreditPane.getScene();
 
-        topUpCreditUIController.setUservice(userService );
+//        topUpCreditUIController.setUservice(userService );
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
         stage.setX(WebSalesmanUIFXMLFactory.TOPUPCREDIT_X);
@@ -187,7 +189,7 @@ public class WebSalesmanHomepageUIController {
         else
             scene = makeMemberStandardPane.getScene();
 
-        makeMemberStandardUIController.setUserService(userService);
+//        makeMemberStandardUIController.setUserService(userService);
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
         stage.setX(WebSalesmanUIFXMLFactory.TOPUPCREDIT_X);
@@ -213,6 +215,15 @@ public class WebSalesmanHomepageUIController {
         assert exceptionalOrder != null : "fx:id=\"exceptionalOrder\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
         assert whiteBackground != null : "fx:id=\"whiteBackground\" was not injected: check your FXML file '网站营销人员首页.fxml'.";
         prePareNextPage();
+
+        initializeService();
+    }
+
+    private void initializeService() {
+        this.loginService = WebSalesmanServiceFactory.getInstance().getLoginService();
+        this.promotionService = WebSalesmanServiceFactory.getInstance().getPromotionService();
+        this.orderForWebsite = WebSalesmanServiceFactory.getInstance().getOrderForWebsite();
+        this.userService = WebSalesmanServiceFactory.getInstance().getUserService();
     }
 
     public void setPrePane(AnchorPane prePane) {
