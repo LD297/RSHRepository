@@ -5,14 +5,20 @@ import java.util.ArrayList;
 import bl.hotelservice.HotelService;
 import bl.hotelservice.ManagerHotelService;
 import bl.hotelservice.SearchHotelService;
+import bl.hotelserviceimpl.SearchHotelController;
 import bl.hotelserviceimpl.SearchHotelService_Stub;
+import bl.hotelserviceimpl.controller.HotelController;
 import bl.hotelserviceimpl.controller.HotelService_Stub;
 import bl.hotelserviceimpl.controller.ManageHotelService_Stub;
+import bl.hotelserviceimpl.controller.ManagerHotelController;
 import bl.loginservice.LoginService;
+import bl.loginserviceimpl.LoginController;
 import bl.loginserviceimpl.LoginService_Stub;
 import bl.userservice.UserService;
+import bl.userserviceimpl.UserController;
 import bl.userserviceimpl.UserService_Stub;
 import bl.webstaffservice.WebStaffService;
+import bl.webstaffserviceimpl.WebStaffController;
 import bl.webstaffserviceimpl.WebStaffService_Stub;
 import constant.ResultMessage;
 import constant.Role;
@@ -23,12 +29,18 @@ import vo.WebSalesmanVO;
 
 public class WebManagerInfoUtil {
 	private static WebManagerInfoUtil webManagerInfoUtil = null;
-	private LoginService loginService = new LoginService_Stub();
+/*	private LoginService loginService = new LoginService_Stub();
 	private UserService userService = new UserService_Stub();
 	private SearchHotelService searchHotelService = new SearchHotelService_Stub();
 	private WebStaffService webStaffService = new WebStaffService_Stub();
 	private ManagerHotelService managerHotelService = new ManageHotelService_Stub();
-	private HotelService hotelService = new HotelService_Stub();
+	private HotelService hotelService = new HotelService_Stub();*/
+	private LoginService loginService = new LoginController();
+	private UserService userService = new UserController();
+	private SearchHotelService searchHotelService = new SearchHotelController();
+	private WebStaffService webStaffService = new WebStaffController();
+	private ManagerHotelService managerHotelService = new ManagerHotelController();
+	private HotelService hotelService = new HotelController();
 	private String managerid = null;
 	private String password = null;
 	
