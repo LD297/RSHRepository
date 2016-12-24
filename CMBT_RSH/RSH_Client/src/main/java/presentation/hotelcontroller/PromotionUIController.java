@@ -83,6 +83,7 @@ public class PromotionUIController {
 
     private AnchorPane prePane;
 
+    private PromotionUIController promotionUIController = null;
     private PromotionService promotionService;
     private HotelInfoService hotelInfoService = null;
 
@@ -286,6 +287,7 @@ public class PromotionUIController {
             addPromotionUIController = loader.getController();
         addPromotionUIController.setPrePane(anchorPane);
 
+        addPromotionUIController.setPromotionUIController(promotionUIController);
         addPromotionUIController.setPromotionService(promotionService);
         addPromotionUIController.setHotelInfoService(hotelInfoService);
 
@@ -330,7 +332,7 @@ public class PromotionUIController {
     private void setShowPanes(){
         showPanes = new AnchorPane[]{showPane0, showPane01, showPane02, showPane03};
     }
-    public void refreshPage(){
+    public  void refreshPage(){
         setPromotions();
         initCurrentPage();
         setFullPageNum();
@@ -338,6 +340,7 @@ public class PromotionUIController {
         showPage();
     }
 
+    public void setPromotionUIController(PromotionUIController promotionUIController){this.promotionUIController = promotionUIController;}
     public void setPromotionService(PromotionService promotionService) {
         this.promotionService = promotionService;
     }

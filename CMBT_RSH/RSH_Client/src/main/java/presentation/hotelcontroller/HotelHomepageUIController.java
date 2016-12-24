@@ -132,6 +132,7 @@ public class HotelHomepageUIController {
                 promotionUIController = loader.getController();
         // 传入酒店首页根结点引用
         promotionUIController.setPrePane(anchorPane);
+        promotionUIController.setPromotionUIController(promotionUIController);
         // 配置promotionService
         promotionUIController.setPromotionService(promotionService);
         promotionUIController.setHotelInfoService(hotelInfoService);
@@ -161,6 +162,7 @@ public class HotelHomepageUIController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         // 得到订单搜索并浏览界面控制器
         if(checkOrderUIController==null)
             checkOrderUIController = loader.getController();
@@ -169,15 +171,15 @@ public class HotelHomepageUIController {
         // 配置orderForHotel
         checkOrderUIController.setHotelId(hotelId);
         checkOrderUIController.setOrderForHotel(orderForHotel);
+
         checkOrderUIController.initSelectable();
+        checkOrderUIController.unexecutedTabSelected();
 
         Scene scene = null;
         if(checkOrderUIPane.getScene()==null)
             scene = new Scene(checkOrderUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
             scene = checkOrderUIPane.getScene();
-
-
 
         Stage stage = (Stage)anchorPane.getScene().getWindow();
         stage.setScene(scene);

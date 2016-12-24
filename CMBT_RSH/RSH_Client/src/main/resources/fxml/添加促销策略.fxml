@@ -76,7 +76,6 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="76.0" layoutY="53.0" />
                   <Label layoutX="288.0" layoutY="115.0" opacity="0.8" text="生日特惠: " AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="85.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
@@ -116,13 +115,19 @@
                      </font>
                   </TextField>
                   <TextField fx:id="totalTextField" layoutX="445.0" layoutY="120.0" prefHeight="27.0" prefWidth="108.0" promptText="888" AnchorPane.leftAnchor="440.0" />
-                  <DatePicker fx:id="beginDate" layoutX="204.0" layoutY="160.0" opacity="0.8" prefHeight="27.0" prefWidth="100.0" promptText="开始日期" AnchorPane.leftAnchor="204.0" AnchorPane.topAnchor="160.0" />
-                  <Label layoutX="315.0" layoutY="164.0" text="~" AnchorPane.leftAnchor="315.0">
+                  <DatePicker fx:id="beginDate" layoutX="204.0" layoutY="160.0" opacity="0.8" prefHeight="27.0" prefWidth="150.0" promptText="开始日期" AnchorPane.leftAnchor="204.0" AnchorPane.topAnchor="160.0" />
+                  <Label layoutX="375.0" layoutY="162.0" text="~" AnchorPane.leftAnchor="372.0">
                      <font>
-                        <Font name="Times New Roman" size="18.0" />
+                        <Font name="Times New Roman" size="20.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="endDate" layoutX="330.0" layoutY="161.0" opacity="0.8" prefHeight="27.0" prefWidth="100.0" promptText="结束日期" AnchorPane.leftAnchor="330.0" AnchorPane.topAnchor="161.0" />
+                  <DatePicker fx:id="endDate" layoutX="398.0" layoutY="160.0" opacity="0.8" prefHeight="27.0" prefWidth="150.0" promptText="结束日期" AnchorPane.leftAnchor="398.0" AnchorPane.topAnchor="160.0" />
+                  <Label fx:id="roomTypeLabel" layoutX="362.0" layoutY="17.0" opacity="0.8" text="类型:">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="425.0" layoutY="11.0" opacity="0.8" prefHeight="27.0" prefWidth="116.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="90.0" prefWidth="610.0" GridPane.rowIndex="6">

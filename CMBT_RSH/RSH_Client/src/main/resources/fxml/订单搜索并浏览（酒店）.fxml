@@ -83,7 +83,7 @@
                               <Separator prefHeight="0.0" prefWidth="642.0" GridPane.rowIndex="1" />
                               <Separator prefWidth="200.0" GridPane.rowIndex="3" />
                               <Separator prefWidth="200.0" GridPane.rowIndex="5" />
-                              <AnchorPane maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0">
+                              <AnchorPane fx:id="unexecutePane0" maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0">
                                  <children>
                                     <Label layoutX="56.0" layoutY="12.0" text="15105191234(sunshine)" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="12.0">
                                        <font>
@@ -188,7 +188,7 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="2">
+                              <AnchorPane fx:id="unexecutePane01" maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="2">
                                  <children>
                                     <Label layoutX="56.0" layoutY="12.0" text="15105191234(sunshine)" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="12.0">
                                        <font>
@@ -293,7 +293,7 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="4">
+                              <AnchorPane fx:id="unexecutePane02" maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="4">
                                  <children>
                                     <Label layoutX="56.0" layoutY="12.0" text="15105191234(sunshine)" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="12.0">
                                        <font>

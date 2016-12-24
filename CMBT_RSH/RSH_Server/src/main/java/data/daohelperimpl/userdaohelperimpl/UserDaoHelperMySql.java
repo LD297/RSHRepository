@@ -119,6 +119,11 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         return ResultMessage.succeed;
     }
 
+    @Override
+    public ResultMessage setMemberLevel(int gradeWithCredit) throws RemoteException {
+        return null;
+    }
+
 
     // 网站营销人员 制定会员等级制度
     public ResultMessage setMemberLevel(int[] gradeWithCredit) throws RemoteException {

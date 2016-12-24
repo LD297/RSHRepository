@@ -98,6 +98,7 @@ public class AddPromotionUIController {
 
     private HotelInfoService hotelInfoService = null;
     private PromotionService promotionService = null;
+    private PromotionUIController promotionUIController = null;
 
     private WebSalesmanVO webSalesmanVO = null;
     private String setterId = "";
@@ -162,7 +163,7 @@ public class AddPromotionUIController {
         Date endDate = null;
         if(begin!=null)
             beginDate = MyDateFormat.getInstance().changeLocalDateToDate(begin);
-        if(endDate!=null)
+        if(end!=null)
             endDate = MyDateFormat.getInstance().changeLocalDateToDate(end);
 
         // 对应界面的"针对"选项
@@ -223,6 +224,7 @@ public class AddPromotionUIController {
         PromotionVO thePromotion = new PromotionVO(setterId,promotionID, reason, beginDate, endDate,
                 scopeType,scopeNum, roomType, conditionType, conditionNum, deDuctionType, deductionNum
                 );
+        promotionService.addPromotion(thePromotion);
         backButtonClicked(null);
     }
 
@@ -230,6 +232,7 @@ public class AddPromotionUIController {
     void backButtonClicked(MouseEvent event) {
         int size = prePane.getChildren().size();
         prePane.getChildren().get(size-2).setVisible(false);
+        promotionUIController.refreshPage();
         prePane.getChildren().remove(size-1);
     }
 
@@ -266,6 +269,8 @@ public class AddPromotionUIController {
                 "减额"
         ));
     }
+
+    public void setPromotionUIController(PromotionUIController promotionUIController){this.promotionUIController = promotionUIController;}
 
     public void setHotelInfoService(HotelInfoService hotelInfoService) {
         this.hotelInfoService = hotelInfoService;

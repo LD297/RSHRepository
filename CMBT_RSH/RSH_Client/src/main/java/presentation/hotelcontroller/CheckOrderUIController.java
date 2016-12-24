@@ -70,6 +70,16 @@ public class CheckOrderUIController {
     private Tab unexecutedTab;
 
     @FXML
+    private AnchorPane unexecutePane0;
+
+    @FXML
+    private AnchorPane unexecutePane01;
+
+    @FXML
+    private AnchorPane unexecutePane02;
+
+
+    @FXML
     private Button checkOutButton02;
 
     @FXML
@@ -543,6 +553,9 @@ public class CheckOrderUIController {
         assert executeButton0 != null : "fx:id=\"executeButton0\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
         assert exceptionalTab != null : "fx:id=\"exceptionalTab\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
         assert anchorPane != null : "fx:id=\"anchorPane\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
+        assert unexecutePane0 != null : "fx:id=\"unececutePane0\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
+        assert unexecutePane01 != null : "fx:id=\"unexecutePane01\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
+        assert unexecutePane02 != null : "fx:id=\"unexecutePane02\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
         assert prePageLabel != null : "fx:id=\"prePageLabel\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
         assert checkOutButton01 != null : "fx:id=\"checkOutButton01\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
         assert background != null : "fx:id=\"background\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";

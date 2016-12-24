@@ -132,6 +132,8 @@ public class WebSalesmanHomepageUIController {
         else
             scene = promotionPane.getScene();
 
+        promotionUIController.setPromotionUIController(promotionUIController);
+
         promotionUIController.setPromotionService(promotionService);
         promotionUIController.setWebSalesVO(webSalesmanVO);
         promotionUIController.setSetterId();
