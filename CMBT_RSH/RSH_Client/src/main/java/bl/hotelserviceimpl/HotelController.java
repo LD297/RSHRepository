@@ -1,10 +1,6 @@
-package bl.hotelserviceimpl.controller;
+package bl.hotelserviceimpl;
 
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.Hotel;
-import bl.hotelserviceimpl.HotelManager;
-import bl.hotelserviceimpl.RoomAvail;
-import bl.hotelserviceimpl.RoomManager;
 import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
 import po.RoomAvailPO;

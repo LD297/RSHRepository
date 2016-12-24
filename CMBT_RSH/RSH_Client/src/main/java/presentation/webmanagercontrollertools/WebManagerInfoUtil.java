@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import bl.hotelservice.HotelService;
 import bl.hotelservice.ManagerHotelService;
 import bl.hotelservice.SearchHotelService;
+import bl.hotelserviceimpl.HotelController;
+import bl.hotelserviceimpl.HotelService_Stub;
+import bl.hotelserviceimpl.ManageHotelService_Stub;
+import bl.hotelserviceimpl.ManagerHotelController;
 import bl.hotelserviceimpl.SearchHotelController;
 import bl.hotelserviceimpl.SearchHotelService_Stub;
-import bl.hotelserviceimpl.controller.HotelController;
-import bl.hotelserviceimpl.controller.HotelService_Stub;
-import bl.hotelserviceimpl.controller.ManageHotelService_Stub;
-import bl.hotelserviceimpl.controller.ManagerHotelController;
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginController;
 import bl.loginserviceimpl.LoginService_Stub;
@@ -190,6 +190,15 @@ public class WebManagerInfoUtil {
 	 */
 	public ResultMessage logout() {
 		ResultMessage resultMessage = loginService.logout(Role.webmanager,managerid);
+		managerid = null;
+		password = null;
 		return resultMessage;
+	}
+	/**
+	 * 网站管理人员登陆
+	 */
+	public void login(String managerid,String password) {
+		this.managerid = managerid;
+		this.password = password;
 	}
 }

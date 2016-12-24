@@ -1,4 +1,4 @@
-package bl.hotelserviceimpl.controller;
+package bl.hotelserviceimpl;
 
 import bl.hotelservice.ManagerHotelService;
 import constant.ResultMessage;

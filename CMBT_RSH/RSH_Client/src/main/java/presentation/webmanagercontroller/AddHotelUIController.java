@@ -3,7 +3,9 @@ package presentation.webmanagercontroller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import constant.ResultMessage;
+import javafx.scene.control.PasswordField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,8 +60,8 @@ public class AddHotelUIController {
     private Button finishAddHotel;
 
     @FXML
-    private TextField passwordField;
-    
+    private PasswordField passwordField;
+
     @FXML
     private Label messageLabel;
 
@@ -164,7 +166,6 @@ public class AddHotelUIController {
         assert phoneField != null : "fx:id=\"phoneField\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
         assert cancelImage != null : "fx:id=\"cancelImage\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
         assert finishAddHotel != null : "fx:id=\"finishAddHotel\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
-        assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
         assert messageLabel != null : "fx:id=\"messageLabel\" was not injected: check your FXML file '网管_添加酒店.fxml'.";
         init();
     }

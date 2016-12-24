@@ -15,8 +15,8 @@ public class OrderPO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	// 注：一笔订单允许一种房间类型
-	private String orderID = null;
-	private String userID = null;
+	private String orderID ;
+	private String userID ;
 	private String userName = null;
 	private String hotelID = null;
     private String hotelName = null;

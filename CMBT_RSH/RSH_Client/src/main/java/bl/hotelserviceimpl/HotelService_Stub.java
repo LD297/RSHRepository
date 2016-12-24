@@ -1,4 +1,4 @@
-package bl.hotelserviceimpl.controller;
+package bl.hotelserviceimpl;
 
 import java.util.ArrayList;
 import java.util.Date;

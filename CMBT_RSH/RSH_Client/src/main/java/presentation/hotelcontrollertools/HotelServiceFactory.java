@@ -2,10 +2,10 @@ package presentation.hotelcontrollertools;
 
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.controller.HotelController;
-import bl.hotelserviceimpl.controller.HotelInfoController;
-import bl.hotelserviceimpl.controller.HotelInfoService_Stub;
-import bl.hotelserviceimpl.controller.HotelService_Stub;
+import bl.hotelserviceimpl.HotelController;
+import bl.hotelserviceimpl.HotelInfoController;
+import bl.hotelserviceimpl.HotelInfoService_Stub;
+import bl.hotelserviceimpl.HotelService_Stub;
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginController;
 import bl.loginserviceimpl.LoginService_Stub;

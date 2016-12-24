@@ -33,8 +33,8 @@ public class UserController implements UserService{
 	 * 获取用户基本信息
 	 */
 	@Override
-	public UserVO getInfo(String userid) {
-		User user = new User(userid);
+	public UserVO getInfo(String userID) {
+		User user = User.getInstance(userID);
 		return user.getInfo();
 	}
 
@@ -107,8 +107,8 @@ public class UserController implements UserService{
 	 * @param newPassword
 	 * @return
 	 */
-	public ResultMessage changePassword(String userid, String oldPassword, String newPassword) {
-		User user = new User(userid);
+	public ResultMessage changePassword(String userID, String oldPassword, String newPassword) {
+		User user = User.getInstance(userID);
 		return	user.changePassword(oldPassword,newPassword);
 	}
 
@@ -119,7 +119,7 @@ public class UserController implements UserService{
 	 * @return
 	 */
 	public ResultMessage checkPassword(String userID,String password) {
-		User user = new User(userID);
+		User user = User.getInstance(userID);
 		return user.checkPassword(password);
 	}
 
@@ -152,7 +152,7 @@ public class UserController implements UserService{
 
 	public boolean hasReserved(String userID, String hotelID) {
 		// TODO Auto-generated method stub
-		User user = new User(userID);
+		User user = User.getInstance(userID);
 		return user.hasReserved(hotelID);
 	}
 	

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.controller.HotelService_Stub;
+import bl.hotelserviceimpl.HotelService_Stub;
 import constant.ResultMessage;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

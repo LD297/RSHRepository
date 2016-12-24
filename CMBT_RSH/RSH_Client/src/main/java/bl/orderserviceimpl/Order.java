@@ -7,8 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.controller.HotelController;
-import bl.promotionServiceimpl.Promotion;
+import bl.hotelserviceimpl.HotelController;
 import bl.userserviceimpl.CreditRecordList;
 import constant.CreditAction;
 import constant.ResultMessage;
@@ -51,6 +50,7 @@ public class Order {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
     	if(orderPO==null){
     		return null;

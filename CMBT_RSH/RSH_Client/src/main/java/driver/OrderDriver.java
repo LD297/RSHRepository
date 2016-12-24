@@ -21,7 +21,11 @@ public class OrderDriver {
 	String string = "123";
 	int i = 2;
 	String userID = "44444444444";
-	OrderVO vo1 = new OrderVO("a12345678987654321", userID, "Xiaoer Wang", "000001", "BIG Hotel", StateOfOrder.unexecuted,
+/**
+ * 	OrderVO orderVO = new OrderVO(orderID, userID, userName, hotelID, hotelName, state, room, roomPrice, roomNumber, peopleNumber, withChild, originValue, trueValue, promotion, comment, grade, checkIn, checkOut, hotelDDL, generationDate, actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime)
+ */
+			
+	OrderVO vo1 = new OrderVO("a12345678987654321", userID, "Xiaoer Wang", "0100090001", "BIG Hotel", StateOfOrder.unexecuted,
 			new RoomNormVO("000001", "单人间", 200.0), 200, 0, 3, true, 200, 300, "No Promotion", "very good", 3,
 			new Date(), new Date(), "03:30:00", new Date(), new Date(), new Date(), new Date(), new Date());
 
@@ -37,7 +41,7 @@ public class OrderDriver {
 		
 		System.out.println(orderForHotelController.execute(orderID));
 		
-		System.out.println(orderForWebsiteController.browseAbnormal().size());
+		System.out.println(orderForWebsiteController.browseAbnormal().get(0).getOrderID());
 		
 		System.out.println("end");
 	}

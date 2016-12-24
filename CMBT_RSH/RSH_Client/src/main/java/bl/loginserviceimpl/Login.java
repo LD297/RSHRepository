@@ -1,6 +1,6 @@
 package bl.loginserviceimpl;
 
-import bl.hotelserviceimpl.controller.HotelController;
+import bl.hotelserviceimpl.HotelController;
 import bl.userserviceimpl.UserController;
 import bl.webstaffserviceimpl.WebStaffController;
 import constant.ResultMessage;
@@ -79,15 +79,13 @@ public class Login {
 	 * 删除该在线人员记录持久化对象
 	 */
 	public static ResultMessage logout(Role role, String id) {
-		ResultMessage resultMessage = null;
 		initRemote();
 		try{
-			resultMessage = loginDao.deleteOnline(role, id);
+			return loginDao.deleteOnline(role, id);
 		}catch (RemoteException e){
 			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
-		return resultMessage;
 	}
 	
 }

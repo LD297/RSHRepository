@@ -2,8 +2,8 @@ package bl.orderserviceimpl;
 
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.controller.HotelController;
-import bl.hotelserviceimpl.controller.HotelInfoController;
+import bl.hotelserviceimpl.HotelController;
+import bl.hotelserviceimpl.HotelInfoController;
 import bl.orderservice.OrderForHotel;
 import bl.orderservice.OrderForUser;
 import bl.promotionServiceimpl.Count;
@@ -218,7 +218,10 @@ public class OrderForUserController implements OrderForUser{
         String hotelID= orderVO.getHotelID();
         
         // 检查信用值
-        User user = new User(userID);
+        User user = User.getInstance(userID);
+        if(user==null){
+        	return ResultMessage.idNotExist;
+        }
         if(!user.canGenerateOrder())
             return ResultMessage.creditLack;
 
@@ -304,6 +307,7 @@ public class OrderForUserController implements OrderForUser{
      */
   
     private ResultMessage add(OrderVO orderVO){
+    	initRemote();
         try{
             orderDao.insert(orderVO.changeIntoPO());
             return ResultMessage.succeed;

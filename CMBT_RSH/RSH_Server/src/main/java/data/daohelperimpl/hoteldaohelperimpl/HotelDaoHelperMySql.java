@@ -97,9 +97,9 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         for(int i=0;i<180-1;i++)
         	aList+=",0";
         String addSingleRoomSql = "INSERT INTO RoomInfo VALUES('"+hotelID+"','标准间',0," +
-                                                                   "9999,null,'"+aList+"')";
+                                                                   "9999,'/images/defaultHotelImage.jpg','"+aList+"')";
         String addDoubleRoomSql = "INSERT INTO RoomInfo VALUES('"+hotelID+"','单人间',0," +
-                                                                   "9999,null,'"+aList+"')";
+                                                                   "9999,'/images/defaultHotelImage.jpg','"+aList+"')";
         db.executeSql(addSingleRoomSql);
         db.executeSql(addDoubleRoomSql);
         return ResultMessage.succeed;
@@ -210,7 +210,10 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         String addSpecialRoomSql = "INSERT INTO RoomInfo VALUES('"+hotelID+"','"+roomType+"',"+amount+
                 ","+price+",'"+imageAddress+"','"+availableRoom+"')";
         db.executeSql(addSpecialRoomSql);
-        
+        if(roomPO.getType().equals("标准间")){
+        	db.executeSql("UPDATE HotelInfo SET standardPrice="+String.valueOf(roomPO.getPrice())+
+        		" WHERE hotelID='"+hotelID+"' LIMIT 1");
+        }
         String updateHotelSql = "UPDATE HotelInfo SET roomTypeNum="+String.valueOf(typeNum)+
         		" WHERE hotelID='"+hotelID+"' LIMIT 1";
         db.executeSql(updateHotelSql);
@@ -255,6 +258,10 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         String deleteSpecialRoomSql = "DELETE FROM RoomInfo WHERE hotelID='"+hotelID+"' and roomType='"+roomType+"' LIMIT 1";
         db.executeSql(deleteSpecialRoomSql);
 
+        if(roomPO.getType().equals("标准间")){
+        	db.executeSql("UPDATE HotelInfo SET standardPrice=-1"+
+        		" WHERE hotelID='"+hotelID+"' LIMIT 1");
+        }
         String updateHotelSql = "UPDATE HotelInfo SET roomTypeNum="+String.valueOf(typeNum)+
         		" WHERE hotelID='"+hotelID+"' LIMIT 1";
         db.executeSql(updateHotelSql);
@@ -271,34 +278,36 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
 
         String findRoomTypeNumSql = "SELECT roomTypeNum FROM HotelInfo WHERE hotelID='"+hotelID+"' LIMIT 1";
         ResultSet result = db.query(findRoomTypeNumSql);
-        if(result==null)
+        int typeNum = 0;
+        try{
+        	while(result.next()){
+        		typeNum = result.getInt(1);
+        		if(typeNum<=0)
+        			return new ArrayList<RoomPO>();
+        	}
+        }catch (SQLException e) {
+        	e.printStackTrace();
         	return new ArrayList<RoomPO>();
+		}
         
         ArrayList<RoomPO> roomList = new ArrayList<RoomPO>();
+
+        String getRoomListSql = "SELECT *FROM RoomInfo WHERE hotelID='"+hotelID+"' LIMIT "+String.valueOf(typeNum);
+        ResultSet roomResult = db.query(getRoomListSql);
         try{
-            while(result.next()){
-                int typeNum = result.getInt(1);
-                String getRoomListSql = "SELECT *FROM RoomInfo WHERE hotelID='"+hotelID+"' LIMIT "+String.valueOf(typeNum);
-                ResultSet roomResult = db.query(getRoomListSql);
-                try{
-                    while(roomResult.next()){
-                        String type = roomResult.getString("roomType");
-                        int amountTotal = roomResult.getInt("amountTotal");
-                        double price = roomResult.getDouble("price");
-                        String imageAddress = roomResult.getString("imageAddress");
-                        roomList.add(new RoomPO(hotelID,type,imageAddress,amountTotal,price));
-                    }
-                    return roomList;
-                }catch (SQLException e){
-                    e.printStackTrace();
-                    return roomList;
-                }
+            while(roomResult.next()){
+                String type = roomResult.getString("roomType");
+                int amountTotal = roomResult.getInt("amountTotal");
+                double price = roomResult.getDouble("price");
+                String imageAddress = roomResult.getString("imageAddress");
+                System.out.println(imageAddress+"lkjj");
+                roomList.add(new RoomPO(hotelID,type,imageAddress,amountTotal,price));
             }
+            return roomList;
         }catch (SQLException e){
             e.printStackTrace();
             return roomList;
         }
-        return roomList;
     }
     // 改变 酒店某一房间数量、价格、特色
     public ResultMessage updateRoom(RoomPO roomPO)throws RemoteException {

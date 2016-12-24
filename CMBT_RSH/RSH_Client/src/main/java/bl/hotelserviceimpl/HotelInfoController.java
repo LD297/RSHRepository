@@ -1,10 +1,9 @@
-package bl.hotelserviceimpl.controller;
+package bl.hotelserviceimpl;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import bl.hotelservice.HotelInfoService;
-import bl.hotelserviceimpl.Hotel;
 import constant.ResultMessage;
 import vo.RoomNormVO;
 /**

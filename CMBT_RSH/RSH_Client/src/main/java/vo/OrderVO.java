@@ -189,14 +189,16 @@ public class OrderVO {
     }
 	public OrderPO changeIntoPO() {
 		// TODO Auto-generated method stub
-		OrderVO orderVO = new OrderVO(orderID, userID, userName, hotelID, hotelName, state,
-				room, roomPrice, roomNumber, 
-				peopleNumber, withChild, originValue,
-				trueValue, promotion, comment, grade, 
-				checkIn, checkOut, 
-				hotelDDL, generationDate, actualCheckIn, 
-				actualCheckOut, cancelTime, cancelAbnormalTime);
-		return null;
+		OrderPO orderPO = new OrderPO(orderID, userID, userName, 
+				hotelID, hotelName, state, room, roomPrice, roomNumber, 
+				peopleNumber, withChild, 
+				originValue, trueValue, promotion,
+				comment, grade,
+				checkIn, checkOut, hotelDDL,
+				generationDate, actualCheckIn, actualCheckOut, 
+				cancelTime, cancelAbnormalTime);
+		
+		return orderPO;
 	}
 	public String getRoomType() {
 		// TODO Auto-generated method stub

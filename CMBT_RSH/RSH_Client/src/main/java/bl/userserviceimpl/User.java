@@ -23,28 +23,37 @@ import bl.orderserviceimpl.OrderForUserController;
 public class User {
 
 	String userID;
-	UserPO userPO = null;
+	UserPO userPO ;
 
 	private static UserDao userDao = null;
-	
-	public User(String userID) {
-		initRemote();
-		this.userID = userID;
-		try {
-			userPO = userDao.getInfo(userID);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	private static void initRemote(){
-		if(userDao==null){
+		if(userDao == null){
 			RemoteHelper remoteHelper = RemoteHelper.getInstance();
 			userDao = remoteHelper.getUserDao();
 		}
 	}
 
+	private User(String userID) {
+		this.userID = userID;
+	}
+
+	public static User getInstance(String userID){
+		User user = new User(userID);
+		initRemote();
+		try {
+			user.userPO = userDao.getInfo(userID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		if(user.userPO == null){
+			return null;
+		}
+		return user;
+	}
+	
+	
 	/**
 	 * 获取用户基本信息
 	 */

@@ -1,7 +1,7 @@
 package bl.orderserviceimpl;
 
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.controller.HotelController;
+import bl.hotelserviceimpl.HotelController;
 import bl.orderservice.OrderForWebsite;
 import bl.userserviceimpl.CreditRecordList;
 import constant.CreditAction;

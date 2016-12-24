@@ -153,8 +153,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String checkin = sdf.format(checkIn);
         String checkout = sdf.format(checkOut);
-        SimpleDateFormat sdff = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String borndate = sdff.format(bornDate);
+        String borndate = sdf.format(bornDate);
 
         String orderID = this.calculateOrderID(borndate,hotelID);
 
@@ -215,7 +214,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
     // 生成订单编号
     private String calculateOrderID(String bornDate,String hotelID){
-    	String orderID = bornDate.substring(0,10)+hotelID;
+    	String orderID = bornDate+hotelID;
     	
     	db.executeSql("USE OurData");
     	String getSelectedNumSql = "SELECT orderID FROM OrderGeneral";
@@ -301,7 +300,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     }
     private OrderPO getClearByID(String orderID,OrderPO orderPO){
     	String getSecretedSql = "SELECT aes_decrypt(userID,'"+key+"'),"
-    			+ "aes_decrypt(userName,'"+key+"') FROM OrderGeneral "
+    			+ "cast(binary(aes_decrypt(userName,'"+key+"'))as char character set utf8) as value FROM OrderGeneral "
     					+ "WHERE orderID='"+orderID+"' LIMIT 1";
     	ResultSet result = db.query(getSecretedSql);
     	try{

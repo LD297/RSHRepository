@@ -137,8 +137,9 @@ public class UserDaoHelperMySql implements UserDaoHelper{
  		ArrayList<UserPO> list = this.resultSetToUserPO(result);
  		if(list.size()==0)
  			return list;
+
  		ResultSet resultCleared = db.query("SELECT aes_decrypt(userID,'"+nameKey+"'),"
-    			+ "aes_decrypt(trueName,'"+nameKey+"') FROM UserInfo");
+    			+ "cast(binary(aes_decrypt(trueName,'"+nameKey+"'))as char character set utf8)as value FROM UserInfo");
  		int ptr = 0;
  		try{
  			while(resultCleared.next()){
@@ -203,11 +204,12 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     private String getSecreted(String clear,String key){
     	return "aes_encrypt('"+clear+"','"+key+"')";
     }
-    //
+    //CAST(BINARY(aes_decrypt(truename,'1jkl43')) AS CHAR CHARACTER SET utf8) AS VALUE
+
     private UserPO getClearByID(String userID,UserPO userPO){
     	String deUserID = this.getSecreted(userID, nameKey);
     	String getSecrtedSql = "SELECT aes_decrypt(password,'"+pwKey+"'),"
-    			+ "aes_decrypt(trueName,'"+nameKey+"') FROM UserInfo "
+    			+ "cast(binary(aes_decrypt(trueName,'"+nameKey+"')) as char character set utf8) as value FROM UserInfo "
     					+ "WHERE userID="+deUserID+" LIMIT 1";
     	ResultSet result = db.query(getSecrtedSql);
     	try{

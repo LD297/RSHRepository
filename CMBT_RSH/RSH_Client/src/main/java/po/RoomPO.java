@@ -23,14 +23,14 @@ public class RoomPO implements Serializable{
 	/**
 	 * 该类型房间的图片地址
 	 */
-	private String roomImageAddress;
+	private String imageAddress;
 
 	public RoomPO(String hotelID,String roomType,int numOfRoom,double price, String roomImageAddress){
 		this.hotelID = hotelID;
 		this.roomType = roomType;
 		this.numOfRoom = numOfRoom;
 		this.price = price;
-		this.roomImageAddress = roomImageAddress;
+		this.imageAddress = roomImageAddress;
 	}
 	public String getId() {
 		return hotelID;
@@ -65,15 +65,15 @@ public class RoomPO implements Serializable{
 	}
 
 	public String getRoomImageAddress() {
-		return roomImageAddress;
+		return imageAddress;
 	}
 
 	public void setRoomImageAddress(String basicOrSpecial) {
-		this.roomImageAddress = roomImageAddress;
+		this.imageAddress = imageAddress;
 	}
 
 	public RoomVO changeIntoVO(){
-		RoomVO roomVO = new RoomVO(hotelID, roomType, numOfRoom, price, roomImageAddress);
+		RoomVO roomVO = new RoomVO(hotelID, roomType, numOfRoom, price, imageAddress);
 		return roomVO;
 	}
 }

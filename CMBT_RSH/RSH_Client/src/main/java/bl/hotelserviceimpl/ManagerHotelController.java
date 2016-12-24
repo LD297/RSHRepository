@@ -1,8 +1,6 @@
-package bl.hotelserviceimpl.controller;
+package bl.hotelserviceimpl;
 
 import bl.hotelservice.ManagerHotelService;
-import bl.hotelserviceimpl.Hotel;
-import bl.hotelserviceimpl.WebManagerHotel;
 import constant.ResultMessage;
 import vo.HotelStaffVO;
 import vo.HotelVO;
