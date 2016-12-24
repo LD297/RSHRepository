@@ -25,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import presentation.hotelcontrollertools.HotelServiceFactory;
 import presentation.tools.MyDateFormat;
 import vo.RoomAvailVO;
 
@@ -208,7 +209,7 @@ public class RoomAvailUIController {
     }
 
     private void changeNum(AnchorPane thePane, int change){
-        Label roomAvailNum = (Label)thePane.getChildren().get(3);
+        Label roomAvailNum = (Label)thePane.getChildren().get(2);
         int availNum = Integer.valueOf(roomAvailNum.getText());
         availNum+=change;
         // 房间数量非负
@@ -300,15 +301,20 @@ public class RoomAvailUIController {
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '可用客房.fxml'.";
 
         setShowPanes();
-//        refreshPage();
+        initializeService();
+    }
+
+    private void initializeService() {
+        this.hotelService = HotelServiceFactory.getInstance().getHotelService();
+
     }
 
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
-    public void setHotelService(HotelService hotelService) {
-        this.hotelService = hotelService;
-    }
+//    public void setHotelService(HotelService hotelService) {
+//        this.hotelService = hotelService;
+//    }
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }

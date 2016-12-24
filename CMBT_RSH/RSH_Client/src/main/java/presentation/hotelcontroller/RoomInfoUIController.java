@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import presentation.hotelcontrollertools.HotelServiceFactory;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import vo.RoomVO;
 
@@ -270,13 +271,19 @@ public class RoomInfoUIController {
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
 
         setShowPanes();
+        initializeService();
     }
+
+    private void initializeService() {
+        this.hotelService = HotelServiceFactory.getInstance().getHotelService();
+    }
+
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
-    public void setHotelService(HotelService hotelService) {
-        this.hotelService = hotelService;
-    }
+//    public void setHotelService(HotelService hotelService) {
+//        this.hotelService = hotelService;
+//    }
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }

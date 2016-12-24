@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelInfoService;
+import bl.hotelservice.HotelService;
 import bl.promotionservice.PromotionService;
 import bl.webstaffservice.WebStaffService;
 import bl.webstaffserviceimpl.WebSalesman;
@@ -24,6 +25,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.hotelcontrollertools.HotelServiceFactory;
 import presentation.tools.MyDateFormat;
 import vo.PromotionVO;
 import vo.RoomNormVO;
@@ -96,9 +98,9 @@ public class AddPromotionUIController {
     @FXML
     private ChoiceBox<Object> deductionTypeChoiceBox;
 
-    private HotelInfoService hotelInfoService = null;
-    private PromotionService promotionService = null;
-    private PromotionUIController promotionUIController = null;
+    private HotelInfoService hotelInfoService;
+    private PromotionService promotionService;
+    private PromotionUIController promotionUIController;
 
     private WebSalesmanVO webSalesmanVO = null;
     private String setterId = "";
@@ -259,7 +261,15 @@ public class AddPromotionUIController {
         assert deductionTypeChoiceBox != null : "fx:id=\"deductionTypeChoiceBox\" was not injected: check your FXML file '添加促销策略.fxml'.";
 
         setDeductionChoiceBox();
+        initilizeService();
 
+    }
+
+    private void initilizeService() {
+
+        this.hotelInfoService = HotelServiceFactory.getInstance().getHotelInfoService();
+        this.promotionService = HotelServiceFactory.getInstance().getPromotionService();
+        this.promotionService = HotelServiceFactory.getInstance().getPromotionService();
     }
 
     private void setDeductionChoiceBox() {
@@ -272,13 +282,13 @@ public class AddPromotionUIController {
 
     public void setPromotionUIController(PromotionUIController promotionUIController){this.promotionUIController = promotionUIController;}
 
-    public void setHotelInfoService(HotelInfoService hotelInfoService) {
-        this.hotelInfoService = hotelInfoService;
-    }
-
-    public void setPromotionService(PromotionService promotionService) {
-        this.promotionService = promotionService;
-    }
+//    public void setHotelInfoService(HotelInfoService hotelInfoService) {
+//        this.hotelInfoService = hotelInfoService;
+//    }
+//
+//    public void setPromotionService(PromotionService promotionService) {
+//        this.promotionService = promotionService;
+//    }
 
     public void setWebSalesmanVO(WebSalesmanVO webSalesmanVO) {
         this.webSalesmanVO = webSalesmanVO;

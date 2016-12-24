@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.websalesmancontrollertools.WebSalesmanServiceFactory;
 import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
 
 import java.net.URL;
@@ -80,10 +81,15 @@ public class MakeMemberStandardUIController {
             assert confirmButton != null : "fx:id=\"confirmButton\" was not injected: check your FXML file '制定会员等级界面.fxml'.";
 
             creditPrompt.setVisible(false);
+            initializeService();
         }
 
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    private void initializeService() {
+        userService = WebSalesmanServiceFactory.getInstance().getUserService();
     }
+
+
+//    public void setUserService(UserService userService) {
+//        this.userService = userService;
+//    }
 }

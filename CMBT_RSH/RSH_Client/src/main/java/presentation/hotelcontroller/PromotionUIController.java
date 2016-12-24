@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import presentation.hotelcontrollertools.HotelServiceFactory;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import vo.PromotionVO;
 import vo.WebSalesmanVO;
@@ -288,8 +289,8 @@ public class PromotionUIController {
         addPromotionUIController.setPrePane(anchorPane);
 
         addPromotionUIController.setPromotionUIController(promotionUIController);
-        addPromotionUIController.setPromotionService(promotionService);
-        addPromotionUIController.setHotelInfoService(hotelInfoService);
+//        addPromotionUIController.setPromotionService(promotionService);
+//        addPromotionUIController.setHotelInfoService(hotelInfoService);
 
         addPromotionUIController.setWebSalesmanVO(webSalesmanVO);
         addPromotionUIController.setSetterId(setterId);
@@ -324,6 +325,12 @@ public class PromotionUIController {
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
 
         setShowPanes();
+        initializeService();
+    }
+
+    private void initializeService() {
+        this.promotionService = HotelServiceFactory.getInstance().getPromotionService();
+        this.hotelInfoService = HotelServiceFactory.getInstance().getHotelInfoService();
     }
 
     public void setPrePane(AnchorPane prePane) {
@@ -341,12 +348,12 @@ public class PromotionUIController {
     }
 
     public void setPromotionUIController(PromotionUIController promotionUIController){this.promotionUIController = promotionUIController;}
-    public void setPromotionService(PromotionService promotionService) {
-        this.promotionService = promotionService;
-    }
-    public void setHotelInfoService(HotelInfoService hotelInfoService){
-        this.hotelInfoService = hotelInfoService;
-    }
+//    public void setPromotionService(PromotionService promotionService) {
+//        this.promotionService = promotionService;
+//    }
+//    public void setHotelInfoService(HotelInfoService hotelInfoService){
+//        this.hotelInfoService = hotelInfoService;
+//    }
     public void setWebSalesVO(WebSalesmanVO webSalesVO) {
         this.webSalesmanVO = webSalesVO;
     }

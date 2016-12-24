@@ -1,5 +1,7 @@
 package presentation.websalesmancontrollertools;
 
+import bl.loginservice.LoginService;
+import bl.loginserviceimpl.LoginService_Stub;
 import bl.orderservice.OrderForWebsite;
 import bl.orderserviceimpl.OrderForHotel_Stub;
 import bl.orderserviceimpl.OrderForWebsiteController;
@@ -15,6 +17,7 @@ import bl.webstaffserviceimpl.WebStaffService_Stub;
  */
 public class WebSalesmanServiceFactory {
     private static WebSalesmanServiceFactory webSalesmanServiceFactory;
+    private static LoginService loginService;
     private static WebStaffService webStaffService;
     private static PromotionService promotionService;
     private static UserService userService;
@@ -46,5 +49,11 @@ public class WebSalesmanServiceFactory {
         if(orderForWebsite==null)
             orderForWebsite = new OrderForWebsiteController();
         return orderForWebsite;
+    }
+
+    public LoginService getLoginService() {
+        if(loginService==null)
+            loginService = new LoginService_Stub();
+        return loginService;
     }
 }

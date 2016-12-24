@@ -22,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import presentation.hotelcontrollertools.HotelServiceFactory;
 import vo.OrderVO;
 import vo.RoomNormVO;
 
@@ -570,6 +571,13 @@ public class CheckOrderUIController {
         assert telescope != null : "fx:id=\"telescope\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
         assert tabPane != null : "fx:id=\"tabPane\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
 
+        initializeService();
+
+    }
+
+    private void initializeService() {
+        this.orderForHotel = HotelServiceFactory.getInstance().getOrderForHotel();
+
     }
 
     public void setPrePane(AnchorPane prePane) {
@@ -578,9 +586,9 @@ public class CheckOrderUIController {
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }
-    public void setOrderForHotel(OrderForHotel orderForHotel) {
-        this.orderForHotel = orderForHotel;
-    }
+//    public void setOrderForHotel(OrderForHotel orderForHotel) {
+//        this.orderForHotel = orderForHotel;
+//    }
     public void initSelectable(){
         isUnExeSelectable = true;
         isExcSelectable = true;
