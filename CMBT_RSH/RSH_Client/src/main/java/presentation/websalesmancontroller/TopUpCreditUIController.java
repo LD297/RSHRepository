@@ -8,8 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
-import sun.jvm.hotspot.jdi.IntegerTypeImpl;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 

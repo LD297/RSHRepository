@@ -90,7 +90,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
 
         if(this.checkExistence(userPO.getId())==ResultMessage.idAlreadyExist)
             return ResultMessage.idAlreadyExist;
-       
+       System.out.println(userPO.getName());
         String userID = userPO.getId();
         String deUserID = this.getSecreted(userID, nameKey);
         String password = userPO.getPassword();
@@ -132,9 +132,26 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     }
  // 网站管理人员 得到用户信息
  	public ArrayList<UserPO> getAll()throws RemoteException{
- 		db.executeSql("USE UserInfo");
+ 		db.executeSql("USE OurData");
  		ResultSet result = db.query("SELECT *FROM UserInfo");
- 		return this.resultSetToUserPO(result);
+ 		ArrayList<UserPO> list = this.resultSetToUserPO(result);
+ 		if(list.size()==0)
+ 			return list;
+ 		ResultSet resultCleared = db.query("SELECT aes_decrypt(userID,'"+nameKey+"'),"
+    			+ "aes_decrypt(trueName,'"+nameKey+"') FROM UserInfo");
+ 		int ptr = 0;
+ 		try{
+ 			while(resultCleared.next()){
+ 				list.get(ptr).setId(resultCleared.getString(1));
+ 				String name = resultCleared.getString(2);
+ 				System.out.println(name);
+ 				list.get(ptr).setName(name);
+ 				ptr++;
+ 			}
+ 		}catch(SQLException e){
+ 			e.printStackTrace();
+ 		}
+ 		return list;
  	}
 
     // 检查需要操作的账号存在

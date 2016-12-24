@@ -49,6 +49,7 @@ public class OrderForHotelController implements OrderForHotel{
         }
         return list;
     }
+    
     /**
      * 酒店执行订单时调用
      * 根据订单id，在逻辑层记下该订单实际入住时间（日期＋时间）

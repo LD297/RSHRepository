@@ -20,7 +20,7 @@ public class OrderDriver {
 	String orderID = "0100090002000000";
 	String string = "123";
 	int i = 2;
-	String userID = "11111111111";
+	String userID = "44444444444";
 	OrderVO vo1 = new OrderVO("a12345678987654321", userID, "Xiaoer Wang", "000001", "BIG Hotel", StateOfOrder.unexecuted,
 			new RoomNormVO("000001", "单人间", 200.0), 200, 0, 3, true, 200, 300, "No Promotion", "very good", 3,
 			new Date(), new Date(), "03:30:00", new Date(), new Date(), new Date(), new Date(), new Date());
@@ -30,6 +30,7 @@ public class OrderDriver {
 		OrderForHotelController orderForHotelController = new OrderForHotelController();
 		OrderForWebsiteController orderForWebsiteController = new OrderForWebsiteController();
 		System.out.println("begin");
+		System.out.println(orderForUserController.confirmReservation(vo1));
 		System.out.println(orderForUserController.confirmReservation(vo1).toString());
 		System.out.println(orderForUserController.cancelMyOrder(orderID));
 		System.out.println(orderForUserController.getTrueValue(new OrderInfo("0100090001","123", 2, new Date(), new Date(), userID, 123)));

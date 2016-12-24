@@ -19,14 +19,14 @@ public class UserDriver {
 		UserDriver userDriver = new UserDriver();
 		userDriver.test();
 	}
-	String userID = "11111111116";
+	String userID = "13333111116";
 	String password = "123";
 	String nickName = "123";
 	String imageAddress = "111";
 	LocalDate birth = LocalDate.now();
 	int level = 2;
 	MemberType memberType = MemberType.commerce;
-	String name = "123";
+	String name = "李薇薇";
 	Sexuality sexuality = Sexuality.female;
 	String eMail = "234";
 	int credit = 0;
@@ -36,7 +36,8 @@ public class UserDriver {
 	
 	public void test(){
 		UserController userController = new UserController();
-		System.out.println("begin");
+		userController.add(userVO);
+		/*System.out.println("begin");
 		System.out.println(userController.add(userVO).toString());
 		System.out.println(userController.checkPassword(userID, password).toString());
 		System.out.println(userController.changePassword(userID, password, "456").toString());
@@ -45,7 +46,7 @@ public class UserDriver {
 		System.out.println(userController.getInfo(userID).commerceName);
 		System.out.println(Member.getBoundaryForLevels());
 		System.out.println(userController.registerMember(userID).toString());
-//		System.out.println(userController.addCredit(2000, "44444444444").toString());
+		System.out.println(userController.addCredit(2000, "44444444444").toString());
 		userController.registerMember("44444444444");
 		Iterator<CreditRecordVO> creditRecord = userController.getCreditRecordList("44444444444");
 
@@ -53,7 +54,7 @@ public class UserDriver {
 		while(creditRecord.hasNext()){
 			CreditRecordVO creditRecordVO = creditRecord.next();
 			System.out.println(creditRecordVO.getCredit());
-		}
+		}*/
 		
 		System.out.println("end");
 	}
