@@ -7,5 +7,6 @@ public enum ConditionType {
     DATE,
     BIRTHDAY,
     NUM,
-    TOTAL;
+    TOTAL,
+    COMMERCE;
 }
