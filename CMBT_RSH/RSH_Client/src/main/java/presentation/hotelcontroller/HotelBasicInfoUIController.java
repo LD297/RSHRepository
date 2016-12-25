@@ -276,10 +276,10 @@ public class HotelBasicInfoUIController {
             String checkIn = checkInTextField.getText();
             inputCheck = HotelInputCheck.checkTime(checkIn);
             showPrompt(inputCheck, timePrompt);
-
-            String price = priceTextField.getText();
-            inputCheck = HotelInputCheck.checkPrice(price);
-            showPrompt(inputCheck, pricePrompt);
+//
+//            String price = priceTextField.getText();
+//            inputCheck = HotelInputCheck.checkPrice(price);
+//            showPrompt(inputCheck, pricePrompt);
 
             String url = imageUrlTextField.getText().trim();
             inputCheck = HotelInputCheck.checkURL(url);
@@ -308,7 +308,7 @@ public class HotelBasicInfoUIController {
                 hotelVO.setLevel(Integer.valueOf(level));
                 hotelVO.setFacility(facility);
                 hotelVO.setLatestCheckInTime(checkIn);
-                hotelVO.setStandardRoomPrice(Double.valueOf(price));
+//                hotelVO.setStandardRoomPrice(Double.valueOf(price));
                 hotelVO.setImageAddress(url);
                 hotelVO.setBriefIntro(briefIntro);
                 ResultMessage resultMessage = hotelService.updateHotel(hotelVO);
@@ -331,10 +331,7 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void editPrice(MouseEvent event) {
-        if (!editable)
             priceTextField.setEditable(false);
-        else
-            priceTextField.setEditable(true);
     }
 
     @FXML
