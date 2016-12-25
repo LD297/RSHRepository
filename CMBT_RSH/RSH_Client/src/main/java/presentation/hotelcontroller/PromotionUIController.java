@@ -107,6 +107,7 @@ public class PromotionUIController {
 
     private void setPromotions(){
         promotions = promotionService.getPromotionOfHotel(setterId);
+        System.out.println("刷新策略");
     }
     private void initCurrentPage(){
         currentPage = 0;
@@ -238,7 +239,8 @@ public class PromotionUIController {
             setterID = webSalesmanVO.getId();
 
         ResultMessage res = promotionService.delPromotion(setterID,  promotionID);
-        System.out.println(res);
+        if(res.equals(ResultMessage.succeed))
+            refreshPage();
     }
 
     @FXML

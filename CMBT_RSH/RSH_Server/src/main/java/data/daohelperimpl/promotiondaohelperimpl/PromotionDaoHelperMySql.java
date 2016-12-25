@@ -32,9 +32,9 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         // 生效日期 失效日期(2010-01-01默认0点) 针对类型（地区，酒店，房间类型） 具体条件（酒店id10位(前6位地区id)，房间类型Str）
         // 适用条件（房间数量、价值、会员等级（企业会员）、用户生日）
         // 折扣方式（打折，降价） 数字均为正数  满200减20(200,20) 满2间打8折(2,0.8) 满10级减10(10,10) 用户生日：85折(0,0.85)
-        db.executeSql("CREATE TABLE if not exists PromotionInfo(setter char(10),id char(3),name char(20)," +
+        db.executeSql("CREATE TABLE if not exists PromotionInfo(setter char(10),id char(3),name char(10)," +
                 "beginDate date,endDate date,scopeType tinyint,scopeNum char(20)," +
-                "conditionType tinyint,conditionNum int,deductionType tinyint,deductionNum int)" );
+                "conditionType tinyint,conditionNum double,deductionType tinyint,deductionNum double)default character set utf8" );
     }
 
     public void finish(){
@@ -78,6 +78,7 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         double conditionNum = po.getCondionNum();
         int deductionType = po.getDeductionType().ordinal();
         double deductionNum = po.getDeductionNum();
+
         String insertSql = "INSERT INTO PromotionInfo VALUES('" +setter+"','"+id+"','"+name+"','"+
                 begin+"','"+end+"',"+String.valueOf(scopeType)+",'"+String.valueOf(scopeNum)+"'," +
                 String.valueOf(conditionType)+","+String.valueOf(conditionNum)+","+
@@ -149,6 +150,7 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
   		ArrayList<PromotionPO> list = new ArrayList<PromotionPO>();
   		String selectSql;
   		ResultSet result;
+        System.out.println(scope);
   		if(scope.length()==6){
   			selectSql = "SELECT *FROM PromotionInfo";
   			result = db.query(selectSql);
@@ -163,9 +165,9 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
   		                ScopeType sType = ScopeType.values()[result.getInt("scopeType")];
   		                String sNum = result.getString("scopeNum");
   		                ConditionType cType = ConditionType.values()[result.getInt("conditionType")];
-  		                int cNum = result.getInt("conditionNum");
+  		                double cNum = result.getDouble("conditionNum");
   		                DeductionType dType = DeductionType.values()[result.getInt("deductionType")];
-  		                int dNum = result.getInt("deductionNum");
+                        double dNum = result.getDouble("deductionNum");
 
   		                PromotionPO po = new PromotionPO(setter,id,name,beginDate,endDate,sType,sNum,cType,cNum,dType,dNum);
   		                list.add(po);
@@ -191,9 +193,9 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
   		                ScopeType sType = ScopeType.values()[result.getInt("scopeType")];
   		                String sNum = result.getString("scopeNum");
   		                ConditionType cType = ConditionType.values()[result.getInt("conditionType")];
-  		                int cNum = result.getInt("conditionNum");
+  		                double cNum = result.getDouble("conditionNum");
   		                DeductionType dType = DeductionType.values()[result.getInt("deductionType")];
-  		                int dNum = result.getInt("deductionNum");
+  		                double dNum = result.getDouble("deductionNum");
 
   		                PromotionPO po = new PromotionPO(setter,id,name,beginDate,endDate,sType,sNum,cType,cNum,dType,dNum);
   		                list.add(po);

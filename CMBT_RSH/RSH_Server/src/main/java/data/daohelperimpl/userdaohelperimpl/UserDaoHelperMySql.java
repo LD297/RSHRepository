@@ -29,7 +29,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
         db.executeSql("CREATE TABLE if not exists UserInfo(userID blob,password blob,"
         		+ "nickName char(10),image tinytext,birthday char(10),level tinyint,"
         		+ "memberType tinyint,commerceName char(20),credit int," +
-                "trueName blob,sex tinyint,eMail char(30),creditRecordNum int)" );
+                "trueName blob,sex tinyint,eMail char(30),creditRecordNum int)default character set utf8" );
     }
 
     public void finish(){
