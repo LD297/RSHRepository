@@ -91,6 +91,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         String deUserID = this.getSecreted(userID);
         String generalSql = "SELECT *FROM OrderGeneral WHERE userID="+deUserID+" and hotelID='"+hotelID+"'";
         ResultSet result = db.query(generalSql);
+
         return this.getClearFromResult(result);
     }
     // 根据用户编号查找订单
@@ -199,11 +200,19 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         int grade = orderPO.getGrade();
         String comment  = orderPO.getComment();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-        String actCheckIn = sdf.format(orderPO.getActualCheckIn());
-        String actCheckOut = sdf.format(orderPO.getActualCheckOut());
-        String cancelTime = sdf.format(orderPO.getCancelTime());
-        String cancelAbTime = sdf.format(orderPO.getCancelAbnormalTime());
-        
+        String actCheckIn = "";
+        if(orderPO.getActualCheckIn()!=null)
+            actCheckIn = sdf.format(orderPO.getActualCheckIn());
+        String actCheckOut = "";
+        if(orderPO.getActualCheckOut()!=null)
+            actCheckOut = sdf.format(orderPO.getActualCheckOut());
+        String cancelTime = "";
+        if(orderPO.getCancelTime()!=null)
+            cancelTime = sdf.format(orderPO.getCancelTime());
+        String cancelAbTime = "";
+        if(orderPO.getCancelAbnormalTime()!=null)
+            cancelAbTime = sdf.format(orderPO.getCancelAbnormalTime());
+        //"+String.valueOf(state)+"
         String updateSql = "UPDATE OrderGeneral SET state="+String.valueOf(state)+",grade="
             +String.valueOf(grade)+",comment='"+comment+"',actCheckIn='"+actCheckIn+
             "',actCheckOut='"+actCheckOut+"',cancelTime='"+cancelTime+"',cancelAbTime='"+

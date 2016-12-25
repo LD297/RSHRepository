@@ -192,7 +192,9 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
   		                Date endDate = result.getDate("endDate");
   		                ScopeType sType = ScopeType.values()[result.getInt("scopeType")];
   		                String sNum = result.getString("scopeNum");
-  		                ConditionType cType = ConditionType.values()[result.getInt("conditionType")];
+  		                int num = result.getInt("conditionType");
+  		                System.out.println(num);
+  		                ConditionType cType = ConditionType.values()[num];
   		                double cNum = result.getDouble("conditionNum");
   		                DeductionType dType = DeductionType.values()[result.getInt("deductionType")];
   		                double dNum = result.getDouble("deductionNum");

@@ -99,6 +99,8 @@ public class SingleOrderOfBrowseAnchorPane extends AnchorPane{
 			public void handle(MouseEvent event) {
 				//set当前的订单编号
 				UserInfoUtil.getInstance().setOrderID(orderVO.getOrderID());
+				//set当前的酒店编号
+				UserInfoUtil.getInstance().setHotelID(orderVO.getHotelID());
 				UIJumpTool.getUiJumpTool().changeToOrderInfo();
 			}
 		});

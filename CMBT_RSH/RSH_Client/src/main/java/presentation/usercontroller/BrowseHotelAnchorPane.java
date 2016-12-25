@@ -38,7 +38,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 	private ArrayList<Label> promotionLabels = null;
 	private ArrayList<Image> hotelImages = null;
 	private int imagePointer = 0;
-	private ImageView orderStateImage = null;
+	private ImageView orderStateImage = new ImageView();
 	private boolean left = true;
 	public BrowseHotelAnchorPane(HotelVO hotelVO,boolean left) {
 		this.hotelVO = hotelVO;
@@ -75,7 +75,10 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		}
 		//从数据层拿到该用户最近一笔订单的状态
 		StateOfOrder stateOfOrder = UserInfoUtil.getInstance().getOrderStateOfUser(hotelVO.getHotelID());
-		orderStateImage = new ImageView(ImageFactory.getImageFactory().getOrderStateImage(stateOfOrder));
+		if(stateOfOrder!=null){
+			orderStateImage.setImage(ImageFactory.getImageFactory().getOrderStateImage(stateOfOrder));
+		}
+		
 		
 		//设置组件的属性
 		//图片比例

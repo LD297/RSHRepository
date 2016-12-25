@@ -24,6 +24,7 @@ import vo.UserVO;
 import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.temporal.IsoFields;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -51,15 +52,15 @@ public class OrderForUserController implements OrderForUser{
      */
     @Override
     public ArrayList<OrderVO> userClassify(String userID, StateOfOrder state){
-        ArrayList<OrderVO> list = this.getOrderOfUser(userID);
+        ArrayList<OrderVO> orderVOs = this.getOrderOfUser(userID);
         if(state==null)
-            return list;
+            return orderVOs;
         else{
-            for(int i=list.size()-1;i>=0;i--)
-                if(list.get(i).getState()!=state)
-                    list.remove(i);
+            for(int i=orderVOs.size()-1;i>=0;i--)
+                if(orderVOs.get(i).getState()!=state)
+                    orderVOs.remove(i);
         }
-        return list;
+        return orderVOs;
     }
     /**
      * 用户查看订单详情
@@ -76,6 +77,7 @@ public class OrderForUserController implements OrderForUser{
             return null;
         }
     }
+    
     /**
      * 场景：用户取消未执行订单
      * 判断：距离最晚执行时间>=6h
@@ -90,7 +92,7 @@ public class OrderForUserController implements OrderForUser{
     public int cancelMyOrder(String orderID){
         OrderPO orderPO;
         Date cancelTime = new Date();
-        initRemote();
+//        initRemote();
         try{
             orderPO = orderDao.searchByID(orderID);
         }catch (RemoteException e){
@@ -117,7 +119,8 @@ public class OrderForUserController implements OrderForUser{
         HotelService hotelService = new HotelController();
         hotelService.plusRoomAvail(hotelID,room.getRoomType(),roomNum,checkIn,checkOut);
         // 订单状态置为已撤销
-        orderPO.setState(StateOfOrder.canceled);
+        orderPO.setState(StateOfOrder.canceled);        
+        initRemote();
         try{
             orderDao.update(orderPO);
         }catch (RemoteException e){
@@ -139,6 +142,7 @@ public class OrderForUserController implements OrderForUser{
 
         return deducted;
     }
+   
     /**
      * 用户查看酒店时，界面调用（显示自己在该酒店最近一笔订单的状态）
      * 返回该用户在酒店的最近订单的状态
@@ -149,13 +153,19 @@ public class OrderForUserController implements OrderForUser{
     @Override
     public StateOfOrder getOrderStateOfUser(String userID, String hotelID){
     	initRemote();
+    	ArrayList<OrderPO> orderPOs = new ArrayList<>();
         try{
-            ArrayList<OrderPO> orders = orderDao.searchByUserWithHotel(userID,hotelID);
-            int size = orders.size();
-            return orders.get(size-1).getState();
+            orderPOs = orderDao.searchByUserWithHotel(userID,hotelID);           
         }catch (RemoteException e){
             e.printStackTrace();
             return null;
+        } 
+        int size = orderPOs.size();
+        if(size>0){
+        	return orderPOs.get(size-1).getState();
+        }
+        else{
+        	return null;
         }
     }
     /**
@@ -167,20 +177,19 @@ public class OrderForUserController implements OrderForUser{
      */
     @Override
     public ArrayList<OrderVO> specificOrder(String userID,String hotelID){
-        ArrayList<OrderPO> orders;
+        ArrayList<OrderPO> orderPOs = new ArrayList<>();
+        ArrayList<OrderVO> orderVOs = new ArrayList<>();
+        initRemote();
         try{
-            orders = orderDao.searchByUserWithHotel(userID,hotelID);
+            orderPOs = orderDao.searchByUserWithHotel(userID,hotelID);
         }catch(RemoteException e){
             e.printStackTrace();
-            return null;
+            return orderVOs;
         }
-        ArrayList<OrderVO> selectedList = new ArrayList<OrderVO>();
-        if(orders!=null){
-            for(int i=0;i<orders.size();i++){
-                selectedList.add(orders.get(i).changeIntoVO());
-            }
+        for(OrderPO orderPO:orderPOs){
+        	orderVOs.add(orderPO.changeIntoVO());
         }
-        return selectedList;
+        return orderVOs;
     }
     /**
      * 选择房间类型、房间数量完成后
@@ -254,6 +263,7 @@ public class OrderForUserController implements OrderForUser{
     public ResultMessage addComment(String orderID, int grade, String comment){
         // 检查订单状态是否为已执行
     	OrderPO orderPO;
+    	initRemote();
         try{
         	orderPO = orderDao.searchByID(orderID);
             if(orderPO.getState()!=StateOfOrder.executed)
@@ -265,6 +275,7 @@ public class OrderForUserController implements OrderForUser{
         // 订单评分评论更新
         // 酒店评分更新
        orderPO.setComment(comment);
+       initRemote();
         try {
             if(orderDao.update(orderPO)==ResultMessage.succeed
                     &&hotelInfoService.updateGrade(orderID.substring(0,10), grade)==ResultMessage.succeed)
@@ -283,20 +294,20 @@ public class OrderForUserController implements OrderForUser{
      * @return
      */
     private ArrayList<OrderVO> getOrderOfUser(String userID){
-        ArrayList<OrderPO> list;
+        ArrayList<OrderPO> orderPOs = new ArrayList<>();
+        ArrayList<OrderVO> orderVOs = new ArrayList<>();
+        initRemote();
         try{
-            list = orderDao.searchByUser(userID);
+            orderPOs = orderDao.searchByUser(userID);
         }catch(RemoteException e){
             e.printStackTrace();
-            return null;
+            return orderVOs;
         }
-        ArrayList<OrderVO> listTrans = new ArrayList<OrderVO>();
-        if(list!=null){
-            for(int i=0;i<list.size();i++){
-                listTrans.add(list.get(i).changeIntoVO());
-            }
+        
+        for(OrderPO orderPO:orderPOs){
+        	orderVOs.add(orderPO.changeIntoVO());
         }
-        return listTrans;
+        return orderVOs;
     }
 
     /**
@@ -313,7 +324,7 @@ public class OrderForUserController implements OrderForUser{
             return ResultMessage.succeed;
         }catch (RemoteException e){
             e.printStackTrace();
-            return ResultMessage.fail;
+            return ResultMessage.remote_fail;
         }
     }
 
@@ -331,8 +342,8 @@ public class OrderForUserController implements OrderForUser{
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
         String checkOutDate = sdf.format(checkOut);
+        initRemote();
         try{   //hh->12hour  HH->24hour
             Date checkOutTime = df.parse(checkOutDate+" "+deadline);
             long diff = checkOutTime.getTime() - cancelTime.getTime();

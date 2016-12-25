@@ -25,7 +25,8 @@ public class OrderDriver {
  * 	OrderVO orderVO = new OrderVO(orderID, userID, userName, hotelID, hotelName, state, room, roomPrice, roomNumber, peopleNumber, withChild, originValue, trueValue, promotion, comment, grade, checkIn, checkOut, hotelDDL, generationDate, actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime)
  */
 			
-	OrderVO vo1 = new OrderVO("a12345678987654321", userID, "Xiaoer Wang", "0100090001", "BIG Hotel", StateOfOrder.unexecuted,
+	String hotelID = "0100090001";
+	OrderVO vo1 = new OrderVO("", userID, "Xiaoer Wang", "0100090001", "BIG Hotel", StateOfOrder.unexecuted,
 			new RoomNormVO("000001", "单人间", 200.0), 200, 0, 3, true, 200, 300, "No Promotion", "very good", 3,
 			new Date(), new Date(), "03:30:00", new Date(), new Date(), new Date(), new Date(), new Date());
 
@@ -34,14 +35,16 @@ public class OrderDriver {
 		OrderForHotelController orderForHotelController = new OrderForHotelController();
 		OrderForWebsiteController orderForWebsiteController = new OrderForWebsiteController();
 		System.out.println("begin");
-		System.out.println(orderForUserController.confirmReservation(vo1));
-		System.out.println(orderForUserController.confirmReservation(vo1).toString());
+//		System.out.println(orderForUserController.confirmReservation(vo1));
+//		System.out.println(orderForUserController.confirmReservation(vo1).toString());
+		String orderID = orderForUserController.specificOrder(userID, hotelID).get(0).getOrderID();
+		System.out.println(orderID);
 		System.out.println(orderForUserController.cancelMyOrder(orderID));
 		System.out.println(orderForUserController.getTrueValue(new OrderInfo("0100090001","123", 2, new Date(), new Date(), userID, 123)));
 		
 		System.out.println(orderForHotelController.execute(orderID));
 		
-		System.out.println(orderForWebsiteController.browseAbnormal().get(0).getOrderID());
+		System.out.println(orderForWebsiteController.browseAbnormal().size());
 		
 		System.out.println("end");
 	}

@@ -34,6 +34,7 @@ public class HotelDriver {
 		System.out.println(hotelController.addSpecialRoom(roomVO));
 //		System.out.println(hotelController.getRoomList(hotelID).get(0).roomImageAddress);
 		System.out.println(searchHotelController.getHotelList("江苏省","南京市","栖霞区").size());
+		System.out.println(hotelController.getImageAddresses(hotelID).get(1));
 		System.out.println("end");
 	}
 

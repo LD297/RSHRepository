@@ -256,12 +256,13 @@ public class OrderPO implements Serializable{
 
 	// 完成从PO到VO的操作
 	public OrderVO changeIntoVO(){
-
+				
 		OrderVO orderVO = new OrderVO(orderID, userID, userName, hotelID, hotelName, state,
 				new RoomNormVO(hotelID, roomType, roomPrice), roomPrice, roomNumber, peopleNumber, withChild,
 				originValue, trueValue, promotion,
 				comment, grade, checkIn, checkOut, hotelDDL, generationDate,
 				actualCheckIn, actualCheckOut, cancelTime, cancelAbnormalTime);
+		
 		return orderVO;
 	}
 	public void setComment(String comment) {
