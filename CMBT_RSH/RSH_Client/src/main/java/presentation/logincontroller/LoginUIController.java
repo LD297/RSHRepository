@@ -198,15 +198,13 @@ public class LoginUIController {
             LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
             if(loginService.checkOnline(Role.websalesman, id, password ).equals(ResultMessage.succeed)){
 
-                WebStaffService webStaffService = WebSalesmanServiceFactory.getInstance().getWebStaffService();
-
                 AnchorPane webSalesmanHomepage = WebSalesmanUIFXMLFactory.getInstance().getWebSalesmanHomepage();
                 WebSalesmanHomepageUIController webSalesmanHomepageUIController = WebSalesmanUIFXMLFactory.
                         getInstance().getWebSalesmanHomepageUIController();
 
-                WebSalesmanVO webSalesmanVO = webStaffService.webSalesmanVO(id);
+                webSalesmanHomepageUIController.setWebSalesmanId(id);
+                webSalesmanHomepageUIController.setWebSalesmanVO();
                 webSalesmanHomepageUIController.setPrePane(loginBelowAnchorpane);
-                webSalesmanHomepageUIController.setWebSalesmanVO(webSalesmanVO);
 
                 Stage stage = (Stage)idField.getScene().getWindow();
                 Scene scene = null;
