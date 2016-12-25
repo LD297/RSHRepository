@@ -349,12 +349,7 @@ public class PromotionUIController {
     }
 
     public void setPromotionUIController(PromotionUIController promotionUIController){this.promotionUIController = promotionUIController;}
-//    public void setPromotionService(PromotionService promotionService) {
-//        this.promotionService = promotionService;
-//    }
-//    public void setHotelInfoService(HotelInfoService hotelInfoService){
-//        this.hotelInfoService = hotelInfoService;
-//    }
+
     public void setWebSalesVO(WebSalesmanVO webSalesVO) {
         this.webSalesmanVO = webSalesVO;
     }

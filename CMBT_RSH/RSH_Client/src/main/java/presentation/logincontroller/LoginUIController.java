@@ -176,23 +176,12 @@ public class LoginUIController {
             LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
 
             if(loginService.checkOnline(Role.hotel, id, password).equals(ResultMessage.succeed)){
-//
-//                HotelService hotelService = HotelServiceFactory.getInstance().getHotelService();
-//                PromotionService promotionService = HotelServiceFactory.getInstance().getPromotionService();
-//                HotelInfoService hotelInfoService = HotelServiceFactory.getInstance().getHotelInfoService();
-//                OrderForHotel orderForHotel = HotelServiceFactory.getInstance().getOrderForHotel();
-
                 AnchorPane hotelHomepage = HotelUIFXMLFactory.getInstance().getHotelHomePage();
                 HotelHomepageUIController hotelHomepageUIController = HotelUIFXMLFactory.getInstance().
                         getHotelHomepageUIController();
 
                 hotelHomepageUIController.setPrePane(loginBelowAnchorpane);
                 hotelHomepageUIController.setHotelId(id);
-//                hotelHomepageUIController.setLoginService(loginService);
-//                hotelHomepageUIController.setHotelService(hotelService);
-//                hotelHomepageUIController.setPromotionService(promotionService);
-//                hotelHomepageUIController.setHotelInfoService(hotelInfoService);
-//                hotelHomepageUIController.setOrderForHotel(orderForHotel);
 
                 Stage stage = (Stage)idField.getScene().getWindow();
                 Scene scene = null;
@@ -210,23 +199,14 @@ public class LoginUIController {
             if(loginService.checkOnline(Role.websalesman, id, password ).equals(ResultMessage.succeed)){
 
                 WebStaffService webStaffService = WebSalesmanServiceFactory.getInstance().getWebStaffService();
-//                PromotionService promotionService = WebSalesmanServiceFactory.getInstance().getPromotionService();
-//                OrderForWebsite orderForWebsite = WebSalesmanServiceFactory.getInstance().getOrderForWebsite();
-//                UserService userService = WebSalesmanServiceFactory.getInstance().getUserService();
 
                 AnchorPane webSalesmanHomepage = WebSalesmanUIFXMLFactory.getInstance().getWebSalesmanHomepage();
                 WebSalesmanHomepageUIController webSalesmanHomepageUIController = WebSalesmanUIFXMLFactory.
                         getInstance().getWebSalesmanHomepageUIController();
 
                 WebSalesmanVO webSalesmanVO = webStaffService.webSalesmanVO(id);
-                System.out.println((webSalesmanVO==null)+" empty obj?");
                 webSalesmanHomepageUIController.setPrePane(loginBelowAnchorpane);
                 webSalesmanHomepageUIController.setWebSalesmanVO(webSalesmanVO);
-//                // 配置逻辑处理服务
-//                webSalesmanHomepageUIController.setLoginService(loginService);
-//                webSalesmanHomepageUIController.setPromotionService(promotionService);
-//                webSalesmanHomepageUIController.setOrderForWebsite(orderForWebsite);
-//                webSalesmanHomepageUIController.setUserService(userService);
 
                 Stage stage = (Stage)idField.getScene().getWindow();
                 Scene scene = null;
@@ -238,20 +218,7 @@ public class LoginUIController {
             } else {
                 passwordFormLabel.setText("用户名或密码错误");
             }
-        }/*        if(resultMessage==resultMessage.succeed){
-            if(role == Role.user){
-
-            }else if(role==Role.hotel){
-                //跳转到hotel主界面
-                UIJumpTool.getUiJumpTool().changeLoginToHotelHomePage();
-            }else if(role==Role.websalesman){
-                //TODO 跳转到websalesman主界面
-            }else{
-                //TODO 跳转到webmanager主界面
-            }
-        }else{
-            //TODO 用户名和密码错误，或者登陆冲突
-        }*/
+        }
     }
 
     //展开或收起登陆下拉界面

@@ -312,9 +312,7 @@ public class RoomAvailUIController {
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
-//    public void setHotelService(HotelService hotelService) {
-//        this.hotelService = hotelService;
-//    }
+
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }
