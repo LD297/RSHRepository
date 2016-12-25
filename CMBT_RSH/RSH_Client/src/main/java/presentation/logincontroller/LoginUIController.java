@@ -219,6 +219,7 @@ public class LoginUIController {
                         getInstance().getWebSalesmanHomepageUIController();
 
                 WebSalesmanVO webSalesmanVO = webStaffService.webSalesmanVO(id);
+                System.out.println((webSalesmanVO==null)+" empty obj?");
                 webSalesmanHomepageUIController.setPrePane(loginBelowAnchorpane);
                 webSalesmanHomepageUIController.setWebSalesmanVO(webSalesmanVO);
 //                // 配置逻辑处理服务

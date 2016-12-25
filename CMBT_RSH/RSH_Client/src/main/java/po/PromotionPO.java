@@ -45,7 +45,7 @@ public class PromotionPO implements Serializable{
 	 * @param scopeNum
 	 * @param roomType
 	 * @param conditionType
-	 * @param condiyionNum
+	 * @param conditionNum
 	 * @param deductionType
 	 * @param deductionNum
 	 */

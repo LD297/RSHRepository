@@ -1,15 +1,19 @@
 package presentation.websalesmancontrollertools;
 
 import bl.loginservice.LoginService;
+import bl.loginserviceimpl.LoginController;
 import bl.loginserviceimpl.LoginService_Stub;
 import bl.orderservice.OrderForWebsite;
 import bl.orderserviceimpl.OrderForHotel_Stub;
 import bl.orderserviceimpl.OrderForWebsiteController;
+import bl.promotionServiceimpl.PromotionController;
 import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
 import bl.userservice.UserService;
+import bl.userserviceimpl.UserController;
 import bl.userserviceimpl.UserService_Stub;
 import bl.webstaffservice.WebStaffService;
+import bl.webstaffserviceimpl.WebStaffController;
 import bl.webstaffserviceimpl.WebStaffService_Stub;
 
 /**
@@ -31,18 +35,18 @@ public class WebSalesmanServiceFactory {
 
     public WebStaffService getWebStaffService(){
         if(webStaffService==null)
-            webStaffService = new WebStaffService_Stub();
+            webStaffService = new WebStaffController();
         return webStaffService;
     }
 
     public PromotionService getPromotionService(){
         if(promotionService==null)
-            promotionService = new PromotionService_Stub();
+            promotionService = new PromotionController();
         return promotionService;
     }
     public UserService getUserService(){
         if(userService==null)
-            userService = new UserService_Stub();
+            userService = new UserController();
         return userService;
     }
     public OrderForWebsite getOrderForWebsite(){
@@ -53,7 +57,7 @@ public class WebSalesmanServiceFactory {
 
     public LoginService getLoginService() {
         if(loginService==null)
-            loginService = new LoginService_Stub();
+            loginService = new LoginController();
         return loginService;
     }
 }

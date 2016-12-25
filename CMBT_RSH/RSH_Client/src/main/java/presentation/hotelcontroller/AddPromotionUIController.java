@@ -108,21 +108,25 @@ public class AddPromotionUIController {
     private String setterId = "";
     // 每条促销策略涵盖的信息
     private String promotionID;
-    private String reason;
-    private String scopeType;
-    private String scopeNum;
-    private String roomType;
-    private ConditionType conditionType;
-    private double conditionNum;
-    private DeductionType deductionType;
-    private double deductionNum;
+    private String reason;  // 促销策略名称，默认："大额满减"
+    private LocalDate begin;
+    private LocalDate end;
+    private ScopeType scopeType;// 酒店工作人员默认："酒店"，可选"房间"； 网营默认："地区"
+    private String scopeNum; // 酒店工作人员默认："hotelid"；网营默认："webstaffvo中的district"
+    private String roomType; // 酒店工作人员选择"房间"后，需选择促销策略针对的房间类型
+    private ConditionType conditionType  = ConditionType.SPECIALPERIOD; // 默认："特定时期入住"
+    private double conditionNum = 0; // 默认："0"
+    private DeductionType deductionType = DeductionType.DISCOUNT; // 默认："打折"
+    private double deductionNum = 8.8; // 默认："8.8"
 
+    // 适用人员单一选择
     private boolean isCommerce = false;
     private boolean isAllUser = false;
-
+    // 生日特惠单一选择
     private boolean isBirth = false;
     private boolean notBirth = false;
 
+    // 促销策略维护界面根节点
     private AnchorPane prePane;
 
     @FXML
@@ -168,73 +172,62 @@ public class AddPromotionUIController {
     @FXML
     void confirmButtonClicked(MouseEvent event) {
 
-        String reason = nameTextField.getText();
-        LocalDate begin = beginDate.getValue();
-        LocalDate end = endDate.getValue();
+        reason = nameTextField.getText();
+        begin = beginDate.getValue();
+        end = endDate.getValue();
         Date beginDate = null;
         Date endDate = null;
-        if(begin!=null)
-            beginDate = MyDateFormat.getInstance().changeLocalDateToDate(begin);
-        if(end!=null)
-            endDate = MyDateFormat.getInstance().changeLocalDateToDate(end);
+        beginDate = MyDateFormat.getInstance().changeLocalDateToDate(begin);
+        endDate = MyDateFormat.getInstance().changeLocalDateToDate(end);
 
         // 对应界面的"针对"选项
-        ScopeType scopeType = ScopeType.DISTRICT;
         if(webSalesmanVO==null){
-            if(scopeChoiceBox.getValue().equals("房间"))
+            if(scopeChoiceBox.getValue().equals("指定房间"))
                 scopeType = ScopeType.ROOM;
             else
                 scopeType = ScopeType.HOTEL;
         }
 
         //  "针对"的数量（细节）
-        String scopeNum = "";
         if(webSalesmanVO!=null)
             scopeNum = webSalesmanVO.getDistrict();
         else
             scopeNum = setterId;
 
         //  房间类型
-        String roomType = "";
         if(webSalesmanVO!=null){
             if(scopeType.equals(ScopeType.ROOM))
                 roomType = (String)roomTypeChoiceBox.getValue();
         }
 
-        // 限制条件
-        ConditionType conditionType = null;
-        // 具体条件
-        double conditionNum = 0;
-
         if(birthdayCheckBox.isSelected())
             conditionType = ConditionType.BIRTHDAY;
         else if(commerceCheckBox.isSelected())
             conditionType = ConditionType.COMMERCE;
-        else if(memberCheckBox.isSelected())
+        else if(memberCheckBox.isSelected()){
             conditionType = ConditionType.MEMBER;
-        else if(roomNumTextField.getText()!=null){
+            System.out.println(conditionType+"~~~"+conditionNum);
+
+        }
+        else if(!roomNumTextField.getText().equals("")){
             // 房间数量>=
             conditionType = ConditionType.ROOMNUM;
             conditionNum = Double.valueOf(roomNumTextField.getText());
-        }
-        else{
+        } else if(!totalTextField.getText().equals("")){
             // 消费总额>=
             conditionType = ConditionType.TOTAL;
             conditionNum = Double.valueOf(totalTextField.getText());
         }
 
-        // 折扣方式
-        DeductionType deDuctionType = DeductionType.DISCOUNT;
-        // 折扣额度
-        double deductionNum = Double.valueOf(discountTextField.getText());
-        if(deductionTypeChoiceBox.getValue().equals(DeductionType.
-                getStringDeductionType(DeductionType.DISCOUNT))){
-            deDuctionType = DeductionType.REDUCE;
+        // 默认输折扣方式和折扣额度输入正确
+        if(deductionTypeChoiceBox.getValue().equals("打折"))
+            deductionNum = Double.valueOf(discountTextField.getText());
+        else {
+            deductionType = DeductionType.REDUCE;
             deductionNum = Double.valueOf(reduceTextField.getText());
         }
-
         PromotionVO thePromotion = new PromotionVO(setterId,promotionID, reason, beginDate, endDate,
-                scopeType,scopeNum, roomType, conditionType, conditionNum, deDuctionType, deductionNum
+                scopeType,scopeNum, roomType, conditionType, conditionNum, deductionType, deductionNum
                 );
         promotionService.addPromotion(thePromotion);
         backButtonClicked(null);
@@ -270,8 +263,8 @@ public class AddPromotionUIController {
         assert notBirthdayCheckBox != null : "fx:id=\"notBirthdayCheckBox\" was not injected: check your FXML file '添加促销策略.fxml'.";
         assert deductionTypeChoiceBox != null : "fx:id=\"deductionTypeChoiceBox\" was not injected: check your FXML file '添加促销策略.fxml'.";
 
-        setDeductionChoiceBox();
         initilizeService();
+        setDeductionChoiceBox();
 
     }
 
@@ -289,6 +282,7 @@ public class AddPromotionUIController {
                 "减额"
         ));
     }
+
 
     public void setPromotionUIController(PromotionUIController promotionUIController){this.promotionUIController = promotionUIController;}
 
@@ -315,38 +309,54 @@ public class AddPromotionUIController {
     }
 
 
-    public void refreshPageBySetter(){
+    public void initializePageBySetter(){
+
+        clearNodeContent();
+
+        boolean isHotel = true;
+        if(webSalesmanVO!=null)
+            isHotel=false;
 
         // 促销策略编号自动生成，不可修改
         numberTextField.setText(promotionID);
         numberTextField.setEditable(false);
+        reason = "大额满减";
+        nameTextField.setPromptText(reason);
         // 默认促销策略有效期为：即日起，保持一年
-        beginDate.setValue(LocalDate.now());
-        endDate.setValue(beginDate.getValue().plusYears(1));
-//        nameTextField.clear();
-//        roomNumTextField.clear();
-//        totalTextField.clear();
-//        discountTextField.clear();
-//        reduceTextField.clear();
+        begin = LocalDate.now();
+        end = begin.plusYears(1);
+        beginDate.setValue(begin);
+        endDate.setValue(end);
+
+        if(isHotel) {
+            scopeType = ScopeType.HOTEL;
+            scopeNum = setterId;
+        }
+        else {
+            scopeType = ScopeType.DISTRICT;
+            scopeNum = null;
+        }
 
         roomTypeLabel.setVisible(false);
         roomTypeChoiceBox.setVisible(false);
         if(webSalesmanVO==null) {
             // 酒店工作人员制定
             scopeChoiceBox.setItems(FXCollections.observableArrayList(
-                    "酒店",
+                    "所有房间",
                     new Separator(),
-                    "房间"));
+                    "指定房间"));
+            System.out.println(webSalesmanVO.getName());
 
         } else {
             // 网站营销人员制定
             scopeChoiceBox.setItems(FXCollections.observableArrayList("地区"));
+            System.out.println("!~!~!~");
         }
 
         scopeChoiceBox.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                if(scopeChoiceBox.getValue()!=null&&scopeChoiceBox.getValue().equals("房间")){
+                if(scopeChoiceBox.getValue()!=null&&scopeChoiceBox.getValue().equals("指定房间")){
                     roomTypeLabel.setVisible(true);
                     roomTypeChoiceBox.setVisible(true);
                     ArrayList<RoomNormVO> roomNorm = hotelInfoService.getRoomNorm(setterId);
@@ -361,5 +371,21 @@ public class AddPromotionUIController {
                 }
             }
         });
+    }
+
+    private void clearNodeContent() {
+        nameTextField.clear();
+        scopeChoiceBox.setValue("");
+        commerceCheckBox.setSelected(false);
+        memberCheckBox.setSelected(false);
+        birthdayCheckBox.setSelected(false);
+        notBirthdayCheckBox.setSelected(false);
+        roomNumTextField.clear();
+        totalTextField.clear();
+        beginDate.setValue(null);
+        endDate.setValue(null);
+        deductionTypeChoiceBox.setValue(null);
+        discountTextField.clear();
+        reduceTextField.clear();
     }
 }

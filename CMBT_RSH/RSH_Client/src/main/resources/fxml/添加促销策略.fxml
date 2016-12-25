@@ -66,12 +66,12 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="115.0" layoutY="16.0" opacity="0.8" text="针对: " AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="16.5">
+                  <Label layoutX="115.0" layoutY="16.0" opacity="0.8" text="针对范围: " AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="16.5">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="292.0" layoutY="61.0" opacity="0.8" text="适用人员: " AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="50.0">
+                  <Label layoutX="292.0" layoutY="61.0" opacity="0.8" text="会员特权: " AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="50.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>

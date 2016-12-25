@@ -491,6 +491,8 @@ public class HotelBasicInfoUIController {
         checkInLabel.setText(hotelVO.getLatestCheckInTime());
         checkInTextField.setText(hotelVO.getLatestCheckInTime());
 
+        priceTextField.setText(hotelVO.getStandardRoomPrice()+"");
+
         briefLabel.setText(hotelVO.getBriefIntro());
         briefIntroTextArea.setText(hotelVO.getBriefIntro());
 

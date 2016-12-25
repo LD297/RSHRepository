@@ -135,8 +135,15 @@ public class WebStaffController implements WebStaffService{
 	@Override
 	public WebSalesmanVO webSalesmanVO(String webSalesmanID) {
 		// TODO Auto-generated method stub
-		
-		return null;
+		initRemote();
+		WebSalesmanPO webSalesmanPO ;
+		try {
+			webSalesmanPO = webSalesmanDao.findByID(webSalesmanID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return webSalesmanPO.changeIntoVO();
 	}
 
 	
