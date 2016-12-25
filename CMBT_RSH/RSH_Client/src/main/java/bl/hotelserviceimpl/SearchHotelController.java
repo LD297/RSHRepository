@@ -48,7 +48,6 @@ private static HotelDao hotelDao = null;
 			e.printStackTrace();
 			return hotelVOs;
 		}
-		hotelVOs = new ArrayList<>();
 		for(HotelPO hotelPO: hotelPOs){
 			hotelVOs.add(hotelPO.changeIntoVO());
 		}
@@ -75,13 +74,14 @@ private static HotelDao hotelDao = null;
 	private boolean match(HotelVO hotelVO, SelectConditionVO selectConditionVO) {
 		// TODO Auto-generated method stub
 		double standardPrice = hotelVO.getStandardRoomPrice();
+		double grade = hotelVO.getGrade();
 		if(standardPrice>selectConditionVO.highestPrice)
 			return false;
 		if(standardPrice<selectConditionVO.lowestPrice)
 			return false;
-		if(hotelVO.getGrade()<selectConditionVO.lowestGrade)
+		if(grade<selectConditionVO.lowestGrade)
 			return false;
-		if(hotelVO.getGrade()>selectConditionVO.highestGrade)
+		if(grade>selectConditionVO.highestGrade)
 			return false;
 		if(hotelVO.getLevel()!=selectConditionVO.level)
 			return false;

@@ -15,7 +15,7 @@ public class PromotionDriver {
 		PromotionDriver promotionDriver = new PromotionDriver();
 		promotionDriver.test();
 	}
-	String id = "123";
+	String id = "圣诞节";
 	PromotionVO promotionVO3 = new PromotionVO(id, id, id, new Date(), new Date(), ScopeType.DISTRICT, id, id, ConditionType.BIRTHDAY, 0, DeductionType.DISCOUNT, 0);
 	void test(){
 		PromotionController promotionController = new PromotionController();
