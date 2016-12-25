@@ -46,7 +46,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="numberTextField" layoutX="56.0" layoutY="11.0" opacity="0.8" prefHeight="27.0" prefWidth="64.0" />
-                  <TextField fx:id="nameTextField" layoutX="247.0" layoutY="11.0" opacity="0.8" prefHeight="27.0" prefWidth="116.0" />
+                  <TextField fx:id="nameTextField" layoutX="247.0" layoutY="11.0" opacity="0.8" prefHeight="27.0" prefWidth="116.0" promptText="大额满减" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
@@ -97,12 +97,12 @@
                      </font>
                   </Label>
                   <ChoiceBox fx:id="scopeChoiceBox" layoutX="204.0" layoutY="11.0" opacity="0.8" prefHeight="27.0" prefWidth="116.0" AnchorPane.leftAnchor="204.0" />
-                  <CheckBox fx:id="commerceCheckBox" layoutX="174.0" layoutY="50.0" mnemonicParsing="false" onMouseClicked="#chooseCommerce" opacity="0.8" text="企业会员" AnchorPane.leftAnchor="204.0" AnchorPane.topAnchor="52.0">
+                  <CheckBox fx:id="commerceCheckBox" layoutX="174.0" layoutY="50.0" mnemonicParsing="false" onMouseClicked="#chooseCommerce" opacity="0.8" text="合作企业" AnchorPane.leftAnchor="204.0" AnchorPane.topAnchor="52.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox fx:id="memberCheckBox" layoutX="309.0" layoutY="52.0" mnemonicParsing="false" onMouseClicked="#chooseAllUser" opacity="0.8" text="所有用户" AnchorPane.topAnchor="52.0">
+                  <CheckBox fx:id="memberCheckBox" layoutX="309.0" layoutY="52.0" mnemonicParsing="false" onMouseClicked="#chooseAllUser" opacity="0.8" text="VIP会员" AnchorPane.topAnchor="52.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />
                      </font>
@@ -142,8 +142,8 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="discountTextField" layoutX="105.0" layoutY="12.0" prefHeight="27.0" prefWidth="64.0" />
-                  <TextField fx:id="reduceTextField" layoutX="259.0" layoutY="12.0" prefHeight="27.0" prefWidth="64.0" />
+                  <TextField fx:id="discountTextField" layoutX="105.0" layoutY="12.0" prefHeight="27.0" prefWidth="64.0" promptText="8.8" />
+                  <TextField fx:id="reduceTextField" layoutX="259.0" layoutY="12.0" prefHeight="27.0" prefWidth="64.0" promptText="100" />
                   <Label layoutX="237.0" layoutY="16.0" opacity="0.8" text="减" AnchorPane.leftAnchor="237.0" AnchorPane.topAnchor="16.0">
                      <font>
                         <Font name="Times New Roman" size="14.0" />

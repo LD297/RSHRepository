@@ -98,13 +98,24 @@ public class AddPromotionUIController {
     @FXML
     private ChoiceBox<Object> deductionTypeChoiceBox;
 
+    // 逻辑层引用
     private HotelInfoService hotelInfoService;
     private PromotionService promotionService;
     private PromotionUIController promotionUIController;
 
+    // 制定促销策略需要的人员信息
     private WebSalesmanVO webSalesmanVO = null;
     private String setterId = "";
+    // 每条促销策略涵盖的信息
     private String promotionID;
+    private String reason;
+    private String scopeType;
+    private String scopeNum;
+    private String roomType;
+    private ConditionType conditionType;
+    private double conditionNum;
+    private DeductionType deductionType;
+    private double deductionNum;
 
     private boolean isCommerce = false;
     private boolean isAllUser = false;
@@ -158,7 +169,6 @@ public class AddPromotionUIController {
     void confirmButtonClicked(MouseEvent event) {
 
         String reason = nameTextField.getText();
-
         LocalDate begin = beginDate.getValue();
         LocalDate end = endDate.getValue();
         Date beginDate = null;
@@ -307,15 +317,17 @@ public class AddPromotionUIController {
 
     public void refreshPageBySetter(){
 
+        // 促销策略编号自动生成，不可修改
         numberTextField.setText(promotionID);
         numberTextField.setEditable(false);
-        nameTextField.clear();
-        roomNumTextField.clear();
-        totalTextField.clear();
-        beginDate.setValue(null);
-        endDate.setValue(null);
-        discountTextField.clear();
-        reduceTextField.clear();
+        // 默认促销策略有效期为：即日起，保持一年
+        beginDate.setValue(LocalDate.now());
+        endDate.setValue(beginDate.getValue().plusYears(1));
+//        nameTextField.clear();
+//        roomNumTextField.clear();
+//        totalTextField.clear();
+//        discountTextField.clear();
+//        reduceTextField.clear();
 
         roomTypeLabel.setVisible(false);
         roomTypeChoiceBox.setVisible(false);
