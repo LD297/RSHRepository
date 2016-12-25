@@ -33,11 +33,11 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         // 星级 评分 最晚入住时间  图片地址 评论人数 房间类型数量
         db.executeSql("CREATE TABLE if not exists HotelInfo(hotelID char(10),password blob,phoneNumber char(11),name char(15)," +
                 "district char(6),addressDetail char(20),standardPrice double,briefIntro tinytext,facility char(4)," +
-                "level tinyint,grade double,latestCheckinTime char(8),imageAddress tinytext,commentNum int,roomTypeNum tinyint)");
+                "level tinyint,grade double,latestCheckinTime char(8),imageAddress tinytext,commentNum int,roomTypeNum tinyint)default character set utf8");
         // 酒店 类型 总量
         // 价格 图片地址 可用数量日期列表
         db.executeSql("CREATE TABLE if not exists RoomInfo(hotelID char(10),roomType char(10),amountTotal int,"
-                +"price double,imageAddress tinytext,aList text)");
+                +"price double,imageAddress tinytext,aList text)default character set utf8");
     }
     public void finish(){
         db.executeSql("USE OurData");

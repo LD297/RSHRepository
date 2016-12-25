@@ -16,6 +16,7 @@ import data.daohelperimpl.webstaffdaohelperimpl.WebSalesmanDaoHelperMySql;
 
 import org.junit.Test;
 
+import po.HotelPO;
 import po.OrderPO;
 import po.RoomNormPO;
 
@@ -31,7 +32,7 @@ import java.util.Date;
 
 public class test {
 // success
-   static OrderDaoHelperMySql orderDao = null;// new OrderDaoHelperMySql();
+  // static OrderDaoHelperMySql orderDao = null;// new OrderDaoHelperMySql();
     
 
 /*
@@ -191,8 +192,10 @@ public class test {
    
    public static void main(String[] args) throws ParseException, RemoteException{
 
-	    String userID = "15935142165";
-       ArrayList<OrderPO> list = orderDao.searchByUser(userID);
-       System.out.println(list.get(0).getRoomPrice());
+       PromotionDaoHelperMySql promotiondao = new PromotionDaoHelperMySql();
+       promotiondao.finish();
+       promotiondao.init();
+      // orderdao.finish(); hoteldao.finish(); logindao.finish(); promotiondao.finish();
+       // userdao.finish(); cdao.finish(); websalesmandao.finish();
    }
 }

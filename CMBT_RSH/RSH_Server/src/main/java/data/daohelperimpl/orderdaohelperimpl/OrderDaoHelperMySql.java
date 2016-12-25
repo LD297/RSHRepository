@@ -32,7 +32,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                 "userName blob, hotelID char(10), hotelName char(15), state tinyint,roomType char(10),roomPrice double,roomNum tinyint," +
                 "peopleNum tinyint,withChild tinyint,originValue double,trueValue double,promotion char(20)," +
                 "comment tinytext,grade tinyint,checkIn date,checkOut date,hotelDDL char(8)," +
-                "bornDate date,actCheckIn datetime,actCheckOut datetime,cancelTime datetime,cancelAbTime datetime)");
+                "bornDate date,actCheckIn datetime,actCheckOut datetime,cancelTime datetime,cancelAbTime datetime)default character set utf8");
     }
     public void finish(){
         db.executeSql("USE OurData");

@@ -11,7 +11,7 @@ public enum ConditionType {
 
     public static String getStringConditionType(ConditionType type){
         if(type.equals(ConditionType.BIRTHDAY))
-            return "生日特惠";
+            return "生日当天入住优惠";
         if(type.equals(ConditionType.ROOMNUM))
             return "单次预定房间数>=";
         if(type.equals(ConditionType.TOTAL))
@@ -19,7 +19,7 @@ public enum ConditionType {
         if(type.equals(ConditionType.MEMBER))
             return "普通会员";
         if(type.equals(ConditionType.COMMERCE))
-            return "企业会员";
+            return "合作企业";
         return null;
     }
 }
