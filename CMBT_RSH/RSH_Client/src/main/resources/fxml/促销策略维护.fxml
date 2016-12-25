@@ -18,7 +18,7 @@
       </ImageView>
       <AnchorPane layoutX="109.0" layoutY="131.0" prefHeight="429.0" prefWidth="583.0">
          <children>
-            <Label layoutX="153.0" layoutY="14.0" text="名称" textFill="#00a699" AnchorPane.rightAnchor="398.0" AnchorPane.topAnchor="14.0">
+            <Label layoutX="144.0" layoutY="14.0" text="名称" textFill="#00a699" AnchorPane.rightAnchor="402.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
@@ -84,7 +84,7 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="36.0" text="打折" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="379.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="72.0" text="打折" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="21.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -108,12 +108,12 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="237.0" layoutY="20.0" opacity="0.8" prefHeight="27.0" prefWidth="115.0" text="单次预定  &gt;=  三间" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="237.0" AnchorPane.topAnchor="20.0">
+                        <Label layoutX="237.0" layoutY="20.0" opacity="0.8" prefHeight="27.0" prefWidth="115.0" text="啦啦啦啦啦啦啦啦" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="237.0" AnchorPane.topAnchor="20.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="36.0" text="0.9折" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="72.0" text="0.9折" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="21.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -142,7 +142,7 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="36.0" text="打折" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="72.0" text="打折" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="21.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
@@ -171,7 +171,7 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="36.0" text="打折" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="21.0">
+                        <Label layoutX="403.0" layoutY="21.0" opacity="0.8" prefHeight="25.0" prefWidth="72.0" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="21.0">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>

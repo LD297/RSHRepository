@@ -281,9 +281,7 @@ public class RoomInfoUIController {
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
-//    public void setHotelService(HotelService hotelService) {
-//        this.hotelService = hotelService;
-//    }
+
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }
@@ -297,7 +295,6 @@ public class RoomInfoUIController {
         System.out.println(hotelId+" has "+currentRoom.size()+" room(s)~~~");
         setFullPageNum();
         setRemainderRoomVONum();
-//        System.out.println(fullPageNum+"  "+remainderRoomVONum);
         showPage();
     }
 

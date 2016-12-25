@@ -75,7 +75,7 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         int scopeType = po.getScopeType().ordinal();
         String scopeNum = po.getScopeNum();
         int conditionType = po.getConditionType().ordinal();
-        double conditionNum = po.getCondionNum();
+        double conditionNum = po.getConditionNum();
         int deductionType = po.getDeductionType().ordinal();
         double deductionNum = po.getDeductionNum();
 
@@ -124,7 +124,7 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
         int scopeType = po.getScopeType().ordinal();
         String scopeNum = po.getScopeNum();
         int conditionType = po.getConditionType().ordinal();
-        double conditionNum = po.getCondionNum();
+        double conditionNum = po.getConditionNum();
         int deductionType = po.getDeductionType().ordinal();
         double deductionNum = po.getDeductionNum();
         String updateSql = "UPDATE PromotionInfo SET name='"+name+"',beginDate='"+begin+"',endDate='"+end+"',"+

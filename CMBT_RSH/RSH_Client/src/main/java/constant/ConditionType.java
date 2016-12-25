@@ -4,22 +4,25 @@ public enum ConditionType {
 
     BIRTHDAY,
     ROOMNUM,
-    TOTAL,
+    COMMERCE,
+    SPECIALPERIOD,
     MEMBER,
-    COMMERCE;
-
+    TOTAL;
 
     public static String getStringConditionType(ConditionType type){
+        // 为了界面显示居中，八个字
         if(type.equals(ConditionType.BIRTHDAY))
             return "生日当天入住优惠";
         if(type.equals(ConditionType.ROOMNUM))
-            return "单次预定房间数>=";
-        if(type.equals(ConditionType.TOTAL))
-            return "总额 >= ";
-        if(type.equals(ConditionType.MEMBER))
-            return "普通会员";
+            return "    单次预定 >= ";
         if(type.equals(ConditionType.COMMERCE))
-            return "合作企业";
+            return "      合作企业  ";
+        if(type.equals(ConditionType.SPECIALPERIOD))
+            return "特定期间入住优惠";
+        if(type.equals(ConditionType.MEMBER))
+            return " 会员尊享优惠 ";
+        if(type.equals(ConditionType.TOTAL))
+            return "  总额 >=  ";
         return null;
     }
 }

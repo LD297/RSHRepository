@@ -27,7 +27,7 @@ public class PromotionPO implements Serializable {
 	private String scopeNum;
 
 	private ConditionType conditionType;//销售策略适用的条件，包括房间数量、价值、会员等级（企业会员）、用户生日
-	private double condionNum;
+	private double conditionNum;
 
 	private DeductionType deductionType;//折扣的方式，包括打折，降价，（coupon优惠券方式暂缓）
 	private double deductionNum;
@@ -47,7 +47,7 @@ public class PromotionPO implements Serializable {
 		scopeNum = tempSNum;
 
 		conditionType = tempCType;
-		condionNum = tempCNum;
+		conditionNum = tempCNum;
 
 		deductionType = tempDType;
 		deductionNum =tempDNum;
@@ -76,8 +76,8 @@ public class PromotionPO implements Serializable {
 	public ConditionType getConditionType(){
 		return this.conditionType;
 	}
-	public double getCondionNum(){
-		return this.condionNum;
+	public double getConditionNum(){
+		return this.conditionNum;
 	}
 	public DeductionType getDeductionType(){
 		return this.deductionType;

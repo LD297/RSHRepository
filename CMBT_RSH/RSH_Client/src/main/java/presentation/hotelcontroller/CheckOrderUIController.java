@@ -586,9 +586,6 @@ public class CheckOrderUIController {
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }
-//    public void setOrderForHotel(OrderForHotel orderForHotel) {
-//        this.orderForHotel = orderForHotel;
-//    }
     public void initSelectable(){
         isUnExeSelectable = true;
         isExcSelectable = true;

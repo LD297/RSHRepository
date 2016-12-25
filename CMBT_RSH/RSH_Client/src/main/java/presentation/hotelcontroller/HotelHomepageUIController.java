@@ -101,8 +101,7 @@ public class HotelHomepageUIController {
             hotelBasicInfoUIController = loader.getController();
         // 传入酒店首页根结点引用
         hotelBasicInfoUIController.setPrePane(anchorPane);
-//        // 配置hotelService
-//        hotelBasicInfoUIController.setHotelService(hotelService);
+
         hotelBasicInfoUIController.setHotelId(hotelId);
         hotelBasicInfoUIController.refreshPage();
 
@@ -134,9 +133,7 @@ public class HotelHomepageUIController {
         // 传入酒店首页根结点引用
         promotionUIController.setPrePane(anchorPane);
         promotionUIController.setPromotionUIController(promotionUIController);
-//        // 配置promotionService
-//        promotionUIController.setPromotionService(promotionService);
-//        promotionUIController.setHotelInfoService(hotelInfoService);
+
         promotionUIController.setHotelId(hotelId);
         promotionUIController.setSetterId();
         promotionUIController.refreshPage();
@@ -171,7 +168,6 @@ public class HotelHomepageUIController {
         checkOrderUIController.setPrePane(anchorPane);
         // 配置orderForHotel
         checkOrderUIController.setHotelId(hotelId);
-//        checkOrderUIController.setOrderForHotel(orderForHotel);
 
         checkOrderUIController.initSelectable();
         checkOrderUIController.unexecutedTabSelected();
@@ -193,7 +189,6 @@ public class HotelHomepageUIController {
         // 加载可用客房信息维护界面根结点
         if(roomAvailUIPane==null)
             try {
-//                System.out.println(loader.load()==null);
                 roomAvailUIPane = (AnchorPane) loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -203,13 +198,11 @@ public class HotelHomepageUIController {
             roomAvailUIController = loader.getController();
         // 传入酒店首页根结点引用
         roomAvailUIController.setPrePane(anchorPane);
-        // 配置hotelService
-//        roomAvailUIController.setHotelService(hotelService);
+
         roomAvailUIController.setHotelId(hotelId);
         roomAvailUIController.refreshPage();
 
         Scene scene = null;
-//        System.out.println(roomAvailUIPane==null);
         if(roomAvailUIPane.getScene()==null)
             scene = new Scene(roomAvailUIPane, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
         else
@@ -250,22 +243,6 @@ public class HotelHomepageUIController {
     public void setPrePane(AnchorPane prePane){this.prePane = prePane;}
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
-    }
-
-
-    // Login界面set进来的
-    public void setLoginService(LoginService loginService){this.loginService = loginService;};
-    public void setHotelService(HotelService hotelService) {
-        this.hotelService = hotelService;
-    }
-    public void setPromotionService(PromotionService promotionService) {
-        this.promotionService = promotionService;
-    }
-    public void setHotelInfoService(HotelInfoService hotelInfoService) {
-        this.hotelInfoService = hotelInfoService;
-    }
-    public void setOrderForHotel(OrderForHotel orderForHotel) {
-        this.orderForHotel = orderForHotel;
     }
 
 }

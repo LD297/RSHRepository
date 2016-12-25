@@ -354,8 +354,7 @@ public class HotelBasicInfoUIController {
         roomInfoUIController.setRoomInfoUIController(roomInfoUIController);
         // 传入酒店信息维护界面根结点
         roomInfoUIController.setPrePane(anchorPane);
-        // 配置hotelService
-//        roomInfoUIController.setHotelService(hotelService);
+
         roomInfoUIController.setHotelId(hotelId);
         roomInfoUIController.refreshPage();
 
@@ -448,10 +447,6 @@ public class HotelBasicInfoUIController {
         this.prePane = prePane;
     }
 
-//    public void setHotelService(HotelService hotelService) {
-//        this.hotelService = hotelService;
-//    }
-
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }
@@ -490,6 +485,8 @@ public class HotelBasicInfoUIController {
 
         checkInLabel.setText(hotelVO.getLatestCheckInTime());
         checkInTextField.setText(hotelVO.getLatestCheckInTime());
+
+        priceTextField.setText(hotelVO.getStandardRoomPrice()+"");
 
         briefLabel.setText(hotelVO.getBriefIntro());
         briefIntroTextArea.setText(hotelVO.getBriefIntro());

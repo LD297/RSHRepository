@@ -253,7 +253,7 @@ public class ExceptionalOrderUIController {
 
     private void revokeOrder(AnchorPane theAnchorPane){
         String orderID = ((Label)theAnchorPane.getChildren().get(1)).getText();
-//        orderForWebsite.webCancelAbnormal(orderID, isHalfCheckBox.isSelected());
+        orderForWebsite.webCancelAbnormal(orderID, isHalfCheckBox.isSelected());
     }
 
     @FXML

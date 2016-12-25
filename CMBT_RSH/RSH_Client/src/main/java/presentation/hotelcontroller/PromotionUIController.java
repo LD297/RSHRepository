@@ -106,7 +106,11 @@ public class PromotionUIController {
     private String setterId = "";
 
     private void setPromotions(){
-        promotions = promotionService.getPromotionOfHotel(setterId);
+        if(webSalesmanVO==null)
+            promotions = promotionService.getPromotionOfHotel(setterId);
+        else
+            promotions = promotionService.getPromotionOfDistrict(webSalesmanVO.getDistrict());
+
         System.out.println("刷新策略");
     }
     private void initCurrentPage(){
@@ -158,14 +162,9 @@ public class PromotionUIController {
 
             String id = thePromotion.promotionID;
             String reason = thePromotion.reason;
-            if(reason.length()<5)
-                reason = "   "+reason;
-
             ConditionType conditionType = thePromotion.conditionType;
             String condition = "";
             condition = ConditionType.getStringConditionType(conditionType);
-            if(condition.length()<5)
-                condition = "       "+condition;
 
             // 如果有需要，显示折扣条件中的数量
             if(conditionType.equals(ConditionType.ROOMNUM)){
@@ -179,12 +178,12 @@ public class PromotionUIController {
             // 根据不同折扣方式，安排界面显示时，折扣力度（int）的位置
             if(deductionType.equals(DeductionType.DISCOUNT))
                 // 界面显示"几折"
-                deduction = thePromotion.deductionNum +
+                deduction = "    "+thePromotion.deductionNum +
                     DeductionType.getStringDeductionType(deductionType);
             else
                 // 界面显示"减几"
-                deduction = DeductionType.getStringDeductionType(deductionType)
-                        +thePromotion.deductionNum;
+                deduction = "  "+DeductionType.getStringDeductionType(deductionType)
+                        +(int)thePromotion.deductionNum;// 为了显示好看，可以求余确定数据类型
 
             String[] items = new String[] {id, reason, condition, deduction} ;
 
@@ -298,8 +297,8 @@ public class PromotionUIController {
         addPromotionUIController.setSetterId(setterId);
         String promotionId = promotionService.getIDForNewPromotion(setterId);
         addPromotionUIController.setPromotionId(promotionId);
-
-        addPromotionUIController.refreshPageBySetter();
+        // 根据制定人员不同身份初始化界面
+        addPromotionUIController.initializePageBySetter();
 
         greyLabel.setVisible(true);
 
@@ -350,12 +349,7 @@ public class PromotionUIController {
     }
 
     public void setPromotionUIController(PromotionUIController promotionUIController){this.promotionUIController = promotionUIController;}
-//    public void setPromotionService(PromotionService promotionService) {
-//        this.promotionService = promotionService;
-//    }
-//    public void setHotelInfoService(HotelInfoService hotelInfoService){
-//        this.hotelInfoService = hotelInfoService;
-//    }
+
     public void setWebSalesVO(WebSalesmanVO webSalesVO) {
         this.webSalesmanVO = webSalesVO;
     }
