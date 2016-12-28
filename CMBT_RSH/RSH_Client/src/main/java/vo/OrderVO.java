@@ -114,6 +114,7 @@ public class OrderVO {
         this.actualCheckOut = actualCheckOut;
         this.cancelTime = cancelTime;
         this.cancelAbnormalTime = cancelAbnormalTime;
+        System.out.println(checkOut.toString());
     }
     public String getOrderID(){
         return orderID;

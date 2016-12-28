@@ -92,7 +92,7 @@ public class OrderForUserController implements OrderForUser{
     public int cancelMyOrder(String orderID){
         OrderPO orderPO;
         Date cancelTime = new Date();
-//        initRemote();
+        initRemote();
         try{
             orderPO = orderDao.searchByID(orderID);
         }catch (RemoteException e){
@@ -357,5 +357,11 @@ public class OrderForUserController implements OrderForUser{
         else
             return true;
     }
+
+	@Override
+	public int getCreditReduced(OrderVO orderVO) {
+		// TODO Auto-generated method stub
+		return 200;
+	}
 
 }

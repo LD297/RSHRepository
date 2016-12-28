@@ -431,4 +431,11 @@ public String getHotelID() {
 		}
 		return resultMessage;
 	}
+    /**
+     *撤销订单时，得到被扣除的信用值 
+     */
+    public int getCreditReduced(OrderVO orderVO) {
+		return orderForUser.getCreditReduced(orderVO);
+	}
+    
 }

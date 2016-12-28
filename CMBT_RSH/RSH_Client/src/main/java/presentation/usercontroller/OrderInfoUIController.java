@@ -5,6 +5,7 @@ package presentation.usercontroller;
  */
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import constant.StateOfOrder;
 import javafx.fxml.FXML;
@@ -27,6 +28,8 @@ public class OrderInfoUIController {
     @FXML
     private URL location;
 
+    @FXML
+    private Label messageLabel;
     @FXML
     private Label hotelName;
 
@@ -141,15 +144,23 @@ public class OrderInfoUIController {
 		}
 		pricePerRoom.setText("￥"+String.valueOf(orderVO.getRoomPrice())+"/晚");
 		totalPrice.setText("￥"+String.valueOf(orderVO.getTrueValue()));
-		promotionLabel.setText("("+orderVO.getPromotion()+")");
+		if(orderVO.getPromotion()!=null){
+			promotionLabel.setText("("+orderVO.getPromotion()+")");
+		}
 		if(orderVO.getState()==StateOfOrder.executed){
 			commentButton.setVisible(true);
 			cancelOrderButton.setVisible(false);
+			messageLabel.setText("");
 		}else if(orderVO.getState()==StateOfOrder.unexecuted){
 			cancelOrderButton.setVisible(true);
+			int creditReduced = UserInfoUtil.getInstance().getCreditReduced(orderVO);
+			if(creditReduced>0){
+				messageLabel.setText("撤销订单，您将被扣除"+creditReduced+"信用值");
+			}
 			commentButton.setVisible(false);
 		}else{
 			cancelOrderButton.setVisible(false);
+			messageLabel.setText("");
 			commentButton.setVisible(false);
 		}
 		

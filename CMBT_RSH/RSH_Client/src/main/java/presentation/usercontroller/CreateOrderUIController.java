@@ -168,12 +168,15 @@ public class CreateOrderUIController {
 				backToModifyButton.setVisible(true);
 			}else{//如果没有尚未填写的信息，得到总价和促销策略
 				getInfoFromUI();
+				System.out.println(expectedCheckoutDate);
 				OrderInfo orderInfo = new OrderInfo(null, roomtype, roomNum, expectedCheckinDate, expectedCheckoutDate, null,roomPrice);
 				String temp = UserInfoUtil.getInstance().getOrderPriceAndPromotion(orderInfo);
 				totalPrice = temp.split("#")[1];
 				promotion = temp.split("#")[0];
 				totalPriceLabel.setText(totalPrice);//显示总价格
-				promotionlabel.setText("("+promotion+")");//显示促销策略
+				if(promotion!=null){
+					promotionlabel.setText("("+promotion+")");
+				}//显示促销策略
 				finishCreateOrder.setText("我已核对");
 				finishCreateOrder.setDisable(false);
 				backToModifyButton.setVisible(true);
@@ -185,7 +188,7 @@ public class CreateOrderUIController {
 			getInfoFromUI();
 			ResultMessage resultMessage = UserInfoUtil.getInstance().confirmOrder(roomtype, roomPrice, withChildren,
 					peopleNum, roomNum, Double.parseDouble(totalPrice), promotion, expectedCheckinDate,
-					expectedCheckinDate, new Date());
+					expectedCheckoutDate, new Date());
 			if(resultMessage==ResultMessage.succeed){
 				UIJumpTool.getUiJumpTool().closeCreateOrder();
 			}else{

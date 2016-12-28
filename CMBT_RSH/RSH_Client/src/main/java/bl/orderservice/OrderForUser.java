@@ -14,6 +14,11 @@ import java.util.Date;
  * Created by a297 on 16/12/12.
  */
 public interface OrderForUser {
+	/**
+	 * 计算被扣除的信用值
+	 * @return
+	 */
+	public int getCreditReduced(OrderVO orderVO);
 
     /**
      * 用户分类查看订单

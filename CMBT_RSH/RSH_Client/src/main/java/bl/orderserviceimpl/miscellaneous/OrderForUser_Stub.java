@@ -144,6 +144,12 @@ public class OrderForUser_Stub implements OrderForUser{
 		return ResultMessage.succeed;
 	}
 
+	@Override
+	public int getCreditReduced(OrderVO orderVO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 
 }

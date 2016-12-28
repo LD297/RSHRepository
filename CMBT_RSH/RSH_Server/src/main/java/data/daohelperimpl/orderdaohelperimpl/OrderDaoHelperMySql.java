@@ -184,6 +184,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
             e.printStackTrace();
             return ResultMessage.fail;
         }
+        System.out.println("use stateupdate "+newState.ordinal());////////////////////
         String stateUpdateSql = "UPDATE OrderGeneral SET state=" +String.valueOf(newState.ordinal())+
                 " WHERE orderID='"+orderID+"' LIMIT 1";
         db.executeSql(stateUpdateSql);
@@ -198,26 +199,30 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
 
         int state = orderPO.getState().ordinal();
         int grade = orderPO.getGrade();
-        String comment  = orderPO.getComment();
+        String comment = orderPO.getComment();
+        if(comment==null)
+        	comment = "null";
+        else
+        	comment = "'"+comment+"'";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-        String actCheckIn = "";
+        String actCheckIn = "null";
         if(orderPO.getActualCheckIn()!=null)
-            actCheckIn = sdf.format(orderPO.getActualCheckIn());
-        String actCheckOut = "";
+            actCheckIn = "'"+sdf.format(orderPO.getActualCheckIn())+"'";
+        String actCheckOut = "null";
         if(orderPO.getActualCheckOut()!=null)
-            actCheckOut = sdf.format(orderPO.getActualCheckOut());
-        String cancelTime = "";
+            actCheckOut = "'"+sdf.format(orderPO.getActualCheckOut())+"'";
+        String cancelTime = "null";
         if(orderPO.getCancelTime()!=null)
-            cancelTime = sdf.format(orderPO.getCancelTime());
-        String cancelAbTime = "";
+            cancelTime = "'"+sdf.format(orderPO.getCancelTime())+"'";
+        String cancelAbTime = "null";
         if(orderPO.getCancelAbnormalTime()!=null)
-            cancelAbTime = sdf.format(orderPO.getCancelAbnormalTime());
-        //"+String.valueOf(state)+"
+            cancelAbTime = sdf.format("'"+orderPO.getCancelAbnormalTime())+"'";
+        
         String updateSql = "UPDATE OrderGeneral SET state="+String.valueOf(state)+",grade="
-            +String.valueOf(grade)+",comment='"+comment+"',actCheckIn='"+actCheckIn+
-            "',actCheckOut='"+actCheckOut+"',cancelTime='"+cancelTime+"',cancelAbTime='"+
-            cancelAbTime+"' WHERE orderID='"+orderID+"' LIMIT 1";
-        db.equals(updateSql);
+            +String.valueOf(grade)+",comment="+comment+",actCheckIn="+actCheckIn+
+            ",actCheckOut="+actCheckOut+",cancelTime="+cancelTime+",cancelAbTime="+
+            cancelAbTime+" WHERE orderID='"+orderID+"' LIMIT 1";
+        db.executeSql(updateSql);
         return ResultMessage.succeed;
     }
 

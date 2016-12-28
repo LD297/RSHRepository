@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.OrderInfoUIController">
    <children>
-      <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="518.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="120.0">
+      <AnchorPane layoutY="123.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="518.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="123.0">
          <children>
             <Line endX="468.0" layoutX="50.0" layoutY="141.0" startX="50.0" stroke="#bababa" strokeWidth="0.7" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="140.0" />
             <Label fx:id="hotelName" layoutX="51.0" layoutY="31.0" prefHeight="32.0" prefWidth="244.0" text="泰国风情大酒店10个字" textFill="#484848">
@@ -207,6 +207,11 @@
                </image>
             </ImageView>
             <Label fx:id="promotionLabel" layoutX="345.0" layoutY="472.0" prefHeight="32.0" prefWidth="163.0" />
+            <Label fx:id="messageLabel" layoutX="48.0" layoutY="526.0" prefHeight="32.0" prefWidth="296.0" textFill="#ff5a5f">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
