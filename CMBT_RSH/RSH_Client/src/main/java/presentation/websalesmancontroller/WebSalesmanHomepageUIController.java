@@ -4,6 +4,7 @@ import bl.loginservice.LoginService;
 import bl.orderservice.OrderForWebsite;
 import bl.promotionservice.PromotionService;
 import bl.userservice.UserService;
+import bl.webstaffservice.WebStaffService;
 import bl.webstaffserviceimpl.WebSalesman;
 import constant.Role;
 import javafx.fxml.FXML;
@@ -59,9 +60,12 @@ public class WebSalesmanHomepageUIController {
 
     private AnchorPane prePane;
 
+    private String webSalesmanId;
+
     private WebSalesmanVO webSalesmanVO;
 
     private LoginService loginService;
+    private WebStaffService webStaffService;
     private PromotionService promotionService;
     private OrderForWebsite orderForWebsite;
     private UserService userService;
@@ -221,30 +225,19 @@ public class WebSalesmanHomepageUIController {
 
     private void initializeService() {
         this.loginService = WebSalesmanServiceFactory.getInstance().getLoginService();
+        this.webStaffService = WebSalesmanServiceFactory.getInstance().getWebStaffService();
         this.promotionService = WebSalesmanServiceFactory.getInstance().getPromotionService();
         this.orderForWebsite = WebSalesmanServiceFactory.getInstance().getOrderForWebsite();
         this.userService = WebSalesmanServiceFactory.getInstance().getUserService();
     }
 
+    public void setWebSalesmanId(String id){this.webSalesmanId = id;}
+
+    public void setWebSalesmanVO() {
+        this.webSalesmanVO = webStaffService.webSalesmanVO(webSalesmanId);
+    }
+
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
-    }
-
-    public void setLoginService(LoginService loginService) {
-        this.loginService = loginService;
-    }
-
-    public void setPromotionService(PromotionService promotionService) {
-        this.promotionService = promotionService;
-    }
-    public void setOrderForWebsite(OrderForWebsite orderForWebsite) {
-        this.orderForWebsite = orderForWebsite;
-    }
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    public void setWebSalesmanVO(WebSalesmanVO webSalesmanVO) {
-        this.webSalesmanVO = webSalesmanVO;
     }
 }

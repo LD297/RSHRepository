@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.hotelcontrollertools.HotelServiceFactory;
+import presentation.hotelcontrollertools.HotelUIFXMLFactory;
 import presentation.tools.MyDateFormat;
 import vo.PromotionVO;
 import vo.RoomNormVO;
@@ -98,10 +99,11 @@ public class AddPromotionUIController {
     @FXML
     private ChoiceBox<Object> deductionTypeChoiceBox;
 
+    private PromotionUIController promotionUIController;
     // 逻辑层引用
     private HotelInfoService hotelInfoService;
     private PromotionService promotionService;
-    private PromotionUIController promotionUIController;
+
 
     // 制定促销策略需要的人员信息
     private WebSalesmanVO webSalesmanVO = null;
@@ -263,8 +265,14 @@ public class AddPromotionUIController {
         assert notBirthdayCheckBox != null : "fx:id=\"notBirthdayCheckBox\" was not injected: check your FXML file '添加促销策略.fxml'.";
         assert deductionTypeChoiceBox != null : "fx:id=\"deductionTypeChoiceBox\" was not injected: check your FXML file '添加促销策略.fxml'.";
 
+        initializeController();
         initilizeService();
         setDeductionChoiceBox();
+
+    }
+
+    private void initializeController(){
+        promotionUIController = HotelUIFXMLFactory.getInstance().getPromotionUIController();
 
     }
 
@@ -283,8 +291,6 @@ public class AddPromotionUIController {
         ));
     }
 
-    public void setPromotionUIController(PromotionUIController promotionUIController){this.promotionUIController = promotionUIController;}
-
     public void setWebSalesmanVO(WebSalesmanVO webSalesmanVO) {
         this.webSalesmanVO = webSalesmanVO;
     }
@@ -298,7 +304,6 @@ public class AddPromotionUIController {
     public void setPrePane(AnchorPane prePane){
         this.prePane = prePane;
     }
-
 
     public void initializePageBySetter(){
 
@@ -336,7 +341,6 @@ public class AddPromotionUIController {
                     "所有房间",
                     new Separator(),
                     "指定房间"));
-            System.out.println(webSalesmanVO.getName());
 
         } else {
             // 网站营销人员制定
