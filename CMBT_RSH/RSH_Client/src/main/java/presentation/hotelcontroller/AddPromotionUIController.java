@@ -265,21 +265,13 @@ public class AddPromotionUIController {
         assert notBirthdayCheckBox != null : "fx:id=\"notBirthdayCheckBox\" was not injected: check your FXML file '添加促销策略.fxml'.";
         assert deductionTypeChoiceBox != null : "fx:id=\"deductionTypeChoiceBox\" was not injected: check your FXML file '添加促销策略.fxml'.";
 
-        initializeController();
         initilizeService();
         setDeductionChoiceBox();
 
     }
 
-    private void initializeController(){
-        promotionUIController = HotelUIFXMLFactory.getInstance().getPromotionUIController();
-
-    }
-
     private void initilizeService() {
-
         this.hotelInfoService = HotelServiceFactory.getInstance().getHotelInfoService();
-        this.promotionService = HotelServiceFactory.getInstance().getPromotionService();
         this.promotionService = HotelServiceFactory.getInstance().getPromotionService();
     }
 
@@ -382,5 +374,9 @@ public class AddPromotionUIController {
         deductionTypeChoiceBox.setValue(null);
         discountTextField.clear();
         reduceTextField.clear();
+    }
+
+    public void setPromotionUIController(PromotionUIController promotionUIController) {
+        this.promotionUIController = promotionUIController;
     }
 }

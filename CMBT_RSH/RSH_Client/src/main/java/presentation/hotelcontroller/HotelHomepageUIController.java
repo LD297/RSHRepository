@@ -55,31 +55,28 @@ public class HotelHomepageUIController {
     @FXML
     private ImageView promotion;
 
-    private AnchorPane prePane;
-
-    private String hotelId;
-
     private LoginService loginService;
     private HotelService hotelService;
     private PromotionService promotionService;
     private HotelInfoService hotelInfoService;
     private OrderForHotel orderForHotel;
 
+    // 登录界面根结点
+    private AnchorPane prePane;
+    private String hotelId;
+
     // 酒店信息维护界面根结点
     private static AnchorPane hotelBasicInfoUIPane;
     // 酒店信息维护界面控制器
     private static HotelBasicInfoUIController hotelBasicInfoUIController;
-
     // 促销策略界面根结点
     private static AnchorPane promotionUIPane;
     // 促销策略界面控制器
     private static PromotionUIController promotionUIController;
-
     // 订单搜索并浏览界面根结点
     private  static AnchorPane checkOrderUIPane;
     // 订单搜索并浏览界面控制器
     private static CheckOrderUIController checkOrderUIController;
-
     // 可用客房信息维护界面根结点
     private static AnchorPane roomAvailUIPane;
     // 可用客房信息维护界面控制器
@@ -87,22 +84,14 @@ public class HotelHomepageUIController {
 
     @FXML
     void changeToBasicInfoUI(MouseEvent event) {
-        // 加载酒店基本信息维护界面
-        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getHotelBasicInfoUILoader();
-        // 加载酒店信息维护界面根结点
-        if(hotelBasicInfoUIPane==null)
-            try {
-                hotelBasicInfoUIPane = (AnchorPane) loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-        }
-        // 得到酒店信息维护界面控制器
-        if(hotelBasicInfoUIController==null)
-            hotelBasicInfoUIController = loader.getController();
+
+        hotelBasicInfoUIPane = HotelUIFXMLFactory.getInstance().getHotelBasicInfoUIPane();
+        hotelBasicInfoUIController = HotelUIFXMLFactory.getInstance().getHotelBasicInfoUIController();
+
         // 传入酒店首页根结点引用
         hotelBasicInfoUIController.setPrePane(anchorPane);
-
         hotelBasicInfoUIController.setHotelId(hotelId);
+        hotelBasicInfoUIController.setHotelVO();
         hotelBasicInfoUIController.refreshPage();
 
         Scene scene = null;
@@ -118,22 +107,12 @@ public class HotelHomepageUIController {
 
     @FXML
     void changeToPromotionUI(MouseEvent event) {
-        // 加载促销策略维护界面
-        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getPromotionUILoader();
-        // 加载促销策略维护界面根结点
-        if(promotionUIPane==null)
-            try {
-                promotionUIPane = (AnchorPane)loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        // 得到促销策略维护界面控制器
-        if(promotionUIController==null)
-                promotionUIController = loader.getController();
+
+        promotionUIPane = HotelUIFXMLFactory.getInstance().getPromotionUIPane();
+        promotionUIController = HotelUIFXMLFactory.getInstance().getPromotionUIController();
+
         // 传入酒店首页根结点引用
         promotionUIController.setPrePane(anchorPane);
-        promotionUIController.setPromotionUIController(promotionUIController);
-
         promotionUIController.setHotelId(hotelId);
         promotionUIController.setSetterId();
         promotionUIController.refreshPage();
@@ -150,25 +129,14 @@ public class HotelHomepageUIController {
 
     @FXML
     void changeToCheckOrderUI(MouseEvent event) {
-        // 加载订单搜索并浏览界面
-        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getCheckOrderUILoader();
 
-        // 加载订单搜索并浏览界面根结点
-        if(checkOrderUIPane==null)
-            try {
-                checkOrderUIPane = (AnchorPane)loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        checkOrderUIPane = HotelUIFXMLFactory.getInstance().getCheckOrderUIPane();
+        checkOrderUIController = HotelUIFXMLFactory.getInstance().getCheckOrderUIController();
 
-        // 得到订单搜索并浏览界面控制器
-        if(checkOrderUIController==null)
-            checkOrderUIController = loader.getController();
         // 传入酒店首页根结点引用
         checkOrderUIController.setPrePane(anchorPane);
         // 配置orderForHotel
         checkOrderUIController.setHotelId(hotelId);
-
         checkOrderUIController.initSelectable();
         checkOrderUIController.unexecutedTabSelected();
 
@@ -184,21 +152,12 @@ public class HotelHomepageUIController {
 
     @FXML
     void changeToRoomAvailUI(MouseEvent event) {
-        // 加载可用客房信息维护界面
-        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getRoomAvailUILoader();
-        // 加载可用客房信息维护界面根结点
-        if(roomAvailUIPane==null)
-            try {
-                roomAvailUIPane = (AnchorPane) loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        // 得到可用客房信息维护界面控制器
-        if(roomAvailUIController==null)
-            roomAvailUIController = loader.getController();
+
+        roomAvailUIPane= HotelUIFXMLFactory.getInstance().getRoomAvailUIPane();
+        roomAvailUIController = HotelUIFXMLFactory.getInstance().getRoomAvailUIController();
+
         // 传入酒店首页根结点引用
         roomAvailUIController.setPrePane(anchorPane);
-
         roomAvailUIController.setHotelId(hotelId);
         roomAvailUIController.refreshPage();
 
@@ -228,8 +187,8 @@ public class HotelHomepageUIController {
         assert basicInfo != null : "fx:id=\"basicInfo\" was not injected: check your FXML file '酒店首页.fxml'.";
         assert promotion != null : "fx:id=\"promotion\" was not injected: check your FXML file '酒店首页.fxml'.";
 
+        // 配置逻辑服务
         initilizeService();
-        
     }
 
     private void initilizeService() {
@@ -240,7 +199,16 @@ public class HotelHomepageUIController {
         this.orderForHotel = HotelServiceFactory.getInstance().getOrderForHotel();
     }
 
+    /**
+     *  login界面调用
+     * @param prePane
+     */
     public void setPrePane(AnchorPane prePane){this.prePane = prePane;}
+
+    /**
+     * login界面调用
+     * @param hotelId
+     */
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }

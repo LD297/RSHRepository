@@ -141,7 +141,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         ResultSet infoResult = db.query(infoSql);
         ArrayList<WebSalesmanPO> list = this.resultSetTOPO(infoResult);
         
-        String getPasswordSql = "SELECT aes_decrypt(password,'"+key+"') FROM WebStaffInfo";
+     /* String getPasswordSql = "SELECT aes_decrypt(password,'"+key+"') FROM WebStaffInfo";
         ResultSet pwResult = db.query(getPasswordSql);
         try{
         	int i=0;
@@ -151,7 +151,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         	return list;
         }catch(SQLException e){
         	e.printStackTrace();
-        }
+        }*/
         return list; 
     }
     

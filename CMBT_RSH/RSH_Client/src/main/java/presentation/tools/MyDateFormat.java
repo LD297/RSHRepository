@@ -96,15 +96,30 @@ public class MyDateFormat {
 		}
 		return week;
 	}
-	
-	/**
-	 * 将date转成
-	 * @param Date"MM-dd"字符串形式
-	 * @return
-	 */
+
+    /**
+     * 将date转成
+     * @param date
+     * @return "MM-dd"字符串形式
+     */
 	public String toString(Date date) {
 		DateFormat dateFormat = new SimpleDateFormat("MM-dd");
-		
+		if(date==null){
+			return "";
+		}else {
+			return dateFormat.format(date);
+		}
+	}
+
+
+    /**
+     * 将date转成
+     * @param date
+     * @param hasYear
+     * @return "yyyy-MM-dd"字符串形式
+     */
+	public String toString(Date date, boolean hasYear) {
+		DateFormat dateFormat = new SimpleDateFormat(pattern);
 		if(date==null){
 			return "";
 		}else {

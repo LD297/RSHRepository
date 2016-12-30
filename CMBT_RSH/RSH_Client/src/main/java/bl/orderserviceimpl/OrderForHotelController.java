@@ -97,6 +97,7 @@ public class OrderForHotelController implements OrderForHotel{
     	//此处需判断是否已超过预计离开时间
         Order order = Order.getInstance(orderID);
 
+        System.out.println(order==null);
         ResultMessage resultMessage = order.cancelAbnormal(false);
 
         if(resultMessage == ResultMessage.succeed){

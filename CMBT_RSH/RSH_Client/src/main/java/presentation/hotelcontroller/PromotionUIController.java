@@ -79,39 +79,30 @@ public class PromotionUIController {
     @FXML
     private Label pageLabel;
 
-    private AnchorPane prePane;
-    private AnchorPane addPromotionAnchorPane;
-
-    private AddPromotionUIController addPromotionUIController;
-    private PromotionUIController promotionUIController;
-
     private PromotionService promotionService;
-    private HotelInfoService hotelInfoService;
+    private AnchorPane prePane;
+    private String hotelId = "";
+    private String setterId = "";
+    private WebSalesmanVO webSalesmanVO = null;
 
-
-    // 该酒店所有促销策略
-    private ArrayList<PromotionVO> promotions ;
+    private AnchorPane addPromotionAnchorPane;
+    private AddPromotionUIController addPromotionUIController;
 
     private static final int NUM_OF_ITEMS = 4;
     private static final int NUM_OF_PROS_SHOWN = 4;
-
+    // 该酒店所有促销策略
+    private ArrayList<PromotionVO> promotions ;
     private PromotionVO[] promotionOnShow = new PromotionVO[NUM_OF_PROS_SHOWN];
     private AnchorPane[] showPanes;
     private int currentPage = 0;
     private int fullPageNum = 0;
     private int remainderProNum = 0;
 
-    private WebSalesmanVO webSalesmanVO = null;
-    private String hotelId = "";
-    private String setterId = "";
-
     private void setPromotions(){
         if(webSalesmanVO==null)
             promotions = promotionService.getPromotionOfHotel(setterId);
         else
             promotions = promotionService.getPromotionOfDistrict(webSalesmanVO.getDistrict());
-
-        System.out.println("刷新策略");
     }
     private void initCurrentPage(){
         currentPage = 0;
@@ -122,7 +113,6 @@ public class PromotionUIController {
     private void setRemainderProNum(){
         remainderProNum = promotions.size()%NUM_OF_PROS_SHOWN;
     }
-
     private void setPromotionOnShow(boolean isFullPage){
         if(isFullPage)
             for(int i=0; i<NUM_OF_PROS_SHOWN; i++)
@@ -226,8 +216,6 @@ public class PromotionUIController {
         showPromotion();
         showPageNum();
     }
-
-
     private void delete(AnchorPane thePane){
         String promotionID = ((Label)thePane.getChildren().get(0)).getText();
 
@@ -278,9 +266,11 @@ public class PromotionUIController {
 
     @FXML
     void addPromotion(MouseEvent event){
+        addPromotionAnchorPane = HotelUIFXMLFactory.getInstance().getAddPromotionUIPane();
+        addPromotionUIController = HotelUIFXMLFactory.getInstance().getAddPromotionUIController();
 
         addPromotionUIController.setPrePane(anchorPane);
-
+        addPromotionUIController.setPromotionUIController(this);
         addPromotionUIController.setWebSalesmanVO(webSalesmanVO);
         addPromotionUIController.setSetterId(setterId);
         String promotionId = promotionService.getIDForNewPromotion(setterId);
@@ -313,34 +303,28 @@ public class PromotionUIController {
         assert showPane0 != null : "fx:id=\"showPane0\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '酒店促销策略维护.fxml'.";
 
-        initializeAnchorPane();
-        initializeController();
         initializeService();
         setShowPanes();
     }
 
-    private void initializeAnchorPane() {
-        if(addPromotionAnchorPane==null)
-            addPromotionAnchorPane = HotelUIFXMLFactory.getInstance().getAddPromotionUIPane();
+    private void initializeService() {
+        this.promotionService = HotelServiceFactory.getInstance().getPromotionService();
     }
-
     private void setShowPanes(){
         showPanes = new AnchorPane[]{showPane0, showPane01, showPane02, showPane03};
     }
 
-    private void initializeController() {
-        if(addPromotionUIController==null)
-            addPromotionUIController = HotelUIFXMLFactory.getInstance().getAddPromotionUIController();
-    }
-
-    private void initializeService() {
-        this.promotionService = HotelServiceFactory.getInstance().getPromotionService();
-        this.hotelInfoService = HotelServiceFactory.getInstance().getHotelInfoService();
-    }
-
+    /**
+     *
+     * @param prePane
+     */
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
+
+    /**
+     *
+     */
     public  void refreshPage(){
         setPromotions();
         initCurrentPage();
@@ -348,16 +332,23 @@ public class PromotionUIController {
         setRemainderProNum();
         showPage();
     }
-
-    public void setPromotionUIController(PromotionUIController promotionUIController){this.promotionUIController = promotionUIController;}
-
+    /**
+     *
+     * @param webSalesVO
+     */
     public void setWebSalesVO(WebSalesmanVO webSalesVO) {
         this.webSalesmanVO = webSalesVO;
     }
+    /**
+     *
+     * @param hotelId
+     */
     public void setHotelId(String hotelId){
         this.hotelId = hotelId;
     }
-
+    /**
+     *
+     */
     public void setSetterId(){
         if(webSalesmanVO!=null)
             this.setterId = webSalesmanVO.getId();

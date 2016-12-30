@@ -78,7 +78,4 @@ public class TopUpCreditUIController {
         uservice = WebSalesmanServiceFactory.getInstance().getUserService();
     }
 
-//    public void setUservice(UserService uservice) {
-//        this.uservice = uservice;
-//    }
 }

@@ -173,10 +173,13 @@ public class LoginUIController {
 				passwordFormLabel.setText("用户名或密码错误");
 			}
 		} else if(role==Role.hotel){
+            // 得到登陆服务
             LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
 
             if(loginService.checkOnline(Role.hotel, id, password).equals(ResultMessage.succeed)){
-                AnchorPane hotelHomepage = HotelUIFXMLFactory.getInstance().getHotelHomePage();
+                // 酒店首页根结点
+                AnchorPane hotelHomepage = HotelUIFXMLFactory.getInstance().getHotelHomePageUIPane();
+                // 酒店首页控制器
                 HotelHomepageUIController hotelHomepageUIController = HotelUIFXMLFactory.getInstance().
                         getHotelHomepageUIController();
 
@@ -195,10 +198,13 @@ public class LoginUIController {
             }
 
         } else if(role.equals(Role.websalesman)){
+            // 得到登陆服务
             LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
-            if(loginService.checkOnline(Role.websalesman, id, password ).equals(ResultMessage.succeed)){
 
-                AnchorPane webSalesmanHomepage = WebSalesmanUIFXMLFactory.getInstance().getWebSalesmanHomepage();
+            if(loginService.checkOnline(Role.websalesman, id, password ).equals(ResultMessage.succeed)){
+                // 网站营销人员首页根结点
+                AnchorPane webSalesmanHomepage = WebSalesmanUIFXMLFactory.getInstance().getWebSalesmanHomepageUIPane();
+                // 网站营销人员首页控制器
                 WebSalesmanHomepageUIController webSalesmanHomepageUIController = WebSalesmanUIFXMLFactory.
                         getInstance().getWebSalesmanHomepageUIController();
 

@@ -42,31 +42,31 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     private void updateAll(){
         db.executeSql("USE OurData");
 
-        String generalSql = "SELECT *FROM OrderGeneral";
+        String generalSql = "SELECT *FROM OrderGeneral WHERE state="+String.valueOf(StateOfOrder.unexecuted.ordinal());
         ResultSet result = db.query(generalSql);
         ArrayList<OrderPO> originList =  this.transformResultSetToPOList(result);
+        if(originList.size()==0)
+        	return ;
+        
         Date instance = new Date();
-
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         for(int i=0;i<originList.size();i++){
-            if(originList.get(i).getState()==StateOfOrder.unexecuted){
-                String orderID = originList.get(i).getOrderID();
-                String DDLtime = originList.get(i).getHotelDDL();
-                Date DDLdate = originList.get(i).getCheckIn();
-                String ddldate = sdf.format(DDLdate);
-                try{
-                    Date ddlTime = df.parse(ddldate+" "+DDLtime);
-                    if(ddlTime.getTime()>instance.getTime())
-                        this.stateUpdate(orderID,StateOfOrder.abnormal);
-                }catch (ParseException e){
-                    e.printStackTrace();
-                    return ;
-                }catch(RemoteException e){
-                    e.printStackTrace();
-                    return;
-                }
+            String orderID = originList.get(i).getOrderID();
+            String DDLtime = originList.get(i).getHotelDDL();
+            Date DDLdate = originList.get(i).getCheckIn();
+            String ddldate = sdf.format(DDLdate);
+            try{
+                Date ddlTime = df.parse(ddldate+" "+DDLtime);
+                if(ddlTime.getTime()<instance.getTime())
+                    this.stateUpdate(orderID,StateOfOrder.abnormal);
+            }catch (ParseException e){
+                e.printStackTrace();
+                return ;
+            }catch(RemoteException e){
+                e.printStackTrace();
+                return;
             }
          }
     }

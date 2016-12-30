@@ -81,9 +81,6 @@ public class AddRoomUIController {
 
     private HotelService hotelService;
 
-    public void setPrePane(AnchorPane prePane) {
-        this.prePane = prePane;
-    }
 
     private void clearTextField() {
         roomTypeTextField.clear();
@@ -191,26 +188,39 @@ public class AddRoomUIController {
         roomImageAddressTextField.setVisible(false);
         setPrompts();
         promptsInvisible();
-
         initializeService();
-    }
-
-    private void initializeService() {
-        this.hotelService = HotelServiceFactory.getInstance().getHotelService();
-    }
-
-    private void promptsInvisible() {
-        for(int i=0; i<prompts.length; i++)
-            prompts[i].setVisible(false);
-
     }
     private void setPrompts(){
         prompts = new Label[]{roomTypePrompt, roomNumPrompt, roomPricePrompt, roomUrlPrompt};
     }
+    private void promptsInvisible() {
+        for(int i=0; i<prompts.length; i++)
+            prompts[i].setVisible(false);
+    }
+    private void initializeService() {
+        this.hotelService = HotelServiceFactory.getInstance().getHotelService();
+    }
 
-    public void setHotelId(String hotelId){this.hotelId = hotelId;}
-
+    /**
+     *
+     * @param roomInfoUIController
+     */
     public void setRoomInfoUIController(RoomInfoUIController roomInfoUIController) {
         this.roomInfoUIController = roomInfoUIController;
     }
+
+    /**
+     *
+     * @param prePane
+     */
+    public void setPrePane(AnchorPane prePane) {
+        this.prePane = prePane;
+    }
+
+    /**
+     *
+     * @param hotelId
+     */
+    public void setHotelId(String hotelId){this.hotelId = hotelId;}
+
 }

@@ -88,15 +88,14 @@ public class RoomAvailUIController {
     @FXML
     private Label pageLabel;
 
-    private static AnchorPane prePane;
     private HotelService hotelService;
+    private static AnchorPane prePane;
     private String hotelId;
-    // 当前入住日期
-    private Date currentDate = new Date();
 
     private static final int NUM_OF_ITEMS = 3;
     private static final int NUM_OF_PANES_FOR_SHOW = 3;
-
+    // 当前入住日期
+    private Date currentDate = new Date();
     // 根据日期从数据库得到当天各种类型的可用数量
     private ArrayList<RoomAvailVO> currentRoomAvailList;
     // 存放当前页面显示的有限条房间信息
@@ -304,23 +303,35 @@ public class RoomAvailUIController {
         initializeService();
     }
 
-    private void initializeService() {
-        this.hotelService = HotelServiceFactory.getInstance().getHotelService();
-
-    }
-
-    public void setPrePane(AnchorPane prePane) {
-        this.prePane = prePane;
-    }
-
-    public void setHotelId(String hotelId) {
-        this.hotelId = hotelId;
-    }
     private void setShowPanes(){
         showPanes[0] = showPane0;
         showPanes[1] = showPane01;
         showPanes[2] = showPane02;
     }
+    private void initializeService() {
+        this.hotelService = HotelServiceFactory.getInstance().getHotelService();
+
+    }
+
+    /**
+     *
+     * @param prePane
+     */
+    public void setPrePane(AnchorPane prePane) {
+        this.prePane = prePane;
+    }
+
+    /**
+     *
+     * @param hotelId
+     */
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    /**
+     *
+     */
     public void refreshPage() {
         setCurrentRoomAvailList(currentDate);
         initCurrentPage();

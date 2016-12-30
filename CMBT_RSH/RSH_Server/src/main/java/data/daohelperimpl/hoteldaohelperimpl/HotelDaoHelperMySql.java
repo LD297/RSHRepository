@@ -79,6 +79,10 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         String detail = hotelPO.getAddressDetail();
         double standardPrice = hotelPO.getStandardPrice();
         String briefIntro = hotelPO.getBriefIntro();
+        if(briefIntro==null)
+        	briefIntro = "";
+        else
+        	briefIntro = "'"+briefIntro+"'";
         String facility = hotelPO.getFacility();
         int level = hotelPO.getLevel();
         double grade = hotelPO.getGrade();
@@ -87,7 +91,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         System.out.println(latestCheckinTime);
         String addHotelSql = "INSERT INTO HotelInfo VALUES('"+hotelID+"',"+
                 dePassword+",'"+tel+"','"+name+"','" + district+"','"+detail+"',"+
-        		String.valueOf(standardPrice)+",'"+briefIntro+"','"+facility+"',"+
+        		String.valueOf(standardPrice)+","+briefIntro+",'"+facility+"',"+
                 String.valueOf(level)+","+String.valueOf(grade)+",'"+latestCheckinTime+
                 "','"+imageAddress+"',0,2)";
         db.executeSql(addHotelSql);
@@ -382,7 +386,9 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
     // 根据新增订单/撤销订单 改变可用房间信息
     // 当酒店手动修改（checkin==checkout）
     public ResultMessage changeRoomAvail(String hotelID,String roomType,boolean isPlus, int num, Date checkIn, Date checkOut)throws RemoteException {
-        db.executeSql("USE OurData");
+        System.out.println("get into change room Avail");
+    	
+    	db.executeSql("USE OurData");
 
         int tip=1;
         if(isPlus==false)
@@ -434,7 +440,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         int gap1 = this.getDayGap(checkIn);
         int gap2 = this.getDayGap(checkOut);
         
-        if(gap1<0||gap2<0)
+        if(gap1<0||gap2<0||gap1>179||gap2>180)
         	return -1;
         
         String findNumOfRoomAvailSql = "SELECT aList FROM RoomInfo WHERE hotelID='"+hotelID+"' and roomType='"+roomType+"' LIMIT 1";
@@ -449,9 +455,9 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
                 
                 int smallest = roomNum[gap1];
                 for(int i=gap1+1;i<=gap2-1;i++){
-                	System.out.println(smallest);
                     if(smallest>roomNum[i])
-                    	smallest = roomNum[i];}
+                    	smallest = roomNum[i];
+                }
                 return smallest;
             }
         }catch(SQLException e){
@@ -625,41 +631,41 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
     	}
     	return null;
     }
+    
     // 计算时间差 来查看特定日期段下的可用客房数量
     public int getDayGap(Date date) {
         try {
             //时间转换类
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             date = sdf.parse(sdf.format(date));//the late one
+            
             Date today = new Date();
             String strToday = sdf.format(today);
             today = sdf.parse(strToday);
-
+            
+            
             //将转换的两个时间对象转换成Calendard对象
-            Calendar can1 = Calendar.getInstance();
-            can1.setTime(date);
-            Calendar can2 = Calendar.getInstance();
-            can2.setTime(today);
+            Calendar checkNeed = Calendar.getInstance();
+            checkNeed.setTime(date);
+            Calendar instance = Calendar.getInstance();
+            instance.setTime(today);
             //拿出两个年份
-            int year1 = can1.get(Calendar.YEAR);
-            int year2 = can2.get(Calendar.YEAR);
+            int checkNeedYear = checkNeed.get(Calendar.YEAR);
+            int instanceYear = instance.get(Calendar.YEAR);
             //天数
             int days = 0;
             Calendar can = null;
             //如果can1 < can2
             //减去小的时间在这一年已经过了的天数
             //加上大的时间已过的天数
-            if(can1.before(can2)){
+            if(checkNeed.before(instance)){
             	return -1;
-              /*  days -= can1.get(Calendar.DAY_OF_YEAR);
-                days += can2.get(Calendar.DAY_OF_YEAR);
-                can = can1;*/
             }else{
-                days -= can2.get(Calendar.DAY_OF_YEAR);
-                days += can1.get(Calendar.DAY_OF_YEAR);
-                can = can2;
+                days -= instance.get(Calendar.DAY_OF_YEAR);
+                days += checkNeed.get(Calendar.DAY_OF_YEAR);
+                can = instance;
             }
-            for (int i = 0; i < Math.abs(year2-year1); i++) {
+            for (int i = 0; i < checkNeedYear-instanceYear; i++) {
                 //获取小的时间当前年的总天数
                 days += can.getActualMaximum(Calendar.DAY_OF_YEAR);
                 //再计算下一年。

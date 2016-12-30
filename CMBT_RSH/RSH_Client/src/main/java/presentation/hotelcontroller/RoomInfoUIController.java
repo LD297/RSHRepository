@@ -75,8 +75,6 @@ public class RoomInfoUIController {
     @FXML
     private Label pageLabel;
 
-    private RoomInfoUIController roomInfoUIController;
-
     AnchorPane addRoomAnchorPane;
     AddRoomUIController addRoomUIController;
 
@@ -228,18 +226,10 @@ public class RoomInfoUIController {
 
     @FXML
     void addRoom(MouseEvent event) {
-        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getAddRoomUILoader();
-        if(addRoomAnchorPane==null)
-            try {
-                addRoomAnchorPane = (AnchorPane) loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        if(addRoomUIController==null)
-            addRoomUIController = loader.getController();
+        addRoomAnchorPane = HotelUIFXMLFactory.getInstance().getAddRoomUIPane();
+        addRoomUIController = HotelUIFXMLFactory.getInstance().getAddRoomUIController();
 
-        addRoomUIController.setRoomInfoUIController(roomInfoUIController);
-
+        addRoomUIController.setRoomInfoUIController(this);
         addRoomUIController.setPrePane(anchorPane);
         addRoomUIController.setHotelId(hotelId);
 
@@ -270,35 +260,29 @@ public class RoomInfoUIController {
         assert showPane0 != null : "fx:id=\"showPane0\" was not injected: check your FXML file '客房信息维护.fxml'.";
         assert pageLabel != null : "fx:id=\"pageLabel\" was not injected: check your FXML file '客房信息维护.fxml'.";
 
-        setShowPanes();
         initializeService();
+        setShowPanes();
     }
-
     private void initializeService() {
         this.hotelService = HotelServiceFactory.getInstance().getHotelService();
-    }
-
-    public void setPrePane(AnchorPane prePane) {
-        this.prePane = prePane;
-    }
-
-    public void setHotelId(String hotelId) {
-        this.hotelId = hotelId;
     }
     private void setShowPanes(){
         showPanes =  new AnchorPane[]{showPane0, showPane01, showPane02};
     }
 
+    public void setPrePane(AnchorPane prePane) {
+        this.prePane = prePane;
+    }
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
+    }
     public void refreshPage(){
         initCurrentPage();
         setCurrentRoom();
-        System.out.println(hotelId+" has "+currentRoom.size()+" room(s)~~~");
+//        System.out.println(hotelId+" has "+currentRoom.size()+" room(s)~~~");
         setFullPageNum();
         setRemainderRoomVONum();
         showPage();
     }
 
-    public void setRoomInfoUIController(RoomInfoUIController roomInfoUIController) {
-        this.roomInfoUIController = roomInfoUIController;
-    }
 }

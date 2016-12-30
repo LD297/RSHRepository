@@ -87,9 +87,4 @@ public class MakeMemberStandardUIController {
     private void initializeService() {
         userService = WebSalesmanServiceFactory.getInstance().getUserService();
     }
-
-
-//    public void setUserService(UserService userService) {
-//        this.userService = userService;
-//    }
 }
