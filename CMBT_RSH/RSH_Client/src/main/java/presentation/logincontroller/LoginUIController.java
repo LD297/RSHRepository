@@ -179,7 +179,7 @@ public class LoginUIController {
             if(loginService.checkOnline(Role.hotel, id, password).equals(ResultMessage.succeed)){
                 // 酒店首页根结点
                 AnchorPane hotelHomepage = HotelUIFXMLFactory.getInstance().getHotelHomePage();
-                //
+                // 酒店首页控制器
                 HotelHomepageUIController hotelHomepageUIController = HotelUIFXMLFactory.getInstance().
                         getHotelHomepageUIController();
 
@@ -198,10 +198,13 @@ public class LoginUIController {
             }
 
         } else if(role.equals(Role.websalesman)){
+            // 得到登陆服务
             LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
-            if(loginService.checkOnline(Role.websalesman, id, password ).equals(ResultMessage.succeed)){
 
+            if(loginService.checkOnline(Role.websalesman, id, password ).equals(ResultMessage.succeed)){
+                //网站营销人员首页根结点
                 AnchorPane webSalesmanHomepage = WebSalesmanUIFXMLFactory.getInstance().getWebSalesmanHomepage();
+                //
                 WebSalesmanHomepageUIController webSalesmanHomepageUIController = WebSalesmanUIFXMLFactory.
                         getInstance().getWebSalesmanHomepageUIController();
 
