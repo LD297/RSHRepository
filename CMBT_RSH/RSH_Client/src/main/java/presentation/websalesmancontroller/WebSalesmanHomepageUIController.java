@@ -138,6 +138,7 @@ public class WebSalesmanHomepageUIController {
         else
             scene = promotionPane.getScene();
 
+        promotionUIController.setPrePane(anchorPane);
         promotionUIController.setWebSalesVO(webSalesmanVO);
         promotionUIController.setSetterId();
         promotionUIController.refreshPage();
