@@ -9,9 +9,12 @@ import java.util.Date;
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.HotelController;
 import bl.userserviceimpl.CreditRecordList;
+import bl.userserviceimpl.UserController;
+import bl.userserviceimpl.UserForOrderController;
 import constant.CreditAction;
 import constant.ResultMessage;
 import constant.StateOfOrder;
+import data.dao.hoteldao.HotelDao;
 import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import rmi.RemoteHelper;
@@ -48,7 +51,6 @@ public class Order {
     	try {
 			orderPO = orderDao.searchByID(orderID);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -81,7 +83,7 @@ public class Order {
 	    }
 //		the time is okay
 		Date now = new Date(); 
-		Date checkOutTime = null;
+		Date checkOutTime ;
 	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	    String str=sdf.format(checkOutDate);
@@ -96,15 +98,12 @@ public class Order {
 		}
 //		change the state
 		stateOfOrder = StateOfOrder.executed;
+		
 //		change the recordListe:
-		int change = trueValue;
-	    CreditRecordList creditRecordList = new CreditRecordList(userID);
-	    int credit = creditRecordList.getCredit();
-	    CreditRecordVO creditRecordVO = new CreditRecordVO(userID,now,orderID,
-	            CreditAction.execute,"+"+change,change+credit);	    
-	    creditRecordList.addCreditRecord(creditRecordVO);
-	    
+		UserForOrder userForOrder = new UserForOrderController();
+		userForOrder.addCreditRecordForExecute(userID, orderID, trueValue, now);	    
 	    actualCheckInTime = now;
+	    
 	    return update();
 	}
 
@@ -137,7 +136,7 @@ public class Order {
 	   }
 	   //can cancel abnormal?? before checkout time
 	   Date cancelTime = new Date();
-	   Date checkOutTime = null;
+	   Date checkOutTime  = checkOutDate;
        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
        String str=sdf.format(checkOutDate);
@@ -154,18 +153,17 @@ public class Order {
 	   stateOfOrder = StateOfOrder.canceled;
 	   
 	   //change the creditRecordList
-	   
 	   double halfOrFull = 1/2;
        if(!isHalf)
            halfOrFull = 1;
-       CreditRecordList creditRecordList = new CreditRecordList(userID);
-       int credit = creditRecordList.getCredit();
-       credit += (int)trueValue*halfOrFull;
-       CreditRecordVO creditRecordVO = new CreditRecordVO(userID,cancelTime,orderID,
-               CreditAction.cancel_abnomal,"+"+String.valueOf((int)trueValue*halfOrFull),credit);//!!!!credit
-       creditRecordList.addCreditRecord(creditRecordVO);
+       int creditChange  =(int) halfOrFull* trueValue;
+       UserForOrder userForOrder = new UserForOrderController();
+       userForOrder.addCreditRecordForCancel(userID, orderID, creditChange, cancelTime);
        
-	   return update();
+       //change available room
+       HotelController hotelController = new HotelController();
+       hotelController.plusRoomAvail(orderID.substring(10, 20), roomType,roomNumber,checkInDate,checkOutDate);
+       return update();
    }
 
    
@@ -177,9 +175,8 @@ public class Order {
 		resultMessage = orderDao.update(this.changeIntoPO());
 	
 	   } catch (RemoteException e) {
-		// TODO Auto-generated catch block
-		return ResultMessage.remote_fail;
-	
+		   e.printStackTrace();
+		   return ResultMessage.remote_fail;	
 	   }
 	   return resultMessage;
    }
@@ -191,10 +188,14 @@ public class Order {
     	try {
 			resultMessage = orderDao.insert(orderPO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
+    	if(resultMessage==ResultMessage.succeed){
+    		HotelController hotelController = new HotelController();
+    		resultMessage = hotelController.minusRoomAvail(orderVO.getHotelID(), orderVO.getRoomType(),
+    				orderVO.getRoomNumber(), orderVO.getCheckIn(), orderVO.getActualCheckOut());
+    	}
     	return resultMessage;
     }
 
@@ -216,7 +217,7 @@ public class Order {
 		
 		// TODO Auto-generated method stub
     	
-    	String hotelID  = orderID.substring(0,10);
+    	String hotelID  = orderID.substring(10,20);
     	OrderPO orderPO = new OrderPO(orderID, userID, userName, 
     			hotelID, hotelName, 
     			stateOfOrder, 
@@ -230,9 +231,4 @@ public class Order {
 	}
     
 
-	public ResultMessage addAvailRoom() {
-		// TODO Auto-generated method stub
-		HotelService hotelService = new HotelController();
-		return hotelService.plusRoomAvail(orderID.substring(0,10),RoomType, roomNumber, checkInDate, checkOutDate);
-	}
 }

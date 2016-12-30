@@ -103,4 +103,16 @@ public class CreditRecordList {
 		return creditRecordVO.getCredit();
 	}
 
+	public ResultMessage addCreditRecord(CreditAction creditAction, String orderID, int change, Date changeTime) {
+		credit = credit+change;
+		CreditRecordVO creditRecordVO = new CreditRecordVO(userid, changeTime, orderID, creditAction,String.valueOf(change), credit);
+		initRemote();
+		try {
+			return creditRecordListDao.addCreditRecord(creditRecordVO.changeIntoPO());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.remote_fail;
+		}
+	}
+
 }
