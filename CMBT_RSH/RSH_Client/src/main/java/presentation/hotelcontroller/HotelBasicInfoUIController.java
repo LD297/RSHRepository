@@ -315,6 +315,7 @@ public class HotelBasicInfoUIController {
                 if (!resultMessage.equals(ResultMessage.succeed))
                     System.out.println("酒店信息更新失败！");
                 refreshPage();
+                editable = false;
             } else {
                 return;
             }

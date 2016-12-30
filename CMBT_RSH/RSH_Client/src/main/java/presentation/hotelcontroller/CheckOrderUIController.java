@@ -23,8 +23,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import presentation.hotelcontrollertools.HotelServiceFactory;
+import presentation.tools.MyDateFormat;
 import vo.OrderVO;
 import vo.RoomNormVO;
+
+import javax.xml.crypto.Data;
 
 public class CheckOrderUIController {
 
@@ -239,38 +242,69 @@ public class CheckOrderUIController {
     private void showOrderItems(AnchorPane theAnchorePane, OrderVO theOrder){
 
         if(theOrder!=null){
+            // 要展示的订单信息
             String userID = theOrder.getUserID();
             String userName = theOrder.getUserName();
             String orderID = theOrder.getOrderID();
             String roomType = theOrder.getRoom().getRoomType();
             int roomNum = theOrder.getRoomNumber();
             double trueValue = theOrder.getTrueValue();
+            Date generationDate = theOrder.getGenerationDate();
             Date checkIn = theOrder.getCheckIn();
             Date checkOut = theOrder.getCheckOut();
-            Date generationDate = theOrder.getGenerationDate();
-            ((Label)theAnchorePane.getChildren().get(0)).setText(userID+"("+userName+")");
-            ((Label)theAnchorePane.getChildren().get(1)).setText(orderID);
-            ((Label)theAnchorePane.getChildren().get(2)).setText(roomType);
-            ((Label)theAnchorePane.getChildren().get(3)).setText(String.valueOf(roomNum));
-            ((Label)theAnchorePane.getChildren().get(4)).setText("￥ "+String.valueOf(trueValue));
-            ((Label)theAnchorePane.getChildren().get(5)).setText(String.valueOf(generationDate.getTime()));
-            ((Label)theAnchorePane.getChildren().get(6)).setText(String.valueOf(checkIn.getTime()));
-            ((Label)theAnchorePane.getChildren().get(7)).setText(String.valueOf(checkOut.getTime()));
+            Date actualIn = theOrder.getActualCheckIn();
+            Date actualOut = theOrder.getActualCheckOut();
+
+            // 需要格式转换的信息
+            String roomNumStr = String.valueOf(roomNum);
+            String trueValueStr = String.valueOf(trueValue);
+            String generationDateStr = MyDateFormat.getInstance().toString(generationDate, true);
+            String checkInStr = MyDateFormat.getInstance().toString(checkIn, true);
+            String checkOutStr = MyDateFormat.getInstance().toString(checkOut, true);
+            String actualInStr = MyDateFormat.getInstance().toString(actualIn, true);
+            String actualOutStr = MyDateFormat.getInstance().toString(actualOut, true);
+
+            // 对应组件
+            Label idLabel = (Label)theAnchorePane.getChildren().get(0);
+            Label orderIdLabel = (Label)theAnchorePane.getChildren().get(1);
+            Label roomTypeLabel = (Label)theAnchorePane.getChildren().get(2);
+            Label roomNumLabel = (Label)theAnchorePane.getChildren().get(3);
+            Label priceLabel = (Label)theAnchorePane.getChildren().get(4);
+            Label generationDateLabel = (Label)theAnchorePane.getChildren().get(5);
+            Label checkInLabel = (Label)theAnchorePane.getChildren().get(6);
+            Label checkOutLabel = (Label)theAnchorePane.getChildren().get(7);
+            Label actualCheckInLabel = (Label)theAnchorePane.getChildren().get(8);
+            Label actualCheckOutLabel = (Label)theAnchorePane.getChildren().get(9);
+            // 实际入住、实际离开（提示的汉字）
+            Label actualInText = (Label)theAnchorePane.getChildren().get(19);
+            Label actualOutText = (Label)theAnchorePane.getChildren().get(20);
+
+            // 将信息填充
+            idLabel.setText(userID+"("+userName+")");
+            orderIdLabel.setText(orderID);
+            roomTypeLabel.setText(roomType);
+            roomNumLabel.setText(roomNumStr);
+            priceLabel.setText("￥ "+trueValueStr);
+            generationDateLabel.setText(generationDateStr);
+            checkInLabel.setText(checkInStr);
+            checkOutLabel.setText(checkOutStr);
+
+            // 实际入住、实际离开的汉字和对应时间默认不可见
+            actualInText.setVisible(false);
+            actualOutText.setVisible(false);
+            actualCheckInLabel.setVisible(false);
+            actualCheckOutLabel.setVisible(false);
 
             if(currentOrderType.equals(StateOfOrder.executed)){
-                Date actualCheckIn = theOrder.getActualCheckIn();
-                Date actualCheckOut = theOrder.getActualCheckOut();
+                //
+                // 客人有入住时间
+                actualInText.setVisible(true);
+                actualCheckInLabel.setText(actualInStr);
 
-                if(actualCheckIn!=null) {
-                    Label actualCheckInLabel = (Label) theAnchorePane.getChildren().get(8);
-                    String actualIn = DateTransform.getDateTransFormed(actualCheckIn);
-                    actualCheckInLabel.setText(actualIn);
-                }
-                if(actualCheckOut!=null){
-                    // 客人已离开
-                    Label actualCheckOutLabel= (Label) theAnchorePane.getChildren().get(9);
-                    String actualOut = DateTransform.getDateTransFormed(actualCheckOut);
-                    actualCheckOutLabel.setText(actualOut);
+                if(actualInStr!=""){
+                    // 客人有离开时间
+                    actualOutText.setVisible(true);
+                    actualCheckOutLabel.setText(actualOutStr);
                     // 右下角不显示"退房"按钮
                     theAnchorePane.getChildren().get(10).setVisible(false);
                     // 显示对号的ImageView

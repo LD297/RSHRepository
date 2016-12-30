@@ -173,10 +173,13 @@ public class LoginUIController {
 				passwordFormLabel.setText("用户名或密码错误");
 			}
 		} else if(role==Role.hotel){
+            // 得到登陆服务
             LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
 
             if(loginService.checkOnline(Role.hotel, id, password).equals(ResultMessage.succeed)){
+                // 酒店首页根结点
                 AnchorPane hotelHomepage = HotelUIFXMLFactory.getInstance().getHotelHomePage();
+                //
                 HotelHomepageUIController hotelHomepageUIController = HotelUIFXMLFactory.getInstance().
                         getHotelHomepageUIController();
 
