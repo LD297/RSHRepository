@@ -192,10 +192,22 @@ public class test {
    
    public static void main(String[] args) throws ParseException, RemoteException{
 
+	   OrderDaoHelperMySql orderdao = new OrderDaoHelperMySql();
+       orderdao.init();
+       HotelDaoHelperMySql hoteldao = new HotelDaoHelperMySql();
+       hoteldao.init();
+       LoginDaoHelperMySql logindao = new LoginDaoHelperMySql();
+       logindao.init();
        PromotionDaoHelperMySql promotiondao = new PromotionDaoHelperMySql();
-       promotiondao.finish();
        promotiondao.init();
-      // orderdao.finish(); hoteldao.finish(); logindao.finish(); promotiondao.finish();
-       // userdao.finish(); cdao.finish(); websalesmandao.finish();
+       UserDaoHelperMySql userdao = new UserDaoHelperMySql();
+       userdao.init();
+       CreditRecordListDaoHelperMySql cdao = new CreditRecordListDaoHelperMySql();
+       cdao.init();
+       WebSalesmanDaoHelperMySql websalesmandao = new WebSalesmanDaoHelperMySql();
+       websalesmandao.init();
+       WebManagerDaoHelperMySql webmanagerdao = new WebManagerDaoHelperMySql();
+       webmanagerdao.init();
+
    }
 }
