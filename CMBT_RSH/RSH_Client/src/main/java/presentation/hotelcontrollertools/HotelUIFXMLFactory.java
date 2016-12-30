@@ -18,21 +18,21 @@ public class HotelUIFXMLFactory {
 
     // loader
 
-    private FXMLLoader hotelHomepageUILoader;
+    private static FXMLLoader hotelHomepageUILoader;
 
-    private FXMLLoader hotelBasicInfoUILoader;
+    private static FXMLLoader hotelBasicInfoUILoader;
 
-    private FXMLLoader roomInfoUILoader;
+    private static FXMLLoader roomInfoUILoader;
 
-    private FXMLLoader addRoomUILoader;
+    private static FXMLLoader addRoomUILoader;
 
-    private FXMLLoader roomAvailUILoader;
+    private static FXMLLoader roomAvailUILoader;
 
-    private FXMLLoader promotionUILoader;
+    private static FXMLLoader promotionUILoader;
 
-    private FXMLLoader addPromotionUILoader;
+    private static FXMLLoader addPromotionUILoader;
 
-    private FXMLLoader checkOrderUILoader;
+    private static FXMLLoader checkOrderUILoader;
 
     // anchorPane
 
@@ -70,6 +70,19 @@ public class HotelUIFXMLFactory {
 
     private CheckOrderUIController checkOrderUIController;
 
+    HotelUIFXMLFactory(){
+        initLoader();
+    }
+    private void initLoader() {
+        hotelHomepageUILoader = new FXMLLoader(getClass().getResource("/fxml/酒店首页.fxml"));
+        hotelBasicInfoUILoader = new FXMLLoader(getClass().getResource("/fxml/酒店信息维护界面.fxml"));
+        promotionUILoader = new FXMLLoader(getClass().getResource("/fxml/促销策略维护.fxml"));
+        checkOrderUILoader = new FXMLLoader(getClass().getResource("/fxml/订单搜索并浏览（酒店）.fxml"));
+        roomAvailUILoader = new FXMLLoader(getClass().getResource("/fxml/可用客房.fxml"));
+        roomInfoUILoader = new FXMLLoader(getClass().getResource("/fxml/客房信息维护.fxml"));
+        addRoomUILoader = new FXMLLoader(getClass().getResource("/fxml/添加客房界面.fxml"));
+        addPromotionUILoader = new FXMLLoader(getClass().getResource("/fxml/添加促销策略.fxml"));
+    }
 
     public static HotelUIFXMLFactory getInstance(){
         if(hotelUIFXMLFactory==null)
@@ -77,60 +90,10 @@ public class HotelUIFXMLFactory {
         return hotelUIFXMLFactory;
     }
 
-    public FXMLLoader getHotelHomepageUILoader(){
-        if(hotelHomepageUILoader==null)
-            hotelHomepageUILoader = new FXMLLoader(getClass().getResource("/fxml/酒店首页.fxml"));
-        return hotelHomepageUILoader;
-    }
-
-    public FXMLLoader getHotelBasicInfoUILoader(){
-        if(hotelBasicInfoUILoader==null)
-            hotelBasicInfoUILoader = new FXMLLoader(getClass().getResource("/fxml/酒店信息维护界面.fxml"));
-        return hotelBasicInfoUILoader;
-    }
-
-    public FXMLLoader getPromotionUILoader() {
-        if(promotionUILoader==null)
-            promotionUILoader = new FXMLLoader(getClass().getResource("/fxml/促销策略维护.fxml"));
-        return promotionUILoader;
-    }
-
-    public FXMLLoader getCheckOrderUILoader() {
-        if(checkOrderUILoader==null)
-            checkOrderUILoader = new FXMLLoader(getClass().getResource("/fxml/订单搜索并浏览（酒店）.fxml"));
-        return checkOrderUILoader;
-    }
-
-    public FXMLLoader getRoomAvailUILoader() {
-        if(roomAvailUILoader==null)
-            roomAvailUILoader = new FXMLLoader(getClass().getResource("/fxml/可用客房.fxml"));
-        return roomAvailUILoader;
-    }
-
-    public FXMLLoader getRoomInfoUILoader() {
-        if(roomInfoUILoader==null)
-            roomInfoUILoader = new FXMLLoader(getClass().getResource("/fxml/客房信息维护.fxml"));
-        return roomInfoUILoader;
-    }
-
-    public FXMLLoader getAddRoomUILoader() {
-        if(addRoomUILoader==null)
-            addRoomUILoader = new FXMLLoader(getClass().getResource("/fxml/添加客房界面.fxml"));
-        return addRoomUILoader;
-    }
-
-    public FXMLLoader getAddPromotionUILoader(){
-        if(addPromotionUILoader==null)
-            addPromotionUILoader = new FXMLLoader(getClass().getResource("/fxml/添加促销策略.fxml"));
-        return addPromotionUILoader;
-    }
-
-
-    public AnchorPane getHotelHomePage() {
+    public AnchorPane getHotelHomePageUIPane() {
         if(hotelHomepageUIPane==null){
-            FXMLLoader loader = HotelUIFXMLFactory.getInstance().getHotelHomepageUILoader();
             try {
-                hotelHomepageUIPane = loader.load();
+                hotelHomepageUIPane = HotelUIFXMLFactory.hotelHomepageUILoader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -140,9 +103,8 @@ public class HotelUIFXMLFactory {
 
     public AnchorPane getHotelBasicInfoUIPane() {
         if (hotelBasicInfoUIPane == null){
-            FXMLLoader loader = HotelUIFXMLFactory.getInstance().getHotelBasicInfoUILoader();
             try {
-                hotelBasicInfoUIPane = loader.load();
+                hotelBasicInfoUIPane = HotelUIFXMLFactory.hotelBasicInfoUILoader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -152,9 +114,8 @@ public class HotelUIFXMLFactory {
 
     public AnchorPane getRoomInfoUIPane() {
         if(roomInfoUIPane==null){
-            FXMLLoader loader = HotelUIFXMLFactory.getInstance().getRoomInfoUILoader();
             try {
-                roomInfoUIPane = loader.load();
+                roomInfoUIPane = HotelUIFXMLFactory.roomInfoUILoader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -164,9 +125,8 @@ public class HotelUIFXMLFactory {
 
     public AnchorPane getAddRoomUIPane() {
         if(addRoomUIPane==null){
-            FXMLLoader loader = HotelUIFXMLFactory.getInstance().getAddRoomUILoader();
             try {
-                addRoomUIPane = loader.load();
+                addRoomUIPane = HotelUIFXMLFactory.addRoomUILoader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -176,9 +136,8 @@ public class HotelUIFXMLFactory {
 
     public AnchorPane getRoomAvailUIPane() {
         if(roomAvailUIPane==null){
-            FXMLLoader loader = HotelUIFXMLFactory.getInstance().getRoomAvailUILoader();
             try {
-                roomAvailUIPane = loader.load();
+                roomAvailUIPane = HotelUIFXMLFactory.roomAvailUILoader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -188,9 +147,8 @@ public class HotelUIFXMLFactory {
 
     public AnchorPane getCheckOrderUIPane() {
         if(checkOrderUIPane==null){
-            FXMLLoader loader = HotelUIFXMLFactory.getInstance().getCheckOrderUILoader();
             try {
-                checkOrderUIPane = loader.load();
+                checkOrderUIPane = HotelUIFXMLFactory.checkOrderUILoader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -200,9 +158,8 @@ public class HotelUIFXMLFactory {
 
     public AnchorPane getPromotionUIPane(){
         if(promotionUIPane==null){
-            FXMLLoader loader = HotelUIFXMLFactory.getInstance().getPromotionUILoader();
             try {
-                promotionUIPane = loader.load();
+                promotionUIPane = HotelUIFXMLFactory.promotionUILoader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -211,9 +168,8 @@ public class HotelUIFXMLFactory {
     }
     public AnchorPane getAddPromotionUIPane(){
         if(addPromotionUIPane==null){
-            FXMLLoader loader = HotelUIFXMLFactory.getInstance().getAddPromotionUILoader();
             try {
-                addPromotionUIPane = loader.load();
+                addPromotionUIPane = HotelUIFXMLFactory.addPromotionUILoader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -222,8 +178,8 @@ public class HotelUIFXMLFactory {
     }
     public HotelHomepageUIController getHotelHomepageUIController() {
         if(hotelHomepageUIController==null){
-            getHotelHomepageUILoader();
-            hotelHomepageUIController = HotelUIFXMLFactory.getInstance().getHotelHomepageUILoader().getController();
+            getHotelHomePageUIPane();
+            hotelHomepageUIController = HotelUIFXMLFactory.hotelHomepageUILoader.getController();
         }
         return hotelHomepageUIController;
     }
@@ -231,7 +187,7 @@ public class HotelUIFXMLFactory {
     public HotelBasicInfoUIController getHotelBasicInfoUIController() {
         if(hotelBasicInfoUIController==null){
             getHotelBasicInfoUIPane();
-            hotelBasicInfoUIController = HotelUIFXMLFactory.getInstance().getHotelBasicInfoUILoader().getController();
+            hotelBasicInfoUIController = HotelUIFXMLFactory.hotelBasicInfoUILoader.getController();
         }
         return hotelBasicInfoUIController;
     }
@@ -239,7 +195,7 @@ public class HotelUIFXMLFactory {
     public RoomInfoUIController getRoomInfoUIController() {
         if(roomInfoUIController==null){
             getRoomInfoUIPane();
-            roomInfoUIController = HotelUIFXMLFactory.getInstance().getRoomInfoUILoader().getController();
+            roomInfoUIController = HotelUIFXMLFactory.roomInfoUILoader.getController();
         }
         return roomInfoUIController;
     }
@@ -247,7 +203,7 @@ public class HotelUIFXMLFactory {
     public AddRoomUIController getAddRoomUIController() {
         if(addRoomUIController==null){
             getAddRoomUIPane();
-            addRoomUIController = HotelUIFXMLFactory.getInstance().getAddRoomUILoader().getController();
+            addRoomUIController = HotelUIFXMLFactory.addRoomUILoader.getController();
         }
         return addRoomUIController;
     }
@@ -255,7 +211,7 @@ public class HotelUIFXMLFactory {
     public RoomAvailUIController getRoomAvailUIController() {
         if(roomAvailUIController==null){
             getRoomAvailUIPane();
-            roomAvailUIController = HotelUIFXMLFactory.getInstance().getRoomAvailUILoader().getController();
+            roomAvailUIController = HotelUIFXMLFactory.roomAvailUILoader.getController();
         }
         return roomAvailUIController;
     }
@@ -263,7 +219,7 @@ public class HotelUIFXMLFactory {
     public CheckOrderUIController getCheckOrderUIController() {
         if(checkOrderUIController==null){
             getCheckOrderUIPane();
-            checkOrderUIController = HotelUIFXMLFactory.getInstance().getCheckOrderUILoader().getController();
+            checkOrderUIController = HotelUIFXMLFactory.checkOrderUILoader.getController();
         }
         return checkOrderUIController;
     }
@@ -271,7 +227,7 @@ public class HotelUIFXMLFactory {
     public PromotionUIController getPromotionUIController(){
         if(promotionUIController==null){
             getPromotionUIPane();
-            promotionUIController = HotelUIFXMLFactory.getInstance().getPromotionUILoader().getController();
+            promotionUIController = HotelUIFXMLFactory.promotionUILoader.getController();
         }
         return promotionUIController;
     }
@@ -279,7 +235,7 @@ public class HotelUIFXMLFactory {
     public AddPromotionUIController getAddPromotionUIController(){
         if(addPromotionUIController==null){
             getAddPromotionUIPane();
-            addPromotionUIPane = HotelUIFXMLFactory.getInstance().getAddPromotionUILoader().getController();
+            addPromotionUIPane = HotelUIFXMLFactory.addPromotionUILoader.getController();
         }
         return addPromotionUIController;
     }

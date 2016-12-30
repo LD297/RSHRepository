@@ -293,11 +293,8 @@ public class UIJumpTool {
      */
     public void changeLoginToHotelHomePage(){
         Parent root = null;
-        try {
-            root = HotelUIFXMLFactory.getInstance().getHotelHomepageUILoader().load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        root = HotelUIFXMLFactory.getInstance().getHotelHomePageUIPane();
+
         stage.setTitle("hotel");
         stage.setScene(new Scene(root, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT));
     }

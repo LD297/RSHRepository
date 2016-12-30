@@ -148,10 +148,11 @@ public class HotelBasicInfoUIController {
     @FXML
     private Label briefIntroPrompt;
 
+    private HotelService hotelService;
 
     private AnchorPane prePane;
-    private HotelService hotelService;
     private String hotelId;
+
     // 从数据库加载的酒店原始信息
     private HotelVO hotelVO;
     // 客房信息维护界面根结点
@@ -159,17 +160,10 @@ public class HotelBasicInfoUIController {
     // 客房信息维护界面控制器
     private RoomInfoUIController roomInfoUIController;
     // 该界面是否可编辑
-    boolean editable = false;
-
-    Text[] facilitiyText;
-    CheckBox[] facilityCheckBox;
-    Label[] prompts;
-
-    private void promptsInvisible() {
-        for (int i = 0; i < prompts.length; i++) {
-            prompts[i].setVisible(false);
-        }
-    }
+    private boolean editable = false;
+    private Text[] facilitiyText;
+    private CheckBox[] facilityCheckBox;
+    private Label[] prompts;
 
     @FXML
     void editHotelName(MouseEvent event) {
@@ -276,11 +270,9 @@ public class HotelBasicInfoUIController {
             String checkIn = checkInTextField.getText();
             inputCheck = HotelInputCheck.checkTime(checkIn);
             showPrompt(inputCheck, timePrompt);
-//
-//            String price = priceTextField.getText();
-//            inputCheck = HotelInputCheck.checkPrice(price);
-//            showPrompt(inputCheck, pricePrompt);
-
+//          String price = priceTextField.getText();
+//          inputCheck = HotelInputCheck.checkPrice(price);
+//          showPrompt(inputCheck, pricePrompt);
             String url = imageUrlTextField.getText().trim();
             inputCheck = HotelInputCheck.checkURL(url);
             showPrompt(inputCheck, urlPrompt);
@@ -308,7 +300,7 @@ public class HotelBasicInfoUIController {
                 hotelVO.setLevel(Integer.valueOf(level));
                 hotelVO.setFacility(facility);
                 hotelVO.setLatestCheckInTime(checkIn);
-//                hotelVO.setStandardRoomPrice(Double.valueOf(price));
+//              hotelVO.setStandardRoomPrice(Double.valueOf(price));
                 hotelVO.setImageAddress(url);
                 hotelVO.setBriefIntro(briefIntro);
                 ResultMessage resultMessage = hotelService.updateHotel(hotelVO);
@@ -337,22 +329,12 @@ public class HotelBasicInfoUIController {
 
     @FXML
     void changeToRoomInfoUI(MouseEvent event) {
-        // 加载客房信息维护界面
-        FXMLLoader loader = HotelUIFXMLFactory.getInstance().getRoomInfoUILoader();
-        // 加载客房信息维护界面根结点
-        if (roomInfoUIPane == null)
-            try {
-                roomInfoUIPane = (AnchorPane) loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        // 得到客房信息维护界面控制器
-        if (roomInfoUIController == null)
-            roomInfoUIController = loader.getController();
-        roomInfoUIController.setRoomInfoUIController(roomInfoUIController);
+
+        roomInfoUIPane = HotelUIFXMLFactory.getInstance().getRoomInfoUIPane();
+        roomInfoUIController  = HotelUIFXMLFactory.getInstance().getRoomInfoUIController();
+
         // 传入酒店信息维护界面根结点
         roomInfoUIController.setPrePane(anchorPane);
-
         roomInfoUIController.setHotelId(hotelId);
         roomInfoUIController.refreshPage();
 
@@ -417,46 +399,58 @@ public class HotelBasicInfoUIController {
         setFacilityText();
         setFacilityCheckBox();
         setPrompts();
-
         initializeService();
 
     }
 
-    private void initializeService() {
-        this.hotelService = HotelServiceFactory.getInstance().getHotelService();
-    }
-
     private void setFacilityText() {
         facilitiyText = new Text[]{wifiText, swimmingPoolText, parkText, canteenText};
-
     }
-
     private void setFacilityCheckBox() {
         facilityCheckBox = new CheckBox[]{wifiCheckBox, swimmingPoolCheckBox,
                 parkCheckBox, canteeCheckBox};
     }
-
     private void setPrompts() {
         prompts = new Label[]{hotelNamePrompt, levelPrompt, timePrompt, pricePrompt,
                 urlPrompt, briefIntroPrompt};
     }
+    private void initializeService() {
+        this.hotelService = HotelServiceFactory.getInstance().getHotelService();
+    }
 
+    /**
+     *
+     * @param prePane
+     */
     public void setPrePane(AnchorPane prePane) {
         this.prePane = prePane;
     }
-
+    /**
+     *
+     * @param hotelId
+     */
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
     }
-
+    /**
+     *
+     */
     public void setHotelVO() {
         this.hotelVO = hotelService.getHotelInfo(hotelId);
     }
 
+    private void promptsInvisible() {
+        for (int i = 0; i < prompts.length; i++) {
+            prompts[i].setVisible(false);
+        }
+    }
+
+    /**
+     *
+     */
     public void refreshPage() {
 
         promptsInvisible();
-        setHotelVO();
 
         Image image = new Image(hotelVO.getImageAddress());
         hotelImage.setImage(image);

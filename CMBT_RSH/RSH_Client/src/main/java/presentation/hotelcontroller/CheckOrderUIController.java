@@ -82,7 +82,6 @@ public class CheckOrderUIController {
     @FXML
     private AnchorPane unexecutePane02;
 
-
     @FXML
     private Button checkOutButton02;
 
@@ -162,17 +161,16 @@ public class CheckOrderUIController {
     // 当前页数，从0开始计，显示出来要加一
     private int currentPage=0;
 
-    // TODO 从数据库拿到各种order
-    public void setUnexecutedOrder(){
+    private void setUnexecutedOrder(){
         this.unexecutedOrder = orderForHotel.hotelClassify(hotelId, StateOfOrder.unexecuted);
     }
-    public void setExecutedOrder(){
+    private void setExecutedOrder(){
         this.executedOrder = orderForHotel.hotelClassify(hotelId,StateOfOrder.executed);
     }
-    public void setExceptionalOrder(){
+    private void setExceptionalOrder(){
         this.exceptionalOrder = orderForHotel.hotelClassify(hotelId,StateOfOrder.abnormal);
     }
-    public void setRevokedOrder(){
+    private void setRevokedOrder(){
         this.revokedOrder = orderForHotel.hotelClassify(hotelId, StateOfOrder.canceled);
     }
 
@@ -606,12 +604,10 @@ public class CheckOrderUIController {
         assert tabPane != null : "fx:id=\"tabPane\" was not injected: check your FXML file '订单搜索并浏览（酒店）.fxml'.";
 
         initializeService();
-
     }
 
     private void initializeService() {
         this.orderForHotel = HotelServiceFactory.getInstance().getOrderForHotel();
-
     }
 
     public void setPrePane(AnchorPane prePane) {

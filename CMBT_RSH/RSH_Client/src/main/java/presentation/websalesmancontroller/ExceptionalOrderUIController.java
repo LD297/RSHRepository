@@ -302,9 +302,5 @@ public class ExceptionalOrderUIController {
     private void setAPanesForShow(){
         aPanesForShow = new AnchorPane[]{showPane0, showPane1, showPane2};
     }
-
-//    public void setOrderForWebsite(OrderForWebsite orderForWebsite){
-//        this.orderForWebsite = orderForWebsite;
-//    }
 }
 
