@@ -269,4 +269,7 @@ public class OrderPO implements Serializable{
 		// TODO Auto-generated method stub
 		this.comment = comment;
 	}
+	public void setActualCheckOut(Date date) {
+		this.actualCheckOut = date;
+	}
 }

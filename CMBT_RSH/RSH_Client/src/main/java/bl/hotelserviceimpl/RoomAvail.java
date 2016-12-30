@@ -21,13 +21,12 @@ public class RoomAvail {
 	
 	private RoomAvail(String hotelID){
 		this.hotelID = hotelID;
-		initRemote();
 	}
 	
 	private void initRemote(){
 		if(hotelDao==null){
-		RemoteHelper remoteHelper = RemoteHelper.getInstance();
-		hotelDao = remoteHelper.getHotelDao();
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
+			hotelDao = remoteHelper.getHotelDao();
 		}
 	}
 
@@ -40,6 +39,7 @@ public class RoomAvail {
 			numOfRoomAvail = hotelDao.numOfRoomAvail(hotelID, roomType, checkIn, checkOut);
 		}catch (RemoteException e){
 			e.printStackTrace();
+			return 0;
 		}
 		return numOfRoomAvail;
 	}
@@ -47,44 +47,30 @@ public class RoomAvail {
 	// 供给order模块
 	// 更新系统的可用客房信息
 	public ResultMessage changeRoomAvail( String roomType,boolean isPlus,int num, Date checkIn, Date checkOut) {
-		ResultMessage resultMessage = null;
 		initRemote();
 		try {
-			resultMessage = hotelDao.changeRoomAvail(hotelID, roomType,isPlus, num, checkIn, checkOut);
+			return hotelDao.changeRoomAvail(hotelID, roomType,isPlus, num, checkIn, checkOut);
 		}catch (RemoteException e){
 			e.printStackTrace();
+			return ResultMessage.remote_fail;
 		}
-		return resultMessage;
 	}
 	
 	public ArrayList<RoomAvailVO> getRoomAvailList( Date checkIn) {
-		ArrayList<RoomAvailPO> availPOs = null;
+		ArrayList<RoomAvailPO> availPOs = new ArrayList<>();
+		ArrayList<RoomAvailVO> availVOs = new ArrayList<>();
 		initRemote();
 		try{
 			availPOs = hotelDao.getRoomAvailList(hotelID, checkIn);
 		}catch (RemoteException e){
 			e.printStackTrace();
+			return availVOs;
 		}
-		ArrayList<RoomAvailVO> availVOs = new ArrayList<>();
 		for(RoomAvailPO roomAvailPO:availPOs){
 			availVOs.add(roomAvailPO.changeIntoVO());
 		}
 		return availVOs;
 	}
 	
-	/**
-	public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> roomAvailList) {
-		ResultMessage resultMessage = null;
-		initRemote();
-		try {
-			for(RoomAvailVO roomAvailVO:roomAvailList){
-				hotelDao.updateRoomList(roomAvailVO.changeIntoPO());
-			}
-			hotelDao.changeRoomAvail(id, roomType, isPlus, num, checkIn, checkOut)
-			resultMessage = hotelDao.updateRoomAvailList(hotelID, roomAvailList);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return resultMessage;
-	}**/
+
 }

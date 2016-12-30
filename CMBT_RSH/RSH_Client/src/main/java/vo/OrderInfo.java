@@ -1,6 +1,8 @@
 package vo;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class OrderInfo {
@@ -21,14 +23,11 @@ public class OrderInfo {
 		this.roomType = roomType;
 		this.roomNum = roomNum;
 		this.checkInDate = checkInDate;
-		this.checkOutDate = checkOutDate;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-		stayDay = Integer.parseInt(simpleDateFormat.format(checkOutDate))-
-				Integer.parseInt(simpleDateFormat.format(checkInDate));
-		
+		this.checkOutDate = checkOutDate;			
 		this.userID = userID;
 		this.price = price;
-		originalValue = stayDay*roomNum*price;
+		stayDay = betweenDate(checkInDate, checkOutDate);
+		originalValue = roomNum*price*stayDay;
 	}
 
 	public String getHotelID() {
@@ -71,6 +70,20 @@ public class OrderInfo {
 		this.userID = userID;
 	}
 
-	
-
+	public int betweenDate(Date smdate, Date bdate){
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");  
+		try {
+			smdate=sdf.parse(sdf.format(smdate));
+			bdate=sdf.parse(sdf.format(bdate));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}  
+		Calendar cal = Calendar.getInstance();    
+		cal.setTime(smdate);    
+		long time1 = cal.getTimeInMillis();                 
+		cal.setTime(bdate);    
+		long time2 = cal.getTimeInMillis();         
+		int between_days=(int) ((time2-time1)/(1000*3600*24));  
+		return between_days;
+	}
 }
