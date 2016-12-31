@@ -14,9 +14,9 @@ import bl.orderserviceimpl.Order;
 public class OrderVO {
 
     // 注：一笔订单允许一种房间类型
-    private String orderID = null;
-    private String userID = null;
-    private String userName = null;
+    private String orderID ;
+    private String userID ;
+    private String userName;
     private String hotelID = null;
     private String hotelName = null;
     private StateOfOrder state = null;
@@ -114,7 +114,6 @@ public class OrderVO {
         this.actualCheckOut = actualCheckOut;
         this.cancelTime = cancelTime;
         this.cancelAbnormalTime = cancelAbnormalTime;
-        System.out.println(checkOut.toString());
     }
     public String getOrderID(){
         return orderID;
@@ -202,12 +201,7 @@ public class OrderVO {
 		return orderPO;
 	}
 	public String getRoomType() {
-		// TODO Auto-generated method stub
 		return room.getRoomType();
-	}
-	public Order changeIntoOrder() {
-		// TODO Auto-generated method stub
-		return null;
 	}
     
     

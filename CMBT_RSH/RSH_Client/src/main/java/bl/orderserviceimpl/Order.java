@@ -9,9 +9,12 @@ import java.util.Date;
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.HotelController;
 import bl.userserviceimpl.CreditRecordList;
+import bl.userserviceimpl.UserController;
+import bl.userserviceimpl.UserForOrderController;
 import constant.CreditAction;
 import constant.ResultMessage;
 import constant.StateOfOrder;
+import data.dao.hoteldao.HotelDao;
 import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import rmi.RemoteHelper;
@@ -22,19 +25,18 @@ import vo.RoomNormVO;
 public class Order {
 
 	private static OrderDao orderDao=null;
+	OrderPO orderPO;
 	
-	String userID;
-	String orderID;
-	Date checkInDate;
-	Date checkOutDate;
-	Date actualCheckOutTime;
-	Date actualCheckInTime;
-	StateOfOrder stateOfOrder;
-	int trueValue;
-	
-	String RoomType;	
-	String promotionName;
-	
+	public Order(String orderID) {
+		initRemote();
+		try {
+			orderPO = orderDao.searchByID(orderID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	private static void initRemote(){
 		if(orderDao == null){
 			RemoteHelper remoteHelper = RemoteHelper.getInstance();
@@ -42,28 +44,15 @@ public class Order {
 		}
 	}
 	
-    public static OrderVO getOrderInfo(String orderID){
-    	OrderPO orderPO = null;
-    	initRemote();
-    	try {
-			orderPO = orderDao.searchByID(orderID);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-    	if(orderPO==null){
-    		return null;
-    	}
-    	return orderPO.changeIntoVO();
-    }
+   
 	
     public static Order getInstance(String orderID){
-    	OrderVO orderVO  = getOrderInfo(orderID);
-    	if(orderVO==null){
+    	Order order = new Order(orderID);
+    	if(order.orderPO==null)
     		return null;
+    	else{
+    		return order;
     	}
-    	return orderVO.changeIntoOrder();
     }
     
 
@@ -76,15 +65,17 @@ public class Order {
 	public ResultMessage execute(){ 
 		
 //		can be executed??
+		StateOfOrder stateOfOrder = orderPO.getState();
 		if(stateOfOrder!=StateOfOrder.unexecuted&&stateOfOrder!=StateOfOrder.canceled){
 	    	return ResultMessage.noChangeMade;
 	    }
+		
 //		the time is okay
 		Date now = new Date(); 
-		Date checkOutTime = null;
+		Date checkOutTime ;
 	    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-	    String str=sdf.format(checkOutDate);
+	    String str=sdf.format(orderPO.getCheckOut());
 	    try{
 	    	checkOutTime = df.parse(str+" 12:00:00");
 	    }catch (ParseException e){
@@ -94,17 +85,13 @@ public class Order {
 		if(now.getTime()-checkOutTime.getTime()>0){
 			return ResultMessage.timeOut;
 		}
+		
 //		change the state
-		stateOfOrder = StateOfOrder.executed;
+		orderPO.setState(StateOfOrder.executed);
+		
 //		change the recordListe:
-		int change = trueValue;
-	    CreditRecordList creditRecordList = new CreditRecordList(userID);
-	    int credit = creditRecordList.getCredit();
-	    CreditRecordVO creditRecordVO = new CreditRecordVO(userID,now,orderID,
-	            CreditAction.execute,"+"+change,change+credit);	    
-	    creditRecordList.addCreditRecord(creditRecordVO);
-	    
-	    actualCheckInTime = now;
+		UserForOrder userForOrder = new UserForOrderController();
+		userForOrder.addCreditRecordForExecute(orderPO.getUserID(), orderPO.getOrderID(), (int)orderPO.getTrueValue(), now);	      
 	    return update();
 	}
 
@@ -115,10 +102,10 @@ public class Order {
 	 * @return
 	 */
    public ResultMessage leaveUpdate(){
-	   if(stateOfOrder!= stateOfOrder.executed){
+	   if(orderPO.getState()!= StateOfOrder.executed){
 		   return ResultMessage.noChangeMade;
 	   }
-	   actualCheckOutTime = new Date();
+	   orderPO.setActualCheckOut(new Date());
        return update();
    }
    
@@ -132,15 +119,15 @@ public class Order {
   
    public ResultMessage cancelAbnormal(boolean isHalf){
 	   //is abnormal or not
-	   if(stateOfOrder != StateOfOrder.abnormal){
+	   if(orderPO.getState()!= StateOfOrder.abnormal){
 		   return ResultMessage.noChangeMade;
 	   }
 	   //can cancel abnormal?? before checkout time
 	   Date cancelTime = new Date();
-	   Date checkOutTime = null;
+	   Date checkOutTime  = orderPO.getCheckOut();
        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-       String str=sdf.format(checkOutDate);
+       String str=sdf.format(checkOutTime);
        try{
            checkOutTime = df.parse(str+" 12:00:00");
        }catch (ParseException e){
@@ -151,37 +138,29 @@ public class Order {
            return ResultMessage.timeOut;
 	   //change the state of order
        
-	   stateOfOrder = StateOfOrder.canceled;
+	   orderPO.setState(StateOfOrder.canceled);
 	   
 	   //change the creditRecordList
-	   
 	   double halfOrFull = 1/2;
        if(!isHalf)
            halfOrFull = 1;
-       CreditRecordList creditRecordList = new CreditRecordList(userID);
-       int credit = creditRecordList.getCredit();
-       credit += (int)trueValue*halfOrFull;
-       CreditRecordVO creditRecordVO = new CreditRecordVO(userID,cancelTime,orderID,
-               CreditAction.cancel_abnomal,"+"+String.valueOf((int)trueValue*halfOrFull),credit);//!!!!credit
-       creditRecordList.addCreditRecord(creditRecordVO);
+       int creditChange  =(int) (halfOrFull* orderPO.getTrueValue());
+       UserForOrder userForOrder = new UserForOrderController();
+       userForOrder.addCreditRecordForCancel(orderPO.getUserID(), orderPO.getOrderID(), creditChange, cancelTime);
        
-	   return update();
+       return update();
    }
 
    
 
    public ResultMessage update(){
-	   ResultMessage resultMessage = null ;
-	   
 	   try {
-		resultMessage = orderDao.update(this.changeIntoPO());
+		return orderDao.update(orderPO);
 	
 	   } catch (RemoteException e) {
-		// TODO Auto-generated catch block
-		return ResultMessage.remote_fail;
-	
+		   e.printStackTrace();
+		   return ResultMessage.remote_fail;	
 	   }
-	   return resultMessage;
    }
 	
    public  static ResultMessage generateOrder(OrderVO orderVO){
@@ -191,48 +170,20 @@ public class Order {
     	try {
 			resultMessage = orderDao.insert(orderPO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
+    	if(resultMessage==ResultMessage.succeed){
+    		HotelController hotelController = new HotelController();
+    		resultMessage = hotelController.minusRoomAvail(orderVO.getHotelID(), orderVO.getRoomType(),
+    				orderVO.getRoomNumber(), orderVO.getCheckIn(), orderVO.getActualCheckOut());
+    	}
     	return resultMessage;
     }
 
-	String userName;
-    String hotelName;
-    String roomType;
-    double roomPrice;
-    int roomNumber;
-    int peopleNumber;
-    boolean withChild;
-    double originValue;
-    String comment;
-    int grade;
-    String hotelDDL;
-    Date generationDate;
-    Date cancelTime;
-    Date cancelAbnormalTime;
-    private OrderPO changeIntoPO() {
-		
-		// TODO Auto-generated method stub
-    	
-    	String hotelID  = orderID.substring(0,10);
-    	OrderPO orderPO = new OrderPO(orderID, userID, userName, 
-    			hotelID, hotelName, 
-    			stateOfOrder, 
-    			new RoomNormVO(hotelID, roomType, roomPrice),  roomPrice, roomNumber,
-    			peopleNumber, withChild, originValue, trueValue, promotionName, 
-    			comment, grade, 
-    			checkInDate, checkOutDate, hotelDDL, generationDate, 
-    			actualCheckInTime, actualCheckOutTime, 
-    			cancelTime, cancelAbnormalTime);
-		return orderPO;
-	}
+   
+    
+    
     
 
-	public ResultMessage addAvailRoom() {
-		// TODO Auto-generated method stub
-		HotelService hotelService = new HotelController();
-		return hotelService.plusRoomAvail(orderID.substring(0,10),RoomType, roomNumber, checkInDate, checkOutDate);
-	}
 }

@@ -67,7 +67,7 @@ public class OrderForWebsiteController implements OrderForWebsite {
             return selectedList;
         }catch (RemoteException e){
             e.printStackTrace();
-            return null;
+            return selectedList;
         }
     }
     /**
@@ -87,7 +87,6 @@ public class OrderForWebsiteController implements OrderForWebsite {
     @Override
     public ResultMessage webCancelAbnormal(String orderID, boolean isHalf){
     	Order order = Order.getInstance(orderID);
-    	order.cancelAbnormal(isHalf);
-        return order.addAvailRoom();
+    	return order.cancelAbnormal(isHalf);
     }
 }

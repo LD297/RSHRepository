@@ -50,6 +50,12 @@ public class Login {
 			resultMessage = HotelController.checkPassword(id, password);
 			break;
 		case webmanager:
+			if(id.equals("0000000000")){
+				resultMessage = WebStaffController.checkPassword(id, password);
+			}
+			else{
+				resultMessage = ResultMessage.fail;
+			}
 		case websalesman:
 			resultMessage = WebStaffController.checkPassword(id, password);
 			break;
