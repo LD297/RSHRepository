@@ -1,5 +1,6 @@
 package bl.promotionServiceimpl.condition;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -34,24 +35,29 @@ public class BirthdayCondition extends Condition {
 	
 	@Override
 	public boolean check(OrderInfo orderVO) {
-		// TODO Auto-generated method stub
+		
 		String userID = orderVO.getUserID();
-		UserService userService = new UserController();
-		UserVO userVO = userService.getInfo(userID);
+		UserController userController = new UserController();
+		UserVO userVO = userController.getInfo(userID);
 		LocalDate birthday = userVO.birthday;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyMMdd");
+		Date dBirthday = null;
+		try {
+			dBirthday = simpleDateFormat.parse(simpleDateFormat.format(birthday));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		Date beginDate = orderVO.getCheckInDate();
 		Date endDate = orderVO.getCheckInDate();
-		SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMdd");
-		String sBirthday = sDateFormat.format(birthday);
-		String sBeginDate = sDateFormat.format(beginDate);
-		String sEndDate = sDateFormat.format(endDate);
-		int iBirthday = Integer.parseInt(sBirthday);
-		int iBeginDate = Integer.parseInt(sBeginDate);
-		int iEndDate = Integer.parseInt(sEndDate);
-		if(iBirthday>=iBeginDate&&iBirthday<iEndDate)
-			return true;
-		else
+		
+		if(beginDate.after(dBirthday))
 			return false;
+		if(endDate.before(dBirthday))
+			return false;
+		
+		return true;
 	}
 	
 }

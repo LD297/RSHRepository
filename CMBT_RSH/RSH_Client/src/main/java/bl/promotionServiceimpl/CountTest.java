@@ -1,10 +1,8 @@
 package bl.promotionServiceimpl;
 
-import static org.junit.Assert.*;
 
 import java.util.Date;
 
-import constant.MemberType;
 import org.junit.Before;
 import org.junit.Test;
 

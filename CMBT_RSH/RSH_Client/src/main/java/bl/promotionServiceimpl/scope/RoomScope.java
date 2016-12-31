@@ -32,8 +32,10 @@ public class RoomScope extends Scope {
 	}
 
 	public boolean check(String tempHotelID,String tempRoomType){
-		if((hotelID==tempHotelID)&&roomType == tempRoomType)
-			return true;
-		return false;
+		if(!hotelID.equals(tempHotelID))
+			return false;
+		if(!roomType.equals(tempRoomType))
+			return false;
+		return true;
 	}
 }

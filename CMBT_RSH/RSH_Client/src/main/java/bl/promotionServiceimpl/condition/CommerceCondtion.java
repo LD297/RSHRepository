@@ -25,17 +25,16 @@ public class CommerceCondtion extends Condition {
 
 	@Override
 	public double getNum() {
-		// TODO Auto-generated method stub
 		return level;
 	}
 
 	@Override
 	public boolean check(OrderInfo orderVO) {
-		// TODO Auto-generated method stub
 		String userID = orderVO.getUserID();
-		UserService userService = new UserController();
-		UserVO userVO = userService.getInfo(userID);
+		UserController userController = new UserController();
+		UserVO userVO = userController.getInfo(userID);
 		MemberType memberType= userVO.getMemberType();
+		
 		if(memberType!=MemberType.commerce){
 			return false;
 		}

@@ -3,6 +3,8 @@ package bl.promotionServiceimpl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.print.attribute.standard.RequestingUserName;
+
 import data.dao.promotiondao.PromotionDao;
 import po.OrderPO;
 import po.PromotionPO;
@@ -67,14 +69,19 @@ public class Count {
 
 	private static double count(Promotion promotion, OrderInfo orderInfo){
 		double result = orderInfo.getOriginalValue();
-		if(promotion.scope.check(orderInfo.getHotelID(),orderInfo.getRoomType())&&
-		promotion.condition.check(orderInfo)){
-			result = promotion.deduction.getDeduction(result);
+		if(!promotion.beginDate.before(orderInfo.getCheckInDate())){
+			return result;
 		}
+		if(!promotion.endDate.after(orderInfo.getCheckOutDate())){
+			return result;
+		}
+		if(!promotion.scope.check(orderInfo.getHotelID(),orderInfo.getRoomType())){
+			return result;
+		}
+		if(!promotion.condition.check(orderInfo)){
+			return result;
+		}
+		result = promotion.deduction.getDeduction(result);
 		return result;
 	}
-
-
-
-
 }

@@ -33,8 +33,8 @@ public class DistrictScope extends Scope {
 
 	public boolean check(String hotelID,String roomType){
 		String tempDis = hotelID.substring(0,DISTRICT_LENGTH);
-		if(district==tempDis)
-			return true;
-		return false;
+		if(!district.equals(tempDis))
+			return false;
+		return true;
 	}
 }

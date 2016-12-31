@@ -6,6 +6,7 @@ import bl.promotionServiceimpl.PromotionController;
 import constant.ConditionType;
 import constant.DeductionType;
 import constant.ScopeType;
+import vo.OrderInfo;
 import vo.PromotionVO;
 
 public class PromotionDriver {
@@ -15,6 +16,15 @@ public class PromotionDriver {
 		PromotionDriver promotionDriver = new PromotionDriver();
 		promotionDriver.test();
 	}
+	
+	void test2(){
+		PromotionController promotionController = new PromotionController();
+		System.out.println("begin");
+//		OrderInfo orderInfo = new OrderInfo(hotelID, roomType, roomNum, checkInDate, checkOutDate, userID, price);
+		System.out.println("end");
+	}
+	
+	
 	String id = "圣诞节";
 	PromotionVO promotionVO3 = new PromotionVO(id, id, id, new Date(), new Date(), ScopeType.DISTRICT, id, id, ConditionType.BIRTHDAY, 0, DeductionType.DISCOUNT, 0);
 	void test(){

@@ -31,8 +31,8 @@ public class HotelScope extends Scope {
 	}
 
 	public boolean check(String hotel,String roomType){
-		if (hotel==hotelID)
-			return true;
-		return false;
+		if (!hotel.equals(hotelID))
+			return false;
+		return true;
 	}
 }

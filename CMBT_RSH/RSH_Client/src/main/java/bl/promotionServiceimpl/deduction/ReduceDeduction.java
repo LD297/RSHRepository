@@ -25,8 +25,11 @@ public class ReduceDeduction extends Deduction {
 	}
 
 	public double getDeduction(double total){
-		
-		return total-reduceNum;
+		if(total<reduceNum)
+			return 0;
+		else{
+			return total-reduceNum;
+		}
 	}
 	
 }

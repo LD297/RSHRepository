@@ -38,7 +38,6 @@ public class MemberCondition extends Condition {
 
 	@Override
 	public boolean check(OrderInfo orderVO) {
-		// TODO Auto-generated method stub
 		String userID = orderVO.getUserID();
 		UserController userController = new UserController();
 		UserVO userVO = userController.getInfo(userID);

@@ -74,7 +74,6 @@ public class SearchHotelController implements SearchHotelService {
 	 * @return
 	 */
 	private boolean match(HotelVO hotelVO, SelectConditionVO selectConditionVO) {
-		// TODO Auto-generated method stub
 		double standardPrice = hotelVO.getStandardRoomPrice();
 		double grade = hotelVO.getGrade();
 		if (standardPrice > selectConditionVO.highestPrice)

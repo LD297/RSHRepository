@@ -43,8 +43,8 @@ public class Promotion {
 	private String promotionID;
 	private String reason;
 
-	private Date beginDate;
-	private Date endDate;
+	Date beginDate;
+	Date endDate;
 
 	Scope scope;
 	Condition condition;
@@ -124,7 +124,7 @@ public class Promotion {
 	public void setDeduction(DeductionType deductionType, double deductionNum) {
 		// TODO Auto-generated method stub
 		if(deductionType == DeductionType.DISCOUNT){
-			deduction = new DiscountDeduction(deductionNum);
+			deduction = new DiscountDeduction(deductionNum/10);
 		}
 		else if(deductionType == DeductionType.REDUCE){
 			deduction = new ReduceDeduction(deductionNum);
@@ -185,7 +185,6 @@ public class Promotion {
 	 * @return
 	 */
 	public ResultMessage update() {
-		// TODO Auto-generated method stub
 		if(getInstance(this.setterID,this.promotionID)==null){
 			return ResultMessage.not_exist;
 		}

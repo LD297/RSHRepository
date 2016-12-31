@@ -27,16 +27,8 @@ public class TotalCondition extends Condition {
 		return total;
 	}
 
-	public boolean check(int num, double price, int memberLevel, boolean isBirthday) {
-		if(num*price>=total){
-			return true;
-		}
-		return false;
-	}
-
 	@Override
 	public boolean check(OrderInfo orderVO) {
-		// TODO Auto-generated method stub
 		double valueInOrder = orderVO.getOriginalValue();
 		if(valueInOrder<total)
 			return false;
