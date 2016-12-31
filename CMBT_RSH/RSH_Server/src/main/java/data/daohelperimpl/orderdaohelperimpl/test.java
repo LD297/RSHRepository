@@ -194,6 +194,7 @@ public class test {
 
 	   OrderDaoHelperMySql orderdao = new OrderDaoHelperMySql();
        orderdao.init();
+       /*
        HotelDaoHelperMySql hoteldao = new HotelDaoHelperMySql();
        hoteldao.init();
        LoginDaoHelperMySql logindao = new LoginDaoHelperMySql();
@@ -207,7 +208,7 @@ public class test {
        WebSalesmanDaoHelperMySql websalesmandao = new WebSalesmanDaoHelperMySql();
        websalesmandao.init();
        WebManagerDaoHelperMySql webmanagerdao = new WebManagerDaoHelperMySql();
-       webmanagerdao.init();
+       webmanagerdao.init();*/
 
    }
 }

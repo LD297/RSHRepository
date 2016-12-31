@@ -43,7 +43,10 @@ public class SingleUserAnchorPane extends AnchorPane{
 		creditLabel = new Label("信用值");
 		creditInfoLabel = new Label(String.valueOf(userVO.credit));
 		memberTypeLabel = new Label(userVO.getMemberType().getString());
-		memberLevelLabel = new Label(String.valueOf(userVO.level));
+		memberLevelLabel = new Label();
+		if(userVO.level!=-1){
+			memberLevelLabel.setText(String.valueOf(userVO.level));
+		}
 		forMoreLabel = new Label("更多>");
 		
 		//设置组件属性
@@ -91,7 +94,7 @@ public class SingleUserAnchorPane extends AnchorPane{
 		locator.setLocation(creditInfoLabel,89.0, 11.0,89.0,346.0 );
 		locator.setLocation(creditLabel, 89.0, 11.0,10.0,504.0);
 		locator.setLocation(memberTypeLabel, 48.0,52.0, 310.0,162.0);
-		locator.setLocation(memberLevelLabel, 48.0,52.0, 424.0,127.0);
+		locator.setLocation(memberLevelLabel, 48.0,52.0, 415.0,127.0);
 		locator.setLocation(nameInfoLabel,14.0, 86.0,89.0,346.0 );
 		locator.setLocation(nameLabel, 14.0, 86.0,10.0,534.0);
 		locator.setLocation(phoneInfoLabel, 48.0, 52.0, 89.0,346.0);

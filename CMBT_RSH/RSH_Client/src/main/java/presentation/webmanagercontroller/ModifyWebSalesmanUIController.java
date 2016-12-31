@@ -77,8 +77,10 @@ public class ModifyWebSalesmanUIController {
     void finishModify(MouseEvent event) {
     	//TODO 更新信息，reset管理营销人员界面
     	boolean rightInput = true;
-    	String name = nameField.getText().trim();
-    	if(name.equals("")){
+    	String name = "";
+    	if(nameField.getText()!=null&&!nameField.getText().equals("")){
+    		name = nameField.getText().trim();
+    	}else{
     		rightInput = false;
     	}
     	String province = provinceCombox.getValue();

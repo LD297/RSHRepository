@@ -466,11 +466,6 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Button>
-                                    <ImageView fitHeight="30.0" fitWidth="40.0" layoutX="622.0" layoutY="109.0" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="18.0">
-                                       <image>
-                                          <Image url="@../images/TICK.png" />
-                                       </image>
-                                    </ImageView>
                                     <Label layoutX="25.0" layoutY="13.0" text="用户: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
                                        <font>
                                           <Font name="Times New Roman" size="13.0" />
@@ -521,6 +516,11 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Label>
+                                    <ImageView fitHeight="30.0" fitWidth="40.0" layoutX="622.0" layoutY="109.0" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="18.0">
+                                       <image>
+                                          <Image url="@../images/TICK.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                               <AnchorPane maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="2">
@@ -576,11 +576,6 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Button>
-                                    <ImageView fitHeight="30.0" fitWidth="40.0" layoutX="624.0" layoutY="115.0" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="18.0">
-                                       <image>
-                                          <Image url="@../images/TICK.png" />
-                                       </image>
-                                    </ImageView>
                                     <Label layoutX="25.0" layoutY="13.0" text="用户: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
                                        <font>
                                           <Font name="Times New Roman" size="13.0" />
@@ -631,6 +626,11 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Label>
+                                    <ImageView fitHeight="30.0" fitWidth="40.0" layoutX="624.0" layoutY="115.0" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="18.0">
+                                       <image>
+                                          <Image url="@../images/TICK.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                               <AnchorPane maxWidth="686.0" minWidth="640.0" prefHeight="145.0" prefWidth="686.0" GridPane.rowIndex="4">
@@ -686,11 +686,6 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Button>
-                                    <ImageView fitHeight="30.0" fitWidth="40.0" layoutX="622.0" layoutY="111.0" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="18.0">
-                                       <image>
-                                          <Image url="@../images/TICK.png" />
-                                       </image>
-                                    </ImageView>
                                     <Label layoutX="25.0" layoutY="13.0" text="用户: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
                                        <font>
                                           <Font name="Times New Roman" size="13.0" />
@@ -741,6 +736,11 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Label>
+                                    <ImageView fitHeight="30.0" fitWidth="40.0" layoutX="622.0" layoutY="111.0" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="18.0">
+                                       <image>
+                                          <Image url="@../images/TICK.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                            </children>
@@ -1163,6 +1163,11 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Label>
+                                    <Label layoutX="614.0" layoutY="116.0" text="已撤销" textFill="#ff5a5f" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0">
+                                       <font>
+                                          <Font name="Times New Roman" size="14.0" />
+                                       </font>
+                                    </Label>
                                     <Label layoutX="25.0" layoutY="13.0" text="用户: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
                                        <font>
                                           <Font name="Times New Roman" size="13.0" />
@@ -1209,11 +1214,6 @@
                                        </font>
                                     </Label>
                                     <Label layoutX="253.0" layoutY="118.0" text="实际离开: " AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="614.0" layoutY="116.0" text="已撤销" textFill="#ff5a5f" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0">
                                        <font>
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
@@ -1268,6 +1268,11 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Label>
+                                    <Label layoutX="232.0" layoutY="60.0" text="已撤销" textFill="#ff5a5f" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0">
+                                       <font>
+                                          <Font name="Times New Roman" size="14.0" />
+                                       </font>
+                                    </Label>
                                     <Label layoutX="25.0" layoutY="13.0" text="用户: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
                                        <font>
                                           <Font name="Times New Roman" size="13.0" />
@@ -1314,11 +1319,6 @@
                                        </font>
                                     </Label>
                                     <Label layoutX="253.0" layoutY="118.0" text="实际离开: " AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="232.0" layoutY="60.0" text="已撤销" textFill="#ff5a5f" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0">
                                        <font>
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
@@ -1373,6 +1373,11 @@
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>
                                     </Label>
+                                    <Label layoutX="74.0" layoutY="36.0" text="已撤销" textFill="#ff5a5f" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0">
+                                       <font>
+                                          <Font name="Times New Roman" size="14.0" />
+                                       </font>
+                                    </Label>
                                     <Label layoutX="25.0" layoutY="13.0" text="用户: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
                                        <font>
                                           <Font name="Times New Roman" size="13.0" />
@@ -1419,11 +1424,6 @@
                                        </font>
                                     </Label>
                                     <Label layoutX="253.0" layoutY="118.0" text="实际离开: " AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="323.0">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="74.0" layoutY="36.0" text="已撤销" textFill="#ff5a5f" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0">
                                        <font>
                                           <Font name="Times New Roman" size="14.0" />
                                        </font>

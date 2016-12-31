@@ -2,6 +2,7 @@ package presentation.websalesmancontroller;
 
 import bl.orderservice.OrderForWebsite;
 import bl.orderserviceimpl.OrderForWebsiteController;
+import constant.ResultMessage;
 import constant.StateOfOrder;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -253,23 +254,24 @@ public class ExceptionalOrderUIController {
 
     private void revokeOrder(AnchorPane theAnchorPane){
         String orderID = ((Label)theAnchorPane.getChildren().get(1)).getText();
-        orderForWebsite.webCancelAbnormal(orderID, isHalfCheckBox.isSelected());
+        ResultMessage rm = orderForWebsite.webCancelAbnormal(orderID, isHalfCheckBox.isSelected());
+        if(rm.equals(ResultMessage.succeed))
+            refreshPage();
+        else
+            System.out.println("撤销失败");
     }
 
     @FXML
     void revoke0(MouseEvent event){
         revokeOrder(showPane0);
-        refreshPage();
     }
     @FXML
     void revoke01(MouseEvent event){
         revokeOrder(showPane1);
-        refreshPage();
 
     }@FXML
     void revoke02(MouseEvent event){
         revokeOrder(showPane2);
-        refreshPage();
     }
 
     @FXML

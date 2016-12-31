@@ -15,14 +15,14 @@ import org.junit.Test;
  * Created by sky-PC on 2016/12/12.
  */
 public class test {
-    WebSalesmanDaoHelperMySql salesDao =  null ;//new WebSalesmanDaoHelperMySql() ;
+  /*  WebSalesmanDaoHelperMySql salesDao =  null ;//new WebSalesmanDaoHelperMySql() ;
     @Test
     public void testinsert()throws RemoteException{
     	String id = salesDao.getNewID();
-        WebSalesmanPO webSalesmanPO = new WebSalesmanPO(id,"123456","215300");
+        WebSalesmanPO webSalesmanPO = new WebSalesmanPO(id,"123456","215300","天天");
         ResultMessage result = salesDao.insert(webSalesmanPO);
         String id2 = salesDao.getNewID();
-        WebSalesmanPO anotherPO = new WebSalesmanPO(id2,"12345678","215300");
+        WebSalesmanPO anotherPO = new WebSalesmanPO(id2,"12345678","215300","欢欢");
         salesDao.insert(anotherPO);
         assertEquals(result,ResultMessage.succeed);
     }/*
@@ -66,4 +66,12 @@ public class test {
     }*/
    
 
+public static void main(String[] args){
+	
+	WebSalesmanDaoHelperMySql salesDao = new WebSalesmanDaoHelperMySql();
+	WebManagerDaoHelperMySql managerDao = new WebManagerDaoHelperMySql();
+
+	
+	salesDao.init();managerDao.init();
+}
 }

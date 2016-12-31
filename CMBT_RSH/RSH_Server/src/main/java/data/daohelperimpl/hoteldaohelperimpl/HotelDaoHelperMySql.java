@@ -378,12 +378,13 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
             tip = -1;//新增订单 撤销订单
         int gap1 = this.getDayGap(checkIn);
         int gap2 = this.getDayGap(checkOut);
+        System.out.println(gap1+" "+gap2+"  时间差");
         String getRoomListSql = "SELECT aList FROM RoomInfo WHERE hotelID='"+hotelID+"' and roomType='"+roomType+"' LIMIT 1";
         ResultSet result = db.query(getRoomListSql);
-        if(!(gap1>0&&gap2>gap1))
+        if(!(gap1>=0&&gap2>gap1))
         	return ResultMessage.fail;
         	
-        try{
+        try{System.out.println("get into success");
             while(result.next()){
                 String[] roomNumTem = result.getString(1).split(",");
                 int[] roomNum = new int[180];
@@ -620,7 +621,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         try {
             //时间转换类
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            date = sdf.parse(sdf.format(date));//the late one
+            date = sdf.parse(sdf.format(date));//the later one
             
             Date today = new Date();
             String strToday = sdf.format(today);

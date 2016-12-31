@@ -213,16 +213,25 @@ public class RoomAvailUIController {
         availNum+=change;
         // 房间数量非负
         if(availNum>=0){
-            roomAvailNum.setText(String.valueOf(availNum));
-            Label roomType = (Label)thePane.getChildren().get(0);
-            currentDate = (Date)datePicker.getUserData();
-            if(currentDate==null)
-                currentDate = Date.from(Instant.now());
-            // TODO 告诉逻辑实现，最后两个日期，任一为null；默认设为系统当前时间
-            if(change==1)
-                hotelService.plusRoomAvail(hotelId, roomType.getText(), availNum, currentDate, currentDate);
+            Label roomType = (Label)thePane.getChildren().get(1);
+            if(datePicker.getValue()!=null)
+                currentDate = MyDateFormat.getInstance().changeLocalDateToDate(datePicker.getValue());
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(currentDate);
+            calendar.add(calendar.DATE, 1);
+            Date nextDate = calendar.getTime();
+            ResultMessage rs = null;
+            if(change==1){
+//                System.out.println(hotelId+" ~ "+roomType.getText()+"  ~  "+MyDateFormat.getInstance().toString(currentDate, true)+" ~ "+availNum);
+                
+                rs = hotelService.plusRoomAvail(hotelId, roomType.getText(), 1, currentDate, nextDate);
+            }
             else if(change==-1)
-                hotelService.minusRoomAvail(hotelId, roomType.getText(), availNum, currentDate, currentDate);
+                rs = hotelService.minusRoomAvail(hotelId, roomType.getText(), 1, currentDate, nextDate);
+            if(rs.equals(ResultMessage.succeed))
+                roomAvailNum.setText(String.valueOf(availNum));
+            else
+                System.out.println("修改失败！"+ rs );
         }
     }
 

@@ -28,7 +28,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         db.executeSql("USE OurData");
         // 账号 密码 姓名 地区 IF NOT EXISTS
         db.executeSql("CREATE TABLE if not exists WebStaffInfo(id char(10),"
-        		+ "password blob,district char(6))default character set utf8" );
+        		+ "password blob,name char(5),district char(6))default character set utf8" );
     }
 
     public void finish(){
@@ -81,14 +81,15 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         }catch(SQLException e){
         	e.printStackTrace();
         }
-        String getPasswordSql = "SELECT aes_decrypt(password,'"+key+"'),district FROM WebStaffInfo"
+        String getPasswordSql = "SELECT aes_decrypt(password,'"+key+"'),district,name FROM WebStaffInfo"
         		+ " WHERE id='"+id+"' LIMIT 1";
         ResultSet pwResult = db.query(getPasswordSql);
         try{
         	while(pwResult.next()){
         		String password = pwResult.getString(1);
         		String district = pwResult.getString(2);
-        		return new WebSalesmanPO(id,password,district);
+        		String name = pwResult.getString(3);
+        		return new WebSalesmanPO(id,password,district,name);
         	}
         }catch(SQLException e){
         	e.printStackTrace();
@@ -109,14 +110,15 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         	e.printStackTrace();
         }
         
-        String getInfoSql = "SELECT id,aes_decrypt(password,'"+key+"') FROM WebStaffInfo "
+        String getInfoSql = "SELECT id,aes_decrypt(password,'"+key+"'),name FROM WebStaffInfo "
         		+ "WHERE district='"+district +"'";
         ResultSet infoResult = db.query(getInfoSql);
         try{
         	while(infoResult.next()){
         		String id = infoResult.getString(1);
         		String password = infoResult.getString(2);
-        		list.add(new WebSalesmanPO(id,password,district));
+        		String name = infoResult.getString(3);
+        		list.add(new WebSalesmanPO(id,password,district,name));
         	}
         	return list;
         }catch(SQLException e){
@@ -140,8 +142,10 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         String infoSql = "SELECT *FROM WebStaffInfo";
         ResultSet infoResult = db.query(infoSql);
         ArrayList<WebSalesmanPO> list = this.resultSetTOPO(infoResult);
-        
-     /* String getPasswordSql = "SELECT aes_decrypt(password,'"+key+"') FROM WebStaffInfo";
+        if(list.size()==0)
+        	return list;
+        	
+        String getPasswordSql = "SELECT aes_decrypt(password,'"+key+"') FROM WebStaffInfo";
         ResultSet pwResult = db.query(getPasswordSql);
         try{
         	int i=0;
@@ -151,7 +155,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         	return list;
         }catch(SQLException e){
         	e.printStackTrace();
-        }*/
+        }
         return list; 
     }
     
@@ -162,8 +166,8 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
             while(result.next()){
             	if(result.getString("id").equals("0000000000"))
             		continue;
-                WebSalesmanPO po = new WebSalesmanPO(result.getString("id"),
-                		result.getString("password"),result.getString("district"));
+                WebSalesmanPO po = new WebSalesmanPO(result.getString("id"),result.getString("district")
+                		,result.getString("password"),result.getString("name"));
                 list.add(po);
             }
             return list;
