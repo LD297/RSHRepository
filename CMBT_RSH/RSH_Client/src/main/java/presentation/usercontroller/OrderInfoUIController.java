@@ -145,7 +145,9 @@ public class OrderInfoUIController {
 		pricePerRoom.setText("￥"+String.valueOf(orderVO.getRoomPrice())+"/晚");
 		totalPrice.setText("￥"+String.valueOf(orderVO.getTrueValue()));
 		if(orderVO.getPromotion()!=null){
-			promotionLabel.setText("("+orderVO.getPromotion()+")");
+			if(orderVO.getPromotion()!=null){
+				promotionLabel.setText("("+orderVO.getPromotion()+")");
+			}
 		}
 		if(orderVO.getState()==StateOfOrder.executed){
 			commentButton.setVisible(true);
