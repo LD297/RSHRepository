@@ -301,6 +301,10 @@ public class AddPromotionUIController {
 
     public void initializePageBySetter(){
 
+        System.out.println("setterid: "+setterId+" proid: "+promotionID
+                +" isHotel: "+(webSalesmanVO==null)
+                +" hotelid: ");
+
         clearNodeContent();
 
         boolean isHotel = true;

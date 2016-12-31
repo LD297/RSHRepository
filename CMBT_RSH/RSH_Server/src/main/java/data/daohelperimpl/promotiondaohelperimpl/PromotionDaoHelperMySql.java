@@ -147,6 +147,7 @@ public class PromotionDaoHelperMySql implements PromotionDaoHelper{
   	}
   	// 6位->district 10->hotel
   	public ArrayList<PromotionPO> finds(String scope) throws RemoteException{
+        System.out.println("get into promotion data");
   		ArrayList<PromotionPO> list = new ArrayList<PromotionPO>();
   		String selectSql;
   		ResultSet result;
