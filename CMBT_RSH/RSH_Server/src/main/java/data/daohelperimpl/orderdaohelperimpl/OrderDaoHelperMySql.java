@@ -1,10 +1,14 @@
 package data.daohelperimpl.orderdaohelperimpl;
 
+import constant.CreditAction;
 import constant.ResultMessage;
 import constant.StateOfOrder;
 import data.daohelper.OrderDaoHelper;
 import data.daohelperimpl.DaoHelperFactoryImpl;
 import data.daohelperimpl.jdbc.DBHelper;
+import data.daohelperimpl.userdaohelperimpl.CreditRecordListDaoHelperMySql;
+import data.daohelperimpl.userdaohelperimpl.UserDaoHelperMySql;
+import po.CreditRecordPO;
 import po.OrderPO;
 
 import java.rmi.RemoteException;
@@ -59,8 +63,20 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
             String ddldate = sdf.format(DDLdate);
             try{
                 Date ddlTime = df.parse(ddldate+" "+DDLtime);
-                if(ddlTime.getTime()<instance.getTime())
+                if(ddlTime.getTime()<instance.getTime()){
                     this.stateUpdate(orderID,StateOfOrder.abnormal);
+                    
+                    OrderPO orderPO = this.getClearByID(orderID, originList.get(i));
+                    String userID = orderPO.getUserID();
+                    int value = (int)orderPO.getTrueValue();
+                    String change = "-"+String.valueOf(value);
+                    Date date = new Date();
+                    UserDaoHelperMySql user = new UserDaoHelperMySql();
+                    CreditRecordListDaoHelperMySql credit = new CreditRecordListDaoHelperMySql();
+                    CreditRecordPO po = new CreditRecordPO(userID,date,orderID,
+                			CreditAction.abnormal,change,value+user.getCredit(userID));
+                    credit.addCreditRecord(po);
+                }
             }catch (ParseException e){
                 e.printStackTrace();
                 return ;
