@@ -9,8 +9,8 @@ public class HotelVO {
 	private String hotelID;
 	private String detailAddress;
 	public String hotelName; 
-	public String tel; 
-	
+	public String tel;
+
 	private String password;
 	
 	private double grade = 0;		 				//酒店评分所有用户评分的均值

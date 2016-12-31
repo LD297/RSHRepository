@@ -95,17 +95,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
                 String.valueOf(level)+","+String.valueOf(grade)+",'"+latestCheckinTime+
                 "','"+imageAddress+"',0,2)";
         db.executeSql(addHotelSql);
-        // 酒店 类型 总量
-        // 价格 是否特色  图片地址 可用数量日期列表
-        String aList = "0";
-        for(int i=0;i<180-1;i++)
-        	aList+=",0";
-        String addSingleRoomSql = "INSERT INTO RoomInfo VALUES('"+hotelID+"','标准间',0," +
-                                                                   "9999,'/images/defaultHotelImage.jpg','"+aList+"')";
-        String addDoubleRoomSql = "INSERT INTO RoomInfo VALUES('"+hotelID+"','单人间',0," +
-                                                                   "9999,'/images/defaultHotelImage.jpg','"+aList+"')";
-        db.executeSql(addSingleRoomSql);
-        db.executeSql(addDoubleRoomSql);
+        
         return ResultMessage.succeed;
     }
     // 酒店评分更新
@@ -214,10 +204,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         String addSpecialRoomSql = "INSERT INTO RoomInfo VALUES('"+hotelID+"','"+roomType+"',"+amount+
                 ","+price+",'"+imageAddress+"','"+availableRoom+"')";
         db.executeSql(addSpecialRoomSql);
-        if(roomPO.getType().equals("标准间")){
-        	db.executeSql("UPDATE HotelInfo SET standardPrice="+String.valueOf(roomPO.getPrice())+
-        		" WHERE hotelID='"+hotelID+"' LIMIT 1");
-        }
+        
         String updateHotelSql = "UPDATE HotelInfo SET roomTypeNum="+String.valueOf(typeNum)+
         		" WHERE hotelID='"+hotelID+"' LIMIT 1";
         db.executeSql(updateHotelSql);
@@ -262,10 +249,6 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         String deleteSpecialRoomSql = "DELETE FROM RoomInfo WHERE hotelID='"+hotelID+"' and roomType='"+roomType+"' LIMIT 1";
         db.executeSql(deleteSpecialRoomSql);
 
-        if(roomPO.getType().equals("标准间")){
-        	db.executeSql("UPDATE HotelInfo SET standardPrice=-1"+
-        		" WHERE hotelID='"+hotelID+"' LIMIT 1");
-        }
         String updateHotelSql = "UPDATE HotelInfo SET roomTypeNum="+String.valueOf(typeNum)+
         		" WHERE hotelID='"+hotelID+"' LIMIT 1";
         db.executeSql(updateHotelSql);

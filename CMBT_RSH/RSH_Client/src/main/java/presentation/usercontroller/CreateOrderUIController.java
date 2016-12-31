@@ -175,7 +175,9 @@ public class CreateOrderUIController {
 				promotion = temp.split("#")[0];
 				totalPriceLabel.setText(totalPrice);//显示总价格
 				if(promotion!=null){
-					promotionlabel.setText("("+promotion+")");
+					if(!promotion.equals("null")){
+						promotionlabel.setText("("+promotion+")");
+					}
 				}//显示促销策略
 				finishCreateOrder.setText("我已核对");
 				finishCreateOrder.setDisable(false);

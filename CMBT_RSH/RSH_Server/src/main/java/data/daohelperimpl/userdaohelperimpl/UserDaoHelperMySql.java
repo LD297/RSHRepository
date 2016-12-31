@@ -206,6 +206,19 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     }
     //CAST(BINARY(aes_decrypt(truename,'1jkl43')) AS CHAR CHARACTER SET utf8) AS VALUE
 
+    public int getCredit(String userID){
+    	db.executeSql("USE OurData");
+    	String deUserID = this.getSecreted(userID, nameKey);
+    	ResultSet result = db.query("SELECT credit FROM UserInfo WHERE userID="+deUserID+" LIMIT 1");
+    	try{
+    		while(result.next())
+    			return result.getInt(1);
+    	}catch(SQLException e){
+    		e.printStackTrace();
+    	}
+    	return -9999;
+    }
+    
     private UserPO getClearByID(String userID,UserPO userPO){
     	String deUserID = this.getSecreted(userID, nameKey);
     	String getSecrtedSql = "SELECT aes_decrypt(password,'"+pwKey+"'),"
