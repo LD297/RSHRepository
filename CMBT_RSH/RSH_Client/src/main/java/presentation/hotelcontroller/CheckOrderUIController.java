@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import bl.orderservice.OrderForHotel;
 import bl.orderserviceimpl.miscellaneous.OrderForHotel_Stub;
+import constant.ResultMessage;
 import constant.StateOfOrder;
 import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
@@ -476,72 +477,100 @@ public class CheckOrderUIController {
         return orderID;
     }
 
-    void executeOrder(int orderNo){
+    private ResultMessage executeOrder(int orderNo){
        String orderID = getOrderID(orderNo);
-        orderForHotel.execute(orderID);
+        System.out.println(orderID);
+        return orderForHotel.execute(orderID);
     }
-    void checkOut(int orderNo){
+    private ResultMessage checkOut(int orderNo){
         String orderID = getOrderID(orderNo);
-        orderForHotel.leaveUpdate(orderID);
+        return orderForHotel.leaveUpdate(orderID);
     }
-    void revokeOrder(int orderNo){
+    private ResultMessage revokeOrder(int orderNo){
         String orderID = getOrderID(orderNo);
-        orderForHotel.hotelCancelAbnormal(orderID);
+        System.out.println(orderID+"ui");
+        return orderForHotel.hotelCancelAbnormal(orderID);
     }
 
     @FXML
     void execute0(MouseEvent event) {
-        executeOrder(0);
-        unexecutedTabSelected();
+        ResultMessage rm = executeOrder(0);
+        if(rm.equals(ResultMessage.succeed))
+            unexecutedTabSelected();
+        else
+            System.out.println(rm);
     }
 
     @FXML
     void execute01(MouseEvent event) {
-        executeOrder(1);
-        unexecutedTabSelected();
+        ResultMessage rm = executeOrder(1);
+        if(rm.equals(ResultMessage.succeed))
+            unexecutedTabSelected();
+        else
+            System.out.println(rm);
     }
 
     @FXML
     void execute02(MouseEvent event) {
-        executeOrder(2);
-        unexecutedTabSelected();
+        ResultMessage rm = executeOrder(2);
+        if(rm.equals(ResultMessage.succeed))
+            unexecutedTabSelected();
+        else
+            System.out.println(rm);
     }
 
     @FXML
     void checkOut0(MouseEvent event) {
-        checkOut(0);
-        executedTabSelected();
-
+        ResultMessage rm = checkOut(0);
+        if(rm.equals(ResultMessage.succeed))
+            executedTabSelected();
+        else
+            System.out.println(rm);
     }
 
     @FXML
     void checkOut01(MouseEvent event) {
-        checkOut(1);
-        executedTabSelected();
+        ResultMessage rm = checkOut(1);
+        if(rm.equals(ResultMessage.succeed))
+            executedTabSelected();
+        else
+            System.out.println(rm);
     }
 
     @FXML
     void checkOut02(MouseEvent event) {
-        checkOut(2);
-        executedTabSelected();
+        ResultMessage rm = checkOut(2);
+        if(rm.equals(ResultMessage.succeed))
+            executedTabSelected();
+        else
+            System.out.println(rm);
     }
 
     @FXML
     void revoke0(MouseEvent event) {
-        revokeOrder(0);
-        exceptionalTabSelected();
+        ResultMessage rm = revokeOrder(0);
+        if(rm.equals(ResultMessage.succeed))
+            exceptionalTabSelected();
+        else
+            System.out.println(rm);
     }
 
     @FXML
     void revoke01(MouseEvent event) {
-        revokeOrder(1);
-        exceptionalTabSelected();
+        ResultMessage rm = revokeOrder(1);
+        if(rm.equals(ResultMessage.succeed))
+            exceptionalTabSelected();
+        else
+            System.out.println(rm);
     }
 
     @FXML
     void revoke02(MouseEvent event) {
-        revokeOrder(2);
-        exceptionalTabSelected();
+        ResultMessage rm = revokeOrder(2);
+        if(rm.equals(ResultMessage.succeed))
+            exceptionalTabSelected();
+        else
+            System.out.println(rm);
     }
 
     @FXML
