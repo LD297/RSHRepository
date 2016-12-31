@@ -80,12 +80,16 @@ public class ModifyUserInfoUIController {
     	messageLabel.setText("");
     	String userName = nameField.getText().trim();
     	String nickName = nickNameField.getText().trim();
+    	System.out.println(nickName);
     	String email = emailField.getText().trim();
+    	System.out.println(userVO.userID);
+    	System.out.println(userVO.password);
     	if(userName.equals("")||nickName.equals("")||email.equals("")){
     		messageLabel.setText("您有尚未填写的信息");
     	}else {
     		userVO.nickName = nickName;
     		userVO.name = userName;
+    		userVO.eMail = email;
 			ResultMessage resultMessage = WebManagerInfoUtil.getInstance().updateUser(userVO);
 			if(resultMessage==ResultMessage.succeed){
 				AnchorPane manageUser = WebManagerUIFXMLFactory.getInstance().getManageUser();
@@ -106,8 +110,8 @@ public class ModifyUserInfoUIController {
     		memberTypeLabel.setText("非会员");
     	}else {
     		memberTypeLabel.setText(userVO.memberType.getString());
+    		memberLevelLabel.setText(String.valueOf(userVO.level));
 		}
-    	memberLevelLabel.setText(String.valueOf(userVO.level));
     	if(userVO.sexuality==Sexuality.female){
     		sexImage.setImage(ImageFactory.getImageFactory().getFemale());
     	}else {
