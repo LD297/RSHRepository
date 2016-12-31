@@ -1,21 +1,13 @@
 package bl.promotionServiceimpl;
 
 import java.rmi.RemoteException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 
-import bl.orderserviceimpl.Order;
-import constant.MemberType;
 import data.dao.promotiondao.PromotionDao;
 import po.OrderPO;
 import po.PromotionPO;
 import rmi.RemoteHelper;
 import vo.OrderInfo;
-import vo.OrderVO;
-import vo.PromotionVO;
-import vo.RoomNormVO;
 
 /**
  * 计算并返回最优策略方案及价格
@@ -36,15 +28,7 @@ public class Count {
 	
 	/**
 	 * 
-	 * @param hotelID
-	 * @param roomType
-	 * @param num
-	 * @param price
-	 * @param beginDate
-	 * @param endDate
-	 * @param birthday
-	 * @param memberType
-	 * @param memberLevel
+	 * @param orderInfo
 	 * @return
 	 */
 	public static String countPromotionOfRoom(OrderInfo orderInfo) {
@@ -56,7 +40,6 @@ public class Count {
 			promotionPOsForHotel = promotionDao.finds(hotelID);
 			promotionPOsForDistrict = promotionDao.finds(hotelID.substring(0,DISTRICT_LENGTH));
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "remote_fail";
 		}
@@ -69,6 +52,7 @@ public class Count {
 				minValue = tempValue;
 				reason = promotionPO.getReason();
 			}
+			System.out.print(promotionPO.getReason());
 		}
 		for(PromotionPO promotionPO:promotionPOsForHotel){
 			tempValue = count(promotionPO.changeIntoPromotion(), orderInfo);
@@ -76,6 +60,7 @@ public class Count {
 				minValue = tempValue;
 				reason = promotionPO.getReason();
 			}
+			System.out.print(promotionPO.getReason());
 		}
 		return reason+"#"+minValue;
 	}
@@ -90,20 +75,6 @@ public class Count {
 	}
 
 
-
-	/**
-	 * 计算总额特价
-	 * @param order
-	 * @return 优惠原因#优惠后价格
-	 */
-	public static String countPromotionOfOrder(OrderPO order) {
-		// TODO Auto-generated method stub
-		String reason ="双十一特惠";
-		String money = "1200";
-		String result = reason+"#"+money;
-		
-		return result;
-	}
 
 
 }

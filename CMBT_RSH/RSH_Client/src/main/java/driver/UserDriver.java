@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
-import bl.userserviceimpl.Member;
+import bl.userserviceimpl.MemberHelper;
 import bl.userserviceimpl.UserController;
 import constant.MemberType;
 import constant.Sexuality;

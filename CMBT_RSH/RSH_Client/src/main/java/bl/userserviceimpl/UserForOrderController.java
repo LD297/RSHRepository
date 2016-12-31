@@ -5,16 +5,15 @@ import java.util.Date;
 import bl.orderserviceimpl.UserForOrder;
 import constant.CreditAction;
 import constant.ResultMessage;
+import po.UserPO;
 
 public class UserForOrderController implements UserForOrder{
 
 	@Override
 	public int getCredit(String userID) {
-		CreditRecordList creditRecordList = CreditRecordList.getInstance(userID);
-		if(creditRecordList==null){
-			return -1;
-		}
-		return creditRecordList.getCredit();
+		User user = User.getInstance(userID);
+		UserPO userPO = user.userPO;
+		return userPO.getCredit();
 	}
 
 	@Override

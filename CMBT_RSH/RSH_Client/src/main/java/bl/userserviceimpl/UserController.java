@@ -37,6 +37,9 @@ public class UserController implements UserService{
 	@Override
 	public UserVO getInfo(String userID) {
 		User user = User.getInstance(userID);
+		if(user==null){
+			return null;
+		}
 		return user.getInfo();
 	}
 
@@ -45,7 +48,19 @@ public class UserController implements UserService{
 	 */
 	@Override
 	public ResultMessage update(UserVO userVO)	{
-		return User.update(userVO);
+		User user = User.getInstance(userVO.getId());
+		if(user!=null){
+			initRemote();
+			try {
+				return userDao.update(userVO.changeIntoPO());
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				return ResultMessage.remote_fail;
+			}
+		}
+		else {
+			return ResultMessage.idNotExist;
+		}
 	}
 
 	/**
@@ -54,7 +69,7 @@ public class UserController implements UserService{
 	public ResultMessage addCreditRecord(CreditRecordVO vo) {
 		CreditRecordList creditRecordList = CreditRecordList.getInstance(vo.getUserid());
 		if(creditRecordList==null){
-			return null;
+			return ResultMessage.idNotExist;
 		}
 		return creditRecordList.addCreditRecord(vo);
 	}
@@ -76,8 +91,11 @@ public class UserController implements UserService{
 	 */
 	@Override
 	public ResultMessage registerMember(String userID) {
-		Member member = new Member(userID);
-		return member.registerCommonMember();
+		User user = User.getInstance(userID);
+		if(user == null){
+			return ResultMessage.idNotExist;
+		}
+		return user.registerMember();
 	}
 
 	/**
@@ -85,18 +103,21 @@ public class UserController implements UserService{
 	 */
 	@Override
 	public ResultMessage registerMember(String userID, String commerceName) {
-		Member member = new Member(userID);
-		return member.registerCommerceMember(commerceName);
+		User user = User.getInstance(userID);
+		if(user == null){
+			return ResultMessage.idNotExist;
+		}
+		return user.registerMember(commerceName);
 	}
 
 	@Override
 	public ResultMessage setMemberStandard(int boundaryForLevel) {
-		return Member.setMemberStandard(boundaryForLevel);
+		return MemberHelper.setMemberStandard(boundaryForLevel);
 	}
 
 	@Override
 	public int getMemberStandard() {
-		return Member.getBoundaryForLevels();
+		return MemberHelper.getBoundaryForLevels();
 	}
 
 
@@ -104,7 +125,7 @@ public class UserController implements UserService{
 	public int getMemberLevel(int credit) {
 		if(credit<=0)
 			return 0;
-		return Member.getMemberLevel(credit);
+		return MemberHelper.getMemberLevel(credit);
 	}
 
 
@@ -117,6 +138,9 @@ public class UserController implements UserService{
 	 */
 	public ResultMessage changePassword(String userID, String oldPassword, String newPassword) {
 		User user = User.getInstance(userID);
+		if(user==null){
+			return ResultMessage.idNotExist;
+		}
 		return	user.changePassword(oldPassword,newPassword);
 	}
 
@@ -128,19 +152,20 @@ public class UserController implements UserService{
 	 */
 	public ResultMessage checkPassword(String userID,String password) {
 		User user = User.getInstance(userID);
+		if(user == null){
+			return ResultMessage.idNotExist;
+		}
 		return user.checkPassword(password);
 	}
 
 	@Override
 	public ArrayList<UserVO> getUserVOS() {
-		// TODO Auto-generated method stub
 		initRemote();  
 		ArrayList<UserVO> userVOs = new ArrayList<>();
 		ArrayList<UserPO> userPOs = new ArrayList<>();
 		try {
 			userPOs = userDao.getAll();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return userVOs;
 		}
@@ -153,7 +178,6 @@ public class UserController implements UserService{
 
 	@Override
 	public ResultMessage addCredit(int value, String userID) {
-		// TODO Auto-generated method stub
 		CreditRecordList creditRecordList = CreditRecordList.getInstance(userID);
 		if(creditRecordList==null){
 			return ResultMessage.idNotExist;
@@ -162,7 +186,6 @@ public class UserController implements UserService{
 	}
 
 	public boolean hasReserved(String userID, String hotelID) {
-		// TODO Auto-generated method stub
 		User user = User.getInstance(userID);
 		if(user==null){
 			return false;
@@ -171,7 +194,13 @@ public class UserController implements UserService{
 	}
 	
 	public ResultMessage add(UserVO userVO){
-		return User.add(userVO);
+		User user = User.getInstance(userVO.getId());
+		if(user == null){
+			return ResultMessage.idNotExist;
+		}
+		else{
+			return User.add(userVO);			
+		}
 	}
 
 }

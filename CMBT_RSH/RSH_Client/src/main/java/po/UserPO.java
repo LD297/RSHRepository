@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-import bl.userserviceimpl.Member;
+import bl.userserviceimpl.MemberHelper;
 import constant.MemberType;
 import constant.Sexuality;
 import vo.UserVO;
@@ -90,20 +90,19 @@ public class UserPO implements Serializable{
 		return userVO;
 	}
 	public void setLevel(int level) {
-		// TODO Auto-generated method stub
 		this.level = level;
 	}
 	public void setCommerceName(String commerceName) {
-		// TODO Auto-generated method stub
 		this.commerceName = commerceName;
 		
 	}
 	public void setPassword(String newPassword) {
-		// TODO Auto-generated method stub
 		this.password = newPassword;
 	}
 	public void setMemberType(MemberType commerce) {
-		// TODO Auto-generated method stub
 		this.memberType = commerce;
+	}
+	public void setCredit(int credit) {
+		this.credit = credit;
 	}
 }
