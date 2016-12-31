@@ -139,14 +139,15 @@ public class UserDaoHelperMySql implements UserDaoHelper{
  			return list;
 
  		ResultSet resultCleared = db.query("SELECT aes_decrypt(userID,'"+nameKey+"'),"
-    			+ "cast(binary(aes_decrypt(trueName,'"+nameKey+"'))as char character set utf8)as value FROM UserInfo");
+    			+ "cast(binary(aes_decrypt(trueName,'"+nameKey+"'))as char character set utf8)as value,"
+    					+ "aes_decrypt(password,'"+pwKey+"') FROM UserInfo");
  		int ptr = 0;
  		try{
  			while(resultCleared.next()){
  				list.get(ptr).setId(resultCleared.getString(1));
  				String name = resultCleared.getString(2);
- 				System.out.println(name);
  				list.get(ptr).setName(name);
+ 				list.get(ptr).setPassword(resultCleared.getString(3));
  				ptr++;
  			}
  		}catch(SQLException e){
