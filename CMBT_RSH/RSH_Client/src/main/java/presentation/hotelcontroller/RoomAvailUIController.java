@@ -214,7 +214,7 @@ public class RoomAvailUIController {
         // 房间数量非负
         if(availNum>=0){
             roomAvailNum.setText(String.valueOf(availNum));
-            Label roomType = (Label)thePane.getChildren().get(0);
+            Label roomType = (Label)thePane.getChildren().get(1);
             currentDate = (Date)datePicker.getUserData();
             if(currentDate==null)
                 currentDate = Date.from(Instant.now());
