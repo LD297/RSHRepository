@@ -1,5 +1,6 @@
 package bl;
 
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -23,5 +24,11 @@ public class BLHelper {
 
 	public static void main(String args[]){
 		System.out.println(getRandom(10));
+	}
+	
+	public static int getDifferenceSeconds(Date before,Date after){
+		long difference = after.getTime()-before.getTime();
+		difference=difference/1000;
+		return (int)difference;
 	}
 }

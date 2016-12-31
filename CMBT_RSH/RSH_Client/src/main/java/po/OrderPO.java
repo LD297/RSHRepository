@@ -272,4 +272,10 @@ public class OrderPO implements Serializable{
 	public void setActualCheckOut(Date date) {
 		this.actualCheckOut = date;
 	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+	public void setActualCheckIn(Date actualCheckIn) {
+		this.actualCheckIn = actualCheckIn;
+	}
 }

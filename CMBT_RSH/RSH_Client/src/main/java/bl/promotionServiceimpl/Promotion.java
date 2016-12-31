@@ -18,6 +18,7 @@ import bl.promotionServiceimpl.condition.CommerceCondtion;
 import bl.promotionServiceimpl.condition.Condition;
 import bl.promotionServiceimpl.condition.MemberCondition;
 import bl.promotionServiceimpl.condition.NumCondition;
+import bl.promotionServiceimpl.condition.SpecialPeriodCondition;
 import bl.promotionServiceimpl.condition.TotalCondition;
 import bl.promotionServiceimpl.deduction.Deduction;
 import bl.promotionServiceimpl.deduction.DiscountDeduction;
@@ -67,7 +68,6 @@ public class Promotion {
 	 * @param endDate
 	 */
 	public void setDate(Date beginDate, Date endDate) {
-		// TODO Auto-generated method stub
 		this.beginDate=beginDate;
 		this.endDate=endDate;
 	}
@@ -79,7 +79,6 @@ public class Promotion {
 	 * @param roomType
 	 */
 	public void setScope(ScopeType scopeType, String scopeNum,String roomType) {
-		// TODO Auto-generated method stub
 		if(scopeType == ScopeType.DISTRICT){
 			scope = new DistrictScope(scopeNum);
 		}
@@ -97,7 +96,6 @@ public class Promotion {
 	 * @param conditionNum
 	 */
 	public void setCondition(ConditionType conditionType,double conditionNum) {
-		// TODO Auto-generated method stub
 		if(conditionType == ConditionType.BIRTHDAY){
 			condition = new BirthdayCondition();
 		}
@@ -112,6 +110,9 @@ public class Promotion {
 		}
 		else if(conditionType == ConditionType.TOTAL){
 			condition = new TotalCondition(conditionNum);
+		}
+		else if(conditionType == ConditionType.SPECIALPERIOD){
+			condition = new SpecialPeriodCondition();
 		}
 	}
 	

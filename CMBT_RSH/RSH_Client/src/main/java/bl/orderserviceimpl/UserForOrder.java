@@ -10,7 +10,8 @@ public interface UserForOrder {
 	
 	public ResultMessage addCreditRecordForExecute(String userID, String orderID, int trueValue, Date executeTime);
 	
-	public ResultMessage addCreditRecordForCancel(String userID,String orderID, int value, Date cancelTime);
+	public ResultMessage addCreditRecordForCancelAbnormal(String userID,String orderID, int value, Date cancelTime);
 	
+	public ResultMessage minusCreditRecordForCancel(String userID,String orderID, int value,Date cancelTime);
 	
 }

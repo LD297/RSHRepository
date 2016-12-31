@@ -13,6 +13,8 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.hamcrest.internal.ArrayIterator;
+
 /**
  * 处理用户界面包的逻辑
  * @author john
@@ -50,7 +52,10 @@ public class UserController implements UserService{
 	 * 订单状态发生变化产生的信用记录变化
 	 */
 	public ResultMessage addCreditRecord(CreditRecordVO vo) {
-		CreditRecordList creditRecordList = new CreditRecordList(vo.getUserid());
+		CreditRecordList creditRecordList = CreditRecordList.getInstance(vo.getUserid());
+		if(creditRecordList==null){
+			return null;
+		}
 		return creditRecordList.addCreditRecord(vo);
 	}
 	
@@ -58,8 +63,11 @@ public class UserController implements UserService{
 	 * 用户信用记录列表（用户查看信用记录的时候）
 	 */
 	@Override
-	public Iterator<CreditRecordVO> getCreditRecordList(String userid) {
-		CreditRecordList creditRecordList = new CreditRecordList(userid);
+	public Iterator<CreditRecordVO> getCreditRecordList(String userID) {
+		CreditRecordList creditRecordList = CreditRecordList.getInstance(userID);
+		if(creditRecordList==null){
+			return null;
+		}
 		return creditRecordList.getCreditRecordList();
 	}
 
@@ -146,13 +154,19 @@ public class UserController implements UserService{
 	@Override
 	public ResultMessage addCredit(int value, String userID) {
 		// TODO Auto-generated method stub
-		CreditRecordList creditRecordList = new CreditRecordList(userID);
+		CreditRecordList creditRecordList = CreditRecordList.getInstance(userID);
+		if(creditRecordList==null){
+			return ResultMessage.idNotExist;
+		}
 		return creditRecordList.add(value);
 	}
 
 	public boolean hasReserved(String userID, String hotelID) {
 		// TODO Auto-generated method stub
 		User user = User.getInstance(userID);
+		if(user==null){
+			return false;
+		}
 		return user.hasReserved(hotelID);
 	}
 	

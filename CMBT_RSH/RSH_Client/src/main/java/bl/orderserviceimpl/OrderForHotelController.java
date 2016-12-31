@@ -61,7 +61,6 @@ public class OrderForHotelController implements OrderForHotel{
     @Override
     public ResultMessage execute(String orderID){
     	Order order = Order.getInstance(orderID);
-        System.out.println(orderID+" in order controller");
     	if(order==null){
     		return ResultMessage.idNotExist;
     	}

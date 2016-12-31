@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 public class CreditRecordList {
-	private String userid ;
+	private String userID ;
 	int credit;
 	ArrayList<CreditRecordVO> creditRecordVOArrayList ;
 
@@ -26,11 +26,23 @@ public class CreditRecordList {
 		}
 	}
 
-	public CreditRecordList(String userid) {
+	protected CreditRecordList(String userID) {
 		initRemote();
-		this.userid = userid;
+		this.userID = userID;
 		creditRecordVOArrayList = getCreditRecords();
 		credit = getCredit();	
+	}
+	
+	public static CreditRecordList getInstance(String userID){
+		initRemote();
+		User user = User.getInstance(userID);
+		if(user==null){
+			return null;
+		}
+		else{
+			CreditRecordList creditRecordList = new CreditRecordList(userID);
+			return creditRecordList;
+		}
 	}
 	/*
 	用以在初始化对象的时候从数据库获得信用记录列表
@@ -40,7 +52,7 @@ public class CreditRecordList {
 		ArrayList<CreditRecordVO> creditRecordVOs = new ArrayList<>();
 		initRemote();
 		try {
-			creditRecordPOS=creditRecordListDao.getCreditRecordList(userid);
+			creditRecordPOS=creditRecordListDao.getCreditRecordList(userID);
 		}catch (RemoteException e){
 			e.printStackTrace();
 			return creditRecordVOs;
@@ -54,7 +66,7 @@ public class CreditRecordList {
 	public ResultMessage add(int value){
 		credit +=value;
 		CreditRecordVO creditRecordVO = new CreditRecordVO
-				(userid, new Date(), null , CreditAction.bymoney,"+"+value, credit);
+				(userID, new Date(), null , CreditAction.bymoney,"+"+value, credit);
 		return addCreditRecord(creditRecordVO);
 	}
 	
@@ -105,7 +117,7 @@ public class CreditRecordList {
 
 	public ResultMessage addCreditRecord(CreditAction creditAction, String orderID, int change, Date changeTime) {
 		credit = credit+change;
-		CreditRecordVO creditRecordVO = new CreditRecordVO(userid, changeTime, orderID, creditAction,String.valueOf(change), credit);
+		CreditRecordVO creditRecordVO = new CreditRecordVO(userID, changeTime, orderID, creditAction,String.valueOf(change), credit);
 		initRemote();
 		try {
 			return creditRecordListDao.addCreditRecord(creditRecordVO.changeIntoPO());

@@ -1,24 +1,16 @@
 package bl.orderserviceimpl;
 
-import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.HotelController;
+
 import bl.orderservice.OrderForWebsite;
-import bl.userserviceimpl.CreditRecordList;
-import constant.CreditAction;
 import constant.ResultMessage;
 import constant.StateOfOrder;
 import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import rmi.RemoteHelper;
-import vo.CreditRecordVO;
 import vo.OrderVO;
 
 import java.rmi.RemoteException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by sky-PC on 2016/12/14.
@@ -38,17 +30,20 @@ public class OrderForWebsiteController implements OrderForWebsite {
      */
     @Override
     public ArrayList<OrderVO> browseUnperformed(){
-        ArrayList<OrderVO> selectedList = new ArrayList<OrderVO>();
+        ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
+        ArrayList<OrderPO> orderPOs = new ArrayList<>();
         initRemote();
         try{
-            ArrayList<OrderPO> orders = orderDao.searchByState(StateOfOrder.unexecuted);
-            for(int i=0;i<orders.size();i++)
-                selectedList.add(orders.get(i).changeIntoVO());
-            return selectedList;
+            orderPOs = orderDao.searchByState(StateOfOrder.unexecuted);
+            
         }catch (RemoteException e){
             e.printStackTrace();
-            return null;
+            return orderVOs;
         }
+       for(OrderPO orderPO:orderPOs){
+    	   orderVOs.add(orderPO.changeIntoVO());
+       }
+        return orderVOs;
     }
     /**
      * 网站营销人员查看异常订单
@@ -56,19 +51,19 @@ public class OrderForWebsiteController implements OrderForWebsite {
      */
     @Override
     public ArrayList<OrderVO> browseAbnormal(){
-        ArrayList<OrderVO> selectedList = new ArrayList<OrderVO>();
-
+        ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
+        ArrayList<OrderPO> orderPOs = new ArrayList<>();
         initRemote();
         try{
-            ArrayList<OrderPO> orders = orderDao.searchByState(StateOfOrder.abnormal);
-            for(int i=0;i<orders.size();i++){
-                selectedList.add(orders.get(i).changeIntoVO());
-            }
-            return selectedList;
+            orderPOs = orderDao.searchByState(StateOfOrder.abnormal);
         }catch (RemoteException e){
             e.printStackTrace();
-            return selectedList;
+            return orderVOs;
         }
+        for(OrderPO orderPO:orderPOs){
+        	orderVOs.add(orderPO.changeIntoVO());
+        }
+        return orderVOs;
     }
     /**
      * 网站营销人员撤销异常订单

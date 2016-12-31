@@ -1,5 +1,6 @@
 package bl.orderserviceimpl;
 
+import bl.BLHelper;
 import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.HotelController;
@@ -23,6 +24,7 @@ import vo.UserVO;
 
 import java.rmi.RemoteException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.temporal.IsoFields;
 import java.util.ArrayList;
@@ -34,8 +36,8 @@ import java.util.Date;
 public class OrderForUserController implements OrderForUser{
 
     private static OrderDao orderDao = null;
-    private HotelInfoService hotelInfoService = new HotelInfoController();
-    private HotelService hotelService = new HotelController();
+//    private HotelInfoService hotelInfoService = new HotelInfoController();
+//    private HotelService hotelService = new HotelController();
 
     private static void initRemote(){
     	if(orderDao == null){
@@ -90,57 +92,9 @@ public class OrderForUserController implements OrderForUser{
      */
     @Override
     public int cancelMyOrder(String orderID){
-        OrderPO orderPO;
-        Date cancelTime = new Date();
-        initRemote();
-        try{
-            orderPO = orderDao.searchByID(orderID);
-        }catch (RemoteException e){
-            return -1;
-        }
-        if(orderPO==null){
-        	return -1;
-        }
-        // 检查订单状态
-        if(orderPO.getState()!=StateOfOrder.unexecuted)
-            return -1;
-
-        // 得到订单信息
-        String userID = orderPO.getUserID();
-        String hotelID = orderPO.getHotelID()                  ;
-        RoomNormVO room =  orderPO.getRoom();
-        int roomNum = orderPO.getRoomNumber();
-        double orderValue = orderPO.getTrueValue();
-        Date checkIn = orderPO.getCheckIn();
-        Date checkOut = orderPO.getCheckOut();
-
-        // 酒店可用客房数量增加
-        // 增加量=订单中预定的客房数量
-        HotelService hotelService = new HotelController();
-        hotelService.plusRoomAvail(hotelID,room.getRoomType(),roomNum,checkIn,checkOut);
-        // 订单状态置为已撤销
-        orderPO.setState(StateOfOrder.canceled);        
-        initRemote();
-        try{
-            orderDao.update(orderPO);
-        }catch (RemoteException e){
-            return -1;
-        }
-
-        int deducted = 0;
-        // 判断是否超时：成立->扣除信用值（订单价值一半）
-        String deadline = hotelInfoService.getCheckInDDL(hotelID);
-        if(OrderForUserController.isOvertime(checkOut,deadline,cancelTime)){
-            CreditRecordList creditRecordList = new CreditRecordList(userID);
-            int credit = creditRecordList.getCredit();
-            credit += (int)orderValue/2;
-            CreditRecordVO creditRecordVO = new CreditRecordVO(userID,cancelTime,orderID,
-                    CreditAction.cancel,"-"+String.valueOf((int)orderValue/2),credit);
-            creditRecordList.addCreditRecord(creditRecordVO);
-            deducted = (int)orderValue/2;
-        }
-
-        return deducted;
+    	Order order = Order.getInstance(orderID);
+    	order.cancelUnexecuted();
+        return 0;
     }
    
     /**
@@ -223,32 +177,7 @@ public class OrderForUserController implements OrderForUser{
      */
     @Override
     public ResultMessage confirmReservation(OrderVO orderVO){
-        String userID = orderVO.getUserID();
-        String hotelID= orderVO.getHotelID();
-        
-        // 检查信用值
-        User user = User.getInstance(userID);
-        if(user==null){
-        	return ResultMessage.idNotExist;
-        }
-        if(!user.canGenerateOrder())
-            return ResultMessage.creditLack;
-
-        // 检查房间信息
-        RoomNormVO room = orderVO.getRoom();
-        int roomNum = orderVO.getRoomNumber();
-        Date checkIn = orderVO.getCheckIn();
-        Date checkOut = orderVO.getCheckOut();
-        double roomPrice = orderVO.getRoomPrice();
-        if(hotelService.numOfRoomAvail(hotelID, room.getRoomType(), checkIn, checkOut)< roomNum)
-            return ResultMessage.roomNumLack;
-
-        // 检查价格
-        double price = Double.parseDouble(this.getTrueValue(new OrderInfo(hotelID, room.getRoomType(), roomNum, checkIn, checkOut, userID,roomPrice)).split("#")[1]);
-        if(orderVO.getTrueValue()<price)
-            return ResultMessage.promotionLoss;
-
-        return this.add(orderVO);
+        return Order.generateOrder(orderVO);
     }
     /**
      * 用户评价订单
@@ -261,30 +190,11 @@ public class OrderForUserController implements OrderForUser{
      */
     @Override
     public ResultMessage addComment(String orderID, int grade, String comment){
-        // 检查订单状态是否为已执行
-    	OrderPO orderPO;
-    	initRemote();
-        try{
-        	orderPO = orderDao.searchByID(orderID);
-            if(orderPO.getState()!=StateOfOrder.executed)
-                return ResultMessage.fail;
-        }catch (RemoteException e){
-            e.printStackTrace();
-            return ResultMessage.fail;
-        }
-        // 订单评分评论更新
-        // 酒店评分更新
-       orderPO.setComment(comment);
-       initRemote();
-        try {
-            if(orderDao.update(orderPO)==ResultMessage.succeed
-                    &&hotelInfoService.updateGrade(orderID.substring(0,10), grade)==ResultMessage.succeed)
-                return ResultMessage.succeed;
-        }catch(RemoteException e){
-            e.printStackTrace();
-            return ResultMessage.fail;
-        }
-        return ResultMessage.fail;
+    	Order order = Order.getInstance(orderID);
+    	if(order == null){
+    		return ResultMessage.idNotExist;
+    	}
+    	return order.addComment(grade, comment);
     }
 
     /**
@@ -310,58 +220,27 @@ public class OrderForUserController implements OrderForUser{
         return orderVOs;
     }
 
-    /**
-     *  数据库新增可持久化对象
-     *  类内部调用
-     * @param orderVO
-     * @return
-     */
-  
-    private ResultMessage add(OrderVO orderVO){
-    	initRemote();
-        try{
-            orderDao.insert(orderVO.changeIntoPO());
-            return ResultMessage.succeed;
-        }catch (RemoteException e){
-            e.printStackTrace();
-            return ResultMessage.remote_fail;
-        }
-    }
-
-
-    /**
-     * 计算时间差 单位：秒
-     * 类内部调用
-     * @param checkOut
-     * @param deadline
-     * @param cancelTime
-     * @return
-     */
-    private static boolean isOvertime(Date checkOut,String deadline,Date cancelTime){
-        long seconds;
-
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String checkOutDate = sdf.format(checkOut);
-        initRemote();
-        try{   //hh->12hour  HH->24hour
-            Date checkOutTime = df.parse(checkOutDate+" "+deadline);
-            long diff = checkOutTime.getTime() - cancelTime.getTime();
-            seconds = diff/1000;
-        }catch (Exception e){
-            return false;
-        }
-        // 距离最晚执行时间大于等于6h
-        if(seconds>=6*60*60)
-            return false;
-        else
-            return true;
-    }
+    
 
 	@Override
 	public int getCreditReduced(OrderVO orderVO) {
-		// TODO Auto-generated method stub
-		return 200;
+		Date now = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+		Date DDL;
+		try {
+			DDL = simpleDateFormat.parse(orderVO.getHotelDDL());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return -1;
+		}
+		DDL = new Date(DDL.getTime()+orderVO.getCheckIn().getTime());
+		int difference = BLHelper.getDifferenceSeconds(now, DDL);
+		if(difference>=3600*6){
+			return 0;
+		}
+		else{
+			return (int)orderVO.getTrueValue()/2;
+		}
 	}
 
 }

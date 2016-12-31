@@ -181,7 +181,6 @@ public class Hotel{
 		try {
 			return hotelDao.updateGrade(hotelID, grade);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}

@@ -5,8 +5,10 @@ import vo.CreditRecordVO;
 
 public class MockCreditRecordList extends CreditRecordList{
 
-	public MockCreditRecordList(String userid) {
-		super(userid);
+	
+	protected MockCreditRecordList(String userID) {
+		super(userID);
+		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * 增加用户信用变化记录
