@@ -75,7 +75,9 @@ public class WebSalesman {
 
 	public ResultMessage checkPassword(String password) {
 		// TODO Auto-generated method stub
-		if(this.password .equals( password )){
+		System.out.println(password+" ui传过来的");
+		System.out.println(this.password+" data传过来的");
+		if(this.password.equals( password )){
 			return ResultMessage.succeed;
 		}
 		else{

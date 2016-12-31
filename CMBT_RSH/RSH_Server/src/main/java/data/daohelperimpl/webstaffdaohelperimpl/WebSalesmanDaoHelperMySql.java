@@ -79,7 +79,6 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
                 int a=result.getInt(1);
         		if(a<=0){
                     System.out.println("this is the num:"+a);
-
         			return null;}}
         }catch(SQLException e){
         	e.printStackTrace();
@@ -90,9 +89,10 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         try{
         	while(pwResult.next()){
         		String password = pwResult.getString(1);
+        		System.out.println(password+" database 得到的");
         		String district = pwResult.getString(2);
         		String name = pwResult.getString(3);
-        		return new WebSalesmanPO(id,password,district,name);
+        		return new WebSalesmanPO(id,district,password,name);
         	}
         }catch(SQLException e){
         	e.printStackTrace();
