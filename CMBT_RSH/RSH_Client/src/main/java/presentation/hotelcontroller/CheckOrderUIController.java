@@ -274,6 +274,7 @@ public class CheckOrderUIController {
             Label checkOutLabel = (Label)theAnchorePane.getChildren().get(7);
             Label actualCheckInLabel = (Label)theAnchorePane.getChildren().get(8);
             Label actualCheckOutLabel = (Label)theAnchorePane.getChildren().get(9);
+
             // 实际入住、实际离开（提示的汉字）
             Label actualInText = (Label)theAnchorePane.getChildren().get(19);
             Label actualOutText = (Label)theAnchorePane.getChildren().get(20);
@@ -294,25 +295,33 @@ public class CheckOrderUIController {
             actualCheckInLabel.setVisible(false);
             actualCheckOutLabel.setVisible(false);
 
-            if(currentOrderType.equals(StateOfOrder.executed)){
-                //
+            if(currentOrderType.equals(StateOfOrder.canceled)){
+                Label canceledLabel = (Label)theAnchorePane.getChildren().get(10);
+                canceledLabel.setVisible(true);
+            } else if(currentOrderType.equals(StateOfOrder.executed)){
                 // 客人有入住时间
                 actualInText.setVisible(true);
+                actualCheckInLabel.setVisible(true);
                 actualCheckInLabel.setText(actualInStr);
 
-                if(actualInStr!=""){
+                if(actualOutStr!=""){
                     // 客人有离开时间
                     actualOutText.setVisible(true);
+                    actualCheckOutLabel.setVisible(true);
                     actualCheckOutLabel.setText(actualOutStr);
                     // 右下角不显示"退房"按钮
                     theAnchorePane.getChildren().get(10).setVisible(false);
                     // 显示对号的ImageView
-                    theAnchorePane.getChildren().get(11).setVisible(true);
+                    theAnchorePane.getChildren().get(21).setVisible(true);
                 } else {
                     // 客人未离开,显示"退房"按钮，不显示对号的ImageView
                     theAnchorePane.getChildren().get(10).setVisible(true);
-                    theAnchorePane.getChildren().get(11).setVisible(false);
+                    theAnchorePane.getChildren().get(21).setVisible(false);
                 }
+            } else {
+                // 未执行或异常的
+                Button exeOrevButton = (Button)theAnchorePane.getChildren().get(10);
+                exeOrevButton.setVisible(true);
             }
         } else {
             showBlank(theAnchorePane);
@@ -495,8 +504,10 @@ public class CheckOrderUIController {
     @FXML
     void execute0(MouseEvent event) {
         ResultMessage rm = executeOrder(0);
-        if(rm.equals(ResultMessage.succeed))
+        if(rm.equals(ResultMessage.succeed)){
+            isUnExeSelectable = true;
             unexecutedTabSelected();
+        }
         else
             System.out.println(rm);
     }
@@ -504,8 +515,10 @@ public class CheckOrderUIController {
     @FXML
     void execute01(MouseEvent event) {
         ResultMessage rm = executeOrder(1);
-        if(rm.equals(ResultMessage.succeed))
+        if(rm.equals(ResultMessage.succeed)){
+            isUnExeSelectable = true;
             unexecutedTabSelected();
+        }
         else
             System.out.println(rm);
     }
@@ -513,8 +526,10 @@ public class CheckOrderUIController {
     @FXML
     void execute02(MouseEvent event) {
         ResultMessage rm = executeOrder(2);
-        if(rm.equals(ResultMessage.succeed))
+        if(rm.equals(ResultMessage.succeed)){
+            isUnExeSelectable = true;
             unexecutedTabSelected();
+        }
         else
             System.out.println(rm);
     }
@@ -522,8 +537,10 @@ public class CheckOrderUIController {
     @FXML
     void checkOut0(MouseEvent event) {
         ResultMessage rm = checkOut(0);
-        if(rm.equals(ResultMessage.succeed))
+        if(rm.equals(ResultMessage.succeed)){
+            isExeSelectable = true;
             executedTabSelected();
+        }
         else
             System.out.println(rm);
     }
@@ -531,8 +548,10 @@ public class CheckOrderUIController {
     @FXML
     void checkOut01(MouseEvent event) {
         ResultMessage rm = checkOut(1);
-        if(rm.equals(ResultMessage.succeed))
+        if(rm.equals(ResultMessage.succeed)){
+            isExeSelectable = true;
             executedTabSelected();
+        }
         else
             System.out.println(rm);
     }
@@ -540,8 +559,10 @@ public class CheckOrderUIController {
     @FXML
     void checkOut02(MouseEvent event) {
         ResultMessage rm = checkOut(2);
-        if(rm.equals(ResultMessage.succeed))
+        if(rm.equals(ResultMessage.succeed)){
+            isExeSelectable = true;
             executedTabSelected();
+        }
         else
             System.out.println(rm);
     }
@@ -549,8 +570,10 @@ public class CheckOrderUIController {
     @FXML
     void revoke0(MouseEvent event) {
         ResultMessage rm = revokeOrder(0);
-        if(rm.equals(ResultMessage.succeed))
+        if(rm.equals(ResultMessage.succeed)){
+            isRevoSelectable = true;
             exceptionalTabSelected();
+        }
         else
             System.out.println(rm);
     }
@@ -558,8 +581,10 @@ public class CheckOrderUIController {
     @FXML
     void revoke01(MouseEvent event) {
         ResultMessage rm = revokeOrder(1);
-        if(rm.equals(ResultMessage.succeed))
+        if(rm.equals(ResultMessage.succeed)){
+            isRevoSelectable = true;
             exceptionalTabSelected();
+        }
         else
             System.out.println(rm);
     }
@@ -567,9 +592,10 @@ public class CheckOrderUIController {
     @FXML
     void revoke02(MouseEvent event) {
         ResultMessage rm = revokeOrder(2);
-        if(rm.equals(ResultMessage.succeed))
+        if(rm.equals(ResultMessage.succeed)){
+            isRevoSelectable = true;
             exceptionalTabSelected();
-        else
+        }else
             System.out.println(rm);
     }
 
@@ -592,13 +618,16 @@ public class CheckOrderUIController {
 
     @FXML
     void searchOrderByID(MouseEvent event){
-        String id = searchTextField.getText();
+        System.out.println("!~!~!");
+        String id = searchTextField.getText().trim();
         for(OrderVO orderVO:currentOrder){
+            System.out.println("id: "+id+"   orderVo: "+orderVO.getOrderID());
             if(orderVO.getOrderID().equals(id)){
                 int index = currentOrder.indexOf(orderVO);
                 int page = index/NUM_OF_ORDERS_SHOWN;
                 currentPage = page;
                 showPage();
+                System.out.println("查找："+index+" "+page);
                 return;
             }
         }
