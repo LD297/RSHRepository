@@ -31,8 +31,8 @@ public class SuccessAddWebSalesmanUIController {
     	AnchorPane manageWebSalesman = WebManagerUIFXMLFactory.getInstance().getManageWebSalesman();
     	manageWebSalesman.getChildren().remove(manageWebSalesman.getChildren().size()-1);
     	//刷新管理网站营销人员界面
-    	ManageHotelUIController manageHotelUIController = WebManagerUIFXMLFactory.getInstance().getManageHotelUIController();
-    	manageHotelUIController.init();
+    	ManafeWebsalesmanUIController manafeWebsalesmanUIController = WebManagerUIFXMLFactory.getInstance().getManafeWebsalesmanUIController();
+    	manafeWebsalesmanUIController.init();
     }
 
     public void init(String id,String password) {

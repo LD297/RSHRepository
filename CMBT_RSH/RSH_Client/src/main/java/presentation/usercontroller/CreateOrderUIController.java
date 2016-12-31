@@ -194,6 +194,7 @@ public class CreateOrderUIController {
 			if(resultMessage==ResultMessage.succeed){
 				UIJumpTool.getUiJumpTool().closeCreateOrder();
 			}else{
+				System.out.println(resultMessage);
 				messageLabel.setText("您的信用不足");
 			}
 		}

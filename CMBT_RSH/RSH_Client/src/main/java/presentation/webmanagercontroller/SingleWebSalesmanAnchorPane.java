@@ -19,7 +19,8 @@ public class SingleWebSalesmanAnchorPane extends AnchorPane{
 	private ImageView penImage = new ImageView(ImageFactory.getImageFactory().getPenImage());
 	
 	public SingleWebSalesmanAnchorPane(WebSalesmanVO webSalesmanVO) {
-		idInfoLabel.setText(webSalesmanVO.getId());
+		idInfoLabel.setText(webSalesmanVO.getId()+"("+webSalesmanVO.getName()+")");
+		System.out.println(webSalesmanVO.getName());
 		areaInfoLabel.setText(webSalesmanVO.getProvince()+" "+webSalesmanVO.getCity()+" "+webSalesmanVO.getArea());;
 		
 		//设置组件属性
@@ -45,7 +46,7 @@ public class SingleWebSalesmanAnchorPane extends AnchorPane{
 		//设置组件位置
 		Locator locator = Locator.getLocator();
 		locator.setLocation(idLabel, 14.0,53.0,10.0,400.0);
-		locator.setLocation(idInfoLabel, 14.0,53.0, 218.0,199.0);
+		locator.setLocation(idInfoLabel, 14.0,53.0, 218.0,99.0);
 		locator.setLocation(areaLabel, 49.0,15.0,10.0, 452.0);
 		locator.setLocation(areaInfoLabel, 49.0,15.0, 218.0,99.0);
 		locator.setLocation(penImage, 14.0, 53.0, 578.0, 0.0);

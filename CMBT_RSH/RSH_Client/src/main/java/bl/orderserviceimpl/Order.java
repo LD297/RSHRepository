@@ -69,7 +69,7 @@ public class Order {
     	if(resultMessage==ResultMessage.succeed){
     		HotelController hotelController = new HotelController();
     		resultMessage = hotelController.minusRoomAvail(orderVO.getHotelID(), orderVO.getRoomType(),
-    				orderVO.getRoomNumber(), orderVO.getCheckIn(), orderVO.getActualCheckOut());
+    				orderVO.getRoomNumber(), orderVO.getCheckIn(), orderVO.getCheckOut());
     	}
     	return resultMessage;
     }

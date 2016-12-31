@@ -71,7 +71,7 @@ public class SingleHotelAnchorPane extends AnchorPane{
 		locator.setLocation(areaInfoLabel, 73.0,13.0, 151.0,0.0);
 		locator.setLocation(penImage, 13.0,76.0,577.0,0.0);
 		locator.setLocation(phoneImage, 15.0,73.0,360.0,220.0);
-		locator.setLocation(phoneInfoLabel, 13.0,73.0,380.0,130.0);
+		locator.setLocation(phoneInfoLabel, 13.0,73.0,380.0,110.0);
 		
 		//为组件添加监听
 		penImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
