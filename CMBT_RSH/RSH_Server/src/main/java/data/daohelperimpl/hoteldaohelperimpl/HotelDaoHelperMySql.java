@@ -381,7 +381,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         System.out.println(gap1+" "+gap2+"  时间差");
         String getRoomListSql = "SELECT aList FROM RoomInfo WHERE hotelID='"+hotelID+"' and roomType='"+roomType+"' LIMIT 1";
         ResultSet result = db.query(getRoomListSql);
-        if(!(gap1>=0&&gap2>=gap1))
+        if(!(gap1>=0&&gap2>gap1))
         	return ResultMessage.fail;
         	
         try{System.out.println("get into success");
