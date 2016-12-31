@@ -35,7 +35,6 @@ public class OrderForWebsiteController implements OrderForWebsite {
         initRemote();
         try{
             orderPOs = orderDao.searchByState(StateOfOrder.unexecuted);
-            
         }catch (RemoteException e){
             e.printStackTrace();
             return orderVOs;
@@ -45,6 +44,7 @@ public class OrderForWebsiteController implements OrderForWebsite {
        }
         return orderVOs;
     }
+    
     /**
      * 网站营销人员查看异常订单
      * @return
@@ -82,6 +82,9 @@ public class OrderForWebsiteController implements OrderForWebsite {
     @Override
     public ResultMessage webCancelAbnormal(String orderID, boolean isHalf){
     	Order order = Order.getInstance(orderID);
+    	if(order==null){
+    		return ResultMessage.idNotExist;
+    	}
     	return order.cancelAbnormal(isHalf);
     }
 }

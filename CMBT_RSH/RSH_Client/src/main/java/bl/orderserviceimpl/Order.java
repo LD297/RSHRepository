@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import bl.BLHelper;
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.HotelController;
 import bl.hotelserviceimpl.HotelInfoController;
@@ -160,10 +161,10 @@ public class Order {
        }
        
        // 判断是否超时：成立->扣除信用值（订单价值一半）
-       String deadline = orderPO.getHotelDDL();
-       if(resultMessage==ResultMessage.succeed&&isOvertime(checkOut,deadline,new Date())){
+      int creditChange = getCreditReduced(orderPO.changeIntoVO());
+       if(resultMessage==ResultMessage.succeed&&creditChange>0){
     	   UserForOrder userForOrder = new UserForOrderController();
-    	   resultMessage = userForOrder.minusCreditRecordForCancel(userID,orderPO.getOrderID(), (int)(orderValue/2), new Date());
+    	   resultMessage = userForOrder.minusCreditRecordForCancel(userID,orderPO.getOrderID(), creditChange, new Date());
        }
 	   return resultMessage;	   
    }  
@@ -229,27 +230,7 @@ public class Order {
     * @param cancelTime
     * @return
     */
-   private static boolean isOvertime(Date checkOut,String deadline,Date cancelTime){
-       long seconds;
-
-       DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-       String checkOutDate = sdf.format(checkOut);
-       initRemote();
-       try{   //hh->12hour  HH->24hour
-           Date checkOutTime = df.parse(checkOutDate+" "+deadline);
-           long diff = checkOutTime.getTime() - cancelTime.getTime();
-           seconds = diff/1000;
-       }catch (Exception e){
-           return false;
-       }
-       // 距离最晚执行时间大于等于6h
-       if(seconds>=6*60*60)
-           return false;
-       else
-           return true;
-   }
-
+  
 
 	public ResultMessage addComment(int grade, String comment) {
 		// 检查订单状态是否为已执行
@@ -273,4 +254,24 @@ public class Order {
 		return resultMessage;
 	}
   
+	public static int getCreditReduced(OrderVO orderVO) {
+		Date now = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+		Date DDL;
+		try {
+			DDL = simpleDateFormat.parse(orderVO.getHotelDDL());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return -1;
+		}
+		DDL = new Date(DDL.getTime()+orderVO.getCheckIn().getTime());
+		int difference = BLHelper.getDifferenceSeconds(now, DDL);
+		if(difference>=3600*6){
+			return 0;
+		}
+		else{
+			return (int)orderVO.getTrueValue()/2;
+		}
+
+	}
 }

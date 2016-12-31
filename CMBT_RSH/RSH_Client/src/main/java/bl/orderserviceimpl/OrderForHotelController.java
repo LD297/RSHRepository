@@ -1,22 +1,15 @@
 package bl.orderserviceimpl;
 
 import bl.orderservice.OrderForHotel;
-import bl.userserviceimpl.CreditRecordList;
-import constant.CreditAction;
 import constant.ResultMessage;
 import constant.StateOfOrder;
 import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import rmi.RemoteHelper;
-import vo.CreditRecordVO;
 import vo.OrderVO;
 
 import java.rmi.RemoteException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by sky-PC on 2016/12/14.
@@ -40,9 +33,7 @@ public class OrderForHotelController implements OrderForHotel{
     @Override
     public ArrayList<OrderVO> hotelClassify(String hotelID, StateOfOrder state){
         ArrayList<OrderVO> list = this.getOrderOfHotel(hotelID);
-        if(state==null)
-            return list;
-        else{
+        if(state!=null){
             for(int i=list.size();i>0;i--)
                 if(list.get(i-1).getState()!=state)
                     list.remove(i-1);
@@ -77,6 +68,9 @@ public class OrderForHotelController implements OrderForHotel{
     @Override
     public ResultMessage leaveUpdate(String orderID){
         Order order = Order.getInstance(orderID);
+        if(order==null){
+        	return ResultMessage.idNotExist;
+        }
         return order.leaveUpdate();
     }
 
@@ -96,6 +90,9 @@ public class OrderForHotelController implements OrderForHotel{
     public ResultMessage hotelCancelAbnormal(String orderID){
     	//此处需判断是否已超过预计离开时间
         Order order = Order.getInstance(orderID);
+        if(order==null){
+        	return ResultMessage.idNotExist;
+        }
         ResultMessage resultMessage = order.cancelAbnormal(false);
         if(resultMessage == ResultMessage.succeed){
             return order.execute();

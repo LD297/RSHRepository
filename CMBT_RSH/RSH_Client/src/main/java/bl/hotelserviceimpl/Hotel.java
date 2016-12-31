@@ -235,7 +235,6 @@ public class Hotel{
 	}
 
 	public String getImageAddresForRoom(String roomType) {
-		// TODO Auto-generated method stub
 		for(String imageAddress:imageAddresses){
 			if(imageAddress.split(" ")[0].equals(roomType)){
 				return imageAddress.split(" ")[1];

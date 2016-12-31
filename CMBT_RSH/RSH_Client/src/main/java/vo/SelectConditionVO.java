@@ -3,29 +3,20 @@ package vo;
 import java.util.Date;
 
 public class SelectConditionVO {
-	public String roomType;
-	public double lowestPrice;
-	public double highestPrice;
-	public int roomNum;
-	public Date begin;
-	public Date end;
-	public int level;
-	public double lowestGrade;
-	public double highestGrade;
-	public String userID;
-	public Boolean reserved;
+	public String roomType = null;
+	public double lowestPrice = 0;
+	public double highestPrice = Double.MAX_VALUE;
+	public int roomNum = 0;
+	public Date begin = new Date(0xFFFFFFFF);
+	public Date end = new Date(0x80000000);
+	public int level = -1;
+	public double lowestGrade = 0;
+	public double highestGrade = Double.MAX_VALUE;
+	public String userID = null;
+	public Boolean reserved = false;
 	
-	public SelectConditionVO(String roomType,double lowestPrice,double highestPrice,int roomNum,Date begin,Date end,int level,double lowestGrade,double highestGrade,String userID,Boolean reserved) {
-		this.begin = begin;
-		this.roomType = roomType;
-		this.lowestGrade = lowestGrade;
-		this.highestGrade = highestGrade;
-		this.roomNum = roomNum;
-		this.end = end;
-		this.level = level;
-		this.reserved = reserved;
-		this.lowestPrice = lowestPrice;
-		this.highestPrice = highestGrade;
-		this.userID = userID;
-	}
+	
+	
+	
+
 }

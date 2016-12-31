@@ -23,7 +23,7 @@ public class BLHelper {
 	}
 
 	public static void main(String args[]){
-		System.out.println(getRandom(10));
+		System.out.println(0x80000000);
 	}
 	
 	public static int getDifferenceSeconds(Date before,Date after){

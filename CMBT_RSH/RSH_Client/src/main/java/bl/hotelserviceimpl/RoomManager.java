@@ -27,6 +27,7 @@ public class RoomManager {
 	
 	private RoomManager(String hotelID){
 		this.hotelID = hotelID;
+		roomList = getRoomList();
 	}
 	
 	protected static RoomManager getInstance(String hotelID){

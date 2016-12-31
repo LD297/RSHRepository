@@ -224,23 +224,7 @@ public class OrderForUserController implements OrderForUser{
 
 	@Override
 	public int getCreditReduced(OrderVO orderVO) {
-		Date now = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-		Date DDL;
-		try {
-			DDL = simpleDateFormat.parse(orderVO.getHotelDDL());
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return -1;
-		}
-		DDL = new Date(DDL.getTime()+orderVO.getCheckIn().getTime());
-		int difference = BLHelper.getDifferenceSeconds(now, DDL);
-		if(difference>=3600*6){
-			return 0;
-		}
-		else{
-			return (int)orderVO.getTrueValue()/2;
-		}
+		return Order.getCreditReduced(orderVO);
 	}
 
 }

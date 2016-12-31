@@ -23,14 +23,15 @@ import bl.userserviceimpl.UserController;
 
 /**
  * 根据条件搜索酒店, 兼顾搜索排序
+ * 
  * @author aa
  *
  */
-public class SearchHotelController implements SearchHotelService{
-private static HotelDao hotelDao = null;
-	
-	private void initRemote(){
-		if(hotelDao==null){
+public class SearchHotelController implements SearchHotelService {
+	private static HotelDao hotelDao = null;
+
+	private void initRemote() {
+		if (hotelDao == null) {
 			RemoteHelper remoteHelper = RemoteHelper.getInstance();
 			hotelDao = remoteHelper.getHotelDao();
 		}
@@ -44,94 +45,97 @@ private static HotelDao hotelDao = null;
 		DistrictHelper districtHelper = new DistrictHelper(province, city, area);
 		try {
 			hotelPOs = hotelDao.getHotelList(districtHelper.getDistrict());
-		}catch (RemoteException e){
+		} catch (RemoteException e) {
 			e.printStackTrace();
 			return hotelVOs;
 		}
-		for(HotelPO hotelPO: hotelPOs){
+		for (HotelPO hotelPO : hotelPOs) {
 			hotelVOs.add(hotelPO.changeIntoVO());
 		}
 		return hotelVOs;
 	}
 
 	@Override
-	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,SelectConditionVO selectConditionVO) {
+	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList, SelectConditionVO selectConditionVO) {
 		ArrayList<HotelVO> result = new ArrayList<>();
-		for(HotelVO hotelVO:hotelList){
-			if(match(hotelVO,selectConditionVO)){
+		for (HotelVO hotelVO : hotelList) {
+			if (match(hotelVO, selectConditionVO)) {
 				result.add(hotelVO);
 			}
-		}		
+		}
 		return result;
 	}
-/**
- * 内部调用
- * 产看条件是否匹配
- * @param hotelVO
- * @param selectConditionVO
- * @return
- */
+
+	/**
+	 * 内部调用
+	 * 产看条件是否匹配 
+	 * @param hotelVO
+	 * @param selectConditionVO
+	 * @return
+	 */
 	private boolean match(HotelVO hotelVO, SelectConditionVO selectConditionVO) {
 		// TODO Auto-generated method stub
 		double standardPrice = hotelVO.getStandardRoomPrice();
 		double grade = hotelVO.getGrade();
-		if(standardPrice>selectConditionVO.highestPrice)
+		if (standardPrice > selectConditionVO.highestPrice)
 			return false;
-		if(standardPrice<selectConditionVO.lowestPrice)
+		if (standardPrice < selectConditionVO.lowestPrice)
 			return false;
-		if(grade<selectConditionVO.lowestGrade)
+		if (grade < selectConditionVO.lowestGrade)
 			return false;
-		if(grade>selectConditionVO.highestGrade)
+		if (grade > selectConditionVO.highestGrade)
 			return false;
-		if(hotelVO.getLevel()!=selectConditionVO.level)
-			return false;
+		if (selectConditionVO.level>0){
+			if(selectConditionVO.level!=hotelVO.getLevel()){
+				return false;
+			}
+		}
 		String hotelID = hotelVO.getHotelID();
 		Hotel hotel = Hotel.getInstance(hotelID);
-		if(!hotel.hasEnoughRoom(selectConditionVO.roomType,selectConditionVO.roomNum
-				,selectConditionVO.begin,selectConditionVO.end))
+		if (!hotel.hasEnoughRoom(selectConditionVO.roomType, selectConditionVO.roomNum, selectConditionVO.begin,
+				selectConditionVO.end))
 			return false;
 		UserController userController = new UserController();
-		if(selectConditionVO.reserved){
-			if(!userController.hasReserved(selectConditionVO.userID,hotelID))
+		if (selectConditionVO.reserved) {
+			if (!userController.hasReserved(selectConditionVO.userID, hotelID))
 				return false;
 		}
 		return true;
 	}
-	
+
 	@Override
-	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList,String hotelName) {
+	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList, String hotelName) {
 		ArrayList<HotelVO> result = new ArrayList<>();
-		for(HotelVO hotelVO:hotelList){
-			if(hotelVO.getHotelName().equals(hotelName)){
+		for (HotelVO hotelVO : hotelList) {
+			if (hotelVO.getHotelName().equals(hotelName)) {
 				result.add(hotelVO);
 			}
 		}
 		return result;
 	}
-	
+
 	@Override
 	public ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelVOs, SortBy sortBy, SortMethod sortM) {
 		// TODO Auto-generated method stub
 		ArrayList<HotelVO> newHotelVOs = new ArrayList<>();
-		for(HotelVO hotelVO1:hotelVOs){
+		for (HotelVO hotelVO1 : hotelVOs) {
 			boolean hasBeenSet = false;
-			for(HotelVO hotelVO2:newHotelVOs){
-				if(compare(hotelVO1,hotelVO2,sortBy,sortM)){
+			for (HotelVO hotelVO2 : newHotelVOs) {
+				if (compare(hotelVO1, hotelVO2, sortBy, sortM)) {
 					newHotelVOs.add(newHotelVOs.indexOf(hotelVO2), hotelVO1);
 					hasBeenSet = true;
-				}			
+				}
 			}
-			if(!hasBeenSet){
+			if (!hasBeenSet) {
 				newHotelVOs.add(hotelVO1);
-			}	
+			}
 		}
 		return newHotelVOs;
 	}
-	
+
 	/**
-	 * 内部调用
-	 * if return true,
-	 * hotelVO1 will be added just before hotelVO2
+	 * 内部调用 if return true, hotelVO1 will be added just before hotelVO2
+	 * 
 	 * @param hotelVO1
 	 * @param hotelVO2
 	 * @param sortBy
@@ -143,28 +147,26 @@ private static HotelDao hotelDao = null;
 		double difference = 0;
 		switch (sortBy) {
 		case price:
-			difference = hotelVO2.getStandardRoomPrice()-hotelVO1.getStandardRoomPrice();
-			break;	
+			difference = hotelVO2.getStandardRoomPrice() - hotelVO1.getStandardRoomPrice();
+			break;
 		case level:
-			difference = hotelVO2.getLevel()-hotelVO1.getLevel();
+			difference = hotelVO2.getLevel() - hotelVO1.getLevel();
 			break;
 		case grade:
-			difference= hotelVO2.getGrade()-hotelVO1.getGrade();
+			difference = hotelVO2.getGrade() - hotelVO1.getGrade();
 			break;
 		default:
 			break;
 		}
-		if(sortM==SortMethod.dscend){
-			difference=difference*-1;
+		if (sortM == SortMethod.dscend) {
+			difference = difference * -1;
 		}
-		if(difference>0)
+		if (difference > 0)
 			return true;
 		else
 			return false;
 	}
-	
-	
-	
+
 	@Override
 	public ArrayList<HotelVO> getHotelList() {
 		// TODO Auto-generated method stub
@@ -178,12 +180,10 @@ private static HotelDao hotelDao = null;
 			e.printStackTrace();
 			return hotelVOs;
 		}
-		for(HotelPO hotelPO:hotelPOs){
+		for (HotelPO hotelPO : hotelPOs) {
 			hotelVOs.add(hotelPO.changeIntoVO());
 		}
 		return hotelVOs;
 	}
-	
 
-	
 }
