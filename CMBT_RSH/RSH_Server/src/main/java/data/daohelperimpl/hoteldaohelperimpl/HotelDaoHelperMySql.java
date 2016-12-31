@@ -7,14 +7,10 @@ import po.*;
 import constant.ResultMessage;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.function.DoubleToLongFunction;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -80,7 +76,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         double standardPrice = hotelPO.getStandardPrice();
         String briefIntro = hotelPO.getBriefIntro();
         if(briefIntro==null)
-        	briefIntro = "";
+        	briefIntro = "''";
         else
         	briefIntro = "'"+briefIntro+"'";
         String facility = hotelPO.getFacility();
@@ -88,12 +84,12 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         double grade = hotelPO.getGrade();
         String latestCheckinTime = hotelPO.getLatestCheckInTime();
         String imageAddress = hotelPO.getImageAddress();
-        System.out.println(latestCheckinTime);
+        
         String addHotelSql = "INSERT INTO HotelInfo VALUES('"+hotelID+"',"+
-                dePassword+",'"+tel+"','"+name+"','" + district+"','"+detail+"',"+
+                dePassword+",'"+tel+"','"+name+"','"+district+"','"+detail+"',"+
         		String.valueOf(standardPrice)+","+briefIntro+",'"+facility+"',"+
                 String.valueOf(level)+","+String.valueOf(grade)+",'"+latestCheckinTime+
-                "','"+imageAddress+"',0,2)";
+                "','"+imageAddress+"',0,0)";
         db.executeSql(addHotelSql);
         
         return ResultMessage.succeed;

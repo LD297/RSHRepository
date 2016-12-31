@@ -26,11 +26,6 @@ import vo.OrderVO;
  */
 public class ExceptionalOrderUIController {
 
-    private AnchorPane prePane;
-
-    public void setPrePane(AnchorPane prePane) {
-        this.prePane = prePane;
-    }
     @FXML
     private ResourceBundle resources;
 
@@ -85,6 +80,7 @@ public class ExceptionalOrderUIController {
     @FXML
     private CheckBox isHalfCheckBox;
 
+    private AnchorPane prePane;
     private ArrayList<OrderVO> exceptionalOrder;
     private OrderForWebsite orderForWebsite;
     private static final int NUM_OF_ORDERS_SHOWN = 3;
@@ -123,7 +119,7 @@ public class ExceptionalOrderUIController {
         // 流程：set当前页面要显示的order-> set要显示的anchorPanes->初始化容器->显示order
         if(currentPage>=0&&currentPage<fullPageNum)
             setOrderOnShow(true);
-        else if((remainderOrderNum!=0)&&(currentPage==fullPageNum))
+        else if((fullPageNum==0&&remainderOrderNum==0)||(remainderOrderNum>0&&currentPage==fullPageNum))
             setOrderOnShow(false);
         else if(currentPage<0){
             System.out.println("已是第一页！");
@@ -215,7 +211,8 @@ public class ExceptionalOrderUIController {
 
     private void setExceptionalOrder(){
         // TODO
-        exceptionalOrder = orderForWebsite.browseUnperformed();
+        exceptionalOrder = orderForWebsite.browseAbnormal();
+        System.out.println(exceptionalOrder.size()+"~~");
 //        exceptionalOrder = DataFactory.getOrderVOList(4);
 
     }
@@ -297,12 +294,15 @@ public class ExceptionalOrderUIController {
         initializeService();
     }
 
+    private void setAPanesForShow(){
+        aPanesForShow = new AnchorPane[]{showPane0, showPane1, showPane2};
+    }
     private void initializeService() {
         this.orderForWebsite = WebSalesmanServiceFactory.getInstance().getOrderForWebsite();
     }
 
-    private void setAPanesForShow(){
-        aPanesForShow = new AnchorPane[]{showPane0, showPane1, showPane2};
+    public void setPrePane(AnchorPane prePane) {
+        this.prePane = prePane;
     }
 }
 

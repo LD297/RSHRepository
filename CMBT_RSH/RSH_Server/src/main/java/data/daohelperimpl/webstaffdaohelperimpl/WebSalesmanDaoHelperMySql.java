@@ -28,7 +28,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         db.executeSql("USE OurData");
         // 账号 密码 姓名 地区 IF NOT EXISTS
         db.executeSql("CREATE TABLE if not exists WebStaffInfo(id char(10),"
-        		+ "password blob,name char(5),district char(6))default character set utf8" );
+        		+ "password blob,name char(10),district char(6))default character set utf8" );
     }
 
     public void finish(){
@@ -45,7 +45,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         
         if(this.checkExistence(po.getID())==ResultMessage.idNotExist){
             String addWebSalesmanSql = "INSERT INTO WebStaffInfo VALUES('"+
-               salesManID+"',"+password+",'"+po.getDistrict()+"')";
+               salesManID+"',"+password+",'"+po.getName()+"','"+po.getDistrict()+"')";
             db.executeSql(addWebSalesmanSql);
             return ResultMessage.succeed;
         }
@@ -75,9 +75,11 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         String getSalesmanByIDSql = "SELECT count(*) FROM WebStaffInfo WHERE id='"+id+"' LIMIT 1";
         ResultSet result = db.query(getSalesmanByIDSql);
         try{
-        	while(result.next())
-        		if(result.getInt(1)<=0)
-        			return null;
+        	while(result.next()){
+                int a=result.getInt(1);
+        		if(a<=0){
+                    System.out.println("this is the num:"+a);
+        			return null;}}
         }catch(SQLException e){
         	e.printStackTrace();
         }
@@ -87,9 +89,10 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         try{
         	while(pwResult.next()){
         		String password = pwResult.getString(1);
+        		System.out.println(password+" database 得到的");
         		String district = pwResult.getString(2);
         		String name = pwResult.getString(3);
-        		return new WebSalesmanPO(id,password,district,name);
+        		return new WebSalesmanPO(id,district,password,name);
         	}
         }catch(SQLException e){
         	e.printStackTrace();
@@ -173,7 +176,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
             return list;
         }catch (SQLException e){
             e.printStackTrace();
-            return null;
+            return list;
         }
     }
     

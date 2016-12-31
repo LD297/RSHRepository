@@ -66,12 +66,13 @@ public class test {
     }*/
    
 
-public static void main(String[] args){
-	
-	WebSalesmanDaoHelperMySql salesDao = new WebSalesmanDaoHelperMySql();
-	WebManagerDaoHelperMySql managerDao = new WebManagerDaoHelperMySql();
+	public static void main(String[] args) {
 
-	
-	salesDao.init();managerDao.init();
-}
+		WebSalesmanDaoHelperMySql salesDao = new WebSalesmanDaoHelperMySql();
+		WebManagerDaoHelperMySql managerDao = new WebManagerDaoHelperMySql();
+		salesDao.finish();
+
+		salesDao.init();
+		managerDao.init();
+	}
 }
