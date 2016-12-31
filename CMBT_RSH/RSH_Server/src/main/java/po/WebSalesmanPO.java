@@ -8,29 +8,34 @@ public class WebSalesmanPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	String name;         //should be set;
-	String webSalesmanID;
-	String password;
-	String district;//6位编码
-	
-	
-	
-	public WebSalesmanPO(String webSalesmanID,String password,String district){
+	private String name;
+	private String webSalesmanID;
+	private String password;
+	private String district;
+
+	public WebSalesmanPO(String webSalesmanID, String district, String password,String name){
 		this.webSalesmanID = webSalesmanID;
-		this.password = password;
 		this.district = district;
+		this.password = password;
+		this.name = name;
 	}
+	
 	public String getID(){
-		return this.webSalesmanID;
+		return webSalesmanID;
 	}
+
 	public String getPassword(){
-		return this.password;
+		return password;
 	}
+
 	public void setPassword(String password){
 		this.password = password;
 	}
 	public String getDistrict(){
-		return this.district;
+		return district;
+	}
+
+	public String getName(){
+		return name;
 	}
 }

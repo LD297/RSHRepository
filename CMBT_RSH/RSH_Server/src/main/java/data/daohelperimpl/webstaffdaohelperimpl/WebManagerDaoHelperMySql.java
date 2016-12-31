@@ -35,7 +35,7 @@ public class WebManagerDaoHelperMySql implements WebManagerDaoHelper{
         	e.printStackTrace();
         }
         String initSql = "INSERT INTO WebStaffInfo VALUES('0000000000',"
-        		+ "aes_encrypt('123456','"+key+"'),null)";
+        		+ "aes_encrypt('123456','"+key+"'),null,null)";
         db.executeSql(initSql);
     }
     // 更新管理人员信息

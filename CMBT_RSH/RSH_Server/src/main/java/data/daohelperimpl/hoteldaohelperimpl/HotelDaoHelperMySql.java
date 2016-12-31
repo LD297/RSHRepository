@@ -620,7 +620,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         try {
             //时间转换类
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            date = sdf.parse(sdf.format(date));//the late one
+            date = sdf.parse(sdf.format(date));//the later one
             
             Date today = new Date();
             String strToday = sdf.format(today);
