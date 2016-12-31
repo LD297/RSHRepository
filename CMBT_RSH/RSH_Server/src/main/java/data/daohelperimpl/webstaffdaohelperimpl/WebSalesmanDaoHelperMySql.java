@@ -89,7 +89,6 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         try{
         	while(pwResult.next()){
         		String password = pwResult.getString(1);
-        		System.out.println(password+" database 得到的");
         		String district = pwResult.getString(2);
         		String name = pwResult.getString(3);
         		return new WebSalesmanPO(id,district,password,name);
