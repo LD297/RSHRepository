@@ -209,7 +209,6 @@ public class AddPromotionUIController {
         else if(memberCheckBox.isSelected()){
             conditionType = ConditionType.MEMBER;
             System.out.println(conditionType+"~~~"+conditionNum);
-
         }
         else if(!roomNumTextField.getText().equals("")){
             // 房间数量>=
@@ -222,8 +221,10 @@ public class AddPromotionUIController {
         }
 
         // 默认输折扣方式和折扣额度输入正确
-        if(deductionTypeChoiceBox.getValue().equals("打折"))
+        if(deductionTypeChoiceBox.getValue().equals("打折")){
+//            deductionType = DeductionType.DISCOUNT;
             deductionNum = Double.valueOf(discountTextField.getText());
+        }
         else {
             deductionType = DeductionType.REDUCE;
             deductionNum = Double.valueOf(reduceTextField.getText());
@@ -291,6 +292,7 @@ public class AddPromotionUIController {
     }
     public void setPromotionId(String promotionId){
         this.promotionID = promotionId;
+        System.out.println("setter id: "+setterId+" proid: "+promotionId);
     }
 
     public void setPrePane(AnchorPane prePane){
@@ -298,6 +300,10 @@ public class AddPromotionUIController {
     }
 
     public void initializePageBySetter(){
+
+        System.out.println("setterid: "+setterId+" proid: "+promotionID
+                +" isHotel: "+(webSalesmanVO==null)
+                +" hotelid: ");
 
         clearNodeContent();
 
