@@ -70,7 +70,7 @@ public static void main(String[] args){
 	
 	WebSalesmanDaoHelperMySql salesDao = new WebSalesmanDaoHelperMySql();
 	WebManagerDaoHelperMySql managerDao = new WebManagerDaoHelperMySql();
-
+salesDao.finish();
 	
 	salesDao.init();managerDao.init();
 }

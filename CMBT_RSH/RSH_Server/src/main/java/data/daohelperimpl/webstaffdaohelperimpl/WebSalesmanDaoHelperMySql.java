@@ -45,7 +45,7 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         
         if(this.checkExistence(po.getID())==ResultMessage.idNotExist){
             String addWebSalesmanSql = "INSERT INTO WebStaffInfo VALUES('"+
-               salesManID+"',"+password+",'"+po.getDistrict()+"')";
+               salesManID+"',"+password+",'"+po.getName()+"','"+po.getDistrict()+"')";
             db.executeSql(addWebSalesmanSql);
             return ResultMessage.succeed;
         }
@@ -75,9 +75,12 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         String getSalesmanByIDSql = "SELECT count(*) FROM WebStaffInfo WHERE id='"+id+"' LIMIT 1";
         ResultSet result = db.query(getSalesmanByIDSql);
         try{
-        	while(result.next())
-        		if(result.getInt(1)<=0)
-        			return null;
+        	while(result.next()){
+                int a=result.getInt(1);
+        		if(a<=0){
+                    System.out.println("this is the num:"+a);
+
+        			return null;}}
         }catch(SQLException e){
         	e.printStackTrace();
         }
