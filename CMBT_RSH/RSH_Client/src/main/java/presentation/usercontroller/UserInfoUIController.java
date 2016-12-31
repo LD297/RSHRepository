@@ -75,7 +75,7 @@ public class UserInfoUIController {
     	if(!url.equals("")){
     		//更换数据库头像地址
         	UserInfoUtil.getInstance().modifyHeadImage(url);
-        	headImage.setImage(ImageFactory.getImageFactory().getHeadImage(url));
+        	headImage.setImage(ImageFactory.getImageFactory().getHeadImage(userVO.userID));
         	//更换导航栏上的头像
         	GuideUIController guideUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getGuideUIController();
         	guideUIController.setHeadImage(url);
