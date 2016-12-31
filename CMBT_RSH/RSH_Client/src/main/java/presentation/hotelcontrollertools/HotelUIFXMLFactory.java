@@ -235,7 +235,7 @@ public class HotelUIFXMLFactory {
     public AddPromotionUIController getAddPromotionUIController(){
         if(addPromotionUIController==null){
             getAddPromotionUIPane();
-            addPromotionUIPane = HotelUIFXMLFactory.addPromotionUILoader.getController();
+            addPromotionUIController = HotelUIFXMLFactory.addPromotionUILoader.getController();
         }
         return addPromotionUIController;
     }
