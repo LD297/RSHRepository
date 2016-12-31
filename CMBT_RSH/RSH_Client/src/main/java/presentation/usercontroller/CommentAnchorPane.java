@@ -63,7 +63,7 @@ public class CommentAnchorPane extends AnchorPane{
 		Locator locator = Locator.getLocator();
 		locator.setLocation(headImage, 0.0,23.0 ,31.0,687.0);
 		locator.setLocation(backGroundHeadImage, 0.0,23.0  ,31.0,687.0);
-		locator.setLocation(nickNameLabel, 84.0, 6.0,34.0,690.0);
+		locator.setLocation(nickNameLabel, 84.0, 6.0,50.0,690.0);
 		locator.setLocation(dateLabel,84.0, 6.0,179.0, 558.0);
 		locator.setLocation(roomTypeLabel, 84.0, 6.0, 271.0,447.0);
 		locator.setLocation(commentArea, 6.0,27.0, 152.0,87.0);

@@ -32,7 +32,11 @@ public class SingleCreditRecordAnchorPane extends AnchorPane{
 		orderStateImage = new ImageView();
 		weekLabel = new Label(MyDateFormat.getInstance().getWeek(creditRecordVO.getDate()));
 		dateLabel = new Label(MyDateFormat.getInstance().toString(creditRecordVO.getDate()));
-		orderIDLabel = new Label(creditRecordVO.getOrderid());
+		if(creditRecordVO.getOrderid().equals("null")){
+			orderIDLabel = new Label();
+		}else {
+			orderIDLabel = new Label(creditRecordVO.getOrderid());
+		}
 		creditActionLabel = new Label(creditRecordVO.getChange());
 		totalCreditLabel = new Label(String.valueOf(creditRecordVO.getCredit()));
 		totalCredit = new Label("累计结果");
