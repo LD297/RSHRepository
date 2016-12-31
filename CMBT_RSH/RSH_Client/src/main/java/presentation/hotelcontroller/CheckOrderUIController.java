@@ -618,16 +618,13 @@ public class CheckOrderUIController {
 
     @FXML
     void searchOrderByID(MouseEvent event){
-        System.out.println("!~!~!");
         String id = searchTextField.getText().trim();
         for(OrderVO orderVO:currentOrder){
-            System.out.println("id: "+id+"   orderVo: "+orderVO.getOrderID());
             if(orderVO.getOrderID().equals(id)){
                 int index = currentOrder.indexOf(orderVO);
                 int page = index/NUM_OF_ORDERS_SHOWN;
                 currentPage = page;
                 showPage();
-                System.out.println("查找："+index+" "+page);
                 return;
             }
         }

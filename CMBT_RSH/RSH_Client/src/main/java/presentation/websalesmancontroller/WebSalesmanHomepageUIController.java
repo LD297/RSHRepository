@@ -77,54 +77,6 @@ public class WebSalesmanHomepageUIController {
     private static MakeMemberStandardUIController makeMemberStandardUIController;
 
     private static final int NUM_OF_NEXTPAGE = 4;
-//
-//    private void prePareNextPage() {
-//        FXMLLoader loader0 = WebSalesmanUIFXMLFactory.getInstance().getPromotionUILoader();
-//        FXMLLoader loader1 = WebSalesmanUIFXMLFactory.getInstance().getExceptionalOrderUILoader();
-//        FXMLLoader loader2 = WebSalesmanUIFXMLFactory.getInstance().getTopUpCreditUILoader();
-//        FXMLLoader loader3 = WebSalesmanUIFXMLFactory.getInstance().getMakeMemberStandardUILoader();
-//
-//        // 加载各页根结点
-//        if(promotionPane==null)
-//            try {
-//                promotionPane = (AnchorPane) loader0.load();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        if(exceptionalOrderPane==null)
-//            try {
-//                exceptionalOrderPane = (AnchorPane) loader1.load();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        if(topUpCreditPane==null)
-//            try {
-//                topUpCreditPane = (AnchorPane) loader2.load();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        if(makeMemberStandardPane==null)
-//            try {
-//                makeMemberStandardPane = (AnchorPane) loader3.load();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        // 得到各页控制器
-//        if(promotionUIController==null)
-//            promotionUIController = loader0.getController();
-//        if(exceptionalOrderUIController==null)
-//            exceptionalOrderUIController = loader1.getController();
-//        if(topUpCreditUIController==null)
-//            topUpCreditUIController = loader2.getController();
-//        if(makeMemberStandardUIController==null)
-//            makeMemberStandardUIController = loader3.getController();
-//
-//        // 传入首页根结点
-//        promotionUIController.setPrePane(anchorPane);
-//        exceptionalOrderUIController.setPrePane(anchorPane);
-//        topUpCreditUIController.setPrePane(anchorPane);
-//        makeMemberStandardUIController.setPrePane(anchorPane);
-//    }
 
     @FXML
     void changeToPromotionUI(MouseEvent event) {
@@ -159,6 +111,7 @@ public class WebSalesmanHomepageUIController {
         else
             scene = exceptionalOrderPane.getScene();
 
+        exceptionalOrderUIController.setPrePane(anchorPane);
         exceptionalOrderUIController.refreshPage();
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
@@ -178,6 +131,8 @@ public class WebSalesmanHomepageUIController {
         }
         else
             scene = topUpCreditPane.getScene();
+
+        topUpCreditUIController.setPrePane(anchorPane);
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
         stage.setX(WebSalesmanUIFXMLFactory.TOPUPCREDIT_X);
@@ -199,6 +154,8 @@ public class WebSalesmanHomepageUIController {
 
         else
             scene = makeMemberStandardPane.getScene();
+
+        makeMemberStandardUIController.setPrePane(anchorPane);
 
         Stage stage = (Stage) anchorPane.getScene().getWindow();
         stage.setX(WebSalesmanUIFXMLFactory.TOPUPCREDIT_X);
