@@ -14,7 +14,6 @@ public class HotelInfoController implements HotelInfoService{
 	
 	@Override
 	public ArrayList<RoomNormVO> getRoomNorm(String hotelID) {
-		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);
 		if(hotel == null){
 			return new ArrayList<>();
@@ -24,7 +23,6 @@ public class HotelInfoController implements HotelInfoService{
 
 	@Override
 	public String getCheckInDDL(String hotelID) {
-		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);
 		if(hotel==null){
 			return null;

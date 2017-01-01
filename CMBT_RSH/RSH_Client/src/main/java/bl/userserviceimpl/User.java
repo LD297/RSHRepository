@@ -3,18 +3,13 @@ package bl.userserviceimpl;
 
 import constant.MemberType;
 import constant.ResultMessage;
-import constant.Sexuality;
 import data.dao.userdao.UserDao;
 import po.UserPO;
 import rmi.RemoteHelper;
 import vo.UserVO;
 
 import java.rmi.RemoteException;
-import java.time.LocalDate;
-import java.util.Date;
 
-import bl.orderservice.OrderForUser;
-import bl.orderserviceimpl.OrderForUserController;
 
 /**
  * 处理与用户有关的业务
@@ -64,17 +59,17 @@ public class User {
 
 	/**
 	 * 检查此账号是否存在，若不存在，创建该UserPO，在数据库中增加该用户的持久化对象
-	 * @param vo
+	 * @param userVO
 	 * @return
 	 */
-	public static ResultMessage add(UserVO vo) {
+	public static ResultMessage add(UserVO userVO) {
 		ResultMessage resultMessage = null;
 		
 		initRemote();
 		
 		//判断该账号是否存在
 		try {
-			if(userDao.getInfo(vo.getId())!=null){
+			if(userDao.getInfo(userVO.getId())!=null){
 				return ResultMessage.already_exist;				
 			}				
 		} catch (RemoteException e) {
@@ -84,7 +79,7 @@ public class User {
 		
 		//增加用户
 		try {
-			return userDao.insert(vo.changeIntoPO());
+			return userDao.insert(userVO.changeIntoPO());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.remote_fail;
@@ -114,17 +109,6 @@ public class User {
 		else
 			return false;
 	}
-	
-	public boolean hasReserved(String hotelID) {
-		// TODO Auto-generated method stub
-		OrderForUserController orderForUserController = new OrderForUserController();
-		if(orderForUserController.getOrderStateOfUser(userID, hotelID)==null){
-			return false;
-		}
-		else{
-			return true;
-		}
-	}
 
 	public ResultMessage registerMember() {
 		int level = MemberHelper.getInstance().getMemberLevel(userPO.getCredit());
@@ -144,11 +128,13 @@ public class User {
 
 	public void changeCredit(int credit) {
 		userPO.setCredit(credit);
-		userPO.setLevel(MemberHelper.getInstance().getMemberLevel(credit));
+		if(userPO.geMemberType()!= MemberType.not_member){
+			userPO.setLevel(MemberHelper.getInstance().getMemberLevel(credit));			
+		}
 		update();
 	}	
 	
-	public ResultMessage update(){
+	private ResultMessage update(){
 		initRemote();
 		try {
 			return userDao.update(userPO);

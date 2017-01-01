@@ -13,8 +13,8 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import bl.hotelservice.SearchHotelService;
+import bl.orderserviceimpl.OrderForHotelController;
 import bl.userserviceimpl.UserController;
-import bl.userserviceimpl.UserForHotelController;
 
 /**
  * 根据条件搜索酒店, 兼顾搜索排序
@@ -93,9 +93,9 @@ public class SearchHotelController implements SearchHotelService {
 				return false;
 		}
 
-		UserForHotel userForHotel = new UserForHotelController();
+		OrderForHotelController orderForHotelController = new OrderForHotelController();
 		if (selectConditionVO.reserved) {
-			if (!userForHotel.hasReserved(selectConditionVO.userID, hotelID))
+			if (!orderForHotelController.hasReserved(selectConditionVO.userID, hotelID))
 				return false;
 		}
 		return true;

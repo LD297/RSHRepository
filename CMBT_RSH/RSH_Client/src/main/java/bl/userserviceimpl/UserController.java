@@ -1,7 +1,6 @@
 package bl.userserviceimpl;
 
 import bl.userservice.UserService;
-import constant.MemberType;
 import constant.ResultMessage;
 import data.dao.userdao.UserDao;
 import po.UserPO;

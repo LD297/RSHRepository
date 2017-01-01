@@ -54,7 +54,7 @@ public class MemberHelper {
 		return credit/boundaryForLevels+1;
 	}
 	
-	public ResultMessage update(){
+	private ResultMessage update(){
 		initRemote();
 		try {
 			return userDao.setMemberLevel(boundaryForLevels);

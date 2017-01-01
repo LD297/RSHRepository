@@ -81,7 +81,7 @@ public class CreditRecordList {
 	 * 获取用户信用值
 	 * @return
 	 */
-	public int getCredit() {
+	private int getCredit() {
 		int pos = creditRecordVOArrayList.size();
 		if (pos == 0)
 			return 0;

@@ -60,7 +60,6 @@ public class HotelController implements HotelService {
 
 	@Override
 	public ArrayList<RoomVO> getRoomList(String hotelID) {
-		// TODO Auto-generated method stub		
 		Hotel hotel = Hotel.getInstance(hotelID);
 		if(hotel == null){
 			return new ArrayList<>();
@@ -91,7 +90,6 @@ public class HotelController implements HotelService {
 
 	@Override
 	public ArrayList<String> getImageAddresses(String hotelID) {
-		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);
 		if(hotel == null){
 			return new ArrayList<>();
@@ -101,7 +99,6 @@ public class HotelController implements HotelService {
 
 	@Override
 	public String getImageAddress(String hotelID, String roomType) {
-		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);
 		if(hotel == null){
 			return null;
@@ -111,14 +108,12 @@ public class HotelController implements HotelService {
 
 	@Override
 	public ArrayList<RoomAvailVO> getRoomAvailList(String hotelID, Date checkIn) {
-		// TODO Auto-generated method stub
 		initRemote();
 		ArrayList<RoomAvailVO> roomAvailVOs = new ArrayList<>();
 		ArrayList<RoomAvailPO> roomAvailPOs = new ArrayList<>();
 		try {
 			roomAvailPOs = hotelDao.getRoomAvailList(hotelID, checkIn);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return roomAvailVOs;
 		}
@@ -130,7 +125,6 @@ public class HotelController implements HotelService {
 
 	@Override
 	public ResultMessage plusRoomAvail(String hotelID, String roomType, int num, Date checkIn, Date checkOut) {
-		// TODO Auto-generated method stub
 		RoomAvail roomAvail = RoomAvail.getInstance(hotelID);
 		if(roomAvail == null){
 			return ResultMessage.idNotExist;
@@ -150,7 +144,6 @@ public class HotelController implements HotelService {
 
 	@Override
 	public int numOfRoomAvail(String hotelID, String roomType, Date checkIn, Date checkOut) {
-		// TODO Auto-generated method stub
 		RoomAvail roomAvail = RoomAvail.getInstance(hotelID);
 		if(roomAvail==null){
 			return -1;

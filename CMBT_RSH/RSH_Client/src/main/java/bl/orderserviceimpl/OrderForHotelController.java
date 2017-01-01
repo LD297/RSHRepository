@@ -123,4 +123,15 @@ public class OrderForHotelController implements OrderForHotel{
         }
         return orderVOs;
     }
+
+	public boolean hasReserved(String userID, String hotelID) {
+		initRemote();
+		try {
+			if(orderDao.searchByUserWithHotel(userID, hotelID).isEmpty())
+				return false;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
