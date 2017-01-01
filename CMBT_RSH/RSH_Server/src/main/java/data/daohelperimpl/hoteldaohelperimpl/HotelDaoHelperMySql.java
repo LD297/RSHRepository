@@ -363,6 +363,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
         }
         return ResultMessage.succeed;
     }
+    
     // 根据新增订单/撤销订单 改变可用房间信息
     // 当酒店手动修改（checkin==checkout）
     public void updateAllDateInfo(){

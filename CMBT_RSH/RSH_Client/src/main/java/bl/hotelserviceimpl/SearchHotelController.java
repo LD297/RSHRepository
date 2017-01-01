@@ -15,6 +15,8 @@ import java.util.Date;
 import java.util.Map;
 import java.util.regex.Matcher;
 
+import javax.swing.plaf.synth.SynthStyle;
+
 import org.omg.CORBA.ShortHolder;
 
 import bl.hotelservice.SearchHotelService;
@@ -67,8 +69,8 @@ public class SearchHotelController implements SearchHotelService {
 	}
 
 	/**
-	 * 内部调用
-	 * 产看条件是否匹配 
+	 * 内部调用 产看条件是否匹配
+	 * 
 	 * @param hotelVO
 	 * @param selectConditionVO
 	 * @return
@@ -84,16 +86,20 @@ public class SearchHotelController implements SearchHotelService {
 			return false;
 		if (grade > selectConditionVO.highestGrade)
 			return false;
-		if (selectConditionVO.level>0){
-			if(selectConditionVO.level!=hotelVO.getLevel()){
+		if (selectConditionVO.level > 0) {
+			if (selectConditionVO.level != hotelVO.getLevel()) {
 				return false;
 			}
 		}
+
 		String hotelID = hotelVO.getHotelID();
-		Hotel hotel = Hotel.getInstance(hotelID);
-		if (!hotel.hasEnoughRoom(selectConditionVO.roomType, selectConditionVO.roomNum, selectConditionVO.begin,
-				selectConditionVO.end))
-			return false;
+		if (selectConditionVO.roomNum > 0) {
+			Hotel hotel = Hotel.getInstance(hotelID);
+			if (!hotel.hasEnoughRoom(selectConditionVO.roomType, selectConditionVO.roomNum, selectConditionVO.begin,
+					selectConditionVO.end))
+				return false;
+		}
+
 		UserController userController = new UserController();
 		if (selectConditionVO.reserved) {
 			if (!userController.hasReserved(selectConditionVO.userID, hotelID))
@@ -115,20 +121,17 @@ public class SearchHotelController implements SearchHotelService {
 
 	@Override
 	public ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelVOs, SortBy sortBy, SortMethod sortM) {
-		ArrayList<HotelVO> newHotelVOs = new ArrayList<>();
-		for (HotelVO hotelVO1 : hotelVOs) {
-			boolean hasBeenSet = false;
-			for (HotelVO hotelVO2 : newHotelVOs) {
-				if (compare(hotelVO1, hotelVO2, sortBy, sortM)) {
-					newHotelVOs.add(newHotelVOs.indexOf(hotelVO2), hotelVO1);
-					hasBeenSet = true;
+		for(int i=0;i<hotelVOs.size();i++){
+			for(int j=0;j<i;j++){
+				if (compare(hotelVOs.get(i), hotelVOs.get(j), sortBy, sortM)) {
+					HotelVO hotelVO = hotelVOs.get(i);
+					hotelVOs.remove(hotelVO);
+					hotelVOs.add(j,hotelVO);
+					break;
 				}
 			}
-			if (!hasBeenSet) {
-				newHotelVOs.add(hotelVO1);
-			}
 		}
-		return newHotelVOs;
+		return hotelVOs;
 	}
 
 	/**
