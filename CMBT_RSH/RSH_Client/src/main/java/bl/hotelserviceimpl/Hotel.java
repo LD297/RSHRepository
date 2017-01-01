@@ -34,26 +34,25 @@ public class Hotel{
 	private Hotel(String hotelID){
 		initRemote();
 		this.hotelID = hotelID;
-		try {
-			hotelPO = hotelDao.getHotel(hotelID);
-			imageAddresses = hotelDao.getImageAddresses(hotelID);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		roomManager = RoomManager.getInstance(hotelID);
-		roomAvail = RoomAvail.getInstance(hotelID);
+		
 	}
 
 	
 	public static Hotel getInstance(String hotelID){
 		Hotel hotel = new Hotel(hotelID);
+		try {
+			hotel.hotelPO = hotelDao.getHotel(hotelID);
+			hotel.imageAddresses = hotelDao.getImageAddresses(hotelID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
 		if(hotel.hotelPO==null){
 			return null;
 		}
-		else{
-			return hotel;
-		}
+		hotel.roomManager = RoomManager.getInstance(hotelID);
+		hotel.roomAvail = RoomAvail.getInstance(hotelID);
+		return hotel;
 	}
 
 
@@ -73,9 +72,6 @@ public class Hotel{
 
 	// 调用自身数据库
 	public ResultMessage checkPassword(String password) {
-		if(hotelPO==null){
-			return ResultMessage.idNotExist;
-		}
 		if(hotelPO.getPassword().equals(password)){
 			return ResultMessage.succeed;
 		}
@@ -86,27 +82,29 @@ public class Hotel{
 	
 	// 酒店自身dao建立后，随即初始化该酒店po，用来生成vo，供展示层用
 	public HotelVO getHotelInfo() {
-		if(hotelPO == null)
-			return null;
 		return hotelPO.changeIntoVO();
-	}
-
-	public ResultMessage updateHotel(HotelVO vo) {
-		try {
-			return hotelDao.updateHotel(vo.changeIntoPO());
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return ResultMessage.remote_fail;
-		}
 	}
 	
 	public ResultMessage addSpecialRoom(RoomVO vo) {
-		return roomManager.addSpecialRoom(vo);
+		ResultMessage resultMessage =  roomManager.addSpecialRoom(vo) ;
+		if( resultMessage == ResultMessage.succeed){
+			if(vo.roomType.equals("标准间")){
+				hotelPO.setStandardRoomPrice(vo.price);
+				return update();
+			}
+		}
+		return resultMessage;
 	}
 	
 	public ResultMessage deleteSpecialRoom(RoomVO vo) {
-		return roomManager.deleteSpecialRoom(vo);
+		ResultMessage resultMessage = roomManager.deleteSpecialRoom(vo);
+		if(resultMessage == ResultMessage.succeed){
+			if(vo.roomType.equals("标准间")){
+				hotelPO.setStandardRoomPrice(-1);
+				return update();
+			}
+		}
+		return resultMessage;
 	}
 	
 	public ArrayList<RoomVO> getRoomList() {
@@ -130,13 +128,14 @@ public class Hotel{
 	 * @return
 	 */
 	public ArrayList<RoomNormVO> getRoomNorms() {
-		ArrayList<RoomPO> roomPOs = null;
+		ArrayList<RoomPO> roomPOs = new ArrayList<>();
+		ArrayList<RoomNormVO> roomNormVOs = new ArrayList<>();
 		try {
 			roomPOs = hotelDao.getRoomList(hotelID);
 		}catch (RemoteException e){
 			e.printStackTrace();
+			return roomNormVOs;
 		}
-		ArrayList<RoomNormVO> roomNormVOs  = new ArrayList<>();
 		for(RoomPO roomPO:roomPOs){
 			roomNormVOs.add(new RoomNormVO(hotelID, roomPO.getType(), roomPO.getPrice()));
 		}
@@ -146,14 +145,12 @@ public class Hotel{
 	// 供给order模块
 	// 返回该酒店指定日期下该房间类型的可用数量
 	public int numOfRoomAvail(String roomType, Date checkIn, Date checkOut) {
-		RoomAvail roomAvail = RoomAvail.getInstance(hotelID);
 		return roomAvail.getRoomAvailNum( roomType, checkIn, checkOut);
 	}
 
 	// 供给order模块
 	// 更新系统的可用客房信息
 	public ResultMessage changeRoomAvail(String roomType,Boolean isPlus, int num, Date checkIn, Date checkOut) {
-		RoomAvail roomAvail = RoomAvail.getInstance(hotelID);
 		return roomAvail.changeRoomAvail( roomType, isPlus,num, checkIn, checkOut);
 	}
 
@@ -165,9 +162,6 @@ public class Hotel{
 	 * @return
 	 */
 	public String getCheckInDDL() {
-		if(hotelPO==null){
-			return "00:00:00";
-		}
 		return hotelPO.getLatestCheckinTime();
 	}
 	/**
@@ -200,25 +194,27 @@ public class Hotel{
 		// TODO Auto-generated method stub
 		if(roomType == null){
 			for(RoomVO roomVO:roomManager.roomList){
-				if(hasEnoughForOne(roomVO.getRoomType(), roomNum, begin, end)){
+				if(hasEnoughForOneType(roomVO.getRoomType(), roomNum, begin, end)){
 					return true;
 				}
 			}
 			return false;
 		}else{
-			return hasEnoughForOne(roomType, roomNum, begin, end);			
+			return hasEnoughForOneType(roomType, roomNum, begin, end);			
 		}
 	}
 
 	/**
 	 * 内部调用
+	 * 返回一种房间类型的数量是否足够
+	 * roomType 不为空
 	 * @param roomType
 	 * @param roomNum
 	 * @param beginDate
 	 * @param endDate
 	 * @return
 	 */
-	private boolean hasEnoughForOne(String roomType,int roomNum,Date beginDate,Date endDate){
+	private boolean hasEnoughForOneType(String roomType,int roomNum,Date beginDate,Date endDate){
 		if(roomAvail.getRoomAvailNum(roomType, beginDate, endDate)>=roomNum){
 			return true;
 		}
@@ -241,6 +237,21 @@ public class Hotel{
 			}
 		}
 		return null;
+	}
+
+	public void setStandardRoomPrice(double price) {
+		hotelPO.setStandardRoomPrice(price);
+		update();
+	}
+
+	private ResultMessage update() {
+		try {
+			return hotelDao.updateHotel(hotelPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.remote_fail;
+		}
+		
 	}
 	
 }

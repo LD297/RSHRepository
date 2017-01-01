@@ -47,12 +47,18 @@ public class HotelController implements HotelService {
 	
 	@Override
 	public ResultMessage updateHotel(HotelVO vo) {
-		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(vo.getHotelID());
 		if(hotel == null){
 			return ResultMessage.idNotExist;
 		}
-		return hotel.updateHotel(vo);
+		
+		initRemote();
+		try {
+			return hotelDao.updateHotel(vo.changeIntoPO());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.remote_fail;
+		}
 	}
 
 	@Override
@@ -67,17 +73,18 @@ public class HotelController implements HotelService {
 
 	@Override
 	public ResultMessage addSpecialRoom(RoomVO vo) {
-		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(vo.getHotelID());
 		if(hotel== null){
 			return ResultMessage.idNotExist;
+		}
+		if(vo.roomType.equals("标准间")){
+			hotel.setStandardRoomPrice(vo.price);
 		}
 		return hotel.addSpecialRoom(vo);
 	}
 
 	@Override
 	public ResultMessage deleteSpecialRoom(RoomVO vo) {
-		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(vo.getHotelID());
 		if(hotel == null){
 			return ResultMessage.idNotExist;

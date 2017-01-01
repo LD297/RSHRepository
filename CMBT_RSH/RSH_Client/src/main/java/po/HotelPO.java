@@ -35,7 +35,7 @@ public class HotelPO implements Serializable{
 	
 	private double grade;
 	
-	public double standardPrice;
+	private double standardPrice;
 	private String latestCheckInTime;
 
 	String imageAddress;
@@ -116,6 +116,10 @@ public class HotelPO implements Serializable{
 	public HotelVO changeIntoVO(){
 		HotelVO hotelVO = new HotelVO(hotelID, name, detailAddress, tel, password, level, standardPrice, latestCheckInTime, briefIntro, facility, imageAddress);
 		return hotelVO;
+	}
+
+	public void setStandardRoomPrice(double price) {
+		this.standardPrice = price;
 	}
 
 }

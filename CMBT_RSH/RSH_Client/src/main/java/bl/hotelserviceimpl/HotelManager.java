@@ -50,7 +50,6 @@ public class HotelManager {
 	}
 
 	public static HotelManager getInstance(String hotelID) {
-		// TODO Auto-generated method stub
 		return new HotelManager(hotelID);
 	}
 	

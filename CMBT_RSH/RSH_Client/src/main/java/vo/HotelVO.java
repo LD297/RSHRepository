@@ -15,7 +15,7 @@ public class HotelVO {
 	
 	private double grade = 0;		 				//酒店评分所有用户评分的均值
 	private int level = -1; 						//星级，未设置时置为-1，最大为5;
-	private double standardRoomPrice ; 				//标准间价格（酒店价格排序标准）
+	private double standardRoomPrice = -1; 				//标准间价格（酒店价格排序标准）
 	
 	private String latestCheckInTime = "23:45:00";			//形式为 HH:mm:ss
 	private String briefIntro;   							//简单介绍
