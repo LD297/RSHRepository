@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="runner.ServerUIController">
    <children>
-      <TextField fx:id="passwordField" focusTraversable="false" layoutX="31.0" layoutY="38.0" onAction="#finishSetPassword" prefHeight="30.0" prefWidth="238.0" promptText="请输入数据库密码">
+      <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="31.0" layoutY="35.0" onAction="#finishSetPassword" prefHeight="37.0" prefWidth="238.0" promptText="请输入数据库密码">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
-      </TextField>
+      </PasswordField>
    </children>
 </AnchorPane>
