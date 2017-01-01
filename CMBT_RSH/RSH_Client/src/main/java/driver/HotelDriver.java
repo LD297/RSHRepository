@@ -18,7 +18,7 @@ public class HotelDriver {
 	
 	String hotelID = "0100090002";
 //	HotelVO hotelVO2 = new HotelVO(hotelID, hotelName, detailAddress, tel, password, level, standardRoomPrice, latestCheckInTime, briefIntro, facility, imageAddress);
-	HotelVO hotelVO = new HotelVO(hotelID, "1号酒店", "仙林大道", "0100097890","123456", 4, 99.9, "00:01:01", "nothing", "0101", "/images/默认酒店图片.jpg");
+	HotelVO hotelVO = new HotelVO(hotelID, "1号酒店", "仙林大道", "0100097890","123456", 4, 99.9,0, "00:01:01", "nothing", "0101", "/images/默认酒店图片.jpg");
 	RoomVO roomVO = new RoomVO(hotelID, "122", 2, 200, "123");
 	void test(){
 		HotelController hotelController = new HotelController();

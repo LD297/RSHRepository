@@ -182,22 +182,28 @@ public class AddPromotionUIController {
         beginDate = MyDateFormat.getInstance().changeLocalDateToDate(begin);
         endDate = MyDateFormat.getInstance().changeLocalDateToDate(end);
 
-        // 对应界面的"针对"选项
+        // 促销策略针对范围
         if(webSalesmanVO==null){
+            // 酒店制定
             if(scopeChoiceBox.getValue().equals("指定房间"))
                 scopeType = ScopeType.ROOM;
             else
                 scopeType = ScopeType.HOTEL;
-        }
+        } else
+            // 网站营销人员制定
+            scopeType = ScopeType.DISTRICT;
 
-        //  "针对"的数量（细节）
-        if(webSalesmanVO!=null)
-            scopeNum = webSalesmanVO.getDistrict();
-        else
+
+        // 促销策略范围参数
+        if(webSalesmanVO==null)
+            // 酒店制定
             scopeNum = setterId;
+        else
+            // 网站营销人员制定
+            scopeNum = webSalesmanVO.getDistrict();
 
-        //  房间类型
-        if(webSalesmanVO!=null){
+        //  如果是酒店制定促销策略，且选择指定房间
+        if(webSalesmanVO==null){
             if(scopeType.equals(ScopeType.ROOM))
                 roomType = (String)roomTypeChoiceBox.getValue();
         }
@@ -208,7 +214,6 @@ public class AddPromotionUIController {
             conditionType = ConditionType.COMMERCE;
         else if(memberCheckBox.isSelected()){
             conditionType = ConditionType.MEMBER;
-            System.out.println(conditionType+"~~~"+conditionNum);
         }
         else if(!roomNumTextField.getText().equals("")){
             // 房间数量>=
@@ -229,6 +234,7 @@ public class AddPromotionUIController {
             deductionType = DeductionType.REDUCE;
             deductionNum = Double.valueOf(reduceTextField.getText());
         }
+        
         PromotionVO thePromotion = new PromotionVO(setterId,promotionID, reason, beginDate, endDate,
                 scopeType,scopeNum, roomType, conditionType, conditionNum, deductionType, deductionNum
                 );

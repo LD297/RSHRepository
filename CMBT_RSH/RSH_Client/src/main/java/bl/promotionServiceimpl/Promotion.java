@@ -86,6 +86,8 @@ public class Promotion {
 		else if(scopeType == ScopeType.ROOM){
 			scope = new RoomScope(scopeNum,roomType);
 		}
+
+		System.out.println(scopeType+" "+roomType);
 	}
 	
 	/**
