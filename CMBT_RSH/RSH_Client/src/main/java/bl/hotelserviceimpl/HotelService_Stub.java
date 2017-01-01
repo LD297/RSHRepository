@@ -14,7 +14,7 @@ public class HotelService_Stub implements HotelService{
 	@Override
 	public HotelVO getHotelInfo(String id) {
 		// TODO Auto-generated method stub
-		HotelVO vo1 = new HotelVO("0100190001", "Dream_in_Asia", "仙林大道", "0100097890","123456", 4, 99.9, "00:00:00", "高端大气上档次", "1101", "/images/defaultHotelImage.jpg");
+		HotelVO vo1 = new HotelVO("0100190001", "Dream_in_Asia", "仙林大道", "0100097890","123456", 4, 99.9,0, "00:00:00", "高端大气上档次", "1101", "/images/defaultHotelImage.jpg");
 		return vo1;
 	}
 

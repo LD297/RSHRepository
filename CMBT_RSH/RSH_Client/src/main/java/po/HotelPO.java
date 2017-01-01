@@ -114,7 +114,7 @@ public class HotelPO implements Serializable{
 	}
 	
 	public HotelVO changeIntoVO(){
-		HotelVO hotelVO = new HotelVO(hotelID, name, detailAddress, tel, password, level, standardPrice, latestCheckInTime, briefIntro, facility, imageAddress);
+		HotelVO hotelVO = new HotelVO(hotelID, name, detailAddress, tel, password, level, standardPrice, grade, latestCheckInTime, briefIntro, facility, imageAddress);
 		return hotelVO;
 	}
 
