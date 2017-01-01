@@ -3,31 +3,18 @@ package presentation.logincontroller;
 /**
  * Created by john on 2016/12/4.
  */
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import bl.hotelservice.HotelInfoService;
-import bl.hotelservice.HotelService;
 import bl.loginservice.LoginService;
-import bl.loginserviceimpl.LoginController;
-import bl.orderservice.OrderForHotel;
-import bl.orderservice.OrderForWebsite;
-import bl.promotionServiceimpl.PromotionService_Stub;
-import bl.promotionservice.PromotionService;
-import bl.userservice.UserService;
-import bl.webstaffservice.WebStaffService;
-import bl.webstaffserviceimpl.WebSalesman;
 import constant.ResultMessage;
 import constant.Role;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,9 +32,7 @@ import presentation.usercontrollertools.UserInputFormCheckTool;
 import presentation.webmanagercontrollertools.WebManagerInfoUtil;
 import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
 import presentation.websalesmancontroller.WebSalesmanHomepageUIController;
-import presentation.websalesmancontrollertools.WebSalesmanServiceFactory;
 import presentation.websalesmancontrollertools.WebSalesmanUIFXMLFactory;
-import vo.WebSalesmanVO;
 
 /**
  * 登陆界面，其中如果是用户，可以选择注册

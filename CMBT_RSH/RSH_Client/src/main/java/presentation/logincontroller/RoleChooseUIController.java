@@ -5,19 +5,14 @@ package presentation.logincontroller;
  * Created by john on 2016/12/4.
  */
 import java.net.URL;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.TreeMap;
 
 import constant.Role;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import presentation.tools.*;
 import presentation.usercontrollertools.UIJumpTool;
 
