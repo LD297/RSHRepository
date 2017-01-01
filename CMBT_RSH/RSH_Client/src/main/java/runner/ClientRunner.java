@@ -59,7 +59,7 @@ public class ClientRunner {
 	
 	public static void main(String[] args){
 		ClientRunner cr = new ClientRunner();
-		cr.registerTest();
+	    //cr.registerTest();
 		new Launcher().startLaunch(args);
 	}
 }

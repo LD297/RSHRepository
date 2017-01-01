@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import presentation.hotelcontrollertools.HotelInputCheck;
@@ -116,7 +117,7 @@ public class HotelBasicInfoUIController {
     private TextField checkInTextField;
 
     @FXML
-    private TextField priceTextField;
+    private Label standardPriceLabel;
 
     @FXML
     private CheckBox wifiCheckBox;
@@ -138,9 +139,6 @@ public class HotelBasicInfoUIController {
 
     @FXML
     private Label timePrompt;
-
-    @FXML
-    private Label pricePrompt;
 
     @FXML
     private Label urlPrompt;
@@ -323,11 +321,6 @@ public class HotelBasicInfoUIController {
     }
 
     @FXML
-    void editPrice(MouseEvent event) {
-            priceTextField.setEditable(false);
-    }
-
-    @FXML
     void changeToRoomInfoUI(MouseEvent event) {
 
         roomInfoUIPane = HotelUIFXMLFactory.getInstance().getRoomInfoUIPane();
@@ -373,7 +366,7 @@ public class HotelBasicInfoUIController {
         assert IDLabel != null : "fx:id=\"IDLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert urlPrompt != null : "fx:id=\"urlPrompt\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
-        assert priceTextField != null : "fx:id=\"priceTextField\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
+        assert standardPriceLabel != null : "fx:id=\"standardPriceLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert swimmingPoolCheckBox != null : "fx:id=\"swimmingPoolCheckBox\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert telLabel != null : "fx:id=\"telLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert timePrompt != null : "fx:id=\"timePrompt\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
@@ -387,7 +380,6 @@ public class HotelBasicInfoUIController {
         assert briefLabel != null : "fx:id=\"briefLabel\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert diningroomImage != null : "fx:id=\"diningroomImage\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert canteenText != null : "fx:id=\"canteenText\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
-        assert pricePrompt != null : "fx:id=\"pricePrompt\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert checkInTextField != null : "fx:id=\"checkInTextField\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert wifiCheckBox != null : "fx:id=\"wifiCheckBox\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
         assert wifiText != null : "fx:id=\"wifiText\" was not injected: check your FXML file '酒店信息维护界面.fxml'.";
@@ -411,7 +403,7 @@ public class HotelBasicInfoUIController {
                 parkCheckBox, canteeCheckBox};
     }
     private void setPrompts() {
-        prompts = new Label[]{hotelNamePrompt, levelPrompt, timePrompt, pricePrompt,
+        prompts = new Label[]{hotelNamePrompt, levelPrompt, timePrompt,
                 urlPrompt, briefIntroPrompt};
     }
     private void initializeService() {
@@ -480,7 +472,17 @@ public class HotelBasicInfoUIController {
 
         telLabel.setText(hotelVO.getTel());
 
-        priceTextField.setText(hotelVO.getStandardRoomPrice()+"");
+        double standardPrice = hotelVO.getStandardRoomPrice();
+        if(standardPrice<0){
+            standardPriceLabel.setText("请立即添加标准间客房");
+            standardPriceLabel.setTextFill(Color.RED);
+        }
+        else{
+            standardPriceLabel.setText(standardPrice+"");
+            standardPriceLabel.setTextFill(Color.BLACK);
+        }
+
+        imageUrlTextField.setText(hotelVO.getImageAddress());
 
         briefLabel.setText(hotelVO.getBriefIntro());
         briefIntroTextArea.setText(hotelVO.getBriefIntro());
