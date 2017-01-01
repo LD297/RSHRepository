@@ -163,9 +163,9 @@ public class SelectConditionUIController {
 		}else{
 			selectConditionVO.reserved = false;
 		}
-		BrowseHotelUIController browseHotelUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotelUIController();
 		//从酒店浏览界面得到当前的hotelvolist，并对其做筛选、排序等一系列处理
-		ArrayList<HotelVO> hotelVOs = browseHotelUIController.getHotelVOsOfBrowsehotel();
+		//每次都对整体进行筛选和排序
+		ArrayList<HotelVO> hotelVOs = UserInfoUtil.getInstance().getHotelVOs();
 		hotelVOs = UserInfoUtil.getInstance().selectHotel(hotelVOs,selectConditionVO);
 		
 		//TODO 判断有没有选择排序方式       排序
@@ -182,7 +182,7 @@ public class SelectConditionUIController {
 			hotelVOs = UserInfoUtil.getInstance().sortHotel(hotelVOs,SortBy.grade, gradeSortMethod);
 		}
 	
-		
+		BrowseHotelUIController browseHotelUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getBrowseHotelUIController();
 		//刷新酒店浏览界面的hotelvolist
 		browseHotelUIController.refresh(hotelVOs);
 		//关闭条件选择界面
