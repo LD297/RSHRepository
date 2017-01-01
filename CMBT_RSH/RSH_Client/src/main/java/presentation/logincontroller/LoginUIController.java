@@ -21,6 +21,7 @@ import bl.webstaffserviceimpl.WebSalesman;
 import constant.ResultMessage;
 import constant.Role;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -33,6 +34,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import presentation.hotelcontroller.HotelHomepageUIController;
 import presentation.hotelcontrollertools.HotelServiceFactory;
 import presentation.hotelcontrollertools.HotelUIFXMLFactory;
@@ -122,6 +124,7 @@ public class LoginUIController {
     void finishInput(ActionEvent event) {
         String id = idField.getText();
         String password = passwordField.getText();
+        ResultMessage resultMessage = null;
         //如果用户的身份是用户
         if(role == Role.user){
         	UIJumpTool.getUiJumpTool().setStage((Stage)idField.getScene().getWindow());
@@ -141,31 +144,40 @@ public class LoginUIController {
             }
             //如果用户名和密码都输入正确
             if(idResult=="success"&&passwordResult=="success"){
-            	ResultMessage resultMessage = UserInfoUtil.getInstance().login(id, password);
+            	resultMessage = UserInfoUtil.getInstance().login(id, password);
                 if(resultMessage==ResultMessage.succeed){
                 	idFormLabel.setText("");
                 	passwordFormLabel.setText("");
-                    //跳转到搜索酒店界面
                     if(loginBelowAnchorpane.isVisible()){//先判断有没有登陆下拉界面,有就删除
                         loginBelowAnchorpane.setVisible(false);
                     }
+                    //关闭窗口退出
+					Stage stage = (Stage) idField.getScene().getWindow();
+					stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+						@Override
+						public void handle(WindowEvent event) {
+							UserInfoUtil.getInstance().logout();
+						}
+					});
+					 //跳转到搜索酒店界面
                     UIJumpTool.getUiJumpTool().changeLoginToSearchHotel();
-                }else{
-                	if(resultMessage==ResultMessage.idNotExist){
-                		idFormLabel.setText("该用户名不存在");
-                	}else if (resultMessage==ResultMessage.password_wrong) {
-						passwordFormLabel.setText("密码错误");
-					}
                 }
             }
         }else if (role==Role.webmanager) {
-        	ResultMessage resultMessage = WebManagerInfoUtil.getInstance().checkOnLine(id, password);
+        	resultMessage = WebManagerInfoUtil.getInstance().checkOnLine(id, password);
 			if(resultMessage==ResultMessage.succeed){
 				idFormLabel.setText("");
             	passwordFormLabel.setText("");
 				WebManagerInfoUtil.getInstance().login(id, password);
 				passwordFormLabel.setText("");
 				Stage stage = (Stage)idField.getScene().getWindow();
+				//关闭窗口退出
+				stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					@Override
+					public void handle(WindowEvent event) {
+						WebManagerInfoUtil.getInstance().logout();
+					}
+				});
 				Scene scene = null;
 				AnchorPane webmanagerHomepage = WebManagerUIFXMLFactory.getInstance().getManageHomepage();
 				if(webmanagerHomepage.getScene()!=null){
@@ -174,18 +186,12 @@ public class LoginUIController {
 					scene = new Scene(webmanagerHomepage,800,720);
 				}
 				stage.setScene(scene);
-			}else{
-				if(resultMessage==ResultMessage.idNotExist){
-            		idFormLabel.setText("该用户名不存在");
-            	}else if (resultMessage==ResultMessage.password_wrong) {
-					passwordFormLabel.setText("密码错误");
-				}
 			}
 		} else if(role==Role.hotel){
             // 得到登陆服务
             LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
             
-            ResultMessage resultMessage = loginService.checkOnline(Role.hotel, id, password);
+            resultMessage = loginService.checkOnline(Role.hotel, id, password);
             if(resultMessage.equals(ResultMessage.succeed)){
             	idFormLabel.setText("");
             	passwordFormLabel.setText("");
@@ -199,25 +205,26 @@ public class LoginUIController {
                 hotelHomepageUIController.setHotelId(id);
 
                 Stage stage = (Stage)idField.getScene().getWindow();
+              //关闭窗口退出
+				stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					@Override
+					public void handle(WindowEvent event) {
+						loginService.logout(Role.hotel, id);
+					}
+				});
                 Scene scene = null;
                 if(hotelHomepage.getScene()==null)
                     scene = new Scene(hotelHomepage, HotelUIFXMLFactory.UI_WIDTH, HotelUIFXMLFactory.UI_HEIGHT);
                 else
                     scene = hotelHomepage.getScene();
                 stage.setScene(scene);
-            } else {
-            	if(resultMessage==ResultMessage.idNotExist){
-            		idFormLabel.setText("该用户名不存在");
-            	}else if (resultMessage==ResultMessage.password_wrong) {
-					passwordFormLabel.setText("密码错误");
-				}
-            }
+            } 
 
         } else if(role.equals(Role.websalesman)){
             // 得到登陆服务
             LoginService loginService = HotelServiceFactory.getInstance().getLoginService();
             
-            ResultMessage resultMessage = loginService.checkOnline(Role.websalesman, id, password );
+            resultMessage = loginService.checkOnline(Role.websalesman, id, password );
             if(resultMessage.equals(ResultMessage.succeed)){
             	idFormLabel.setText("");
             	passwordFormLabel.setText("");
@@ -232,20 +239,29 @@ public class LoginUIController {
                 webSalesmanHomepageUIController.setPrePane(loginBelowAnchorpane);
 
                 Stage stage = (Stage)idField.getScene().getWindow();
+              //关闭窗口退出
+				stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+					@Override
+					public void handle(WindowEvent event) {
+						loginService.logout(Role.websalesman, id);
+					}
+				});
                 Scene scene = null;
                 if(webSalesmanHomepage.getScene()==null)
                     scene = new Scene(webSalesmanHomepage, WebSalesmanUIFXMLFactory.UI_WIDTH, WebSalesmanUIFXMLFactory.UI_HEIGHT);
                 else
                     scene = webSalesmanHomepage.getScene();
                 stage.setScene(scene);
-            } else {
-            	if(resultMessage==ResultMessage.idNotExist){
-            		idFormLabel.setText("该用户名不存在");
-            	}else if (resultMessage==ResultMessage.password_wrong) {
-					passwordFormLabel.setText("密码错误");
-				}
-            }
+            } 
         }
+        if(resultMessage==ResultMessage.idNotExist){
+    		idFormLabel.setText("该用户名不存在");
+    	}else if (resultMessage==ResultMessage.password_wrong) {
+			passwordFormLabel.setText("密码错误");
+		}else if (resultMessage==ResultMessage.idAlreadyExist) {
+			idFormLabel.setText("不能重复登陆");
+		}
+      
     }
 
     //展开或收起登陆下拉界面
