@@ -184,18 +184,20 @@ public class AddPromotionUIController {
 
         // 对应界面的"针对范围"选项
         if(webSalesmanVO==null){
+            // 酒店制定
             if(scopeChoiceBox.getValue().equals("指定房间"))
                 scopeType = ScopeType.ROOM;
             else
                 scopeType = ScopeType.HOTEL;
-        }
+        } else
+            scopeType = ScopeType.DISTRICT;
 
 
         //  "针对"的数量（细节）
-        if(webSalesmanVO!=null)
-            scopeNum = webSalesmanVO.getDistrict();
-        else
+        if(webSalesmanVO==null)
             scopeNum = setterId;
+        else
+            scopeNum = webSalesmanVO.getDistrict();
 
         //  房间类型
         if(webSalesmanVO!=null){
@@ -209,7 +211,6 @@ public class AddPromotionUIController {
             conditionType = ConditionType.COMMERCE;
         else if(memberCheckBox.isSelected()){
             conditionType = ConditionType.MEMBER;
-            System.out.println(conditionType+"~~~"+conditionNum);
         }
         else if(!roomNumTextField.getText().equals("")){
             // 房间数量>=
