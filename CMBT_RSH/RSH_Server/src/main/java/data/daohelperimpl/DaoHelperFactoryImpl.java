@@ -31,7 +31,7 @@ public class DaoHelperFactoryImpl implements DaoHelperFactory {
     
     public static DBHelper getDBHelper(){
     	if(db==null){
-    		Values.setURL();
+    		Values.getInstance().setURL();
     		db = new DBHelper();
     	}
     	return db;

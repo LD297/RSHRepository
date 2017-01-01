@@ -47,7 +47,6 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 		init();
 	}
 	
-	@SuppressWarnings("restriction")
 	private void init(){
 		//得到酒店本身的图片
 		hotelImages = ImageFactory.getImageFactory().getHotelImages(hotelVO.getHotelID());
@@ -136,7 +135,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			locator.setLocation(nextImageArrowLabel, 81.0, 123.0, 321.0, 14.0);
 			locator.setLocation(hotelNameLabel, 26.0, 241.0, 67.0, 159.0);
 			locator.setLocation(createOrderButton, 197.0, 70.0, 281.0, 23.0);
-			locator.setLocation(priceLabel, 243.0, 30.0, 56.0, 260.0);
+			locator.setLocation(priceLabel, 243.0, 30.0, 56.0, 250.0);
 			locator.setLocation(orderStateImage, 249.0, 24.0, 323.0, 14.0);
 			begin = 56.0;
 		}else{
@@ -148,7 +147,7 @@ public class BrowseHotelAnchorPane extends AnchorPane{
 			locator.setLocation(nextImageArrowLabel, 81.0, 123.0, 279.0, 56.0);
 			locator.setLocation(hotelNameLabel, 26.0, 241.0, 26.0, 200.0);
 			locator.setLocation(createOrderButton, 197.0, 70.0, 240.0, 64.0);
-			locator.setLocation(priceLabel, 243.0, 30.0, 14.0, 301.0);
+			locator.setLocation(priceLabel, 243.0, 30.0, 14.0, 291.0);
 			locator.setLocation(orderStateImage, 249.0, 24.0, 281.0, 56.0);
 			begin = 14.0;
 		}

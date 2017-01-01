@@ -196,10 +196,10 @@ public class UserController implements UserService{
 	public ResultMessage add(UserVO userVO){
 		User user = User.getInstance(userVO.getId());
 		if(user == null){
-			return ResultMessage.idNotExist;
+			return User.add(userVO);
 		}
 		else{
-			return User.add(userVO);			
+			return ResultMessage.idNotExist;
 		}
 	}
 

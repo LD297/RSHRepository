@@ -77,6 +77,7 @@ public class RoomInfoUIController {
 
     AnchorPane addRoomAnchorPane;
     AddRoomUIController addRoomUIController;
+    HotelBasicInfoUIController hotelBasicInfoUIController;
 
     // 酒店主界面根结点
     private AnchorPane prePane;
@@ -241,6 +242,9 @@ public class RoomInfoUIController {
     }
     @FXML
     void backButtonClicked(MouseEvent event) {
+        hotelBasicInfoUIController = HotelUIFXMLFactory.getInstance().getHotelBasicInfoUIController();
+        hotelBasicInfoUIController.setHotelVO();
+        hotelBasicInfoUIController.refreshPage();
         ((Stage)anchorPane.getScene().getWindow()).setScene(prePane.getScene());
     }
 

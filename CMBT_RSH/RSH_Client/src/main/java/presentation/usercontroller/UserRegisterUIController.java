@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import constant.MemberType;
 import constant.ResultMessage;
 import constant.Sexuality;
 import javafx.collections.FXCollections;

@@ -14,16 +14,16 @@
       <Label layoutX="40.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.3);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane layoutX="137.0" layoutY="90.0" maxHeight="400.0" maxWidth="500.0" minHeight="400.0" minWidth="500.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="160.0">
          <children>
-            <Label layoutX="167.0" layoutY="81.0" prefHeight="36.0" prefWidth="148.0" text="修改酒店信息" textFill="#ff5a5f">
+            <Label layoutX="168.0" layoutY="62.0" prefHeight="36.0" prefWidth="148.0" text="     酒店信息" textFill="#ff5a5f">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="hotelNameField" layoutX="77.0" layoutY="178.0" prefHeight="30.0" prefWidth="329.0" text="一个有故事的客栈">
+            <TextField fx:id="hotelNameField" layoutX="77.0" layoutY="150.0" prefHeight="30.0" prefWidth="343.0" text="一个有故事的客栈">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font></TextField>
-            <TextField fx:id="phoneField" layoutX="117.0" layoutY="270.0" prefHeight="30.0" prefWidth="289.0" text="13851897777">
+            <TextField fx:id="phoneField" layoutX="77.0" layoutY="230.0" prefHeight="30.0" prefWidth="343.0" text="13851897777">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -33,27 +33,22 @@
                   <Image url="@../images/cancel.png" />
                </image>
             </ImageView>
-            <Button fx:id="finishModifyButton" layoutX="296.0" layoutY="349.0" mnemonicParsing="false" onMouseClicked="#finishModifyHotel" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #ff5a5f;" text="确认修改" textFill="WHITE">
+            <Button fx:id="finishModifyButton" layoutX="306.0" layoutY="297.0" mnemonicParsing="false" onMouseClicked="#finishModifyHotel" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #ff5a5f;" text="确认修改" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Button>
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="83.0" layoutY="274.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/电话图标.png" />
-               </image>
-            </ImageView>
             <Label fx:id="messageLabel" layoutX="76.0" layoutY="349.0" prefHeight="30.0" prefWidth="206.0" textFill="#ff5a5f">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="76.0" layoutY="139.0" prefHeight="30.0" prefWidth="230.0" text="您可以输入新的酒店名称:">
+            <Label layoutX="76.0" layoutY="120.0" prefHeight="30.0" prefWidth="230.0" text="您可以输入新的酒店名称:">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="76.0" layoutY="229.0" prefHeight="30.0" prefWidth="230.0" text="您可以输入新的酒店联系方式:">
+            <Label layoutX="76.0" layoutY="200.0" prefHeight="30.0" prefWidth="230.0" text="您可以输入新的酒店联系方式:">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>

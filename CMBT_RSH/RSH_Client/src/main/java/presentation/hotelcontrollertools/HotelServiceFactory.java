@@ -4,16 +4,11 @@ import bl.hotelservice.HotelInfoService;
 import bl.hotelservice.HotelService;
 import bl.hotelserviceimpl.HotelController;
 import bl.hotelserviceimpl.HotelInfoController;
-import bl.hotelserviceimpl.HotelInfoService_Stub;
-import bl.hotelserviceimpl.HotelService_Stub;
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginController;
-import bl.loginserviceimpl.LoginService_Stub;
 import bl.orderservice.OrderForHotel;
 import bl.orderserviceimpl.OrderForHotelController;
-import bl.orderserviceimpl.OrderForHotel_Stub;
 import bl.promotionServiceimpl.PromotionController;
-import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
 
 /**

@@ -2,19 +2,14 @@ package presentation.websalesmancontrollertools;
 
 import bl.loginservice.LoginService;
 import bl.loginserviceimpl.LoginController;
-import bl.loginserviceimpl.LoginService_Stub;
 import bl.orderservice.OrderForWebsite;
-import bl.orderserviceimpl.OrderForHotel_Stub;
 import bl.orderserviceimpl.OrderForWebsiteController;
 import bl.promotionServiceimpl.PromotionController;
-import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
 import bl.userservice.UserService;
 import bl.userserviceimpl.UserController;
-import bl.userserviceimpl.UserService_Stub;
 import bl.webstaffservice.WebStaffService;
 import bl.webstaffserviceimpl.WebStaffController;
-import bl.webstaffserviceimpl.WebStaffService_Stub;
 
 /**
  * Created by a297 on 16/12/20.
