@@ -38,7 +38,6 @@ public class WebSalesman {
 		try {
 			webSalesmanPO = webSalesmanDao.findByID(id);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -56,7 +55,6 @@ public class WebSalesman {
 		try {
 			return webSalesmanDao.update(this.changeIntoPO());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
@@ -65,7 +63,6 @@ public class WebSalesman {
 	
 
 	public ResultMessage changePassword(String oldPassword, String newPassword) {
-		// TODO Auto-generated method stub
 		if(password.equals(oldPassword)){
 			password = newPassword;
 			return update();
@@ -74,9 +71,6 @@ public class WebSalesman {
 	}
 
 	public ResultMessage checkPassword(String password) {
-		// TODO Auto-generated method stub
-		System.out.println(password+" ui传过来的");
-		System.out.println(this.password+" data传过来的");
 		if(this.password.equals( password )){
 			return ResultMessage.succeed;
 		}

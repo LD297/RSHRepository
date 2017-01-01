@@ -40,7 +40,6 @@ public class WebManager {
 			try {
 				webManagerPO = webManagerDao.getManagerInstance(webManagerID);
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return null;
 			}
@@ -75,7 +74,6 @@ public class WebManager {
 		try {
 			return	webManagerDao.updateManager(webManagerID,password);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
