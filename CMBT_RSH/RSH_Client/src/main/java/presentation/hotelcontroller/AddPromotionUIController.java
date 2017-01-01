@@ -182,29 +182,27 @@ public class AddPromotionUIController {
         beginDate = MyDateFormat.getInstance().changeLocalDateToDate(begin);
         endDate = MyDateFormat.getInstance().changeLocalDateToDate(end);
 
-        // 对应界面的"针对范围"选项
+        // 促销策略针对范围
         if(webSalesmanVO==null){
-<<<<<<< HEAD
             // 酒店制定
             if(scopeChoiceBox.getValue().equals("指定房间"))
                 scopeType = ScopeType.ROOM;
-=======
-            if(scopeChoiceBox.getValue().equals("指定房间")){
-                scopeType = ScopeType.ROOM;}
->>>>>>> origin/master
             else
                 scopeType = ScopeType.HOTEL;
         } else
+            // 网站营销人员制定
             scopeType = ScopeType.DISTRICT;
 
 
-        //  "针对"的数量（细节）
+        // 促销策略范围参数
         if(webSalesmanVO==null)
+            // 酒店制定
             scopeNum = setterId;
         else
+            // 网站营销人员制定
             scopeNum = webSalesmanVO.getDistrict();
 
-        //  房间类型
+        //  如果是酒店制定促销策略，且选择指定房间
         if(webSalesmanVO!=null){
             if(scopeType.equals(ScopeType.ROOM))
                 roomType = (String)roomTypeChoiceBox.getValue();
