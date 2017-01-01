@@ -18,7 +18,7 @@ public class Launcher extends Application{
 			e.printStackTrace();
 		}
 		try {
-			Scene scene = new Scene(anchorPane, 300, 172);
+			Scene scene = new Scene(anchorPane, 300, 120);
 			stage.setTitle("服务器");
 			stage.setScene(scene);
 			stage.show();
