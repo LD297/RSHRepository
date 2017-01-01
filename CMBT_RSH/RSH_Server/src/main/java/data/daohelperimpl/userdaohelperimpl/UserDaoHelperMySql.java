@@ -39,7 +39,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     // 根据id得到用户基本信息
     public UserPO getInfo(String userID) throws RemoteException {
         db.executeSql("USE OurData");
-
+        
         if(this.checkExistence(userID)==ResultMessage.idNotExist)
             return null;
         String deUserID = this.getSecreted(userID, nameKey);
@@ -87,10 +87,10 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     // 真实姓名 性别 邮箱
     public ResultMessage insert(UserPO userPO) throws RemoteException {
         db.executeSql("USE OurData");
-
+System.out.println("get into insert!"+userPO.getId());
         if(this.checkExistence(userPO.getId())==ResultMessage.idAlreadyExist)
             return ResultMessage.idAlreadyExist;
-       System.out.println(userPO.getName());
+        
         String userID = userPO.getId();
         String deUserID = this.getSecreted(userID, nameKey);
         String password = userPO.getPassword();
@@ -162,9 +162,9 @@ public class UserDaoHelperMySql implements UserDaoHelper{
                                      +this.getSecreted(userID, nameKey);
         ResultSet result = db.query(checkExistenceSql);
         try{
-            while(result.next())
+            while(result.next()){
                 if(result.getInt(1)>0)
-                    return ResultMessage.idAlreadyExist;
+                    return ResultMessage.idAlreadyExist;}
         }catch(SQLException e){
             e.printStackTrace();
             return null;
@@ -205,8 +205,7 @@ public class UserDaoHelperMySql implements UserDaoHelper{
     private String getSecreted(String clear,String key){
     	return "aes_encrypt('"+clear+"','"+key+"')";
     }
-    //CAST(BINARY(aes_decrypt(truename,'1jkl43')) AS CHAR CHARACTER SET utf8) AS VALUE
-
+    
     public int getCredit(String userID){
     	db.executeSql("USE OurData");
     	String deUserID = this.getSecreted(userID, nameKey);

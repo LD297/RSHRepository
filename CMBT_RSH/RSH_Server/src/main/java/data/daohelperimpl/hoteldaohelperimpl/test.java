@@ -20,8 +20,7 @@ import static org.junit.Assert.*;
  */
 public class test {
     static HotelDaoHelperMySql hotelDao = null; // new HotelDaoHelperMySql();
-   /*
-
+ /*
     // success
     @Test
     public void testgetAll()throws RemoteException{
@@ -31,14 +30,14 @@ public class test {
     // success
     @Test
     public void testdeleteSpecialRoom() throws RemoteException{
-        RoomPO roomPO = new RoomPO("2153000001","标准间","url",0,0,false);
+        RoomPO roomPO = new RoomPO("2153000001","标准间","url",0,0);
         ResultMessage result = hotelDao.deleteSpecialRoom(roomPO);
         assertEquals(result,ResultMessage.idNotExist);
     } 
     // success
     @Test
     public void testaddSpecialRoom() throws RemoteException{
-        RoomPO roomPO = new RoomPO("2153000001","豪华大床间","url",20,400,false);
+        RoomPO roomPO = new RoomPO("2153000001","豪华大床间","url",20,400);
         ResultMessage result = hotelDao.addSpecialRoom(roomPO);
         assertEquals(result,ResultMessage.idAlreadyExist);
     }
@@ -97,7 +96,7 @@ public class test {
     // success
     @Test
     public void testupdateRoom() throws RemoteException{
-        RoomPO roomPO = new RoomPO("2153000002","标准间","url",40,220,true);
+        RoomPO roomPO = new RoomPO("2153000002","标准间","url",40,220);
         ResultMessage result = hotelDao.updateRoom(roomPO);
         assertEquals(result,ResultMessage.succeed);
     }
@@ -136,12 +135,15 @@ public class test {
         Date indate = sim.parse("2016-12-27");
         ArrayList<RoomAvailPO> list = hotelDao.getRoomAvailList(hotelid,indate);
         assertEquals(list.get(0).getAmountAvail(),40);
-    }
-    
-     */
-    public static void main(String[] args) throws RemoteException{
-    	hotelDao = new HotelDaoHelperMySql();
-    	hotelDao.finish();
-    	hotelDao.init();
-    }
+    }*/
+ public static void main(String args[]) throws RemoteException{
+	 String id = hotelDao.getNewHotelID("215300");
+ 	 HotelPO hotelPO = new HotelPO(id,"15987663987","LaRud","215300","平泉街211号","123456");
+     ResultMessage result = hotelDao.addHotel(hotelPO);
+     
+     String id2 = hotelDao.getNewHotelID("215300");
+     HotelPO hotelPO2 = new HotelPO(id2,"17394857369","qucio","215300","平泉街012号","765432");
+     ResultMessage result2 = hotelDao.addHotel(hotelPO2);
+     System.out.println(result.toString());
+ }  
 }
