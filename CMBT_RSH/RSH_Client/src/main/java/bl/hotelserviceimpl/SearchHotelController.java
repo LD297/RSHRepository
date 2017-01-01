@@ -115,7 +115,6 @@ public class SearchHotelController implements SearchHotelService {
 
 	@Override
 	public ArrayList<HotelVO> sort(ArrayList<HotelVO> hotelVOs, SortBy sortBy, SortMethod sortM) {
-		// TODO Auto-generated method stub
 		ArrayList<HotelVO> newHotelVOs = new ArrayList<>();
 		for (HotelVO hotelVO1 : hotelVOs) {
 			boolean hasBeenSet = false;
@@ -142,7 +141,6 @@ public class SearchHotelController implements SearchHotelService {
 	 * @return
 	 */
 	private boolean compare(HotelVO hotelVO1, HotelVO hotelVO2, SortBy sortBy, SortMethod sortM) {
-		// TODO Auto-generated method stub
 		double difference = 0;
 		switch (sortBy) {
 		case price:

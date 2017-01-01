@@ -112,12 +112,12 @@ public class UserController implements UserService{
 
 	@Override
 	public ResultMessage setMemberStandard(int boundaryForLevel) {
-		return MemberHelper.setMemberStandard(boundaryForLevel);
+		return MemberHelper.getInstance().setMemberStandard(boundaryForLevel);
 	}
 
 	@Override
 	public int getMemberStandard() {
-		return MemberHelper.getBoundaryForLevels();
+		return MemberHelper.getInstance().getBoundaryForLevels();
 	}
 
 
@@ -125,7 +125,7 @@ public class UserController implements UserService{
 	public int getMemberLevel(int credit) {
 		if(credit<=0)
 			return 0;
-		return MemberHelper.getMemberLevel(credit);
+		return MemberHelper.getInstance().getMemberLevel(credit);
 	}
 
 

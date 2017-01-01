@@ -127,14 +127,14 @@ public class User {
 	}
 
 	public ResultMessage registerMember() {
-		int level = MemberHelper.getMemberLevel(userPO.getCredit());
+		int level = MemberHelper.getInstance().getMemberLevel(userPO.getCredit());
 		userPO.setLevel(level);
 		userPO.setMemberType(MemberType.commom);
 		return update();
 	}
 
 	public ResultMessage registerMember(String commerceName) {
-		int level = MemberHelper.getMemberLevel(userPO.getCredit());
+		int level = MemberHelper.getInstance().getMemberLevel(userPO.getCredit());
 		userPO.setLevel(level);
 		userPO.setCommerceName(commerceName);
 		userPO.setMemberType(MemberType.commerce);
@@ -144,7 +144,7 @@ public class User {
 
 	public void changeCredit(int credit) {
 		userPO.setCredit(credit);
-		userPO.setLevel(MemberHelper.getMemberLevel(credit));
+		userPO.setLevel(MemberHelper.getInstance().getMemberLevel(credit));
 		update();
 	}	
 	

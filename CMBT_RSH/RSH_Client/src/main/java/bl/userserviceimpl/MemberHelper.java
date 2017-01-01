@@ -10,10 +10,23 @@ public class MemberHelper {
 
 	private static UserDao userDao=null;
 	private static int boundaryForLevels = 0;
+	private static MemberHelper memberHelper = null;
 	
-	private MemberHelper(){
-		
-	};
+	private MemberHelper(){};
+	
+	public static MemberHelper getInstance(){
+		if(memberHelper == null){
+			memberHelper = new MemberHelper();
+		}
+		initRemote();
+		try {
+			boundaryForLevels = userDao.getMemberLevel();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return memberHelper;
+	}
 	
 	private static void initRemote(){
 		if(userDao == null){
@@ -27,35 +40,28 @@ public class MemberHelper {
 	 * @param boundaryForLevel
 	 * @return
 	 */
-	public static ResultMessage setMemberStandard(int boundaryForLevel){
-		initRemote();
-		ResultMessage resultMessage = null;
-		try{
-			resultMessage = userDao.setMemberLevel(boundaryForLevel);
-		}catch(RemoteException e){
-			e.printStackTrace();
-			return ResultMessage.remote_fail;
-		}
-		if(resultMessage == ResultMessage.succeed){
-			MemberHelper.boundaryForLevels = boundaryForLevel;
-		}
-		return resultMessage;
+	public ResultMessage setMemberStandard(int boundaryForLevel){
+		this.boundaryForLevels = boundaryForLevel;
+		return update();
 	}
 
-	public static int getBoundaryForLevels(){
-		initRemote();
-		try {
-			boundaryForLevels = userDao.getMemberLevel();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return -1;
-		}
+	public int getBoundaryForLevels(){
 		return boundaryForLevels;
 	}
 
 
-	public static int getMemberLevel(int credit) {
+	public int getMemberLevel(int credit) {
 		return credit/boundaryForLevels+1;
+	}
+	
+	public ResultMessage update(){
+		initRemote();
+		try {
+			return userDao.setMemberLevel(boundaryForLevels);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.remote_fail;
+		}
 	}
 
 
