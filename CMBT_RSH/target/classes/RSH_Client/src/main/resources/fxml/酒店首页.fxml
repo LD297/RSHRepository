@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -16,34 +18,34 @@
             <Image url="@../images/LOGO.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="350.0" fitWidth="350.0" layoutX="224.0" layoutY="161.0" AnchorPane.bottomAnchor="185.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="185.0">
+      <ImageView fitHeight="350.0" fitWidth="350.0" layoutX="224.0" layoutY="161.0" AnchorPane.bottomAnchor="233.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="327.0" AnchorPane.topAnchor="137.0">
          <image>
             <Image url="@../images/酒店首页c0.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="basicInfo" fitHeight="100.0" fitWidth="99.0" layoutX="205.0" layoutY="201.0" onMouseClicked="#changeToBasicInfoUI">
+      <ImageView fx:id="basicInfo" fitHeight="100.0" fitWidth="99.0" layoutX="391.0" layoutY="70.0" onMouseClicked="#changeToBasicInfoUI">
          <image>
             <Image url="@../images/酒店首页c1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="promotin" fitHeight="99.0" fitWidth="100.0" layoutX="476.0" layoutY="182.0" onMouseClicked="#changeToPromotionUI">
+      <ImageView fx:id="promotion" fitHeight="99.0" fitWidth="100.0" layoutX="290.0" layoutY="500.0" onMouseClicked="#changeToPromotionUI">
          <image>
             <Image url="@../images/酒店首页c2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="aboutUs" fitHeight="99.0" fitWidth="100.0" layoutX="526.0" layoutY="369.0" onMouseClicked="#changeToAboutUsUI">
-         <image>
-            <Image url="@../images/酒店首页c3.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="checkOrder" fitHeight="99.0" fitWidth="100.0" layoutX="391.0" layoutY="494.0" onMouseClicked="#changeToCheckOrderUI">
+      <ImageView fx:id="checkOrder" fitHeight="99.0" fitWidth="100.0" layoutX="462.0" layoutY="408.0" onMouseClicked="#changeToCheckOrderUI">
          <image>
             <Image url="@../images/酒店首页c4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="roomAvail" fitHeight="100.0" fitWidth="99.0" layoutX="190.0" layoutY="417.0" onMouseClicked="#changeToRoomAvailUI">
+      <ImageView fx:id="roomAvail" fitHeight="100.0" fitWidth="99.0" layoutX="522.0" layoutY="221.0" onMouseClicked="#changeToRoomAvailUI">
          <image>
             <Image url="@../images/c5.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="logoutImageView" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#logout" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
+         <image>
+            <Image url="@../images/logout.png" />
          </image>
       </ImageView>
    </children>

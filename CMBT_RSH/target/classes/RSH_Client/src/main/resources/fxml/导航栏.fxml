@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.GuideUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.GuideUIController">
    <children>
       <GridPane layoutX="-14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -22,25 +21,11 @@
           <RowConstraints maxHeight="670.0" minHeight="670.0" prefHeight="670.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <AnchorPane prefHeight="30.0" prefWidth="800.0">
+            <AnchorPane prefHeight="30.0" prefWidth="800.0" style="-fx-background-color: #ffffff;">
                <children>
                   <ImageView fx:id="backImage" fitHeight="50.0" fitWidth="45.0" layoutX="13.0" layoutY="5.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="5.0">
                      <image>
                         <Image url="@../images/返回箭头.png" />
-                     </image>
-                  </ImageView>
-                  <TextField fx:id="whereToGoField" layoutX="156.0" layoutY="16.0" onMouseClicked="#changeToSearchHotel" prefHeight="17.0" prefWidth="417.0" promptText="想去哪里？" AnchorPane.leftAnchor="156.0" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="16.0">
-                     <font>
-                        <Font name="Times New Roman" size="12.0" />
-                     </font></TextField>
-                  <Label fx:id="helpLabel" layoutX="642.0" layoutY="1.0" onMouseClicked="#changeToHeplInfo" prefHeight="52.0" prefWidth="33.0" text="帮助" textFill="#000000a5" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="642.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="1.0">
-                     <font>
-                        <Font name="Times New Roman" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="133.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="644.0" AnchorPane.topAnchor="16.0">
-                     <image>
-                        <Image url="@../images/搜索图标.jpg" />
                      </image>
                   </ImageView>
                   <Label fx:id="logoutLabel" layoutX="693.0" onMouseClicked="#changeToLogin" prefHeight="52.0" prefWidth="33.0" text="退出" textFill="#000000a6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="693.0" AnchorPane.topAnchor="0.0">
@@ -50,7 +35,7 @@
                   </Label>
                   <ImageView fx:id="headImage" fitHeight="33.0" fitWidth="33.0" layoutX="745.0" layoutY="10.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../images/用户头像.jpg" />
+                        <Image url="@../images/登录头像.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="headMaskImage" fitHeight="33.0" fitWidth="33.0" layoutX="745.0" layoutY="10.0" onMouseClicked="#changeToUserInfo" pickOnBounds="true">
@@ -58,7 +43,8 @@
                         <Image url="@../images/头像背景.png" />
                      </image>
                   </ImageView>
-                  <Line endX="799.0" layoutY="43.0" stroke="#bcbcbc" AnchorPane.bottomAnchor="1.0" />
+                  <Line endX="799.0" layoutY="43.0" stroke="#bcbcbc" strokeWidth="0.5" AnchorPane.bottomAnchor="0.3" />
+                  <Line endX="799.0" layoutX="10.0" layoutY="53.0" stroke="#bcbcbc" AnchorPane.bottomAnchor="50.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.5" />
                </children>
             </AnchorPane>
          </children>

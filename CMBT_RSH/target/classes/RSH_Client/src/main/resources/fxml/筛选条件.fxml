@@ -45,8 +45,8 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </TextField>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="30.0" layoutX="91.0" layoutY="29.0" stroke="#bcbcbc" strokeType="INSIDE" width="89.0" />
-            <ComboBox fx:id="roomtypeCombobox" layoutX="96.0" layoutY="31.0" prefHeight="26.0" prefWidth="80.0" promptText="类型" style="-fx-background-color: #f4f4f4;" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="30.0" layoutX="91.0" layoutY="29.0" stroke="#bcbcbc" strokeType="INSIDE" width="107.0" />
+            <ComboBox fx:id="roomtypeCombobox" layoutX="95.0" layoutY="31.0" prefHeight="26.0" prefWidth="100.0" promptText="类型" style="-fx-background-color: #f4f4f4;" />
             <TextField fx:id="roomNumField" layoutX="91.0" layoutY="135.0" prefHeight="30.0" prefWidth="124.0" promptText="数量">
                <font>
                   <Font name="Times New Roman" size="14.0" />

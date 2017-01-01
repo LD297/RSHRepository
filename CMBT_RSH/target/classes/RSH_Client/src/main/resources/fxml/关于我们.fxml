@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.AboutUsUIController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="800.0">
+      <ImageView fitHeight="720.0" fitWidth="800.0" layoutX="5.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../images/白色背景.png" />
          </image>
@@ -18,17 +18,22 @@
             <Image url="@../images/LOGO.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="342.0" fitWidth="578.0" layoutX="111.0" layoutY="209.0" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="111.0" AnchorPane.rightAnchor="111.0" AnchorPane.topAnchor="209.0">
+      <ImageView fitHeight="342.0" fitWidth="578.0" layoutX="111.0" layoutY="209.0" visible="false" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="111.0" AnchorPane.rightAnchor="111.0" AnchorPane.topAnchor="209.0">
          <image>
             <Image url="@../images/CMBT.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="219.0" layoutY="245.0" prefHeight="73.0" prefWidth="363.0" text="璐璐 &amp; 婷婷 &amp; 卤蛋 &amp; 思密达" textFill="#656565">
+      <ImageView fitHeight="415.8" fitWidth="540.0" layoutX="136.0" layoutY="141.0" AnchorPane.leftAnchor="138.0">
+         <image>
+            <Image url="@../images/CMBT.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="219.0" layoutY="245.0" prefHeight="73.0" prefWidth="363.0" text="璐璐 &amp; 婷婷 &amp; 卤蛋 &amp; 思密达" textFill="#656565" visible="false">
          <font>
             <Font name="Wawati SC Regular" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="299.0" layoutY="179.0" prefHeight="61.0" prefWidth="203.0" text="by: CMBT" textFill="#ff5a5f">
+      <Label layoutX="299.0" layoutY="179.0" prefHeight="61.0" prefWidth="203.0" text="by: CMBT" textFill="#ff5a5f" visible="false">
          <font>
             <Font name="Wawati SC Regular" size="40.0" />
          </font>
