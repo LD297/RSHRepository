@@ -59,8 +59,8 @@ public class WebSalesmanDaoHelperMySql implements WebSalesmanDaoHelper{
         String password = "aes_encrypt('"+po.getPassword()+"','"+key+"')";
         if(this.checkExistence(po.getID())==ResultMessage.idAlreadyExist){
             String updateWebSalesmanSql = "UPDATE WebStaffInfo " +
-                "SET password="+password+",district='"+po.getDistrict()+"'"+
-                " WHERE id='"+po.getID()+"' LIMIT 1";
+                "SET password="+password+",district='"+po.getDistrict()+"',name='"+po.getName()+
+                "' WHERE id='"+po.getID()+"' LIMIT 1";
             db.executeSql(updateWebSalesmanSql);
             return ResultMessage.succeed;
         }
