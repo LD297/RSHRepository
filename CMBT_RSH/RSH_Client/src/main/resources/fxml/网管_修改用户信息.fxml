@@ -14,7 +14,7 @@
       <Label layoutX="40.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" style="-fx-background-color: rgba(0,0,0,0.3);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane layoutX="137.0" layoutY="90.0" maxHeight="400.0" maxWidth="500.0" minHeight="400.0" minWidth="500.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="160.0">
          <children>
-            <Label layoutX="175.0" layoutY="59.0" prefHeight="36.0" prefWidth="151.0" text="修改用户信息" textFill="#ff5a5f">
+            <Label layoutX="175.0" layoutY="59.0" prefHeight="36.0" prefWidth="151.0" text="    用户信息" textFill="#ff5a5f">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>

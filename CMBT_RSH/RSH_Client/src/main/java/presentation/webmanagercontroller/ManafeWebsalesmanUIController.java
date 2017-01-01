@@ -104,7 +104,6 @@ public class ManafeWebsalesmanUIController {
 			}
 		}
     	if(!found){
-    		//TODO 没有找到该酒店的提示
     	}
     
     }
