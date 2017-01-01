@@ -69,6 +69,8 @@ public class PromotionVO {
 
         this.deductionType = deductionType;
         this.deductionNum = deductionNum;
+        
+        System.out.println(scopeType+" "+roomType);
     }
 
     public PromotionPO changeIntoPO(){

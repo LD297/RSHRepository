@@ -58,7 +58,6 @@ public class PromotionController implements PromotionService {
 		try {
 			return promotionDao.insert(promotionVO.changeIntoPO());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}

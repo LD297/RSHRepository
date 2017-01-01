@@ -72,7 +72,7 @@ public class HotelVO {
 	 * @param imageAddress
 	 */
 	public HotelVO(String hotelID, String hotelName,String detailAddress,String tel,String password,
-			int level, double standardRoomPrice,
+			int level, double standardRoomPrice,double grade,
 			String latestCheckInTime,String briefIntro,String facility, String imageAddress){
 		this.hotelID = hotelID;
 		this.hotelName = hotelName;
@@ -82,6 +82,8 @@ public class HotelVO {
 		
 		this.level = level;
 		this.standardRoomPrice = standardRoomPrice;
+		this.grade = grade;
+		
 		this.latestCheckInTime = latestCheckInTime;
 		this.briefIntro = briefIntro;
 		this.facility = facility;

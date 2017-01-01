@@ -184,8 +184,8 @@ public class AddPromotionUIController {
 
         // 对应界面的"针对范围"选项
         if(webSalesmanVO==null){
-            if(scopeChoiceBox.getValue().equals("指定房间"))
-                scopeType = ScopeType.ROOM;
+            if(scopeChoiceBox.getValue().equals("指定房间")){
+                scopeType = ScopeType.ROOM;}
             else
                 scopeType = ScopeType.HOTEL;
         }
@@ -230,6 +230,7 @@ public class AddPromotionUIController {
             deductionType = DeductionType.REDUCE;
             deductionNum = Double.valueOf(reduceTextField.getText());
         }
+        
         PromotionVO thePromotion = new PromotionVO(setterId,promotionID, reason, beginDate, endDate,
                 scopeType,scopeNum, roomType, conditionType, conditionNum, deductionType, deductionNum
                 );
