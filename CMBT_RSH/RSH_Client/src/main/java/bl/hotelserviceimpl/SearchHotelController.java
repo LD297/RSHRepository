@@ -11,17 +11,10 @@ import vo.SelectConditionVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Map;
-import java.util.regex.Matcher;
-
-import javax.swing.plaf.synth.SynthStyle;
-
-import org.omg.CORBA.ShortHolder;
 
 import bl.hotelservice.SearchHotelService;
-import bl.userserviceimpl.User;
 import bl.userserviceimpl.UserController;
+import bl.userserviceimpl.UserForHotelController;
 
 /**
  * 根据条件搜索酒店, 兼顾搜索排序
@@ -100,9 +93,9 @@ public class SearchHotelController implements SearchHotelService {
 				return false;
 		}
 
-		UserController userController = new UserController();
+		UserForHotel userForHotel = new UserForHotelController();
 		if (selectConditionVO.reserved) {
-			if (!userController.hasReserved(selectConditionVO.userID, hotelID))
+			if (!userForHotel.hasReserved(selectConditionVO.userID, hotelID))
 				return false;
 		}
 		return true;

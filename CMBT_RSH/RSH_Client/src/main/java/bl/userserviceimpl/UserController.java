@@ -184,14 +184,6 @@ public class UserController implements UserService{
 		}
 		return creditRecordList.add(value);
 	}
-
-	public boolean hasReserved(String userID, String hotelID) {
-		User user = User.getInstance(userID);
-		if(user==null){
-			return false;
-		}
-		return user.hasReserved(hotelID);
-	}
 	
 	public ResultMessage add(UserVO userVO){
 		User user = User.getInstance(userVO.getId());

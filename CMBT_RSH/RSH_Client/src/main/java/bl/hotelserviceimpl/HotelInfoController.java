@@ -1,7 +1,6 @@
 package bl.hotelserviceimpl;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import bl.hotelservice.HotelInfoService;
 import constant.ResultMessage;

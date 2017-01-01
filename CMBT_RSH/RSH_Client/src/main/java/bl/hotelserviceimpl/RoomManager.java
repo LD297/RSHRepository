@@ -4,13 +4,11 @@ import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
 import po.RoomPO;
 import rmi.RemoteHelper;
-import vo.HotelVO;
 import vo.RoomVO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import javax.naming.InitialContext;
 
 public class RoomManager {
 

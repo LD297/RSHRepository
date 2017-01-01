@@ -6,7 +6,6 @@ import bl.hotelservice.ManagerHotelService;
 import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
 import rmi.RemoteHelper;
-import vo.HotelStaffVO;
 import vo.HotelVO;
 
 public class ManagerHotelController implements ManagerHotelService{

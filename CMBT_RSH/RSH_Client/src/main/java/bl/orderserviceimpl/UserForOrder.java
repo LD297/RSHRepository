@@ -13,5 +13,7 @@ public interface UserForOrder {
 	public ResultMessage addCreditRecordForCancelAbnormal(String userID,String orderID, int value, Date cancelTime);
 	
 	public ResultMessage minusCreditRecordForCancel(String userID,String orderID, int value,Date cancelTime);
+
+	public boolean canGenerate(String userID);
 	
 }

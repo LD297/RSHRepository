@@ -43,4 +43,13 @@ public class UserForOrderController implements UserForOrder{
 		return creditRecordList.addCreditRecord(CreditAction.cancel, orderID, -value, cancelTime);
 	}
 
+	@Override
+	public boolean canGenerate(String userID) {
+		User user = User.getInstance(userID);
+		if(user == null){
+			return false;
+		}
+		return user.canGenerateOrder();
+	}
+
 }

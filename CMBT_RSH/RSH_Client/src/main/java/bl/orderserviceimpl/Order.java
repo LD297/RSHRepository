@@ -58,11 +58,14 @@ public class Order {
     }
     
     public  static ResultMessage generateOrder(OrderVO orderVO){
-    	OrderPO orderPO = orderVO.changeIntoPO();
+    	UserForOrder userForOrder = new UserForOrderController();
+    	if(!userForOrder.canGenerate(orderVO.getUserID())){
+    		return ResultMessage.creditLack;
+    	}
     	initRemote();
     	ResultMessage resultMessage = null;
     	try {
-			resultMessage = orderDao.insert(orderPO);
+			resultMessage = orderDao.insert(orderVO.changeIntoPO());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.remote_fail;

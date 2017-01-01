@@ -2,9 +2,7 @@ package bl.hotelserviceimpl;
 
 import constant.ResultMessage;
 import data.dao.hoteldao.HotelDao;
-import data.dao_Stub.hoteldao_Stub.HotelDao_Stub;
 import po.HotelPO;
-import po.RoomNormPO;
 import po.RoomPO;
 import rmi.RemoteHelper;
 import vo.HotelVO;
