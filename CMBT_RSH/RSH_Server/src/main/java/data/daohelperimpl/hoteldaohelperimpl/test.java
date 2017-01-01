@@ -140,14 +140,8 @@ public class test {
     
      */
     public static void main(String[] args) throws RemoteException{
-    	String id = hotelDao.getNewHotelID("215300");
-    	HotelPO hotelPO = new HotelPO(id,"15987663987","LaRud","215300","平泉街211号","123456");
-        ResultMessage result = hotelDao.addHotel(hotelPO);
-        
-        String id2 = hotelDao.getNewHotelID("215300");
-        HotelPO hotelPO2 = new HotelPO(id2,"17394857369","qucio","215300","平泉街012号","765432");
-        ResultMessage result2 = hotelDao.addHotel(hotelPO2);
-        assertEquals(result,ResultMessage.succeed);
-        assertEquals(result2,ResultMessage.succeed);
+    	hotelDao = new HotelDaoHelperMySql();
+    	hotelDao.finish();
+    	hotelDao.init();
     }
 }
