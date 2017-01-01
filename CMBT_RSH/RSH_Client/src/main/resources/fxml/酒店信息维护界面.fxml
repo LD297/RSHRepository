@@ -160,7 +160,7 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
                   <TextField fx:id="hotelNameTextField" layoutX="107.0" layoutY="65.0" onMouseClicked="#editHotelName" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="107.0" AnchorPane.topAnchor="65.0" />
-                  <TextField fx:id="levelTextField" layoutX="107.0" layoutY="122.0" onAction="#editLevel" onMouseClicked="#editLevel" prefHeight="27.0" prefWidth="81.0" AnchorPane.leftAnchor="107.0" AnchorPane.topAnchor="122.0" />
+                  <TextField fx:id="levelTextField" layoutX="107.0" layoutY="122.0" onMouseClicked="#editLevel" prefHeight="27.0" prefWidth="81.0" AnchorPane.leftAnchor="107.0" AnchorPane.topAnchor="122.0" />
                   <TextField fx:id="checkInTextField" layoutX="393.0" layoutY="20.0" onMouseClicked="#editCheckIn" opacity="0.8" prefHeight="27.0" prefWidth="148.0" AnchorPane.leftAnchor="393.0" />
                   <TextArea fx:id="briefIntroTextArea" layoutX="393.0" layoutY="180.0" onMouseClicked="#editBriefIntro" opacity="0.8" prefHeight="74.0" prefWidth="322.0" AnchorPane.leftAnchor="393.0" />
                   <CheckBox fx:id="wifiCheckBox" layoutX="107.0" layoutY="184.0" mnemonicParsing="false" onMouseClicked="#editWifi" opacity="0.8" text="无线网络" AnchorPane.bottomAnchor="117.0" AnchorPane.leftAnchor="107.0">
