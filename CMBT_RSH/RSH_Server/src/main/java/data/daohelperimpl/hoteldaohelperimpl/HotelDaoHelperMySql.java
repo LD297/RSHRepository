@@ -369,32 +369,61 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
     public void updateAllDateInfo(){
     	db.executeSql("USE OurData");
     	ResultSet checkChange = db.query("SELECT lastUpdate FROM RoomInfo LIMIT 1");
+    	
+    	int gap = 0;
     	try{
     		while(checkChange.next()){
     			Date lastUp = checkChange.getDate(1);
-    			if(this.getDayGap(lastUp)==0)
-    				return ;
-    			else
-    				break;
+    			Date today = new Date();
+    			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");  
+    			try {
+					lastUp = sdf.parse(sdf.format(lastUp));
+				 
+    	            today = sdf.parse(sdf.format(today));  
+    			} catch (ParseException e) {
+					e.printStackTrace();
+					return ;
+				} 
+    	        Calendar cal = Calendar.getInstance();    
+    	        cal.setTime(lastUp);    
+    	        long time1 = cal.getTimeInMillis();                 
+    	        cal.setTime(today);    
+    	        long time2 = cal.getTimeInMillis();         
+    	        gap = (int)(time2-time1)/(1000*3600*24);  
+    	                 System.out.println(gap+"this is the gap");
+    			if(gap==0)
+    				return;
+    			else{
+    				break;}
     		}
     	}catch(SQLException e){
     		e.printStackTrace();
     	}
     	ResultSet roomResult = db.query("SELECT hotelID,roomType,amountTotal,aList FROM RoomInfo");
+    	ArrayList<String> hotelList = new ArrayList<String>();
+    	ArrayList<String> roomTypeList = new ArrayList<String>();
+    	ArrayList<String> aListList = new ArrayList<String>();
     	try{
     		while(roomResult.next()){
     			String hotelID = roomResult.getString(1);
     			String roomType = roomResult.getString(2);
     			int total = roomResult.getInt(3);
     			String aList = roomResult.getString(4);
-    			int index = aList.indexOf(",");
-                aList = aList.substring(index+1)+","+String.valueOf(total);
-                db.executeSql("UPDATE RoomInfo SET aList='"+aList+"'"+
-                		 "' WHERE hotelID='"+hotelID+"' and roomType='"+roomType+"' LIMIT 1");
+    			for(int i=0;i<gap;i++){
+    			    int index = aList.indexOf(",");
+                    aList = aList.substring(index+1)+","+String.valueOf(total);
+                }
+    			hotelList.add(hotelID);
+    			roomTypeList.add(roomType);
+    			aListList.add(aList);
     		}
     	}catch(SQLException e){
     		e.printStackTrace();
     	}
+    	for(int i=0;i<hotelList.size();i++)
+    	    db.executeSql("UPDATE RoomInfo SET aList='"+aListList.get(i)+"'"+
+       		 " WHERE hotelID='"+hotelList.get(i)+"' and roomType='"+roomTypeList.get(i)+"' LIMIT 1");
+    	
     	Date date = new Date();
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     	String strDate = sdf.format(date);

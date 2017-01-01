@@ -33,8 +33,7 @@ public class LoginDaoHelperMySql implements LoginDaoHelper{
         for(int i=0;i<onlineInfo.size();i++)
         	if(onlineInfo.get(i).getId().equals(po.getId()))
         		return ResultMessage.idAlreadyExist;
-        System.out.println(po.getId());
-        System.out.println(po.getRole().toString());
+        
         onlineInfo.add(po);
         return ResultMessage.succeed;
     }
