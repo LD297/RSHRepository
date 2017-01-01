@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 public class MemberHelper {
 
 	private static UserDao userDao=null;
-	private static int boundaryForLevels = 0;
+	private int boundaryForLevels = 0;
 	private static MemberHelper memberHelper = null;
 	
 	private MemberHelper(){};
@@ -20,7 +20,7 @@ public class MemberHelper {
 		}
 		initRemote();
 		try {
-			boundaryForLevels = userDao.getMemberLevel();
+			memberHelper.boundaryForLevels = userDao.getMemberLevel();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return null;

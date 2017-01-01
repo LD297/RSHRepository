@@ -4,8 +4,6 @@ import javax.naming.directory.SearchControls;
 
 import bl.hotelserviceimpl.HotelController;
 import bl.hotelserviceimpl.HotelInfoController;
-import bl.hotelserviceimpl.HotelManager;
-import bl.hotelserviceimpl.ManagerHotelController;
 import bl.hotelserviceimpl.SearchHotelController;
 import vo.HotelVO;
 import vo.RoomVO;
@@ -25,11 +23,9 @@ public class HotelDriver {
 	void test(){
 		HotelController hotelController = new HotelController();
 		HotelInfoController hotelInfoController = new HotelInfoController();
-		ManagerHotelController managerHotelController = new ManagerHotelController();
 		SearchHotelController searchHotelController = new SearchHotelController();
 		System.out.println("begin");
 		
-		System.out.println(managerHotelController.addHotel(hotelVO));
 		System.out.println(hotelController.getHotelInfo(hotelID).tel);
 		System.out.println(hotelController.addSpecialRoom(roomVO));
 //		System.out.println(hotelController.getRoomList(hotelID).get(0).roomImageAddress);

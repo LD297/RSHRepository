@@ -11,20 +11,10 @@ import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
 
-import javax.naming.InitialContext;
-
 public class Login {
-	private static Login login = null;
 	private static LoginDao loginDao = null;
 
-	public static Login getInstance(){
-		if(login==null){
-			login = new Login();
-			RemoteHelper remoteHelper = RemoteHelper.getInstance();
-			loginDao = remoteHelper.getLoginDao();
-		}
-		return login;
-	}
+	private Login(){};
 	
 	private static void initRemote(){
 		if(loginDao==null){
