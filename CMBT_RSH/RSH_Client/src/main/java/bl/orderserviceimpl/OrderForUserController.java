@@ -1,34 +1,19 @@
 package bl.orderserviceimpl;
 
-import bl.BLHelper;
-import bl.hotelservice.HotelInfoService;
-import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.HotelController;
-import bl.hotelserviceimpl.HotelInfoController;
-import bl.orderservice.OrderForHotel;
+
 import bl.orderservice.OrderForUser;
 import bl.promotionServiceimpl.Count;
-import bl.userserviceimpl.CreditRecordList;
-import bl.userserviceimpl.User;
-import constant.CreditAction;
+import bl.promotionServiceimpl.PromotionController;
 import constant.ResultMessage;
 import constant.StateOfOrder;
 import data.dao.orderdao.OrderDao;
 import po.OrderPO;
 import rmi.RemoteHelper;
-import vo.CreditRecordVO;
 import vo.OrderInfo;
 import vo.OrderVO;
-import vo.RoomNormVO;
-import vo.UserVO;
 
 import java.rmi.RemoteException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.temporal.IsoFields;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by sky-PC on 2016/12/14.
@@ -36,8 +21,6 @@ import java.util.Date;
 public class OrderForUserController implements OrderForUser{
 
     private static OrderDao orderDao = null;
-//    private HotelInfoService hotelInfoService = new HotelInfoController();
-//    private HotelService hotelService = new HotelController();
 
     private static void initRemote(){
     	if(orderDao == null){
@@ -93,6 +76,9 @@ public class OrderForUserController implements OrderForUser{
     @Override
     public int cancelMyOrder(String orderID){
     	Order order = Order.getInstance(orderID);
+    	if(order== null){
+    		return -1;
+    	}
     	order.cancelUnexecuted();
         return 0;
     }
@@ -222,6 +208,9 @@ public class OrderForUserController implements OrderForUser{
 
     
 
+    /**
+     * 用户撤销订单时计算会减去的信用值
+     */
 	@Override
 	public int getCreditReduced(OrderVO orderVO) {
 		return Order.getCreditReduced(orderVO);

@@ -5,7 +5,6 @@ import constant.ConditionType;
 import constant.DeductionType;
 import constant.ResultMessage;
 import data.dao.promotiondao.PromotionDao;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import po.PromotionPO;
 import rmi.RemoteHelper;
 
@@ -35,8 +34,7 @@ import bl.promotionServiceimpl.scope.Scope;
  */
 public class Promotion {
 
-	private static final int  hotelIDLength=10 ;
-	private static PromotionDao promotionDao;
+	private static PromotionDao promotionDao = null;
 	public static ArrayList<PromotionPO> existPromotionPO = new ArrayList<PromotionPO>();
 
 	private String setterID;
@@ -122,7 +120,6 @@ public class Promotion {
 	 * @param deductionNum
 	 */
 	public void setDeduction(DeductionType deductionType, double deductionNum) {
-		// TODO Auto-generated method stub
 		if(deductionType == DeductionType.DISCOUNT){
 			deduction = new DiscountDeduction(deductionNum/10);
 		}
@@ -160,42 +157,7 @@ public class Promotion {
 			return null;
 		else
 			return promotionPO.changeIntoPromotion();
-	}
-
-	/**
-	 * 在数据层中插入；
-	 * @return
-	 */
-	public ResultMessage insertPromotion(){
-		if(Promotion.getInstance(setterID,promotionID)==null)
-			return ResultMessage.already_exist;
-		PromotionPO promotionPO = this.changeIntoPO();
-		try {
-			promotionDao.insert(promotionPO);
-		} catch (RemoteException e) {
-			return ResultMessage.remote_fail;
-		}
-		return ResultMessage.succeed;
-	}
-
-	
-
-	/**
-	 * 在数据层中更新
-	 * @return
-	 */
-	public ResultMessage update() {
-		if(getInstance(this.setterID,this.promotionID)==null){
-			return ResultMessage.not_exist;
-		}
-		PromotionPO promotionPO = this.changeIntoPO();
-		try {
-			promotionDao.update(promotionPO);
-		} catch (RemoteException e) {
-			return ResultMessage.remote_fail;
-		}
-		return ResultMessage.succeed;
-	}
+	}	
 	
 	public PromotionPO changeIntoPO(){
 		PromotionPO promotionPO = new PromotionPO(setterID,promotionID,reason,

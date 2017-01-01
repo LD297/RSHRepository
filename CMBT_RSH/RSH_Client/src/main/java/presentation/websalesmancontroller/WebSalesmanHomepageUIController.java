@@ -192,7 +192,7 @@ public class WebSalesmanHomepageUIController {
     public void setWebSalesmanId(String id){this.webSalesmanId = id;}
 
     public void setWebSalesmanVO() {
-        this.webSalesmanVO = webStaffService.webSalesmanVO(webSalesmanId);
+        this.webSalesmanVO = webStaffService.getWebSalesman(webSalesmanId);
     }
 
     public void setPrePane(AnchorPane prePane) {

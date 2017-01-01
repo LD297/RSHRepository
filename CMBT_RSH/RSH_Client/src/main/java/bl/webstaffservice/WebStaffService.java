@@ -48,10 +48,10 @@ public interface WebStaffService {
 	public ResultMessage updateWebSalesman(WebSalesmanVO webSalesmanVO);
 	
 	/**
-	 * getWebSalesman
+	 * 得到网站营销人员信息
 	 * @param webSalesmanID
 	 * @return
 	 */
-	public WebSalesmanVO webSalesmanVO(String webSalesmanID);	
+	public WebSalesmanVO getWebSalesman(String webSalesmanID);	
 
 }

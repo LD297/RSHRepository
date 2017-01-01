@@ -36,7 +36,6 @@ public class RoomManager {
 				return null;
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -75,25 +74,5 @@ public class RoomManager {
             return ResultMessage.remote_fail;
 		}
 	}
-	/*
-	public ResultMessage updateRoomList() {
-		ArrayList<RoomPO> roomPOList = new ArrayList<RoomPO>();
-		for(RoomVO roomVO:roomList){
-			roomPOList.add(roomVO.changeIntoPO());
-		}
-		ResultMessage resultMessage = null;
-		initRemote();
-		try{
-			resultMessage = hotelDao.updateRoomList(roomPOList);
-		}catch (RemoteException e){
-			return ResultMessage.remote_fail;
-		}
-		return resultMessage;
-	}**/
-
-	public ResultMessage updateRoomList(ArrayList<RoomVO> roomList2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

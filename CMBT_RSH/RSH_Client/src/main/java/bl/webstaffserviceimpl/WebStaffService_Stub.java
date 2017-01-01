@@ -77,7 +77,7 @@ public class WebStaffService_Stub implements WebStaffService{
 	}
 
 	@Override
-	public WebSalesmanVO webSalesmanVO(String webSalesmanID) {
+	public WebSalesmanVO getWebSalesman(String webSalesmanID) {
 		// TODO Auto-generated method stub
 		return null;
 	}

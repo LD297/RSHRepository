@@ -109,10 +109,6 @@ public class Hotel{
 		return roomManager.getRoomList();
 	}
 	
-	public ResultMessage updateRoomList(ArrayList<RoomVO> roomList) {
-		return roomManager.updateRoomList(roomList);
-	}
-	
 	public ArrayList<RoomAvailVO> getRoomAvailList(Date checkIn,Date checkOut) {
 		RoomAvail roomAvail = RoomAvail.getInstance(hotelID);
 		return roomAvail.getRoomAvailList(checkIn);
@@ -189,7 +185,6 @@ public class Hotel{
 	 * @return
 	 */
 	public boolean hasEnoughRoom(String roomType, int roomNum, Date begin, Date end) {
-		// TODO Auto-generated method stub
 		if(roomType == null){
 			for(RoomVO roomVO:roomManager.roomList){
 				if(hasEnoughForOneType(roomVO.getRoomType(), roomNum, begin, end)){

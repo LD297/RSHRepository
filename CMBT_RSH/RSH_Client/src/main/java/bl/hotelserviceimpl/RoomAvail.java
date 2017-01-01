@@ -72,19 +72,4 @@ public class RoomAvail {
 		return availVOs;
 	}
 	
-	/**
-	public ResultMessage updateRoomAvailList(ArrayList<RoomAvailVO> roomAvailList) {
-		ResultMessage resultMessage = null;
-		initRemote();
-		try {
-			for(RoomAvailVO roomAvailVO:roomAvailList){
-				hotelDao.updateRoomList(roomAvailVO.changeIntoPO());
-			}
-			hotelDao.changeRoomAvail(id, roomType, isPlus, num, checkIn, checkOut)
-			resultMessage = hotelDao.updateRoomAvailList(hotelID, roomAvailList);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return resultMessage;
-	}**/
 }

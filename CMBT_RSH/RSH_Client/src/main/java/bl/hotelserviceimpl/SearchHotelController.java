@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import bl.hotelservice.SearchHotelService;
 import bl.orderserviceimpl.OrderForHotelController;
-import bl.userserviceimpl.UserController;
 
 /**
  * 根据条件搜索酒店, 兼顾搜索排序
@@ -49,7 +48,24 @@ public class SearchHotelController implements SearchHotelService {
 		}
 		return hotelVOs;
 	}
-
+	
+	@Override
+	public ArrayList<HotelVO> getHotelList() {
+		initRemote();
+		ArrayList<HotelPO> hotelPOs = new ArrayList<>();
+		ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+		try {
+			hotelPOs = hotelDao.getAll();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return hotelVOs;
+		}
+		for (HotelPO hotelPO : hotelPOs) {
+			hotelVOs.add(hotelPO.changeIntoVO());
+		}
+		return hotelVOs;
+	}
+	
 	@Override
 	public ArrayList<HotelVO> select(ArrayList<HotelVO> hotelList, SelectConditionVO selectConditionVO) {
 		ArrayList<HotelVO> result = new ArrayList<>();
@@ -160,23 +176,6 @@ public class SearchHotelController implements SearchHotelService {
 			return false;
 	}
 
-	@Override
-	public ArrayList<HotelVO> getHotelList() {
-		// TODO Auto-generated method stub
-		initRemote();
-		ArrayList<HotelPO> hotelPOs = new ArrayList<>();
-		ArrayList<HotelVO> hotelVOs = new ArrayList<>();
-		try {
-			hotelPOs = hotelDao.getAll();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return hotelVOs;
-		}
-		for (HotelPO hotelPO : hotelPOs) {
-			hotelVOs.add(hotelPO.changeIntoVO());
-		}
-		return hotelVOs;
-	}
+	
 
 }

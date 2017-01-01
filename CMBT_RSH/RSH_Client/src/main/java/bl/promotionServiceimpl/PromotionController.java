@@ -45,7 +45,6 @@ public class PromotionController implements PromotionService {
 		try {
 			newID = promotionDao.getNewID(setterID);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "remote_fail";
 		}
@@ -58,7 +57,6 @@ public class PromotionController implements PromotionService {
 		try {
 			return promotionDao.insert(promotionVO.changeIntoPO());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
@@ -67,11 +65,9 @@ public class PromotionController implements PromotionService {
 
 	@Override
 	public ResultMessage delPromotion(String setterID, String promotionID) {
-		// TODO Auto-generated method stub
 		try {
 			return promotionDao.delete(setterID, promotionID);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.remote_fail;
 		}
@@ -79,14 +75,12 @@ public class PromotionController implements PromotionService {
 
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfHotel(String hotelID) {
-		// TODO Auto-generated method stub
 		ArrayList<PromotionPO> promotionPOs = new ArrayList<>();
 		ArrayList<PromotionVO> promotionVOs = new ArrayList<>();
 		initRemote();
 		try {
 			promotionPOs = promotionDao.finds(hotelID);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return promotionVOs;
 		}
@@ -101,19 +95,17 @@ public class PromotionController implements PromotionService {
 	 */
 	@Override
 	public ArrayList<PromotionVO> getPromotionOfDistrict(String district) {
-		// TODO Auto-generated method stub
 		return getPromotionOfHotel(district);
 	}
 
 
 	/**
 	 * 订单生成时计算最优策略
-	 * @param orderVO
+	 * @param orderInfo
 	 * @return
 	 */
-	public String countPromotionOfRoom(OrderInfo orderVO) {
-		// TODO Auto-generated method stub
-		return Count.countPromotionOfRoom(orderVO);
+	public String countPromotionOfRoom(OrderInfo orderInfo) {
+		return Count.countPromotionOfRoom(orderInfo);
 	}
 
 

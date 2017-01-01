@@ -1,10 +1,7 @@
 package bl.promotionServiceimpl.condition;
 
-import bl.orderserviceimpl.Order;
 import constant.ConditionType;
 import vo.OrderInfo;
-import vo.OrderVO;
-import vo.UserVO;
 
 /**
  * 优惠的条件种类

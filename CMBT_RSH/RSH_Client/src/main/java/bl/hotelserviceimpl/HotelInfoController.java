@@ -32,7 +32,6 @@ public class HotelInfoController implements HotelInfoService{
 
 	@Override
 	public ResultMessage updateGrade(String hotelID,int grade) {
-		// TODO Auto-generated method stub
 		Hotel hotel = Hotel.getInstance(hotelID);
 		if(hotel == null){
 			return ResultMessage.idNotExist;

@@ -143,7 +143,6 @@ public class Order {
        String hotelID = orderPO.getHotelID()                  ;
        RoomNormVO room =  orderPO.getRoom();
        int roomNum = orderPO.getRoomNumber();
-       double orderValue = orderPO.getTrueValue();
        Date checkIn = orderPO.getCheckIn();
        Date checkOut = orderPO.getCheckOut();
 
@@ -215,7 +214,8 @@ public class Order {
 
    
    
-   public ResultMessage update(){
+   private ResultMessage update(){
+	   initRemote();
 	   try {
 		return orderDao.update(orderPO);
 	

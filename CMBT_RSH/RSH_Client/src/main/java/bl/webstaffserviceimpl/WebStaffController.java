@@ -33,7 +33,6 @@ public class WebStaffController implements WebStaffService{
 	
 	@Override
 	public String getIDForWebsalesman() {
-		String year = String.valueOf(LocalDate.now().getYear());
 		initRemote();
 		try {
 			return webSalesmanDao.getNewID();
@@ -45,7 +44,6 @@ public class WebStaffController implements WebStaffService{
 
 	@Override
 	public ResultMessage addWebSalesman(WebSalesmanVO webSalesmanVO) {
-		// TODO Auto-generated method stub
 		initRemote();
 		String webSalesmanID = webSalesmanVO.getId();
 		try {
@@ -58,7 +56,20 @@ public class WebStaffController implements WebStaffService{
 			return ResultMessage.remote_fail;
 		}
 	}
-
+	
+	@Override
+	public WebSalesmanVO getWebSalesman(String webSalesmanID) {
+		initRemote();
+		WebSalesmanPO webSalesmanPO ;
+		try {
+			webSalesmanPO = webSalesmanDao.findByID(webSalesmanID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return webSalesmanPO.changeIntoVO();
+	}
+	
 	@Override
 	public ArrayList<WebSalesmanVO> getAllWebSalesmen() {
 		initRemote();
@@ -74,6 +85,23 @@ public class WebStaffController implements WebStaffService{
 			webSalesmanVOs.add(webSalesmanPO.changeIntoVO());
 		}
 		return webSalesmanVOs;
+	}
+	
+	/**
+	 * 登陆模块调用
+	 * @param ID
+	 * @param password
+	 * @return
+	 */
+	public static ResultMessage checkPassword(String ID, String password) {
+		if(ID.equals(MANAGER_ID)){
+			WebManager webManager = WebManager.getInstance();
+			return webManager.checkPassword(password);
+		}
+		else{
+			WebSalesman webSalesman = WebSalesman.getInstance(ID);
+			return webSalesman.checkPassword(password);
+		}
 	}
 	
 	@Override
@@ -104,36 +132,10 @@ public class WebStaffController implements WebStaffService{
 		}
 	}
 
-	/**
-	 * 登陆模块调用
-	 * @param ID
-	 * @param password
-	 * @return
-	 */
-	public static ResultMessage checkPassword(String ID, String password) {
-		if(ID.equals(MANAGER_ID)){
-			WebManager webManager = WebManager.getInstance();
-			return webManager.checkPassword(password);
-		}
-		else{
-			WebSalesman webSalesman = WebSalesman.getInstance(ID);
-			return webSalesman.checkPassword(password);
-		}
-	}
+	
 
 
-	@Override
-	public WebSalesmanVO webSalesmanVO(String webSalesmanID) {
-		initRemote();
-		WebSalesmanPO webSalesmanPO ;
-		try {
-			webSalesmanPO = webSalesmanDao.findByID(webSalesmanID);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return webSalesmanPO.changeIntoVO();
-	}
+	
 
 	
 }
