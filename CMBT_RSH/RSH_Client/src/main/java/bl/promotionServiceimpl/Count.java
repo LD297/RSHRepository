@@ -69,10 +69,10 @@ public class Count {
 
 	private static double count(Promotion promotion, OrderInfo orderInfo){
 		double result = orderInfo.getOriginalValue();
-		if(!promotion.beginDate.before(orderInfo.getCheckInDate())){
+		if(promotion.beginDate.after(orderInfo.getCheckInDate())){
 			return result;
 		}
-		if(!promotion.endDate.after(orderInfo.getCheckOutDate())){
+		if(promotion.endDate.before(orderInfo.getCheckOutDate())){
 			return result;
 		}
 		if(!promotion.scope.check(orderInfo.getHotelID(),orderInfo.getRoomType())){
