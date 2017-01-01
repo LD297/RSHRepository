@@ -203,7 +203,7 @@ public class AddPromotionUIController {
             scopeNum = webSalesmanVO.getDistrict();
 
         //  如果是酒店制定促销策略，且选择指定房间
-        if(webSalesmanVO!=null){
+        if(webSalesmanVO==null){
             if(scopeType.equals(ScopeType.ROOM))
                 roomType = (String)roomTypeChoiceBox.getValue();
         }
