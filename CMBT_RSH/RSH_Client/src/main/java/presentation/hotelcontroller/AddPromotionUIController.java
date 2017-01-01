@@ -182,13 +182,14 @@ public class AddPromotionUIController {
         beginDate = MyDateFormat.getInstance().changeLocalDateToDate(begin);
         endDate = MyDateFormat.getInstance().changeLocalDateToDate(end);
 
-        // 对应界面的"针对"选项
+        // 对应界面的"针对范围"选项
         if(webSalesmanVO==null){
             if(scopeChoiceBox.getValue().equals("指定房间"))
                 scopeType = ScopeType.ROOM;
             else
                 scopeType = ScopeType.HOTEL;
         }
+
 
         //  "针对"的数量（细节）
         if(webSalesmanVO!=null)
