@@ -12,6 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.HotelInfoUIController">
    <children>
@@ -32,7 +33,7 @@
                         <Image url="@../images/hotel/酒店背景图111.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="102.0" layoutY="119.0" style="-fx-background-color: rgba(0,0,0,0.3);" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Label layoutX="102.0" layoutY="119.0" opacity="0.5" style="-fx-background-color: rgba(0,0,0,0.3);" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font>
@@ -63,46 +64,26 @@
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="wifiImage" fitHeight="26.0" fitWidth="26.0" layoutX="14.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="wifiImage" fitHeight="26.0" fitWidth="26.0" layoutX="14.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0">
                      <image>
                         <Image url="@../images/无线图标.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="wifiLabel" layoutX="47.0" layoutY="260.0" prefHeight="30.0" prefWidth="76.0" text="无线网络" textFill="WHITE">
-                     <font>
-                        <Font name="Times New Roman" size="18.0" />
-                     </font>
-                  </Label>
                   <ImageView fx:id="swimpoolImage" fitHeight="30.0" fitWidth="26.0" layoutX="201.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/游泳池图标.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="swimLabel" layoutX="243.0" layoutY="260.0" prefHeight="30.0" prefWidth="76.0" text="游泳池" textFill="WHITE">
-                     <font>
-                        <Font name="Times New Roman" size="18.0" />
-                     </font>
-                  </Label>
                   <ImageView fx:id="parkImage" fitHeight="26.0" fitWidth="26.0" layoutX="14.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/停车场图标.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="parkLabel" layoutX="47.0" layoutY="322.0" prefHeight="30.0" prefWidth="76.0" text="停车场" textFill="WHITE">
-                     <font>
-                        <Font name="Times New Roman" size="18.0" />
-                     </font>
-                  </Label>
                   <ImageView fx:id="diningroomImage" fitHeight="30.0" fitWidth="26.0" layoutX="201.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/餐厅图标.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="diningroomLabel" layoutX="243.0" layoutY="322.0" prefHeight="30.0" prefWidth="76.0" text="餐厅" textFill="WHITE">
-                     <font>
-                        <Font name="Times New Roman" size="18.0" />
-                     </font>
-                  </Label>
                   <Label layoutX="20.0" layoutY="62.0" prefHeight="30.0" prefWidth="55.0" text="星级：" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
@@ -133,6 +114,35 @@
                         <Font name="Times New Roman" size="14.0" />
                      </font>
                   </Button>
+                  <Text fx:id="wifiText" fill="WHITE" fontSmoothingType="LCD" layoutX="48.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="无线网络">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font></Text>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="647.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/电话图标（白）.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="phoneLabel" cache="true" layoutX="674.0" layoutY="25.0" prefHeight="30.0" prefWidth="105.0" text="12345678909" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="diningText" fill="WHITE" fontSmoothingType="LCD" layoutX="246.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="餐厅">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="parkText" fill="WHITE" fontSmoothingType="LCD" layoutX="48.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="停车场">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="swimText" fill="WHITE" fontSmoothingType="LCD" layoutX="246.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="游泳池">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">

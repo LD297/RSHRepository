@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.websalesmancontroller.TopUpCreditUIController">
+   <children>
+      <ImageView fitHeight="42.0" fitWidth="45.0" layoutX="21.0" layoutY="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../images/LOGO.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="260.0" layoutY="68.0" text="信用充值" textFill="#ff5a5f">
+         <font>
+            <Font name="Times New Roman" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="userIdTextField" layoutX="300.0" layoutY="129.0" />
+      <TextField fx:id="topUpNumTextField" layoutX="300.0" layoutY="196.0" />
+      <Label layoutX="141.0" layoutY="133.0" text="请输入用户ID: " AnchorPane.leftAnchor="140.0">
+         <font>
+            <Font name="Times New Roman" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="141.0" layoutY="200.0" text="请输入充值额度: ¥  " AnchorPane.leftAnchor="140.0">
+         <font>
+            <Font name="Times New Roman" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="209.0" layoutY="271.0" text="(增加的信用值为充值额度*100)" textFill="#ff5a5f" />
+      <Button fx:id="confirmButton" layoutX="513.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClicked" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="backButton" layoutX="440.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

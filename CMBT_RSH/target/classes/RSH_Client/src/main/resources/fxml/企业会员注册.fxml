@@ -8,11 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="630.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.usercontroller.CommerceMemberRegisterUIController">
    <children>
       <Label prefHeight="630.0" prefWidth="800.0" style="-fx-background-color: rgba(3,3,3,0.5);" />
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="248.0" style="-fx-background-color: #f4f4f4;" AnchorPane.leftAnchor="276.0" AnchorPane.rightAnchor="276.0" AnchorPane.topAnchor="150.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="248.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="276.0" AnchorPane.rightAnchor="276.0" AnchorPane.topAnchor="150.0">
          <children>
             <ImageView fitHeight="114.0" fitWidth="114.0" layoutX="67.0" layoutY="25.0" pickOnBounds="true" AnchorPane.bottomAnchor="177.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="25.0">
                <image>
@@ -39,6 +38,11 @@
                   <Image url="@../images/cancel.png" />
                </image>
             </ImageView>
+            <Label fx:id="messageLabel" layoutX="31.0" layoutY="213.0" prefHeight="26.0" prefWidth="206.0" textFill="#ff5a5f">
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

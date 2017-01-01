@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.websalesmancontroller.MakeMemberStandardUIController">
+   <children>
+      <ImageView fitHeight="42.0" fitWidth="45.0" layoutX="21.0" layoutY="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../images/LOGO.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="240.0" layoutY="72.0" text="制定会员等级" textFill="#ff5a5f" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font name="Times New Roman" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="creditTextField" layoutX="241.0" layoutY="159.0" prefHeight="27.0" prefWidth="120.0" promptText="500" />
+      <Label layoutX="170.0" layoutY="163.0" opacity="0.8" text="信用值满:" AnchorPane.leftAnchor="170.0">
+         <font>
+            <Font name="Times New Roman" size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="confirmButton" layoutX="513.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#confirmButtonClicked" style="-fx-background-color: ff5a5f;" text="确认" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="backButton" layoutX="440.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="267.0" layoutY="225.0" opacity="0.8" text="升一级" AnchorPane.topAnchor="225.0">
+         <font>
+            <Font name="Times New Roman" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="170.0" layoutY="283.0" text="(部分促销策略可能依据会员等级,请谨慎考虑)" textFill="#ff5a5f" />
+      <Label fx:id="creditPrompt" layoutX="241.0" layoutY="198.0" text="信用值必须大于0" textFill="RED" />
+   </children>
+</AnchorPane>

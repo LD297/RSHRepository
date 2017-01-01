@@ -115,7 +115,7 @@ public class AddPromotionUIController {
     private LocalDate end;
     private ScopeType scopeType;// 酒店工作人员默认："酒店"，可选"房间"； 网营默认："地区"
     private String scopeNum; // 酒店工作人员默认："hotelid"；网营默认："webstaffvo中的district"
-    private String roomType; // 酒店工作人员选择"房间"后，需选择促销策略针对的房间类型
+    private String roomType = ""; // 酒店工作人员选择"房间"后，需选择促销策略针对的房间类型
     private ConditionType conditionType  = ConditionType.SPECIALPERIOD; // 默认："特定时期入住"
     private double conditionNum = 0; // 默认："0"
     private DeductionType deductionType = DeductionType.DISCOUNT; // 默认："打折"

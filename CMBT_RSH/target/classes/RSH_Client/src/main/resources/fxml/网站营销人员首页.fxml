@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.websalesmancontroller.WebSalesmanHomepageUIController">
+   <children>
+      <ImageView fx:id="whiteBackground" fitHeight="720.0" fitWidth="800.0">
+         <image>
+            <Image url="@../images/白色背景.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="logo" fitHeight="42.0" fitWidth="45.0" layoutX="7.0" layoutY="14.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../images/LOGO.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="350.0" fitWidth="350.0" layoutX="123.0" layoutY="137.0" AnchorPane.bottomAnchor="233.0" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="327.0" AnchorPane.topAnchor="137.0">
+         <image>
+            <Image url="@../images/酒店首页c0.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="promotin" fitHeight="99.0" fitWidth="100.0" layoutX="391.0" layoutY="70.0" onMouseClicked="#changeToPromotionUI">
+         <image>
+            <Image url="@../images/酒店首页c2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="exceptionalOrder" fitHeight="99.0" fitWidth="100.0" layoutX="522.0" layoutY="221.0" onMouseClicked="#changeToExceptionalOrderUI">
+         <image>
+            <Image url="@../images/异常订单.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="topUpCredit" fitHeight="99.0" fitWidth="100.0" layoutX="462.0" layoutY="408.0" onMouseClicked="#changeToTopUpCreditUI">
+         <image>
+            <Image url="@../images/信用充值.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="makeMememberStandard" fitHeight="99.0" fitWidth="100.0" layoutX="290.0" layoutY="500.0" onMouseClicked="#changeToMakeMemberStandardUI">
+         <image>
+            <Image url="@../images/会员等级.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="logoutImageView" fitHeight="32.0" fitWidth="32.0" onMouseClicked="#logout" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
+         <image>
+            <Image url="@../images/logout.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

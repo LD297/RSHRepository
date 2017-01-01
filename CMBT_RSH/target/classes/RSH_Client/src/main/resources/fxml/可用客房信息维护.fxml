@@ -9,7 +9,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.RoomInfoUIController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="720.0" fitWidth="800.0">
          <image>
@@ -28,7 +28,7 @@
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="394.0" layoutY="14.0" text="数量" textFill="#00a699" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="14.0">
+            <Label layoutX="382.0" layoutY="14.0" text="可用数量" textFill="#00a699" AnchorPane.rightAnchor="148.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
@@ -129,12 +129,12 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="plus01" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                        <ImageView fx:id="plus01" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus1Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
                            <image>
                               <Image url="@../images/PLUS.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="minus01" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                        <ImageView fx:id="minus01" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus1Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
                            <image>
                               <Image url="@../images/Minus.png" />
                            </image>
@@ -163,12 +163,12 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="plus02" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                        <ImageView fx:id="plus02" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus2Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
                            <image>
                               <Image url="@../images/PLUS.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="minus02" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                        <ImageView fx:id="minus02" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus2Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
                            <image>
                               <Image url="@../images/Minus.png" />
                            </image>
@@ -197,12 +197,12 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="plus03" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                        <ImageView fx:id="plus03" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus3Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
                            <image>
                               <Image url="@../images/PLUS.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="minus03" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                        <ImageView fx:id="minus03" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus3Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
                            <image>
                               <Image url="@../images/Minus.png" />
                            </image>
@@ -231,12 +231,12 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="plus04" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                        <ImageView fx:id="plus04" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus4Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
                            <image>
                               <Image url="@../images/PLUS.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="minus04" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                        <ImageView fx:id="minus04" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus4Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
                            <image>
                               <Image url="@../images/Minus.png" />
                            </image>
@@ -265,12 +265,12 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="plus05" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                        <ImageView fx:id="plus05" fitHeight="15.0" fitWidth="15.0" layoutX="502.0" layoutY="13.0" onMouseClicked="#plus5Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
                            <image>
                               <Image url="@../images/PLUS.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="minus05" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus0Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
+                        <ImageView fx:id="minus05" fitHeight="15.0" fitWidth="15.0" layoutX="535.0" layoutY="15.0" onMouseClicked="#minus5Clicked" AnchorPane.bottomAnchor="13.0" AnchorPane.topAnchor="13.0">
                            <image>
                               <Image url="@../images/Minus.png" />
                            </image>

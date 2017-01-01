@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelcontroller.RoomAvailUIController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="800.0">
+         <image>
+            <Image url="@../images/白色背景.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="109.0" layoutY="112.0" prefHeight="448.0" prefWidth="583.0">
+         <children>
+            <GridPane layoutX="-1.0" layoutY="39.0" prefHeight="390.0" prefWidth="588.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="39.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Separator prefWidth="200.0" />
+                  <Separator prefWidth="200.0" GridPane.rowIndex="2" />
+                  <Separator prefWidth="200.0" GridPane.rowIndex="4" />
+                  <Separator prefWidth="200.0" GridPane.rowIndex="6" />
+                  <Label GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="56.0" />
+                     </padding>
+                  </Label>
+                  <AnchorPane fx:id="showPane0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="92.0" fitWidth="146.0" layoutX="6.0" layoutY="8.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="6.0">
+                           <image>
+                              <Image url="@../images/大床房.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="249.0" layoutY="15.0" opacity="0.8" text="单人间" AnchorPane.leftAnchor="249.0" AnchorPane.topAnchor="15.0">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="249.0" layoutY="73.0" opacity="0.8" prefHeight="19.0" prefWidth="56.0" text="297" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="283.0" AnchorPane.topAnchor="73.0">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="405.0" layoutY="8.0" opacity="0.8" prefHeight="20.0" prefWidth="56.0" text="¥ 957" AnchorPane.leftAnchor="405.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="168.0" layoutY="30.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="房间类型:" AnchorPane.topAnchor="15.7421875">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="168.0" layoutY="88.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="可用数量:" AnchorPane.topAnchor="73.7421875">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="359.0" layoutY="29.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="价格:" AnchorPane.topAnchor="14.7421875">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Text>
+                        <ImageView fx:id="plus0" fitHeight="15.0" fitWidth="15.0" layoutX="528.0" layoutY="75.0" onMouseClicked="#plus0Clicked">
+                           <image>
+                              <Image url="@../images/PLUS.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="minus0" fitHeight="15.0" fitWidth="15.0" layoutX="559.0" layoutY="75.0" onMouseClicked="#minus0Clicked">
+                           <image>
+                              <Image url="@../images/Minus.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="showPane01" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="92.0" fitWidth="146.0" layoutX="6.0" layoutY="8.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="6.0">
+                           <image>
+                              <Image url="@../images/大床房.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="249.0" layoutY="15.0" opacity="0.8" text="单人间" AnchorPane.leftAnchor="249.0" AnchorPane.topAnchor="15.0">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="249.0" layoutY="73.0" opacity="0.8" prefHeight="19.0" prefWidth="56.0" text="297" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="283.0" AnchorPane.topAnchor="73.0">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="405.0" layoutY="8.0" opacity="0.8" prefHeight="20.0" prefWidth="56.0" text="¥ 957" AnchorPane.leftAnchor="405.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="168.0" layoutY="30.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="房间类型:" AnchorPane.topAnchor="15.7421875">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="168.0" layoutY="88.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="可用数量:" AnchorPane.topAnchor="73.7421875">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="359.0" layoutY="29.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="价格:" AnchorPane.topAnchor="14.7421875">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Text>
+                        <ImageView fx:id="plus01" fitHeight="15.0" fitWidth="15.0" layoutX="528.0" layoutY="75.0" onMouseClicked="#plus01Clicked">
+                           <image>
+                              <Image url="@../images/PLUS.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="minus01" fitHeight="15.0" fitWidth="15.0" layoutX="559.0" layoutY="75.0" onMouseClicked="#minus01Clicked">
+                           <image>
+                              <Image url="@../images/Minus.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="showPane02" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
+                     <children>
+                        <ImageView fitHeight="92.0" fitWidth="146.0" layoutX="6.0" layoutY="8.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="6.0">
+                           <image>
+                              <Image url="@../images/大床房.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="249.0" layoutY="15.0" opacity="0.8" text="单人间" AnchorPane.leftAnchor="249.0" AnchorPane.topAnchor="15.0">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="249.0" layoutY="73.0" opacity="0.8" prefHeight="19.0" prefWidth="56.0" text="297" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="283.0" AnchorPane.topAnchor="73.0">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="405.0" layoutY="8.0" opacity="0.8" prefHeight="20.0" prefWidth="56.0" text="¥ 957" AnchorPane.leftAnchor="405.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="168.0" layoutY="30.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="房间类型:" AnchorPane.topAnchor="15.7421875">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="168.0" layoutY="88.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="可用数量:" AnchorPane.topAnchor="73.7421875">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="359.0" layoutY="29.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="价格:" AnchorPane.topAnchor="14.7421875">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Text>
+                        <ImageView fx:id="plus02" fitHeight="15.0" fitWidth="15.0" layoutX="528.0" layoutY="75.0" onMouseClicked="#plus02Clicked">
+                           <image>
+                              <Image url="@../images/PLUS.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="minus02" fitHeight="15.0" fitWidth="15.0" layoutX="559.0" layoutY="75.0" onMouseClicked="#minus02Clicked">
+                           <image>
+                              <Image url="@../images/Minus.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </GridPane>
+            <DatePicker fx:id="datePicker" layoutY="1.0" prefHeight="27.0" prefWidth="153.0" promptText="请选择日期" />
+            <Label fx:id="gotoDateLabel" layoutX="170.0" layoutY="4.0" onMouseClicked="#gotoDate" opacity="0.8" text="&gt;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="42.0" fitWidth="45.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@../images/LOGO.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="660.0" layoutY="616.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" opacity="0.5" text="返回">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="prePageLabel" layoutX="335.0" layoutY="591.0" onMouseClicked="#prePageClicked" text="&lt;&lt;&lt;   第 " AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="336.0">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="nextPageLabel" layoutX="411.0" layoutY="591.0" onMouseClicked="#nextPageClicked" text=" 页   &gt;&gt;&gt;" AnchorPane.bottomAnchor="120.0" AnchorPane.rightAnchor="336.0">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="335.0" layoutY="582.0" />
+      <Label fx:id="pageLabel" layoutX="397.0" layoutY="591.0" text="1" AnchorPane.bottomAnchor="120.0">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="348.0" layoutY="71.0" text="可用客房" textFill="#ff5a5f" AnchorPane.leftAnchor="348.0" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font name="Times New Roman" size="26.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
