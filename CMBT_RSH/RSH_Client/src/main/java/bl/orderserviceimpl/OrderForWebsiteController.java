@@ -85,6 +85,6 @@ public class OrderForWebsiteController implements OrderForWebsite {
     	if(order==null){
     		return ResultMessage.idNotExist;
     	}
-    	return order.cancelAbnormal(isHalf);
+    	return order.webCancelAbnormal(isHalf);
     }
 }
