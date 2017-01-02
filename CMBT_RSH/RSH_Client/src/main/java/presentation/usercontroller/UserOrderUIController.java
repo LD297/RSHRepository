@@ -91,11 +91,20 @@ public class UserOrderUIController {
 		 orderIDField.setText("");
     	 UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
     	 stateOfOrder = null;
-    	 if(backImage.isVisible()){
-    		 presentOrderVOs = userInfoUtil.getOrderVOsOfOneHotel();
-    	 }else {
-    		 presentOrderVOs = userInfoUtil.getOrderVOs(stateOfOrder);
-		}
+    	 presentOrderVOs = userInfoUtil.getOrderVOs(stateOfOrder);
+    	 setMaxPages();
+    	 //初始化日历
+    	 dayOfTodayLabel.setText(new SimpleDateFormat("dd").format(new Date()));
+    	 mothyearOfToday.setText(new SimpleDateFormat("yyyy.MM").format(new Date()));
+    	 weekOfToday.setText(MyDateFormat.getInstance().getWeek(new Date()));
+	}
+	 
+	 public void init(boolean flag) {
+		 orderIDField.setText("");
+    	 UserInfoUtil userInfoUtil = UserInfoUtil.getInstance();
+    	 stateOfOrder = null;
+    	 presentOrderVOs = userInfoUtil.getOrderVOsOfOneHotel();
+    	 gridpaneFilledWithOrder.getChildren().clear();
     	 setMaxPages();
     	 //初始化日历
     	 dayOfTodayLabel.setText(new SimpleDateFormat("dd").format(new Date()));

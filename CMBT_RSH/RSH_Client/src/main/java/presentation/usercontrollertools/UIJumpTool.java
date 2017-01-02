@@ -41,7 +41,7 @@ public class UIJumpTool {
     private AnchorPane isMember = null;//是会员
     private AnchorPane userCreditRecord = null;
     private AnchorPane userOrder = null;
-    private AnchorPane myOrderOfOneHotel = null;
+//    private AnchorPane myOrderOfOneHotel = null;
     private AnchorPane registerCommonMember = null;
     private AnchorPane registerCommerceMember = null;
     private AnchorPane addComment = null;
@@ -70,12 +70,14 @@ public class UIJumpTool {
 
     //在酒店详情界面上弹出针对该酒店的我的订单界面
     public void changeToMyOrderOfOneHotel(){
-        myOrderOfOneHotel = UserUIFXMLFactory.getUserUIFXMLFactory().getUserOrder();
+    	AnchorPane myOrderOfOneHotel = UserUIFXMLFactory.getUserUIFXMLFactory().getUserOrder();
         //TODO 在initialize方法里面设置返回箭头可见
         UserOrderUIController userOrderUIController = UserUIFXMLFactory.getUserUIFXMLFactory().getUserOrderUIController();
         userOrderUIController.setBackImage(true);
+        
         hotelInfo.getChildren().get(hotelInfo.getChildren().size()-1).setVisible(true);
         hotelInfo.getChildren().add(myOrderOfOneHotel);
+        userOrderUIController.init(true);
         //设置我的订单的位置
         Locator.getLocator().setLocation(myOrderOfOneHotel,20.0,20.0,0.0,0.0);
     }

@@ -385,6 +385,7 @@ public String getHotelID() {
      */
     public ArrayList<OrderVO> getOrderVOsOfOneHotel() {
 		ArrayList<OrderVO> orderVOs = orderForUser.specificOrder(userID, hotelID);
+		System.out.println(hotelID);
 		return orderVOs;
 	}
     /**
