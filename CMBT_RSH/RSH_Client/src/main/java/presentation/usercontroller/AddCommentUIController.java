@@ -116,7 +116,7 @@ public class AddCommentUIController {
     
     public void init(){
     	OrderVO orderVO = UserInfoUtil.getInstance().getOrderVO();
-    	if(orderVO.getComment()==null||orderVO.getComment().equals("")){
+    	if(orderVO.getComment()==null||orderVO.getComment().equals("null")){
     		//暂无评价界面
     		addCommentImage.setVisible(true);
     		addCommentButton.setVisible(true);

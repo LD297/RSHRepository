@@ -173,6 +173,9 @@ public class CreateOrderUIController {
 				String temp = UserInfoUtil.getInstance().getOrderPriceAndPromotion(orderInfo);
 				totalPrice = temp.split("#")[1];
 				promotion = temp.split("#")[0];
+				if(totalPrice.length()>8){
+					totalPrice = totalPrice.substring(0,7);
+				}
 				totalPriceLabel.setText(totalPrice);//显示总价格
 				if(promotion!=null){
 					if(!promotion.equals("null")){

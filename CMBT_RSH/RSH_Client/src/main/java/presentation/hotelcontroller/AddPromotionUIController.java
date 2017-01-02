@@ -227,7 +227,6 @@ public class AddPromotionUIController {
 
         // 默认输折扣方式和折扣额度输入正确
         if(deductionTypeChoiceBox.getValue().equals("打折")){
-//            deductionType = DeductionType.DISCOUNT;
             deductionNum = Double.valueOf(discountTextField.getText());
         }
         else {
@@ -298,7 +297,6 @@ public class AddPromotionUIController {
     }
     public void setPromotionId(String promotionId){
         this.promotionID = promotionId;
-        System.out.println("setter id: "+setterId+" proid: "+promotionId);
     }
 
     public void setPrePane(AnchorPane prePane){
@@ -306,10 +304,6 @@ public class AddPromotionUIController {
     }
 
     public void initializePageBySetter(){
-
-        System.out.println("setterid: "+setterId+" proid: "+promotionID
-                +" isHotel: "+(webSalesmanVO==null)
-                +" hotelid: ");
 
         clearNodeContent();
 
@@ -349,7 +343,6 @@ public class AddPromotionUIController {
         } else {
             // 网站营销人员制定
             scopeChoiceBox.setItems(FXCollections.observableArrayList("地区"));
-            System.out.println("!~!~!~");
         }
 
         scopeChoiceBox.setOnAction(new EventHandler<ActionEvent>(){

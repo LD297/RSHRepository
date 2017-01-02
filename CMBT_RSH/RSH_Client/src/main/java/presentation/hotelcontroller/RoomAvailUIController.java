@@ -222,8 +222,6 @@ public class RoomAvailUIController {
             Date nextDate = calendar.getTime();
             ResultMessage rs = null;
             if(change==1){
-//                System.out.println(hotelId+" ~ "+roomType.getText()+"  ~  "+MyDateFormat.getInstance().toString(currentDate, true)+" ~ "+availNum);
-                
                 rs = hotelService.plusRoomAvail(hotelId, roomType.getText(), 1, currentDate, nextDate);
             }
             else if(change==-1)

@@ -1,4 +1,4 @@
-package presentation.hotelcontroller;
+package presentation.hotelcontrollertools;
 
 import constant.StateOfOrder;
 import vo.OrderVO;

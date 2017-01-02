@@ -7,7 +7,7 @@ public enum ResultMessage {
 	idAlreadyExist,
 	idNotExist,
 	timeOut,
-	already_exist,
+//	already_exist,
 	remote_fail,
 
 	not_exist,

@@ -381,7 +381,6 @@ public class CheckOrderUIController {
             // 显示当前页
             showPage();
         }
-        // TODO 想办法提取一个方法，统一判断
         isUnExeSelectable = false;
         isExeSelectable = true;
         isExcSelectable = true;

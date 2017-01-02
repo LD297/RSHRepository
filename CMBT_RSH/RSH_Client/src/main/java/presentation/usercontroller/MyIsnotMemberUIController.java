@@ -14,7 +14,11 @@ import javafx.scene.input.MouseEvent;
 import presentation.tools.ImageFactory;
 import presentation.usercontrollertools.UIJumpTool;
 import presentation.usercontrollertools.UserInfoUtil;
-
+/**
+ * 提示用户注册企业会员或普通会员
+ * @author john
+ *
+ */
 public class MyIsnotMemberUIController {
 
     @FXML

@@ -37,6 +37,11 @@ import presentation.usercontrollertools.UserUIFXMLFactory;
 import vo.HotelVO;
 import vo.SelectConditionVO;
 
+/**
+ * 筛选条件
+ * @author john
+ *
+ */
 public class SelectConditionUIController {
 
     @FXML

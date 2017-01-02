@@ -283,7 +283,6 @@ public class RoomInfoUIController {
     public void refreshPage(){
         initCurrentPage();
         setCurrentRoom();
-//        System.out.println(hotelId+" has "+currentRoom.size()+" room(s)~~~");
         setFullPageNum();
         setRemainderRoomVONum();
         showPage();

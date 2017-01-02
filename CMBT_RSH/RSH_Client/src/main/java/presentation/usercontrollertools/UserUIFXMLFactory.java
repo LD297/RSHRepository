@@ -11,6 +11,7 @@ import presentation.usercontroller.UserRegisterUIController;
 
 /**
  * Created by john on 2016/12/5.
+ * 加载fxml文件
  */
 public class UserUIFXMLFactory {
     private static UserUIFXMLFactory userUIFXMLFactory = null;

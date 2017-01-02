@@ -70,7 +70,7 @@ public class User {
 		//判断该账号是否存在
 		try {
 			if(userDao.getInfo(userVO.getId())!=null){
-				return ResultMessage.already_exist;				
+				return ResultMessage.idAlreadyExist;				
 			}				
 		} catch (RemoteException e) {
 			e.printStackTrace();

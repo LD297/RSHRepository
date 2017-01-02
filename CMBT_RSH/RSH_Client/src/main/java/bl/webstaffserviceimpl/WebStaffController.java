@@ -48,7 +48,7 @@ public class WebStaffController implements WebStaffService{
 		String webSalesmanID = webSalesmanVO.getId();
 		try {
 			if(webSalesmanDao.findByID(webSalesmanID)!=null){
-				return ResultMessage.already_exist;
+				return ResultMessage.idAlreadyExist;
 			}
 			return webSalesmanDao.insert(webSalesmanVO.changeIntoPO());
 		} catch (RemoteException e) {

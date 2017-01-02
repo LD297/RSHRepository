@@ -11,6 +11,10 @@ public class LoginService_Stub implements LoginService{
 	@Override
 	public ResultMessage register(UserVO vo) {
 		// TODO Auto-generated method stub
+		//13951897687已存在
+		if(vo.userID.equals("13951897687")){
+			return ResultMessage.idAlreadyExist;
+		}
 		return ResultMessage.succeed;
 	}
 

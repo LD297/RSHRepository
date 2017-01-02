@@ -2,6 +2,7 @@ package presentation.usercontrollertools;
 
 /**
  * Created by john on 2016/12/8.
+ * 用户输入格式检查
  */
 public class UserInputFormCheckTool {
     private static UserInputFormCheckTool userInputFormCheckTool = null;

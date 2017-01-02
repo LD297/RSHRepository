@@ -9,7 +9,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.webmanagercontrollertools.WebManagerUIFXMLFactory;
-
+/**
+ * 展示关于我们的信息
+ * @author john
+ *
+ */
 public class AboutUsUIController {
 
     @FXML

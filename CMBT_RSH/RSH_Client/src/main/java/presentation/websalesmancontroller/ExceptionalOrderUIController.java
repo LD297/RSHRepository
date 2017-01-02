@@ -1,9 +1,7 @@
 package presentation.websalesmancontroller;
 
 import bl.orderservice.OrderForWebsite;
-import bl.orderserviceimpl.OrderForWebsiteController;
 import constant.ResultMessage;
-import constant.StateOfOrder;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -16,8 +14,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.stage.Stage;
-import presentation.hotelcontroller.DataFactory;
-import presentation.hotelcontroller.DateTransform;
+import presentation.tools.MyDateFormat;
 import presentation.websalesmancontrollertools.WebSalesmanServiceFactory;
 import vo.OrderVO;
 
@@ -150,14 +147,17 @@ public class ExceptionalOrderUIController {
             Date checkIn = theOrder.getCheckIn();
             Date checkOut = theOrder.getCheckOut();
             Date generationDate = theOrder.getGenerationDate();
+            String checkInStr = MyDateFormat.getInstance().toString(checkIn);
+            String checkOutStr = MyDateFormat.getInstance().toString(checkOut);
+            String generationDateStr = MyDateFormat.getInstance().toString(generationDate);
             ((Label)theAnchorePane.getChildren().get(0)).setText(userID+"("+userName+")");
             ((Label)theAnchorePane.getChildren().get(1)).setText(orderID);
             ((Label)theAnchorePane.getChildren().get(2)).setText(roomType);
             ((Label)theAnchorePane.getChildren().get(3)).setText(String.valueOf(roomNum));
             ((Label)theAnchorePane.getChildren().get(4)).setText("￥ "+String.valueOf(trueValue));
-            ((Label)theAnchorePane.getChildren().get(5)).setText(String.valueOf(generationDate.getTime()));
-            ((Label)theAnchorePane.getChildren().get(6)).setText(String.valueOf(checkIn.getTime()));
-            ((Label)theAnchorePane.getChildren().get(7)).setText(String.valueOf(checkOut.getTime()));
+            ((Label)theAnchorePane.getChildren().get(5)).setText(generationDateStr);
+            ((Label)theAnchorePane.getChildren().get(6)).setText(checkInStr);
+            ((Label)theAnchorePane.getChildren().get(7)).setText(checkOutStr);
         } else {
             showBlank(theAnchorePane);
         }
@@ -210,11 +210,7 @@ public class ExceptionalOrderUIController {
     }
 
     private void setExceptionalOrder(){
-        // TODO
         exceptionalOrder = orderForWebsite.browseAbnormal();
-        System.out.println(exceptionalOrder.size()+"~~");
-//        exceptionalOrder = DataFactory.getOrderVOList(4);
-
     }
 
     @FXML

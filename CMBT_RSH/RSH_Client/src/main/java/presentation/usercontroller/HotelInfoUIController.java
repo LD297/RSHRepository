@@ -19,7 +19,11 @@ import presentation.tools.ImageFactory;
 import presentation.usercontrollertools.UIJumpTool;
 import presentation.usercontrollertools.UserInfoUtil;
 import vo.HotelVO;
-
+/**
+ * 酒店详情界面
+ * @author john
+ *
+ */
 public class HotelInfoUIController {
 
     @FXML
