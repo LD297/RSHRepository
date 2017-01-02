@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
-import bl_Stub.HotelService_Stub;
 import constant.ResultMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
