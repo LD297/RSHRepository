@@ -93,7 +93,7 @@ public class OrderForHotelController implements OrderForHotel{
         if(order==null){
         	return ResultMessage.idNotExist;
         }
-        ResultMessage resultMessage = order.cancelAbnormal(false);
+        ResultMessage resultMessage = order.hotelCancelAbnormal();
         if(resultMessage == ResultMessage.succeed){
             return order.execute();
         }
@@ -127,8 +127,8 @@ public class OrderForHotelController implements OrderForHotel{
 	public boolean hasReserved(String userID, String hotelID) {
 		initRemote();
 		try {
-			if(orderDao.searchByUserWithHotel(userID, hotelID).isEmpty())
-				return false;
+			if(!orderDao.searchByUserWithHotel(userID, hotelID).isEmpty())
+				return true;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
