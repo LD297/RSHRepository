@@ -1,9 +1,7 @@
 package presentation.websalesmancontroller;
 
 import bl.orderservice.OrderForWebsite;
-import bl.orderserviceimpl.OrderForWebsiteController;
 import constant.ResultMessage;
-import constant.StateOfOrder;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -16,8 +14,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.stage.Stage;
-import presentation.hotelcontroller.DataFactory;
-import presentation.hotelcontroller.DateTransform;
 import presentation.websalesmancontrollertools.WebSalesmanServiceFactory;
 import vo.OrderVO;
 
@@ -210,11 +206,8 @@ public class ExceptionalOrderUIController {
     }
 
     private void setExceptionalOrder(){
-        // TODO
         exceptionalOrder = orderForWebsite.browseAbnormal();
         System.out.println(exceptionalOrder.size()+"~~");
-//        exceptionalOrder = DataFactory.getOrderVOList(4);
-
     }
 
     @FXML

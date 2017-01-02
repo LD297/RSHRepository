@@ -180,7 +180,6 @@ public class PromotionUIController {
             Label eachLabel = null;
             for(int i=0; i<NUM_OF_ITEMS; i++){
                 eachLabel = labels.get(i);
-                // TODO 让字体居中
                 eachLabel.setTextAlignment(TextAlignment.CENTER);
                 eachLabel.setText(items[i]);
             }

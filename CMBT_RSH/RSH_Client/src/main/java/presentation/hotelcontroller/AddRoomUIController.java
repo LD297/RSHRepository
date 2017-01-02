@@ -154,13 +154,10 @@ public class AddRoomUIController {
             RoomVO newRoom = new RoomVO(hotelId, type, Integer.valueOf(roomNum),
                     Double.valueOf(roomPrice), roomImageAddress);
             ResultMessage rm = hotelService.addSpecialRoom(newRoom);
-            System.out.println(rm+" result message");
             if(!rm.equals(ResultMessage.succeed))
-                System.out.println("房间添加失败！");
             promptsInvisible();
             backButtonClicked(null);
         } else
-            System.out.println("!!!");
             return;
     }
 
