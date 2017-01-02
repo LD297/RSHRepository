@@ -19,6 +19,11 @@ import vo.HotelVO;
 import vo.OrderVO;
 import vo.UserVO;
 
+/**
+ * 订单详情
+ * @author john
+ *
+ */
 public class OrderInfoUIController {
 
     @FXML

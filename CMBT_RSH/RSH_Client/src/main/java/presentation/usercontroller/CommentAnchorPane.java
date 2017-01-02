@@ -33,7 +33,11 @@ public class CommentAnchorPane extends AnchorPane{
 		dateFormat = new SimpleDateFormat("yyyy-MM-dd");//yyyy-MM-dd hh:mm:ss
 		dateLabel = new Label(dateFormat.format(orderVO.getActualCheckIn()));
 		roomTypeLabel = new Label(orderVO.getRoom().getRoomType());
-		commentArea = new TextArea(orderVO.getComment());
+		if(orderVO.getComment().equals("")){
+			commentArea = new TextArea("该用户暂无评价");
+		}else {
+			commentArea = new TextArea(orderVO.getComment());
+		}
 		
 		// 设置组件属性
 		headImage.setPreserveRatio(false);

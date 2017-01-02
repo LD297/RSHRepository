@@ -21,6 +21,11 @@ import vo.HotelVO;
 import vo.UserVO;
 import vo.WebSalesmanVO;
 
+/**
+ * 从逻辑层获取数据
+ * @author john
+ *
+ */
 public class WebManagerInfoUtil {
 	private static WebManagerInfoUtil webManagerInfoUtil = null;
 /*	private LoginService loginService = new LoginService_Stub();

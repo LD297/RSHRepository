@@ -13,7 +13,11 @@ import javafx.scene.image.ImageView;
 import presentation.tools.ImageFactory;
 import presentation.usercontrollertools.UserInfoUtil;
 import vo.UserVO;
-
+/**
+ * 显示我的会员信息
+ * @author john
+ *
+ */
 public class MyIsMemberUIController {
 
     @FXML

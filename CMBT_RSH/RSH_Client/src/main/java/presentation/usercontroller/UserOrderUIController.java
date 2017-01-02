@@ -20,7 +20,11 @@ import presentation.tools.MyDateFormat;
 import presentation.usercontrollertools.UIJumpTool;
 import presentation.usercontrollertools.UserInfoUtil;
 import vo.OrderVO;
-
+/**
+ * 订单浏览
+ * @author john
+ *
+ */
 public class UserOrderUIController {
 
     @FXML

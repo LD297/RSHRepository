@@ -9,7 +9,11 @@ import presentation.tools.ImageFactory;
 import presentation.tools.Locator;
 import presentation.tools.MyDateFormat;
 import vo.CreditRecordVO;
-
+/**
+ * 信用记录上一栏信用记录信息
+ * @author john
+ *
+ */
 public class SingleCreditRecordAnchorPane extends AnchorPane{
 	private Label weekLabel = null;
 	private Label dateLabel = null;

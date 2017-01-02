@@ -17,6 +17,7 @@ import constant.MemberType;
 
 /**
  * Created by john on 2016/12/5.
+ * 用户视角下的界面跳转
  */
 public class UIJumpTool {
     private static UIJumpTool uiJumpTool = null;

@@ -12,7 +12,11 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import presentation.usercontrollertools.UIJumpTool;
-
+/**
+ * 用户导航栏，可以跳转到个人资料，我的会员，我的订单，我的信用
+ * @author john
+ *
+ */
 public class UserGuideUIController {
 
     @FXML

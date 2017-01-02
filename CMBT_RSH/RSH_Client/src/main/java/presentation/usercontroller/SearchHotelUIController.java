@@ -20,7 +20,11 @@ import presentation.usercontrollertools.UIJumpTool;
 import presentation.usercontrollertools.UserInfoUtil;
 import presentation.webmanagercontrollertools.WebManagerInfoUtil;
 import vo.DistrictHelper;
-
+/**
+ * 用户首页，搜索酒店
+ * @author john
+ *
+ */
 public class SearchHotelUIController {
 
     @FXML
