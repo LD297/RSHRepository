@@ -1,4 +1,4 @@
-package data.dao_Stub.orderdao_Stub;
+package dao_Stub;
 
 import constant.ResultMessage;
 import constant.StateOfOrder;

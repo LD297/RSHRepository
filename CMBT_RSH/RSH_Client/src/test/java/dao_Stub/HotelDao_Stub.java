@@ -1,4 +1,4 @@
-package data.dao_Stub.hoteldao_Stub;
+package dao_Stub;
 
 import constant.ResultMessage;
 import constant.SortBy;

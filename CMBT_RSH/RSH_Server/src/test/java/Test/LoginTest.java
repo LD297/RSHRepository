@@ -1,4 +1,4 @@
-package data.daohelperimpl.logindaohelperimpl;
+package Test;
 
 import static org.junit.Assert.*;
 import constant.ResultMessage;
@@ -9,10 +9,12 @@ import java.rmi.RemoteException;
 
 import org.junit.Test;
 
+import data.daohelperimpl.logindaohelperimpl.LoginDaoHelperMySql;
+
 /**
  * Created by sky-PC on 2016/12/12.
  */
-public class test {
+public class LoginTest {
     static LoginDaoHelperMySql loginDao = new LoginDaoHelperMySql();
     
     @Test

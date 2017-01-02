@@ -1,4 +1,4 @@
-package data.dao_Stub.promotiondao_Stub;
+package dao_Stub;
 
 import constant.ConditionType;
 import constant.DeductionType;

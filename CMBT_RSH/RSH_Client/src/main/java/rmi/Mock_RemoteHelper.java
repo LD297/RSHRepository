@@ -6,8 +6,6 @@ import data.dao.logindao.LoginDao;
 import data.dao.orderdao.OrderDao;
 import data.dao.promotiondao.PromotionDao;
 import data.dao.userdao.UserDao;
-import data.dao_Stub.logindao_Stub.LoginDao_Stub;
-import data.dao_Stub.userdao_Stub.UserDao_Stub;
 
 /**
  * Created by aa on 2016/12/13.
@@ -20,11 +18,11 @@ public class Mock_RemoteHelper extends RemoteHelper{
     private OrderDao orderDao;
     private PromotionDao promotionDao;
 
-    private Mock_RemoteHelper(){
+    /*private Mock_RemoteHelper(){
         super();
         userDao = UserDao_Stub.getInstance();
         loginDao = LoginDao_Stub.getInstance();
-    }
+    }*/
 
     public static Mock_RemoteHelper getInstance(){
         if(mock_remoteHelper==null){

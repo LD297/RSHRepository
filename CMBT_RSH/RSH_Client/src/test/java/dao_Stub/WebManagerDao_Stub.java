@@ -1,4 +1,4 @@
-package data.dao_Stub.webstaff_Stub;
+package dao_Stub;
 
 import java.rmi.RemoteException;
 

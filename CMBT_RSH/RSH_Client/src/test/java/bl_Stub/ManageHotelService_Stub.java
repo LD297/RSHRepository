@@ -1,4 +1,4 @@
-package bl.hotelserviceimpl;
+package bl_Stub;
 
 import bl.hotelservice.ManagerHotelService;
 import constant.ResultMessage;

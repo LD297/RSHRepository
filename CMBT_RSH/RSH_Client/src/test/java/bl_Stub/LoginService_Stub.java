@@ -1,4 +1,4 @@
-package bl.loginserviceimpl;
+package bl_Stub;
 
 import bl.loginservice.LoginService;
 import constant.ResultMessage;

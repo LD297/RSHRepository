@@ -1,4 +1,4 @@
-package bl.webstaffserviceimpl;
+package bl_Stub;
 
 import java.util.ArrayList;
 

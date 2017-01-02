@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelInfoService;
-import bl.promotionServiceimpl.PromotionService_Stub;
 import bl.promotionservice.PromotionService;
+import bl_Stub.PromotionService_Stub;
 import constant.ConditionType;
 import constant.DeductionType;
 import constant.ResultMessage;

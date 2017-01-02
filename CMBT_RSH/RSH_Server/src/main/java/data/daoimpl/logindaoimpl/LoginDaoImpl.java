@@ -32,13 +32,10 @@ public class LoginDaoImpl extends UnicastRemoteObject implements LoginDao{
 	}
 	@Override
 	public ResultMessage addOnline(OnlinePersonPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		System.out.println("get");
 		return loginDaoHelper.addOnline(po);
 	}
 	@Override
 	public ResultMessage deleteOnline(Role role, String id) throws RemoteException {
-		// TODO Auto-generated method stub
 		return loginDaoHelper.deleteOnline(role,id);
 	}
 

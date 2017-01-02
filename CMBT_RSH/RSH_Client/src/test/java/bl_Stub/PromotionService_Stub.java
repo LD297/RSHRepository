@@ -1,4 +1,4 @@
-package bl.promotionServiceimpl;
+package bl_Stub;
 
 import java.util.ArrayList;
 import java.util.Date;

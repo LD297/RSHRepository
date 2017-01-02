@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import bl.hotelservice.HotelService;
-import bl.hotelserviceimpl.HotelService_Stub;
+import bl_Stub.HotelService_Stub;
 import constant.HotelInputFeedback;
 import constant.ResultMessage;
 import javafx.event.ActionEvent;

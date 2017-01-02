@@ -1,4 +1,4 @@
-package bl.orderserviceimpl;
+package bl_Stub;
 
 import bl.orderservice.OrderForWebsite;
 import constant.ResultMessage;

@@ -1,4 +1,4 @@
-package data.dao_Stub.userdao_Stub;
+package dao_Stub;
 
 import bl.userserviceimpl.User;
 import constant.MemberType;

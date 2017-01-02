@@ -1,4 +1,4 @@
-package data.daohelperimpl.promotiondaohelperimpl;
+package Test;
 
 import static org.junit.Assert.*;
 import constant.ConditionType;
@@ -15,13 +15,15 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import data.daohelperimpl.promotiondaohelperimpl.PromotionDaoHelperMySql;
+
 /**
  * Created by sky-PC on 2016/12/12.
  */
-public class test {
+public class PromotionTest {
     static PromotionDaoHelperMySql promotionDao =null;// new PromotionDaoHelperMySql();
 
-   @Test 
+   @Test // 添加策略
     public void insert() throws RemoteException,ParseException{
         SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd");
         Date tempBeginDate = sim.parse("2016-12-10");
@@ -37,43 +39,28 @@ public class test {
                 tempDType, 80);
         ResultMessage result = promotionDao.insert(po);
         assertEquals(result,ResultMessage.idAlreadyExist);
-    }/*
-    @Test 
+    }
+    @Test // 删除策略
     public void delete()throws RemoteException{
         String setter = "2016000001";
         String id = "004";
         ResultMessage result = promotionDao.delete(setter,id);
         assertEquals(result,ResultMessage.idNotExist);
     }
-    @Test 
-    public void  update ()throws RemoteException,ParseException{
-        SimpleDateFormat sim=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date tempBeginDate = sim.parse("2016-11-11 12:00:00");
-        Date tempEndDate = sim.parse("2016-11-13 12:00:00");
-        ScopeType tempSType = ScopeType.HOTEL;
-        ConditionType tempCType = ConditionType.BIRTHDAY;
-        DeductionType tempDType = DeductionType.DISCOUNT;
-        PromotionPO po = new PromotionPO("2016000001","001","任性u优惠",
-                tempBeginDate,tempEndDate,
-                tempSType,"2153000000",
-                tempCType,400,
-                tempDType, 80);
-        ResultMessage result = promotionDao.update(po);
-        assertEquals(result,ResultMessage.succeed);
-    }
-    @Test 
+   
+    @Test // 查看策略
     public void find()throws RemoteException{
         String setter = "2016000001";
         String id = "002";
         PromotionPO po = promotionDao.find(setter,id);
         assertEquals(po.getName(),"老总生日优惠");
     }
-    @Test 
+    @Test // 查看策略
     public void finds() throws RemoteException{
         String scope="2153000001";
         ArrayList<PromotionPO> list = promotionDao.finds(scope);
-        assertEquals(list.get(0).getName(),"老总生日优惠");
-    }*/
+        assertEquals(list.size(),2);
+    }
    
 
 }
