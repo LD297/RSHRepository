@@ -73,7 +73,12 @@ public class UserService_Stub implements UserService{
 	@Override
 	public ResultMessage registerMember(String userid, String commerceName) {
 		// TODO Auto-generated method stub
-		return ResultMessage.succeed;
+		if(commerceName.equals("策马奔腾有限公司")){
+			return ResultMessage.succeed;
+		}else {
+			return ResultMessage.fail;
+		}
+		
 	}
 
 	@Override

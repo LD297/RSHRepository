@@ -30,7 +30,7 @@ public class LoginDao_Stub implements LoginDao {
     @Override
     public ResultMessage addOnline(OnlinePersonPO po) throws RemoteException {
         if(personPOMap.containsKey(po.getId())){
-            return ResultMessage.already_exist;
+            return ResultMessage.idAlreadyExist;
         }
         else{
             personPOMap.put(po.getId(),po);
