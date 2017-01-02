@@ -37,7 +37,7 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
     }
     public void finish(){
         db.executeSql("USE OurData");
-      //  db.executeSql("DROP TABLE IF EXISTS HotelInfo");
+        db.executeSql("DROP TABLE IF EXISTS HotelInfo");
         db.executeSql("DROP TABLE IF EXISTS RoomInfo");
     }
 
@@ -439,7 +439,6 @@ public class HotelDaoHelperMySql implements HotelDaoHelper {
             tip = -1;//新增订单 撤销订单
         int gap1 = this.getDayGap(checkIn);
         int gap2 = this.getDayGap(checkOut);
-        System.out.println(gap1+" "+gap2+"  时间差");
         String getRoomListSql = "SELECT aList FROM RoomInfo WHERE hotelID='"+hotelID+"' and roomType='"+roomType+"' LIMIT 1";
         ResultSet result = db.query(getRoomListSql);
         if(!(gap1>=0&&gap2>gap1))

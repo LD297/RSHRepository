@@ -96,18 +96,17 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         this.updateAll();
         String getDetailSql = "SELECT *FROM OrderGeneral WHERE orderID='"+orderID+"' LIMIT 1";
         ResultSet result = db.query(getDetailSql);
-        
+        System.out.println("this is search id");
         return this.getClearFromResult(result).get(0);
     }
     // 根据用户、酒店编号查找订单
     public ArrayList<OrderPO> searchByUserWithHotel(String userID,String hotelID)throws RemoteException{
         db.executeSql("USE OurData");
-
         this.updateAll();
+        
         String deUserID = this.getSecreted(userID);
         String generalSql = "SELECT *FROM OrderGeneral WHERE userID="+deUserID+" and hotelID='"+hotelID+"'";
         ResultSet result = db.query(generalSql);
-
         return this.getClearFromResult(result);
     }
     // 根据用户编号查找订单
@@ -118,7 +117,6 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         String deUserID = this.getSecreted(userID);
         String generalSql = "SELECT *FROM OrderGeneral WHERE userID="+deUserID;
         ResultSet result = db.query(generalSql);
-
         return this.getClearFromResult(result);
     }
     // 根据酒店编号查找订单
@@ -128,7 +126,6 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         this.updateAll();
         String generalSql = "SELECT *FROM OrderGeneral WHERE hotelID='"+hotelID+"'";
         ResultSet result = db.query(generalSql);
-
         return this.getClearFromResult(result);
     }
     // 根据状态查找订单
@@ -138,7 +135,6 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
         this.updateAll();
         String generalSql = "SELECT *FROM OrderGeneral WHERE state=" +String.valueOf(state.ordinal());
         ResultSet result = db.query(generalSql);
-
         return this.getClearFromResult(result);
     }
     // 插入订单
@@ -200,7 +196,6 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
             e.printStackTrace();
             return ResultMessage.fail;
         }
-        System.out.println("use stateupdate "+newState.ordinal());////////////////////
         String stateUpdateSql = "UPDATE OrderGeneral SET state=" +String.valueOf(newState.ordinal())+
                 " WHERE orderID='"+orderID+"' LIMIT 1";
         db.executeSql(stateUpdateSql);
@@ -280,7 +275,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     // 完成从ResultSet到POList的操作
     private ArrayList<OrderPO> transformResultSetToPOList(ResultSet result) {
         ArrayList<OrderPO> selectedList = new ArrayList<OrderPO>();
-
+   
         try {
             while (result.next()) {
                 String orderID = result.getString("orderID");
@@ -288,7 +283,6 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
                 String userName = result.getString("userName");
                 String hotelID = result.getString("hotelID");
                 String hotelName = result.getString("hotelName");
-
                 StateOfOrder state = StateOfOrder.values()[result.getInt("state")];
                 String roomType = result.getString("roomType");
                 double roomPrice = result.getDouble("roomPrice");
@@ -346,7 +340,7 @@ public class OrderDaoHelperMySql implements OrderDaoHelper{
     }
     private ArrayList<OrderPO> getClearFromResult(ResultSet result){
     	ArrayList<OrderPO> list = this.transformResultSetToPOList(result);
-    	if(list==null)
+    	if(list.size()==0)
     		return new ArrayList<OrderPO>();
     	else{
          	ArrayList<OrderPO> clearList = new ArrayList<OrderPO>();
